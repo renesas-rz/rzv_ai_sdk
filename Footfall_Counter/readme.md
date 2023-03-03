@@ -11,28 +11,32 @@ where managers need to monitor and analyze traffic flow and customer behavior.
 REQUIREMENTS
 ------------
 
-RZ V2L Board
-Ubuntu 20.04
-OpenCV 4.x
-C++11 or higher
-TinyYoloV3 Model
-Boost C++ libraries
-Eigen linear algebra library
+- RZ V2L Board
+- Ubuntu 20.04
+- OpenCV 4.x
+- C++11 or higher
+- TinyYoloV3 Model
+- Boost C++ libraries
+- Eigen linear algebra library
 
 
 BUILDING APPLICATION
 --------------------
 
-NOTE: This project expects the user to have completed the Board Set Up, SD Card Preparation steps and AI SDK Set Up steps
-      mentioned in the RZV2L_AI_SDK_Instruction_guide.
-      Copy the src directory to the data directory created at the 3rd Step of AI SDK Set Up.
+NOTE: This project expects the user to have completed 
+- the Board Set Up, 
+- SD Card Preparation steps 
+- AI SDK Set Up steps mentioned in the RZV2L_AI_SDK_Instruction_guide.
+- Copy the src directory to the data directory created at the 3rd Step of AI SDK Set Up.
 
 1.Application File Generation
 ******************************
 
 Download the boost files to the src folder using the below command
-    wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
 
+``` 
+wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
+```
 Build the application by following the steps below
     * $cd src
     * $mkdir build
@@ -62,7 +66,7 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 	./object_tracker
 
 Folder structure in the prepared SD Card would look like:
-
+```
 /
 ├── usr/
 │   └── lib64/
@@ -79,24 +83,25 @@ Folder structure in the prepared SD Card would look like:
             ├── config.ini
             └── object_tracker
 
+```
 
 3. Explanation of the config.ini file
 **************************************
 
-The file contains three sections: [line], [region], and [tracking].
+The file contains three sections: [**line**], [**region**], and [**tracking**].
 
 
-The [line] section contains four key-value pairs that define the coordinates of the boundary line to be
+The [**line**] section contains four key-value pairs that define the coordinates of the boundary line to be
 drawn. 
 The x1, y1, x2, and y2 values correspond to the x and y coordinates of the boundary line's
 starting and ending points.
 
-The [region] section contains five key-value pairs, which defines the Region of Interest. 
+The [**region**] section contains five key-value pairs, which defines the Region of Interest. 
 The n value indicates the number of points that define a region, followed by x and y coordinates
 for each point. 
 The region is defined by connecting these points in the order they are listed.
 
-The [tracking] section contains two key-value pairs. 
+The [**tracking**] section contains two key-value pairs. 
 The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number 
 of keypoints required for tracking.
 
