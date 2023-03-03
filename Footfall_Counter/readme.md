@@ -1,0 +1,104 @@
+FOOTFALL COUNTER USING TINYYOLOV3
+---------------------------------
+
+This application is designed to track and count the number of people entering a designated boundary line,
+while simultaneously reducing the count for those exiting the boundary line. Additionally, the application 
+has the ability to measure the time spent by a particular person within a specified region of interest. 
+This software could be useful in a variety of settings, such as retail stores, museums, and events,
+where managers need to monitor and analyze traffic flow and customer behavior.
+
+
+REQUIREMENTS
+------------
+
+RZ V2L Board
+Ubuntu 20.04
+OpenCV 4.x
+C++11 or higher
+TinyYoloV3 Model
+Boost C++ libraries
+Eigen linear algebra library
+
+
+BUILDING APPLICATION
+--------------------
+
+NOTE: This project expects the user to have completed the Board Set Up, SD Card Preparation steps and AI SDK Set Up steps
+      mentioned in the RZV2L_AI_SDK_Instruction_guide.
+      Copy the src directory to the data directory created at the 3rd Step of AI SDK Set Up.
+
+1.Application File Generation
+******************************
+
+Download the boost files to the src folder using the below command
+    wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
+
+Build the application by following the steps below
+    * $cd src
+    * $mkdir build
+    * $cd build
+    * cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    * make -j$(nproc)
+
+object_tracker application file would be genarated in the src/build directory.
+
+
+2.Deploying the Application
+****************************
+
+Follow the steps mentioned below to deploy the project on RZV2L Board.
+
+    * Copy the genarted object_tracker file to the home/root/tvm directory of the SD Card prepared
+      for RZV2L board.
+    * Copy config.ini file to the home/root/tvm directory of the SD Card prepared
+      for RZV2L board.
+    * Copy the preprocess_tvm_v2l directory to the home/root/tvm directory of the SD Card prepared
+      for RZV2L board.
+    * Copy the coco-labels-2014_2017.txt to the home/root/tvm directory of RZV2L board.
+    * Copy the libtvm_runtime.so to usr/lib64 directory of the SD card RZV2L board.
+    * Change the values in config.ini as per the requirements. Detailed explanation of the config.ini file is 
+      given at point number 3.
+    * Run the application in the terminal of the RZV2L board using the command,
+	./object_tracker
+
+Folder structure in the prepared SD Card would look like:
+
+/
+├── usr/
+│   └── lib64/
+│       └── libtvm_runtime.so
+└── home/
+    └── root/
+        └── tvm/
+            ├── output_directory/
+            │   ├── deploy.json
+            │   ├── deploy.params
+            │   └── deploy.so
+            ├── preprocess_tvm_v2l
+            ├── coco-labels-2014_2017.txt
+            ├── config.ini
+            └── object_tracker
+
+
+3. Explanation of the config.ini file
+**************************************
+
+The file contains three sections: [line], [region], and [tracking].
+
+
+The [line] section contains four key-value pairs that define the coordinates of the boundary line to be
+drawn. 
+The x1, y1, x2, and y2 values correspond to the x and y coordinates of the boundary line's
+starting and ending points.
+
+The [region] section contains five key-value pairs, which defines the Region of Interest. 
+The n value indicates the number of points that define a region, followed by x and y coordinates
+for each point. 
+The region is defined by connecting these points in the order they are listed.
+
+The [tracking] section contains two key-value pairs. 
+The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number 
+of keypoints required for tracking.
+
+To modify the configuration settings, edit the values in this file using VI Editor, from the RZV2L Board.
+
