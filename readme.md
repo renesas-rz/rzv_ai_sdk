@@ -1,5 +1,6 @@
 # RZV_AI_Applications
-The sample applications developed are listed as:
-1. Footfall counter
-2. Smart Parking Solution
 
+The list of sample application developed:
+1. Footfall Counter
+2. Smart Parking Solution
+3. Face Authentication at Airport
