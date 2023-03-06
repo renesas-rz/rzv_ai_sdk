@@ -7,6 +7,13 @@ has the ability to measure the time spent by a particular person within a specif
 This software could be useful in a variety of settings, such as retail stores, museums, and events,
 where managers need to monitor and analyze traffic flow and customer behavior.
 
+Demo video : 
+
+
+
+https://user-images.githubusercontent.com/126070033/223024685-540114e5-a871-470c-b2f8-a3cd0ce070bb.mp4
+
+
 
 REQUIREMENTS
 ------------
