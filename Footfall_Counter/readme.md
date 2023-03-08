@@ -7,6 +7,13 @@ has the ability to measure the time spent by a particular person within a specif
 This software could be useful in a variety of settings, such as retail stores, museums, and events,
 where managers need to monitor and analyze traffic flow and customer behavior.
 
+Demo video : 
+
+
+
+https://user-images.githubusercontent.com/126070033/223024685-540114e5-a871-470c-b2f8-a3cd0ce070bb.mp4
+
+
 
 REQUIREMENTS
 ------------
@@ -23,11 +30,12 @@ REQUIREMENTS
 BUILDING APPLICATION
 --------------------
 
-NOTE: This project expects the user to have completed 
+**NOTE:** This project expects the user to have completed 
 - the Board Set Up, 
 - SD Card Preparation steps 
-- AI SDK Set Up steps mentioned in the RZV2L_AI_SDK_Instruction_guide.
-- Copy the src directory to the data directory created at the 3rd Step of AI SDK Set Up.
+- AI SDK Set Up steps mentioned in the RZV2L_AI_SDK_Instruction_guide. After this step docker image amd container will be created. 
+- Docker environment is required for building the sample application. 
+- Copy the src directory from this GitHub to the data directory (mounted directory for created docker container) created at the 3rd Step of AI SDK Set Up.
 
 1. Application File Generation
 ******************************
@@ -37,10 +45,10 @@ Download the boost files to the src folder using the below command
 ``` 
 wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
 ```
-Build the application by following the steps below
+Build the application on docker environment by following the steps below
 ```
 $cd src
-$mkdir build
+$mkdir -p build
 $cd build
 $cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
 $make -j$(nproc)
@@ -50,8 +58,8 @@ object_tracker application file would be genarated in the src/build directory.
 
 2. Deploying the Application
 ****************************
-
-Follow the steps mentioned below to deploy the project on RZV2L Board.
+For ease of deployment all the dployables file for RZV2L are provided on the "board_deploy" folder.\
+Follow the steps mentioned below to deploy the project on RZV2L Board. 
 
     * Copy the genarted object_tracker file to the home/root/tvm directory of the SD Card prepared
       for RZV2L board.
@@ -101,8 +109,9 @@ for each point.\
 The region is defined by connecting these points in the order they are listed.
 
 - The [**tracking**] section contains two key-value pairs.\
-The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number 
-of keypoints required for tracking.
+The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number of keypoints required for tracking.\
+The object tracked here is of class "Person", it can be changed to other classes present on the coco labels.
+
 
 To modify the configuration settings, edit the values in this file using VI Editor, from the RZV2L Board.
 
@@ -110,6 +119,7 @@ To modify the configuration settings, edit the values in this file using VI Edit
 *************************************
 
 - Currently for storing the person id and the time spent on the region of interest [ROI] is stored on the board memeory as key-value pair. As board memory consumption is limited, this procedure could be moved to the Database/Cache as well on the cloud or host machine.
+- **Note:**  As per recent development status, the application have been tested for 100 numbers of people on the certain region without any error occuring, so if the use cases are expected for the number of people on certain region to be less than 100, there is no need for code modification. 
 - Customers can install SQL Database/ cache on the cloud or host-machine. 
 - After each sec the application can call the API for inserting the data on the DB, if not present. and show the time taken for the persons in the ROI
 - When the person goes out of the ROI, the application can call the API to remove the person data from the DB and cache.
