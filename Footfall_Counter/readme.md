@@ -58,8 +58,8 @@ object_tracker application file would be genarated in the src/build directory.
 
 2. Deploying the Application
 ****************************
-
-Follow the steps mentioned below to deploy the project on RZV2L Board.
+For ease of deployment all the dployables file for RZV2L are provided on the "board_deploy" folder.\
+Follow the steps mentioned below to deploy the project on RZV2L Board. 
 
     * Copy the genarted object_tracker file to the home/root/tvm directory of the SD Card prepared
       for RZV2L board.
