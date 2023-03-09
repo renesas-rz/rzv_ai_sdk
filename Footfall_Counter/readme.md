@@ -1,16 +1,16 @@
 # FOOTFALL COUNTER USING TINYYOLOV3
----
 
+## Overview
 This application is designed to track and count the number of people entering a designated boundary line,
-while simultaneously reducing the count for those exiting the boundary line.\
+while simultaneously reducing the count for those exiting the boundary line.
 
 Additionally, the application 
-has the ability to measure the time spent by a particular person within a specified region of interest.\
+has the ability to measure the time spent by a particular person within a specified region of interest.
 
 This software could be useful in a variety of settings, such as retail stores, museums, and events,
 where managers need to monitor and analyze traffic flow and customer behavior.
 
-Demo video : 
+**Demo video :** 
 
 
 
@@ -18,8 +18,7 @@ https://user-images.githubusercontent.com/126070033/223024685-540114e5-a871-470c
 
 
 
-## REQUIREMENTS
-----
+## Requirements
 
 - RZ V2L Board
 - Ubuntu 20.04
@@ -30,18 +29,16 @@ https://user-images.githubusercontent.com/126070033/223024685-540114e5-a871-470c
 - Eigen linear algebra library
 
 
-## BUILDING APPLICATION
-----
+## Building Application
 
 **NOTE:** This project expects the user to have completed 
 - the Board Set Up, 
 - SD Card Preparation steps 
-- AI SDK Set Up steps mentioned in the RZV2L_AI_SDK_Instruction_guide. After this step docker image amd container will be created. 
+- AI SDK Set Up steps mentioned in the [RZV2L_AI_SDK_Instruction_guide](). After this step docker image amd container will be created. 
 - Docker environment is required for building the sample application. 
 - Copy the src directory from this GitHub to the data directory (mounted directory for created docker container) created at the 3rd Step of AI SDK Set Up.
 
 ### Application File Generation
-******************************
 
 Download the boost files to the src folder using the below command
 
@@ -49,20 +46,27 @@ Download the boost files to the src folder using the below command
 wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
 ```
 Build the application on docker environment by following the steps below
+```sh
+cd src
 ```
-$cd src
-$mkdir -p build
-$cd build
-$cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-$make -j$(nproc)
+```sh
+mkdir -p build
+```
+```sh
+cd build
+```
+```sh
+cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+```
+```sh
+make -j$(nproc)
 ```
 `object_tracker` application file would be genarated in the src/build directory.
 
 
 ## Deploying the Application
----------
 
-For the ease of deployment all the deployables file and folders for RZV2L are provided on the "rzv2l_board_deploy" folder.\
+For the ease of deployment all the deployables file and folders for RZV2L are provided on the "rzv2l_board_deploy" folder.
 
 |File | Details |
 |:---|:---|
@@ -109,10 +113,10 @@ Folder structure in the prepared SD Card would look like:
 ```
 
 ## Application configuration 
-**************************************
-Explanation of the `config.ini` file \
 
-The file contains three sections: [**line**], [**region**], and [**tracking**].\
+Explanation of the `config.ini` file 
+
+The file contains three sections: [**line**], [**region**], and [**tracking**].
 
 - **NOTE:** The x,y coordintes are ranged from [0,0] to [img_height, img_width]. The img_height and img_width depends on the camera capture resolution. This sample application is tested on 640x480 image.
 
@@ -133,7 +137,6 @@ The object tracked here is of class "Person", it can be changed to other classes
 To modify the configuration settings, edit the values in this file using VI Editor, from the RZV2L Board.
 
 ### Time Tracking Backend Integration
-*************************************
 
 - **Note:**  As per recent development status, the application have been tested for 100 numbers of people on the certain region without any error occuring, so if the use cases are expected for the number of people on certain region to be less than 100, there is no need for code modification.
 
