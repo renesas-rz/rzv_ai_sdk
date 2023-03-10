@@ -10,6 +10,8 @@ has the ability to measure the time spent by a particular person within a specif
 This software could be useful in a variety of settings, such as retail stores, museums, and events,
 where managers need to monitor and analyze traffic flow and customer behavior.
 
+**NOTE:** This sample application can be used to track different objects, like animal, car, etc. The list of objects that can be tracked are provided in [coco labels txt](./rzv2l_board_deploy/coco-labels-2014_2017.txt) file. 
+
 **Demo video :** 
 
 
