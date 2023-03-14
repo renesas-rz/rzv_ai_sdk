@@ -1,0 +1,3 @@
+/drp-ai_tvm/data/intermediate_delivery/src/build/CMakeFiles/rebuild_cache.dir
+/drp-ai_tvm/data/intermediate_delivery/src/build/CMakeFiles/edit_cache.dir
+/drp-ai_tvm/data/intermediate_delivery/src/build/CMakeFiles/object_tracker.dir
