@@ -1,5 +1,5 @@
-Parking slot Detection using Custom CNN Model
-----------------------------------------
+# Parking slot Detection using Custom CNN Model
+
 
 The Parking Slot Detection software is an advanced tool that helps users to detect whether a parking slot is empty or occupied. 
 With this software, users can easily draw parking slots and detect their status in real-time.
@@ -21,15 +21,15 @@ FPS - 200/10 ->20
 Note: The FPS may change based on the FPS of the input video.
 
 
-REQUIREMENTS
-------------
+## REQUIREMENTS
+
 RZ/V2L board
 Ubuntu 20.04
 OpenCV 4.x
 C++11 or higher
 
-BUILDING APPLICATION
---------------------
+## BUILDING APPLICATION
+
 NOTE: This project expects the user to have completed
 
 * the Board Set Up,
@@ -39,8 +39,8 @@ NOTE: This project expects the user to have completed
 * Copy the src directory from this GitHub to the data directory (mounted directory for created docker container) created at the 3rd Step of AI SDK Set Up.
 
 
-Application File Generation
--------------------------
+# Application File Generation
+
 Build the application on docker environment by following the steps below
 	1. $cd src
 	2. $mkdir build
@@ -64,8 +64,9 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 Note: For the videofile to get executed, ensure that the video file is present inside the home/root/tvm directory of the SD Card prepared.
 
 
-Folder Structure in the board
+## Folder Structure in the board
 -----------------------------
+```
 /
 ├── usr/
 │   └── lib64/
@@ -79,11 +80,10 @@ Folder Structure in the board
             │   └── deploy.so
             ├── sample.mp4
             └── parkinglot_detection
+```
 
-
-Model Details
-----------------
-----------------------------------------------------------------
+## Model Layer Structure
+```python
         Layer (type)               Output Shape         Param #
 ================================================================
             Conv2d-1           [-1, 32, 26, 26]             896
@@ -103,7 +103,7 @@ Forward/backward pass size (MB): 0.30
 Params size (MB): 0.36
 Estimated Total Size (MB): 0.67
 
-
+```
 
 
 
