@@ -18,8 +18,8 @@
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
 * File Name    : predict_notify_base.h
-* Version      : 1.0.4
-* Description  : RZ/V2L DRP-AI TVM[*1] Sample Application for USB Camera HTTP version
+* Version      : 1.0
+* Description  : RZ/V2L AI SDK AI Application Footfall Counter
 *                *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
 ***********************************************************************************************************************/
 
