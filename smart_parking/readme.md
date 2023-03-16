@@ -13,14 +13,15 @@ It provides an accurate and efficient way to manage parking spaces, helping to r
 Average FPS -200/slot 
 
 Total FPS - 200/(num of slots)
-```
-example) 10 slots available,
+```sh
+eg) 10slots available,
+
 FPS - 200/10 ->20
 ```
 > **Note:** The FPS may change based on the FPS of the input video.
 
-
 ## Requirments
+
 
 #### Hardware Requirement
 - RZ/V2L board
@@ -35,6 +36,9 @@ FPS - 200/10 ->20
 - C++11 or higher
 
 ## Building Application
+
+## BUILDING APPLICATION
+
 
 **NOTE:** This project expects the user to have completed
 
@@ -52,6 +56,7 @@ Build the application on docker environment by following the steps below
 cd src
 ```
 ```sh
+
 mkdir -p build && cd build
 ```
 ```sh
@@ -61,8 +66,8 @@ cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
 make -j$(nproc)
 ```
 
-
 `parkinglot_detection` application file would be genarated in the src/build directory.
+
 
 ## Deploying the project
 	
@@ -80,6 +85,7 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 for inference from video. 
 
 >**Note:** By default, the application will take inference from WebCam.
+
 
 >**Note:** For the videofile to get executed, ensure that the video file is present inside the home/root/tvm directory of the SD Card prepared.
 
@@ -104,6 +110,7 @@ for inference from video.
 
 #### Model Details
 
+
 The model used is the custom CNN model. 
 /model_parking.png
 ```python
@@ -127,7 +134,7 @@ Params size (MB): 0.36
 Estimated Total Size (MB): 0.67
 
 ```
-## Run the application
+#### Run the application
 - The application consists of two buttons when the application is run. 
 
 Edit Slots and Run Inference
