@@ -9,6 +9,7 @@ Once the parking slots are drawn, the software uses advanced algorithms (using c
 With this software, users can monitor parking areas such as parking lots, garages, or on-street parking spaces in real-time. 
 It provides an accurate and efficient way to manage parking spaces, helping to reduce congestion and improve traffic flow.
 
+[Demo video](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/smart_parking/sample_output.avi?csf=1&web=1&e=GEdqCZ)
 
 Average FPS -200/slot 
 
@@ -70,25 +71,26 @@ make -j$(nproc)
 
 
 ## Deploying the project
-	
+
+For ease of deployment all the files required for deployment are provided on the [deploy folder](./rzv2l_deploy_smt_prk/)	
 
 Follow the steps mentioned below to deploy the project on RZV2L Board.
 
-* Copy the genarted parkinglot_detection application file to the home/root/tvm directory of the SD Card prepared
-  for RZV2L board.
-* Copy the libtvm_runtime.so to usr/lib64 directory of the SD card RZV2L board.
-* Run the application in the terminal of the RZV2L board using the command,
+* At the home/root/tvm directory of the rootfs (SD Card/NFS) for RZV2L board.
+   * Copy the genarted parkinglot_detection application file 
+   * Copy the parking_bg.jpg image
+   * Copy the parkingmodel_onnx folder
 
-```sh
-./parkinglot_detection <videofile_name.mp4>
-```
-for inference from video. 
+* Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
+
+* Run the application in the terminal of the RZV2L board using the command,
+   * for inference from video `./parkinglot_detection <videofile_name.mp4>`
+   * for inference from the camera feed `./parkinglot_detection`
+ 
 
 >**Note:** By default, the application will take inference from WebCam.
 
-
->**Note:** For the videofile to get executed, ensure that the video file is present inside the home/root/tvm directory of the SD Card prepared.
-
+>**Note:** For the videofile to get executed, ensure that the video file is present inside the home/root/tvm directory of the rootfs of the board.
 
 #### Folder Structure in the board
 
@@ -104,7 +106,9 @@ for inference from video.
             │   ├── deploy.params
             │   └── deploy.so
             ├── sample.mp4
-            └── parkinglot_detection
+            |── parkinglot_detection
+            └── parking_bg.jpg
+            
 ```
 ## Application Details
 
@@ -136,18 +140,28 @@ Estimated Total Size (MB): 0.67
 ```
 #### Run the application
 - The application consists of two buttons when the application is run. 
-
-Edit Slots and Run Inference
-
+   - Edit Slots and Start Inference
+   ![picture alt](./images/parking_app_front.JPG)
+   <img src=./images/parking_app_front.JPG width="420>
+   
 - First click on edit the slots button to add the slots on the parking slots.
 - Now you will see 2 other buttons. `add slot` and `remove slots`
+<img src=./images/park_add_remove.JPG width="360">
+
 - To add the slot, press `add slot` button. 
 - Now when you see the camera screen, 
 - simply press and hold the mouse left click on the screen to start drawing the bounding boxes
 - release the click to finish drawing boxes.
 - You can draw multiple bounding boxes using the above 2 steps
+
+<img src=./images/slot_add.JPG width="480">
+
 - After you have drawn the slots, press `esc` key to go to the home screen
 - Click on the run inference button
+- To close the running application, press `esc` key.
+- You can similiarly remove the added slots as well
+
+<img src=./images/remove_slots.jpg width="360">
 
 
 
