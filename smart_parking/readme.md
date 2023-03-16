@@ -141,24 +141,28 @@ Estimated Total Size (MB): 0.67
 #### Run the application
 - The application consists of two buttons when the application is run. 
    - Edit Slots and Start Inference
-      <img src=./images/parking_app_front.JPG width="420">
+   
+     <img src=./images/parking_app_front.JPG width="420">
    
 - First click on edit the slots button to add the slots on the parking slots.
 - Now you will see 2 other buttons. `add slot` and `remove slots`
-      <img src=./images/park_add_remove.JPG width="360">
+
+     <img src=./images/park_add_remove.JPG width="360" height="240">
 
 - To add the slot, press `add slot` button. 
 - Now when you see the camera screen, 
 - simply press and hold the mouse left click on the screen to start drawing the bounding boxes
 - release the click to finish drawing boxes.
 - You can draw multiple bounding boxes using the above 2 steps
-      <img src=./images/slot_add.JPG width="480">
+
+     <img src=./images/slot_add.JPG width="480">
 
 - After you have drawn the slots, press `esc` key to go to the home screen
 - Click on the run inference button
 - To close the running application, press `esc` key.
 - You can similiarly remove the added slots as well
-      <img src=./images/remove_slots.jpg width="360">
+
+     <img src=./images/remove_slots.jpg width="360" height="240">
 
 ## References
 
