@@ -3,7 +3,8 @@
 The Parking Slot Detection software is an advanced tool that helps users to detect whether a parking slot is empty or occupied. 
 With this software, users can easily draw parking slots and detect their status in real-time.
 
-The software comes with an intuitive user interface that allows users to easily draw parking slots with just a few clicks. 
+The software comes with an intuitive user interface that allows users to easily draw parking slots with just a few clicks.
+
 Once the parking slots are drawn, the software uses advanced algorithms (using custom CNN model) to detect the status of each slot, whether it is vacant or occupied.
 
 With this software, users can monitor parking areas such as parking lots, garages, or on-street parking spaces in real-time. 
@@ -11,18 +12,17 @@ It provides an accurate and efficient way to manage parking spaces, helping to r
 
 [Demo video](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/smart_parking/sample_output.avi?csf=1&web=1&e=GEdqCZ)
 
-Average FPS -200/slot 
+Average FPS: 200/slot 
 
-Total FPS - 200/(num of slots)
-```sh
-eg) 10slots available,
+Total FPS: 200/(num of slots)
+```
+example) 10 slots available,
 
 FPS - 200/10 ->20
 ```
 > **Note:** The FPS may change based on the FPS of the input video.
 
 ## Requirments
-
 
 #### Hardware Requirement
 - RZ/V2L board
@@ -141,27 +141,26 @@ Estimated Total Size (MB): 0.67
 #### Run the application
 - The application consists of two buttons when the application is run. 
    - Edit Slots and Start Inference
-   ![picture alt](./images/parking_app_front.JPG)
-   <img src=./images/parking_app_front.JPG width="420>
+      <img src=./images/parking_app_front.JPG width="420">
    
 - First click on edit the slots button to add the slots on the parking slots.
 - Now you will see 2 other buttons. `add slot` and `remove slots`
-<img src=./images/park_add_remove.JPG width="360">
+      <img src=./images/park_add_remove.JPG width="360">
 
 - To add the slot, press `add slot` button. 
 - Now when you see the camera screen, 
 - simply press and hold the mouse left click on the screen to start drawing the bounding boxes
 - release the click to finish drawing boxes.
 - You can draw multiple bounding boxes using the above 2 steps
-
-<img src=./images/slot_add.JPG width="480">
+      <img src=./images/slot_add.JPG width="480">
 
 - After you have drawn the slots, press `esc` key to go to the home screen
 - Click on the run inference button
 - To close the running application, press `esc` key.
 - You can similiarly remove the added slots as well
+      <img src=./images/remove_slots.jpg width="360">
 
-<img src=./images/remove_slots.jpg width="360">
+## References
 
 
 
