@@ -23,9 +23,9 @@
  *
  */
 /***********************************************************************************************************************
- * File Name    : tutorial_app.cpp
- * Version      : 1.0.0
- * Description  : DRP-AI TVM[*1] Application Example
+ * File Name    : parkinglot_detection.cpp
+ * Version      : 1.0
+ * Description  : RZ/V2L SDK AI Application: Parking Lot Detection
  ***********************************************************************************************************************/
 /*****************************************
  * includes
