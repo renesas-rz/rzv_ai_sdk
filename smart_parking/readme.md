@@ -26,11 +26,12 @@ FPS - 200/10 ->20
 
 #### Hardware Requirement
 - RZ/V2L board
-- USB camera (no driver installation) connected to board
-- USB mouse (no driver installation) connected to board
-- USB Hub (no driver installation) connected to board
-- HDMI monitor connected to board
-
+- USB camera 
+- USB mouse 
+- USB Keyboard
+- USB Hub 
+- HDMI monitor 
+>**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 #### Software Requirement 
 - Ubuntu 20.04
 - OpenCV 4.x
