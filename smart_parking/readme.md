@@ -1,5 +1,5 @@
 # Parking Slot Detection
-## Overview
+## Application: Overview
 The Parking Slot Detection software is an advanced tool that helps users to detect whether a parking slot is empty or occupied. 
 With this software, users can easily draw parking slots and detect their status in real-time.
 
@@ -33,13 +33,11 @@ FPS - 200/10 ->20
 - HDMI monitor 
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 #### Software Requirement 
-- Ubuntu 20.04
+- Ubuntu 20.04 
 - OpenCV 4.x
 - C++11 or higher
 
-## Building Application
-
-## BUILDING APPLICATION
+## Application: Build Stage
 
 
 **NOTE:** This project expects the user to have completed
@@ -51,9 +49,19 @@ FPS - 200/10 ->20
 * Copy the src directory from this GitHub to the data directory (mounted directory for created docker container) created at the 3rd Step of AI SDK Set Up.
 
 
-### Application File Generation
+#### Application: File Generation
+- Copy the repository from the GitHub to the desired location.
+```sh
+export PROJECT_PATH=<path_to_the_cloned_directory>
+```
+```sh
+cd $PROJECT_PATH/smart_parking/
+```
+Now copy this src folder to the data directory (mounted directory for the created `drp_ai_tvm` docker container)
 
-Build the application on docker environment by following the steps below
+- Run the bash terminal of the docker container 
+- Go to the `src` directory which was copied earlier.
+- Now build the application on docker environment by following the steps below
 ```sh
 cd src
 ```
@@ -68,25 +76,29 @@ cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
 make -j$(nproc)
 ```
 
-`parkinglot_detection` application file would be genarated in the src/build directory.
+The following application file would be genarated in the `src/build` directory
+- parkinglot_detection
 
 
-## Deploying the project
+## Application: Deploy Stage
 
-For ease of deployment all the files required for deployment are provided on the [deploy folder](./rzv2l_deploy_smt_prk/)	
+For ease of deployment all the files required for deployment are provided on the [deploy folder](./exe)	
 
-Follow the steps mentioned below to deploy the project on RZV2L Board.
+|File | Details |
+|:---|:---|
+|parkingmodel_onnx | Model object files for deployment. |
+|parking_bg.jpg | Front image for the application. |
+|sample.mp4 | user sample input video. |
+|parkinglot_detection | application file. |
 
-* At the home/root/tvm directory of the rootfs (SD Card/NFS) for RZV2L board.
+Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Board.
+
+* At the home/root/tvm directory of the rootfs (SD Card/NFS) for RZ/V2L evaluation board.
    * Copy the genarted parkinglot_detection application file 
    * Copy the parking_bg.jpg image
    * Copy the parkingmodel_onnx folder
 
 * Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
-
-* Run the application in the terminal of the RZV2L board using the command,
-   * for inference from video `./parkinglot_detection <videofile_name.mp4>`
-   * for inference from the camera feed `./parkinglot_detection`
  
 
 >**Note:** By default, the application will take inference from WebCam.
@@ -111,35 +123,22 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
             └── parking_bg.jpg
             
 ```
-## Application Details
+## Application: Runtime Stage
 
-#### Model Details
-
-
-The model used is the custom CNN model. 
-/model_parking.png
-```python
-        Layer (type)               Output Shape         Param #
-================================================================
-            Conv2d-1           [-1, 32, 26, 26]             896
-         MaxPool2d-2           [-1, 32, 13, 13]               0
-            Conv2d-3           [-1, 64, 11, 11]          18,496
-         MaxPool2d-4             [-1, 64, 5, 5]               0
-            Conv2d-5            [-1, 128, 3, 3]          73,856
-           Flatten-6                 [-1, 1152]               0
-            Linear-7                    [-1, 2]           2,306
-================================================================
-Total params: 95,554
-Trainable params: 95,554
-Non-trainable params: 0
-----------------------------------------------------------------
-Input size (MB): 0.01
-Forward/backward pass size (MB): 0.30
-Params size (MB): 0.36
-Estimated Total Size (MB): 0.67
-
-```
-#### Run the application
+* Run the application in the terminal of the RZV2L board using the command,
+   * go to the `tvm` directory of the rootfs
+   ```sh
+   cd <path_to_deployables>/
+   ```
+   * for inference from video 
+   ```sh 
+   ./parkinglot_detection <videofile_name.mp4>
+   ```
+   * for inference from the camera feed 
+   ```sh
+   ./parkinglot_detection
+   ```
+#### GUI for running the application
 - The application consists of two buttons when the application is run. 
    - Edit Slots and Start Inference
    
@@ -164,6 +163,34 @@ Estimated Total Size (MB): 0.67
 - You can similiarly remove the added slots as well
 
      <img src=./images/remove_slots.jpg width="360" height="240">
+
+## Application: Specifications
+
+#### Model Details
+
+The model used is the custom CNN model. 
+/model_parking.png
+```python
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 32, 26, 26]             896
+         MaxPool2d-2           [-1, 32, 13, 13]               0
+            Conv2d-3           [-1, 64, 11, 11]          18,496
+         MaxPool2d-4             [-1, 64, 5, 5]               0
+            Conv2d-5            [-1, 128, 3, 3]          73,856
+           Flatten-6                 [-1, 1152]               0
+            Linear-7                    [-1, 2]           2,306
+================================================================
+Total params: 95,554
+Trainable params: 95,554
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.01
+Forward/backward pass size (MB): 0.30
+Params size (MB): 0.36
+Estimated Total Size (MB): 0.67
+
+```
 
 ## References
 
