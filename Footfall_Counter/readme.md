@@ -53,27 +53,27 @@ After completion of the guide, the user is expected of following things.
 
 
 #### Application File Generation
-- Copy the src directory from this GitHub to the desired location
+- Copy the repository from the GitHub to the desired location.
 ```sh
-export PROJECT_PTH=<path_to_the_cloned_directory>
+export PROJECT_PATH=<path_to_the_cloned_directory>
 ```
 ```sh
 cd $PROJECT_PATH/Footfall_Counter/
 ```
-- Download the tar file
+- Download the boost tar file
 ```sh
 wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
 ```
 - extract tar file to the desired location 
 ```sh
-tar -xf boost_1_81_0.tar.bz2 .
+tar -xvf boost_1_81_0.tar.bz2
 ```
 - copy the boost files to the `src/include` folder of the 
 ```sh
 cp -r boost_1_81_0/boost src/include/
 ```
 
-- Now copy this src folder to the data directory (mounted directory for created drp_ai_tvm docker container)
+- Now copy this src folder to the data directory (mounted directory for created `drp_ai_tvm` docker container)
 
 - Run the bash terminal of the docker container 
 - Go to the `src` directory which was copied earlier.
@@ -145,7 +145,7 @@ Folder structure in the prepared SD Card would look like:
 
 ## Application configuration 
 
-Explanation of the `config.ini` file 
+###### Explanation of the `config.ini` file 
 
 The file contains three sections: [**line**], [**region**], and [**tracking**].
 
@@ -169,9 +169,9 @@ To modify the configuration settings, edit the values in this file using VI Edit
 
 ### Time Tracking Backend Integration
 
->**Note:**  As per recent development status, the application have been tested for 100 numbers of people on the certain region without any error occuring, so if the use cases are expected for the number of people on certain region to be less than 100, there is no need for code modification.
+>**Note:**  As per recent development status, the application have been tested for 100 numbers of people on the certain region without any error occuring, so if the use cases are expected for the number of people on the certain region to be less than 100, there is no need for code modification.
 
-- Currently for storing the person id and the time spent on the region of interest [ROI] is stored on the board memeory as key-value pair. As board memory consumption is limited, this procedure could be moved to the Database/Cache as well on the cloud or host machine.
+- Currently for storing the person id and the time spent on the region of interest [ROI] is stored on the board memeory as key-value pair. As board memory consumption is limited, this procedure could be moved to the Database/Cache which could be hosted on the cloud or host machine.
 
 - Customers can install SQL Database/Cache on the cloud or host-machine. 
 
