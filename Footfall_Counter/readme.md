@@ -1,6 +1,6 @@
 # Footfall Counter
 
-## Overview
+## Application: Overview
 This application is designed to track and count the number of people entering a designated boundary line,
 while simultaneously reducing the count for those exiting the boundary line.
 
@@ -22,7 +22,7 @@ https://user-images.githubusercontent.com/126070033/223024685-540114e5-a871-470c
 
 
 
-## Requirements
+## Application: Requirements
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
@@ -39,7 +39,9 @@ https://user-images.githubusercontent.com/126070033/223024685-540114e5-a871-470c
 - [Eigen linear algebra library](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 
 
-## Building Application
+## Application: Build Stage
+
+>**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All prebuilt binaries are provided.
 
 **Note:** This project expects the user to have completed [Getting Startup Guide]() provided by Renesas. 
 
@@ -73,7 +75,7 @@ tar -xvf boost_1_81_0.tar.bz2
 cp -r boost_1_81_0/boost src/include/
 ```
 
-- Now copy this src folder to the data directory (mounted directory for created `drp_ai_tvm` docker container)
+- Now copy this src folder to the data directory (mounted directory for the created `drp_ai_tvm` docker container)
 
 - Run the bash terminal of the docker container 
 - Go to the `src` directory which was copied earlier.
@@ -94,16 +96,16 @@ The following application file would be genarated in the `src/build` directory
 - object_tracker
 
 
-## Deploying the Application
+## Application: Deploy Stage
 
 For the ease of deployment all the deployables file and folders for RZV2L are provided on the [exe](./exe) folder.
 
 |File | Details |
 |:---|:---|
 |preprocess_tvm_v2l/ | Pre-processing Runtime Object files. |
-|tinyyolov3_onnx | compiled model for RZV2L.|
+|tinyyolov3_onnx | Model object files for deployment. |
 |coco-lables-2014_2017.txt | Label list for Object Detection. |
-|config.ini | user input config for line, region and object |
+|config.ini | user input config for line, region and object. |
 |object_tracker | application file. |
 
 
@@ -117,12 +119,7 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 
 * Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
 
-* For Running the application,
-  * Change the values in config.ini as per the requirements. Detailed explanation of the config.ini file is given at below section.
-  * Run the application in the terminal of the RZV2L board using the command,
-```sh
-./object_tracker
-```
+
 Folder structure in the prepared SD Card would look like:
 ```sh
 ├── usr/
@@ -143,7 +140,18 @@ Folder structure in the prepared SD Card would look like:
 ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
 
-## Application configuration 
+## Application: Run Stage
+
+* For Running the application,
+  * Change the values in config.ini as per the requirements. Detailed explanation of the config.ini file is given at below section.
+  * Run the application in the terminal of the RZV2L board using the command,
+```sh
+./object_tracker
+```
+* The expected output will be something like the following.
+* To include screen shots of the running app and the terminal output
+
+## Application: Configuration 
 
 ###### Explanation of the `config.ini` file 
 
