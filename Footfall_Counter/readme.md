@@ -41,7 +41,7 @@ https://user-images.githubusercontent.com/126070033/223024685-540114e5-a871-470c
 
 ## Application: Build Stage
 
->**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All prebuilt binaries are provided.
+>**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
 **Note:** This project expects the user to have completed [Getting Startup Guide]() provided by Renesas. 
 
@@ -120,7 +120,7 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 * Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
 
 
-Folder structure in the prepared SD Card would look like:
+Folder structure in the rootfs (SD Card/NFS) would look like:
 ```sh
 ├── usr/
 │   └── lib64/
@@ -143,11 +143,18 @@ Folder structure in the prepared SD Card would look like:
 ## Application: Run Stage
 
 * For Running the application,
+  * go to the `tvm` directory of the rootfs
+  ```sh
+  cd <path_to_deployables>/
+  ```
   * Change the values in config.ini as per the requirements. Detailed explanation of the config.ini file is given at below section.
-  * Run the application in the terminal of the RZV2L board using the command,
-```sh
-./object_tracker
-```
+  ```sh
+  vim config.ini
+  ```
+  * Run the application in the terminal of the RZV2L evaluation board kit using the command
+  ```sh
+  ./object_tracker
+  ```
 * The expected output will be something like the following.
 * To include screen shots of the running app and the terminal output
 
