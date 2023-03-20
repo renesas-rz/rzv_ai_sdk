@@ -1,5 +1,6 @@
-FACE RECOGNITION APPLICATION USING FACENET MODEL
-----------------------------------------
+# Face Recognition Application
+
+## Application: Overview
 The face recognition application is a cutting-edge software that can identify individuals sitting in front of a 
 camera by comparing their faces to a database of pre-existing images. Using advanced computer vision algorithms and facenet model, 
 the software can accurately detect and recognize faces in real-time.
@@ -9,68 +10,91 @@ workplaces, law enforcement, and retail environments. With a simple and intuitiv
 database and configure the software to recognize specific individuals.
 
 
-REQUIREMENTS
-------------
-* Hardware Requirements
-	RZ/V2L board
-	USB camera
-	USB mouse
-	USB Keyboard
-	USB Hub
-	HDMI monitor
+## Application: Requirements
 
-* Software Requirements
-	Ubuntu 20.04
-	OpenCV 4.x
-	C++11 or higher
+#### Hardware Requirements
+- RZ/V2L board
+- USB camera
+- USB mouse
+- USB Keyboard
+- USB Hub
+- HDMI monitor
 
-APPLICATION : Build Stage
------
+#### Software Requirements
+- Ubuntu 20.04
+- OpenCV 4.x
+- C++11 or higher
 
-NOTE: This project expects the user to have completed
+## Application : Build Stage
 
-	* the Board Set Up,
-	* SD Card Preparation steps
-	* AI SDK Set Up steps mentioned in the RZV2L_AI_SDK_Instruction_guide. After this step docker image amd container will be created.
-	* Docker environment is required for building the sample application.
-	* Copy the src directory from this GitHub to the data directory (mounted directory for created docker container)
-	  created at the 3rd Step of AI SDK Set Up.
+>**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-Application: File Generation
+**Note:** This project expects the user to have completed [Getting Startup Guide]() provided by Renesas. 
 
-* Copy the repository from the GitHub to the desired location.
+After completion of the guide, the user is expected of following things.
+- the Board Set Up and booted. 
+- SD Card (or NFS) Prepared 
+- The docker image amd container for drp_ai_tvm running on host machine.
+- libtvm_runtime.so file 
 
-	export PROJECT_PATH=<path_to_the_cloned_directory>
-	cd $PROJECT_PATH/face_recoginition/
+>**Note:** Docker environment is required for building the sample application. 
 
-* Now copy this src folder to the data directory (mounted directory for the created drp_ai_tvm docker container)
 
-	Run the bash terminal of the docker container
-	Go to the src directory which was copied earlier.
-	Now build the application on docker environment by following the steps below
-		cd src
-		mkdir -p build && cd build
-		cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-		make -j$(nproc)
-	
+### Application: File Generation
 
-* The following application file would be genarated in the src/build directory
-	face_recoginition
+- Copy the repository from the GitHub to the desired location.
+```sh
+export PROJECT_PATH=<path_to_the_cloned_directory>
+```
+```sh
+cd $PROJECT_PATH/face_authentication/
+```
 
-* Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Board.
+- Now copy this src folder to the data directory (mounted directory for the created `drp_ai_tvm` docker container)
 
-	At the home/root/tvm directory of the rootfs (SD Card/NFS) for RZ/V2L evaluation board.
+- Run the bash terminal of the docker container 
+- Go to the `src` directory which was copied earlier.
+- Now build the application on docker environment by following the steps below
+```sh
+cd src
+```
+```sh
+mkdir -p build && cd build
+```
+```sh
+cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+```
+```sh
+make -j$(nproc)
+```
+The following application file would be genarated in the `src/build` directory
+- face_recoginition
 
-		Create a directory named dataset, for storing the images to be detected.
-		Copy the genarted face_recoginition application file
-		Copy the face_rec_bg.jpg image
-		Copy the facenetmodel_onnx folder
-		Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
+## Application: Deploy Stage
 
-	Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
+For the ease of deployment all the deployables file and folders for RZV2L are provided on the [exe](./exe) folder.
 
-Folder Structure in the board
------------------------------
+|File | Details |
+|:---|:---|
+|preprocess_tvm_v2l/ | Pre-processing Runtime Object files. |
+|tinyyolov3_onnx | Model object files for deployment. |
+|coco-lables-2014_2017.txt | Label list for Object Detection. |
+|config.ini | user input config for line, region and object. |
+|object_tracker | application file. |
+
+
+Follow the steps mentioned below to deploy the project on RZV2L Board. 
+* At the `home/root/tvm` directory of the rootfs (SD Card/NFS) for RZV2L board.
+   * Create a directory named `dataset`, for storing the images to be detected. 
+   * Copy the genarted `face_recoginition` application file 
+   * Copy the `face_rec_bg.jpg` image
+   * Copy the `facenetmodel_onnx` folder
+
+* Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
+
+#### Folder Structure in the board
+----
+```
 ├── usr/
 │   └── lib64/
 │       └── libtvm_runtime.so
@@ -84,34 +108,38 @@ Folder Structure in the board
             ├── dataset
             |── face_recoginition
             └── face_rec_bg.jpg
+```
 
-Application: Runtime Stage
----------------------------
+## Application: Runtime Stage
 
-* Store the images of the faces to be detected in the dataset directory created in RZ/V2L board.
+
+* Store the images of the faces to be detected in the `dataset` directory created in RZ/V2L board.
 * Run the application in the terminal of the RZV2L board using the command
 	./face_recoginition
 
 
-GUI for running the application
+#### GUI for running the application
 --------------------------------
 
-* The application consists of three buttons when the application is run.
-	> Add faces from directory - Button for converting images in the dataset directory for comprison purposes
-	> Add faces - Button for taking pictures from the camera.
-	> Recoginze - Button for Face face_recoginition
+- The application consists of three buttons when the application is run.
+	- Add faces from directory: Button for converting images in the dataset directory for comprison purposes
+	- Add faces: Button for taking pictures from the camera.
+	- Recoginze: Button for running the face recognization
 
-* First click on the "Add faces from directory" button, which converts all the images in the dataset directory for comparison purpose.
-* Then Click on the "Recoginze" button for recognizing the face sitting in front of the camera.
-* If a new face needs to be added through the connected camera, click on the "Add faces button"
+	<img src=./images/face_authentication_front.JPG width="420" height="360">
+	
+- First click on the `Add faces from directory` button, which converts all the images in the dataset directory for comparison purpose.
+* Then Click on the `Recoginze` button for recognizing the face sitting in front of the camera. 
+	- The user have to allign to the bounding box provided to be captured.
+* If a new face needs to be added through the connected camera, click on the `Add faces` button
 
-* Press the "Esc" button to stop the recognize and come back to Start page of the GUI.
+* Press the `Esc` button to stop the recognize and come back to Start page of the GUI.
 
+## Application: Specifications
 
-Model Used
-----------
+#### Model Details
 
-Facenet - https://arxiv.org/abs/1503.03832
+FaceNet - https://arxiv.org/abs/1503.03832
 
 
 

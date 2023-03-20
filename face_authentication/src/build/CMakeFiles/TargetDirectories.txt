@@ -1,3 +1,0 @@
-/drp-ai_tvm/data/delivery_face_rec/src/build/CMakeFiles/rebuild_cache.dir
-/drp-ai_tvm/data/delivery_face_rec/src/build/CMakeFiles/edit_cache.dir
-/drp-ai_tvm/data/delivery_face_rec/src/build/CMakeFiles/face_recognition.dir
