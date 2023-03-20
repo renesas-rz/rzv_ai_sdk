@@ -192,6 +192,15 @@ Estimated Total Size (MB): 0.67
 
 ```
 
+The network diagram will be as follows: 
+<img src=./model_info/model_parking.png width="360">
+
+#### Dataset 
+The dataset used is the custom datasets. 
+Please contact on this email to access the dataset:
+- Shyam.N@quest-global.com
+
+
 ## References
 
 
