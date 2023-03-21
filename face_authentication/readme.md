@@ -127,9 +127,9 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 --------------------------------
 
 - The application consists of three buttons when the application is run.
-	- Add faces from directory: Button for converting images in the dataset directory for comprison purposes
-	- Add faces: Button for taking pictures from the camera.
-	- Recoginze: Button for running the face recognization
+	- ***Add faces from directory:*** Button for converting images in the dataset directory for comprison purposes
+	- ***Add faces:*** Button for taking pictures from the camera.
+	- ***Recoginze:*** Button for running the face recognization
 
 	<img src=./images/face_authentication_front.JPG width="420" height="360">
 
@@ -144,9 +144,10 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 
 #### Model Details
 FaceNet model is used which provide the embedding vectors of the images.
+
 FaceNet - https://arxiv.org/abs/1503.03832
 
-We then apply cosine similarity to match the incoming images.
+We then apply cosine similarity to match the incoming images.\
 The threshold kept for the match is `0.23`.
 
 The AI inference time for the model is `450` msec.
