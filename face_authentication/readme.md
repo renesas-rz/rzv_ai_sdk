@@ -127,7 +127,7 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 	- Recoginze: Button for running the face recognization
 
 	<img src=./images/face_authentication_front.JPG width="420" height="360">
-	
+
 - First click on the `Add faces from directory` button, which converts all the images in the dataset directory for comparison purpose.
 * Then Click on the `Recoginze` button for recognizing the face sitting in front of the camera. 
 	- The user have to allign to the bounding box provided to be captured.
@@ -138,8 +138,14 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 ## Application: Specifications
 
 #### Model Details
-
+FaceNet model is used which provide the embedding vectors of the images.
 FaceNet - https://arxiv.org/abs/1503.03832
+
+We then apply cosine similarity to match the incoming images.
+The threshold kept for the match is `0.23`.
+
+The AI inference time for the model is `450` msec.
+
 
 
 
