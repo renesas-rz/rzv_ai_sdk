@@ -1,12 +1,14 @@
 # RZ/V2L AI Applications 
 
 ## Overview
-This repo consists of the various sample AI application that are implemented on the RZV2L evaluation board kit. 
+This repository consists of the various sample AI applications that are implemented on the RZV2L evaluation board kit.\
+Each application is provided in their respective folder alongside the respective `readme file` to operate the application.
 
 ## Hardware Requirements and Setup
 
 Users need some additional hardware setup for executing the sample application. 
 Each hardware requirements are specified in the respective `readme` of the sample applications.
+
 Here it is specified how to connect those hardware equipment to the RZV2L Evaluation Board Kit.
 
 ###### Lists of hardware equipments required
@@ -15,7 +17,7 @@ Here it is specified how to connect those hardware equipment to the RZV2L Evalua
 - USB mouse 
 - USB Keyboard
 - USB Hub 
-- HDMI monitor
+- HDMI monitor for the board display
 - micro HDMI to HDMI cable [for connecting to the board display]
 - USB C type Power cable
 - SD card [more than 16 GB] (only required for the file system) 
@@ -27,7 +29,7 @@ The connection ports are mentioned as
 
 <img src=./git_images/rzv2l_connection.JPG width="420">
 
-The number info is present as:
+The number information is present as:
 1. Power connection port to the RZV2L evaluation board kit
 2. Power ON/OFF button
 3. Board Reset button
@@ -46,15 +48,19 @@ The number info is present as:
 - Connect SD Card at terminal `7` (required for SD card file system)
 - Connect ethernet at terminal `8` (required for NFS)
 
-#### Software Requirements
+#### Additional Requirements
 
-For building the sample application
-- Ubuntu 20.04
+For building the sample applications
+- Linux Host PC with more than 100 GB free space is required.
+- Ubuntu 20.04 LTS
 - OpenCV 4.x
 - C++11 or higher
 
+
+
 ## Startup Guide
-The users are mandate to follow the [startup guide]() provided by the Renesas.
+
+The users are mandate to follow the [startup guide]() provided by the Renesas, before building the sample application.
 After completion of the startup guide, users are expected to have
 - Bootup RZV2L Evaluation board kit
 - tvm_drp_ai docker container running on the host machine.
@@ -75,3 +81,11 @@ This sample application [Face Authentication](./face_authentication) will recogn
 This application could be used for passport verification at the airport.
 
 ### 3. Smart Parking Solutions
+
+This sample application [Smart Parking](./smart_parking) will detect the available parking slots from the real time camera feed using computer vision advanced algorithms.\
+The application could be used to get the available parking slots information from the certain parking area in real time.
+
+## Operating the sample application
+- Each sample application folder have their respective `readme.md` file to modify and run the sample application.
+
+## References
