@@ -76,11 +76,9 @@ For the ease of deployment all the deployables file and folders for RZV2L are pr
 
 |File | Details |
 |:---|:---|
-|preprocess_tvm_v2l/ | Pre-processing Runtime Object files. |
-|tinyyolov3_onnx | Model object files for deployment. |
-|coco-lables-2014_2017.txt | Label list for Object Detection. |
-|config.ini | user input config for line, region and object. |
-|object_tracker | application file. |
+|facenetmodel_onnx | Model object files for deployment. |
+|face_rec_bg | image for application background. |
+|face_recoginition | application file. |
 
 
 Follow the steps mentioned below to deploy the project on RZV2L Board. 
@@ -113,7 +111,14 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 ## Application: Runtime Stage
 
 
+* Go to the `tvm` directory of the rootfs
+   ```sh
+   cd <path_to_deployables>/
+   ```
 * Store the images of the faces to be detected in the `dataset` directory created in RZ/V2L board.
+    ```sh
+    mkdir -p dataset
+    ```
 * Run the application in the terminal of the RZV2L board using the command
 	./face_recoginition
 
@@ -122,9 +127,9 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 --------------------------------
 
 - The application consists of three buttons when the application is run.
-	- Add faces from directory: Button for converting images in the dataset directory for comprison purposes
-	- Add faces: Button for taking pictures from the camera.
-	- Recoginze: Button for running the face recognization
+	- ***Add faces from directory:*** Button for converting images in the dataset directory for comprison purposes
+	- ***Add faces:*** Button for taking pictures from the camera.
+	- ***Recoginze:*** Button for running the face recognization
 
 	<img src=./images/face_authentication_front.JPG width="420" height="360">
 
@@ -139,9 +144,10 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 
 #### Model Details
 FaceNet model is used which provide the embedding vectors of the images.
+
 FaceNet - https://arxiv.org/abs/1503.03832
 
-We then apply cosine similarity to match the incoming images.
+We then apply cosine similarity to match the incoming images.\
 The threshold kept for the match is `0.23`.
 
 The AI inference time for the model is `450` msec.
