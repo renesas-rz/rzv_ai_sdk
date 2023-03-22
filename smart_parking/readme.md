@@ -10,7 +10,7 @@ Once the parking slots are drawn, the software uses advanced algorithms (using c
 With this software, users can monitor parking areas such as parking lots, garages, or on-street parking spaces in real-time. 
 It provides an accurate and efficient way to manage parking spaces, helping to reduce congestion and improve traffic flow.
 
-[Demo video](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/smart_parking/sample_output.avi?csf=1&web=1&e=GEdqCZ)
+[**Demo Video**](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/smart_parking/sample_output.avi?csf=1&web=1&e=GEdqCZ)
 
 Average FPS: 200/slot 
 
@@ -169,7 +169,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 #### Model Details
 
 The model used is the custom CNN model. 
-/model_parking.png
+
 ```python
         Layer (type)               Output Shape         Param #
 ================================================================
@@ -191,6 +191,15 @@ Params size (MB): 0.36
 Estimated Total Size (MB): 0.67
 
 ```
+
+The network diagram will be as follows: 
+<img src=./model_info/model_parking.png width="360">
+
+#### Dataset 
+The dataset used is the custom datasets. 
+Please contact on this email to access the dataset:
+- Shyam.N@quest-global.com
+
 
 ## References
 
