@@ -9,6 +9,7 @@ The application is designed to be user-friendly and can be used in a wide range 
 workplaces, law enforcement, and retail environments. With a simple and intuitive interface, users can easily add new images to the 
 database and configure the software to recognize specific individuals.
 
+[Demo Video](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/face_recognition/face_recognition.mp4?csf=1&web=1&e=lE2urj)
 
 ## Application: Requirements
 
@@ -76,7 +77,7 @@ For the ease of deployment all the deployables file and folders for RZV2L are pr
 
 |File | Details |
 |:---|:---|
-|facenetmodel_onnx | Model object files for deployment. |
+|facenet_model | Model object files for deployment. |
 |face_rec_bg | image for application background. |
 |face_recoginition | application file. |
 
@@ -86,7 +87,7 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
    * Create a directory named `dataset`, for storing the images to be detected. 
    * Copy the genarted `face_recoginition` application file 
    * Copy the `face_rec_bg.jpg` image
-   * Copy the `facenetmodel_onnx` folder
+   * Copy the `facenet_model` folder
 
 * Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
 
@@ -99,7 +100,7 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 └── home/
     └── root/
         └── tvm/
-            ├── facenetmodel_onnx/
+            ├── facenet_model/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
@@ -120,7 +121,9 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
     mkdir -p dataset
     ```
 * Run the application in the terminal of the RZV2L board using the command
-	./face_recoginition
+	```sh
+    ./face_recoginition
+    ```
 
 
 #### GUI for running the application
