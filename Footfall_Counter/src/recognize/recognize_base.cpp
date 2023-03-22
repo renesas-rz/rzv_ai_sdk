@@ -43,7 +43,7 @@
 /***********************************************************************************************************************
  * File Name    : recognize_base.cpp
  * Version      : 1.0
- * Description  : RZ/V2L AI SDK AI Application Footfall Counter
+ * Description  : RZ/V2L DRP-AI TVM[*1] Sample Application for USB Camera HTTP version
  ***********************************************************************************************************************/
 /*****************************************
  * Includes

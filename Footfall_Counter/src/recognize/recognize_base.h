@@ -41,8 +41,7 @@
 /***********************************************************************************************************************
 * File Name    : recognize_base.h
 * Version      : 1.0
-* Description  : RZ/V2L AI SDK AI Application Footfall Counter
-*                *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
+* Description  : RZ/V2L AI SDK AI Application Footfall Counter.
 ***********************************************************************************************************************/
 
 #pragma once

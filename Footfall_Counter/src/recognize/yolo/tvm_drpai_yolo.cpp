@@ -19,7 +19,7 @@
 /***********************************************************************************************************************
  * File Name    : tvm_drpai_yolo.cpp
  * Version      : 1.0
- * Description  : RZ/V2L AI SDK AI Application Footfall Counter
+ * Description  : RZ/V2L DRP-AI TVM[*1] Sample Application for USB Camera HTTP version
  *                *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  ***********************************************************************************************************************/
 /*****************************************
@@ -212,9 +212,9 @@ int32_t TVM_YOLO_DRPAI::inf_pre_process(uint8_t *input_data, uint32_t width, uin
     cv::line(bgra_image, Point(pointx1, pointy1), Point(pointx2, pointy2), Scalar(0, 0, 255), 4);
     cv::putText(bgra_image, "human count: " + to_string(actual_count), Point(30, 30), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
     cv::putText(bgra_image, "person in region: " + to_string(crossing_count), Point(30, 50), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
-    cv::putText(bgra_image, to_string(1000 / infer_time_ms), Point(540, 30), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+    cv::putText(bgra_image, "FPS:" + to_string(1000 / infer_time_ms), Point(540, 30), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
     cv::polylines(bgra_image, polygon, true, Scalar(0, 255, 0), 2);
-    cv::imshow("Object Traker", bgra_image);
+    cv::imshow("Object Tracker", bgra_image);
     pre_process_drpai(addr, arg, buf_size);
     return 0;
 }
@@ -387,10 +387,9 @@ shared_ptr<PredictNotifyBase> TVM_YOLO_DRPAI::track()
             cv::rectangle(bgra_image, rect, cv::Scalar(0, 255, 0));
             cv::putText(bgra_image, dat.name, Point(dat.X - 10, dat.Y), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
         }
-        cv::resizeWindow("Object Tracker", 640, 480);
-        cv::imshow("Object Traker", bgra_image);
-        cv::waitKey(1);
     }
+    cv::imshow("Object Tracker", bgra_image);
+    cv::waitKey(1);
     return shared_ptr<PredictNotifyBase>(move(ret));
 }
 /**
