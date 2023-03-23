@@ -43,6 +43,8 @@
 #include "opencv2/highgui.hpp"
 #include <vector>
 #include <cmath>
+#include <queue>
+#include <thread>
 using namespace cv;
 using namespace std;
 using namespace cv;
@@ -143,7 +145,7 @@ int draw_rectangle(void)
 void addButtonCallback(int, void *)
 {
     cv::VideoCapture vid;
-redraw_rectangle:
+    redraw_rectangle:
     if (camera_input)
         vid.open(0);
     else
@@ -207,6 +209,109 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
             start_inference_parking_slot = true;
     }
 }
+
+void read_frames(const string &videoFile, queue<Mat> &frames, bool &stop)
+{
+    VideoCapture cap;
+    if (filename == "0")
+        cap.open(0);
+    else
+        cap.open(videoFile);
+
+    if (!cap.isOpened())
+    {
+        cerr << "Failed " << videoFile << endl;
+        return;
+    }
+
+    Mat frame;
+    while (!stop)
+    {
+        cap.read(frame);
+        if (frame.empty())
+        {
+            break;
+        }
+        frames.push(frame);
+    }
+}
+
+void process_frames(queue<Mat> &frames, bool &stop)
+{
+    MeraDrpRuntimeWrapper runtime;
+    std::string model_dir = "parkingmodel_onnx";
+    runtime.LoadModel(model_dir);
+    cout << "loaded model" << endl;
+    Rect box;
+    Mat patch1, patch_con, patch_norm, inp_img;
+    while (!stop)
+    {
+        if (!frames.empty())
+        {
+            auto t1 = std::chrono::high_resolution_clock::now();
+            Mat frame = frames.front();
+            frames.pop();
+            img = frame;
+            for (int i = 0; i < boxes.size(); i++)
+            {
+                box = boxes[i];
+                patch1 = img(box);
+                resize(patch1, patch1, Size(28, 28));
+                cvtColor(patch1, patch1, COLOR_BGR2RGB);
+                inp_img = hwc2chw(patch1);
+                if (!inp_img.isContinuous())
+                    patch_con = inp_img.clone();
+                else
+                    patch_con = inp_img;
+                cv::normalize(patch_con, patch_norm, 0, 1, cv::NORM_MINMAX, CV_32FC1);
+                float *temp_input = new float[patch_norm.total() * 3];
+                memcpy(temp_input, patch_norm.ptr<float>(), 3 * patch_norm.total() * sizeof(float));
+                runtime.SetInput(0, temp_input);
+                runtime.Run();
+                auto output_num = runtime.GetNumOutput();
+                if (output_num != 1)
+                {
+                    std::cerr << "[ERROR] Output size : not 1." << std::endl;
+                    return;
+                }
+                auto output_buffer = runtime.GetOutput(0);
+                int64_t out_size = std::get<2>(output_buffer);
+                float floatarr[out_size];
+                float *data_ptr = reinterpret_cast<float *>(std::get<1>(output_buffer));
+                for (int n = 0; n < out_size; n++)
+                {
+                    floatarr[n] = data_ptr[n];
+                }
+                if (floatarr[0] > floatarr[1])
+                {
+                    putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+                    cv::rectangle(img, boxes[i], Scalar(0, 0, 255), 2);
+                    cv::putText(img, "occupied", Point(boxes[i].x - 10, boxes[i].y + boxes[i].height + 25), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(0, 0, 255), 2, false);
+                }
+                else
+                {
+                    putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+                    cv::rectangle(img, boxes[i], Scalar(0, 255, 0), 2);
+                    cv::putText(img, "empty", Point(boxes[i].x + 10, boxes[i].y + boxes[i].height + 25), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(0, 255, 0), 2, false);
+                }
+            }
+            auto t2 = std::chrono::high_resolution_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+            putText(img, "FPS: " + to_string(duration), Point(img.cols - 120, img.rows - 40), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+            imshow("img", img);
+            if (waitKey(1) == 27)
+            {
+                stop = true;
+                break;
+            }
+        }
+        else
+        {
+            this_thread::sleep_for(chrono::milliseconds(10));
+        }
+    }
+}
+
 int main(int argc, char **argv)
 {
     cv::VideoCapture vid1;
@@ -214,6 +319,7 @@ int main(int argc, char **argv)
     {
         std::cout << "Loading from camera input...\n";
         camera_input = true;
+        filename = "0";
     }
     else
     {
@@ -227,12 +333,7 @@ int main(int argc, char **argv)
     struct timespec start_time, end_time;
     int width = 900, height = 600;
     unsigned int re_draw = 0;
-    MeraDrpRuntimeWrapper runtime;
-    std::string model_dir = "parkingmodel_onnx";
-    runtime.LoadModel(model_dir);
-    cout << "loaded model" << endl;
-    Rect box;
-    Mat patch1, patch_con, patch_norm, inp_img;
+
     namedWindow(app_name, WINDOW_NORMAL);
     resizeWindow(app_name, 1200, 800);
     while (waitKey(1) != 'q')
@@ -286,60 +387,18 @@ int main(int argc, char **argv)
             start_inference_parking_slot = false;
             destroyAllWindows();
             std::cout << "Running tvm runtime" << std::endl;
-            while (1)
-            {
-                auto t1 = std::chrono::high_resolution_clock::now();
-                vid1 >> img;
-                for (int i = 0; i < boxes.size(); i++)
-                {
-                    box = boxes[i];
-                    patch1 = img(box);
-                    resize(patch1, patch1, Size(28, 28));
-                    cvtColor(patch1, patch1, COLOR_BGR2RGB);
-                    inp_img = hwc2chw(patch1);
-                    if (!inp_img.isContinuous())
-                        patch_con = inp_img.clone();
-                    else
-                        patch_con = inp_img;
-                    cv::normalize(patch_con, patch_norm, 0, 1, cv::NORM_MINMAX, CV_32FC1);
-                    float *temp_input = new float[patch_norm.total() * 3];
-                    memcpy(temp_input, patch_norm.ptr<float>(), 3 * patch_norm.total() * sizeof(float));
-                    runtime.SetInput(0, temp_input);
-                    runtime.Run();
-                    auto output_num = runtime.GetNumOutput();
-                    if (output_num != 1)
-                    {
-                        std::cerr << "[ERROR] Output size : not 1." << std::endl;
-                        return 0;
-                    }
-                    auto output_buffer = runtime.GetOutput(0);
-                    int64_t out_size = std::get<2>(output_buffer);
-                    float floatarr[out_size];
-                    float *data_ptr = reinterpret_cast<float *>(std::get<1>(output_buffer));
-                    for (int n = 0; n < out_size; n++)
-                    {
-                        floatarr[n] = data_ptr[n];
-                    }
-                    if (floatarr[0] > floatarr[1])
-                    {
-                        putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
-                        cv::rectangle(img, boxes[i], Scalar(0, 0, 255), 2);
-                        cv::putText(img, "occupied", Point(boxes[i].x - 10, boxes[i].y + boxes[i].height + 25), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(0, 0, 255), 2, false);
-                    }
-                    else
-                    {
-                        putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
-                        cv::rectangle(img, boxes[i], Scalar(0, 255, 0), 2);
-                        cv::putText(img, "empty", Point(boxes[i].x + 10, boxes[i].y + boxes[i].height + 25), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(0, 255, 0), 2, false);
-                    }
-                }
-                auto t2 = std::chrono::high_resolution_clock::now();
-                auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
-                putText(img, "FPS: " + to_string(1000 / duration), Point(img.cols - 120, img.rows - 40), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
-                imshow("img", img);
-                if (waitKey(1) == 27)
-                    break;
-            }
+
+            queue<Mat> frames;
+            bool stop = false;
+            thread readThread(read_frames, filename, ref(frames), ref(stop));
+            cout << "Waiting for read frames to add frames to buffer" << endl;
+            this_thread::sleep_for(std::chrono::seconds(10));
+            thread processThread(process_frames, ref(frames), ref(stop));
+            cout << "Processing thread started......" << endl;
+            waitKey(0);
+            stop = false;
+            readThread.join();
+            processThread.join();
         }
         else
         {
