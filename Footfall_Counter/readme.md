@@ -153,8 +153,7 @@ Folder structure in the rootfs (SD Card/NFS) would look like:
   ```sh
   ./object_tracker
   ```
-* The expected output will be something like the following.
-* To include screen shots of the running app and the terminal output
+* The expected output will be the same as shown in the demo video
 
 ## Application: Configuration 
 
@@ -179,6 +178,9 @@ The object tracked here is of class "Person", it can be changed to other classes
 
 
 To modify the configuration settings, edit the values in this file using VI Editor, from the RZV2L Board.
+
+###### AI inference time
+The AI inference time is 100-120 msec.
 
 ### Time Tracking Backend Integration
 
