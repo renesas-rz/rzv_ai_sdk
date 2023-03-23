@@ -200,6 +200,8 @@ The dataset used is the custom datasets.
 Please contact on this email to access the dataset:
 - Shyam.N@quest-global.com
 
+###### AI inference
+The AI inference time is 4-7 msec per slot. 
 
 ## References
 
