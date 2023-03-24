@@ -39,14 +39,17 @@ FPS - 200/10 ->20
 
 ## Application: Build Stage
 
+>**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**NOTE:** This project expects the user to have completed
+**Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
 
-* the Board Set Up,
-* SD Card Preparation steps
-* AI SDK Set Up steps mentioned in the RZV2L_AI_SDK_Instruction_guide. After this step docker image amd container will be created.
-* Docker environment is required for building the sample application.
-* Copy the src directory from this GitHub to the data directory (mounted directory for created docker container) created at the 3rd Step of AI SDK Set Up.
+After completion of the guide, the user is expected of following things.
+- the Board Set Up and booted. 
+- SD Card (or NFS) Prepared 
+- The docker image amd container for drp_ai_tvm running on host machine.
+- libtvm_runtime.so file 
+
+>**Note:** Docker environment is required for building the sample application. 
 
 
 #### Application: File Generation
@@ -164,6 +167,19 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 
      <img src=./images/remove_slots.jpg width="360" height="240">
 
+#### Application: Runtime output details
+
+The runtime application will look somethig like this 
+
+<img src=./images/smrt_prk_out.JPG width="480">
+
+- Each bounding boxes (BB) are the parking slots drawn by the user
+   - Green BB are the emptied one
+   - Red BB are the occupied one
+- Each slot indetified by the user is assigned some ID. The ID is assigned in the sequence the BB are drawn.
+- Frame Per Sec (FPS) is also shown in the bottom right corner. 
+
+
 ## Application: Specifications
 
 #### Model Details
@@ -193,6 +209,8 @@ Estimated Total Size (MB): 0.67
 ```
 
 The network diagram will be as follows: 
+
+
 <img src=./model_info/model_parking.png width="360">
 
 #### Dataset 
@@ -203,7 +221,7 @@ Please contact on this email to access the dataset:
 ###### AI inference
 The AI inference time is 4-7 msec per slot. 
 
-## References
+## FAQs
 
 
 
