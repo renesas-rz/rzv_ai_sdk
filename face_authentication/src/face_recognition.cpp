@@ -1,3 +1,35 @@
+/*
+ * Original Code (C) Copyright Edgecortix, Inc. 2022
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2023
+ *　
+ *  *1 DRP-AI TVM is powered by EdgeCortix MERA™ Compiler Framework.
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ *
+ */
+/***********************************************************************************************************************
+ * File Name    : face_recognition.cpp
+ * Version      : 1.0
+ * Description  : RZ/V2L SDK AI Application: Face Authentication
+ ***********************************************************************************************************************/
+/*****************************************
+ * includes
+ ******************************************/
 #include <builtin_fp16.h>
 #include <fstream>
 #include <sys/time.h>
@@ -12,21 +44,55 @@
 #include <vector>
 #include <glob.h>
 #include <cmath>
+
+#define BLUE cv::Scalar(255, 0, 0)
+#define WHITE cv::Scalar(255, 255, 255)
+#define BLACK cv::Scalar(0, 0, 0)
+#define GREEN cv::Scalar(0, 255, 0)
+#define RED cv::Scalar(0, 0, 255)
+#define ASH cv::Scalar(150, 150, 150)
+
 using namespace cv;
 using namespace std;
+
 MeraDrpRuntimeWrapper runtime;
+MeraDrpRuntimeWrapper runtime_age;
+
 std::string model_dir = "facenet_model";
-std::string text_input;
-Scalar GREEN(0, 255, 0);
-Scalar RED(0, 0, 255);
+std::string str1 = "Add ID Image";
+std::string str2 = "Validate";
+
+unsigned int add_faces_x0 = 415;
+unsigned int add_faces_y0 = 523;
+unsigned int add_faces_x1 = 585;
+unsigned int add_faces_y1 = 573;
+
+unsigned int recognize_x0 = 687;
+unsigned int recognize_y0 = 523;
+unsigned int recognize_x1 = 827;
+unsigned int recognize_y1 = 573;
+
+unsigned int add_face_dir_x0 = 100;
+unsigned int add_face_dir_y0 = 523;
+unsigned int add_face_dir_x1 = 300;
+unsigned int add_face_dir_y1 = 573;
+
 cv::Mat img;
 cv::Mat image;
+cv::Mat frame;
+
+vector<float> floatarr(512);
+vector<float> img_arr1(512);
+vector<float> img_arr2(512);
+
 /* Image buffer (u-dma-buf) */
 unsigned char *img_buffer;
 unsigned int try_cnt;
 bool add_face_clicked = false;
 bool recognize_face_clicked = false;
-bool add_face_from_dir_clicked = false;
+bool img1_array1_udated = false;
+bool img1_array2_udated = false;
+
 /*****************************************
  * Function Name : hwc2chw
  * Description   : This function takes an input image in HWC (height, width, channels)
@@ -80,7 +146,7 @@ float cosine_similarity(const std::vector<float> &features1, const std::vector<f
     return similarity;
 }
 /*****************************************
- * Function Name : cosine_similarity
+ * Function Name : euclidean_distance
  * Description   : This function takes two vectors of floats (a and b)
  *                 and an integer n as parameters and returns a float representing the Euclidean distance between the two vectors.
  * Arguments     : vector<float> a: a vector of float values representing the first vector for which to compute the Euclidean distance.
@@ -108,33 +174,6 @@ float euclidean_distance(vector<float> a, vector<float> b, int n)
     return sqrt(dist);
 }
 /*****************************************
- * Function Name : add_face
- * Description   : The function saves the facial feature vector to a file
- *                 named after the person's name in a directory named "faces/".
- * Arguments     : floatarr: A vector<float> containing the facial feature vector to be saved.
- *                 name: A string containing the name of the person whose facial features are being saved.
- ******************************************/
-void add_face(vector<float> floatarr, string name)
-{
-    std::string dir_path = "faces/";
-    glob_t glob_result;
-    std::string search_pattern = dir_path + "*.txt";
-    int file_count = 0;
-    if (glob(search_pattern.c_str(), 0, nullptr, &glob_result) == 0)
-    {
-        file_count = glob_result.gl_pathc;
-    }
-    globfree(&glob_result);
-    std::string new_file_name = dir_path + name + ".txt";
-    cout << "file saved at " << new_file_name << endl;
-    std::ofstream outfile(new_file_name);
-    for (size_t i = 0; i < floatarr.size(); i++)
-    {
-        outfile << floatarr[i] << " ";
-    }
-    outfile.close();
-}
-/*****************************************
  * Function Name : run_inference
  * Description   : This is a function that takes a cropped image as input, runs inference on it using a runtime object,
  *                 and returns a vector of float values as output.
@@ -156,7 +195,7 @@ vector<float> run_inference(Mat croppedImg)
     merge(eq_channels, eq);
     croppedImg = eq;
     Mat patch1;
-    vector<float> floatarr(2);
+    vector<float> floatarr_inf(2);
     cv::Mat rgb_img;
     cv::Mat resized_img;
     cv::Size size(160, 160);
@@ -186,13 +225,13 @@ vector<float> run_inference(Mat croppedImg)
     }
     auto output_buffer = runtime.GetOutput(0);
     int64_t out_size = std::get<2>(output_buffer);
-    floatarr.resize(out_size);
+    floatarr_inf.resize(out_size);
     float *data_ptr = reinterpret_cast<float *>(std::get<1>(output_buffer));
     for (int n = 0; n < out_size; n++)
     {
-        floatarr[n] = data_ptr[n];
+        floatarr_inf[n] = data_ptr[n];
     }
-    return floatarr;
+    return floatarr_inf;
 }
 /*****************************************
  * Function Name : mouse_callback_button_click.
@@ -200,31 +239,29 @@ vector<float> run_inference(Mat croppedImg)
  * Arguments     : event: represents the mouse event (e.g., left button down, right button up)
  *                 x, y: the x and y coordinates of the mouse click.
  *                 flags: additional flags associated with the mouse event (e.g., control key pressed).
- *                 userdata: a pointer to user-defined data that can be used to pass additional information to the callback function.
+ *                 userdata: a pointer to user-defined data that can be used to pass additional information 
+ *                 to the callback function.
  ******************************************/
 void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
 {
     if (event == EVENT_LBUTTONDOWN)
     {
-        if (415 < x && x < 565 && 523 < y && y < 573)
+        if (add_faces_x0 < x && x < add_faces_x1 && add_faces_y0 < y && y < add_faces_y1 && img1_array1_udated == false)
         {
             std::cout << "clicked add face \n";
             add_face_clicked = true;
         }
-        else if (687 < x && x < 837 && 523 < y && y < 573)
+        else if (recognize_x0 < x && x < recognize_x1 && recognize_y0 < y && y < recognize_y1 && img1_array1_udated == true) 
         {
             std::cout << "cliked compare face \n";
             recognize_face_clicked = true;
-        }
-        else if (100 < x && x < 200 && 523 < y && y < 573)
-        {
-            add_face_from_dir_clicked = true;
         }
     }
 }
 /*****************************************
  * Function Name : capture_frame
- * Description   : This function captures a frame from a video source (in this case, a webcam) and displays it on the screen.
+ * Description   : This function captures a frame from a video source (in this case, a webcam) 
+ *                 and displays it on the screen.
  * Return value  : returns the cropped image as a Mat object.
  ******************************************/
 Mat capture_frame(void)
@@ -233,7 +270,11 @@ Mat capture_frame(void)
     Mat patch1;
     Mat img1;
     cv::VideoCapture vid(0);
+    resizeWindow("select face", 1280, 720);
     cout << "starting \n";
+    cv::Rect roi(440, 160, 400, 400); // x,y,w,h
+    cv::Mat croppedImg;
+    vector<string> predictions;
     while (1)
     {
         vid >> img1;
@@ -246,212 +287,158 @@ Mat capture_frame(void)
         vertices.push_back(cv::Point(pt2.x, pt1.y));
         vertices.push_back(pt2);
         vertices.push_back(cv::Point(pt1.x, pt2.y));
-        cv::polylines(img, std::vector<std::vector<cv::Point>>{vertices}, true, cv::Scalar(255, 0, 0), 3);
-        cv::putText(img, "Adjust face into the box!!", cv::Point(320, 100), cv::FONT_HERSHEY_DUPLEX, 1, cv::Scalar(255, 0, 0), 4, false);
-        if (waitKey(30) == 27)
+        cv::polylines(img, std::vector<std::vector<cv::Point>>{vertices}, true, BLUE, 3);
+        cv::putText(img, "Adjust face into the box!!", cv::Point(320, 100), cv::FONT_HERSHEY_DUPLEX, 1, BLUE, 4, false);
+        if (waitKey(30) == 13) // integer 13 = key Enter 
         {
             cv::destroyAllWindows();
             break;
         }
+        cv::Mat croppedImg = img(roi);
+        cv::resize(croppedImg, croppedImg, Size(64, 64), INTER_LINEAR);
         cv::imshow("select face", img); // Wait for 'esc' key press to exit
     }
-    cv::Rect roi(440, 160, 400, 400); // x,y,w,h
-    cv::Mat croppedImg = img(roi);    // Crop the image
+    croppedImg = img(roi);   // Crop the image
     return croppedImg;
 }
 /*****************************************
  * Function Name : compare_with_existing_faces
- * Description   : This function takes in a vector of floats floatarr representing the features of a face detected in an image,
- *                 and compares it with the features of previously stored faces in text files located in the directory "faces/".
+ * Description   : This function takes in a vector of floats floatarr representing the 
+ *                 features of a face detected in an image,and compares it with the features of 
+ *                 previously stored faces in text files located in the directory "faces/".
  * Arguments     : floatarr = vector<float>
  * Return value  : The return value of the function compare_with_existing_faces is a string.
- *                 It can be either the string "none" if there is no match or the path to the text file that contains the 512-dimensional feature vector of the matching face.
+ *                 It can be either the string "none" if there is no match or the path to the text file that 
+ *                 contains the 512-dimensional feature vector of the matching face.
  ******************************************/
-string compare_with_existing_faces(vector<float> floatarr)
+string compare_with_existing_faces(vector<float> floatarr1,vector<float> floatarr2)
 {
-    float thresh = 0.23;
-    string dir_path = "faces/";
-    vector<float> current(512);
-    for (int i; i < 512; i++)
-    {
-        current[i] = floatarr[i];
-    }
-    glob_t glob_result;
-    string pattern = dir_path + "*.txt";
-    int return_value = glob(pattern.c_str(), GLOB_TILDE, NULL, &glob_result);
-    float max_value = 0.0;
+    float co_thresh = 0.21;
+    float eu_thresh = 10.0;
+    float max_value_co = 0.0;
     float min_value_eu = 10000000.0;
-    float score = 0.0;
-    float distance = 0.0;
+    float co_score = 0.0;
+    float eu_distance = 0.0;
     string match = "none";
-    string match_eu = "none";
-    if (return_value == 0)
+    co_score = cosine_similarity(floatarr1, floatarr2);
+    eu_distance = euclidean_distance(floatarr1, floatarr2, 512);
+    if (co_score > max_value_co)
+        max_value_co = co_score;
+    if (eu_distance < min_value_eu)
+        min_value_eu = eu_distance;
+    cout << "cosine similarity  : " << co_score <<"\n";
+    cout << "euclidean_distance : " << eu_distance <<"\n";
+    if ((min_value_eu < eu_thresh) && (max_value_co > co_thresh))
     {
-        for (size_t i = 0; i < glob_result.gl_pathc; i++)
-        {
-            ifstream infile(glob_result.gl_pathv[i]);
-            vector<float> file_vector(512);
-            for (int j = 0; j < 512; j++)
-            {
-                infile >> file_vector[j];
-            }
-            infile.close();
-            score = cosine_similarity(file_vector, floatarr);
-            distance = euclidean_distance(file_vector, floatarr, 512);
-            if (score > max_value)
-            {
-                max_value = score;
-                match = glob_result.gl_pathv[i];
-            }
-            if (distance < min_value_eu)
-            {
-                min_value_eu = distance;
-                match_eu = glob_result.gl_pathv[i];
-            }
-            cout << glob_result.gl_pathv[i] << endl;
-            cout << "cosine similarity : " << score << endl;
-            cout << "euclidean_distance : " << distance << endl;
-        }
-        globfree(&glob_result);
-        if ((min_value_eu < 10) && (max_value > thresh))
-        {
-            return match;
-        }
-        else
-        {
-            try_cnt++;
-            return "none";
-        }
+        return "match";
     }
-    return "none";
+    else
+    {
+        try_cnt++;
+        return "none";
+    }
 }
 /*****************************************
- * Function Name : add_imgs_from_dir
- * Description   : This function appears to be part of a facial recognition system that is reading in a set of images from a directory,
- *                 computing face embeddings for each image using a neural network, and storing those embeddings for future use in identifying faces.
+ * Function Name : draw_rect_add_txt
+ * Description   : This function to draws a rectangle and adds text on it.
+ * Arguments     : The function takes four parameters: a string variable named "text" 
+ *                 which represents the text to be added on the rectangle, 
+ *                 and four integer variables named "x0", "y0", "x1", and "y1" 
+ *                 which represent the coordinates of the rectangle's top-left and bottom-right corners.
  ******************************************/
-void add_imgs_from_dir(void)
+void draw_rect_add_txt(string text, int x0, int y0, int x1, int y1)
 {
-    string dir_path = "dataset/";
-    vector<float> current(512);
-    glob_t glob_result;
-    string pattern = dir_path + "*.jpg";
-    int return_value = glob(pattern.c_str(), GLOB_TILDE, NULL, &glob_result);
-    if (return_value == 0)
-    {
-        for (size_t i = 0; i < glob_result.gl_pathc; i++)
-        {
-            cout << glob_result.gl_pathv[i] << endl;
-            Mat img1 = imread(string(glob_result.gl_pathv[i]));
-            flip(img1, img1, 1);
-            vector<float> floatarr = run_inference(img1);
-            String s = string(glob_result.gl_pathv[i]).substr(7);
-            s = s.substr(0, s.size() - 4);
-            add_face(floatarr, s);
-        }
-    }
+    rectangle(frame, Point(x0, y0), Point(x1, y1), ASH, -1);
+    putText(frame, text, Point(x0 + (int)150 / 4, y0 + 30), FONT_HERSHEY_SIMPLEX, 0.5, WHITE, 1);
 }
+/*****************************************
+ * Function Name : img_preprocess
+ * Description   : This function is for preprocessing of input images(frames).
+ * Arguments     : The function takes four parameters: a string variable named "text" 
+ *                 which represents the text to be added on the rectangle, 
+ *                 and four integer variables named "x0", "y0", "x1", and "y1" 
+ *                 which represent the coordinates of the rectangle's top-left and bottom-right corners.
+ ******************************************/
+void img_preprocess(string text, int x0, int y0, int x1, int y1)
+{
+    if ((recognize_face_clicked == false) && (add_face_clicked == false))
+        draw_rect_add_txt(text, x0, y0, x1, y1);
+    destroyAllWindows();
+    Mat croppedImg = capture_frame();
+    floatarr = run_inference(croppedImg);
+}
+
 int main(int argc, char **argv)
 {
-    std::string app_name = "Face Recognition";
-    int width = 900, height = 600;
+    const std::string app_name = "Face Recognition";
+    
     runtime.LoadModel(model_dir);
     cout << "loaded model:" << model_dir << endl;
     namedWindow(app_name, WINDOW_NORMAL);
-    resizeWindow(app_name, 1200, 800);
-    while (waitKey(1) != 'q')
+    resizeWindow(app_name,1200, 800);
+    while (waitKey(30) != 27)
     {
-        Mat frame;
         frame = cv::imread("face_rec_bg.jpg");
-        if (add_face_clicked)
+        if ((add_face_clicked) || (recognize_face_clicked))
         {
-            rectangle(frame, Point(415, 523), Point(565, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Add faces", Point(415 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
-            add_face_clicked = false;
-            destroyAllWindows();
-            Mat croppedImg = capture_frame();
-            vector<float> floatarr = run_inference(croppedImg);
-            cv::Mat image(300, 600, CV_8UC3, cv::Scalar(255, 255, 255));
-            std::string prompt = "Enter your name: ";
-            cv::putText(image, prompt, cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 0, 0), 2);
-            cv::imshow("Input", image);
-            std::string name = "";
-            char c;
-            while ((c = cv::waitKey(0)) != 27)
+            if (add_face_clicked && img1_array1_udated == false)
             {
-                if (c == '\n')
-                    break;
-                else if (c == 8 && !name.empty())
-                    name.pop_back();
-                else if (std::isprint(c))
-                    name += c;
-                cv::Mat updatedImage = image.clone();
-                cv::putText(updatedImage, prompt + name, cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 0, 0), 2);
-                cv::imshow("Input", updatedImage);
-            }
-            cv::destroyAllWindows();
-            std::cout << "Name entered: " << name << std::endl;
-            add_face(floatarr, name);
-        }
-        else
-        {
-            rectangle(frame, Point(415, 523), Point(565, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Add faces", Point(415 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
-        }
-        if (recognize_face_clicked)
-        {
-            rectangle(frame, Point(687, 523), Point(837, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Recognize", Point(687 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
-            recognize_face_clicked = false;
-            destroyAllWindows();
-            Mat croppedImg = capture_frame();
-            vector<float> floatarr = run_inference(croppedImg);
-            string match = compare_with_existing_faces(floatarr);
-            cout << "match:" << match << endl;
-            cv::waitKey(10);
-            if (match == "none")
-            {
-                cout << "[match]" << match << endl;
-                if (try_cnt > 2)
+                img_preprocess(str1, add_faces_x0, add_faces_y0, add_faces_x1, add_faces_y1);
+                for (int i = 0; i < 512; i++)
                 {
+                    img_arr1[i] = floatarr[i];
+                }
+                frame = cv::imread("face_rec_bg.jpg");
+                cv::putText(frame, "Face added !!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
+                cv::imshow(app_name, frame);
+                cv::waitKey(2000);
+                img1_array1_udated = true;
+                add_face_clicked = false;
+            }
+            else if (recognize_face_clicked && img1_array1_udated == true)
+            {
+                img_preprocess(str2, recognize_x0, recognize_y0, recognize_x1, recognize_y1);
+                for (int i = 0; i < 512; i++)
+                {
+                    img_arr2[i] = floatarr[i];
+                }
+                string match = compare_with_existing_faces(img_arr1,img_arr2);
+                cout << "return_string:" << match <<"\n";
+                cv::waitKey(10);
+                if (match == "none")
+                {
+                    if (try_cnt > 2)
+                    {
+                        cv::putText(frame,"Face authentication failed !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                        try_cnt = 0;
+                        std::fill(img_arr1.begin(),img_arr1.end(),0);
+                        std::fill(img_arr2.begin(),img_arr2.end(),0);
+                        img1_array1_udated = false;
+                    }
+                    else 
+                    {
+                        cv::putText(frame,"Face authentication failed,Please try again!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                    }
+                    cv::imshow(app_name, frame);
+                    cv::waitKey(3000);
+                }
+                else if(match == "match")
+                {
+                    cv::putText(frame,"Face authentication using ID is succesfull !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
+                    cv::imshow(app_name, frame);
+                    cv::waitKey(3000);
                     try_cnt = 0;
-                    cv::putText(frame, "Person Not Found In The Dataset!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 0, 255), 2);
+                    std::fill(img_arr1.begin(),img_arr1.end(),0);
+                    std::fill(img_arr2.begin(),img_arr2.end(),0);
+                    img1_array1_udated = false;
                 }
-                else
-                {
-                    cv::putText(frame, "Match Not Found,Please try again!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 0, 255), 2);
-                }
-                cv::imshow(app_name, frame);
-                cv::waitKey(3000);
-            }
-            else
-            {
-                match.erase(match.length() - 4);
-                match.erase(0, 6);
-                cout << "[match]" << match << endl;
-                cv::putText(frame, "Match Found : " + match, cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
-                cv::imshow(app_name, frame);
-                cv::waitKey(3000);
-                try_cnt = 0;
+                recognize_face_clicked = false;
             }
         }
         else
         {
-            rectangle(frame, Point(687, 523), Point(837, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Recognize", Point(687 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
-        }
-        if (add_face_from_dir_clicked)
-        {
-            rectangle(frame, Point(100, 523), Point(300, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Add Face From Dir", Point(100 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
-            add_imgs_from_dir();
-            add_face_from_dir_clicked = false;
-            cv::putText(frame, "Added Faces from dataset folder", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, cv::Scalar(0, 255, 0), 2);
-        }
-        else
-        {
-            rectangle(frame, Point(100, 523), Point(300, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Add Face From Dir", Point(120, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
+            draw_rect_add_txt(str1, add_faces_x0, add_faces_y0, add_faces_x1, add_faces_y1);
+            draw_rect_add_txt(str2, recognize_x0, recognize_y0, recognize_x1, recognize_y1);
         }
         setMouseCallback(app_name, mouse_callback_button_click);
         imshow(app_name, frame);
