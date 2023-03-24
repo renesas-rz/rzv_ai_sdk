@@ -1,13 +1,14 @@
 # Face Recognition Application
 
 ## Application: Overview
-The face recognition application is a cutting-edge software that can identify individuals sitting in front of a 
-camera by comparing their faces to a database of pre-existing images. Using advanced computer vision algorithms and facenet model, 
-the software can accurately detect and recognize faces in real-time.
+The face authentication application is a cutting-edge software that can validate individuals sitting in front of a 
+camera and the face given in the doucumnet ID (either office, passport, etc.) . Using advanced computer vision algorithms and facenet model, 
+the software can accurately detect and validate faces in real-time.
 
 The application is designed to be user-friendly and can be used in a wide range of settings, including airports, public buildings, 
-workplaces, law enforcement, and retail environments. With a simple and intuitive interface, users can easily add new images to the 
-database and configure the software to recognize specific individuals.
+workplaces, law enforcement, and retail environments. With a simple and intuitive interface, users can easily validate new images with the document image IDs.
+
+This kind of application makes it easier to automate the authentication process, thus minimizing the redundant human intervention. 
 
 [Demo Video](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/face_recognition/face_recognition.mp4?csf=1&web=1&e=lE2urj)
 
@@ -19,7 +20,7 @@ database and configure the software to recognize specific individuals.
 - USB mouse
 - USB Keyboard
 - USB Hub
-- HDMI monitor
+- HDMI monitor & Cable
 
 #### Software Requirements
 - Ubuntu 20.04
@@ -84,7 +85,6 @@ For the ease of deployment all the deployables file and folders for RZV2L are pr
 
 Follow the steps mentioned below to deploy the project on RZV2L Board. 
 * At the `home/root/tvm` directory of the rootfs (SD Card/NFS) for RZV2L board.
-   * Create a directory named `dataset`, for storing the images to be detected. 
    * Copy the genarted `face_recoginition` application file 
    * Copy the `face_rec_bg.jpg` image
    * Copy the `facenet_model` folder
@@ -104,7 +104,6 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
-            ├── dataset
             |── face_recoginition
             └── face_rec_bg.jpg
 ```
@@ -116,10 +115,6 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
    ```sh
    cd <path_to_deployables>/
    ```
-* Store the images of the faces to be detected in the `dataset` directory created in RZ/V2L board.
-    ```sh
-    mkdir -p dataset
-    ```
 * Run the application in the terminal of the RZV2L board using the command
 	```sh
     ./face_recoginition
@@ -128,21 +123,19 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
 
 #### GUI for running the application
 --------------------------------
-
-- The application consists of three buttons when the application is run.
-	- ***Add faces from directory:*** Button for converting images in the dataset directory for comprison purposes
-	- ***Add faces:*** Button for taking pictures from the camera.
-	- ***Recoginze:*** Button for running the face recognization
+- The application can be used to authenticate the real time image of the person with the face on the document ID.
+- The application consists of two buttons.
+	- ***Add ID image:*** Button for taking pictures from the document IDs.
+	- ***Validate:*** Button for validating the real face with document face ID.
 
 	<img src=./images/face_authentication_front.JPG width="420" height="360">
 
-- First click on the `Add faces from directory` button, which converts all the images in the dataset directory for comparison purpose.
-* Then Click on the `Recoginze` button for recognizing the face sitting in front of the camera. 
-	- The user have to allign to the bounding box provided to be captured.
-* If a new face needs to be added through the connected camera, click on the `Add faces` button
-
-* Press the `Esc` button to stop the recognize and come back to Start page of the GUI.
-
+* Then Click on the `Add ID image` button for recognizing the face from the document ID. 
+	- The user have to allign the doumented face to the bounding box provided to be captured.
+* Then click on the `Validate` button to capture the real time image of the person that needs to be validated
+    - Only 3 attempts of validating is provided. After that the application exit to initial state.
+* Press the `Esc` button to stop the validate and come back to Start page of the GUI.
+* Please go through the demo video to get a better picture of the sample application.
 ## Application: Specifications
 
 #### Model Details
