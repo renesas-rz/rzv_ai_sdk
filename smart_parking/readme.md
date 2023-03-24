@@ -211,7 +211,7 @@ Estimated Total Size (MB): 0.67
 The network diagram will be as follows: 
 
 
-<img src=./model_info/model_parking.png width="360">
+<img src=./model_info/model_parking.png width="360", height="480">
 
 #### Dataset 
 The dataset used is the custom datasets. 
