@@ -167,6 +167,19 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 
      <img src=./images/remove_slots.jpg width="360" height="240">
 
+#### Application: Runtime output details
+
+The runtime application will look somethig like this 
+
+<img src=./images/smrt_prk_out.JPG width="480">
+
+- Each bounding boxes (BB) are the parking slots drawn by the user
+   - Green BB are the emptied one
+   - Red BB are the occupied one
+- Each slot indetified by the user is assigned some ID. The ID is assigned in the sequence the BB are drawn.
+- Frame Per Sec (FPS) is also shown in the bottom right corner. 
+
+
 ## Application: Specifications
 
 #### Model Details
@@ -196,7 +209,9 @@ Estimated Total Size (MB): 0.67
 ```
 
 The network diagram will be as follows: 
-<img src=./model_info/model_parking.png width="360">
+
+
+<img src=./model_info/model_parking.png width="110" height="480">
 
 #### Dataset 
 The dataset used is the custom datasets. 
@@ -206,7 +221,7 @@ Please contact on this email to access the dataset:
 ###### AI inference
 The AI inference time is 4-7 msec per slot. 
 
-## References
+## FAQs
 
 
 
