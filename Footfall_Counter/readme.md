@@ -155,6 +155,21 @@ Folder structure in the rootfs (SD Card/NFS) would look like:
   ```
 * The expected output will be the same as shown in the demo video
 
+#### Application: Runtime output details
+
+
+The runtime application will look somethig like this 
+
+<img src=./images/obj_trk_out.JPG width="480">
+ 
+- The application will track the person if the person crossed the `red line` and increment the `human count` and decrement it when the person crosses again.
+    - As per current logic, left to right crossing will increment the human count, and right to left crossing will decrement the count.
+    - Users need to arrange the line according to the requirement.
+- The application will also keep track of the person in the available region `green box` and increment the `person in region` count. It will also decrement the count if the person leaves the area.
+- Frame Per Sec (FPS) is shown on top right corner. 
+- Each person tracked is given a unique `id`.
+    - The `time` parameter of the tracked person indicates the time spent on the desired location. This incremented at regular interval.
+
 ## Application: Configuration 
 
 ###### Explanation of the `config.ini` file 
@@ -173,8 +188,9 @@ for each point.\
 The region is defined by connecting these points in the order they are listed.
 
 - The [**tracking**] section contains two key-value pairs.\
-The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number of keypoints required for tracking.\
-The object tracked here is of class "Person", it can be changed to other classes present on the coco labels.
+The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number of keypoints required for tracking.
+
+>**Note:** The object tracked here is of class "Person", it can be changed to other classes present on the coco labels.
 
 
 To modify the configuration settings, edit the values in this file using VI Editor, from the RZV2L Board.
