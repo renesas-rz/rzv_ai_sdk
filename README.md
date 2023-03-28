@@ -1,28 +1,29 @@
 # RZ/V2L AI Applications 
 
 ## Overview
-This repository consists of the various sample AI applications that are implemented on the RZV2L evaluation board kit.\
-Each application is provided in their respective folder alongside the respective `readme file` to operate the application.
+This repository consists of the various sample AI applications that are implemented on the RZ/V2L evaluation board kit.\
+Each application is provided in their respective folder alongside the respective `readme.md` file to operate the application.
 
 ## Hardware Requirements and Setup
 
 Users need some additional hardware setup for executing the sample application. 
-Each hardware requirements are specified in the respective `readme` of the sample applications.
+Each hardware requirements are specified in the respective `readme.md` of the sample applications.
 
-Here it is specified how to connect those hardware equipment to the RZV2L Evaluation Board Kit.
+Here it is specified how to connect those hardware equipment to the RZ/V2L Evaluation Board Kit.
 
 ###### Lists of hardware equipments required
 - RZ/V2L Evaluation Board Kit
-- USB camera 
-- USB mouse 
+    - RZ/V2L Board
+    - USB Serial Cable
+    - MIPI Camera Module (Google Coral Camera)
+- USB Camera 
+- USB Mouse 
 - USB Keyboard
 - USB Hub 
 - HDMI monitor for the board display
 - micro HDMI to HDMI cable [for connecting to the board display]
 - USB C type Power cable
-- SD card [more than 16 GB] (only required for the file system) 
-    >Note: User can use NFS also on host PC.
-
+- SD card [more than 16 GB] 
 
 The connection ports are mentioned as 
 
@@ -30,7 +31,7 @@ The connection ports are mentioned as
 <img src=./git_images/rzv2l_connection.JPG width="420">
 
 The number information is present as:
-1. Power connection port to the RZV2L evaluation board kit
+1. Power connection port (USB Type-C) to the RZ/V2L evaluation board kit
 2. Power ON/OFF button
 3. Board Reset button
 4. Serial connection port for connecting Host PC and the board
@@ -62,8 +63,8 @@ For building the sample applications
 
 The users are mandate to follow the [startup guide]() provided by the Renesas, before building the sample application.
 After completion of the startup guide, users are expected to have
-- Bootup RZV2L Evaluation board kit
-- tvm_drp_ai docker container running on the host machine.
+- Completed the bootup procedure of RZ/V2L Evaluation board kit
+- `rzv2l_ai_sdk_image` docker container running on the host machine. This docker container will contain RZ/V2L sdk and tvm enviroment.
     >Note: The docker container is required for building the sample applications. Users can skip this, if they want to use the pre-built binaries.
 - Necessary Hardware equipments
 
