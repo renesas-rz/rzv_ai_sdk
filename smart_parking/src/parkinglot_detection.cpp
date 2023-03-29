@@ -25,7 +25,7 @@
 /***********************************************************************************************************************
  * File Name    : parkinglot_detection.cpp
  * Version      : 1.0
- * Description  : RZ/V2L SDK AI Application: Parking Lot Detection
+ * Description  : DRP-AI TVM[*1] Application Example
  ***********************************************************************************************************************/
 /*****************************************
  * includes
@@ -45,30 +45,31 @@
 #include <cmath>
 #include <queue>
 #include <thread>
+
 using namespace cv;
 using namespace std;
 using namespace cv;
+
+vector<Rect> boxes;
+
 Mat img;
 Mat frame1 = Mat::zeros(400, 400, CV_8UC3);
-vector<Rect> boxes;
-Point2f box_start;
+
+std::string filename;
+
+Point2f box_start, box_end;
+cv::Rect rect;
 bool add_slot_in_figure = false;
 bool start_inference_parking_slot = false;
 bool drawing_box = false;
-bool re_draw;
+bool re_draw = false;
+bool camera_input = false;
+
+const std::string model_dir = "parkingmodel_onnx";
+const std::string app_name = "Parking Lot Assistance";
+
 int slot_id;
-std::string filename;
-bool camera_input;
-/******************************************
- * Function Name : timedifference_msec
- * Arguments     : t0 = processing start time
- *                 t1 = processing end time
- * Return value  : processing time in mili-seconds
- ******************************************/
-static double timedifference_msec(struct timespec t0, struct timespec t1)
-{
-    return (t1.tv_sec - t0.tv_sec) * 1000.0 + (t1.tv_nsec - t0.tv_nsec) / 1000.0 / 1000.0;
-}
+
 cv::Mat hwc2chw(const cv::Mat &image)
 {
     std::vector<cv::Mat> rgb_images;
@@ -88,24 +89,43 @@ cv::Mat hwc2chw(const cv::Mat &image)
  *                         x = int number
  *                         y = int number
  ******************************************/
+
 void get_patches(int event, int x, int y, int flags, void *param)
-{
+{   
+    cv::Mat frame_copy = img.clone();     
     if (event == EVENT_LBUTTONDOWN)
-    {
-        drawing_box = true;
-        box_start = Point2f(x, y);
+    {   drawing_box = true;
+        box_start = Point2f(x, y); 
+    }
+    else if (event ==  EVENT_MOUSEMOVE)
+    { 
+        if(drawing_box)
+        box_end = Point2f(x,y);
     }
     else if (event == EVENT_LBUTTONUP)
     {
         drawing_box = false;
-        Point2f box_end = Point2f(x, y);
-        Rect box(box_start, box_end);
-        boxes.push_back(box);
-        rectangle(img, box_start, Point2f(x, y), Scalar(0, 0, 255), 2);
+        box_end = Point2f(x, y);
         putText(img, "id: " + to_string(slot_id + 1), box_start, FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
         slot_id += 1;
-        imshow("image", img);
+        rect = cv::Rect(box_start, box_end);
+        Rect box(box_start, box_end);
+        boxes.push_back(box);
     }
+    if(drawing_box)
+    {    
+        rectangle(frame_copy, box_start, box_end, Scalar(0, 0, 255), 2);
+    }
+    else if (!rect.empty())
+    {    
+        rectangle(frame_copy, rect, cv::Scalar(0, 0, 255),2);
+    }
+    for (int i = 0; i < boxes.size(); i++)
+    {
+         rectangle(img, boxes[i], Scalar(0, 0, 255), 2);
+    }
+    box_end = Point2f(x, y);   
+    imshow("image", frame_copy);
 }
 /*****************************************
  * Function Name     : draw_rectangle
@@ -145,7 +165,7 @@ int draw_rectangle(void)
 void addButtonCallback(int, void *)
 {
     cv::VideoCapture vid;
-    redraw_rectangle:
+redraw_rectangle:
     if (camera_input)
         vid.open(0);
     else
@@ -159,7 +179,7 @@ void addButtonCallback(int, void *)
         std::cout << "Draw rectangle !!!\n";
     vid.release();
     re_draw = draw_rectangle();
-    if (re_draw == 1)
+    if (re_draw == true)
         goto redraw_rectangle;
 }
 /*****************************************
@@ -217,13 +237,11 @@ void read_frames(const string &videoFile, queue<Mat> &frames, bool &stop)
         cap.open(0);
     else
         cap.open(videoFile);
-
     if (!cap.isOpened())
     {
         cerr << "Failed " << videoFile << endl;
         return;
     }
-
     Mat frame;
     while (!stop)
     {
@@ -239,9 +257,8 @@ void read_frames(const string &videoFile, queue<Mat> &frames, bool &stop)
 void process_frames(queue<Mat> &frames, bool &stop)
 {
     MeraDrpRuntimeWrapper runtime;
-    std::string model_dir = "parkingmodel_onnx";
     runtime.LoadModel(model_dir);
-    cout << "loaded model" << endl;
+    std::cout << "loaded model:" << model_dir << "\n";
     Rect box;
     Mat patch1, patch_con, patch_norm, inp_img;
     while (!stop)
@@ -297,24 +314,20 @@ void process_frames(queue<Mat> &frames, bool &stop)
             }
             auto t2 = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
-            putText(img, "FPS: " + to_string(duration), Point(img.cols - 120, img.rows - 40), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
-            imshow("img", img);
-            if (waitKey(1) == 27)
-            {
-                stop = true;
-                break;
+            putText(img, "DRP-AI Processing Time(ms): " + to_string(duration), Point(img.cols - 380, img.rows - 07), FONT_HERSHEY_DUPLEX, .65, Scalar(255, 0, 0), 2);
+        }
+        imshow("Inference", img);
+        if (waitKey(10)==27)// Wait for 'Esc' key press to stop inference window!!
+            {   
+            stop = true;
+            destroyAllWindows();
+            break;
             }
-        }
-        else
-        {
-            this_thread::sleep_for(chrono::milliseconds(10));
-        }
     }
 }
 
 int main(int argc, char **argv)
 {
-    cv::VideoCapture vid1;
     if (argc == 1)
     {
         std::cout << "Loading from camera input...\n";
@@ -327,22 +340,15 @@ int main(int argc, char **argv)
         camera_input = false;
         std::cout << "Loading from :" << filename << "\n";
     }
-
-    std::string app_name = "Parking Lot Assistance";
-
-    struct timespec start_time, end_time;
-    int width = 900, height = 600;
-    unsigned int re_draw = 0;
-
     namedWindow(app_name, WINDOW_NORMAL);
     resizeWindow(app_name, 1200, 800);
     while (waitKey(1) != 'q')
     {
         Mat frame;
         frame = cv::imread("parking_bg.jpg");
+        cv::resize(frame, frame, cv::Size(1200,800));
         if (add_slot_in_figure)
         {
-            vid1.release();
             rectangle(frame, Point(415, 523), Point(565, 573), Scalar(150, 150, 150), -1);
             putText(frame, "Edit Slots", Point(415 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
             add_slot_in_figure = false;
@@ -356,6 +362,7 @@ int main(int argc, char **argv)
             rectangle(frame1, removeButtonRect, Scalar(0, 0, 255), -1);
             putText(frame1, "Remove Slot", Point(210, 105), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 0), 1, LINE_AA);
             imshow("Slot", frame1);
+
             setMouseCallback(
                 "Slot", [](int event, int x, int y, int flags, void *userdata)
                 {
@@ -373,17 +380,13 @@ int main(int argc, char **argv)
         }
         else
         {
-            rectangle(frame, Point(415, 523), Point(565, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Edit Slots", Point(415 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
+            rectangle(frame, Point(415, 523), Point(565, 573), Scalar(255, 0, 0), -1);
+            putText(frame, "Edit Slots", Point(415 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
         }
         if (start_inference_parking_slot)
         {
-            if (camera_input)
-                vid1.open(0);
-            else
-                vid1.open(filename);
-            rectangle(frame, Point(687, 523), Point(900, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Start Inference", Point(687 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
+            rectangle(frame, Point(687, 523), Point(900, 573), Scalar(0, 0, 0), -1);
+            putText(frame, "Start Inference", Point(687 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
             start_inference_parking_slot = false;
             destroyAllWindows();
             std::cout << "Running tvm runtime" << std::endl;
@@ -391,8 +394,8 @@ int main(int argc, char **argv)
             queue<Mat> frames;
             bool stop = false;
             thread readThread(read_frames, filename, ref(frames), ref(stop));
-            cout << "Waiting for read frames to add frames to buffer" << endl;
-            this_thread::sleep_for(std::chrono::seconds(10));
+            cout << "Waiting for read frames to add frames to buffer!!!!!" << endl;
+            this_thread::sleep_for(std::chrono::seconds(5));
             thread processThread(process_frames, ref(frames), ref(stop));
             cout << "Processing thread started......" << endl;
             waitKey(0);
@@ -402,8 +405,8 @@ int main(int argc, char **argv)
         }
         else
         {
-            rectangle(frame, Point(687, 523), Point(900, 573), Scalar(150, 150, 150), -1);
-            putText(frame, "Start Inference", Point(687 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(255, 255, 255), 1);
+            rectangle(frame, Point(687, 523), Point(900, 573), Scalar(255, 0, 0), -1);
+            putText(frame, "Start Inference", Point(687 + (int)150 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
         }
         setMouseCallback(app_name, mouse_callback_button_click);
         imshow(app_name, frame);
