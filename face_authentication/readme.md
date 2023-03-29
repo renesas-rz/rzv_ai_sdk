@@ -2,7 +2,7 @@
 
 ## Application: Overview
 The face authentication application is a cutting-edge software that can validate individuals sitting in front of a 
-camera and the face given in the doucumnet ID (either office, passport, etc.) . Using advanced computer vision algorithms and facenet model, 
+camera and the face given in the document ID (either office, passport, etc.) . Using advanced computer vision algorithms and faceNet model, 
 the software can accurately detect and validate faces in real-time.
 
 The application is designed to be user-friendly and can be used in a wide range of settings, including airports, public buildings, 
@@ -15,9 +15,9 @@ This kind of application makes it easier to automate the authentication process,
 ## Application: Requirements
 
 #### Hardware Requirements
-- RZ/V2L board
-- USB camera
-- USB mouse
+- RZ/V2L Evaluation Board Kit
+- USB Camera
+- USB Mouse
 - USB Keyboard
 - USB Hub
 - HDMI monitor & Cable
@@ -27,39 +27,46 @@ This kind of application makes it easier to automate the authentication process,
 - OpenCV 4.x
 - C++11 or higher
 
-## Application : Build Stage
+## Application: Build Stage
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide]() provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - the Board Set Up and booted. 
-- SD Card (or NFS) Prepared 
-- The docker image amd container for drp_ai_tvm running on host machine.
-- libtvm_runtime.so file 
+- SD Card Prepared 
+- The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
 
->**Note:** Docker environment is required for building the sample application. 
+>**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
 
+#### Application File Generation
+1. Copy the repository from the GitHub to the desired location. 
+    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+    ```sh
+    cd <path_to_data_folder_on_host>
+    git clone <current_repository_url>
+    ```
 
-### Application: File Generation
+2. Run the docker container and open the bash terminal on the container.
 
-- Copy the repository from the GitHub to the desired location.
+> Note: All the build steps/commands listed below are executed on the docker container terminal.
+
+3. Go to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
+
 ```sh
-export PROJECT_PATH=<path_to_the_cloned_directory>
+cd <path_to_data_folder_on_container>/data/
+```
+4. Go to the `src` directory of the application
+
+```sh
+export PROJECT_PATH=$(pwd)
 ```
 ```sh
-cd $PROJECT_PATH/face_authentication/
+cd ${PROJECT_PATH}/face_authentication/src/
 ```
 
-- Now copy this src folder to the data directory (mounted directory for the created `drp_ai_tvm` docker container)
-
-- Run the bash terminal of the docker container 
-- Go to the `src` directory which was copied earlier.
-- Now build the application on docker environment by following the steps below
-```sh
-cd src
-```
+5. Now build the application on docker environment by following the steps below
 ```sh
 mkdir -p build && cd build
 ```
@@ -69,27 +76,26 @@ cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
 ```sh
 make -j$(nproc)
 ```
-The following application file would be genarated in the `src/build` directory
-- face_recoginition
+The following application file would be generated in the `src/build` directory
+- face_recognition
 
 ## Application: Deploy Stage
 
-For the ease of deployment all the deployables file and folders for RZV2L are provided on the [exe](./exe) folder.
+For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
 
 |File | Details |
 |:---|:---|
 |facenet_model | Model object files for deployment. |
 |face_rec_bg | image for application background. |
-|face_recoginition | application file. |
+|face_recognition | application file. |
 
 
-Follow the steps mentioned below to deploy the project on RZV2L Board. 
-* At the `home/root/tvm` directory of the rootfs (SD Card/NFS) for RZV2L board.
-   * Copy the genarted `face_recoginition` application file 
-   * Copy the `face_rec_bg.jpg` image
-   * Copy the `facenet_model` folder
+Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
+* At the `/home/root/tvm` directory of the rootfs (SD Card) for RZ/V2L board. 
+   * Copy the files present in [exe](./exe) directory, which are listed in the table above
+   * Copy the generated `face_recognition` application file, if the application file is built at [build stage](#application-build-stage)
 
-* Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
+* Check if libtvm_runtime.so is there on usr/lib64 directory of the rootfs (SD card) RZ/V2L board.
 
 #### Folder Structure in the board
 ----
@@ -104,44 +110,56 @@ Follow the steps mentioned below to deploy the project on RZV2L Board.
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
-            |── face_recoginition
+            |── face_recognition
             └── face_rec_bg.jpg
 ```
 
 ## Application: Runtime Stage
 
-
-* Go to the `tvm` directory of the rootfs
-   ```sh
-   cd <path_to_deployables>/
-   ```
-* Run the application in the terminal of the RZV2L board using the command
+* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
+    * Go to the `/home/root/tvm` directory of the rootfs
+    ```sh
+    cd /home/root/tvm
+    ```
+    * Run the application in the terminal of the RZ/V2L board using the command
 	```sh
-    ./face_recoginition
+    ./face_recognition
     ```
 
 
 #### GUI for running the application
 --------------------------------
-- The application can be used to authenticate the real time image of the person with the face on the document ID.
-- The application consists of two buttons.
+1. The application can be used to authenticate the real time image of the person with the face on the document ID.
+2. The application consists of two buttons.
 	- ***Add ID image:*** Button for taking pictures from the document IDs.
 	- ***Validate:*** Button for validating the real face with document face ID.
 
 	<img src=./images/face_authentication_front.JPG width="420" height="360">
 
-* Then Click on the `Add ID image` button for recognizing the face from the document ID. 
-	- The user have to allign the doumented face to the bounding box provided to be captured.
-* Then click on the `Validate` button to capture the real time image of the person that needs to be validated
-    - Only 3 attempts of validating is provided. After that the application exit to initial state.
-* Press the `Esc` button to stop the validate and come back to Start page of the GUI.
-* Please go through the demo video to get a better picture of the sample application.
+3. Then Click on the `Add ID image` button for recognizing the face from the document ID. 
+	1. The user have to align the documented face to the bounding box provided to be captured.
+    2. Press `Enter` key on the keyboard to capture the photo.
+
+4. Then click on the `Validate` button to capture the real time image of the person that needs to be validated
+    1. User need to align their face on the box shown on the display.
+    2. Press `Enter` key on the keyboard to capture the real time image.
+    3. Only 3 attempts of validating is provided. After that the application exit to initial state.
+
+5. Press the `Esc` Key to stop the validate and come back to Start page of the GUI.
+6. Please go through the demo video to get a better picture of the sample application.
+
+#### Application: Termination
+- Application can be terminated by pressing `Esc` key on the keyboard connected to the board.
+- Alternatively, User can force close the application using `CTRL+c` on the board console.
+
 ## Application: Specifications
 
 #### Model Details
 FaceNet model is used which provide the embedding vectors of the images.
 
 FaceNet - https://arxiv.org/abs/1503.03832
+
+The model used is the pre-trained model.
 
 We then apply cosine similarity to match the incoming images.\
 The threshold kept for the match is `0.23`.
