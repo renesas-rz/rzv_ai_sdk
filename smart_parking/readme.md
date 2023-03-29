@@ -22,17 +22,18 @@ FPS - 200/10 ->20
 ```
 > **Note:** The FPS may change based on the FPS of the input video.
 
-## Requirments
+## Application: Requirements
 
-#### Hardware Requirement
-- RZ/V2L board
-- USB camera 
-- USB mouse 
+#### Hardware Requirements
+- RZ/V2L Evaluation Board Kit
+- USB Camera
+- USB Mouse
 - USB Keyboard
-- USB Hub 
-- HDMI monitor 
+- USB Hub
+- HDMI Monitor & Cable
+
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
-#### Software Requirement 
+#### Software Requirements 
 - Ubuntu 20.04 
 - OpenCV 4.x
 - C++11 or higher
@@ -45,31 +46,40 @@ FPS - 200/10 ->20
 
 After completion of the guide, the user is expected of following things.
 - the Board Set Up and booted. 
-- SD Card (or NFS) Prepared 
-- The docker image amd container for drp_ai_tvm running on host machine.
-- libtvm_runtime.so file 
+- SD Card Prepared 
+- The docker image and container for `rzv2l_ai_sdk_image` running on host machine.
 
->**Note:** Docker environment is required for building the sample application. 
-
+>**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
 
 #### Application: File Generation
-- Copy the repository from the GitHub to the desired location.
-```sh
-export PROJECT_PATH=<path_to_the_cloned_directory>
-```
-```sh
-cd $PROJECT_PATH/smart_parking/
-```
-Now copy this src folder to the data directory (mounted directory for the created `drp_ai_tvm` docker container)
+1. Copy the repository from the GitHub to the desired location. 
+    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+    ```sh
+    cd <path_to_data_folder_on_host>
+    git clone <current_repository_url>
+    ```
 
-- Run the bash terminal of the docker container 
-- Go to the `src` directory which was copied earlier.
-- Now build the application on docker environment by following the steps below
+2. Run the docker container and open the bash terminal on the container.
+
+> Note: All the build steps/commands listed below are executed on the docker container terminal.
+
+3. Go to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
+
 ```sh
-cd src
+cd <path_to_data_folder_on_container>/data/
+```
+4. Go to the `src` directory of the application
+
+```sh
+export PROJECT_PATH=$(pwd)
 ```
 ```sh
+cd ${PROJECT_PATH}/smart_parking/src/
+```
 
+5. Now build the application on docker environment by following the steps below
+
+```sh
 mkdir -p build && cd build
 ```
 ```sh
@@ -79,13 +89,13 @@ cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
 make -j$(nproc)
 ```
 
-The following application file would be genarated in the `src/build` directory
+The following application file would be generated in the `src/build` directory
 - parkinglot_detection
 
 
 ## Application: Deploy Stage
 
-For ease of deployment all the files required for deployment are provided on the [deploy folder](./exe)	
+For ease of deployment all the files required for deployment are provided on the [exe](./exe) folder.	
 
 |File | Details |
 |:---|:---|
@@ -96,17 +106,15 @@ For ease of deployment all the files required for deployment are provided on the
 
 Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Board.
 
-* At the home/root/tvm directory of the rootfs (SD Card/NFS) for RZ/V2L evaluation board.
-   * Copy the genarted parkinglot_detection application file 
-   * Copy the parking_bg.jpg image
-   * Copy the parkingmodel_onnx folder
+* At the home/root/tvm directory of the rootfs (SD Card) for RZ/V2L evaluation board.
+   * Copy the files present in [exe](./exe) directory, which are listed in the table above
+   * Copy the generated parkinglot_detection application file, if the application file is built at [build stage](#application-build-stage)
+   
+* Check if libtvm_runtime.so is there on usr/lib64 directory of the rootfs (SD card) RZ/V2L board.
 
-* Copy the libtvm_runtime.so to usr/lib64 directory of the rootfs (SD card/NFS) RZV2L board.
- 
+>**Note:** By default, the application will take inference from USB Camera.
 
->**Note:** By default, the application will take inference from WebCam.
-
->**Note:** For the videofile to get executed, ensure that the video file is present inside the home/root/tvm directory of the rootfs of the board.
+>**Note:** For the video file to get executed, ensure that the video file is present inside the home/root/tvm directory of the rootfs of the board.
 
 #### Folder Structure in the board
 
@@ -128,11 +136,11 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 ```
 ## Application: Runtime Stage
 
-* Run the application in the terminal of the RZV2L board using the command,
-   * go to the `tvm` directory of the rootfs
-   ```sh
-   cd <path_to_deployables>/
-   ```
+* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
+    * Go to the `/home/root/tvm` directory of the rootfs
+    ```sh
+    cd /home/root/tvm
+    ```
    * for inference from video 
    ```sh 
    ./parkinglot_detection <videofile_name.mp4>
@@ -142,43 +150,53 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
    ./parkinglot_detection
    ```
 #### GUI for running the application
-- The application consists of two buttons when the application is run. 
-   - Edit Slots and Start Inference
+
+>**Note:** The application GUI is same for either of the sample video or the camera. 
+
+1. The application consists of two buttons when the application is run. 
+   - `Edit Slots` and `Start Inference`
    
      <img src=./images/parking_app_front.JPG width="420">
    
-- First click on edit the slots button to add the slots on the parking slots.
-- Now you will see 2 other buttons. `add slot` and `remove slots`
+2. First click on `Edit Slots` button to add the slots on the parking slots.
+
+   - Now you will see 2 other buttons. `Add Slot` and `Remove Slot`
 
      <img src=./images/park_add_remove.JPG width="360" height="240">
 
-- To add the slot, press `add slot` button. 
-- Now when you see the camera screen, 
-- simply press and hold the mouse left click on the screen to start drawing the bounding boxes
-- release the click to finish drawing boxes.
-- You can draw multiple bounding boxes using the above 2 steps
+3. To add the slot, press `Add Slot` button. 
+   1. When you see the camera(or the sample video) screen.
+   2. The Bounding box needs to be drawn where the user would like to detect the occupancy. 
+   3. simply press and hold the mouse left click on the screen to start drawing the bounding boxes
+   4. release the click to finish drawing boxes.
+   5. Multiple bounding boxes can be drawn
 
      <img src=./images/slot_add.JPG width="480">
 
-- After you have drawn the slots, press `esc` key to go to the home screen
-- Click on the run inference button
-- To close the running application, press `esc` key.
-- You can similiarly remove the added slots as well
+4. After you have drawn the slots, press `Esc` key to go to the home screen
+5. Click on the `Start inference` button
+6. To close the running application, press `Esc` key.
+7. To remove the added slots
+   1. Click on the `Remove Slot` button
+   2. Type the parking slot IDs that needs to be removed.
 
      <img src=./images/remove_slots.jpg width="360" height="240">
 
 #### Application: Runtime output details
 
-The runtime application will look somethig like this 
+The runtime application will look something like this 
 
 <img src=./images/smrt_prk_out.JPG width="480">
 
 - Each bounding boxes (BB) are the parking slots drawn by the user
    - Green BB are the emptied one
    - Red BB are the occupied one
-- Each slot indetified by the user is assigned some ID. The ID is assigned in the sequence the BB are drawn.
+- Each slot identified by the user is assigned some ID. The IDs are assigned in the sequence the BB are drawn.
 - Frame Per Sec (FPS) is also shown in the bottom right corner. 
 
+#### Application: Termination
+- Application can be terminated by pressing `Esc` key on the keyboard connected to the board.
+- Alternatively, User can force close the application using `CTRL+c` on the board console.
 
 ## Application: Specifications
 
