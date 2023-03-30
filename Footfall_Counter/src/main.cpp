@@ -35,7 +35,7 @@ int32_t main(int32_t argc, char* argv[])
 {
     
     printf("################################################\n");
-    printf("#    RZ/V2L DRP-AI TVM Sample Application      #\n");
+    printf("#    RZ/V2M DRP-AI TVM Sample Application      #\n");
     printf("################################################\n");
 
     g_rc = new RecognizeBase();

@@ -56,6 +56,10 @@
 #include <builtin_fp16.h>
 #include <fstream>
 #include <sys/time.h>
+#include "opencv2/core.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui.hpp"
+
 /**
  * @brief RecognizeBase
  * @details  Construct a new Recognize Base:: Recognize Base object
@@ -561,6 +565,12 @@ void RecognizeBase::send_result(void *arg, uint8_t model_id, recognizeData_t &da
     {
         Measuretime m("Create predict result time");
         notify = _model->track();
+    }
+    if(cv::waitKey(30) == 27) // integer 13 = key Enter 
+    {
+        cv::destroyAllWindows();
+        recognize_end();
+        abort();
     }
 }
 /**
