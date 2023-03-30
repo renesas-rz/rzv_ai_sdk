@@ -18,8 +18,6 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 
 
-
-
 ## Application: Requirements
 
 #### Hardware Requirements
@@ -45,7 +43,7 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 **Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- the Board Set Up and booted. 
+- The Board Set Up and booted. 
 - SD Card Prepared 
 - The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
 
@@ -56,24 +54,21 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone <current_repository_url>
+    git clone <repository_url>
     ```
 2. Run(or start) the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
 
-3. Go to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
+3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
 
 ```sh
-cd <path_to_data_folder_on_container>/data/
+export PROJECT_PATH=/drp_ai_tvm/data/
 ```
 4. Go to the `src` directory of the application
 
 ```sh
-export PROJECT_PATH=$(pwd)
-```
-```sh
-cd ${PROJECT_PATH}/Footfall_Counter/src/
+cd ${PROJECT_PATH}/<repository_name>/Footfall_Counter/src/
 ```
 
 5. Download the boost tar file
@@ -82,13 +77,13 @@ wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81
 ```
 >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the `src` folder present on the mounted `data` directory.
 
-6. extract tar file to the current location 
+6. Extract tar file to the current location 
 
 ```sh
 tar -xvf boost_1_81_0.tar.bz2
 ```
 
-7. copy the boost files to the `/include` folder of the 
+7. Copy the boost files to the `/include` folder of the 
 ```sh
 cp -r boost_1_81_0/boost include/
 ```
@@ -126,7 +121,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
    * Copy the files present in [exe](./exe) directory, which are listed in the table above.
    * Copy the generated `object_tracker` application file if the application file is built at [build stage](#application-build-stage)
 
-* Check if libtvm_runtime.so is there on usr/lib64 directory of the rootfs (SD card) RZ/V2L board.
+* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
 
 
 Folder structure in the rootfs (SD Card) would look like:
