@@ -17,7 +17,6 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 <a href="https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/footfall_counter/footfall_counter_output.mp4?csf=1&web=1&e=VhiJNG" target="_blank">**Demo Video**</a>
 
 
-
 ## Application: Requirements
 
 #### Hardware Requirements
@@ -71,7 +70,7 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 cd ${PROJECT_PATH}/<repository_name>/Footfall_Counter/src/
 ```
 
-5. Download the boost tar file
+5. Download the `boost` tar file
 ```sh
 wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
 ```
@@ -83,7 +82,7 @@ wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81
 tar -xvf boost_1_81_0.tar.bz2
 ```
 
-7. Copy the boost files to the `/include` folder of the 
+7. Copy the boost files to the `include` folder 
 ```sh
 cp -r boost_1_81_0/boost include/
 ```
