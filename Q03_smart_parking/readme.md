@@ -40,7 +40,7 @@ FPS - 200/10 ->20
 
 ## Application: Build Stage
 
->**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
+>**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
 **Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
 
@@ -56,28 +56,26 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone <current_repository_url>
+    git clone <repository_url>
     ```
 
 2. Run the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container terminal.
 
-3. Go to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
+3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
 
 ```sh
-cd <path_to_data_folder_on_container>/data/
+export PROJECT_PATH=/drp_ai_tvm/data/
 ```
+
 4. Go to the `src` directory of the application
 
 ```sh
-export PROJECT_PATH=$(pwd)
-```
-```sh
-cd ${PROJECT_PATH}/smart_parking/src/
+cd ${PROJECT_PATH}/<repository_name>/Q03_smart_parking/src/
 ```
 
-5. Now build the application on docker environment by following the steps below
+5. Build the application on docker environment by following the steps below
 
 ```sh
 mkdir -p build && cd build
@@ -101,8 +99,8 @@ For ease of deployment all the files required for deployment are provided on the
 |:---|:---|
 |parkingmodel_onnx | Model object files for deployment. |
 |parking_bg.jpg | Front image for the application. |
-|sample.mp4 | user sample input video. |
-|parkinglot_detection | application file. |
+|sample.mp4 | User sample input video. |
+|parkinglot_detection | Application file. |
 
 Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Board.
 
@@ -110,9 +108,8 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
    * Copy the files present in [exe](./exe) directory, which are listed in the table above
    * Copy the generated parkinglot_detection application file, if the application file is built at [build stage](#application-build-stage)
    
-* Check if libtvm_runtime.so is there on usr/lib64 directory of the rootfs (SD card) RZ/V2L board.
+* Check if libtvm_runtime.so is there on `/usr/lib64/` directory of the rootfs (SD card) RZ/V2L board.
 
->**Note:** By default, the application will take inference from USB Camera.
 
 >**Note:** For the video file to get executed, ensure that the video file is present inside the home/root/tvm directory of the rootfs of the board.
 
@@ -136,19 +133,25 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 ```
 ## Application: Runtime Stage
 
-* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
+* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
     * Go to the `/home/root/tvm` directory of the rootfs
     ```sh
     cd /home/root/tvm
     ```
-   * for inference from video 
+   * To run inference from video 
+
    ```sh 
    ./parkinglot_detection <videofile_name.mp4>
    ```
-   * for inference from the camera feed 
+
+   * To run inference from the camera feed 
+
    ```sh
    ./parkinglot_detection
    ```
+
+   >**Note:** By default, the application will take inference from USB Camera.
+
 #### GUI for running the application
 
 >**Note:** The application GUI is same for either of the sample video or the camera. 
