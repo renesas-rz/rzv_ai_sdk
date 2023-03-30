@@ -47,50 +47,54 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 After completion of the guide, the user is expected of following things.
 - the Board Set Up and booted. 
 - SD Card Prepared 
-- The docker image amd container for ai_sdk_image running on host machine.
+- The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
 
->**Note:** Docker environment is required for building the sample application. 
-
+>**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
 
 #### Application File Generation
 1. Copy the repository from the GitHub to the desired location. 
-    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `ai_sdk_image` docker container. 
+    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
-    cd <path_to_data_folder>
+    cd <path_to_data_folder_on_host>
     git clone <current_repository_url>
     ```
+2. Run(or start) the docker container and open the bash terminal on the container.
+
+> Note: All the build steps/commands listed below are executed on the docker container bash terminal.
+
+3. Go to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
+
 ```sh
-export PROJECT_PATH=${pwd}
+cd <path_to_data_folder_on_container>/data/
+```
+4. Go to the `src` directory of the application
+
+```sh
+export PROJECT_PATH=$(pwd)
 ```
 ```sh
-cd ${PROJECT_PATH}/Footfall_Counter/
+cd ${PROJECT_PATH}/Footfall_Counter/src/
 ```
-2. Download the boost tar file
+
+5. Download the boost tar file
 ```sh
 wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
 ```
-3. extract tar file to the desired location 
+>**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the `src` folder present on the mounted `data` directory.
+
+6. extract tar file to the current location 
+
 ```sh
 tar -xvf boost_1_81_0.tar.bz2
 ```
-4. copy the boost files to the `src/include` folder of the 
+
+7. copy the boost files to the `/include` folder of the 
 ```sh
-cp -r boost_1_81_0/boost src/include/
+cp -r boost_1_81_0/boost include/
 ```
 
-5. Now copy this `src` folder to the `data` directory (mounted directory for the created `ai_sdk_image` docker container)
+8. Build the application on docker environment by following the steps below
 
-6. Run the bash terminal of the docker container 
-7. Go to the `src` directory and build the application on docker environment by following the steps below
-```sh
-cd <path_to_data_folder_inside_container>
-```
-```sh
-export PROJECT_PATH=${pwd}
-```
-```sh
-cd ${PROJECT_PATH}/Footfall_Counter/src
-```
 ```sh
 mkdir -p build && cd build
 ```
@@ -112,7 +116,7 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |:---|:---|
 |preprocess_tvm_v2l/ | Pre-processing Runtime Object files. |
 |tinyyolov3_onnx | Model object files for deployment. |
-|coco-lables-2014_2017.txt | Label list for Object Detection. |
+|coco-labels-2014_2017.txt | Label list for Object Detection. |
 |config.ini | user input config for line, region and object. |
 |object_tracker | application file. |
 
@@ -178,7 +182,8 @@ The runtime application will look something like this
     - The `time` parameter of the tracked person indicates the time spent on the desired location. This incremented at regular interval.
 
 #### Application: Termination
-- Application can be terminated by pressing `esc` key on the keyboard connected to the board.
+- Application can be terminated by long pressing `esc` key (around 10 seconds) on the keyboard connected to the board.
+- Alternatively, User can force close the application using `CTRL+c` on the board console.
 
 ## Application: Configuration 
 
