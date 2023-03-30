@@ -67,7 +67,7 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/<repository_name>/Footfall_Counter/src/
+cd ${PROJECT_PATH}/<repository_name>/Q01_footfall_counter/src/
 ```
 
 5. Download the `boost` tar file
