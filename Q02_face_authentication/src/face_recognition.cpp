@@ -62,15 +62,15 @@ std::string model_dir = "facenet_model";
 std::string str1 = "Add ID Image";
 std::string str2 = "Validate";
 
-unsigned int add_faces_x0 = 415;
-unsigned int add_faces_y0 = 523;
-unsigned int add_faces_x1 = 585;
-unsigned int add_faces_y1 = 573;
+unsigned int add_faces_x0 = 189;
+unsigned int add_faces_y0 = 350;
+unsigned int add_faces_x1 = 353;
+unsigned int add_faces_y1 = 400;
 
-unsigned int recognize_x0 = 687;
-unsigned int recognize_y0 = 523;
-unsigned int recognize_x1 = 827;
-unsigned int recognize_y1 = 573;
+unsigned int recognize_x0 = 481;
+unsigned int recognize_y0 = 350;
+unsigned int recognize_x1 = 631;
+unsigned int recognize_y1 = 400;
 
 unsigned int add_face_dir_x0 = 100;
 unsigned int add_face_dir_y0 = 523;
@@ -92,6 +92,7 @@ bool add_face_clicked = false;
 bool recognize_face_clicked = false;
 bool img1_array1_udated = false;
 bool img1_array2_udated = false;
+bool cam_kill_esc_key   = false;
 
 /*****************************************
  * Function Name : hwc2chw
@@ -270,17 +271,22 @@ Mat capture_frame(void)
     Mat patch1;
     Mat img1;
     cv::VideoCapture vid(0);
-    resizeWindow("select face", 1280, 720);
-    cout << "starting \n";
-    cv::Rect roi(440, 160, 400, 400); // x,y,w,h
+    vid >> img1;
+    int height = img1.rows;
+    int width = img1.cols;
+    int wait_key = 0;
+
+    cv::Rect roi((int)(img1.cols/2-width/8), (int)(img1.rows/2-width/8), width/3, width/3); // x,y,w,h
     cv::Mat croppedImg;
     vector<string> predictions;
     while (1)
     {
         vid >> img1;
         flip(img1, img, 1);
-        cv::Point pt1(440, 160);
-        cv::Point pt2(840, 560);
+   
+        cv::Point pt1((int)(width/2-width/6), (int)(height/2-width/6));
+        cv::Point pt2((int)(width/2+width/6), (int)(height/2+width/6));
+
         /* Store vertices in vector */
         std::vector<cv::Point> vertices;
         vertices.push_back(pt1);
@@ -288,15 +294,22 @@ Mat capture_frame(void)
         vertices.push_back(pt2);
         vertices.push_back(cv::Point(pt1.x, pt2.y));
         cv::polylines(img, std::vector<std::vector<cv::Point>>{vertices}, true, BLUE, 3);
-        cv::putText(img, "Adjust face into the box!!", cv::Point(320, 100), cv::FONT_HERSHEY_DUPLEX, 1, BLUE, 4, false);
-        if (waitKey(30) == 13) // integer 13 = key Enter 
+        cv::putText(img, "Adjust face into the box!!", cv::Point(pt1.x,pt1.y-30), cv::FONT_HERSHEY_DUPLEX, 1, BLUE, 4, false);
+        wait_key = waitKey(30);
+        if(wait_key == 13 || wait_key == 27)
         {
+            if(wait_key == 27)
+            {
+                cam_kill_esc_key = true;
+                img1_array1_udated = false;
+            }
             cv::destroyAllWindows();
-            break;
+            break;   
         }
         cv::Mat croppedImg = img(roi);
         cv::resize(croppedImg, croppedImg, Size(64, 64), INTER_LINEAR);
         cv::imshow("select face", img); // Wait for 'esc' key press to exit
+
     }
     croppedImg = img(roi);   // Crop the image
     return croppedImg;
@@ -313,7 +326,7 @@ Mat capture_frame(void)
  ******************************************/
 string compare_with_existing_faces(vector<float> floatarr1,vector<float> floatarr2)
 {
-    float co_thresh = 0.21;
+    float co_thresh = 0.12; //defacult th:0.21
     float eu_thresh = 10.0;
     float max_value_co = 0.0;
     float min_value_eu = 10000000.0;
@@ -375,7 +388,8 @@ int main(int argc, char **argv)
     runtime.LoadModel(model_dir);
     cout << "loaded model:" << model_dir << endl;
     namedWindow(app_name, WINDOW_NORMAL);
-    resizeWindow(app_name,1200, 800);
+    //resizeWindow(app_name,1200, 800);
+    resizeWindow(app_name,800,600);
     while (waitKey(30) != 27)
     {
         frame = cv::imread("face_rec_bg.jpg");
@@ -384,55 +398,68 @@ int main(int argc, char **argv)
             if (add_face_clicked && img1_array1_udated == false)
             {
                 img_preprocess(str1, add_faces_x0, add_faces_y0, add_faces_x1, add_faces_y1);
-                for (int i = 0; i < 512; i++)
+                if(cam_kill_esc_key == false)
                 {
-                    img_arr1[i] = floatarr[i];
+                    for (int i = 0; i < 512; i++)
+                    {
+                        img_arr1[i] = floatarr[i];
+                    }
+                    frame = cv::imread("face_rec_bg.jpg");
+                    cv::putText(frame, "Face added !!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
+                    cv::imshow(app_name, frame);
+                    cv::waitKey(2000);
+                    img1_array1_udated = true;
                 }
-                frame = cv::imread("face_rec_bg.jpg");
-                cv::putText(frame, "Face added !!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
-                cv::imshow(app_name, frame);
-                cv::waitKey(2000);
-                img1_array1_udated = true;
                 add_face_clicked = false;
+                cam_kill_esc_key = false;
             }
             else if (recognize_face_clicked && img1_array1_udated == true)
             {
+                INIT:
+                frame = cv::imread("face_rec_bg.jpg");
                 img_preprocess(str2, recognize_x0, recognize_y0, recognize_x1, recognize_y1);
-                for (int i = 0; i < 512; i++)
+                if(cam_kill_esc_key == false)
                 {
-                    img_arr2[i] = floatarr[i];
-                }
-                string match = compare_with_existing_faces(img_arr1,img_arr2);
-                cout << "return_string:" << match <<"\n";
-                cv::waitKey(10);
-                if (match == "none")
-                {
-                    if (try_cnt > 2)
+                    for (int i = 0; i < 512; i++)
                     {
-                        cv::putText(frame,"Face authentication failed !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                        img_arr2[i] = floatarr[i];
+                    }
+                    string match = compare_with_existing_faces(img_arr1,img_arr2);
+                    cout << "return_string:" << match <<"\n";
+                    cv::waitKey(10);
+                    if (match == "none")
+                    {
+                        if (try_cnt > 2)
+                        {
+                            cv::putText(frame,"Face authentication failed !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                            try_cnt = 0;
+                            std::fill(img_arr1.begin(),img_arr1.end(),0);
+                            std::fill(img_arr2.begin(),img_arr2.end(),0);
+                            img1_array1_udated = false;
+                            cv::imshow(app_name, frame);
+                            cv::waitKey(3000);
+                        }
+                        else 
+                        {
+                            cv::putText(frame,"Face authentication failed,Please try again!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                            cv::imshow(app_name, frame);
+                            cv::waitKey(3000);
+                            goto INIT;
+                        }
+                    }
+                    else if(match == "match")
+                    {
+                        cv::putText(frame,"Face authentication using ID is succesfull !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
+                        cv::imshow(app_name, frame);
+                        cv::waitKey(3000);
                         try_cnt = 0;
                         std::fill(img_arr1.begin(),img_arr1.end(),0);
                         std::fill(img_arr2.begin(),img_arr2.end(),0);
                         img1_array1_udated = false;
-                    }
-                    else 
-                    {
-                        cv::putText(frame,"Face authentication failed,Please try again!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
-                    }
-                    cv::imshow(app_name, frame);
-                    cv::waitKey(3000);
-                }
-                else if(match == "match")
-                {
-                    cv::putText(frame,"Face authentication using ID is succesfull !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
-                    cv::imshow(app_name, frame);
-                    cv::waitKey(3000);
-                    try_cnt = 0;
-                    std::fill(img_arr1.begin(),img_arr1.end(),0);
-                    std::fill(img_arr2.begin(),img_arr2.end(),0);
-                    img1_array1_udated = false;
+                    }  
                 }
                 recognize_face_clicked = false;
+                cam_kill_esc_key = false;
             }
         }
         else
