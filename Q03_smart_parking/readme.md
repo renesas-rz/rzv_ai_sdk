@@ -45,7 +45,7 @@ FPS - 200/10 ->20
 **Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- the Board Set Up and booted. 
+- The Board Set Up and booted. 
 - SD Card Prepared 
 - The docker image and container for `rzv2l_ai_sdk_image` running on host machine.
 

@@ -53,7 +53,7 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone <repository_url>
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
 2. Run(or start) the docker container and open the bash terminal on the container.
 
@@ -67,7 +67,7 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/<repository_name>/Q01_footfall_counter/src/
+cd ${PROJECT_PATH}/rzv_ai_sdk//Q01_footfall_counter/src/
 ```
 
 5. Download the `boost` tar file
