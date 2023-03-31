@@ -10,7 +10,7 @@ Once the parking slots are drawn, the software uses advanced algorithms (using c
 With this software, users can monitor parking areas such as parking lots, garages, or on-street parking spaces in real-time. 
 It provides an accurate and efficient way to manage parking spaces, helping to reduce congestion and improve traffic flow.
 
-[**Demo Video**](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/smart_parking/sample_output.avi?csf=1&web=1&e=GEdqCZ)
+[**Demo Video**](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/smart_parking/Parking_SLOT.mkv?csf=1&web=1&e=f8ghdU)
 
 Average FPS: 200/slot 
 
@@ -56,9 +56,9 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone <repository_url>
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-
+   >Note: Please verify the git repository url if error occurs.
 2. Run the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container terminal.
@@ -72,9 +72,9 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/<repository_name>/Q03_smart_parking/src/
+cd ${PROJECT_PATH}/rzv_ai_sdk/Q03_smart_parking/src/
 ```
-
+>**Note:**`rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
 5. Build the application on docker environment by following the steps below
 
 ```sh
@@ -192,10 +192,10 @@ The runtime application will look something like this
 <img src=./images/smrt_prk_out.JPG width="480">
 
 - Each bounding boxes (BB) are the parking slots drawn by the user
-   - Green BB are the emptied one
-   - Red BB are the occupied one
+   - Green BB are the empty slots
+   - Red BB are the occupied slots
 - Each slot identified by the user is assigned some ID. The IDs are assigned in the sequence the BB are drawn.
-- Frame Per Sec (FPS) is also shown in the bottom right corner. 
+- `DRP-AI Processing Time(ms)` is also shown in the bottom right corner. 
 
 #### Application: Termination
 - Application can be terminated by pressing `Esc` key on the keyboard connected to the board.

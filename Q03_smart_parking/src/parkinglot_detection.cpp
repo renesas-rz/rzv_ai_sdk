@@ -212,7 +212,7 @@ void removeButtonCallback(int, void *)
     }
     for (int i = indicesToRemove.size() - 1; i >= 0; i--)
     {
-        boxes.erase(boxes.begin() + indicesToRemove[i]);
+        boxes.erase(boxes.begin() + indicesToRemove[i-1]);
     }
 }
 /*****************************************
@@ -315,14 +315,16 @@ void process_frames(queue<Mat> &frames, bool &stop)
             auto t2 = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
             putText(img, "DRP-AI Processing Time(ms): " + to_string(duration), Point(img.cols - 380, img.rows - 07), FONT_HERSHEY_DUPLEX, .65, Scalar(255, 0, 0), 2);
-        }
-        imshow("Inference", img);
-        if (waitKey(10)==27)// Wait for 'Esc' key press to stop inference window!!
+
+            if (waitKey(10)==27)// Wait for 'Esc' key press to stop inference window!!
             {   
             stop = true;
             destroyAllWindows();
             break;
             }
+        imshow("Inference", img);
+        }
+        
     }
 }
 
@@ -395,7 +397,7 @@ int main(int argc, char **argv)
             bool stop = false;
             thread readThread(read_frames, filename, ref(frames), ref(stop));
             cout << "Waiting for read frames to add frames to buffer!!!!!" << endl;
-            this_thread::sleep_for(std::chrono::seconds(5));
+            this_thread::sleep_for(std::chrono::seconds(0));
             thread processThread(process_frames, ref(frames), ref(stop));
             cout << "Processing thread started......" << endl;
             waitKey(0);
