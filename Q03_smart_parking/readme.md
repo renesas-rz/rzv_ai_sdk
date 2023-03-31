@@ -192,10 +192,10 @@ The runtime application will look something like this
 <img src=./images/smrt_prk_out.JPG width="480">
 
 - Each bounding boxes (BB) are the parking slots drawn by the user
-   - Green BB are the emptied one
-   - Red BB are the occupied one
+   - Green BB are the empty slots
+   - Red BB are the occupied slots
 - Each slot identified by the user is assigned some ID. The IDs are assigned in the sequence the BB are drawn.
-- DRP_AI Processing Time(ms) is also shown in the bottom right corner. 
+- `DRP-AI Processing Time(ms)` is also shown in the bottom right corner. 
 
 #### Application: Termination
 - Application can be terminated by pressing `Esc` key on the keyboard connected to the board.
