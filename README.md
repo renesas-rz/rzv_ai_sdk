@@ -47,7 +47,7 @@ The number information is present as:
 - Connect USB Hub at terminal `6`
     - Connect USB Camera, USB Mouse, USB Keyboard to the USB Hub
 - Connect SD Card at terminal `7` (required for SD card file system)
-- Connect ethernet at terminal `8` (required for NFS)
+- Connect ethernet at terminal `8` (optional)
 
 #### Additional Requirements
 
@@ -73,17 +73,17 @@ The sample applications already developed for RZ/V2L Evaluation Board Kit are li
 
 ### 1. Footfall Counter 
 
-This sample application [Footfall Counter](./Footfall_Counter) will count the number of persons entering the certain boundaries. There is added functionality of calculation time taken for people on the certain region of interest.\
+This sample application [Footfall Counter](./Q01_footfall_counter) will count the number of persons entering the certain boundaries. There is added functionality of calculation time taken for people on the certain region of interest.\
 Both the boundary line and the area of interest are decided by the user and can be set inside the config file.
 
 ### 2. Face Authentication
 
-This sample application [Face Authentication](./face_authentication) will recognize the face of the person and verify the same with images stored in the database.\
+This sample application [Face Authentication](./Q02_face_authentication) will recognize the face of the person and verify the same with images stored in the database.\
 This application could be used for passport verification at the airport.
 
 ### 3. Smart Parking Solutions
 
-This sample application [Smart Parking](./smart_parking) will detect the available parking slots from the real time camera feed using computer vision advanced algorithms.\
+This sample application [Smart Parking](./Q03_smart_parking) will detect the available parking slots from the real time camera feed using computer vision advanced algorithms.\
 The application could be used to get the available parking slots information from the certain parking area in real time.
 
 ## Operating the sample application
