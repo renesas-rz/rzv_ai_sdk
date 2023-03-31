@@ -1,4 +1,4 @@
-# Face Recognition Application
+# Face Authentication Application
 
 ## Application: Overview
 The face authentication application is a cutting-edge software that can validate individuals sitting in front of a 
