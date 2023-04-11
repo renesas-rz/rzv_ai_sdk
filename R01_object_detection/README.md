@@ -33,7 +33,7 @@ Connect the hardware as shown below.
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
+This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The board setup is done.
@@ -55,19 +55,19 @@ Here, we use the `rzv2l_ai_sdk_container` as the name of container created from 
     > Note that all the build steps/commands listed below are executed on the docker container bash terminal.  
 
 3. Set your clone directory to the environment variable.  
-```sh
-export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
-```
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
+    ```
 3. Go to the application source code directory.  
-```sh
-cd ${PROJECT_PATH}/R01_object_detection/src
-```
+    ```sh
+    cd ${PROJECT_PATH}/R01_object_detection/src
+    ```
 4. Build the application by following the commands below.  
-```sh
-mkdir -p build && cd build
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-make -j$(nproc)
-```
+    ```sh
+    mkdir -p build && cd build
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    make -j$(nproc)
+    ```
 5. The following application file would be genarated in the `${PROJECT_PATH}/R01_object_detection/src/build` directory
 - object_detection
 
@@ -77,16 +77,25 @@ For the ease of deployment all the deployables file and folders for RZV2L are pr
 
 |File | Details |
 |:---|:---|
-|licecnses | License information of AI model. |
+|licecnses | License information of AI model. <br>Not necessary for running application. |
 |yolov3_onnx | Model object files for deployment.<br>Pre-processing Runtime Object files included. |
 |coco-lables-2014_2017.txt | Label list for Object Detection. |
 |object_detection | application file. |
 
 1. Follow the steps below to deploy the project on RZV2L Board. 
-    1. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for RZV2L Board.
-   -  All files in [exe](./exe) directory.
-   -  `object_detection` application file if you generated the file according to [Application File Generation](#application-file-generation)
-    2. Check if `libtvm_runtime.so` is there on `/usr/lib64` directory of the rootfs (SD card) on RZ/V2L board.
+    1. Run the commands below to download the `R01_object_detection_deploy.so` from [Release v1.0.0](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v1.0.0/)
+    ```
+    cd ${PROJECT_PATH}/R01_object_detection/exe/yolov3_onnx
+    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v1.0.0/R01_object_detection_deploy.so
+    ```
+    2. Rename the `R01_object_detection_deploy.so` to `deploy.so`.
+    ```
+    mv R01_object_detection_deploy.so deploy.so
+    ```
+    3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for RZV2L Board.
+        -  All files in [exe](./exe) directory. (Including `deploy.so` file.)
+        -  `object_detection` application file if you generated the file according to [Application File Generation](#application-file-generation)
+    4. Check if `libtvm_runtime.so` is there on `/usr/lib64` directory of the rootfs (SD card) on RZ/V2L board.
 
 2. Folder structure in the rootfs (SD Card) would look like:
 ```sh
@@ -103,7 +112,6 @@ For the ease of deployment all the deployables file and folders for RZV2L are pr
             │   └── deploy.so
             ├── coco-labels-2014_2017.txt
             └── object_detection
-
 ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
 
@@ -120,14 +128,16 @@ cd /home/root/tvm
 3. Following window shows up on HDMI screen.  
 
     <img src=./img/objectdetection.png width=350>   
-On application window, following information is displayed.  
-- Camera capture  
-- Object Detection result (Bounding boxes, class name and score.)  
-- Processing time  
-    - Total AI Time: Sum of all processing time below.  
-    - Inference: Processing time taken for AI inference.  
-    - PreProces: Processing time taken for AI pre-processing.  
-    - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
+
+    On application window, following information is displayed.  
+    - Camera capture  
+    - Object Detection result (Bounding boxes, class name and score.)  
+    - Processing time  
+        - Total AI Time: Sum of all processing time below.  
+        - Inference: Processing time taken for AI inference.  
+        - PreProces: Processing time taken for AI pre-processing.  
+        - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
+        
 4. To terninate the application, press ENTER key on the terminal of RZ/V2L Board.
 
 
@@ -151,4 +161,6 @@ The AI inference time is around 430 msec.
 |Inference | Processed by DRP-AI and CPU. |
 |Post-processing | Processed by CPU. |
 
-
+## License
+For AI model, see `exe/licenses` directory.  
+For applciation, MIT.
