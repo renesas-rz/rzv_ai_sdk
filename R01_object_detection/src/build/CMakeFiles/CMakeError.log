@@ -1,0 +1,84 @@
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find Scrt1.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crti.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtbeginS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtendS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtn.o: No such file or directory
+collect2: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+1
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find Scrt1.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crti.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtbeginS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lstdc++
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lm
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtendS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtn.o: No such file or directory
+collect2: error: ld returned 1 exit status
+
+
+Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+Compiler: /opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-gcc 
+Build flags: ;-O2;-pipe;-g;-feliminate-unused-debug-types;
+Id flags:  
+
+The output was:
+1
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find Scrt1.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crti.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtbeginS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtendS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtn.o: No such file or directory
+collect2: error: ld returned 1 exit status
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-poky-linux/aarch64-poky-linux-g++ 
+Build flags: ;-O2;-pipe;-g;-feliminate-unused-debug-types;
+Id flags:  
+
+The output was:
+1
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find Scrt1.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crti.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtbeginS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lstdc++
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lm
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc_s
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find -lgcc
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtendS.o: No such file or directory
+/opt/poky/3.1.17/sysroots/x86_64-pokysdk-linux/usr/libexec/aarch64-poky-linux/gcc/aarch64-poky-linux/8.3.0/real-ld: cannot find crtn.o: No such file or directory
+collect2: error: ld returned 1 exit status
+
+
