@@ -77,6 +77,7 @@ For the ease of deployment all the deployables file and folders for RZV2L are pr
 
 |File | Details |
 |:---|:---|
+|licecnses | License information of AI model. |
 |yolov3_onnx | Model object files for deployment.<br>Pre-processing Runtime Object files included. |
 |coco-lables-2014_2017.txt | Label list for Object Detection. |
 |object_detection | application file. |
