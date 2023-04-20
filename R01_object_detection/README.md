@@ -138,7 +138,7 @@ cd /home/root/tvm
         - PreProces: Processing time taken for AI pre-processing.  
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
-4. To terninate the application, press ENTER key on the terminal of RZ/V2L Board.
+4. To terninate the application, switch the application window to the terminal with using `Super(windows key)+Tab` and &nbsp;press ENTER key on the terminal of RZ/V2L Board.
 
 
 ## Application: Configuration 
