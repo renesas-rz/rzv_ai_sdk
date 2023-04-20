@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.10)
+project(object_detection_cpp)
+
+set(TVM_ROOT $ENV{TVM_HOME})
+include_directories(${TVM_ROOT}/include)
+include_directories(${TVM_ROOT}/3rdparty/dlpack/include)
+include_directories(${TVM_ROOT}/3rdparty/dmlc-core/include)
+include_directories(${TVM_ROOT}/3rdparty/compiler-rt)
+
+set(TVM_RUNTIME_LIB ${TVM_ROOT}/build_runtime/libtvm_runtime.so)
+set(EXE_NAME object_detection)
+
+file(GLOB SOURCE *.cpp *.h)
+add_executable (${EXE_NAME}
+${SOURCE}
+)
+TARGET_LINK_LIBRARIES(${EXE_NAME} pthread)
+TARGET_LINK_LIBRARIES(${EXE_NAME} jpeg)
+TARGET_LINK_LIBRARIES(${EXE_NAME} wayland-client)
+
+find_package(OpenCV REQUIRED)
+if(OpenCV_FOUND)
+    target_include_directories(${EXE_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
+    target_link_libraries(${EXE_NAME} ${OpenCV_LIBS})
+endif()
+target_link_libraries(${EXE_NAME} ${TVM_RUNTIME_LIB})
