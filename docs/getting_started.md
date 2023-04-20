@@ -120,7 +120,7 @@ Please prepare following software.<br>
 <br><br>
 <h3 id="step3" >Step 3: Obtain RZ/V2L AI SDK</h3>
 Download the RZ/V2L AI SDK from the link below.<br><br>
-<a class="btn btn-primary" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus" role="button">Download Link</a>
+<a class="btn btn-primary" href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit" role="button">Download Link</a>
 <br>
 
 Check the Release Note included in the package.<br><br>
