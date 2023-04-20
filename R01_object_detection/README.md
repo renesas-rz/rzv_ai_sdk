@@ -33,7 +33,7 @@ Connect the hardware as shown below.
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
+This project expects the user to have completed [Getting Startup Guide](https://renesas-rz.github.io/rzv_ai_sdk/getting_started.html) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The board setup is done.
