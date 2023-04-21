@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+
+        {% if site.logo %}
+          <img src="{{site.logo | relative_url}}" alt="Logo" />
+        {% endif %}
+
+        <p>{{ site.description | default: site.github.project_tagline }}</p>
+
+        {% if site.github.is_project_page %}
+        <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
+        {% endif %}
+
+        {% if site.github.is_user_page %}
+        <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
+        {% endif %}
+
+        {% if site.show_downloads %}
+        <div class="container">
+          <div class="row">
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/board.png" alt="board" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
+              </ul>
+            </div>
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/ai_sdk.png" alt="ai_sdk" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+      <div class="web_index">
+        <details open>
+          <summary>
+            <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">Getting Started</a>
+          </summary>
+          <ul class="index">
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step1">1. Obtain an board</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step2">2. Obtain Necessary Environment</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3">3. Obtain RZ/V2L AI SDK</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step4">4. Extract RZ/V2L AI SDK</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step5">5. Setup RZ/V2L AI SDK</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6">6. Build AI Application</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7">7. Setup the Board</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8">8. Deploy AI Application</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step9">9. Boot the Board</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step10">10. Run AI Application</a></li>
+            <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step11">11. Shutdown the Board</a></li>
+            <details>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}">Appendix</a>
+              </summary>
+                <ul class="index">
+                  <li>
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#bootloader">A1. Write bootloaders</a>
+                  </li>
+                  <li>
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#partition">A2. Format SD card</a>
+                  </li>
+                  <li>
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#boot">A3. Boot with PC</a>
+                  </li>
+                </ul>
+              </details>
+          </ul>
+        </details>
+
+<!-- Copy index_list.html start -->
+        <details open>
+          <summary>
+            <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#ai-applications">AI Applications</a>
+          </summary>
+          <ul class="index">
+                <details open>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#agriculture">Agriculture</a>
+              </summary>
+              <ul class="index">
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#agriculture1">Defense wild animals for crop</a></li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building">Smart Building</a>
+              </summary>
+              <ul class="index">
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building1">Elevator passengers Counting</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building2">Conference Room Usage Monitor</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building3">Lighting Control</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building4">Security Area Intrusion Detection</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building5">Wear management at construction sites</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building6">Touchless Controller for elevator</a></li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city">Smart City</a>
+              </summary>
+              <ul class="index">
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city1">Congestion Detection in Railway Station</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city2">Prohibited Area Management</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city3">Doze detection</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city4">Parking Spot Reservation</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city5">Passport check support</a></li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#healthcare">Healthcare</a>
+              </summary>
+              <ul class="index">
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#healthcare1">Physical Condition Monitor</a></li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#home">Smart Home</a>
+              </summary>
+              <ul class="index">
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#home1">Air Conditioner Control</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#home2">Pet Detection in Kitchen and Child's Room</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#home3">Touchless Controller for Kitchen Appliance</a></li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#industrial">Industrial</a>
+              </summary>
+              <ul class="index">
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#industrial1">Work Area Personnel Management</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#industrial2">Helmet and safety vest wearing monitor</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#industrial3">Touchless Controller for Industrial machine</a></li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#retail">Retail</a>
+              </summary>
+              <ul class="index">
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#retail1">Congestion Detection</a></li>
+                    <li><a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#retail2">Staying and flow line monitoring</a></li>
+              </ul>
+            </details>
+
+          </ul>
+        </details>
+    
+    
+<!-- Copy index_list.html end -->
+        <details open>
+          <summary>
+            <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>
+          </summary>
+        </details>
+        </div>
+        <br>
+        <br>
+        <div>
+          {% if site.github.is_project_page %}
+          <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+          {% endif %}
+          <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </div>
+      </header>
+      <section>
+
+      {{ content }}
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+  </body>
+</html>
