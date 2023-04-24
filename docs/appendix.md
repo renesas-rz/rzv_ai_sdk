@@ -19,7 +19,7 @@ Bootloaders are written to eMMC, which means that this procedures needs to be do
 Follow the instruction below to write bootloaders to the board.<br>
 1. Copy following files in `${WORK}/board_setup/bootloader` to your Windows PC.<br>
     <ul>
-    <li><code>Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</code></li>
+    <li><code>Flash_Writer_SCIF_RZV2L_SMARC<br clas="br-sp">_PMIC_DDR4_2GB_1PCS.mot</code></li>
     <li><code>bl2_bp-smarc-rzv2l_pmic.srec</code></li>
     <li><code>fip-smarc-rzv2l_pmic.srec</code></li>
     </ul>
@@ -520,7 +520,7 @@ boot</code></pre>
 
     </div>
     <div class="col-12 col-md-6">
-      <img class="procedure"  src="img/board_boot.png" alt="boot"/><br>
+      <img class="procedure"  src="img/board_boot.png" alt="boot" width="90%"/><br>
     </div>
   </div>
 </div>

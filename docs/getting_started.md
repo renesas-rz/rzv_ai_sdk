@@ -519,7 +519,7 @@ The instruction in the application documentation assumes this booting option.<br
 
     </div>
     <div class="col-12 col-md-6">
-          <img class="procedure"  src="img/board_boot_2.png" alt="boot"/><br>
+          <img class="procedure"  src="img/board_boot_2.png" alt="boot" width="90%"/><br>
     </div>
   </div>
   
@@ -528,7 +528,7 @@ The instruction in the application documentation assumes this booting option.<br
 8. After the boot-up, following screen will be displayed on HDMI monitor.<br>
     </div>
     <div class="col-12 col-md-6">
-      <img class="procedure"  src="img/wayland.jpg" alt="wayland" /><br>
+      <img class="procedure"  src="img/wayland.jpg" alt="wayland" width="90%" /><br>
     </div>
   </div>
   <div class="row">
@@ -536,7 +536,7 @@ The instruction in the application documentation assumes this booting option.<br
 9. Click the icon at the top-left corner to open the terminal.<br>
     </div>
     <div class=" col-12 col-md-6">
-    <img class="procedure"  src="img/wayland_terminal.jpg" alt="wayland" /><br>
+    <img class="procedure"  src="img/wayland_terminal.jpg" alt="wayland" width="90%" /><br>
     </div>
   </div>
 </div>
