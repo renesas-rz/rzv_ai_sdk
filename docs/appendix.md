@@ -245,7 +245,7 @@ This would be your microSD card device name.<br>
     - If there are more than one partitions on microSD card, unmount all partitions.<br><br>
 
 7. Run `fdisk` command as shown below to change the partition table according to the following table.<br>
-    <table>
+    <table class="lg-table">
       <tr>
         <th>Type/Number</th>
         <th>Size</th>

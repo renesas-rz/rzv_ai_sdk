@@ -265,10 +265,16 @@ strong {
   .br-sp {
       display: none;
   }
+  .lg-table {
+    font-size: 12px;
+  }
 }
 @media (max-width: 560px) {
   .br-sp {
       display: block;
+  }
+  .lg-table {
+    font-size: 10px;
   }
 }
 

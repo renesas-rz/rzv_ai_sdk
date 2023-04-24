@@ -32,7 +32,7 @@ Select each application to access the source code.
                 <ul class="appdetails">
                     <li>
                         <p class="name">Defense wild animals for crop</p>
-                        Detect the types of animals that enter your farm or barn for pest control.<br><br>
+                        <p class="font-weight-normal">Detect the types of animals that enter your farm or barn for pest control.<br><br></p>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: Animals Detection Images Dataset+Images.cv+Coco Dataset<br>
                         <b>Performance</b>: 3fps
