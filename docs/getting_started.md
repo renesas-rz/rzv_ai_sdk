@@ -570,7 +570,7 @@ To power-off the RZ/V2L Evaluation Board Kit, follow the procedures below.
 
 3. Press and hold the power button for 2 seconds.
 
-    <img  src="img/board_power.png" alt="board" width="400px" /><br>
+    <img  src="img/board_power.png" alt="board" width="350px" /><br>
 
 <br><br>
 <h4>
