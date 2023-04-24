@@ -61,10 +61,10 @@ For building the sample applications
 
 ## Startup Guide
 
-The users are mandate to follow the [startup guide]() provided by the Renesas, before building the sample application.
+The users are mandate to follow the [startup guide](https://renesas-rz.github.io/rzv_ai_sdk/getting_started.html) provided by the Renesas, before building the sample application.
 After completion of the startup guide, users are expected to have
 - Completed the bootup procedure of RZ/V2L Evaluation board kit
-- `rzv2l_ai_sdk_image` docker container running on the host machine. This docker container will contain RZ/V2L sdk and tvm enviroment.
+- `rzv2l_ai_sdk_image` docker container running on the host machine. This docker container will contain RZ/V2L sdk and tvm environment.
     >Note: The docker container is required for building the sample applications. Users can skip this, if they want to use the pre-built binaries.
 - Necessary Hardware equipments
 
