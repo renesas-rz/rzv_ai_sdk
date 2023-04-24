@@ -5,7 +5,7 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="top col-12">
-AI Software Development Kit for AI Applications<br>
+AI Applications and AI SDK<br>
 on RZ/V series
         </div>
     </div>
@@ -26,7 +26,7 @@ It provides various AI applications for free.</h5>
 <div class="container">
     <div class="row">
         <div class="col-8">
-Renesas RZ/V AI SDK is the most comprehensive solution for building end-to-end accelerated AI applications.  AI SDK includes Yocto Linux with bootloader, Linux Kernel, Cross Compiler and a complete set of libraries for DRP-AI, graphics and codec.  <br><br><br>
+Renesas RZ/V AI Software Development Kit (AI SDK) is the most comprehensive solution for building end-to-end accelerated AI applications.  AI SDK includes Yocto Linux with bootloader, Linux Kernel, Cross Compiler and a complete set of libraries for DRP-AI, graphics and codec.  <br><br><br>
 <h5>Get your target board now and <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">GET STARTED.</a></h5>  
         </div>
         <div class="start col-4">

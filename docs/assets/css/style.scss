@@ -42,12 +42,12 @@ h3 {
   font-size: 35px;
   background-color: #2a289d;
   color: white;
-  height: 170px;
   display:flex;
   align-items: center;
   font-family: "Arial";
   font-style: italic;
-  padding-left: 20px;
+  // padding-left: 20px;
+  padding: 20px 10px;
 }
 .subtitle {
   font-style: italic;
@@ -92,7 +92,7 @@ ul.category {
   padding-top:5px;
 }
 
-.category a:hover, .downloads a:focus {
+.category a:hover, .category a:focus {
   color:#675C5C;
   font-weight:bold;
 }
@@ -153,15 +153,20 @@ img.appimage {
 }
 
 //Change color of application details when cursor is on.
-a.applications :hover, a.applications :focus {
+//When hovering the image and application details.
+a.applications:hover, a.applications:focus{
   color:#267cb9;
 }
-//Do not change color of RZ/V2x label in application.
-a.applications ul.applabel :hover, a.applications ul.applabel:focus {
-  color:white;
+//Avoid the normal text to be bold when hovered.
+a.applications:hover li, a.applications:focus li{
+  color:#267cb9;
+  font-weight:normal;
 }
-a.applications ul a:active {
-  background-color:#f0f0f0;
+
+//Do not change color of RZ/V2x label in application.
+a.applications:hover ul.applabel>li, a.applications:focus ul.applabel>li {
+  color:white;
+  font-weight:bold;
 }
 
 ul.index {
@@ -232,8 +237,9 @@ ul.downloads li:hover, ul.downloads li:focus {
   font-weight:bold;
 }
 
-.downloads ul a:active {
-  background-color:#f0f0f0;
+ul.downloads a:active {
+  background-color:white;
+  border-radius: 20px;
 }
 
 strong {
@@ -246,7 +252,37 @@ strong {
   display:block;
   color:#222;
 }
+//User <br clas="br-sp"> for long line that requires break point on smartphone.
+.br-sp {
+  display: none;
+}
+@media (max-width: 1250px) {
+  .br-sp {
+      display: block;
+  }
+}
+@media (max-width: 960px) {
+  .br-sp {
+      display: none;
+  }
+}
+@media (max-width: 560px) {
+  .br-sp {
+      display: block;
+  }
+}
 
+@media print {
+  header, footer{
+    display:none;
+  }
+  #agriculture {
+    page-break-before:always;
+  }
+  div.col-lg-6 {
+    page-break-after:always;
+  }
+}
 @media print, screen and (max-width: 960px) {
 
   div.wrapper {
@@ -312,11 +348,15 @@ strong {
   pre, code {
     word-wrap:normal;
   }
+  .top {
+    font-size: 24px;
+  }
 }
 
 @media print, screen and (max-width: 480px) {
   body {
     padding:15px;
+    word-wrap:break-word;
   }
 
   .downloads {

@@ -299,7 +299,7 @@ git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 ```sh
 make
 ```
-7. Check that following application is generated in the `RZV2L_AiLibrary/01_Head_count/Head_count_cam/exe`.
+7. Check that following application is generated in the <code>RZV2L_AiLibrary/01_Head_count/<br class="br-sp">Head_count_cam/exe</code>.
     - head_count_cam_app<br>
 <br>
 8. If you would like to build the other applications in <a href="#build-option1">Option 1</a>, please exit and restart the docker container.
@@ -331,7 +331,7 @@ This step is <b>only required for the first time.</b><br>
   1. Use the following files to write the bootloaders to the RZ/V2L Evaluation Board Kit according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#bootloader">Appendix: Write bootloaders</a>.<br>
 
   <ul>
-    <li><code>Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</code></li>
+    <li><code>Flash_Writer_SCIF_RZV2L_SMARC_<br class="br-sp">PMIC_DDR4_2GB_1PCS.mot</code></li>
     <li><code>bl2_bp-smarc-rzv2l_pmic.srec</code></li>
     <li><code>fip-smarc-rzv2l_pmic.srec</code></li>
   </ul>
