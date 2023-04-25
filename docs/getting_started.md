@@ -10,7 +10,7 @@ Getting Started
 </div>
 <br>
 <br>
-<h5>This page explains how to start-up the AI SDK on <b>RZ/V2L Evaluation Board Kit</b>.</h5>
+<h5>This page explains how to start-up the AI SDK on the <b>RZ/V2L Evaluation Board Kit</b>.</h5>
 
 <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus">Learn more about the RZ/V series.</a>
 
