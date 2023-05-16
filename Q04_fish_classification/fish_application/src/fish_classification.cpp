@@ -54,9 +54,6 @@
 #include <sys/types.h>
 #include <ifaddrs.h>
 
-using namespace cv;
-using namespace std;
-
 #define GREEN cv::Scalar(0, 255, 0)
 #define RED cv::Scalar(0, 0, 255)
 #define MODEL_IN_H (64)
@@ -77,7 +74,7 @@ std::map<int, std::string> class_names = {
     {8, "Trout"},
     {9, "Cannot Identify !"}};
 unsigned int out;
-Mat frame;
+cv::Mat frame;
 /*****************************************
  * Function Name : hwc2chw
  * Description   : This function takes an input image in HWC (height, width, channels)
@@ -113,14 +110,14 @@ float float16_to_float32(uint16_t a)
  * Return value  : int 0 - 8 succeeded
  *                 otherwise  -1
  ******************************************/
-int run_inference(Mat frame)
+int run_inference(cv::Mat frame)
 {
     auto t1 = std::chrono::high_resolution_clock::now();
     cv::Size size(MODEL_IN_H, MODEL_IN_W);
     cv::resize(frame, frame, size);
     frame.convertTo(frame, CV_32FC3);
     divide(frame, 255.0, frame);
-    Mat normalized, rgb_frame, frame_chw;
+    cv::Mat normalized, rgb_frame, frame_chw;
     cv::cvtColor(frame, rgb_frame, cv::COLOR_BGR2RGB);
     frame_chw = hwc2chw(rgb_frame);
     if (!frame_chw.isContinuous())
@@ -194,7 +191,7 @@ std::string getipaddress()
             std::string ifaname = ifa->ifa_name;
             if (ifaname.find("eth") == 0 || ifaname.find("enp") == 0)
             {
-                ip_address = string(addressBuffer);
+                ip_address = std::string(addressBuffer);
                 return ip_address;
             }
         }
@@ -213,7 +210,7 @@ void show_result(int out)
     if (out != -1)
     {
         std::cout << "\n[INFO] Identified Fish: " << class_names[out] << "\n\n";
-        std::string str2 = string(class_names[out]);
+        std::string str2 = std::string(class_names[out]);
         std::string str3 = str1 + str2;
         cv::putText(frame, str3, cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
     }
@@ -223,7 +220,7 @@ void show_result(int out)
 int main(int argc, char **argv)
 {
     int wait_key = 0;
-    cout << "[INFO] loaded model :" << model_dir << "\n\n";
+    std::cout << "[INFO] loaded model :" << model_dir << "\n\n";
     runtime.LoadModel(model_dir);
     std::string input_source = argv[1];
     if (input_source == "WS")
@@ -235,20 +232,20 @@ int main(int argc, char **argv)
         int server_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (server_fd == -1)
         {
-            std::cout << "[ERROR] Failed to create socket." << endl;
+            std::cout << "[ERROR] Failed to create socket." << std::endl;
         }
         struct in_addr address;
         if (inet_aton(ip_address.c_str(), &address) == 0)
-            std::cout << "[ERROR] Invalid IP address." << endl;
+            std::cout << "[ERROR] Invalid IP address." << std::endl;
         struct sockaddr_in server_address;
         memset(&server_address, 0, sizeof(server_address));
         server_address.sin_family = AF_INET;
         server_address.sin_addr = address;
         server_address.sin_port = htons(stoi(port));
         if (bind(server_fd, (struct sockaddr *)&server_address, sizeof(server_address)) == -1)
-            std::cout << " [ERROR] Failed to bind socket to server address." << endl;
+            std::cout << " [ERROR] Failed to bind socket to server address." << std::endl;
         if (listen(server_fd, 10) == -1)
-            std::cout << "[ERROR] Failed to listen for incoming connections." << endl;
+            std::cout << "[ERROR] Failed to listen for incoming connections." << std::endl;
         while (true)
         {
             struct sockaddr_in client_address;
@@ -256,18 +253,18 @@ int main(int argc, char **argv)
             int client_fd = accept(server_fd, (struct sockaddr *)&client_address, &client_address_len);
             if (client_fd == -1)
             {
-                std::cout << "[ERROR] Failed to accept incoming connection." << endl;
+                std::cout << "[ERROR] Failed to accept incoming connection." << std::endl;
                 continue;
             }
             char buffer[1024 * 1024 * 3];
             ssize_t bytes_received = recv(client_fd, buffer, sizeof(buffer), 0);
             if (bytes_received == -1)
-                std::cout << "[ERROR] Failed to receive image data." << endl;
+                std::cout << "[ERROR] Failed to receive image data." << std::endl;
             else
             {
-                cout.flush();
+                std::cout.flush();
                 fflush(stdout);
-                cv::Mat frame = imread("test.png");
+                cv::Mat frame = cv::imread("test.png");
                 out = run_inference(frame);
                 if (out >= 0 && out <= 8)
                     send(client_fd, class_names[out].c_str(), class_names[out].length(), 0);
@@ -280,9 +277,9 @@ int main(int argc, char **argv)
     else if (input_source == "VIDEO")
     {
         std::cout << "[INFO] Video \n";
-        VideoCapture cap(argv[2]);
+        cv::VideoCapture cap(argv[2]);
         if (!cap.isOpened())
-            std::cout << "[ERROR] Error opening video stream or file" << endl;
+            std::cout << "[ERROR] Error opening video stream or file" << std::endl;
         while (1)
         {
             cap >> frame;
@@ -291,12 +288,12 @@ int main(int argc, char **argv)
             out = run_inference(frame);
             show_result(out);
             cv::imshow("output", frame);
-            wait_key = waitKey(30);
+            wait_key = cv::waitKey(30);
             if (wait_key == 27)
                 break;
         }
         cap.release();
-        destroyAllWindows();
+        cv::destroyAllWindows();
     }
     else if (input_source == "IMAGE")
     {
@@ -316,13 +313,18 @@ int main(int argc, char **argv)
         {
             cap >> frame;
             if (frame.empty())
+            {
                 std::cout << "[ERROR] image not opened !\n";
+                break;
+            }
             else
             {
                 out = run_inference(frame);
                 show_result(out);
                 imshow("output", frame);
-                waitKey(50);
+                wait_key = cv::waitKey(50);
+                if (wait_key == 27)
+                    break;
             }
         }
     }

@@ -3,16 +3,17 @@
 ## Application: Overview
 The fish classification application allows to classify between 9 different fish species.
 
-0,"Black Sea Sprat",
-1,"Gilt-Head Bream",
-2,"Horse Mackerel",
-3,"Red Mullet",
-4,"Red Sea Bream",
-5,"Sea Bass",
-6,"Shrimp",
-7,"Striped Red Mullet",
-8,"Trout",
+0. "Black Sea Sprat",
+1. "Gilt-Head Bream",
+2. "Horse Mackerel",
+3. "Red Mullet",
+4. "Red Sea Bream",
+5. "Sea Bass",
+6. "Shrimp",
+7. "Striped Red Mullet",
+8. "Trout",
 
+The application could be used to classify fishes during fish farming, or from certain areas on the sea/river through drones, etc.  
 
 It has 4 modes of running.
 
@@ -20,6 +21,7 @@ It has 4 modes of running.
 2. Using Image as input
 3. Using Video as input
 4. Input from Websocket
+
 #### Demo Video:
 The Demo videos for the fish classification application can be found at
 
@@ -31,7 +33,7 @@ The Demo videos for the fish classification application can be found at
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
-- MIPI-Coral Camera
+    - Coral Camera
 - USB Mouse
 - USB Keyboard
 - USB Hub
@@ -43,11 +45,15 @@ The Demo videos for the fish classification application can be found at
 - C++11 or higher
 
 #### Python Package Installation (Optional)
-> Note: Required only for Host Machine for running through Websocket
-	1. pip3 install flask
-	2. pip3 install flask_socketio
-	3. pip3 install eventlet
+> Note: Required only for Host Machine for running the application through Websocket
+- Flask
+- Flask-SocketIO
+- numpy
+- opencv-python
+- python-socketio
+- Werkzeug
 
+	
 ## Application: Build Stage
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
@@ -63,7 +69,6 @@ After completion of the guide, the user is expected of following things.
 
 #### Application: File Generation
 
-##### Mode: Board Deployment
 1. Copy the repository from the GitHub to the desired location. 
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
@@ -84,7 +89,7 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q03_smart_parking/src/
+cd ${PROJECT_PATH}/rzv_ai_sdk/Q04_fish_classification/fish_application/src/
 ```
 >**Note:**`rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
 5. Build the application on docker environment by following the steps below
@@ -102,11 +107,8 @@ make -j$(nproc)
 The following application file would be generated in the `src/build` directory
 - fish_classification
 
-##### Mode: WebApp
 
 ## Application: Deploy Stage
-#### Mode: WebApp
-1. Change directory to fish_web_app in the fish_delivery folder. 
 
 #### Mode: Board Deployment
 ##### Folder Structure in the board
@@ -118,23 +120,39 @@ The following application file would be generated in the `src/build` directory
             ├── fish_classification_model
             │   ├── deploy.json
             │   ├── deploy.params
-            │   ├── deploy.so
-            │   └── preprocess
+            │   └── deploy.so
             │  
             └── fish_classification
 
 ```
+
+#### Mode: Websocket Application (Optional)
+- Copy the fish web application [folder](./fish_web_app_exe/) to the host machine.
+- Copy the generated fish_classification application to the copied folder.
+
+```sh
+cd fish_web_app_exe
+```
+```python
+pip install -r requirements.txt
+```
+
 ## Application: Runtime Stage
 
 ##### Mode: Camera Input
-- The application takes input from MIPI Camera.
+- The application takes input from MIPI Coral Camera.
+- Run the MIPI camera script, placed in `/home/root/` directory
+```sh
+./v4l2-init.sh
+```
+> Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
 ```sh 
 ./fish_classification CAMERA 
 ```
 
 ##### Mode: Image Input
 ```sh
-./fish_classification IMAGE <img_path>
+./fish_classification IMAGE <img_file_path>
 ```
 > Note: Tested with image file format `.png` and `.jpg`.
 ##### Mode: Video Input
@@ -146,16 +164,28 @@ The following application file would be generated in the `src/build` directory
 
 
 ##### Mode: Websocket (Optional)
+* Get IP config of the RZ/V2L Board, Run the command on the RZ/V2L board terminal.
+```sh
+ifconfig
+```
+
 * On Host machine
 ```sh
-cd fish_webapp
+cd fish_web_app_exe
 python3 app.py
 ```
 
 1. Local server will start running, visit the IP address in any of the browser. 
 2. Enter the IP address of the board.
-3. If it is successfully connected to board, it will redirect to prediction page. 
+    <img src=./images/fish_web_app_step1.JPG width="480">
+3. If it is successfully connected to board, it will redirect to prediction page.
+    <img src=./images/fish_web_app_step2.JPG width="480">
 4. Select fish image press Send Photo. 
+    <img src=./images/fish_web_app_step3.JPG width="480">
+    <img src=./images/fish_web_app_step4.JPG width="480">
+
+### Application: Termination
+- Press `Esc` key to terminate the application.
 
 
 ## Application: Specifications
@@ -201,7 +231,7 @@ This dataset contains 9 different seafood types.
 The dataset includes gilt head bream, red sea bream, sea bass, red mullet, horse mackerel,
 black sea sprat, striped red mullet, trout, shrimp image samples.
 
-[Dataset](https://www.kaggle.com/datasets/crowww/a-large-scale-fish-dataset)
+[Dataset-Link](https://www.kaggle.com/datasets/crowww/a-large-scale-fish-dataset)
 
 #### AI Inference time
 Total AI inference time (Pre-processing + AI model inference) - 28ms (35FPS)

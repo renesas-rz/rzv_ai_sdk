@@ -1,3 +1,0 @@
-/drp-ai_tvm/data/fish_delivery/fish_cls/fish_classification/src/build/CMakeFiles/rebuild_cache.dir
-/drp-ai_tvm/data/fish_delivery/fish_cls/fish_classification/src/build/CMakeFiles/edit_cache.dir
-/drp-ai_tvm/data/fish_delivery/fish_cls/fish_classification/src/build/CMakeFiles/fish_classification.dir
