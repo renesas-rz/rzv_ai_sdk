@@ -27,6 +27,8 @@ The Demo videos for the fish classification application can be found at
 
 - [Image & Video Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_IMAGE_VIDEO.mp4?csf=1&web=1&e=lmpZLT)
 
+- [Camera Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_CAMERA.mp4?csf=1&web=1&e=38bEU5)
+
 - [Web App Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_ws_demo.mp4?csf=1&web=1&e=mvRVCu)
 
 ## Application: Requirements
@@ -155,6 +157,9 @@ pip install -r requirements.txt
 ./fish_classification IMAGE <img_file_path>
 ```
 > Note: Tested with image file format `.png` and `.jpg`.
+
+<img src=./images/fish_image_mode.JPG width="480">
+
 ##### Mode: Video Input
 
 ```sh 
@@ -176,12 +181,19 @@ python3 app.py
 ```
 
 1. Local server will start running, visit the IP address in any of the browser. 
+
 2. Enter the IP address of the board.
+
     <img src=./images/fish_web_app_step1.JPG width="480">
+
 3. If it is successfully connected to board, it will redirect to prediction page.
+    
     <img src=./images/fish_web_app_step2.JPG width="480">
+
 4. Select fish image press Send Photo. 
+
     <img src=./images/fish_web_app_step3.JPG width="480">
+
     <img src=./images/fish_web_app_step4.JPG width="480">
 
 ### Application: Termination
