@@ -12,7 +12,7 @@ It has 4 modes of running.
 1. Using MIPI Camera
 2. Using Image as input
 3. Using Video as input
-4. Input from Websocket
+4. Input from Websocket [Link to Readme](./fish_application/etc/readme.md)
 
 #### Demo Video:
 The Demo videos for the fish classification application can be found at
@@ -21,7 +21,7 @@ The Demo videos for the fish classification application can be found at
 
 - [Camera Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_CAMERA.mp4?csf=1&web=1&e=38bEU5)
 
-- [Web App Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_ws_demo.mp4?csf=1&web=1&e=mvRVCu)
+
 
 ## Application: Requirements
 
@@ -32,7 +32,7 @@ The Demo videos for the fish classification application can be found at
 - USB Keyboard
 - USB Hub
 - HDMI monitor & Micro HDMI Cable
-- Ethernet Cable
+
 
 [Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
 
@@ -41,16 +41,6 @@ The Demo videos for the fish classification application can be found at
 - OpenCV 4.x
 - C++11 or higher
 
-#### Python Package Installation (for running webapp:optional) 
-> Note: Required only for Host Machine for running the application through Websocket
-- Flask
-- Flask-SocketIO
-- numpy
-- opencv-python
-- python-socketio
-- Werkzeug
-
-	
 ## Application: Build Stage
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
@@ -123,34 +113,6 @@ The following application file would be generated in the `src/build` directory
 
 ```
 
-#### Mode: Websocket Application (Optional)
-> Note: Below command are for linux host machine, User can also translate them to Windows PC commands
-1. Copy the fish web application [folder (`fish_web_app_exe`)](./fish_application/etc/fish_web_app_exe/) to the host machine(any host machine which is connected to the same network as the V2L board).
-```sh
-export WORK=<path/to/fish_web_app_exe>
-cd $WORK
-```
-
-2.  If fish_classification application is generated, copy it to the `fish_web_app_exe` folder.
-
-3. Make sure python3 (>=3.8) and python3-pip is installed on the machine
-
-```sh
-sudo apt update
-sudo apt -y upgrade 
-sudo apt install software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt install python3.8
-```
-
-```sh
-sudo apt-get install -y python3-pip
-```
-4. Install application requirements
-
-```python
-pip3 install -r requirements.txt
-```
 
 
 ## Application: Runtime Stage
@@ -196,34 +158,6 @@ cd /home/root/tvm
 <img src=./images/fish_video_mode.JPG width="480">
 
 
-##### Mode: Websocket (Optional)
-* Get IP config of the RZ/V2L Board, Run the command on the RZ/V2L board terminal.
-
-```sh
-ifconfig
-```
-* cd to the folder containing the fish_web_app_exe in the host machine.
-* On Host machine folder `fish_web_app_exe`
-```sh
-python3 app.py
-```
-
-1. Local server will start running, visit the IP address in any of the browser. 
-
-2. Enter the IP address of the board. eg:- 192.168.197.202
-
-    <img src=./images/fish_web_app_step1.JPG width="480">
-
-3. If it is successfully connected to board, it will redirect to prediction page.
-    
-    <img src=./images/fish_web_app_step2.JPG width="480">
-
-4. Select fish image press Send Photo. 
-
-    <img src=./images/fish_web_app_step3.JPG width="480">
-
-    <img src=./images/fish_web_app_step4.JPG width="480">
-1
 ### Application: Termination
 - Press `Esc` key to terminate the application.
 
