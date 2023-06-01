@@ -6,87 +6,51 @@
       "inputs": []
     }, 
     {
+      "op": "null", 
+      "name": "p82", 
+      "inputs": []
+    }, 
+    {
+      "op": "null", 
+      "name": "p83", 
+      "inputs": []
+    }, 
+    {
+      "op": "null", 
+      "name": "p84", 
+      "inputs": []
+    }, 
+    {
+      "op": "null", 
+      "name": "p85", 
+      "inputs": []
+    }, 
+    {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_0", 
+      "name": "tvmgen_default_fused_cast_transpose_divide_take_subtract_divide", 
       "attrs": {
         "num_outputs": "1", 
-        "num_inputs": "1", 
+        "num_inputs": "5", 
         "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_0"
+        "func_name": "tvmgen_default_fused_cast_transpose_divide_take_subtract_divide", 
+        "hash": "052a23cadcd3a0e5"
       }, 
       "inputs": [
         [
           0, 
           0, 
           0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_max_pool2d", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_nn_max_pool2d", 
-        "layout": "NCHW", 
-        "hash": "7efaac8a35c4299b"
-      }, 
-      "inputs": [
+        ], 
         [
           1, 
           0, 
           0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_5", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_5"
-      }, 
-      "inputs": [
+        ], 
         [
           2, 
           0, 
           0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_max", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_max", 
-        "hash": "f13ee9391193647d"
-      }, 
-      "inputs": [
-        [
-          3, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_subtract_exp", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_subtract_exp", 
-        "hash": "eab4958c6f83acfe"
-      }, 
-      "inputs": [
+        ], 
         [
           3, 
           0, 
@@ -101,13 +65,12 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_sum", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_0", 
       "attrs": {
-        "num_outputs": "1", 
+        "num_outputs": "2", 
         "num_inputs": "1", 
         "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_sum", 
-        "hash": "e1b5de75406663bb"
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_0"
       }, 
       "inputs": [
         [
@@ -119,32 +82,108 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_divide", 
+      "name": "tvmgen_default_fused_nn_max_pool2d", 
       "attrs": {
         "num_outputs": "1", 
-        "num_inputs": "2", 
+        "num_inputs": "1", 
         "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_divide", 
-        "hash": "cfa83de2da479ede"
+        "func_name": "tvmgen_default_fused_nn_max_pool2d", 
+        "layout": "NCHW", 
+        "hash": "64180c488477dbbf"
       }, 
       "inputs": [
-        [
-          5, 
-          0, 
-          0
-        ], 
         [
           6, 
           0, 
           0
         ]
       ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_concatenate_reshape", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "3", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_concatenate_reshape", 
+        "hash": "e88f58129127d010"
+      }, 
+      "inputs": [
+        [
+          6, 
+          0, 
+          0
+        ], 
+        [
+          6, 
+          1, 
+          0
+        ], 
+        [
+          7, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_73", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_73"
+      }, 
+      "inputs": [
+        [
+          8, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_nn_relu", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_nn_relu", 
+        "hash": "43114bd88565fade"
+      }, 
+      "inputs": [
+        [
+          9, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_74", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_74"
+      }, 
+      "inputs": [
+        [
+          10, 
+          0, 
+          0
+        ]
+      ]
     }
   ], 
-  "arg_nodes": [0], 
+  "arg_nodes": [0, 1, 2, 3, 4], 
   "heads": [
     [
-      7, 
+      11, 
       0, 
       0
     ]
@@ -154,6 +193,11 @@
       "list_str", 
       [
         "float32", 
+        "float16", 
+        "int64", 
+        "float16", 
+        "float16", 
+        "float16", 
         "float16", 
         "float16", 
         "float16", 
@@ -165,21 +209,54 @@
     ], 
     "storage_id": [
       "list_int", 
-      [0, 1, 2, 3, 4, 5, 4, 3]
+      [
+        0, 
+        1, 
+        2, 
+        3, 
+        4, 
+        5, 
+        6, 
+        7, 
+        8, 
+        9, 
+        7, 
+        8, 
+        10
+      ]
     ], 
     "shape": [
       "list_shape", 
       [
-        [1, 3, 64, 64], 
-        [1, 64, 60, 60], 
-        [1, 64, 20, 20], 
-        [1, 9], 
-        [1, 1], 
-        [1, 9], 
-        [1, 1], 
-        [1, 9]
+        [1, 224, 224, 3], 
+        [], 
+        [3], 
+        [3, 1, 1], 
+        [3, 1, 1], 
+        [1, 3, 224, 224], 
+        [1, 512, 7, 7], 
+        [1, 512, 1, 1], 
+        [1, 512, 1, 1], 
+        [1, 1024], 
+        [1, 512], 
+        [1, 512], 
+        [1, 31]
       ]
     ]
   }, 
-  "node_row_ptr": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  "node_row_ptr": [
+    0, 
+    1, 
+    2, 
+    3, 
+    4, 
+    5, 
+    6, 
+    8, 
+    9, 
+    10, 
+    11, 
+    12, 
+    13
+  ]
 }

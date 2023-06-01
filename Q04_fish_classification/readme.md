@@ -1,17 +1,9 @@
 # Fish Classification Application
 
 ## Application: Overview
-The fish classification application allows to classify between 9 different fish species.
+The fish classification application allows to classify between 31 different fish species.
 
-0. "Black Sea Sprat",
-1. "Gilt-Head Bream",
-2. "Horse Mackerel",
-3. "Red Mullet",
-4. "Red Sea Bream",
-5. "Sea Bass",
-6. "Shrimp",
-7. "Striped Red Mullet",
-8. "Trout",
+'Bangus', 'Big Head Carp', 'Black Spotted Barb', 'Catfish', 'Climbing Perch', 'Fourfinger Threadfin', 'Freshwater Eel', 'Glass Perchlet', 'Goby', 'Gold Fish', 'Gourami', 'Grass Carp', 'Green Spotted Puffer', 'Indian Carp', 'Indo-Pacific Tarpon', 'Jaguar Gapote', 'Janitor Fish', 'Knifefish', 'Long-Snouted Pipefish', 'Mosquito Fish', 'Mudfish', 'Mullet', 'Pangasius', 'Perch', 'Scat Fish', 'Silver Barb', 'Silver Carp','Silver Perch', 'Snakehead', 'Tenpounder', 'Tilapia'
 
 The application could be used to classify fishes during fish farming, or from certain areas on the sea/river through drones, etc.  
 
@@ -39,14 +31,17 @@ The Demo videos for the fish classification application can be found at
 - USB Mouse
 - USB Keyboard
 - USB Hub
-- HDMI monitor & Cable
+- HDMI monitor & Micro HDMI Cable
+- Ethernet Cable
 
-#### Software Requirements
+[Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
+
+#### Software Requirements for building the application
 - Ubuntu 20.04
 - OpenCV 4.x
 - C++11 or higher
 
-#### Python Package Installation (Optional)
+#### Python Package Installation (for running webapp:optional) 
 > Note: Required only for Host Machine for running the application through Websocket
 - Flask
 - Flask-SocketIO
@@ -85,7 +80,7 @@ After completion of the guide, the user is expected of following things.
 3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
 
 ```sh
-export PROJECT_PATH=/drp_ai_tvm/data/
+export PROJECT_PATH=/drp-ai_tvm/data/
 ```
 
 4. Go to the `src` directory of the application
@@ -129,60 +124,93 @@ The following application file would be generated in the `src/build` directory
 ```
 
 #### Mode: Websocket Application (Optional)
-- Copy the fish web application [folder](./fish_web_app_exe/) to the host machine.
-- Copy the generated fish_classification application to the copied folder.
+> Note: Below command are for linux host machine, User can also translate them to Windows PC commands
+1. Copy the fish web application [folder (`fish_web_app_exe`)](./fish_application/etc/fish_web_app_exe/) to the host machine(any host machine which is connected to the same network as the V2L board).
+```sh
+export WORK=<path/to/fish_web_app_exe>
+cd $WORK
+```
+
+2.  If fish_classification application is generated, copy it to the `fish_web_app_exe` folder.
+
+3. Make sure python3 (>=3.8) and python3-pip is installed on the machine
 
 ```sh
-cd fish_web_app_exe
+sudo apt update
+sudo apt -y upgrade 
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.8
 ```
+
+```sh
+sudo apt-get install -y python3-pip
+```
+4. Install application requirements
+
 ```python
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
+
 
 ## Application: Runtime Stage
 
 ##### Mode: Camera Input
 - The application takes input from MIPI Coral Camera.
-- Run the MIPI camera script, placed in `/home/root/` directory
+
 ```sh
-./v4l2-init.sh
+cd /home/root/tvm
 ```
+
 > Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
 ```sh 
 ./fish_classification CAMERA 
 ```
 
+<img src=./images/fish_camera_mode.JPG width="480">
+
 ##### Mode: Image Input
+
+```sh
+cd /home/root/tvm
+```
 ```sh
 ./fish_classification IMAGE <img_file_path>
 ```
 > Note: Tested with image file format `.png` and `.jpg`.
 
-<img src=./images/fish_image_mode.JPG width="480">
+
+<img src=./images/img_sample.PNG width="480">
+
 
 ##### Mode: Video Input
 
+```sh
+cd /home/root/tvm
+```
 ```sh 
 ./fish_classification VIDEO <video_file_path>
 ```
 > Note: Tested with video file format `.mp4` and `.avi`.
 
+<img src=./images/fish_video_mode.JPG width="480">
+
 
 ##### Mode: Websocket (Optional)
 * Get IP config of the RZ/V2L Board, Run the command on the RZ/V2L board terminal.
+
 ```sh
 ifconfig
 ```
-
-* On Host machine
+* cd to the folder containing the fish_web_app_exe in the host machine.
+* On Host machine folder `fish_web_app_exe`
 ```sh
-cd fish_web_app_exe
 python3 app.py
 ```
 
 1. Local server will start running, visit the IP address in any of the browser. 
 
-2. Enter the IP address of the board.
+2. Enter the IP address of the board. eg:- 192.168.197.202
 
     <img src=./images/fish_web_app_step1.JPG width="480">
 
@@ -195,7 +223,7 @@ python3 app.py
     <img src=./images/fish_web_app_step3.JPG width="480">
 
     <img src=./images/fish_web_app_step4.JPG width="480">
-
+1
 ### Application: Termination
 - Press `Esc` key to terminate the application.
 
@@ -208,44 +236,72 @@ python3 app.py
 ==========================================================================================
 Layer (type:depth-idx)                   Output Shape              Param #
 ==========================================================================================
-├─Sequential: 1-1                        [-1, 9]                   --
-|    └─Conv2d: 2-1                       [-1, 32, 62, 62]          896
-|    └─ReLU: 2-2                         [-1, 32, 62, 62]          --
-|    └─BatchNorm2d: 2-3                  [-1, 32, 62, 62]          64
-|    └─Conv2d: 2-4                       [-1, 64, 60, 60]          18,496
-|    └─ReLU: 2-5                         [-1, 64, 60, 60]          --
-|    └─BatchNorm2d: 2-6                  [-1, 64, 60, 60]          128
-|    └─MaxPool2d: 2-7                    [-1, 64, 20, 20]          --
-|    └─Conv2d: 2-8                       [-1, 128, 18, 18]         73,856
-|    └─ReLU: 2-9                         [-1, 128, 18, 18]         --
-|    └─MaxPool2d: 2-10                   [-1, 128, 9, 9]           --
-|    └─Conv2d: 2-11                      [-1, 256, 7, 7]           295,168
-|    └─ReLU: 2-12                        [-1, 256, 7, 7]           --
-|    └─Flatten: 2-13                     [-1, 12544]               --
-|    └─Linear: 2-14                      [-1, 9]                   112,905
-|    └─Softmax: 2-15                     [-1, 9]                   --
+├─Sequential: 1-1                        [-1, 512, 7, 7]           --
+|    └─Conv2d: 2-1                       [-1, 64, 112, 112]        9,408
+|    └─BatchNorm2d: 2-2                  [-1, 64, 112, 112]        128
+|    └─ReLU: 2-3                         [-1, 64, 112, 112]        --
+|    └─MaxPool2d: 2-4                    [-1, 64, 56, 56]          --
+|    └─Sequential: 2-5                   [-1, 64, 56, 56]          --
+|    |    └─BasicBlock: 3-1              [-1, 64, 56, 56]          73,984
+|    |    └─BasicBlock: 3-2              [-1, 64, 56, 56]          73,984
+|    |    └─BasicBlock: 3-3              [-1, 64, 56, 56]          73,984
+|    └─Sequential: 2-6                   [-1, 128, 28, 28]         --
+|    |    └─BasicBlock: 3-4              [-1, 128, 28, 28]         230,144
+|    |    └─BasicBlock: 3-5              [-1, 128, 28, 28]         295,424
+|    |    └─BasicBlock: 3-6              [-1, 128, 28, 28]         295,424
+|    |    └─BasicBlock: 3-7              [-1, 128, 28, 28]         295,424
+|    └─Sequential: 2-7                   [-1, 256, 14, 14]         --
+|    |    └─BasicBlock: 3-8              [-1, 256, 14, 14]         919,040
+|    |    └─BasicBlock: 3-9              [-1, 256, 14, 14]         1,180,672
+|    |    └─BasicBlock: 3-10             [-1, 256, 14, 14]         1,180,672
+|    |    └─BasicBlock: 3-11             [-1, 256, 14, 14]         1,180,672
+|    |    └─BasicBlock: 3-12             [-1, 256, 14, 14]         1,180,672
+|    |    └─BasicBlock: 3-13             [-1, 256, 14, 14]         1,180,672
+|    └─Sequential: 2-8                   [-1, 512, 7, 7]           --
+|    |    └─BasicBlock: 3-14             [-1, 512, 7, 7]           3,673,088
+|    |    └─BasicBlock: 3-15             [-1, 512, 7, 7]           4,720,640
+|    |    └─BasicBlock: 3-16             [-1, 512, 7, 7]           4,720,640
+├─Sequential: 1-2                        [-1, 31]                  --
+|    └─AdaptiveConcatPool2d: 2-9         [-1, 1024, 1, 1]          --
+|    |    └─AdaptiveMaxPool2d: 3-17      [-1, 512, 1, 1]           --
+|    |    └─AdaptiveAvgPool2d: 3-18      [-1, 512, 1, 1]           --
+|    └─Flatten: 2-10                     [-1, 1024]                --
+|    └─BatchNorm1d: 2-11                 [-1, 1024]                2,048
+|    └─Dropout: 2-12                     [-1, 1024]                --
+|    └─Linear: 2-13                      [-1, 512]                 524,288
+|    └─ReLU: 2-14                        [-1, 512]                 --
+|    └─BatchNorm1d: 2-15                 [-1, 512]                 1,024
+|    └─Dropout: 2-16                     [-1, 512]                 --
+|    └─Linear: 2-17                      [-1, 31]                  15,872
 ==========================================================================================
-Total params: 501,513
-Trainable params: 501,513
+Total params: 21,827,904
+Trainable params: 21,827,904
 Non-trainable params: 0
-Total mult-adds (M): 108.63
+Total mult-adds (G): 3.71
 ==========================================================================================
-Input size (MB): 0.05
-Forward/backward pass size (MB): 5.80
-Params size (MB): 1.91
-Estimated Total Size (MB): 7.76
-==========================================================================================
-
+Input size (MB): 0.57
+Forward/backward pass size (MB): 54.38
+Params size (MB): 83.27
+Estimated Total Size (MB): 138.21
 ```
 
 #### Dataset 
-This dataset contains 9 different seafood types.
-The dataset includes gilt head bream, red sea bream, sea bass, red mullet, horse mackerel,
-black sea sprat, striped red mullet, trout, shrimp image samples.
 
-[Dataset-Link](https://www.kaggle.com/datasets/crowww/a-large-scale-fish-dataset)
+
+'Bangus', 'Big Head Carp', 'Black Spotted Barb', 'Catfish', 'Climbing Perch', 'Fourfinger Threadfin', 'Freshwater Eel', 'Glass Perchlet', 'Goby', 'Gold Fish', 'Gourami', 'Grass Carp', 'Green Spotted Puffer', 'Indian Carp', 'Indo-Pacific Tarpon', 'Jaguar Gapote', 'Janitor Fish', 'Knifefish', 'Long-Snouted Pipefish', 'Mosquito Fish', 'Mudfish', 'Mullet', 'Pangasius', 'Perch', 'Scat Fish', 'Silver Barb', 'Silver Carp','Silver Perch', 'Snakehead', 'Tenpounder', 'Tilapia'
+
+Dataset properties:
+The total number of images: 13,304 image
+Training set size: 8791 images
+Test set size: 2751 images
+The number of classes: 1760
+
+[Dataset-Link](https://www.kaggle.com/datasets/markdaniellampa/fish-dataset)
 
 #### AI Inference time
-Total AI inference time (Pre-processing + AI model inference) - 28ms (35FPS)
+Total AI inference time (Pre-processing + AI model inference) - 65ms (15 FPS)
 
+| Training Accuracy   |Validation Accuracy   |  Testing Accuracy |
+|---|---|---|
+|  98.2 | 97.7  | 94.5  |
 
