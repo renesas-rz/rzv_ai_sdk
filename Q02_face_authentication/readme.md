@@ -10,7 +10,7 @@ workplaces, law enforcement, and retail environments. With a simple and intuitiv
 
 This kind of application makes it easier to automate the authentication process, thus minimizing the redundant human intervention. 
 
-[Demo Video](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/face_recognition/face_recognition.mp4?csf=1&web=1&e=lE2urj)
+[Demo Video: TBD]()
 
 ## Application: Requirements
 
