@@ -305,7 +305,7 @@ shared_ptr<PredictNotifyBase> TVM_YOLO_DRPAI::track()
             continue;
         dat.name = label_file_map[det.c].c_str();
 
-        if (count(detection_object_vector.begin(), detection_object_vector.end(), dat.name) < 0)
+        if (count(detection_object_vector.begin(), detection_object_vector.end(), dat.name) <= 0)
             continue;
         dat.X = (int32_t)(det.bbox.x - (det.bbox.w / 2));
         dat.Y = (int32_t)(det.bbox.y - (det.bbox.h / 2));

@@ -14,7 +14,7 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 **NOTE:** This sample application can be used to track different objects, like animal, car, etc. The list of objects that can be tracked are provided in [coco labels txt](./exe/coco-labels-2014_2017.txt) file. 
 
-<a href="https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/footfall_counter/footfall_counter_output.mp4?csf=1&web=1&e=VhiJNG" target="_blank">**Demo Video**</a>
+[Demo Video: TBD]()
 
 
 ## Application: Requirements
