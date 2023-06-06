@@ -17,7 +17,8 @@ It has 4 modes of running.
 #### Demo Video:
 The Demo videos for the fish classification application can be found at
 
-![](./images/FishClassification.gif)
+<img src = "./images/FishClassification.gif" width="480" height="320">
+
 
 
 
