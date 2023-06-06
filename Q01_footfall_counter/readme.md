@@ -14,8 +14,8 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 **NOTE:** This sample application can be used to track different objects, like animal, car, etc. The list of objects that can be tracked are provided in [coco labels txt](./exe/coco-labels-2014_2017.txt) file. 
 
-[Demo Video: TBD]()
-
+#### Demo 
+<img src = "./images/ObjectTracking.gif" width="480" height="320">
 
 ## Application: Requirements
 
