@@ -10,7 +10,9 @@ workplaces, law enforcement, and retail environments. With a simple and intuitiv
 
 This kind of application makes it easier to automate the authentication process, thus minimizing the redundant human intervention. 
 
-[Demo Video: TBD]()
+#### Demo
+
+<img src = "./images/FaceAuthentication.gif" width="480" height="320">
 
 ## Application: Requirements
 
