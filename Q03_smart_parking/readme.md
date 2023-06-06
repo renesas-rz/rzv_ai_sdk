@@ -10,7 +10,9 @@ Once the parking slots are drawn, the software uses advanced algorithms (using c
 With this software, users can monitor parking areas such as parking lots, garages, or on-street parking spaces in real-time. 
 It provides an accurate and efficient way to manage parking spaces, helping to reduce congestion and improve traffic flow.
 
-[**Demo Video : TBD **]()
+#### Demo 
+[]()
+<img src = "./images/SmartParking.gif" width="480" height="320">
 
 Average FPS: 200/slot 
 
