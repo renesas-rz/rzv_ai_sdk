@@ -2,7 +2,7 @@
 
 In web application mode, User can use any host machine (Windows/Linux) which is connected to the board, and can run the application through web browser. Classify images through the local host itself.
 
-- [Web App Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_ws_demo.mp4?csf=1&web=1&e=mvRVCu)
+- [Web App Mode: TBD]()
 
 ## Application: Requirements
 

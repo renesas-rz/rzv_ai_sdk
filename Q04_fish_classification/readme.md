@@ -17,9 +17,7 @@ It has 4 modes of running.
 #### Demo Video:
 The Demo videos for the fish classification application can be found at
 
-- [Image & Video Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_IMAGE_VIDEO.mp4?csf=1&web=1&e=lmpZLT)
-
-- [Camera Mode](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/fish_classification/fish_classification_CAMERA.mp4?csf=1&web=1&e=38bEU5)
+![](./images/FishClassification.gif)
 
 
 
