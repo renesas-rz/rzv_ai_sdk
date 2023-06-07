@@ -34,6 +34,9 @@ FPS - 200/10 ->20
 - USB Hub
 - HDMI Monitor & Cable
 
+
+[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
+
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 #### Software Requirements 
 - Ubuntu 20.04 
