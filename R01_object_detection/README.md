@@ -83,14 +83,14 @@ For the ease of deployment all the deployables file and folders for RZV2L are pr
 |object_detection | application file. |
 
 1. Follow the steps below to deploy the project on RZV2L Board. 
-    1. Run the commands below to download the `R01_object_detection_deploy.so` from [Release v1.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v1.00/)
+    1. Run the commands below to download the `R01_object_detection_deploy_tvm-v110.so` from [Release v1.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v1.00/)
     ```
     cd ${PROJECT_PATH}/R01_object_detection/exe/yolov3_onnx
-    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v1.00/R01_object_detection_deploy.so
+    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v1.00/R01_object_detection_deploy_tvm-v110.so
     ```
-    2. Rename the `R01_object_detection_deploy.so` to `deploy.so`.
+    2. Rename the `R01_object_detection_deploy_tvm-v110.so` to `deploy.so`.
     ```
-    mv R01_object_detection_deploy.so deploy.so
+    mv R01_object_detection_deploy_tvm-v110.so deploy.so
     ```
     3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for RZV2L Board.
         -  All files in [exe](./exe) directory. (Including `deploy.so` file.)
