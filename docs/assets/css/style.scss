@@ -32,13 +32,25 @@ section {
   margin-left: 5%;
   padding-bottom:50px;
 }
+.web-title {
+  margin-bottom: 3px;
+}
+p.version {
+  margin: 3px auto;
+  margin-bottom: 10px;
+  font-size: 18px;
+  
+}
+a.version {
+  font-weight: bold;
+  color: rgb(144, 143, 143);  
+}
 h3 {
   padding: 0.5rem 0 0.8rem;
   margin-bottom: 5px;
   border-bottom:1px solid #c6c6c6;
 }
 .top {
-  // font-weight: bold;
   font-size: 35px;
   background-color: #2a289d;
   color: white;
@@ -46,26 +58,36 @@ h3 {
   align-items: center;
   font-family: "Arial";
   font-style: italic;
-  // padding-left: 20px;
   padding: 20px 10px;
 }
-.subtitle {
-  font-style: italic;
-  text-align: center;
+.square-button
+{
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 0px;
+  background-color: #2a289d;
+  border-color: #2a289d;
 }
-.start {
-  height: 200px;
-  font-size: 40px;
-  text-align: right;
-  padding: 20px;
-  color: white;
-  background-image:url("../../img/steve-johnson-_0iV9LmPDn0-unsplash.jpg");
-  background-size: cover;
-  vertical-align: middle;
-}
+
+
+
+// .start {
+//   height: 200px;
+//   font-size: 40px;
+//   text-align: right;
+//   padding: 20px;
+//   color: white;
+//   background-image:url("../../img/steve-johnson-_0iV9LmPDn0-unsplash.jpg");
+//   background-size: cover;
+//   vertical-align: middle;
+// }
 .skip{
   color: red;
 }
+// img.overview {
+//   max-height: 180px;
+// }
+
 img.procedure {
   max-width: 400px;
 }
@@ -256,14 +278,32 @@ strong {
 .br-sp {
   display: none;
 }
+.br-sp-web-title {
+  display: none;
+}
+.br-nsp {
+  display: block;
+}
 @media (max-width: 1250px) {
   .br-sp {
       display: block;
+  }
+  .br-sp-web-title {
+    display: block;
+  }
+  .br-nsp {
+    display: block;
   }
 }
 @media (max-width: 960px) {
   .br-sp {
       display: none;
+  }
+  .br-sp-web-title {
+    display: none;
+  }
+  .br-nsp {
+    display: none;
   }
   .lg-table {
     font-size: 12px;
@@ -272,6 +312,12 @@ strong {
 @media (max-width: 560px) {
   .br-sp {
       display: block;
+  }
+  .br-sp-web-title {
+    display: none;
+  }
+  .br-nsp {
+    display: block;
   }
   .lg-table {
     font-size: 10px;

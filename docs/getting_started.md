@@ -10,9 +10,12 @@ Getting Started
 </div>
 <br>
 <br>
-<h5>This page explains how to start-up the AI SDK on <b>RZ/V2L Evaluation Board Kit</b>.</h5>
+<h5>This page explains how to start-up the AI SDK on the <b>RZ/V2L Evaluation Board Kit</b>.</h5>
 
 <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus">Learn more about the RZ/V series.</a>
+
+
+<h5>Supported version: <b>RZ/V2L AI SDK v1.00</b></h5>
 
 <h3 id="step1" >Step 1: Obtain an evaluation board</h3>
 <div class="container">
@@ -325,7 +328,7 @@ This step is <b>only required for the first time.</b><br>
 
 <br>
 
-<h5 id="bootloder">2. Write the bootloaders to the board.</h5>
+<h5 id="bootloader">2. Write the bootloaders to the board.</h5>
 <h5 class="skip">Skip to <a href="#sd">the next step</a> if you have already written the latest bootloaders to the board.<br></h5>
 
   1. Use the following files to write the bootloaders to the RZ/V2L Evaluation Board Kit according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#bootloader">Appendix: Write bootloaders</a>.<br>
