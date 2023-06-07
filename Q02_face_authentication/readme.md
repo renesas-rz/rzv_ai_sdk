@@ -24,11 +24,11 @@ This kind of application makes it easier to automate the authentication process,
 - USB Hub
 - HDMI monitor & Cable
 
+[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
 #### Software Requirements
 - Ubuntu 20.04
 - OpenCV 4.x
 - C++11 or higher
-
 ## Application: Build Stage
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
