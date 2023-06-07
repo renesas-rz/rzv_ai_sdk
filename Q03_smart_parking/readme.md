@@ -10,7 +10,9 @@ Once the parking slots are drawn, the software uses advanced algorithms (using c
 With this software, users can monitor parking areas such as parking lots, garages, or on-street parking spaces in real-time. 
 It provides an accurate and efficient way to manage parking spaces, helping to reduce congestion and improve traffic flow.
 
-[**Demo Video**](https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/smart_parking/Parking_SLOT.mkv?csf=1&web=1&e=f8ghdU)
+#### Demo 
+[]()
+<img src = "./images/SmartParking.gif" width="480" height="320">
 
 Average FPS: 200/slot 
 
@@ -31,6 +33,9 @@ FPS - 200/10 ->20
 - USB Keyboard
 - USB Hub
 - HDMI Monitor & Cable
+
+
+[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
 
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 #### Software Requirements 
