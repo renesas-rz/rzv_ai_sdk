@@ -23,9 +23,13 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 - RZ/V2L Evaluation Board Kit
 - USB camera 
 - USB Keyboard
+- USB Hub
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
 - SD Card (for file system)
+
+[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
+
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 #### Software Requirements
 - Ubuntu 20.04
