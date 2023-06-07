@@ -33,7 +33,7 @@ The Demo videos for the fish classification application can be found at
 - HDMI monitor & Micro HDMI Cable
 
 
-[Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
+[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
 
 #### Software Requirements for building the application
 - Ubuntu 20.04
