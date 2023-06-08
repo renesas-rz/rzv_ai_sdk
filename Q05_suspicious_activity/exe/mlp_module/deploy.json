@@ -1,0 +1,114 @@
+{
+  "nodes": [
+    {
+      "op": "null", 
+      "name": "input", 
+      "inputs": []
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_0", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_0"
+      }, 
+      "inputs": [
+        [
+          0, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_nn_relu", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_nn_relu", 
+        "hash": "bfe4dcbcff6c6ca7"
+      }, 
+      "inputs": [
+        [
+          1, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_1", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_1"
+      }, 
+      "inputs": [
+        [
+          2, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_sigmoid", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_sigmoid", 
+        "hash": "e0a93a7f7534cbab"
+      }, 
+      "inputs": [
+        [
+          3, 
+          0, 
+          0
+        ]
+      ]
+    }
+  ], 
+  "arg_nodes": [0], 
+  "heads": [
+    [
+      4, 
+      0, 
+      0
+    ]
+  ], 
+  "attrs": {
+    "dltype": [
+      "list_str", 
+      [
+        "float32", 
+        "float16", 
+        "float16", 
+        "float16", 
+        "float16"
+      ]
+    ], 
+    "storage_id": [
+      "list_int", 
+      [0, 1, 2, 3, 4]
+    ], 
+    "shape": [
+      "list_shape", 
+      [
+        [1, 10000], 
+        [1, 128], 
+        [1, 128], 
+        [1, 1], 
+        [1, 1]
+      ]
+    ]
+  }, 
+  "node_row_ptr": [0, 1, 2, 3, 4, 5]
+}
