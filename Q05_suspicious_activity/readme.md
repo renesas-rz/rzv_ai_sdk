@@ -139,6 +139,7 @@ The following application file would be generated in the `src/build` directory
 
 ##### CNN Module
 
+```python
 ==========================================================================================
 Layer (type:depth-idx)                   Output Shape              Param #
 ==========================================================================================
@@ -210,6 +211,7 @@ Forward/backward pass size (MB): 0.00
 Params size (MB): 4.88
 Estimated Total Size (MB): 4.92
 
+```
 
 #### Dataset 
 Dataset Contains 1000 Violence and 1000 non-violence videos collected from youtube videos.
