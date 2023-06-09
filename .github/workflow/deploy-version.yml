@@ -1,0 +1,50 @@
+name: deploy
+# only deploy site from docs branch
+on:
+  push:
+    branches:
+      - docs
+jobs:
+  deploy-version:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      # - uses: actions/checkout@v2
+      # - uses: helaili/jekyll-action@2.0.1
+      #   env:
+      #     JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+
+      - name: get_version
+        run: echo "RELEASE_VERSION=1.00" >> $GITHUB_ENV
+
+      # you probably would do build and test steps here
+
+      # https://github.com/marketplace/actions/github-pages-action
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # deploy the current public folder
+          # to <base url>/x.y.z version subfolder
+          publish_dir: ./docs/_site
+          destination_dir: ${{ env.RELEASE_VERSION }}
+
+      - name: Deploy redirect
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./redirect
+          keep_files: true
+      - name: Deploy gsc
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gsc
+          keep_files: true
+
+
