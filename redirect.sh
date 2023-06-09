@@ -11,6 +11,7 @@ git fetch
 git merge --allow-unrelated-histories origin/gh-pages
 git pull origin origin/gh-pages
 
+rm -rf latest
 ln -sf $VERSION latest
 # git config user.name "$(git --no-pager log --format=format:'%an' -n 1)"
 # git config user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
