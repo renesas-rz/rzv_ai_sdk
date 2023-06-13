@@ -207,32 +207,32 @@ std::string get_inference_on_frame(cv::Mat frame)
     return return_char;
 }
 
-void show_result(const std::map<boost::regex, std::string> &regex_dict, std::string processedText)
-{
-    ymd_struct ret_result;
-    if (processedText.length() >= 1)
-    {
-        std::cout << "Text Extracted:'" << processedText << "'" << std::endl;
+// void show_result(const std::map<boost::regex, std::string> &regex_dict, std::string processedText)
+// {
+//     ymd_struct ret_result;
+//     if (processedText.length() >= 1)
+//     {
+//         std::cout << "Text Extracted:'" << processedText << "'" << std::endl;
 
-        ret_result = get_yymmddd(regex_dict, processedText);
+//         ret_result = get_yymmddd(regex_dict, processedText);
 
-        if (ret_result.matched)
-        {
-            std::cout << "Matched with format: " << ret_result.format << std::endl;
-            std::cout << "Year: " << ret_result.year;
-            std::cout << " Month: " << ret_result.month;
-            std::cout << " Day: " << ret_result.day << std::endl;
-        }
-        else
-        {
-            std::cout << "No appropriate date-format found for '" << processedText << "'" << std::endl;
-        }
-    }
-    else
-    {
-        std::cout << "No Text Detected" << std::endl;
-    }
-}
+//         if (ret_result.matched)
+//         {
+//             std::cout << "Matched with format: " << ret_result.format << std::endl;
+//             std::cout << "Year: " << ret_result.year;
+//             std::cout << " Month: " << ret_result.month;
+//             std::cout << " Day: " << ret_result.day << std::endl;
+//         }
+//         else
+//         {
+//             std::cout << "No appropriate date-format found for '" << processedText << "'" << std::endl;
+//         }
+//     }
+//     else
+//     {
+//         std::cout << "No Text Detected" << std::endl;
+//     }
+// }
 
 // cv::Mat display_bb_on_frame(cv::Mat& frame,bb bound){
 //     //cv::rectangle(frame,(),())
@@ -576,63 +576,6 @@ cv::Mat resize_gray_image(const cv::Mat &input_img, int32_t resize_height)
     }
 }
 
-// std::string trim(const std::string& str)
-// {
-//     // Find the first non-whitespace character
-//     size_t first = str.find_first_not_of(" \t\n\r");
-
-//     // If the string is all whitespace, return an empty string
-//     if (first == std::string::npos)
-//         return "";
-
-//     // Find the last non-whitespace character
-//     size_t last = str.find_last_not_of(" \t\n\r");
-
-//     cout<<"string: "<<str.substr(first, last - first + 1);
-
-//     // Return the trimmed substring
-//     return str.substr(first, last - first + 1);
-// }
-
-
-// std::string removeNullCharacters(const char* str)
-// {
-//     if (str == nullptr) {
-//         return "";  // Handle null pointer case
-//     }
-
-//     std::string result;
-//     size_t length = std::strlen(str);
-
-//     for (size_t i = 0; i < length; ++i) {
-//         if (str[i] != '\0') {
-//             result += str[i];
-//         }
-//     }
-
-//     return result;
-// }
-
-// char* trimString(char* str)
-// {
-//     if (str == nullptr)
-//         return nullptr;
-
-//     // Trim leading white spaces, tabs, new lines, and null characters
-//     while (std::isspace(*str) || *str == '\0')
-//         ++str;
-
-//     // Trim trailing white spaces, tabs, new lines, and null characters
-//     size_t length = std::strlen(str);
-//     char* end = str + length - 1;
-//     while (end >= str && (std::isspace(*end) || *end == '\0'))
-//         --end;
-
-//     *(end + 1) = '\0'; // Null-terminate the trimmed string
-
-//     return str;
-// }
-
 void date_extraction()
 {
     mtx.lock();
@@ -644,7 +587,7 @@ void date_extraction()
 
     ymd_struct result_struc;
     date_struct ret_date_struc;
-
+    /* indx i is the number of objects detected on each frame */
     for (int i = 0; i < det.size(); i++)
     {
         /* skipping overlapped bounding boxes */
@@ -670,17 +613,17 @@ void date_extraction()
 
         /*Run the Tesseract Engine*/
 
-        cv::imshow("cropped image ", crop_img);
-        cv::waitKey(3000);
+        // cv::imshow("cropped image ", crop_img);
+        // cv::waitKey(3000);
 
         /* add the image */
-        printf("Img prop %d %d %d \n", crop_img.cols, crop_img.rows, crop_img.step);
+        // printf("Img prop %d %d %d \n", crop_img.cols, crop_img.rows, crop_img.step);
 
         /* Resize when height < 32 */
         cv::Mat process_img = resize_gray_image(crop_img, MIN_CROP_HEIGHT);
 
-        cv::imshow("process", process_img);
-        cv::waitKey(2000);
+        // cv::imshow("process", process_img);
+        // cv::waitKey(2000);
 
         // Get the initialized Tesseract engine instance
         TesseractEngine &tesseract = TesseractEngine::getInstance();
@@ -694,23 +637,16 @@ void date_extraction()
 
         tess_ocr_engine.SetSourceResolution(TESS_IMG_RESOLUTION);
 
-        // Perform OCR and retrieve the recognized text
-        /* check for Null return */
+        /* Perform OCR and retrieve the recognized text */
 
         char *recognizedText = tess_ocr_engine.GetUTF8Text();
 
         cout<<"Detected length : "<< strlen(recognizedText)<<endl;
 
-        // for (int i=0; recognizedText[i] != '\0'; i++) {
-        //     std::cout << i << ":: "<< recognizedText[i]<<endl;
-
-        // }
         /*Remove trailing and leading white spaces */
         processed_text = trim_white_spc(recognizedText);
  
-
         cout<< "Detected String :"<< processed_text << endl;
-
 
         /*check for empty string*/
         if (processed_text.length() >= 1)
@@ -727,7 +663,7 @@ void date_extraction()
             }
             else
             {
-                cout << "The string '" << processed_text << "' match the format" << result_struc.format<< endl;
+                cout << "The string '" << processed_text << "' match the format " << result_struc.format<< endl;
                 /*Fill the date structure for printing*/
                 ret_date_struc.txt_extr = processed_text;
                 ret_date_struc.year = result_struc.year;
@@ -741,7 +677,8 @@ void date_extraction()
             }
 
         }
-        /*free up the memory*/
+
+        /*free up the memory and clear the image from the tesseract*/
         delete[] recognizedText;
         tesseract.clear();
     }
@@ -758,8 +695,8 @@ void date_extraction()
  ******************************************/
 void draw_bounding_box(void)
 {
-    // stringstream stream;
-    // string result_str;
+    stringstream stream;
+    string result_str;
     mtx.lock();
     /* Draw bounding box on RGB image. */
     int32_t i = 0;
@@ -773,13 +710,11 @@ void draw_bounding_box(void)
             continue;
         }
 
-        // /* Clear string stream for bounding box labels */
-        // stream.str("");
-        // /* Draw the bounding box on the image */
-        // stream << fixed << setprecision(2) << det[i].prob;
-        // result_str = label_file_map[det[i].c] + " " + stream.str();
-
-        // printf("Unsorted Bbox params x,w %d %d \n", (int)det[i].bbox.x, (int)det[i].bbox.w);
+        /* Clear string stream for bounding box labels */
+        stream.str("");
+        /* Draw the bounding box on the image */
+        stream << fixed << setprecision(2) << det[i].prob;
+        result_str = label_file_map[det[i].c] + " " + stream.str();
 
         int32_t x_min = (int)det[i].bbox.x - round((int)det[i].bbox.w / 2.);
         int32_t y_min = (int)det[i].bbox.y - round((int)det[i].bbox.h / 2.);
@@ -792,12 +727,8 @@ void draw_bounding_box(void)
         y_min = y_min < 1 ? 1 : y_min;
         y_max = ((DRPAI_IN_HEIGHT - 2) < y_max) ? (DRPAI_IN_HEIGHT - 2) : y_max;
 
-        // printf("Bbox Params xmin ymin xmax ymax: %d %d %d %d \n", x_min, y_min, x_max, y_max);
-
         cv::Point topLeft(x_min, y_min);
         cv::Point bottomRight(x_max, y_max);
-
-        // printf("rows: %d , cols: %d \n", frame_g.rows, frame_g.cols);
 
         /*Define the region of interest (ROI) using a rectangle */
         cv::Rect roi(x_min, y_min, x_max - x_min, y_max - y_min);
@@ -806,7 +737,7 @@ void draw_bounding_box(void)
         cv::Mat cropped_image = frame_g(roi);
 
         cv::rectangle(frame_g, topLeft, bottomRight, cv::Scalar(0, 255, 0), 2);
-
+        cv::putText(frame_g, result_str, topLeft, cv::FONT_HERSHEY_SIMPLEX, CHAR_SCALE_SMALL, cv::Scalar(0,255,0),CHAR_THICKNESS-1);
     }
     mtx.unlock();
     return;
@@ -825,11 +756,12 @@ void write_string_rgb(std::string str, uint32_t x, uint32_t y, float scale, uint
     /*Color must be in BGR order*/
     //cv::putText(bgra_image, str.c_str(), cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, scale, cv::Scalar(b, g, r), thickness);
     cv::putText(frame_g, str, cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, scale, cv::Scalar(b, g, r), thickness);
+    return;
 }
 
-void print_result(void)
-{
 
+void print_result()
+{
     mtx.lock();
 
     stringstream stream;
@@ -837,8 +769,9 @@ void print_result(void)
     int32_t result_cnt = 0;
 
     uint32_t draw_offset_x = 0;
-    uint32_t y= 0;
+    uint32_t y= 10;
 
+    string ymd_string = "";
     /* For detected classes  */
     for (int i = 0; i < det.size(); i++)
     {
@@ -852,36 +785,52 @@ void print_result(void)
         /* Clear string stream for bounding box labels */
         stream.str("");
 
+        /* Create bounding box label of class */
+        stream << "Class "<< ":" << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";
+        str = stream.str();
+        y = LINE_HEIGHT*result_cnt;
+        write_string_rgb(str, draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+        
+
         /* If the detected class is date and the index is stored in the formatted string */
         if (det[i].c == 0 && (date_struc_map.find(i) != date_struc_map.end()))
         {
-            stream << "Class "
-                   << ":" << label_file_map[det[i].c].c_str() << "'" << date_struc_map[i].txt_extr
-                   << "' Year: " << date_struc_map[i].year << " Month: " << date_struc_map[i].month
-                   << "' Day: " << date_struc_map[i].day
-                    ;
-            /* Write YYMMDD separate */
-            str = stream.str();
+            /* Print YYMMDD separate */
+
             /*Text at point(x,y) */
             /* point(y)-> */
             // int32_t y = (LINE_HEIGHT * TIME_LINE_NUM) + LINE_HEIGHT_OFFSET + (result_cnt * LINE_HEIGHT);
 
+            cout<<str<<endl;
+            for (int ymd = 1; ymd<4; ymd++)
+            {
+                y += LINE_HEIGHT;
+                stream.str("");
 
-            write_string_rgb(str, draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+                switch (ymd)
+                {
+                case (1):
+                    stream<<"Year: "<< date_struc_map[i].year;
+                    break;
+                case (2):
+                    stream<<"Month: "<< date_struc_map[i].month;
+                    break;
+                case (3):
+                    stream<<"Day: "<< date_struc_map[i].day;
+                    break;
+                default:
+                    break;
+                }
 
-        }
-        else
-        {
-            /* Create bounding box label */
-            stream << "Class "
-                   << ":" << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";
-            str = stream.str();
-            write_string_rgb(str, draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+                write_string_rgb(stream.str(), draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+            }
+
         }
         
     }
 
     mtx.unlock();
+    return;
 }
 
 cv::Mat hwc2chw(const cv::Mat &image)
@@ -897,8 +846,9 @@ cv::Mat hwc2chw(const cv::Mat &image)
     return flat_image;
 }
 
-int run_inference(cv::Mat frame)
-{
+int run_inference()
+{   
+    cv::Mat frame;
     // float *output;
     auto t1 = std::chrono::high_resolution_clock::now();
 
@@ -906,9 +856,8 @@ int run_inference(cv::Mat frame)
     /*resize the image to the model input size*/
 
     /*src , dest, size*/
-    cv::resize(frame, frame, size);
+    cv::resize(frame_g, frame, size);
 
-    // cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
     cv ::Mat imageCHW;
     // cv::transpose(frame, imageCHW);//
     imageCHW = hwc2chw(frame);
@@ -924,10 +873,6 @@ int run_inference(cv::Mat frame)
     // cv::normalize(imageCHW,imageCHW, 0, 1, cv::NORM_MINMAX, CV_32FC3);
     // cv::imshow("out1", frame);
     // cv::waitKey(5000);
-
-    /*deep copy, if not continuous*/
-    // if (!frame.isContinuous())
-    //     frame = frame.clone();
 
     if (!imageCHW.isContinuous())
         imageCHW = imageCHW.clone();
@@ -949,17 +894,20 @@ int run_inference(cv::Mat frame)
     auto t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
     std::cout << "\nAI-Inference Time(ms): " << duration << " ms\n";
-
+   
+   
     R_Post_Proc(drpai_output_buf);
-
-    std::cout << "\nPost Process complete\n ";
-
+    auto t3 = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(t3 - t2).count();
+    std::cout << "Post-Process Time(ms): "<< duration << " ms\n";
 
     date_extraction();
+    auto t4 = std::chrono::high_resolution_clock::now();
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>(t4 - t3).count();
+    std::cout << "Date-Extraction Time(ms): "<< duration << " ms\n";
 
     draw_bounding_box();
-
-    // print_result();
+    print_result();
 
     return 0;
 }
@@ -1007,7 +955,7 @@ int main(int argc, char *argv[])
         {
             // cv::imshow("output", frame_g);
             // cv::waitKey(5000);
-            int ret = run_inference(frame_g);
+            int ret = run_inference();
 
             if (ret != 0)
             {

@@ -197,7 +197,8 @@ void Image::write_string_rgb(std::string str, uint32_t x, uint32_t y, float scal
     /*OpenCV image data is in BGRA */
     cv::Mat bgra_image(out_h, out_w, CV_8UC4, img_buffer[buf_id]);
     /*Color must be in BGR order*/
-    cv::putText(bgra_image, str.c_str(), cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, scale, cv::Scalar(b, g, r), thickness);
+    //cv::putText(bgra_image, str.c_str(), cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, scale, cv::Scalar(b, g, r), thickness);
+    cv::putText(bgra_image, str, cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, scale, cv::Scalar(b, g, r), thickness);
 }
 
 /**

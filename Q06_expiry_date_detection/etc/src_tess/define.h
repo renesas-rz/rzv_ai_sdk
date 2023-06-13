@@ -63,6 +63,8 @@ struct date_struct
 #define CHAR_SCALE_LARGE            (0.8)
 #define CHAR_SCALE_SMALL            (0.7)
 #define CHAR_THICKNESS              (2)
+#define LINE_HEIGHT                 (30) /*in pixel*/
+#define LINE_HEIGHT_OFFSET          (20) /*in pixel*/
 #define WHITE_DATA                  (0xFFFFFFu) /* in RGB */
 
 

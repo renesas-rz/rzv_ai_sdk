@@ -110,7 +110,7 @@ static vector<detection> det;
 static unordered_map<int, date_struct> date_struc_map;
 
 /*Variable for Regex Dict */
-static map<boost::regex, string> regex_dict;
+static map<boost::regex, string> regex_dict_g;
 
 /*****************************************
  * Function Name     : float16_to_float32
@@ -161,7 +161,7 @@ static int8_t wait_join(pthread_t *p_join_thread, uint32_t join_time)
  * Description       : Load label list text file and return the label list that contains the label.
  * Arguments         : label_file_name = filename of label list. must be in txt format
  * Return value      : vector<string> list = list contains labels
- *                     empty if error occured
+ *                     empty if error occurred
  ******************************************/
 vector<string> load_label_file(string label_file_name)
 {
@@ -480,20 +480,18 @@ void date_extraction()
         /* skipping if height or width is zero */
         if (((int)det[i].bbox.h == 0) || ((int)det[i].bbox.w == 0))
         {
-            printf("Wrong box detected ");
             continue;
         }
         /*Get the cropped image */
         cv::Mat crop_img = img.get_crop_gray((int)det[i].bbox.x, (int)det[i].bbox.y,
                                              (int)det[i].bbox.w, (int)det[i].bbox.h);
 
-        printf("image_cropped\n");
         /*Run the Tesseract Engine*/
 
         /* add the image */
         printf("Img prop %d %d %d \n", crop_img.cols, crop_img.rows, crop_img.step);
 
-        /* Resize when height < 32 */
+        /* Resize when height < Min crop height */
         cv::Mat process_img = img.resize_gray_image(crop_img, MIN_CROP_HEIGHT);
 
         // Get the initialized Tesseract engine instance
@@ -502,41 +500,34 @@ void date_extraction()
         // Use the initialized Tesseract engine for processing
         tesseract::TessBaseAPI &tess_ocr_engine = tesseract.getEngine();
 
+        /* set the processed image */
         tess_ocr_engine.SetImage(process_img.data, process_img.cols, process_img.rows, 1, process_img.step);
-        printf("Img prop process %d %d %d \n", process_img.cols, process_img.rows, process_img.step);
-        printf("image set\n");
-
+        /* set resolution of the image */
         tess_ocr_engine.SetSourceResolution(TESS_IMG_RESOLUTION);
 
-
-        // Perform OCR and retrieve the recognized text
-        /* check for Null return */
-
+        /* Perform OCR and retrieve the recognized text */
         char *recognizedText = tess_ocr_engine.GetUTF8Text();
-        // if (recognizedText != nullptr)
-        // {
-        //     continue;
-        // }
-        
-        /*Remove trailing and leading white spaces */
-        processed_text = trim_white_spc(recognizedText);
-        printf("trimmed Extracted %s \n", processed_text);
 
-        /*free up the memory*/
-        delete[] recognizedText;
-        tesseract.clear();
+        /* Remove trailing and leading white spaces */
+        processed_text = trim_white_spc(recognizedText);
+
+        cout<<"Extracted text : '"<< processed_text <<"'"<<endl;
+
+        
         
         /*check for empty string*/
         if (processed_text.length() >= 1)
         {
-            result_struc = get_yymmddd(regex_dict, processed_text);
+            result_struc = get_yymmddd(regex_dict_g, processed_text);
 
             if (!result_struc.matched)
             {
-                printf("The string '%s' does not match any format !! \n ", processed_text);
+                cout << "The string '" << processed_text << "' does not match any format" << endl; 
+                // printf("The string '%s' does not match any format !! \n ", processed_text);
             }
             else
             {
+                cout << "The string '" << processed_text << "' match the format" << result_struc.format<< endl; 
 
                 /*Fill the date structure for printing*/
                 ret_date_struc.txt_extr = processed_text;
@@ -548,6 +539,10 @@ void date_extraction()
                 date_struc_map[i] = ret_date_struc;
             }
         }
+
+        /*free up the memory*/
+        delete[] recognizedText;
+        tesseract.clear();
     }
 
     mtx.unlock();
@@ -600,47 +595,74 @@ int8_t print_result(Image *img)
     string str = "";
     int32_t result_cnt = 0;
     uint32_t total_time = ai_time + pre_time + post_time;
+
+    /*point(x, y) to put text*/
     uint32_t draw_offset_x = DRPAI_IN_WIDTH * RESIZE_SCALE + TEXT_WIDTH_OFFSET;
+    uint32_t y = 0;
+
     uint32_t print_time = 0;
     string print_str = "";
-
-    /* Draw bounding box on RGB image. */
+    
+    /* For detected classes  */
     for (i = 0; i < det.size(); i++)
     {
         /* Skip the overlapped bounding boxes */
         if (det[i].prob == 0)
             continue;
 
+        /* Increment count of the detected objects in a frame */
         result_cnt++;
+
         /* Clear string stream for bounding box labels */
         stream.str("");
 
-        /* If the detected class is date and the index is stored in the formatted string */
+        /* Point (y) to print the class */
+        y = LINE_HEIGHT * TIME_LINE_NUM + LINE_HEIGHT_OFFSET + result_cnt * LINE_HEIGHT ;
+
+        /* Create bounding box label */
+        stream << "Class "<< ":" << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";
+        str = stream.str();
+        img->write_string_rgb(str, draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+        
+        /* Print Year, Month, Day separately */
         if (det[i].c == 0 && (date_struc_map.find(i) != date_struc_map.end()))
         {
-            stream << "Class "
-                   << ":" << label_file_map[det[i].c].c_str() << "'" << date_struc_map[i].txt_extr
-                //    << "' Year: " << date_struc_map[i].year << " Month: " << date_struc_map[i].month
-                //    << "' Day: " << date_struc_map[i].day
-                    ;
-            /* Write YYMMDD separate */
-            str = stream.str();
-            img->write_string_rgb(str, draw_offset_x, LINE_HEIGHT * TIME_LINE_NUM + LINE_HEIGHT_OFFSET + result_cnt * LINE_HEIGHT, CHAR_SCALE_SMALL, WHITE_DATA);
 
-        }
-        else
-        {
-            /* Create bounding box label */
-            stream << "Class "
-                   << ":" << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";
-            str = stream.str();
-            img->write_string_rgb(str, draw_offset_x, LINE_HEIGHT * TIME_LINE_NUM + LINE_HEIGHT_OFFSET + result_cnt * LINE_HEIGHT, CHAR_SCALE_SMALL, WHITE_DATA);
-        }
-        
+            for(int ymd = 1; ymd< 4; ymd++)   
+            {
+                /* Increment y */
+                y += LINE_HEIGHT;
+
+                /* Clear the stream */  
+                stream.str("");
+
+                switch (ymd)
+                {
+                case (1):
+                    stream<<"Year: "<< date_struc_map[i].year;
+                    break;
+                case (2):
+                    stream<<"Month: "<< date_struc_map[i].month;
+                    break;
+                case (3):
+                    stream<<"Day: "<< date_struc_map[i].day;
+                    break;
+                default:
+                    break;
+                }
+
+                img->write_string_rgb(stream.str(), draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+            
             }
 
+        }
+        
+    }
+
+    /* For printing the time taken */
     for (int i = 0; i < TIME_LINE_NUM; i++)
-    {
+    {   
+        
         switch (i)
         {
         case (TIME_TOTAL_ID):
@@ -708,18 +730,12 @@ void *R_Inf_Thread(void *threadid)
     printf("Inference Loop Starting\n");
     /*Inference Loop Start*/
 
-    // /*Initialize tesseract engine */
-    // tess_ocr = init_tesseract();
-
-    // // create regex dictionary from regex module functions
-    // regex_dict = create_regex_dict();
-
     while (1)
     {
         while (1)
         {
             /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
-            /*Checks if sem_getvalue is executed wihtout issue*/
+            /*Checks if sem_getvalue is executed without issue*/
             errno = 0;
             ret = sem_getvalue(&terminate_req_sem, &inf_sem_check);
             if (0 != ret)
@@ -818,7 +834,6 @@ void *R_Inf_Thread(void *threadid)
         post_time = (float)((timedifference_msec(post_start_time, post_end_time)));
 
         /* Text Extraction and regex*/
-        // date_extraction(tess_ocr, regex_dict);
         date_extraction();
         inference_start.store(0);
     }
@@ -1096,7 +1111,7 @@ int32_t main(int32_t argc, char *argv[])
     TesseractEngine &tesseract = TesseractEngine::getInstance();
 
     // create regex dictionary from regex module functions
-    regex_dict = create_regex_dict();
+    regex_dict_g = create_regex_dict();
 
     /* Obtain udmabuf memory area starting address */
     int8_t fd = 0;

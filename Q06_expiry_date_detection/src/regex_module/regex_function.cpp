@@ -10,8 +10,8 @@
 std::map<boost::regex, std::string> create_regex_dict() {
     
     // regex string wrt year, month, day
-    std::string yr_rgx = R"((?<year>\d{2}|\d{4})?)"; // YYYY 
-    //std::string yr_rgx_2dig = R"((?<year>\d{2})?)"; // YY
+    std::string yr_rgx = R"((?<year>\d{4})?)"; // YYYY 
+    std::string yr_rgx_2dig = R"((?<year>\d{2})?)"; // YY
     std::string mnth_rgx = R"((?<month>(?:[a-zA-Z]{3}|0?[1-9]|1[0-2]))?)"; // MMM
     std::string day_rgx = R"((?<day>[0123]?\d{1})?)"; // DD 
     std::string sprt_rgx = R"([\W_]*)"; // zero or more special characters
@@ -22,7 +22,7 @@ std::map<boost::regex, std::string> create_regex_dict() {
     // defining regex patterns
     std::vector<std::string> regex_patterns = {
         R"(^)" + day_rgx + mnth_rgx_ws + sprt_rgx + yr_rgx_ws + R"($)", // DD-MMM-YY
-        R"(^)" + yr_rgx + mnth_rgx_ws + day_rgx_ws + R"($)", // YY-MMM-DD
+        R"(^)" + yr_rgx_2dig + mnth_rgx_ws + day_rgx_ws + R"($)", // YY-MMM-DD
         R"(^)" + mnth_rgx +  day_rgx_ws + yr_rgx_ws + R"($)", // MMM-DD-YY
         R"(^)" + yr_rgx  + mnth_rgx_ws + day_rgx_ws + R"($)", // YYYY-MMM-DD
         R"(^)" + day_rgx + mnth_rgx_ws +  yr_rgx_ws + R"($)", // DD-MMM-YYYY

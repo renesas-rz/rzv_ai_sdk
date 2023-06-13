@@ -212,7 +212,7 @@ struct date_struct
     std::string day;
 };
 
-#define MIN_CROP_HEIGHT             (32)
+#define MIN_CROP_HEIGHT             (84)
 #define TESS_IMG_RESOLUTION         (330)
 #define CROP_IMG_STRETCH            (10) // Pixel value Used to extended crop section from the image
 
