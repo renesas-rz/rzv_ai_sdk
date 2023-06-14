@@ -228,18 +228,18 @@ cv::Mat Image::get_crop_gray(int32_t x_center, int32_t y_center, int32_t width, 
     width = x_min+width < img_w ? width : img_w;
     height= y_min+height < img_h ? height : img_h;
 
-    /*OpenCV image data is in BGRA */
-    cv::Mat bgra_image(out_h, out_w, CV_8UC4, img_buffer[buf_id]);
+    /*OpenCV original image data is in YUYV format  */
+    cv::Mat org_image(img_h, img_w, CV_8UC2, img_buffer[buf_id]);
 
     /*Define the region of interest (ROI) using a rectangle */
     cv::Rect roi(x_min, y_min, width, height);
 
     /*Extract the cropped region from the color image */
-    cv::Mat cropped_image = bgra_image(roi);
+    cv::Mat cropped_image = org_image(roi);
 
     /*Convert BGRA image to grayscale */
     cv::Mat grayscale_image;
-    cv::cvtColor(cropped_image, grayscale_image, cv::COLOR_BGRA2GRAY);
+    cv::cvtColor(cropped_image, grayscale_image, cv::COLOR_YUV2GRAY_YUYV);
 
     return grayscale_image;
 }

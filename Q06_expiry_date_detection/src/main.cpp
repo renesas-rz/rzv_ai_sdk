@@ -406,10 +406,13 @@ void R_Post_Proc(float *floatarr)
                     center_y = (center_y - (MODEL_IN_H - new_h) / 2. / MODEL_IN_H) / ((float)new_h / MODEL_IN_H);
                     box_w *= (float)(MODEL_IN_W / new_w);
                     box_h *= (float)(MODEL_IN_H / new_h);
+
+                    /* Getting params with respect to Input image size */
                     center_x = round(center_x * DRPAI_IN_WIDTH);
                     center_y = round(center_y * DRPAI_IN_HEIGHT);
                     box_w = round(box_w * DRPAI_IN_WIDTH);
                     box_h = round(box_h * DRPAI_IN_HEIGHT);
+
                     objectness = sigmoid(tc);
                     BBox bb = {center_x, center_y, box_w, box_h};
                     /* Get the class prediction */
@@ -447,9 +450,6 @@ void R_Post_Proc(float *floatarr)
 
 void date_extraction()
 {
-    // set resolution in dpi
-    int resolution = 330;
-
     mtx.lock();
 
     /* clear the previous frames detected date */
@@ -528,6 +528,7 @@ void date_extraction()
             else
             {
                 cout << "The string '" << processed_text << "' match the format" << result_struc.format<< endl; 
+                cout << "Year: " << result_struc.year << " Month: "<< result_struc.month << "Day: "<< result_struc.day << endl;
 
                 /*Fill the date structure for printing*/
                 ret_date_struc.txt_extr = processed_text;
@@ -755,7 +756,10 @@ void *R_Inf_Thread(void *threadid)
             }
             usleep(WAIT_TIME);
         }
+
+        /* set image address for pre- processing */
         in_param.pre_in_addr = (uintptr_t)capture_address;
+
         /*Gets Pre-process starting time*/
         ret = timespec_get(&pre_start_time, TIME_UTC);
         if (0 == ret)
@@ -763,12 +767,15 @@ void *R_Inf_Thread(void *threadid)
             fprintf(stderr, "[ERROR] Failed to get Pre-process Start Time\n");
             goto err;
         }
+
+        /* Do pre processing */
         ret = preruntime.Pre(&in_param, &output_ptr, &out_size);
         if (0 < ret)
         {
             fprintf(stderr, "[ERROR] Failed to run Pre-processing Runtime Pre()\n");
             goto err;
         }
+
         /*Gets AI Pre-process End Time*/
         ret = timespec_get(&pre_end_time, TIME_UTC);
         if (0 == ret)
@@ -820,7 +827,7 @@ void *R_Inf_Thread(void *threadid)
         /*CPU Post-Processing For YOLOv3*/
         R_Post_Proc(drpai_output_buf);
 
-        printf("Post process completed");
+        // printf("Post process completed");
 
         /*Gets Post-process End Time*/
         ret = timespec_get(&post_end_time, TIME_UTC);
@@ -833,8 +840,8 @@ void *R_Inf_Thread(void *threadid)
         /*Post-process Time Result*/
         post_time = (float)((timedifference_msec(post_start_time, post_end_time)));
 
-        /* Text Extraction and regex*/
-        date_extraction();
+        // /* Text Extraction and regex*/
+        // date_extraction();
         inference_start.store(0);
     }
     /*End of Inference Loop*/
@@ -875,7 +882,10 @@ void *R_Capture_Thread(void *threadid)
     printf("Capture Thread Starting\n");
 
     udmabuf_fd0 = open("/dev/udmabuf0", O_RDWR);
-    img_buffer0 = (unsigned char *)mmap(NULL, CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2, PROT_READ | PROT_WRITE, MAP_SHARED, udmabuf_fd0, UDMABUF_INFIMAGE_OFFSET);
+
+    /* Map physical memory udmabuf_fd0 to virtual memory img_buffer0 with r/w access across multiple process*/
+    img_buffer0 = (unsigned char *)mmap(NULL, CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2, 
+                    PROT_READ | PROT_WRITE, MAP_SHARED, udmabuf_fd0, UDMABUF_INFIMAGE_OFFSET);
     capture_address = (uint32_t)udmabuf_address + UDMABUF_INFIMAGE_OFFSET;
 
     while (1)
@@ -912,13 +922,14 @@ void *R_Capture_Thread(void *threadid)
             else
             {
                 img_buffer = capture->get_img();
+                /* If inference flag is 0*/
                 if (!inference_start.load())
                 {
                     /* Copy captured image to Image object. This will be used in Main Thread. */
                     memcpy(img_buffer0, img_buffer, CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2);
                     inference_start.store(1); /* Flag for AI Inference Thread. */
                 }
-
+                /* If Image object needs to be loaded*/
                 if (!img_obj_ready.load())
                 {
                     img.camera_to_image(img_buffer, capture->get_size());
@@ -1056,9 +1067,13 @@ int8_t R_Main_Process()
             goto main_proc_end;
         }
 
-        /* Check img_obj_ready flag which is set in Capture Thread. */
+        /* Check img_obj_ready flag which is set in Capture Thread. if flag is 1*/
         if (img_obj_ready.load())
         {
+
+            /* Text Extraction and regex*/
+            date_extraction();
+
             /* Draw bounding box on image. */
             draw_bounding_box();
 
@@ -1137,8 +1152,13 @@ int32_t main(int32_t argc, char *argv[])
     udmabuf_address &= 0xFFFFFFFF;
 
     printf("RZ/V2L AI SDK Sample Application: Date Extraction \n");
-    printf("Model : Darknet YOLOv3 | %s\n", model_dir.c_str());
+    printf("Model : Tiny Darknet YOLOv3 | %s\n", model_dir.c_str());
+    /* Camera type Input*/
+    #ifdef INPUT_CORAL
     printf("Input : Coral Camera\n");
+    #else
+    printf("Input : USB Camera\n");
+    #endif
 
     /*Load Label from label_list file*/
     label_file_map = load_label_file(label_list);

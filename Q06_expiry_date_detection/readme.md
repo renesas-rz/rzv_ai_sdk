@@ -29,6 +29,7 @@ TBD
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
     - Coral camera 
+- USB Camera [optional]
 - USB Keyboard
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
@@ -105,8 +106,11 @@ cp -r boost_1_81_0/boost include/
 rm boost_1_81_0.tar.bz2
 rm -rf boost_1_81_0
 ```
-
-9. Build the application on docker environment by following the steps below
+9. For USB Camera Application, comment out [`#define INPUT_CORAL`](./src/define.h) 
+```
+// # define INPUT_CORAL
+```
+10. Build the application on docker environment by following the steps below
 
 ```sh
 mkdir -p build && cd build
@@ -141,6 +145,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 
 Folder structure in the rootfs (SD Card) would look like:
+
 ```sh
 ├── usr/
 │   └── lib64/
@@ -170,12 +175,14 @@ Folder structure in the rootfs (SD Card) would look like:
     ./date_extraction
     ```
 
+#### Application: Termination 
+- Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Board.
+
 ## Application: Specifications
 
 #### Model Details
 
 - Tiny Yolov3 is used
-
 
 #### Dataset
 
