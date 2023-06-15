@@ -106,7 +106,7 @@ cp -r boost_1_81_0/boost include/
 rm boost_1_81_0.tar.bz2
 rm -rf boost_1_81_0
 ```
-9. For USB Camera Application, comment out [`#define INPUT_CORAL`](./src/define.h) 
+9. [Optional] For USB Camera Application, comment out [`#define INPUT_CORAL`](./src/define.h) 
 ```
 // # define INPUT_CORAL
 ```
@@ -139,7 +139,7 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
 * At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
    * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `object_tracker` application file if the application file is built at [build stage](#application-build-stage)
+   * Copy the generated `date_extraction` application file if the application file is built at [build stage](#application-build-stage)
 
 * Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
 
@@ -189,6 +189,13 @@ Folder structure in the rootfs (SD Card) would look like:
 - Dataset used is the same as mentioned in the below research paper 
 [Link](https://www.sciencedirect.com/science/article/pii/S0957417422006728?via%3Dihub)
 
+
+## Known Issue
+
+1. The tesseract engine will work fine mostly on solid black with white background. The tesseract engine used is v3.05, if the version is updated on the board. The date extraction could be done more efficiently.  
+2. The model used is TinyYolov3 for date detection for increasing the performance. 
+For better performance, user can use YoloV3 which is lot complex in nature.
+3. For efficient date detection, User are expected to take image with proper lighting and contrast. 
 
 
 

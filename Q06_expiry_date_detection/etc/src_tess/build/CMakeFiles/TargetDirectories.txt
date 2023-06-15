@@ -1,3 +1,0 @@
-/drp-ai_tvm/data/src_tess/build/CMakeFiles/rebuild_cache.dir
-/drp-ai_tvm/data/src_tess/build/CMakeFiles/edit_cache.dir
-/drp-ai_tvm/data/src_tess/build/CMakeFiles/text_extract.dir
