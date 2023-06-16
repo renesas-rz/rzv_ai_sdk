@@ -19,6 +19,9 @@ where managers/users need to verify the product expiry dates.
 
 The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/pdf/1804.02767.pdf).
 
+#### Image Mode 
+
+The application to test with images is provided here [Link](./etc/readme.md)
 
 #### Demo 
 <!-- <img src = "./images/ObjectTracking.gif" width="480" height="320"> -->
@@ -31,6 +34,7 @@ TBD
     - Coral camera 
 - USB Camera [optional]
 - USB Keyboard
+- USB Hub
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
 - SD Card (for file system)
@@ -38,6 +42,7 @@ TBD
 [Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
 
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
+
 #### Software Requirements
 - Ubuntu 20.04
 - OpenCV 4.x
@@ -106,9 +111,9 @@ cp -r boost_1_81_0/boost include/
 rm boost_1_81_0.tar.bz2
 rm -rf boost_1_81_0
 ```
-9. [Optional] For USB Camera Application, comment out [`#define INPUT_CORAL`](./src/define.h) 
+9. [Optional] For Coral Camera Application, uncomment [`// #define INPUT_CORAL`](./src/define.h#L131) 
 ```
-// # define INPUT_CORAL
+# define INPUT_CORAL
 ```
 10. Build the application on docker environment by following the steps below
 
@@ -192,10 +197,22 @@ Folder structure in the rootfs (SD Card) would look like:
 
 ## Known Issue
 
-1. The tesseract engine will work fine mostly on solid black with white background. The tesseract engine used is v3.05, if the version is updated on the board. The date extraction could be done more efficiently.  
+1. The tesseract engine will work fine mostly on solid black with white background. The tesseract engine used is v3.05.  
 2. The model used is TinyYolov3 for date detection for increasing the performance. 
 For better performance, user can use YoloV3 which is lot complex in nature.
 3. For efficient date detection, User are expected to take image with proper lighting and contrast. 
+4. USB Camera has shown much better resolution than coral camera. 
+5. The date on the RZ/V2L board could be different. 
+
+- To check use following on board terminal.
+```sh
+date
+```
+- To set to current date [if different]
+```sh
+date +%Y%m%d -s "20230615" 
+```
+
 
 
 

@@ -1,3 +1,0 @@
-/drp-ai_tvm/data/rv_ai_application/rzv_ai_sdk/Q06_expiry_date_detection/etc/src_tess/build/CMakeFiles/rebuild_cache.dir
-/drp-ai_tvm/data/rv_ai_application/rzv_ai_sdk/Q06_expiry_date_detection/etc/src_tess/build/CMakeFiles/edit_cache.dir
-/drp-ai_tvm/data/rv_ai_application/rzv_ai_sdk/Q06_expiry_date_detection/etc/src_tess/build/CMakeFiles/text_extract.dir

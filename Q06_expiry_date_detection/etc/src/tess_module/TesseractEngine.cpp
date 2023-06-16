@@ -9,7 +9,7 @@ TesseractEngine::TesseractEngine() {
         printf("Failed to initialize");
     } else {
 
-       //tessEngine.SetPageSegMode(tesseract::PageSegMode::PSM_SINGLE_LINE);
+       // tessEngine.SetPageSegMode(tesseract::PageSegMode::PSM_SINGLE_LINE);
         // tessEngine.SetPageSegMode(tesseract::PageSegMode::PSM_SINGLE_CHAR);
         printf("Tesseract initialized \n");
     }

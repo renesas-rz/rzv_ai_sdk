@@ -30,6 +30,7 @@ target_link_libraries(${EXE_NAME} ${TESSERACT_LIBRARY})
 # Add the Boost include directory & find Boost package
 include_directories(boost)
 include_directories(include) 
+include_directories(../../../../src_tess/include)
 
 find_package(OpenCV REQUIRED)
 if(OpenCV_FOUND)

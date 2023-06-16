@@ -69,6 +69,8 @@
 #include "regex_module/regex_function.h"
 /* text processing */
 #include "text_proc_module/TextProc.h"
+/* Date checking module*/
+#include "date_chck_module/date_check.h"
 
 using namespace std;
 /*****************************************
@@ -108,6 +110,8 @@ static vector<detection> det;
 // static vector<date_struct> date_struc_vec;
 
 static unordered_map<int, date_struct> date_struc_map;
+
+static DateChecker date_checker;
 
 /*Variable for Regex Dict */
 static map<boost::regex, string> regex_dict_g;
@@ -536,6 +540,11 @@ void date_extraction()
                 ret_date_struc.month = result_struc.month;
                 ret_date_struc.day = result_struc.day;
 
+                /* Calculate remaining days */
+                int day_rem = date_checker.calculateDaysRemaining (result_struc.year, result_struc.month, result_struc.day);
+                cout<< "Days Remaining "<< day_rem <<endl;
+                ret_date_struc.remaining_days = day_rem ;
+
                 /*Store the print result on the map */
                 date_struc_map[i] = ret_date_struc;
             }
@@ -628,8 +637,9 @@ int8_t print_result(Image *img)
         /* Print Year, Month, Day separately */
         if (det[i].c == 0 && (date_struc_map.find(i) != date_struc_map.end()))
         {
+            uint32_t color = WHITE_DATA;
 
-            for(int ymd = 1; ymd< 4; ymd++)   
+            for(int ymd = 1; ymd< 5; ymd++)   
             {
                 /* Increment y */
                 y += LINE_HEIGHT;
@@ -648,11 +658,23 @@ int8_t print_result(Image *img)
                 case (3):
                     stream<<"Day: "<< date_struc_map[i].day;
                     break;
+                case (4):
+                    if (date_struc_map[i].remaining_days == -1 )
+                    {
+                        stream<<"Date Expired !!";
+                        color = RED_DATA;
+                    }
+                    else 
+                    {
+                        stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
+                        color = GREEN_DATA;
+                    }
+                    break; 
                 default:
                     break;
                 }
 
-                img->write_string_rgb(stream.str(), draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+                img->write_string_rgb(stream.str(), draw_offset_x, y, CHAR_SCALE_SMALL, color);
             
             }
 

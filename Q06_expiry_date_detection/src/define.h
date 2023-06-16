@@ -128,7 +128,7 @@ const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * 
 * Macro for Application
 ******************************************/
 /* Coral Camera support */
-#define INPUT_CORAL
+// #define INPUT_CORAL
 
 /*Maximum DRP-AI Timeout threshold*/
 #define DRPAI_TIMEOUT               (5)
@@ -179,6 +179,8 @@ const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * 
 #define TIME_POST_ID                (3)
 #define WHITE_DATA                  (0xFFFFFFu) /* in RGB */
 #define BLACK_DATA                  (0x000000u)
+#define GREEN_DATA                  (0x00FF00u) /*R-0,g-255,b-0*/
+#define RED_DATA                    (0xFF0000u)
 #define WHITE_DATA_YUYV             (0xEB8080u) /* in YUYV */
 #define BLACK_DATA_YUYV             (0x108080u)
 /*RESIZE_SCALE=((OUTPUT_WIDTH/IMAGE_WIDTH > OUTPUT_HEIGHT/IMAGE_HEIGHT) ?
@@ -210,6 +212,7 @@ struct date_struct
     std::string year;
     std::string month;
     std::string day;
+    int32_t remaining_days;
 };
 
 #define MIN_CROP_HEIGHT             (84)

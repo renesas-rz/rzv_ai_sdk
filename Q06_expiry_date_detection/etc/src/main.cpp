@@ -2,10 +2,12 @@
 #include "box.h"
 #include "MeraDrpRuntimeWrapper.h"
 #include "image_proc/image_processing.h"
+#include "date_chck_module/date_check.h"
 #include "regex_module/regex_function.h"
 #include "tess_module/TesseractEngine.h"
 #include "text_module/text_processing.h"
 #include "utils/common_utils.h"
+
 
 using namespace std;
 
@@ -25,6 +27,7 @@ std::vector<float> floatarr(1);
 static std::mutex mtx;
 static vector<detection> det;
 
+static DateChecker date_checker;
 /*Global frame */
 cv::Mat frame_g;
 cv::VideoCapture cap;
@@ -140,6 +143,8 @@ int drpai_inference(cv::Mat& frame)
 
     /*load inference out on drpai_out_buffer*/
     int ret = get_result();
+
+    return ret;
 }
 
 /*****************************************
@@ -356,6 +361,12 @@ void date_extraction()
                 ret_date_struc.day = result_struc.day;
 
                 cout << "Year : " << result_struc.year << " Month : " << result_struc.month << " Day: " << result_struc.day<<endl;
+                
+                /* Calculate remaining days */
+                int day_rem = date_checker.calculateDaysRemaining (result_struc.year, result_struc.month, result_struc.day);
+                cout<< "Days Remaining "<< day_rem <<endl;
+
+                ret_date_struc.remaining_days = day_rem ;
 
                 /*Store the print result on the map */
                 date_struc_map[i] = ret_date_struc;
@@ -416,47 +427,32 @@ void draw_bounding_box(void)
         cv::Point bottomRight(x_max, y_max);
 
         /*Define the region of interest (ROI) using a rectangle */
-        cv::Rect roi(x_min, y_min, x_max - x_min, y_max - y_min);
+        // cv::Rect roi(x_min, y_min, x_max - x_min, y_max - y_min);
 
-        /*Extract the cropped region from the color image */
-        cv::Mat cropped_image = frame_g(roi);
+        // /*Extract the cropped region from the color image */
+        // cv::Mat cropped_image = frame_g(roi);
 
         /* Creating bounding box and class labels */
-        cv::rectangle(frame_g, topLeft, bottomRight, cv::Scalar(0, 255, 0), 2);
-        cv::putText(frame_g, result_str, topLeft, cv::FONT_HERSHEY_SIMPLEX, CHAR_SCALE_SMALL, cv::Scalar(0,255,0),CHAR_THICKNESS-1);
+        cv::rectangle(frame_g, topLeft, bottomRight, CV_BLACK, CHAR_SCALE_SMALL);
+
+        
+
+        /* Create a rectangle for the background */
+        cv::Rect back_rect(x_min, y_min-8, x_max - x_min, 8);
+        cv::rectangle(frame_g, back_rect, CV_BLACK, -1); // -1 thickness fills the rectangle
+
+        cv::putText(frame_g, result_str, topLeft, CV_FONT, CHAR_SCALE_XS, CV_WHITE, CHAR_THICKNESS);
     }
     mtx.unlock();
     return;
 }
 
-/**
- * @brief write text on the frame 
- * 
- * @param str 
- * @param x 
- * @param y 
- * @param scale 
- * @param color 
- */
-void write_string_rgb(std::string str, uint32_t x, uint32_t y, float scale, uint32_t color)
-{
-
-    uint8_t thickness = CHAR_THICKNESS;
-    /*Extract RGB information*/
-    uint8_t r = (color >> 16) & 0x0000FF;
-    uint8_t g = (color >> 8) & 0x0000FF;
-    uint8_t b = color & 0x0000FF;
-    
-    /*Color must be in BGR order*/
-    cv::putText(frame_g, str, cv::Point(x, y), cv::FONT_HERSHEY_SIMPLEX, scale, cv::Scalar(b, g, r), thickness);
-    return;
-}
 
 /**
  * @brief print the result on the frame 
  * 
  */
-void print_result()
+cv::Mat print_result(cv::Mat& frame)
 {
     mtx.lock();
 
@@ -464,8 +460,8 @@ void print_result()
     string str = "";
     int32_t result_cnt = 0;
 
-    uint32_t draw_offset_x = 0;
-    uint32_t y= 10;
+    uint32_t x = IMAGE_OUTPUT_WIDTH;
+    uint32_t y = 2;
 
     string ymd_string = "";
     /* For detected classes  */
@@ -482,16 +478,18 @@ void print_result()
         stream.str("");
 
         /* Create bounding box label of class */
-        stream << "Class "<< ":" << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";
+        stream << "Class: " << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";
         str = stream.str();
         y = LINE_HEIGHT*result_cnt;
-        write_string_rgb(str, draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
-        
 
+        cv::putText(frame, str, cv::Point(x, y), CV_FONT, 
+                    CHAR_SCALE_SMALL, CV_WHITE, CHAR_THICKNESS);
+   
         /* If the detected class is date and the index is stored in the formatted string */
         if (det[i].c == 0 && (date_struc_map.find(i) != date_struc_map.end()))
-        {
-            for (int ymd = 1; ymd<4; ymd++)
+        {   cv::Scalar color = CV_WHITE ; 
+            
+            for (int ymd = 1; ymd<5; ymd++)
             {
                 y += LINE_HEIGHT;
                 stream.str("");
@@ -507,11 +505,26 @@ void print_result()
                 case (3):
                     stream<<"Day: "<< date_struc_map[i].day;
                     break;
+                case (4):
+                    if (date_struc_map[i].remaining_days == -1 )
+                    {
+                        stream<<"Date Expired !!";
+                        color = CV_RED;
+                    }
+                    else 
+                    {
+                        stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
+                        color = CV_GREEN ;
+                    }
+                    break; 
                 default:
                     break;
                 }
 
-                write_string_rgb(stream.str(), draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+                //write_string_rgb(stream.str(), draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
+                cv::putText(frame, stream.str(), cv::Point(x, y), CV_FONT, 
+                            CHAR_SCALE_SMALL, color, CHAR_THICKNESS);
+   
             }
 
         }
@@ -519,7 +532,7 @@ void print_result()
     }
 
     mtx.unlock();
-    return;
+    return frame;
 }
 
 
@@ -562,10 +575,23 @@ int date_extraction_on_frame()
     duration = std::chrono::duration_cast<std::chrono::milliseconds>(t4 - t3).count();
     std::cout << "Date-Extraction Time(ms): "<< duration << " ms\n";
 
-    draw_bounding_box();
-    print_result();
-
     return 0;
+}
+
+cv::Mat create_output_frame()
+{
+    /* Create a black background image of size 1080x720 */
+    cv::Mat background(DISP_OUTPUT_HEIGHT, DISP_OUTPUT_WIDTH, frame_g.type(), cv::Scalar(0, 0, 0));
+
+    /* Resize the original image to fit within 960x720 */
+    cv::Mat resizedImage;
+    cv::resize(frame_g, resizedImage, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
+
+    /* Copy the resized image to the left side of the background (0 to 960) */
+    cv::Rect roi(cv::Rect(0, 0, resizedImage.cols, resizedImage.rows));
+    resizedImage.copyTo(background(roi));
+    
+    return background;
 }
 
 int main(int argc, char *argv[])
@@ -583,6 +609,8 @@ int main(int argc, char *argv[])
 
     /*Load the model */
     model_inf_runtime.LoadModel(model_dir);
+
+
 
     std::cout << "Mode is: " << argv[1] << std::endl;
     std::string inp_mode = argv[1];
@@ -611,8 +639,22 @@ int main(int argc, char *argv[])
                 return -1;
             }
 
-            cv::imshow("output", frame_g);
-            cv::waitKey(WAIT_TIME);
+            /* Draw bounding box on the frame */
+            draw_bounding_box();
+            cout<<"bb drawn\n" ; 
+            /*  Create Display frame */
+            cv::Mat disp_frame ; 
+            disp_frame = create_output_frame();
+            cout<<"disp drawn\n" ;
+            /* Print result on the frame */
+            disp_frame = print_result(disp_frame);
+            cout<<"res drawn\n" ;
+            /* Display the resulting image */
+            cv::imshow("Output Image", disp_frame);
+            cv::waitKey(0);
+            // cv::waitKey(WAIT_TIME);
+
+
         }
     } /* Include video mode */
     else
