@@ -1,12 +1,12 @@
 #include "define.h"
-#include "box.h"
-#include "MeraDrpRuntimeWrapper.h"
+#include "../common/box.h"
+#include "../common/MeraDrpRuntimeWrapper.h"
 #include "image_proc/image_processing.h"
-#include "date_chck_module/date_check.h"
-#include "regex_module/regex_function.h"
-#include "tess_module/TesseractEngine.h"
-#include "text_module/text_processing.h"
-#include "utils/common_utils.h"
+#include "../common/date_chck_module/date_check.h"
+#include "../common/regex_module/regex_function.h"
+#include "../common/tess_module/TesseractEngine.h"
+#include "../common/text_proc_module/TextProc.h"
+#include "../common/utils/common_utils.h"
 
 
 using namespace std;
@@ -211,7 +211,7 @@ void R_Post_Proc(float *floatarr)
                 for (x = 0; x < num_grid; x++)
                 {
                     offs = yolo_offset(n, b, y, x);
-                    /*Fetch Bounding Bbox params and objectness_score [4+1] associated with each BB from the model output*/
+                    /*Fetch Bounding BBox params and objectness_score [4+1] associated with each BB from the model output*/
                     tx = floatarr[offs];
                     ty = floatarr[yolo_index(n, offs, 1)];
                     tw = floatarr[yolo_index(n, offs, 2)];
@@ -240,7 +240,7 @@ void R_Post_Proc(float *floatarr)
 
                     objectness = sigmoid(tc);
 
-                    Bbox bb = {center_x, center_y, box_w, box_h};
+                    BBox bb = {center_x, center_y, box_w, box_h};
 
                     /* Get the class prediction associated with each BB  [5: ] */
                     for (i = 0; i < NUM_CLASS; i++)
@@ -279,7 +279,12 @@ void R_Post_Proc(float *floatarr)
     return;
 }
 
-
+/*****************************************
+ * Function Name : date_extraction 
+ * Description   : Extract date from the image and store the date on the map
+ * Arguments     : -
+ * Return value  : -
+ ******************************************/
 void date_extraction()
 {
     mtx.lock();
@@ -651,9 +656,23 @@ int main(int argc, char *argv[])
             cout<<"res drawn\n" ;
             /* Display the resulting image */
             cv::imshow("Output Image", disp_frame);
-            cv::waitKey(0);
-            // cv::waitKey(WAIT_TIME);
 
+            /* If defined for user to hit the key */
+            #ifdef USER_KEY_HIT
+            int key = 0;
+
+            while (key != 27) // 'ESC' key (ASCII code 27)
+            {
+                key = cv::waitKey(0);
+            }
+            
+            // User pressed 'ESC' key, close the image window
+            cv::destroyAllWindows();
+
+            #else
+            cv::waitKey(WAIT_TIME);
+            cv::destroyAllWindows();
+            #endif
 
         }
     } /* Include video mode */
@@ -661,6 +680,6 @@ int main(int argc, char *argv[])
     {
         std::cout << "No suitable running mode specified" << std::endl;
     }
-
+    /* Exit the program */
     return 0;
 }

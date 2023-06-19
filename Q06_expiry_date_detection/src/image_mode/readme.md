@@ -1,24 +1,26 @@
 # Date Extraction: Image Mode
 
 ## Application: Overview 
-
-This is image mode implementation of the expiry date detection application [`readme`](../readme.md)
+This is image mode implementation of the expiry date detection application [`readme`](../../readme.md)
 
 ## Application: Requirements 
 
-It is same as mentioned in the [Requirements](../readme.md#application-requirements)
+It is same as mentioned in the [Requirements](../../readme.md#application-requirements)
 
 ## Application: Build Stage 
 
-It is same as mentioned in the [Built Stage](../readme.md#application-build-stage)
+It is same as till step `10` mentioned in the [Built Stage](../../readme.md#application-build-stage)
+- At step 10, build with `make` command 
+```sh
+make -j$(nproc) date_extraction_img
+```
 
-NOTE: 
-1.  The output file generated will be 
+The output file generated will be 
 - date_extraction_img
 
 ## Application: Deploy Stage
 
-For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](../exe/) folder.
+For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](../../exe/) folder.
 
 |File | Details |
 |:---|:---|
@@ -30,7 +32,7 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 
 Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
 * At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
-   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
+   * Copy the files present in [exe](../../exe) directory, which are listed in the table above.
    * Copy the generated `date_extraction` application file if the application file is built at [build stage](#application-build-stage)
 
 * Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.

@@ -21,7 +21,7 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 #### Image Mode 
 
-The application to test with images is provided here [Link](./etc/readme.md)
+The application to test with images is provided here [Link](./src/image_mode/readme.md)
 
 #### Demo 
 <!-- <img src = "./images/ObjectTracking.gif" width="480" height="320"> -->
@@ -124,10 +124,10 @@ mkdir -p build && cd build
 cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
 ```
 ```sh
-make -j$(nproc)
+make -j$(nproc) date_extraction_cam
 ```
 The following application file would be generated in the `src/build` directory
-- date_extraction
+- date_extraction_cam
 
 
 ## Application: Deploy Stage

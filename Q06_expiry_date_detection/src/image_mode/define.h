@@ -109,7 +109,7 @@ struct date_struct
 /*Image display out*/
 #define IMAGE_OUTPUT_WIDTH          (960)
 #define IMAGE_OUTPUT_HEIGHT         (720)
-
+#define USER_KEY_HIT
 #define WAIT_TIME                   (10000) /*in miliseconds */ 
 
 #endif

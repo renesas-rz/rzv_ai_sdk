@@ -50,7 +50,7 @@
  * Includes
  ******************************************/
 /*DRP-AI TVM[*1] Runtime*/
-#include "MeraDrpRuntimeWrapper.h"
+#include "../common/MeraDrpRuntimeWrapper.h"
 /*Pre-processing Runtime Header*/
 #include "PreRuntime.h"
 /*Definition of Macros & other variables*/
@@ -62,15 +62,17 @@
 /*Wayland control*/
 #include "wayland.h"
 /*box drawing*/
-#include "box.h"
+#include "../common/box.h"
 /*Tesseract Extraction*/
-#include "tess_module/TesseractEngine.h"
+#include "../common/tess_module/TesseractEngine.h"
 /*Regular Expression Module */
-#include "regex_module/regex_function.h"
+#include "../common/regex_module/regex_function.h"
 /* text processing */
-#include "text_proc_module/TextProc.h"
+#include "../common/text_proc_module/TextProc.h"
 /* Date checking module*/
-#include "date_chck_module/date_check.h"
+#include "../common/date_chck_module/date_check.h"
+/* Common Utils: Yolo, label list file load*/
+#include "../common/utils/common_utils.h"
 
 using namespace std;
 /*****************************************
@@ -116,16 +118,6 @@ static DateChecker date_checker;
 /*Variable for Regex Dict */
 static map<boost::regex, string> regex_dict_g;
 
-/*****************************************
- * Function Name     : float16_to_float32
- * Description       : Function by Edgecortex. Cast uint16_t a into float value.
- * Arguments         : a = uint16_t number
- * Return value      : float = float32 number
- ******************************************/
-float float16_to_float32(uint16_t a)
-{
-    return __extendXfYf2__<uint16_t, uint16_t, 10, float, uint32_t, 23>(a);
-}
 
 /*****************************************
  * Function Name : timedifference_msec
@@ -158,37 +150,6 @@ static int8_t wait_join(pthread_t *p_join_thread, uint32_t join_time)
         ret_err = pthread_timedjoin_np(*p_join_thread, NULL, &join_timeout);
     }
     return ret_err;
-}
-
-/*****************************************
- * Function Name     : load_label_file
- * Description       : Load label list text file and return the label list that contains the label.
- * Arguments         : label_file_name = filename of label list. must be in txt format
- * Return value      : vector<string> list = list contains labels
- *                     empty if error occurred
- ******************************************/
-vector<string> load_label_file(string label_file_name)
-{
-    vector<string> list = {};
-    vector<string> empty = {};
-    ifstream infile(label_file_name);
-
-    if (!infile.is_open())
-    {
-        return list;
-    }
-
-    string line = "";
-    while (getline(infile, line))
-    {
-        list.push_back(line);
-        if (infile.fail())
-        {
-            return empty;
-        }
-    }
-
-    return list;
 }
 
 /*****************************************
@@ -251,83 +212,6 @@ int8_t get_result()
     return ret;
 }
 
-/*****************************************
- * Function Name : sigmoid
- * Description   : Helper function for YOLO Post Processing
- * Arguments     : x = input argument for the calculation
- * Return value  : sigmoid result of input x
- ******************************************/
-double sigmoid(double x)
-{
-    return 1.0 / (1.0 + exp(-x));
-}
-
-/*****************************************
- * Function Name : softmax
- * Description   : Helper function for YOLO Post Processing
- * Arguments     : val[] = array to be computed softmax
- * Return value  : -
- ******************************************/
-void softmax(float val[NUM_CLASS])
-{
-    float max_num = -FLT_MAX;
-    float sum = 0;
-    int32_t i;
-    for (i = 0; i < NUM_CLASS; i++)
-    {
-        max_num = max(max_num, val[i]);
-    }
-
-    for (i = 0; i < NUM_CLASS; i++)
-    {
-        val[i] = (float)exp(val[i] - max_num);
-        sum += val[i];
-    }
-
-    for (i = 0; i < NUM_CLASS; i++)
-    {
-        val[i] = val[i] / sum;
-    }
-    return;
-}
-
-/*****************************************
-* Function Name : yolo_index
-* Description   : Get the index of the bounding box attributes based on the input offset
-* Arguments     : n = output layer number
-                  offs = offset to access the bounding box attributes
-*                 channel = channel to access each bounding box attribute.
-* Return value  : index to access the bounding box attribute.
-******************************************/
-int32_t yolo_index(uint8_t n, int32_t offs, int32_t channel)
-{
-    uint8_t num_grid = num_grids[n];
-    return offs + channel * num_grid * num_grid;
-}
-
-/*****************************************
-* Function Name : yolo_offset
-* Description   : Get the offset nuber to access the bounding box attributes
-*                 To get the actual value of bounding box attributes, use yolo_index() after this function.
-* Arguments     : n = output layer number [0~2].
-                  b = Number to indicate which bounding box in the region [0~4]
-*                 y = Number to indicate which region [0~13]
-*                 x = Number to indicate which region [0~13]
-* Return value  : offset to access the bounding BBox attributes.
-******************************************/
-int32_t yolo_offset(uint8_t n, int32_t b, int32_t y, int32_t x)
-{
-
-    uint8_t num = num_grids[n];
-    uint32_t prev_layer_num = 0;
-    int32_t i = 0;
-
-    for (i = 0; i < n; i++)
-    {
-        prev_layer_num += NUM_BB * (NUM_CLASS + 5) * num_grids[i] * num_grids[i];
-    }
-    return prev_layer_num + b * (NUM_CLASS + 5) * num * num + y * num + x;
-}
 
 /*****************************************
  * Function Name : R_Post_Proc
@@ -451,7 +335,12 @@ void R_Post_Proc(float *floatarr)
     return;
 }
 
-
+/*****************************************
+ * Function Name : date_extraction 
+ * Description   : Extract date from the image and store the date on the map
+ * Arguments     : -
+ * Return value  : -
+ ******************************************/
 void date_extraction()
 {
     mtx.lock();
@@ -517,7 +406,6 @@ void date_extraction()
 
         cout<<"Extracted text : '"<< processed_text <<"'"<<endl;
 
-        
         
         /*check for empty string*/
         if (processed_text.length() >= 1)
