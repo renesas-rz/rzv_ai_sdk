@@ -18,12 +18,6 @@ public:
     int calculateDaysRemaining(const std::string& year, const std::string& month, const std::string& day);
 
 private:
-    struct date_var 
-    {
-        int year;
-        int month;
-        int day;
-    };
 
     void getCurrentDate(int& currentYear, int& currentMonth, int& currentDay);
     void convertToDate(const std::string& year, const std::string& month, const std::string& day, int& inputYear, int& inputMonth, int& inputDay);

@@ -21,11 +21,11 @@ void DateChecker::getCurrentDate(int& currentYear, int& currentMonth, int& curre
 
 // Function to convert year, month, and day strings to integers
 void DateChecker::convertToDate(const std::string& year, const std::string& month, const std::string& day, 
-                                int& inputYear, int& inputMonth, int& inputDay) {
+                                int& targetYear, int& targetMonth, int& targetDay) {
     
     /* Year */
     if (year.length()>0)
-        std::istringstream(year) >> inputYear;
+        std::istringstream(year) >> targetYear;
     
     /* Month */
     if (month.length()>0)
@@ -34,18 +34,18 @@ void DateChecker::convertToDate(const std::string& year, const std::string& mont
         {
             // Remove leading zero if month is "08" or "09"
             std::string monthNoZero = month.substr(1);
-            std::istringstream(monthNoZero) >> inputMonth;
+            std::istringstream(monthNoZero) >> targetMonth;
         }
         else if (month.length() > 2 )
         {
-            std::string inputMonthUpper = month;
-            std::transform(inputMonthUpper.begin(), inputMonthUpper.end(), inputMonthUpper.begin(), ::toupper);
-            inputMonth = monthMap[inputMonthUpper];
+            std::string targetMonthUpper = month;
+            std::transform(targetMonthUpper.begin(), targetMonthUpper.end(), targetMonthUpper.begin(), ::toupper);
+            targetMonth = monthMap[targetMonthUpper];
         
         } 
         else 
         {
-            std::istringstream(month) >> inputMonth;
+            std::istringstream(month) >> targetMonth;
         }
     }
 
@@ -56,35 +56,35 @@ void DateChecker::convertToDate(const std::string& year, const std::string& mont
         {
             // Remove leading zero if month is "08" or "09"
             std::string monthNoZero = month.substr(1);
-            std::istringstream(monthNoZero) >> inputMonth;
+            std::istringstream(monthNoZero) >> targetMonth;
         }
         else 
         {
-            std::istringstream(day) >> inputDay;
+            std::istringstream(day) >> targetDay;
         }
     }   
     
 }
 
 // Function to check if the specified date has passed the current date
-bool DateChecker::is_expired(int& currentYear, int& currentMonth, int& currentDay, int& inputYear, int& inputMonth, int& inputDay) {
+bool DateChecker::is_expired(int& currentYear, int& currentMonth, int& currentDay, int& targetYear, int& targetMonth, int& targetDay) {
 
     /* Check for expiry date */
-    if (inputYear < currentYear) {
+    if (targetYear < currentYear) {
         return true;
     } 
-    else if (inputYear > currentYear) 
+    else if (targetYear > currentYear) 
     {
         return false;
     } 
     else 
     {
-        if (inputMonth < currentMonth) {
+        if (targetMonth < currentMonth) {
             return true;
-        } else if (inputMonth > currentMonth) {
+        } else if (targetMonth > currentMonth) {
             return false;
         } else {
-            return inputDay < currentDay;
+            return targetDay < currentDay;
         }
     }
 }
@@ -113,44 +113,67 @@ int DateChecker::calculateDaysRemaining(const std::string& year, const std::stri
 
     getCurrentDate(currentYear, currentMonth, currentDay);
     
-    int inputYear = -1, inputMonth = -1, inputDay = -1;
+    int targetYear = -1, targetMonth = -1, targetDay = -1;
 
-    convertToDate(year, month, day, inputYear, inputMonth, inputDay);
+    /* Covert to integer for the target year */
+    convertToDate(year, month, day, targetYear, targetMonth, targetDay);
 
     /* Handle empty data */
-    if (inputYear == -1)
-        inputYear = currentYear ; 
+    if (targetYear == -1)
+        targetYear = currentYear ; 
     
-    if (inputDay == -1) 
-        inputDay = 1 ;
+    if (targetDay == -1) 
+        targetDay = 1 ;
     
-    if (inputMonth == -1)
-        inputMonth = currentMonth ;
+    if (targetMonth == -1)
+        targetMonth = currentMonth ;
 
     /* if the expiry is in range */
-    if (is_expired(currentYear,  currentMonth,  currentDay,  inputYear,  inputMonth,  inputDay))
+    if (is_expired(currentYear,  currentMonth,  currentDay,  targetYear,  targetMonth,  targetDay))
     {
         return -1;
     }
     else 
-    {
+    { 
+        if (currentYear == targetYear && currentMonth == targetMonth) {
+        // Current year and month are the same as the target year and month
+        return targetDay - currentDay;
+        
+        }
+
         // Calculate the days remaining in the current year
-        for (int month = currentMonth + 1; month <= 12; ++month) {
-            daysRemaining += getDaysInMonth(month, currentYear);
-        }
-        daysRemaining += getDaysInMonth(currentMonth, currentYear) - currentDay;
+        if (currentYear == targetYear) {
+            /* Get days with respect to next month to target month */
+            for (int month = currentMonth + 1; month <= targetMonth; ++month) {
+                daysRemaining += getDaysInMonth(month, currentYear);
+            }
 
-        // Calculate the days in the intermediate years (if any)
-        for (int year = currentYear + 1; year < inputYear; ++year) {
-            daysRemaining += isLeapYear(year) ? 366 : 365;
-        }
+            /* calculate days in current month and reduce the current day to get the remaining day*/
+            daysRemaining += getDaysInMonth(currentMonth, currentYear) - currentDay;
+            /* Add the target days remaining for the target month */
+            daysRemaining += targetDay;
+        } 
+        else 
+        {
+            /* Calculate the days remaining in the current year */ 
+            for (int month = currentMonth + 1; month <= 12; ++month) {
+                daysRemaining += getDaysInMonth(month, currentYear);
+            }
+            /* calculate days in current month and reduce the current day to get the remaining day*/
+            daysRemaining += getDaysInMonth(currentMonth, currentYear) - currentDay;
 
-        // Calculate the days in the input year up to the input date
-        for (int month = 1; month < inputMonth; ++month) {
-            daysRemaining += getDaysInMonth(month, inputYear);
-        }
-        daysRemaining += inputDay;
+            // Calculate the days in the intermediate years (if any)
+            for (int year = currentYear + 1; year < targetYear; ++year) {
+                daysRemaining += isLeapYear(year) ? 366 : 365;
+            }
 
+            // Calculate the days in the target year up to the target date
+            for (int month = 1; month < targetMonth; ++month) {
+                daysRemaining += getDaysInMonth(month, targetYear);
+            }
+            daysRemaining += targetDay;
+        }
+            
         return daysRemaining;
     }
 
