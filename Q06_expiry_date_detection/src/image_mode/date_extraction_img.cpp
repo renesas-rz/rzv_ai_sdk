@@ -7,6 +7,7 @@
 #include "../common/tess_module/TesseractEngine.h"
 #include "../common/text_proc_module/TextProc.h"
 #include "../common/utils/common_utils.h"
+#include "../common/comm_define.h"
 
 
 using namespace std;
@@ -368,7 +369,7 @@ void date_extraction()
                 cout << "Year : " << result_struc.year << " Month : " << result_struc.month << " Day: " << result_struc.day<<endl;
                 
                 /* Calculate remaining days */
-                int day_rem = date_checker.calculateDaysRemaining (result_struc.year, result_struc.month, result_struc.day);
+                int day_rem = date_checker.calculate_days_left (result_struc.year, result_struc.month, result_struc.day);
                 cout<< "Days Remaining "<< day_rem <<endl;
 
                 ret_date_struc.remaining_days = day_rem ;

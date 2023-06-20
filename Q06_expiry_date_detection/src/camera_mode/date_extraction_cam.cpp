@@ -61,6 +61,8 @@
 #include "image.h"
 /*Wayland control*/
 #include "wayland.h"
+/*Common Definitions of Macros*/
+#include "../common/comm_define.h"
 /*box drawing*/
 #include "../common/box.h"
 /*Tesseract Extraction*/
@@ -429,7 +431,7 @@ void date_extraction()
                 ret_date_struc.day = result_struc.day;
 
                 /* Calculate remaining days */
-                int day_rem = date_checker.calculateDaysRemaining (result_struc.year, result_struc.month, result_struc.day);
+                int day_rem = date_checker.calculate_days_left(result_struc.year, result_struc.month, result_struc.day);
                 cout<< "Days Remaining "<< day_rem <<endl;
                 ret_date_struc.remaining_days = day_rem ;
 

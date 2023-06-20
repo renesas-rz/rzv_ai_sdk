@@ -8,12 +8,13 @@ This is image mode implementation of the expiry date detection application [`rea
 It is same as mentioned in the [Requirements](../../readme.md#application-requirements)
 
 ## Application: Build Stage 
-
-It is same as till step `10` mentioned in the [Built Stage](../../readme.md#application-build-stage)
+- Follow the same as mentioned in the [Built Stage](../../readme.md#application-build-stage)
+- On step 9, For timed termination, User need to comment out [`#define USER_KEY_HIT](./define.h#L114), Default is 10 sec termination. 
 - At step 10, build with `make` command 
 ```sh
 make -j$(nproc) date_extraction_img
 ```
+
 
 The output file generated will be 
 - date_extraction_img
@@ -68,3 +69,6 @@ Folder structure in the rootfs (SD Card) would look like:
     ```sh
     ./date_extraction_img IMAGE sample_img.jpg
     ```
+#### Application: Termination
+* User needs to press `Esc` key to stop the application. 
+* 

@@ -52,77 +52,24 @@
 /*****************************************
 * includes
 ******************************************/
+
+#include <atomic>
+#include <cstring>
+#include <errno.h>
+#include <fcntl.h>
+#include <float.h>
+#include <iomanip>
+#include <semaphore.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
-#include <errno.h>
-#include <vector>
 #include <map>
-#include <fstream>
-#include <iomanip>
-#include <cstring>
-#include <float.h>
-#include <atomic>
-#include <semaphore.h>
 #include <math.h>
-#include <fstream>
-#include <sys/time.h>
-#include <climits>
-#include <builtin_fp16.h>
-#include <mutex>
-#include <string>
+#include <unistd.h>
 #include <unordered_map>
-
-
-/*****************************************
-* Static Variables for YOLOv3
-* Following variables need to be changed in order to custormize the AI model
-*  - model_dir = directory name of DRP-AI TVM[*1] Model Object files
-******************************************/
-/* Model Binary */
-const static std::string model_dir = "date_tinyyolov3_onnx";
-/* Pre-processing Runtime Object */
-const static std::string pre_dir = model_dir + "/preprocess";
-/* Anchor box information */
-const static double anchors[] =
-{
-    21, 12,  
-    57, 11, 
-    104, 15,  
-    62, 27, 
-    146, 28, 
-    206, 47
-};
-/* Class labels to be classified */
-const static std::string label_list     = "date_class_labels.txt";
-/* Empty since labels will be loaded from label_list file */
-static std::vector<std::string> label_file_map = {};
-
-/*****************************************
-* Macro for YOLOv3
-******************************************/
-
-/* Number of class to be detected */
-#define NUM_CLASS                   (4)
-/* Number for [region] layer num parameter */
-#define NUM_BB                      (3)
-#define NUM_INF_OUT_LAYER           (2)
-/* Thresholds */
-#define TH_PROB                     (0.5f)
-#define TH_NMS                      (0.5f)
-/* Size of input image to the model */
-#define MODEL_IN_W                  (416)
-#define MODEL_IN_H                  (416)
-
-/* Number of grids in the image. The length of this array MUST match with the NUM_INF_OUT_LAYER */
-const static uint8_t num_grids[] = { 13, 26};
-/* Number of DRP-AI output */
-const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * num_grids[0]
-                                      + (NUM_CLASS + 5) * NUM_BB * num_grids[1] * num_grids[1]; 
+#include <vector>
 
 /*****************************************
 * Macro for Application
@@ -183,9 +130,7 @@ const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * 
 #define RED_DATA                    (0xFF0000u)
 #define WHITE_DATA_YUYV             (0xEB8080u) /* in YUYV */
 #define BLACK_DATA_YUYV             (0x108080u)
-/*RESIZE_SCALE=((OUTPUT_WIDTH/IMAGE_WIDTH > OUTPUT_HEIGHT/IMAGE_HEIGHT) ?
-        OUTPUT_HEIGHT/IMAGE_HEIGHT : OUTPUT_WIDTH/IMAGE_WIDTH)*/
-#define RESIZE_SCALE                (1.5)
+#define RESIZE_SCALE                (1.5) /* Resize related to 640x480 input to 960x720*/
 
 
 /*Waiting Time*/
@@ -202,22 +147,5 @@ const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * 
 /*For drawing the bounding box label on image*/
 #define FONTDATA_WIDTH              (6)
 #define FONTDATA_HEIGHT             (8)
-
-/****************************************
- * Structure to store the date variable
-*****************************************/
-struct date_struct
-{
-    std::string txt_extr;
-    std::string year;
-    std::string month;
-    std::string day;
-    int32_t remaining_days;
-};
-
-#define MIN_CROP_HEIGHT             (84)
-#define TESS_IMG_RESOLUTION         (330)
-#define CROP_IMG_STRETCH            (10) // Pixel value Used to extended crop section from the image
-
 
 #endif

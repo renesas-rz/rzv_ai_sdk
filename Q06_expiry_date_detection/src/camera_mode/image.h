@@ -24,10 +24,11 @@
 
 #ifndef IMAGE_H
 #define IMAGE_H
-
+#include <opencv2/opencv.hpp>
 #include "define.h"
 #include "ascii.h"
-#include <opencv2/opencv.hpp>
+#include "../common/comm_define.h"
+
 
 class Image
 {

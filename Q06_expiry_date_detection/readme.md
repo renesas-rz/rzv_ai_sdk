@@ -177,7 +177,7 @@ Folder structure in the rootfs (SD Card) would look like:
     ```
     * Run the application
     ```sh
-    ./date_extraction
+    ./date_extraction_cam
     ```
 
 #### Application: Termination 

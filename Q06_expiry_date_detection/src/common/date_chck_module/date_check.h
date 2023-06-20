@@ -1,3 +1,27 @@
+/***********************************************************************************************************************
+* DISCLAIMER
+* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
+* other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
+* applicable laws, including copyright laws.
+* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
+* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
+* EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
+* SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
+* SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
+* this software. By using this software, you agree to the additional terms and conditions found by accessing the
+* following link:
+* http://www.renesas.com/disclaimer
+*
+* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+***********************************************************************************************************************/
+/***********************************************************************************************************************
+* File Name    : date_check.h
+* Version      : v1.00
+* Description  : RZ/V2L AI SDK Sample Application: Expiry Date Extraction
+***********************************************************************************************************************/
+
 #ifndef DATE_CHECK_H
 #define DATE_CHECK_H
 
@@ -15,15 +39,15 @@ class DateChecker {
 public:
     DateChecker();
     bool is_expired(int& currentYear, int& currentMonth, int& currentDay, int& inputYear, int& inputMonth, int& inputDay);
-    int calculateDaysRemaining(const std::string& year, const std::string& month, const std::string& day);
+    int calculate_days_left(const std::string& year, const std::string& month, const std::string& day);
 
 private:
 
-    void getCurrentDate(int& currentYear, int& currentMonth, int& currentDay);
-    void convertToDate(const std::string& year, const std::string& month, const std::string& day, int& inputYear, int& inputMonth, int& inputDay);
+    void get_curr_date(int& currentYear, int& currentMonth, int& currentDay);
+    void convert_date_int(const std::string& year, const std::string& month, const std::string& day, int& inputYear, int& inputMonth, int& inputDay);
     std::unordered_map<std::string, int> monthMap;
-    int getDaysInMonth(int month, int year);
-    bool isLeapYear(int year);
+    int get_days_in_mnth(int month, int year);
+    bool is_leap_year(int year);
     
 };
 
