@@ -105,7 +105,15 @@ ymd_struct get_yymmddd(const std::map<boost::regex, std::string>& regex_dict,
         if (boost::regex_match(inp_str, match, regex_obj)) {
             result.matched=true;
             result.format=date_format;
-            result.year = match["year"].str();
+            if (match["year"].str().length()==2)
+            {
+                result.year = "20" + match["year"].str();
+            } 
+            else 
+            {
+                result.year = match["year"].str();
+            }
+            
             result.month = match["month"].str();
             result.day = match["day"].str();
             break;

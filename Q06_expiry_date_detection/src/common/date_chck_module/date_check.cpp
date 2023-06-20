@@ -34,6 +34,7 @@ DateChecker::DateChecker() {
         {"JAN", 1}, {"FEB", 2}, {"MAR", 3}, {"APR", 4}, {"MAY", 5}, {"JUN", 6},
         {"JUL", 7}, {"AUG", 8}, {"SEP", 9}, {"OCT", 10}, {"NOV", 11}, {"DEC", 12}
     };
+    
 }
 
 // Function to get the current year, month, and day as integers
@@ -48,13 +49,14 @@ void DateChecker::get_curr_date(int& curr_year, int& curr_month, int& curr_day) 
 
 
 // Function to convert year, month, and day strings to integers
-void DateChecker::convert_date_int(const std::string& year, const std::string& month, const std::string& day, 
+void DateChecker::convert_date_int(std::string& year, std::string& month, std::string& day, 
                                 int& target_year, int& target_month, int& target_day) {
     
     /* Year */
     if (year.length()>0)
+    {
         std::istringstream(year) >> target_year;
-    
+    }
     /* Month */
     if (month.length()>0)
     {
@@ -155,7 +157,7 @@ int DateChecker::get_days_in_mnth(int month, int year)
  * @param day : target day 
  * @return int : number of days remaining [-1 if target<current]
  */
-int DateChecker::calculate_days_left(const std::string& year, const std::string& month, const std::string& day) 
+int DateChecker::calculate_days_left(std::string& year, std::string& month, std::string& day) 
 {
     int days_left = 0; // Not including the current day 
 

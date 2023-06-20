@@ -54,7 +54,7 @@ TBD
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -111,7 +111,7 @@ cp -r boost_1_81_0/boost include/
 rm boost_1_81_0.tar.bz2
 rm -rf boost_1_81_0
 ```
-9. [Optional] For Coral Camera Application, uncomment [`// #define INPUT_CORAL`](./src/define.h#L131) 
+9. [Optional] For Coral Camera Application, uncomment [`// #define INPUT_CORAL`](./src/camera_mode/define.h#L94) 
 ```
 # define INPUT_CORAL
 ```
@@ -138,13 +138,13 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |:---|:---|
 |date_tinyyolov3_onnx | Model object files and pre-process files for deployment. |
 |date_class_labels.txt | Label list for Object Detection. |
-|date_extraction | application file. |
+|date_extraction_cam | application file. |
 
 
 Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
 * At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
    * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `date_extraction` application file if the application file is built at [build stage](#application-build-stage)
+   * Copy the generated `date_extraction_cam` application file if the application file is built at [build stage](#application-build-stage)
 
 * Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
 
@@ -164,7 +164,7 @@ Folder structure in the rootfs (SD Card) would look like:
             │   ├── deploy.so 
             │   └── preprocess/
             ├── date_class_labels.txt
-            └── date_extraction
+            └── date_extraction_cam
 
 ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.

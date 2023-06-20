@@ -497,8 +497,8 @@ int8_t print_result(Image *img)
     uint32_t total_time = ai_time + pre_time + post_time;
 
     /*point(x, y) to put text*/
-    uint32_t draw_offset_x = DRPAI_IN_WIDTH * RESIZE_SCALE + TEXT_WIDTH_OFFSET;
-    uint32_t y = 0;
+    uint32_t draw_offset_x = DRPAI_IN_WIDTH * RESIZE_SCALE + TEXT_WIDTH_OFFSET; // Taking X to black region
+    uint32_t y = LINE_HEIGHT * TIME_LINE_NUM + LINE_HEIGHT_OFFSET; // Taking Y to print after Inference time 
 
     uint32_t print_time = 0;
     string print_str = "";
@@ -517,7 +517,7 @@ int8_t print_result(Image *img)
         stream.str("");
 
         /* Point (y) to print the class */
-        y = LINE_HEIGHT * TIME_LINE_NUM + LINE_HEIGHT_OFFSET + result_cnt * LINE_HEIGHT ;
+        y += LINE_HEIGHT ;
 
         /* Create bounding box label */
         stream << "Class "<< ":" << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";

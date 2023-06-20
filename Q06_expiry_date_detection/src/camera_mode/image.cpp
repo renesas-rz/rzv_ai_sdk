@@ -223,10 +223,10 @@ cv::Mat Image::get_crop_gray(int32_t x_center, int32_t y_center, int32_t width, 
     height += CROP_IMG_STRETCH*2;
 
     /* Check if the rectangle box is in the image range */
-    x_min = x_min < 0 ? 0 : x_min;
+    x_min = x_min < 0 ? 0: x_min;
     y_min = y_min < 0 ? 0 : y_min;
-    width = x_min+width < img_w ? width : img_w;
-    height= y_min+height < img_h ? height : img_h;
+    width = x_min+width < img_w - 1? width : img_w - x_min -1;
+    height= y_min+height < img_h - 1? height : img_h - y_min -1;
 
     /*OpenCV original image data is in YUYV format  */
     cv::Mat org_image(img_h, img_w, CV_8UC2, img_buffer[buf_id]);

@@ -39,15 +39,16 @@ class DateChecker {
 public:
     DateChecker();
     bool is_expired(int& currentYear, int& currentMonth, int& currentDay, int& inputYear, int& inputMonth, int& inputDay);
-    int calculate_days_left(const std::string& year, const std::string& month, const std::string& day);
+    int calculate_days_left(std::string& year, std::string& month, std::string& day);
 
 private:
 
     void get_curr_date(int& currentYear, int& currentMonth, int& currentDay);
-    void convert_date_int(const std::string& year, const std::string& month, const std::string& day, int& inputYear, int& inputMonth, int& inputDay);
+    void convert_date_int(std::string& year, std::string& month, std::string& day, int& inputYear, int& inputMonth, int& inputDay);
     std::unordered_map<std::string, int> monthMap;
     int get_days_in_mnth(int month, int year);
     bool is_leap_year(int year);
+    
     
 };
 
