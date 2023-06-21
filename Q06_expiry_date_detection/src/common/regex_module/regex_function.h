@@ -25,11 +25,8 @@
 #ifndef REGEX_FUNCTION_H
 #define REGEX_FUNCTION_H
 
-#include <cstring>
-#include <iostream>
-#include <map>
-#include <string>
 #include <boost/regex.hpp>
+#include "../comm_define.h"
 
 struct ymd_struct {
     bool matched;

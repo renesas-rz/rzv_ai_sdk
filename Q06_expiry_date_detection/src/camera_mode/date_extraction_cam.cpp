@@ -339,7 +339,7 @@ void R_Post_Proc(float *floatarr)
 
 /*****************************************
  * Function Name : date_extraction 
- * Description   : Extract date from the image and store the date on the map
+ * Description   : Extract date from the image and store the date on the date_struc_map
  * Arguments     : -
  * Return value  : -
  ******************************************/
@@ -368,31 +368,23 @@ void date_extraction()
             continue;
         }
 
-        /* to remove */
-        cout << "The class detected in the text extraction is: " << det[i].c << endl;
-        printf("Bbox param %d %d %d %d \n", (int)det[i].bbox.x, (int)det[i].bbox.y, (int)det[i].bbox.w, (int)det[i].bbox.h);
-
         /* skipping if height or width is zero */
         if (((int)det[i].bbox.h == 0) || ((int)det[i].bbox.w == 0))
         {
             continue;
         }
-        /*Get the cropped image */
-        cv::Mat crop_img = img.get_crop_gray((int)det[i].bbox.x, (int)det[i].bbox.y,
-                                             (int)det[i].bbox.w, (int)det[i].bbox.h);
 
-        /*Run the Tesseract Engine*/
-
-        /* add the image */
-        printf("Img prop %d %d %d \n", crop_img.cols, crop_img.rows, crop_img.step);
+        /*Get the cropped image with date */
+        cv::Mat crop_img = img.get_crop_gray((int)det[i].bbox.x, (int)det[i].bbox.y, (int)det[i].bbox.w, (int)det[i].bbox.h);
 
         /* Resize when height < Min crop height */
         cv::Mat process_img = img.resize_gray_image(crop_img, MIN_CROP_HEIGHT);
-
-        // Get the initialized Tesseract engine instance
+        
+        /*Run the Tesseract Engine*/
+        /* Get the initialized Tesseract engine instance */ 
         TesseractEngine &tesseract = TesseractEngine::getInstance();
 
-        // Use the initialized Tesseract engine for processing
+        /* Use the initialized Tesseract engine for processing*/ 
         tesseract::TessBaseAPI &tess_ocr_engine = tesseract.getEngine();
 
         /* set the processed image */
@@ -417,7 +409,6 @@ void date_extraction()
             if (!result_struc.matched)
             {
                 cout << "The string '" << processed_text << "' does not match any format" << endl; 
-                // printf("The string '%s' does not match any format !! \n ", processed_text);
             }
             else
             {

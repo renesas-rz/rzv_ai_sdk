@@ -105,9 +105,11 @@ ymd_struct get_yymmddd(const std::map<boost::regex, std::string>& regex_dict,
         if (boost::regex_match(inp_str, match, regex_obj)) {
             result.matched=true;
             result.format=date_format;
-            if (match["year"].str().length()==2)
+
+            if (match["year"].str().length()==2) // if 2 digit year is encountered
             {
-                result.year = "20" + match["year"].str();
+                /* add the prefix "20" */
+                result.year = PREF_YR + match["year"].str();
             } 
             else 
             {

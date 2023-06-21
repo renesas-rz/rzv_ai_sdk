@@ -64,6 +64,7 @@
 #include <string>
 #include <sys/time.h>
 #include <sys/types.h>
+#include <map>
 #include <mutex>
 #include <opencv2/opencv.hpp>
 
@@ -127,5 +128,6 @@ struct date_struct
 #define MIN_CROP_HEIGHT             (84) 
 #define TESS_IMG_RESOLUTION         (330)
 #define CROP_IMG_STRETCH            (5) // Pixel value Used to extended crop section from the image
+#define PREF_YR                     "20" // prefix for the 2 digit year; (23) -> (2023) 
 
 #endif

@@ -71,4 +71,4 @@ Folder structure in the rootfs (SD Card) would look like:
     ```
 #### Application: Termination
 * User needs to press `Esc` key to stop the application. 
-* 
+* For timed termination case, it will terminated gracefully after default 10 sec.

@@ -50,8 +50,8 @@ cv::Mat get_crop_gray(cv::Mat& frame, int32_t x_center, int32_t y_center, int32_
     /* Check the rectangle box is in the image range */
     x_min = x_min < 0 ? 0 : x_min;
     y_min = y_min < 0 ? 0 : y_min;
-    width = x_min + width  < (DRPAI_IN_WIDTH ) ? width   : DRPAI_IN_WIDTH ;
-    height = y_min + height < (DRPAI_IN_HEIGHT ) ? height : DRPAI_IN_HEIGHT;
+    width = x_min + width  < (DRPAI_IN_WIDTH ) ? width   : DRPAI_IN_WIDTH - x_min;
+    height = y_min + height < (DRPAI_IN_HEIGHT ) ? height : DRPAI_IN_HEIGHT - y_min;
 
     /*Define the region of interest (ROI) using a rectangle */
     cv::Rect roi(x_min, y_min, width, height);
