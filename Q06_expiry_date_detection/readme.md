@@ -14,10 +14,18 @@ Extracted date formats from
 "DDst-MMM-YYYY",
 "MMM-DD-YYYY"
 
+>Note: The separator is not limited to "-", it could be any special character like [`@`,`,`,`-`,`.`,` `, `/`].  
+
 This software could be useful in a variety of settings, such as retail stores, hospitals, etc. 
 where managers/users need to verify the product expiry dates.
 
-The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/pdf/1804.02767.pdf).
+The AI model as object detection used for the sample application is [TinyYoloV3](https://arxiv.org/pdf/1804.02767.pdf).
+
+There are 4 classes for object detection.
+- Date : Expiry date
+- Code : Product code if any 
+- Prod : Production tag 
+- Due : Due date tag
 
 #### Image Mode 
 

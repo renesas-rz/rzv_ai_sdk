@@ -420,7 +420,7 @@ void Image::draw_rect(int32_t x, int32_t y, int32_t w, int32_t h, const char *st
     y_max = ((img_h - 2) < y_max) ? (img_h - 2) : y_max;
 
     /* Draw the class and probability */
-    write_string(str, x_min + 1, y_min + 1, back_color_yuyv, front_color_yuyv);
+    write_string(str, x_min - 1, y_min - FONTDATA_HEIGHT - 2, back_color_yuyv, front_color_yuyv);// printing it over the line 
     /* Draw the bounding box */
     draw_line(x_min, y_min, x_max, y_min, front_color_yuyv);
     draw_line(x_max, y_min, x_max, y_max, front_color_yuyv);
