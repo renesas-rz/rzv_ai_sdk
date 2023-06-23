@@ -69,45 +69,55 @@
 #define MODEL_IN_W (128)
 #define MODEL_IN_C (3)
 
-bool running_process_frame     = true;
-
-int font_size   = 1;
-int font_weight = 2;
-int wait_key    = 0;
-int g_count     = 0;
-
-float threshold = 0.5;
-float val;
-double count    = 0;
-unsigned int out;
-/* Default frame interval */
-unsigned int FRAME_INTERVAL = 4; 
+/* Default Batch size */
+const int BATCH_SIZE        = 10;
 /* Default buffer size */
-unsigned int BUFFER_SIZE    = 5;
+unsigned int BUFFER_SIZE    = 2;
+/* Default frame interval */
+unsigned int FRAME_INTERVAL = 10; 
+
+bool running_process_frame     = true;
+bool plot_g = false;
+
+int wait_key        = 0;
+int duration        = 0;
+unsigned int fps    = 0;
+
+float threshold     = 0.5;
+float val           = 1.0;
+float font_size     = 0.7;
+float font_weight   = 2;
+double count        = 0;
+
+uint32_t out_size_arr;
 
 std::vector<double> x;
 std::vector<double> y;
 std::queue<cv::Mat> frame_queue;
+std::vector<float> floatarr(1);
 
-const std::string non_violence      = "Non Violence";
-const std::string violence          = "Violence";
+const std::string non_violence      = "Non Violence activity";
+const std::string violence          = "Violence activity detected !";
 const std::string none              = "None";
-std::string result                  = none;
+std::string result                  =  none;
 
-
-const int BATCH_SIZE = 10;
 cv::VideoCapture cap;
 cv::Mat frame;
-
-uint32_t out_size_arr;
-std::vector<float> floatarr(1);
+cv::Mat display;
+cv::Scalar Color;
 
 MeraDrpRuntimeWrapper embedding_model;
 MeraDrpRuntimeWrapper prediction_model;
 
+void camera_thread(void);
+void process_frames(void);
+void plot_graph(float value);
+void start_runtime(bool flag,float *input);
+void capture_frame(std::string cap_pipeline);
+
+float float16_to_float32(uint16_t a);
 cv::Mat hwc2chw(const cv::Mat &image);
 cv::Mat run_inference(cv::Mat frame);
-cv::Scalar Color;
 
 /*****************************************
  * Function Name     : float16_to_float32
@@ -144,13 +154,23 @@ cv::Mat hwc2chw(const cv::Mat &image)
 void camera_thread(void)
 {
     int frame_count = 0;
-    cv::Point text_position(40, 80);
+    cv::Point text_position(15, 30);
+    cv::Point text_position_fps(535, 30);
+    cv::Point text_position_inftm(359,55);
     /*start capturing frames*/
+    
     while (true)
     {
         frame_count++;
         cv::Mat frame;
         cap.read(frame);
+        /* Breaking the loop if no video frame is detected */
+        if (frame.empty())
+        {
+            std::cout << "[INFO] Video ended or corrupted frame !\n";
+            running_process_frame = false;
+            break;
+        }
         /*check frame interval based on the FRAME_INTERVAL parameter*/
         if (frame_count % FRAME_INTERVAL != 0)
         {
@@ -159,14 +179,23 @@ void camera_thread(void)
             {
                 Color = (result == violence) ? RED : GREEN;
                 putText(frame, result, text_position, cv::FONT_HERSHEY_COMPLEX, font_size, Color, font_weight);
+                putText(frame, "FPS : "+ std::to_string(fps), text_position_fps, cv::FONT_HERSHEY_COMPLEX, font_size, GREEN, font_weight);
+                putText(frame, "AI-Inference Time(ms): "+ std::to_string(duration), text_position_inftm, cv::FONT_HERSHEY_COMPLEX, 0.55, GREEN,font_weight);
             }
-            /*display frame*/
+            /* display output frame*/
             cv::imshow("Camera", frame);
-            wait_key = cv::waitKey(30);
+            wait_key = cv::waitKey(1);
             if (wait_key == 27)
             {
                 running_process_frame = false;
                 break;
+            }
+            /* display graph*/
+            if((x.size()> 10 || y.size()> 10) && plot_g == true)
+            {
+                cv::imshow("Graph Plot",display );
+                cv::waitKey(5);
+                plot_g = false;
             }
             continue;
         }
@@ -174,7 +203,7 @@ void camera_thread(void)
         {
             /*push frames to the queue for processing if queue size is not 100*/
             if (frame_queue.size()<100)
-            frame_queue.push(frame);
+                frame_queue.push(frame);
             frame_count = 0;
         }
     }
@@ -189,21 +218,22 @@ void camera_thread(void)
 void plot_graph(float value)
 {
     count++;
-    g_count++;
     /* push back the count and threshold value to vector array */
-    x.push_back(count);
-    y.push_back(value);
-
-    if(x.size()> 20 || y.size()> 20)
+    if(x.size()< 20 || y.size()< 20)
     {
-        x.erase(x.begin(),x.begin()+1);
-        y.erase(y.begin(),y.begin()+1);
+        x.push_back(count);
+        y.push_back(value);
+    }
+    else
+    {
+        x.erase(x.begin());
+        y.erase(y.begin());
     }
 
     cv::Mat1d xData(x);
     cv::Mat1d yData(y);
     /* Set text position on graph*/
-    cv::Point text_position(40, 80);
+    cv::Point text_position(40,60);
     cv::Ptr<cv::plot::Plot2d> plot = cv::plot::Plot2d::create(xData,yData);
     
     plot->setPlotSize(640,480);
@@ -212,7 +242,6 @@ void plot_graph(float value)
     plot->setMaxX(count+1);
 
     /* Plot graph*/
-    cv::Mat display;
     plot->render(display);
     cv::flip(display,display,0);
     cv::Rect roi(0,0,640,431);
@@ -221,9 +250,7 @@ void plot_graph(float value)
     putText(display,"Threshold : "+ std::to_string(value), text_position, cv::FONT_HERSHEY_COMPLEX, font_size, Color, font_weight);
     putText(display,"1",cv::Point(10,119), cv::FONT_HERSHEY_COMPLEX,0.65,WHITE,1);
     putText(display,"0.5",cv::Point(10,183), cv::FONT_HERSHEY_COMPLEX,0.65,WHITE,1);
-    /* show result on graph */
-    cv::imshow("Graph Plot",display );
-    cv::waitKey(30);
+    plot_g = true;
     return;
 }
 /*****************************************
@@ -261,20 +288,16 @@ void start_runtime(bool flag,float *input)
             {
                 /* Cast FP16 output data to FP32. */
                 floatarr[n] = float16_to_float32(data_ptr[n]);
-                std::cout<<"\n\nfloatarr["<<n<<"]: "<<floatarr[n]<<"\n";
             }
             else
             {
                 /* Cast FP16 output data to FP32. */
                 auto prediction = float16_to_float32(data_ptr[n]);
-                std::cout << "\n\nprediction: " << prediction << "\n";
-                
                 if (prediction >= threshold)
                     result = non_violence;
                 else
                     result = violence;
                 val = (float)prediction;
-                plot_graph(val);
             }
         }
     }
@@ -292,7 +315,6 @@ void start_runtime(bool flag,float *input)
  ******************************************/
 cv::Mat run_inference(cv::Mat frame)
 {
-    auto t1 = std::chrono::high_resolution_clock::now();
     cv::Size size(MODEL_IN_H, MODEL_IN_W);
     /*resize the image to the model input size*/
     cv::resize(frame, frame, size);
@@ -307,9 +329,6 @@ cv::Mat run_inference(cv::Mat frame)
     /*start inference using drp runtime*/
     start_runtime(true,frame.ptr<float>());
     cv::Mat mat(out_size_arr, 1, CV_32FC1, floatarr.data());
-    auto t2 = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
-    std::cout << "\nAI-Inference Time(ms): " << duration << " ms\n";
     return mat;   
 }
 /*****************************************
@@ -320,8 +339,7 @@ void process_frames(void)
 {
     std::vector<cv::Mat> frames;
     std::vector<cv::Mat> features;
-    cv::Point text_position(40, 80);
-
+    
     /* Model Binary */
     std::string model_dir = "cnn_module";
     /* Model Binary */
@@ -342,6 +360,7 @@ void process_frames(void)
             continue;
         cv::Mat frame = frame_queue.front();
         frame_queue.pop();
+        auto t1 = std::chrono::high_resolution_clock::now();
         /* checking the input frame is empty or not*/
         if(frame.empty())
         {
@@ -357,14 +376,16 @@ void process_frames(void)
             /* vertical concatenation */
             vconcat(features, combined_features);
             start_runtime(false,combined_features.ptr<float>());
+
+            auto t2 = std::chrono::high_resolution_clock::now();
+            duration = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+            float fps_val = (float)duration;
+            fps = (int)ceil(1000/fps_val);
+            std::cout << "\n[INFO] FPS(s): " << fps << " s\n";
+            std::cout << "\n[INFO] AI-Inference Time(ms): " << duration << " ms\n\n";
             features.erase(features.begin(), features.begin() + BUFFER_SIZE);
         }
-        cv::resize(frame, frame, cv::Size(640, 480), cv::INTER_LINEAR);
-        if (result != none)
-        {
-            Color = (result == violence) ? RED : GREEN;
-            putText(frame, result, text_position, cv::FONT_HERSHEY_COMPLEX, font_size, Color, font_weight);
-        }
+        plot_graph(val);
     }
     return;
 }
@@ -399,7 +420,7 @@ int main(int argc, char **argv)
 {   
     /* Get input Source WS/VIDEO/CAMERA */
     std::string input_source = argv[1];
-    /* Fetching Frame interval & Buffer size from arguments*/
+    /* Fetching Frame interval & Buffer size from arguments */
     if (!(argv[2]))
     {
         std::cout << "[INFO]Default Frame interval: " << FRAME_INTERVAL << "\n";
@@ -430,5 +451,6 @@ int main(int argc, char **argv)
         std::cout << "\n[INFO] VIDEO_mode\n";
         capture_frame(argv[1]);
     }
+    std::cout << "\n[INFO] Application End\n";
     return 0;
 }

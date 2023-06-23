@@ -8,8 +8,10 @@ It has 2 modes of running.
 3. Using Video as input
 4. Using Camera as Input
 
-#### Demo Video:
-The Demo videos for the susspicious  activity classification application can be found at
+#### Demo:
+
+<img src = "./images/SuspiciousActivity.gif" width="480" height="320">
+
 
 
 ## Application: Requirements
@@ -87,7 +89,24 @@ The following application file would be generated in the `src/build` directory
 
 ## Application: Deploy Stage
 
-#### Mode: Board Deployment
+For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
+
+|File | Details |
+|:---|:---|
+|mlp_module | Model object files of MLP for deployment.|
+|cnn_module | Model object files of CNN for deployment.|
+|suspicious_activity | application file. |
+|violence.mp4 | Sample Output video |
+|non_violence.mp4 | Sample Output video |
+
+Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
+* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
+   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
+   * Copy the generated `suspicious_activity` application file if the application file is built at [build stage](#application-build-stage)
+
+* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+
+
 ##### Folder Structure in the board
 ```sh
 /
@@ -103,6 +122,7 @@ The following application file would be generated in the `src/build` directory
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
+            ├── sample_video.mp4
             └── suspicious_activity
 
 ```
@@ -112,11 +132,7 @@ The following application file would be generated in the `src/build` directory
 
 ##### Mode: Camera Input
 - The application takes input from MIPI Coral Camera.
-- Run the MIPI camera script, placed in `/home/root/` directory
-```sh
-./v4l2-init.sh
-```
-> Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
+
 ```sh 
 ./suspicious_activity CAMERA 
 ```
@@ -124,7 +140,7 @@ The following application file would be generated in the `src/build` directory
 ##### Mode: Video Input
 
 ```sh 
-./suspicious_activity VIDEO <video_file_path>
+./suspicious_activity VIDEO violence.mp4
 ```
 > Note: Tested with video file format `.mp4` and `.avi`.
 
@@ -134,8 +150,13 @@ The following application file would be generated in the `src/build` directory
 
 ## Application: Specifications
 
-#### Model Details
+The application uses 2 model, 1 CNN and 1 MLP model. 
+- For each frame from the video/camera, CNN will produce `128` linear output. 
+- For every `FRAME_INTERVAL`, default 10, each frame will be processed to the CNN. The output vector is stored in the vector.
+- For a `BATCH_SIZE` (default 10), there will be `1280` vector size, which will be fed to the MLP for the classification.  
+- The `BUFFER_SIZE` will determine, the consecutive frames to be added or removed for the vector. 
 
+#### Model Details
 
 ##### CNN Module
 
@@ -217,7 +238,7 @@ Estimated Total Size (MB): 4.92
 Dataset Contains 1000 Violence and 1000 non-violence videos collected from youtube videos.
 [Dataset-Link](https://www.kaggle.com/datasets/mohamedmustafa/real-life-violence-situations-dataset)
 #### AI Inference time
-Total AI inference time (Pre-processing + AI model inference) - 
+Total AI inference time (Pre-processing + AI model inference) - 350 ms
 | Training Accuracy   |Validation Accuracy   |  Testing Accuracy |
 |---|---|---|
 
