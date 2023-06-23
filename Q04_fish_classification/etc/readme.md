@@ -4,6 +4,8 @@ In web application mode, User can use any host machine (Windows/Linux) which is 
 
 #### Web App Mode Demo
 <img src = "./images/FishClassification_Websocket.gif" width="480" height="320">
+
+
 ## Application: Requirements
 
 #### Hardware Requirements
