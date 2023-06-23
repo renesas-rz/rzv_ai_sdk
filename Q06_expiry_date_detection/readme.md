@@ -31,6 +31,9 @@ There are 4 classes for object detection.
 
 The application to test with images is provided here [Link](./src/image_mode/readme.md)
 
+#### Camera Mode
+The application can be used with either of MIPI or USB camera. The details of which will be explained here. 
+
 #### Demo 
 <!-- <img src = "./images/ObjectTracking.gif" width="480" height="320"> -->
 TBD
@@ -42,6 +45,7 @@ TBD
     - Coral camera 
 - USB Camera [optional]
 - USB Keyboard
+- USB Mouse
 - USB Hub
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
@@ -56,6 +60,7 @@ TBD
 - OpenCV 4.x
 - C++11 or higher 
 - [Boost C++ libraries](https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source) 
+- Tesseract 3.05 or higher
 
 
 ## Application: Build Stage
@@ -119,11 +124,15 @@ cp -r boost_1_81_0/boost include/
 rm boost_1_81_0.tar.bz2
 rm -rf boost_1_81_0
 ```
-9. [Optional] For Coral Camera Application, uncomment [`// #define INPUT_CORAL`](./src/camera_mode/define.h#L94) 
+9. [Optional] For USB Camera Application, comment out[`#define INPUT_CORAL`](./src/camera_mode/define.h#L78) at `./src/camera_mode/define.h`
 ```
-# define INPUT_CORAL
+// #define INPUT_CORAL
 ```
-10. Build the application on docker environment by following the steps below
+10. [Optional] User can enable the calculation of the remaining days by commenting out [`#define REM_DAY_DISP_OFF`](./src/common/comm_define.h#L133) at `./src/common/comm_define.h`
+
+>Note: It may require to set the board date to the current date. See [App-Runtime](#application-run-stage) to set it. 
+
+11. Build the application on docker environment by following the steps below
 
 ```sh
 mkdir -p build && cd build
@@ -146,7 +155,13 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |:---|:---|
 |date_tinyyolov3_onnx | Model object files and pre-process files for deployment. |
 |date_class_labels.txt | Label list for Object Detection. |
-|date_extraction_cam | application file. |
+|date_extraction_cam | MIPI camera application file. |
+|date_extraction_usb | USB camera application file. |
+|date_extraction_usb_exp | USB camera application file showing remaining expiry date |
+|date_extraction_img | image mode application file [optional]
+|date_extraction_img_exp | image mode application file showing remaining expiry date[optional]
+|sample_img.jpg | sample image for image mode [optional]
+
 
 
 Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
@@ -178,6 +193,16 @@ Folder structure in the rootfs (SD Card) would look like:
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
 
 ## Application: Run Stage
+* The date on the RZ/V2L board may be different. [Mandatory in case opted for remaining day calculation]
+
+    - To check use following on board terminal.
+    ```sh
+    date
+    ```
+    - To set to current date in the format `YYYYMMDD` [if different] 
+    ```sh
+    date +%Y%m%d -s "20230615" 
+    ```
 * For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
     * Go to the `/home/root/tvm` directory of the rootfs
     ```sh
@@ -195,7 +220,8 @@ Folder structure in the rootfs (SD Card) would look like:
 
 #### Model Details
 
-- Tiny Yolov3 is used
+- Tiny Yolov3 is used. Model weights are taken from [Darknet-Yolo](https://pjreddie.com/darknet/yolo/)
+- Then the model is retrained with below mentioned dataset. 
 
 #### Dataset
 
@@ -207,20 +233,11 @@ Folder structure in the rootfs (SD Card) would look like:
 
 1. The tesseract engine will work fine mostly on solid black with white background. The tesseract engine used is v3.05.  
 2. The model used is TinyYolov3 for date detection for increasing the performance. 
-For better performance, user can use YoloV3 which is lot complex in nature.
+For better performance, user can change the model to YoloV3 which will require retraining.
 3. For efficient date detection, User are expected to take image with proper lighting and contrast. 
 4. USB Camera has shown much better resolution than coral camera. 
-5. The date on the RZ/V2L board could be different. 
 
-- To check use following on board terminal.
-```sh
-date
-```
-- To set to current date [if different]
-```sh
-date +%Y%m%d -s "20230615" 
-```
-
+6. Performance Issue: The tesseract processing may take some time, if the date is detected, it may feel like screen freeze.
 
 
 

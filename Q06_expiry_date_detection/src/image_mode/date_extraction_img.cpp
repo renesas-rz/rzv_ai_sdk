@@ -368,11 +368,17 @@ void date_extraction()
 
                 cout << "Year : " << result_struc.year << " Month : " << result_struc.month << " Day: " << result_struc.day<<endl;
                 
+                /* If Remaining day calculation is required*/
+                #ifdef REM_DAY_DISP_OFF
+                /* do nothing */
+                #else
                 /* Calculate remaining days */
                 int day_rem = date_checker.calculate_days_left (result_struc.year, result_struc.month, result_struc.day);
                 cout<< "Days Remaining "<< day_rem <<endl;
-
+                /* store in the structure */
                 ret_date_struc.remaining_days = day_rem ;
+                #endif
+                
 
                 /*Store the print result on the map */
                 date_struc_map[i] = ret_date_struc;
@@ -512,24 +518,27 @@ cv::Mat print_result(cv::Mat& frame)
                     stream<<"Day: "<< date_struc_map[i].day;
                     break;
                 case (4):
-                    if (date_struc_map[i].remaining_days == -1 )
-                    {
-                        stream<<"Date Expired !!";
-                        color = CV_RED;
-                    }
-                    else 
-                    {
-                        stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
-                        color = CV_GREEN ;
-                    }
-                    break; 
+                    /* If Remaining day display is required*/
+                    #ifdef REM_DAY_DISP_OFF // do nothing
+                        break;
+                    #else 
+                        if (date_struc_map[i].remaining_days == -1 )
+                        {
+                            stream<<"Date Expired !!";
+                            color = CV_RED;
+                        }
+                        else 
+                        {
+                            stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
+                            color = CV_GREEN ;
+                        }
+                        break; 
+                    #endif
                 default:
                     break;
                 }
 
-                //write_string_rgb(stream.str(), draw_offset_x, y, CHAR_SCALE_SMALL, WHITE_DATA);
-                cv::putText(frame, stream.str(), cv::Point(x, y), CV_FONT, 
-                            CHAR_SCALE_SMALL, color, CHAR_THICKNESS);
+                cv::putText(frame, stream.str(), cv::Point(x, y), CV_FONT, CHAR_SCALE_SMALL, color, CHAR_THICKNESS);
    
             }
 
@@ -617,70 +626,61 @@ int main(int argc, char *argv[])
     model_inf_runtime.LoadModel(model_dir);
 
 
+    std::cout << "Image_path: " << argv[1] << std::endl;
+    // read frame
+    frame_g = cv::imread(argv[1]);
 
-    std::cout << "Mode is: " << argv[1] << std::endl;
-    std::string inp_mode = argv[1];
-    if (inp_mode == "IMAGE")
+    /* Resize to fixed height and width*/
+    cv::resize(frame_g, frame_g, cv::Size(IMAGE_WIDTH, IMAGE_HEIGHT));
+    
+    if (frame_g.empty())
     {
-        std::cout << "Image_path: " << argv[2] << std::endl;
-        // read frame
-        frame_g = cv::imread(argv[2]);
-
-        cv::resize(frame_g, frame_g, cv::Size(IMAGE_WIDTH, IMAGE_HEIGHT));
-
-        
-        if (frame_g.empty())
-        {
-            std::cout << "Failed to load image!" << std::endl;
-            return -1;
-        }
-        else
-        {
-            
-            int ret = date_extraction_on_frame();
-
-            if (ret != 0)
-            {
-                fprintf(stderr, "[Error] Inference Not working !!! ");
-                return -1;
-            }
-
-            /* Draw bounding box on the frame */
-            draw_bounding_box();
-            cout<<"bb drawn\n" ; 
-            /*  Create Display frame */
-            cv::Mat disp_frame ; 
-            disp_frame = create_output_frame();
-            cout<<"disp drawn\n" ;
-            /* Print result on the frame */
-            disp_frame = print_result(disp_frame);
-            cout<<"res drawn\n" ;
-            /* Display the resulting image */
-            cv::imshow("Output Image", disp_frame);
-
-            /* If defined for user to hit the key */
-            #ifdef USER_KEY_HIT
-            int key = 0;
-
-            while (key != 27) // 'ESC' key (ASCII code 27)
-            {
-                key = cv::waitKey(0);
-            }
-            
-            // User pressed 'ESC' key, close the image window
-            cv::destroyAllWindows();
-
-            #else
-            cv::waitKey(WAIT_TIME);
-            cv::destroyAllWindows();
-            #endif
-
-        }
-    } /* Include video mode */
+        std::cout << "Failed to load image!" << std::endl;
+        return -1;
+    }
     else
     {
-        std::cout << "No suitable running mode specified" << std::endl;
+        
+        int ret = date_extraction_on_frame();
+
+        if (ret != 0)
+        {
+            fprintf(stderr, "[Error] Inference Not working !!! ");
+            return -1;
+        }
+
+        /* Draw bounding box on the frame */
+        draw_bounding_box();
+        cout<<"bb drawn\n" ; 
+        /*  Create Display frame */
+        cv::Mat disp_frame ; 
+        disp_frame = create_output_frame();
+        cout<<"disp drawn\n" ;
+        /* Print result on the frame */
+        disp_frame = print_result(disp_frame);
+        cout<<"res drawn\n" ;
+        /* Display the resulting image */
+        cv::imshow("Output Image", disp_frame);
+
+        /* If defined for user to hit the key */
+        #ifdef USER_KEY_HIT
+        int key = 0;
+
+        while (key != 27) // 'ESC' key (ASCII code 27)
+        {
+            key = cv::waitKey(0);
+        }
+        
+        // User pressed 'ESC' key, close the image window
+        cv::destroyAllWindows();
+
+        #else
+        cv::waitKey(WAIT_TIME);
+        cv::destroyAllWindows();
+        #endif
+
     }
+   
     /* Exit the program */
     return 0;
 }

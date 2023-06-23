@@ -421,10 +421,16 @@ void date_extraction()
                 ret_date_struc.month = result_struc.month;
                 ret_date_struc.day = result_struc.day;
 
+                /* If Remaining day calculation is required*/
+                #ifdef REM_DAY_DISP_OFF
+                /* do nothing */
+                #else
                 /* Calculate remaining days */
-                int day_rem = date_checker.calculate_days_left(result_struc.year, result_struc.month, result_struc.day);
+                int day_rem = date_checker.calculate_days_left (result_struc.year, result_struc.month, result_struc.day);
                 cout<< "Days Remaining "<< day_rem <<endl;
+                /* store in the structure */
                 ret_date_struc.remaining_days = day_rem ;
+                #endif
 
                 /*Store the print result on the map */
                 date_struc_map[i] = ret_date_struc;
@@ -540,17 +546,22 @@ int8_t print_result(Image *img)
                     stream<<"Day: "<< date_struc_map[i].day;
                     break;
                 case (4):
-                    if (date_struc_map[i].remaining_days == -1 )
-                    {
-                        stream<<"Date Expired !!";
-                        color = RED_DATA;
-                    }
-                    else 
-                    {
-                        stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
-                        color = GREEN_DATA;
-                    }
-                    break; 
+                    /* If Remaining day display is required*/
+                    #ifdef REM_DAY_DISP_OFF // do nothing
+                        break;
+                    #else 
+                        if (date_struc_map[i].remaining_days == -1 )
+                        {
+                            stream<<"Date Expired !!";
+                            color = RED_DATA;
+                        }
+                        else 
+                        {
+                            stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
+                            color = GREEN_DATA;
+                        }
+                        break;
+                    #endif
                 default:
                     break;
                 }
