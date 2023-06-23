@@ -2,8 +2,7 @@
 
 ## Application: Overview
 The fish classification application allows to classify between 31 different fish species.
-
-'Bangus', 'Big Head Carp', 'Black Spotted Barb', 'Catfish', 'Climbing Perch', 'Fourfinger Threadfin', 'Freshwater Eel', 'Glass Perchlet', 'Goby', 'Gold Fish', 'Gourami', 'Grass Carp', 'Green Spotted Puffer', 'Indian Carp', 'Indo-Pacific Tarpon', 'Jaguar Gapote', 'Janitor Fish', 'Knifefish', 'Long-Snouted Pipefish', 'Mosquito Fish', 'Mudfish', 'Mullet', 'Pangasius', 'Perch', 'Scat Fish', 'Silver Barb', 'Silver Carp','Silver Perch', 'Snakehead', 'Tenpounder', 'Tilapia'
+[Label List](./src/fish_class_list.txt)
 
 The application could be used to classify fishes during fish farming, or from certain areas on the sea/river through drones, etc.  
 
@@ -12,13 +11,11 @@ It has 4 modes of running.
 1. Using MIPI Camera
 2. Using Image as input
 3. Using Video as input
-4. Input from Websocket [Link to Readme](./fish_application/etc/readme.md)
+4. Input from Websocket [Link to Readme](./etc/readme.md)
 
-#### Demo Video:
-The Demo videos for the fish classification application can be found at
+#### Demo:
 
 <img src = "./images/FishClassification.gif" width="480" height="320">
-
 
 
 
@@ -75,7 +72,7 @@ export PROJECT_PATH=/drp-ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q04_fish_classification/fish_application/src/
+cd ${PROJECT_PATH}/rzv_ai_sdk/Q04_fish_classification/src/
 ```
 >**Note:**`rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
 5. Build the application on docker environment by following the steps below
@@ -96,7 +93,23 @@ The following application file would be generated in the `src/build` directory
 
 ## Application: Deploy Stage
 
-#### Mode: Board Deployment
+For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
+
+|File | Details |
+|:---|:---|
+|fish_classification_model | Model object files for deployment. |
+|fish_class_list.txt | Label list for Fish classes |
+|Bangus.jpg | sample image |
+|output.mp4 | sample video |
+|fish_classification | application file. |
+
+Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
+* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
+   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
+   * Copy the generated `fish_classification` application file if the application file is built at [build stage](#application-build-stage)
+
+* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+
 ##### Folder Structure in the board
 ```sh
 /
@@ -107,12 +120,14 @@ The following application file would be generated in the `src/build` directory
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
-            │  
+            ├── fish_class_list.txt
+            ├── Bangus.jpg
+            ├── output.mp4
             └── fish_classification
 
 ```
 
-
+>**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
 
 ## Application: Runtime Stage
 
@@ -136,7 +151,7 @@ cd /home/root/tvm
 cd /home/root/tvm
 ```
 ```sh
-./fish_classification IMAGE <img_file_path>
+./fish_classification IMAGE Bangus.jpg
 ```
 > Note: Tested with image file format `.png` and `.jpg`.
 
@@ -150,7 +165,7 @@ cd /home/root/tvm
 cd /home/root/tvm
 ```
 ```sh 
-./fish_classification VIDEO <video_file_path>
+./fish_classification VIDEO output.mp4
 ```
 > Note: Tested with video file format `.mp4` and `.avi`.
 

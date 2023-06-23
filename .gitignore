@@ -1,4 +1,2 @@
 .vscode
-.gitignore
-init_app.sh
-start_app.sh
+build
