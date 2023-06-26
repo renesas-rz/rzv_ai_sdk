@@ -196,7 +196,7 @@ int run_inference(cv::Mat frame)
     std::cout << "\n[INFO] AI-Inference Time(ms): " << duration << " ms\n" <<"[INFO] FPS: "<<fps<<"\n";
     int max_ind = -1;
     float max_value = -1;
-    float threshold = 0.9;
+    float threshold = 0.6;
     for (int n = 0; n < out_size_arr; n++)
     {
         result[floatarr[n]] = n;

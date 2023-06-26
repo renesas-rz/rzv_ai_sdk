@@ -16,7 +16,7 @@ In web application mode, User can use any host machine (Windows/Linux) which is 
 [Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
 
 #### Software Requirements for building the Webapp
-- Ubuntu 20.04
+- Ubuntu 20.04 
 - OpenCV 4.x
 - C++11 or higher
 
@@ -100,6 +100,8 @@ chmod a+x init_app.sh
 ```
 
 ## Application: Runtime Stage
+
+* Please note that the Host PC require internet connection to run the web application. 
 
 * Get IP config of the RZ/V2L Board, Run the command on the RZ/V2L board terminal.
 
