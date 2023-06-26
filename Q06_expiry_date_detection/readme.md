@@ -35,8 +35,9 @@ The application to test with images is provided here [Link](./src/image_mode/rea
 The application can be used with either of MIPI or USB camera. The details of which will be explained here. 
 
 #### Demo 
-<!-- <img src = "./images/ObjectTracking.gif" width="480" height="320"> -->
-TBD
+
+<img src = "./images/ExpiryDateExtraction.gif" width="480" height="320">
+
 
 ## Application: Requirements
 
@@ -212,6 +213,10 @@ Folder structure in the rootfs (SD Card) would look like:
     ```sh
     ./date_extraction_cam
     ```
+
+    <img src = "./images/Expiry_date_video_mode.JPG" width="480" height="320">
+
+
 
 #### Application: Termination 
 - Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Board.
