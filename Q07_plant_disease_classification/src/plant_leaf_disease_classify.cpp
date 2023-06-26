@@ -50,7 +50,6 @@
 #include <cstring>
 #include <unistd.h>
 #include <arpa/inet.h>
-
 #include <sys/types.h>
 #include <ifaddrs.h>
 #include <netinet/in.h>
@@ -88,6 +87,7 @@ cv::Rect rect;
 cv::Mat img;
 cv::Mat frames;
 cv::Mat frame;
+std::string path;
 
 /* Map to store label list */
 std::map<int, std::string> class_names;
@@ -228,7 +228,6 @@ int run_inference(Mat frame)
             
             float score = floor(((max_value)*100)*100)/100;
             score_per = std::to_string(score);
-            //std::cout<<"\nScore: "<<score_per<<"%\n";
              /* Print Top-5 results. */
              std::cout << "\n[INFO] Result -----------------------"<< std::endl;
             for (auto it = result.rbegin(); it != result.rend(); it++)
@@ -261,12 +260,33 @@ int run_inference(Mat frame)
 void classification(int out)
 {   
     if (out != -1)
-    {
-        std::cout << "\n[INFO] Class:" << class_names[out] << "\n";
+    {   
+        int8_t counter=1;
+        char *strg = new char[class_names[out].length()+1];
+        std::strcpy(strg,class_names[out].c_str());
+        //std::cout << "\n[INFO] Class:" << class_names[out] << "\n";
         cv::resize(frame, frame, cv::Size(640,480),cv::INTER_LINEAR);
-        cv::putText(frame, "Plant leaf disease/healthy class: ", cv::Point(5, 17), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
-        cv::putText(frame, std::string(class_names[out]), cv::Point(5, 39), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
-        cv::putText(frame, "Score: "+score_per+"%", cv::Point(5, 82), cv::FONT_HERSHEY_SIMPLEX, 0.6,BLUE, 2);      
+        char *tknv = strtok(strg, "___");
+        std::string tknv1,tknv2;
+        while (tknv != NULL)
+        {
+            if(counter == 1)
+            {
+                printf("Plant : %s\n", tknv);
+                tknv1 = std::string(tknv);
+            }
+            else if(counter == 2)
+            {
+                printf("Status : %s\n", tknv);
+                tknv2 = std::string(tknv);
+            }
+        tknv = strtok(NULL, "___");
+        counter++;
+        }
+        cv::putText(frame, "Plant: "+tknv1, cv::Point(5, 17), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
+        cv::putText(frame, "Status: "+tknv2, cv::Point(5, 39), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
+        cv::putText(frame, "Score: "+score_per+"%", cv::Point(5, 60), cv::FONT_HERSHEY_SIMPLEX, 0.6,BLUE, 2);  
+        cv::putText(frame,"AI-Inference Time(ms): "+std::to_string(duration), cv::Point(5, 80), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);    
         cv::waitKey(30);
     }
     else
@@ -296,7 +316,7 @@ void get_patches(int event, int x, int y, int flags, void *param)
     {
         drawing_box = false;
         box_end = Point2f(x, y);
-        putText(img, "area_selected", box_start, FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+        putText(img, "area_selected", box_start, FONT_HERSHEY_COMPLEX, 1.0, Scalar(255, 0, 0), 2);
         slot_id += 1;
         rect = cv::Rect(box_start, box_end);
         Rect box(box_start, box_end);
@@ -416,7 +436,7 @@ void capture_frame(std::string cap_pipeline)
 {
     int8_t wait_key;
     int8_t key  = 0;
-    std::cout << "cap pipeline" << cap_pipeline << "\n";
+    std::cout << "cap pipeline:  " << cap_pipeline << "\n";
     /* Capture stream of frames from camera using Gstreamer pipeline */
     cap.open(cap_pipeline, cv::CAP_GSTREAMER);
     if (!cap.isOpened())
@@ -461,7 +481,6 @@ void capture_frame(std::string cap_pipeline)
         std::string stips2 = std::to_string(duration);
         int64_t FPS = 1000/duration;
         std::cout<<"\nFPS: "<<FPS<<endl;
-        cv::putText(frame,"AI-Inference Time(ms): "+std::to_string(duration), cv::Point(5, 59), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
         cv::putText(frame, "FPS: "+std::to_string(FPS), cv::Point(555, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7, BLUE, 2);        
         cv::rectangle(frame, boxes[0], Scalar(255, 0, 0), 2);
         cv::imshow("output", frame);
@@ -521,9 +540,6 @@ int main(int argc, char **argv)
             frame = cv::imread(argv[2]);
             out = run_inference(frame);
             classification(out);
-            //cv::Mat reframe;
-            cv::resize(frame, frame, cv::Size(640, 480), cv::INTER_LINEAR);
-            cv::putText(frame,"AI-Inference Time(ms): "+std::to_string(duration), cv::Point(5, 59), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
             cv::imshow("output", frame);
             cv::waitKey(2000);
         }

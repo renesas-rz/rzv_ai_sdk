@@ -13,13 +13,15 @@ It has 3 modes of running.
 3. Using Video as input
 
 #### Demo 
+
 <img src = "./images/plant_leaf_disease.gif" width="480" height="320">
+
 
 ## Application: Requirements
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
-- USB camera 
+     - MIPI camera 
 - USB Keyboard
 - USB Hub
 - HDMI monitor with resolution 1280x720 
@@ -129,25 +131,22 @@ Folder structure in the rootfs (SD Card) would look like:
 
 ##### Mode: Camera Input
 - The application takes input from MIPI Coral Camera.
-- Run the MIPI camera script, placed in `/home/root/` directory
 
-> Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
 ```sh 
 ./plant_leaf_disease_classify CAMERA 
 ```
 
 ##### Mode: Image Input
 ```sh
-./plant_leaf_disease_classify IMAGE <img_file_path>
+./plant_leaf_disease_classify IMAGE sampleimg.jpg
 ```
 > Note: Tested with image file format `.png` and `.jpg`.
 
-<img src=./images/img_sample.PNG width="480">
 
 ##### Mode: Video Input
 
 ```sh 
-./plant_leaf_disease_classify VIDEO <video_file_path>
+./plant_leaf_disease_classify VIDEO plantvid.mp4
 ```
 > Note: Tested with video file format `.mp4` and `.avi`.
 
@@ -155,27 +154,34 @@ Folder structure in the rootfs (SD Card) would look like:
 
 #### Application: Runtime output details
 
-The runtime application will look something like this 
+- The application will classify the whether the plant leaf is healthy or diseased. 
 
-<img src=./images/sample_out.JPG width="480">
- 
-
-- The application will classify the whether the plant leaf healthy/disease. 
+##### Video/Camera Mode
 - The user can draw the box for which specific area to classify from both VIDEO and CAMERA approach. After selecting the area(rectangle box drawn via mouse connected to board) press `enter` key on keyboard connected to the board the inference starts and shows the classification result.
+
+<img src=./images/Plant_vid_mode_ar_select.JPG width="480">
 
 - Classification result, inference time(ms), Score(%) is shown on top left corner
 Frame Per Sec (FPS) is shown on top right corner
-- For IMAGE mode, Classification result, inference time(ms), Score(%) is shown on top left corner
+
+<img src=./images/plant_vid_mode_play.JPG width="480">
+
+##### Image Mode
+- Classification result, inference time(ms) and Score(%) is shown on top left corner
+
+<img src=./images/Plant_img_mode.JPG width="480">
+
+
 
 #### Application: Termination
 - Application can be terminated by long pressing `esc` key (around 10 seconds) on the keyboard connected to the board.
 - Alternatively, User can force close the application using `CTRL+c` on the board console.
 
 #### Dataset 
-
+The class labels are mentioned in the [`plant_leaf_disease_class.txt`](./exe/plant_leaf_disease_class.txt)
 This dataset consists of about 87K rgb images of healthy and diseased crop leaves which is categorized into 38 different classes. The total dataset is divided into 80/20 ratio of training and validation set preserving the directory structure. A new directory containing 33 test images is created later for prediction purpose.
 
-https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset
+[Dataset Link](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset)
 
 
 

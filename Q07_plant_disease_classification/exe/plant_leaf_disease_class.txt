@@ -1,39 +1,39 @@
-Apple___Apple_scab
-Apple___Black_rot
-Apple___Cedar_apple_rust
+Apple___Apple scab
+Apple___Black rot
+Apple___Cedar apple rust
 Apple___healthy
 Blueberry___healthy
-Cherry_(including_sour)___Powdery_mildew
-Cherry_(including_sour)___healthy
-Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot
-Corn_(maize)___Common_rust_
-Corn_(maize)___Northern_Leaf_Blight,
-Corn_(maize)___healthy
-Grape___Black_rot
-Grape___Esca_(Black_Measles)
-Grape___Leaf_blight_(Isariopsis_Leaf_Spot)
+Cherry(including sour)___Powdery mildew
+Cherry(including sour)___healthy
+Corn(maize)___Cercospora leaf spot Gray leaf spot
+Corn(maize)___Common rust
+Corn(maize)___Northern Leaf Blight
+Corn(maize)___healthy
+Grape___Black rot
+Grape___Esca(Black Measles)
+Grape___Leaf blight(Isariopsis Leaf_Spot)
 Grape___healthy
-Orange___Haunglongbing_(Citrus_greening)
-Peach___Bacterial_spot
+Orange___Haunglongbing(Citrus greening)
+Peach___Bacterial spot
 Peach___healthy
-Pepper,_bell___Bacterial_spot
-Pepper,_bell___healthy
-Potato___Early_blight
+Pepper bell___Bacterial spot
+Pepper bell___healthy
+Potato___Early blight
 Potato___healthy
-Potato___Late_blight
+Potato___Late blight
 Raspberry___healthy
 Soybean___healthy
-Squash___Powdery_mildew
-Strawberry___Leaf_scorch
+Squash___Powdery mildew
+Strawberry___Leaf scorch
 Strawberry___healthy
-Tomato___Bacterial_spot
-Tomato___Early_blight
-Tomato___Late_blight
-Tomato___Leaf_Mold
-Tomato___Septoria_leaf_spot
-Tomato___Spider_mites Two-spotted_spider_mite
-Tomato___Target_Spot,
-Tomato___Tomato_Yellow_Leaf_Curl_Viru
-Tomato___Tomato_mosaic_virus
+Tomato___Bacterial spot
+Tomato___Early blight
+Tomato___Late blight
+Tomato___Leaf Mold
+Tomato___Septoria leaf spot
+Tomato___Spider mites Two spotted spider mite
+Tomato___Target Spot
+Tomato___Tomato Yellow Leaf Curl Viru
+Tomato___Tomato mosaic virus
 Tomato___healthy
 Cannot Identify ! 
