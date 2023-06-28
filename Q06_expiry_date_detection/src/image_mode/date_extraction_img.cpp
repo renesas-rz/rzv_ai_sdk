@@ -39,6 +39,8 @@ static unordered_map<int, date_struct> date_struc_map;
 /*Variable for Regex Dict */
 static map<boost::regex, string> regex_dict_g;
 
+/*Remaining Days Shown*/
+static bool rem_days_shown = false ;
 
 /**
  * @brief Preprocess the global frame and return the processed local frame
@@ -369,16 +371,14 @@ void date_extraction()
                 cout << "Year : " << result_struc.year << " Month : " << result_struc.month << " Day: " << result_struc.day<<endl;
                 
                 /* If Remaining day calculation is required*/
-                #ifdef REM_DAY_DISP_OFF
-                /* do nothing */
-                #else
-                /* Calculate remaining days */
-                int day_rem = date_checker.calculate_days_left (result_struc.year, result_struc.month, result_struc.day);
-                cout<< "Days Remaining "<< day_rem <<endl;
-                /* store in the structure */
-                ret_date_struc.remaining_days = day_rem ;
-                #endif
-                
+                if (rem_days_shown)
+                {
+                    /* Calculate remaining days */
+                    int day_rem = date_checker.calculate_days_left (result_struc.year, result_struc.month, result_struc.day);
+                    cout<< "Days Remaining "<< day_rem <<endl;
+                    /* store in the structure */
+                    ret_date_struc.remaining_days = day_rem ;
+                }
 
                 /*Store the print result on the map */
                 date_struc_map[i] = ret_date_struc;
@@ -519,9 +519,8 @@ cv::Mat print_result(cv::Mat& frame)
                     break;
                 case (4):
                     /* If Remaining day display is required*/
-                    #ifdef REM_DAY_DISP_OFF // do nothing
-                        break;
-                    #else 
+                    if (rem_days_shown)
+                    {
                         if (date_struc_map[i].remaining_days == -1 )
                         {
                             stream<<"Date Expired !!";
@@ -532,8 +531,10 @@ cv::Mat print_result(cv::Mat& frame)
                             stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
                             color = CV_GREEN ;
                         }
-                        break; 
-                    #endif
+                         
+                    }
+                    break;
+
                 default:
                     break;
                 }
@@ -612,7 +613,49 @@ cv::Mat create_output_frame()
 int main(int argc, char *argv[])
 {
     std::cout << "Date-Extraction Application Start" << std::endl;
+    
+    /* If more than three arguments are passed */
+    if (argc>3)
+    {
+        std::cerr << "Wrong number Arguments are passed \n";
+        printf("Usage1: date_extraction_img img_pth.jpg -rem \n Usage2 : date_extraction_img img_pth.jpg \n");
+        return 1;
+    }
+    else 
+    {
+        /* Get image_ path */
+        std::cout << "Image_path: " << argv[1] << std::endl;
+        // read frame
+        frame_g = cv::imread(argv[1]);
 
+        /* If empty frame */
+        if (frame_g.empty())
+        {
+            std::cout << "Failed to load image!" << std::endl;
+            return -1;
+        }
+
+        /* Remaining Days */
+
+        if (argc==3 && std::string(argv[2]) == "-rem" )
+        {
+            std::cout<<"[INFO] Remaining Expiry Days will be shown"<<std::endl;
+            rem_days_shown = true;
+        }
+        else if (argc == 2 )
+        {
+            /* do nothing*/
+            std::cout<<"[INFO] Remaining Expiry Days will Not be shown"<<std::endl;
+        }
+        else 
+        {
+            std::cerr << "[ERROR] Wrong Arguments are passed\n";
+            printf("Usage1: date_extraction_img img_pth.jpg -rem \n Usage2 : date_extraction_img img_pth.jpg \n");
+            return 1;
+        }
+
+    }
+        
     // initialize tesseract engine
     TesseractEngine &tesseract = TesseractEngine::getInstance();
 
@@ -625,62 +668,56 @@ int main(int argc, char *argv[])
     /*Load the model */
     model_inf_runtime.LoadModel(model_dir);
 
+    
 
-    std::cout << "Image_path: " << argv[1] << std::endl;
-    // read frame
-    frame_g = cv::imread(argv[1]);
+    
+
+    
 
     /* Resize to fixed height and width*/
     cv::resize(frame_g, frame_g, cv::Size(IMAGE_WIDTH, IMAGE_HEIGHT));
-    
-    if (frame_g.empty())
+ 
+        
+    int ret = date_extraction_on_frame();
+
+    if (ret != 0)
     {
-        std::cout << "Failed to load image!" << std::endl;
+        fprintf(stderr, "[Error] Inference Not working !!! ");
         return -1;
     }
-    else
+
+    /* Draw bounding box on the frame */
+    draw_bounding_box();
+    cout<<"bb drawn\n" ; 
+    /*  Create Display frame */
+    cv::Mat disp_frame ; 
+    disp_frame = create_output_frame();
+    cout<<"disp drawn\n" ;
+    /* Print result on the frame */
+    disp_frame = print_result(disp_frame);
+    cout<<"res drawn\n" ;
+    /* Display the resulting image */
+    cv::imshow("Output Image", disp_frame);
+
+    /* If defined for user to hit the key */
+    #ifdef USER_KEY_HIT
+    int key = 0;
+
+    while (key != 27) // 'ESC' key (ASCII code 27)
     {
-        
-        int ret = date_extraction_on_frame();
-
-        if (ret != 0)
-        {
-            fprintf(stderr, "[Error] Inference Not working !!! ");
-            return -1;
-        }
-
-        /* Draw bounding box on the frame */
-        draw_bounding_box();
-        cout<<"bb drawn\n" ; 
-        /*  Create Display frame */
-        cv::Mat disp_frame ; 
-        disp_frame = create_output_frame();
-        cout<<"disp drawn\n" ;
-        /* Print result on the frame */
-        disp_frame = print_result(disp_frame);
-        cout<<"res drawn\n" ;
-        /* Display the resulting image */
-        cv::imshow("Output Image", disp_frame);
-
-        /* If defined for user to hit the key */
-        #ifdef USER_KEY_HIT
-        int key = 0;
-
-        while (key != 27) // 'ESC' key (ASCII code 27)
-        {
-            key = cv::waitKey(0);
-        }
-        
-        // User pressed 'ESC' key, close the image window
-        cv::destroyAllWindows();
-
-        #else
-        cv::waitKey(WAIT_TIME);
-        cv::destroyAllWindows();
-        #endif
-
+        key = cv::waitKey(0);
     }
+    
+    // User pressed 'ESC' key, close the image window
+    cv::destroyAllWindows();
+
+    #else
+    cv::waitKey(WAIT_TIME);
+    cv::destroyAllWindows();
+    #endif
+
    
     /* Exit the program */
     return 0;
+
 }

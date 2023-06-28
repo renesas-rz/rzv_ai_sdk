@@ -130,6 +130,5 @@ struct date_struct
 #define CROP_IMG_STRETCH            (5) // Pixel value Used to extended crop section from the image
 #define PREF_YR                     "20" // prefix for the 2 digit year; (23) -> (2023) 
 
-//#define REM_DAY_DISP_OFF               // don't show the remaining days
 
 #endif

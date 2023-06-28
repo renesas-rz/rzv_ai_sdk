@@ -108,10 +108,6 @@ static float post_time = 0;
 static float ai_time = 0;
 static Wayland wayland;
 static vector<detection> det;
-// static vector<string> date_detected; // date detection string vector for each frame
-// static vector<ymd_struct> ymd_vector; // YYMMDD regex vector for each frame
-
-// static vector<date_struct> date_struc_vec;
 
 static unordered_map<int, date_struct> date_struc_map;
 
@@ -120,6 +116,8 @@ static DateChecker date_checker;
 /*Variable for Regex Dict */
 static map<boost::regex, string> regex_dict_g;
 
+/*Remaining Days Shown*/
+static bool rem_days_shown = false ;
 
 /*****************************************
  * Function Name : timedifference_msec
@@ -422,15 +420,14 @@ void date_extraction()
                 ret_date_struc.day = result_struc.day;
 
                 /* If Remaining day calculation is required*/
-                #ifdef REM_DAY_DISP_OFF
-                /* do nothing */
-                #else
-                /* Calculate remaining days */
-                int day_rem = date_checker.calculate_days_left (result_struc.year, result_struc.month, result_struc.day);
-                cout<< "Days Remaining "<< day_rem <<endl;
-                /* store in the structure */
-                ret_date_struc.remaining_days = day_rem ;
-                #endif
+                if (rem_days_shown)
+                {
+                    /* Calculate remaining days */
+                    int day_rem = date_checker.calculate_days_left (result_struc.year, result_struc.month, result_struc.day);
+                    cout<< "Days Remaining "<< day_rem <<endl;
+                    /* store in the structure */
+                    ret_date_struc.remaining_days = day_rem ;
+                }
 
                 /*Store the print result on the map */
                 date_struc_map[i] = ret_date_struc;
@@ -547,9 +544,8 @@ int8_t print_result(Image *img)
                     break;
                 case (4):
                     /* If Remaining day display is required*/
-                    #ifdef REM_DAY_DISP_OFF // do nothing
-                        break;
-                    #else 
+                    if (rem_days_shown)
+                    {
                         if (date_struc_map[i].remaining_days == -1 )
                         {
                             stream<<"Date Expired !!";
@@ -560,8 +556,9 @@ int8_t print_result(Image *img)
                             stream <<"Remaining Days: "<< date_struc_map[i].remaining_days;
                             color = GREEN_DATA;
                         }
-                        break;
-                    #endif
+                         
+                    }
+                    break;
                 default:
                     break;
                 }
@@ -1041,6 +1038,30 @@ int32_t main(int32_t argc, char *argv[])
 
     // create regex dictionary from regex module functions
     regex_dict_g = create_regex_dict();
+
+    /* Check number of arguments */
+    if (argc>2)
+    {
+        std::cerr << "Wrong number Arguments are passed \n";
+        printf("Usage1: date_extraction_cam -rem \n Usage2 : date_extraction_cam \n");
+        return 1;
+    } 
+    else if (argc == 2 && std::string(argv[1]) == "-rem")
+    {
+        std::cout<<"[INFO] Remaining Expiry Days will be shown"<<std::endl;
+        rem_days_shown = true;
+    }
+    else if (argc == 1)
+    {
+        /* do nothing*/
+        std::cout<<"[INFO] Remaining Expiry Days will Not be shown"<<std::endl;
+    }
+    else
+    {
+        std::cerr << "[ERROR] Wrong Arguments are passed\n";
+        printf("Usage1: date_extraction_cam -rem \n Usage2 : date_extraction_cam \n");
+        return 1;
+    }
 
     /* Obtain udmabuf memory area starting address */
     int8_t fd = 0;

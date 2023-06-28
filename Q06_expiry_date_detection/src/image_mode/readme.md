@@ -9,7 +9,7 @@ It is same as mentioned in the [Requirements](../../readme.md#application-requir
 
 ## Application: Build Stage 
 - Follow the same as mentioned in the [Built Stage](../../readme.md#application-build-stage)
-- On step 9, For timed termination, User need to comment out [`#define USER_KEY_HIT](./define.h#L114) at path `./define.h`, Default is 10 sec termination. 
+- On step 9, For timed termination, User need to comment out [`#define USER_KEY_HIT`](./define.h#L114) at path `./define.h`, Default is 10 sec termination. 
 - At step 10, build with `make` command 
 ```sh
 make -j$(nproc) date_extraction_img
@@ -60,6 +60,8 @@ Folder structure in the rootfs (SD Card) would look like:
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
 
 ## Application: Run Stage
+
+#### With Remaining Days shown 
 * For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
     * Go to the `/home/root/tvm` directory of the rootfs
     ```sh
@@ -67,12 +69,24 @@ Folder structure in the rootfs (SD Card) would look like:
     ```
     * Run the application
     ```sh
-    ./date_extraction_img sample_img.jpg
+    ./date_extraction_img sample_img.jpg -rem
     ```
     
     <img src = "../../images/Expiry_date_image_mode.JPG" width="480" height="320">
 
-    
+
+#### Default Mode 
+* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
+    * Go to the `/home/root/tvm` directory of the rootfs
+    ```sh
+    cd /home/root/tvm
+    ```
+    * Run the application
+    ```sh
+    ./date_extraction_img sample_img.jpg 
+    ```
+
+
 #### Application: Termination
 * User needs to press `Esc` key to stop the application. 
 * For timed termination case, it will terminated gracefully after default 10 sec.

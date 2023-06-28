@@ -116,7 +116,9 @@ tar -xvf boost_1_81_0.tar.bz2
 ```
 
 7. Copy the boost files to the `include` folder 
+
 ```sh
+mkdir -p include
 cp -r boost_1_81_0/boost include/
 ```
 8. Remove boost files [Optional]
@@ -129,11 +131,8 @@ rm -rf boost_1_81_0
 ```
 // #define INPUT_CORAL
 ```
-10. [Optional] User can enable the calculation of the remaining days by commenting out [`#define REM_DAY_DISP_OFF`](./src/common/comm_define.h#L133) at `./src/common/comm_define.h`
 
->Note: It may require to set the board date to the current date. See [App-Runtime](#application-run-stage) to set it. 
-
-11. Build the application on docker environment by following the steps below
+10. Build the application on docker environment by following the steps below
 
 ```sh
 mkdir -p build && cd build
@@ -157,10 +156,8 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |date_tinyyolov3_onnx | Model object files and pre-process files for deployment. |
 |date_class_labels.txt | Label list for Object Detection. |
 |date_extraction_cam | MIPI camera application file. |
-|date_extraction_usb | USB camera application file. |
-|date_extraction_usb_exp | USB camera application file showing remaining expiry date |
+|date_extraction_usb | USB camera application file. [optional]|
 |date_extraction_img | image mode application file [optional]
-|date_extraction_img_exp | image mode application file showing remaining expiry date[optional]
 |sample_img.jpg | sample image for image mode [optional]
 
 
@@ -173,7 +170,9 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 * Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
 
 
-Folder structure in the rootfs (SD Card) would look like:
+#### Folder structure in the rootfs (SD Card) would look like:
+
+> Note: The optional application binary are not mentioned in the folder structure 
 
 ```sh
 ├── usr/
@@ -194,6 +193,8 @@ Folder structure in the rootfs (SD Card) would look like:
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
 
 ## Application: Run Stage
+
+#### With Remaining Days shown 
 * The date on the RZ/V2L board may be different. [Mandatory in case opted for remaining day calculation]
 
     - To check use following on board terminal.
@@ -211,10 +212,24 @@ Folder structure in the rootfs (SD Card) would look like:
     ```
     * Run the application
     ```sh
+    ./date_extraction_cam -rem
+    ```
+    
+    <img src = "./images/Expiry_date_video_mode.JPG" width="480" height="320">
+
+
+#### Default Mode
+
+* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
+    * Go to the `/home/root/tvm` directory of the rootfs
+    ```sh
+    cd /home/root/tvm
+    ```
+    * Run the application
+    ```sh
     ./date_extraction_cam
     ```
 
-    <img src = "./images/Expiry_date_video_mode.JPG" width="480" height="320">
 
 
 
