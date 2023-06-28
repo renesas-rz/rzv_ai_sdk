@@ -50,6 +50,7 @@ using namespace cv;
 using namespace std;
 using namespace cv;
 
+/* Global variables */
 vector<Rect> boxes;
 
 Mat img;
@@ -70,6 +71,9 @@ const std::string app_name = "Parking Lot Assistance";
 
 int slot_id;
 
+/**
+ * Convert HWC format to CHW
+*/
 cv::Mat hwc2chw(const cv::Mat &image)
 {
     std::vector<cv::Mat> rgb_images;
@@ -184,7 +188,7 @@ redraw_rectangle:
 }
 /*****************************************
  * Function Name     : removeButtonCallback
- * Description       : remove slot from the boxes vector based on the user input(comma seperated input)
+ * Description       : remove slot from the boxes vector based on the user input(comma separated input)
  ******************************************/
 void removeButtonCallback(int, void *)
 {

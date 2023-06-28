@@ -205,6 +205,7 @@ The runtime application will look something like this
 #### Application: Termination
 - Application can be terminated by pressing `Esc` key on the keyboard connected to the board.
 - Alternatively, User can force close the application using `CTRL+c` on the board console.
+- The whole application can be quit by pressing `q` on the Keyboard.
 
 ## Application: Specifications
 
