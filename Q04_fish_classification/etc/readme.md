@@ -12,8 +12,14 @@ In web application mode, User can use any host machine (Windows/Linux) which is 
 - RZ/V2L Evaluation Board Kit
     - USB Serial Cable [Required to connect to board]
 - Ethernet Cable [Required to connect to the board network]
+- Ethernet Hub or Router [Internet connection is required for Host PC during the runtime of the web application] 
+
+
+<img src=./images/hardware_req.JPG width="120" >
+
 
 [Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
+
 
 #### Software Requirements for building the Webapp
 - Ubuntu 20.04 
