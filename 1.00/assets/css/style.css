@@ -3205,6 +3205,8 @@ h3, .h3 { padding: 0.5rem 0 0.8rem; margin-bottom: 5px; border-bottom: 1px solid
 
 .top { font-size: 35px; background-color: #2a289d; color: white; display: flex; align-items: center; font-family: "Arial"; font-style: italic; padding: 20px 10px; }
 
+.download-button { font-weight: bold; }
+
 .square-button { font-weight: bold; font-size: medium; border-radius: 0px; background-color: #2a289d; border-color: #2a289d; }
 
 .skip { color: red; }
