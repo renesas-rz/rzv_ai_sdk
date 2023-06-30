@@ -4,7 +4,7 @@ layout: default
 
 <div class="container">
     <div class="row">
-        <div class="top col-12">
+        <div id="page-top" class="top col-12">
 AI Applications<br>
 for RZ/V series
         </div>
@@ -13,7 +13,8 @@ for RZ/V series
 <br>
 <h5 align="left">
 AI Applications are provided with pre-trained AI models. <br><br>
-Select each application to access the source code.
+Select each application to access the source code.<br><br><br>
+To run the AI Applications without constructing the AI SDK environment, refer to <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>.
 </h5>
 
 <br>
@@ -32,7 +33,9 @@ Select each application to access the source code.
                 <ul class="appdetails">
                     <li>
                         <p class="name">Defense wild animals for crop</p>
-                        <p class="font-weight-normal">Detect the types of animals that enter your farm or barn for pest control.<br><br></p>
+                        Detect the types of animals that enter your farm or barn for pest control.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 07_Animal_Detection<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: Animals Detection Images Dataset+Images.cv+Coco Dataset<br>
                         <b>Performance</b>: 3fps
@@ -57,6 +60,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Elevator passengers Counting</p>
                         Issues alerts if the elevator is overcrowded and exceeds its capacity.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 01_Head_count<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: HollywoodHeads<br>
                         <b>Performance</b>: 3fps
@@ -74,6 +79,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Conference Room Usage Monitor</p>
                         Monitors if the meeting room is vacant by counting the number of people in the room.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 01_Head_count<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: HollywoodHeads<br>
                         <b>Performance</b>: 3fps
@@ -91,6 +98,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Lighting Control</p>
                         Automatically controls the lighting according to the situation by counting the number of people in the room.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 01_Head_count<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: HollywoodHeads<br>
                         <b>Performance</b>: 3fps
@@ -110,6 +119,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Security Area Intrusion Detection</p>
                         Detects illegal intrusions to security area in the office.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 02_Line_crossing_object_counting<br>
                         <b>Model</b>: TinyYOLOv2<br>
                         <b>Dataset</b>: COCO<br>
                         <b>Performance</b>: 13fps
@@ -127,6 +138,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Wear management at construction sites</p>
                         Analyzes the equipment of workers before entering the construction site by detecting the necessary equipment such as helmet or vest. It can be used to reduce the overload of  monitoring person and ensure workers to wear appropriate equipment.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 04_Safety_Helmet_Vest_Detection<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: Safety Helmet Detection on kaggle<br>
                         <b>Performance</b>: 3fps
@@ -135,7 +148,7 @@ Select each application to access the source code.
             </a>
         </div>
         <div class="col-lg-6 col-xl-4">
-            <p id="building6" class="applications" href="">
+            <a id="building6" class="applications" href="">
                 <img class="appimage" src="img/30_touchless_controller_elevator.jpg" alt="application"/>
                 <ul class="applabel">
                     <li>RZ/V2L</li>
@@ -147,7 +160,7 @@ Select each application to access the source code.
                         <p class="comingsoon"><b>Coming soon...</b></p>
                     </li>
                 </ul>
-            </p>
+            </a>
         </div>
     </div>
 </div>
@@ -166,6 +179,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Congestion Detection in Railway Station</p>
                         Monitors the congestion level on trains and buses by detecting the number of passengers.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 01_Head_count<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: HollywoodHeads<br>
                         <b>Performance</b>: 3fps
@@ -183,6 +198,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Prohibited Area Management</p>
                         Prevents accidents and detects illegal intrusions in construction site by detecting the entry to prohibited areas.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 02_Line_crossing_object_counting<br>
                         <b>Model</b>: TinyYOLOv2<br>
                         <b>Dataset</b>: COCO<br>
                         <b>Performance</b>: 13fps
@@ -200,6 +217,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Distracted driving detection</p>
                         Issues an alert when the driver is distracted by detecting the line of sight.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 09_Human_Gaze_Detection<br>
                         <b>Model</b>: ResNet-18+Tiny YOLOv2<br>
                         <b>Dataset</b>: ETH-XGaze+WIDERFACE<br>
                         <b>Performance</b>: 3fps
@@ -219,6 +238,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Parking Spot Reservation</p>
                         Detects the occupancy of parking spot for reservation system.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: Q03_smart_parking<br>
                         <b>Model</b>: Custom<br>
                         <b>Dataset</b>: Custom<br>
                         <b>Performance</b>: 4-7 msec per slot
@@ -236,6 +257,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Passport check support</p>
                         Supports passport check in airport immigration by checking the match of users face and their passport.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: Q02_face_authentication<br>
                         <b>Model</b>: FaceNet<br>
                         <b>Dataset</b>: FaceNet<br>
                         <b>Performance</b>: 2fps
@@ -260,6 +283,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Physical Condition Monitor</p>
                         Support the early rescue by detecting any changes in the body condition of patients/users in the hospitals and care facility when they are alone.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 03_Elderly_fall_detection<br>
                         <b>Model</b>: TinyYOLOv2+HRNet<br>
                         <b>Dataset</b>: PASCAL VOC+COCO<br>
                         <b>Performance</b>: 5fps
@@ -284,6 +309,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Air Conditioner Control</p>
                         Automatically controls the air conditioning according to the situation by counting the number of people in the room.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 01_Head_count<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: HollywoodHeads<br>
                         <b>Performance</b>: 3fps
@@ -301,6 +328,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Pet Detection in Kitchen and Child's Room</p>
                         Issues an alert when your pets have entered dangerous areas such as kitchen or children room.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 07_Animal_Detection<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: Animals Detection Images Dataset+Images.cv+Coco Dataset<br>
                         <b>Performance</b>: 3fps
@@ -309,7 +338,7 @@ Select each application to access the source code.
             </a>
         </div>
         <div class="col-lg-6 col-xl-4">
-            <p id="home3" class="applications" href="">
+            <a id="home3" class="applications" href="">
                 <img class="appimage" src="img/29_contactless_scanner.jpg" alt="application"/>
                 <ul class="applabel">
                     <li>RZ/V2L</li>
@@ -321,7 +350,7 @@ Select each application to access the source code.
                         <p class="comingsoon"><b>Coming soon...</b></p>
                     </li>
                 </ul>
-            </p>
+            </a>
         </div>
     </div>
 </div>
@@ -340,6 +369,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Work Area Personnel Management</p>
                         Monitors attendance of workers by counting their number entered in the work area.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 01_Head_count<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: HollywoodHeads<br>
                         <b>Performance</b>: 3fps
@@ -357,6 +388,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Helmet and safety vest wearing monitor</p>
                         Increase the safety level in the factory by monitoring the helmet use.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 04_Safety_Helmet_Vest_Detection<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: Safety Helmet Detection on kaggle<br>
                         <b>Performance</b>: 3fps
@@ -365,7 +398,7 @@ Select each application to access the source code.
             </a>
         </div>
         <div class="col-lg-6 col-xl-4">
-            <p id="industrial3" class="applications" href="">
+            <a id="industrial3" class="applications" href="">
                 <img class="appimage" src="img/31_touchless_controller_industrial.jpg" alt="application"/>
                 <ul class="applabel">
                     <li>RZ/V2L</li>
@@ -377,7 +410,7 @@ Select each application to access the source code.
                         <p class="comingsoon"><b>Coming soon...</b></p>
                     </li>
                 </ul>
-            </p>
+            </a>
         </div>
     </div>
 </div>
@@ -396,6 +429,8 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Congestion Detection</p>
                         Issues an alert when the store is overcrowded with more customers.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: 01_Head_count<br>
                         <b>Model</b>: YOLOv3<br>
                         <b>Dataset</b>: HollywoodHeads<br>
                         <b>Performance</b>: 3fps
@@ -413,11 +448,18 @@ Select each application to access the source code.
                     <li>
                         <p class="name">Staying and flow line monitoring</p>
                         Collects marketing data by monitoring the number of people and duration of their stay in a certain place.<br><br>
+                        <b>Supported AI SDK</b>: v1.00<br>
+                        <b>Function</b>: Q01_footfall_counter<br>
                         <b>Model</b>: TinyYOLOv3<br>
                         <b>Dataset</b>: COCO<br>
                         <b>Performance</b>: 9fps
                     </li>
                 </ul>
+            </a>
+        </div>
+        <div class="col-12" align="right">
+            <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#page-top" role="button">
+Back to Top >
             </a>
         </div>
     </div>

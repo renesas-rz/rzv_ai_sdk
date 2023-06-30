@@ -4,7 +4,7 @@ layout: default
 
 <div class="container">
     <div class="row">
-        <div class="top col-12">
+        <div id="page-top" class="top col-12">
 AI Applications and AI SDK<br>
 on RZ/V series
         </div>
@@ -30,6 +30,36 @@ It provides various AI applications for free.</h5>
             <br>
             <a class=" text-right btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">View AI Applications ></a>
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}" role="button">View AI SDK ></a>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<h3 id="new" >
+What's new
+</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h6 align="right" >
+2023.06.30
+            </h6>
+            <ul>
+                <li>
+<b>RZ/V2L AI Applications Demo v1.00</b> is now available.
+                </li>
+<h6>Users can use AI Applications without constructing the AI SDK environment.</h6>
+            </ul>
+For more details, see <a href="#demo">Demo</a>.
+<!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
+<br>
+<br>
+        </div>
+        <div class="col-12" align="right">
+            <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link history.md %}" role="button">
+View Version History >
+            </a>
         </div>
     </div>
 </div>
@@ -125,6 +155,32 @@ which allow you to select the application from various use cases, and run it on 
 
 <br>
 <br>
-<h3 id="demo" align="center">Demo</h3>
-<p align="center">Currently under development</p>
+<h3 id="demo">Demo</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+With the demo binary, users can try the AI Applications without having AI SDK environment.<br>
+Download the Demo and refer to <a href="https://www.renesas.com/document/rln/rzv2l-ai-applications-demo-how-use-guide-version-100">How to Use Guide</a> for more details.
+<br>
+<br>
+            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-100" role="button">
+Download Demo
+            </a>
+<br>
+<br>
+<h6>
+<b>Notes: <br>
+1. Demo zip filesize is more than 9GB.<br>
+2. Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 3 hours.<br>
+</b>
+</h6>
+<br>
+        </div>
+        <div class="col-12" align="right">
+            <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#page-top" role="button">
+Back to Top >
+            </a>
+        </div>
+    </div>
+</div>
 

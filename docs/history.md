@@ -14,9 +14,30 @@ Version History
         <div class="col-12">
 <br>
 <br>
+
+<!-- Topic below -->
             <i>
                 <h3 style="margin-bottom: 3px;" >
-v1.00
+AI Applications Demo v1.00
+                </h3>
+                <h6 align="right" >
+2023.6.30
+                </h6>
+            </i>
+            <h5>
+            <ul>
+                <li>
+AI Applications Demo v1.00 is released.
+                </li>
+Users can use AI Applications without constructing the AI SDK environment.
+            </ul>
+        </h5>
+<br>
+<!-- Topic above -->
+<!-- Topic below -->
+            <i>
+                <h3 style="margin-bottom: 3px;" >
+AI Applications & AI SDK v1.00
                 </h3>
                 <h6 align="right" >
 2023.4.23
@@ -25,13 +46,14 @@ v1.00
             <h5>
             <ul>
                 <li>
-AI Applications are released.
+AI Applications v1.00 is released.
                 </li>
                 <li>
 RZ/V2L AI SDK v1.00 is released.
                 </li>
             </ul>
         </h5>
+<!-- Topic above -->
         </div>
     </div>
 <br>

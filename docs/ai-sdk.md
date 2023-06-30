@@ -71,14 +71,17 @@ AI SDK provides following components.
             RZ/V2L Linux contains following packages.
                 <ul>
                     <li>DRP-AI Driver</li>
-                    <li>Graphics Library</li>
-                    <li>Video Codec Library (H.264)</li>
+                    <li>Graphics Library Evaluation Version *1</li>
+                    <li>Video Codec Library Evaluation Version *1 (H.264)</li>
                     <li>Video for Linux 2 (V4L2)</li>
                     <li>OpenCV</li>
                     <li>Tesseract</li>
                     <li>Other OSS packages</li>
                 </ul>
+*1: Note that Graphics Library and Codecs Library Evaluation Version has a limitation that system stops runinng after around 3 hours.<br>
             </h6>
+<br>
+
 For more information on AI SDK, see <a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">RZ/V2L AI SDK Rlease Note</a>.
         </div>
     </div>
