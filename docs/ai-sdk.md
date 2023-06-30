@@ -78,7 +78,7 @@ AI SDK provides following components.
                     <li>Tesseract</li>
                     <li>Other OSS packages</li>
                 </ul>
-*1: Note that Graphics Library and Codecs Library Evaluation Version has a limitation that system stops runinng after around 3 hours.<br>
+*1: Note that Graphics Library and Codecs Library Evaluation Version have a limitation that system stops runinng after around 3 hours.<br>
             </h6>
 <br>
 
