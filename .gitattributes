@@ -1,0 +1,11 @@
+# Autodetect text files
+* text=auto
+
+# files for enforcing LF ending
+*.txt text
+*.cpp text
+*.h text
+
+*.JPG binary
+*.gif binary
+*.so binary
