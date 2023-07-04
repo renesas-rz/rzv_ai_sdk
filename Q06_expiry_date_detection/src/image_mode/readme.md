@@ -52,6 +52,7 @@ Folder structure in the rootfs (SD Card) would look like:
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so 
+            │   └── preprocess/
             ├── date_class_labels.txt
             ├── sample_img.jpg
             └── date_extraction_img
