@@ -86,6 +86,7 @@ Folder structure in the rootfs (SD Card) would look like:
     ./date_extraction_img sample_img.jpg 
     ```
 
+    <img src = "../../images/Expiry_date_image_mode_default.JPG" width="480" height="320">
 
 #### Application: Termination
 * User needs to press `Esc` key to stop the application. 

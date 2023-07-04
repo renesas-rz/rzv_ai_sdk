@@ -230,7 +230,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
     ./date_extraction_cam
     ```
 
-
+    <img src = "./images/Expiry_date_video_mode_default.JPG" width="480" height="320">
 
 
 #### Application: Termination 
