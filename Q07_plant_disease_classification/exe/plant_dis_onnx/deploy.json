@@ -21,243 +21,12 @@
           0
         ]
       ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_max_pool2d", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_nn_max_pool2d", 
-        "layout": "NCHW", 
-        "hash": "bbc4c3cf490bee16"
-      }, 
-      "inputs": [
-        [
-          1, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_5", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_5"
-      }, 
-      "inputs": [
-        [
-          2, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_max_pool2d_1", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_nn_max_pool2d_1", 
-        "layout": "NCHW", 
-        "hash": "d1d37aa2d0e12f22"
-      }, 
-      "inputs": [
-        [
-          3, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_13", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_13"
-      }, 
-      "inputs": [
-        [
-          4, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_max_pool2d_2", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_nn_max_pool2d_2", 
-        "layout": "NCHW", 
-        "hash": "c55f92666bcda91b"
-      }, 
-      "inputs": [
-        [
-          5, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "null", 
-      "name": "p14", 
-      "inputs": []
-    }, 
-    {
-      "op": "null", 
-      "name": "p15", 
-      "inputs": []
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_nn_relu", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "3", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_nn_conv2d_add_nn_relu", 
-        "out_layout": "", 
-        "kernel_layout": "OIHW", 
-        "data_layout": "NCHW", 
-        "hash": "ac0c81853597ac5d"
-      }, 
-      "inputs": [
-        [
-          6, 
-          0, 
-          0
-        ], 
-        [
-          7, 
-          0, 
-          0
-        ], 
-        [
-          8, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "null", 
-      "name": "p16", 
-      "inputs": []
-    }, 
-    {
-      "op": "null", 
-      "name": "p17", 
-      "inputs": []
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_nn_relu1", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "3", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_nn_conv2d_add_nn_relu", 
-        "out_layout": "", 
-        "kernel_layout": "OIHW", 
-        "data_layout": "NCHW", 
-        "hash": "ac0c81853597ac5d"
-      }, 
-      "inputs": [
-        [
-          9, 
-          0, 
-          0
-        ], 
-        [
-          10, 
-          0, 
-          0
-        ], 
-        [
-          11, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_16", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_16"
-      }, 
-      "inputs": [
-        [
-          12, 
-          0, 
-          0
-        ], 
-        [
-          6, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_max_pool2d_3", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_fused_nn_max_pool2d_3", 
-        "layout": "NCHW", 
-        "hash": "fd4b0f52fbc9e4f8"
-      }, 
-      "inputs": [
-        [
-          13, 
-          0, 
-          0
-        ]
-      ]
-    }, 
-    {
-      "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_18", 
-      "attrs": {
-        "num_outputs": "1", 
-        "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_18"
-      }, 
-      "inputs": [
-        [
-          14, 
-          0, 
-          0
-        ]
-      ]
     }
   ], 
-  "arg_nodes": [0, 7, 8, 10, 11], 
+  "arg_nodes": [0], 
   "heads": [
     [
-      15, 
+      1, 
       0, 
       0
     ]
@@ -267,83 +36,20 @@
       "list_str", 
       [
         "float32", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
-        "float16", 
         "float16"
       ]
     ], 
     "storage_id": [
       "list_int", 
-      [
-        0, 
-        1, 
-        2, 
-        1, 
-        2, 
-        3, 
-        4, 
-        5, 
-        6, 
-        3, 
-        7, 
-        8, 
-        9, 
-        3, 
-        9, 
-        10
-      ]
+      [0, 1]
     ], 
     "shape": [
       "list_shape", 
       [
         [1, 3, 256, 256], 
-        [1, 128, 256, 256], 
-        [1, 128, 64, 64], 
-        [1, 256, 64, 64], 
-        [1, 256, 16, 16], 
-        [1, 512, 16, 16], 
-        [1, 512, 4, 4], 
-        [512, 512, 3, 3], 
-        [1, 512, 1, 1], 
-        [1, 512, 4, 4], 
-        [512, 512, 3, 3], 
-        [1, 512, 1, 1], 
-        [1, 512, 4, 4], 
-        [1, 512, 4, 4], 
-        [1, 512, 1, 1], 
         [1, 38]
       ]
     ]
   }, 
-  "node_row_ptr": [
-    0, 
-    1, 
-    2, 
-    3, 
-    4, 
-    5, 
-    6, 
-    7, 
-    8, 
-    9, 
-    10, 
-    11, 
-    12, 
-    13, 
-    14, 
-    15, 
-    16
-  ]
+  "node_row_ptr": [0, 1, 2]
 }
