@@ -55,10 +55,7 @@
 #include <arpa/inet.h>
 
 #include <sys/types.h>
-#include <ifaddrs.h>
-#include <netinet/in.h>
 #include <string.h>
-#include <arpa/inet.h>
 #include <queue>
 
 #define GREEN cv::Scalar(0, 255, 0)
@@ -100,6 +97,8 @@ const std::string non_violence      = "Non Violence activity";
 const std::string violence          = "Violence activity detected !";
 const std::string none              = "None";
 std::string result                  =  none;
+std::string frame_interval          = "";
+std::string buffer_size             = "";
 
 cv::VideoCapture cap;
 cv::Mat frame;
@@ -129,6 +128,7 @@ float float16_to_float32(uint16_t a)
 {
     return __extendXfYf2__<uint16_t, uint16_t, 10, float, uint32_t, 23>(a);
 }
+
 /*****************************************
  * Function Name : hwc2chw
  * Description   : This function takes an input image in HWC (height, width, channels)
@@ -147,6 +147,7 @@ cv::Mat hwc2chw(const cv::Mat &image)
     cv::hconcat(matArray, MODEL_IN_C, flat_image);
     return flat_image;
 }
+
 /*****************************************
  * Function Name : camera_thread
  * Description   : function to show the ouput camera result
@@ -210,6 +211,7 @@ void camera_thread(void)
     cap.release();
     cv::destroyAllWindows();
 }
+
 /******************************************
  * Function Name : plot_graph
  * Description   : function to plot graph with respect to the threshold value.
@@ -253,6 +255,7 @@ void plot_graph(float value)
     plot_g = true;
     return;
 }
+
 /*****************************************
  * Function Name     : start_runtime
  * Description       : Function to perform the pre processing and post processing.
@@ -279,7 +282,6 @@ void start_runtime(bool flag,float *input)
     /* Post-processing for FP16 */
     if (InOutDataType::FLOAT16 == std::get<0>(output_buffer))
     {
-        std::cout << "Output data type : FP16.\n";
         /* Extract data in FP16 <uint16_t>. */
         uint16_t *data_ptr = reinterpret_cast<uint16_t *>(std::get<1>(output_buffer));
         for (int n = 0; n < out_size_arr; n++)
@@ -307,6 +309,7 @@ void start_runtime(bool flag,float *input)
         abort();
     }
 }
+
 /*****************************************
  * Function Name : run_inference
  * Description   : frame preprocessing and postprocessing.
@@ -331,6 +334,7 @@ cv::Mat run_inference(cv::Mat frame)
     cv::Mat mat(out_size_arr, 1, CV_32FC1, floatarr.data());
     return mat;   
 }
+
 /*****************************************
  * Function Name : process_frames
  * Description   : frame preprocessing and postprocessing.
@@ -350,8 +354,8 @@ void process_frames(void)
     /* Load model_dir structure and its weight to model_runtime object */
     prediction_model.LoadModel(mlp_model);
 
-    std::cout << "\n[INFO]loaded CNN model:" << model_dir << "\n";
-    std::cout << "\n[INFO]loaded MLP model:" << mlp_model << "\n\n";
+    std::cout << "\n[INFO] loaded CNN model:" << model_dir << "\n";
+    std::cout << "\n[INFO] loaded MLP model:" << mlp_model << "\n\n";
 
     while (running_process_frame)
     {
@@ -364,7 +368,7 @@ void process_frames(void)
         /* checking the input frame is empty or not*/
         if(frame.empty())
         {
-            std::cout << "[ERROR]Unable to read frame" << std::endl;
+            std::cout << "[ERROR] Unable to read frame" << std::endl;
             break;
         }
         /* run inference*/
@@ -389,6 +393,7 @@ void process_frames(void)
     }
     return;
 }
+
 /******************************************
  * Function Name : capture_frame
  * Description   : function to open camera or video source with respect to the source pipeline.
@@ -396,7 +401,6 @@ void process_frames(void)
  ******************************************/
 void capture_frame(std::string cap_pipeline)
 {
-    std::cout << "cap pipeline" << cap_pipeline << "\n";
     /* Capture stream of frames from camera using Gstreamer pipeline */
     cap.open(cap_pipeline, cv::CAP_GSTREAMER);
     if (!cap.isOpened())
@@ -416,41 +420,90 @@ void capture_frame(std::string cap_pipeline)
     return;
 }
 
-int main(int argc, char **argv)
-{   
-    /* Get input Source WS/VIDEO/CAMERA */
-    std::string input_source = argv[1];
-    /* Fetching Frame interval & Buffer size from arguments */
-    if (!(argv[2]))
+/*****************************************
+ * Function Name : mipi_cam_init
+ * Description   : function to open camera or video source with respect to the source pipeline.
+ ******************************************/
+void mipi_cam_init(void)
+{
+    int ret = 0;
+    std::cout<<"[INFO] MIPI CAM Init \n";
+    const char* commands[4] =
     {
-        std::cout << "[INFO]Default Frame interval: " << FRAME_INTERVAL << "\n";
-        std::cout << "[INFO]Default Buffer size: " << BUFFER_SIZE << "\n";
-    }
-    else
+        "media-ctl -d /dev/media0 -r",
+        "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
+        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
+    };
+
+    /* media-ctl command */
+    for (int i=0; i<4; i++)
     {
-        FRAME_INTERVAL = atoi(argv[2]);
-        std::cout << "[INFO]Frame interval: " << FRAME_INTERVAL << "\n";
-        if (!(argv[3]))
-            std::cout << "[INFO]Default Buffer size: " << BUFFER_SIZE << "\n";
-        else
+        std::cout<<commands[i]<<"\n";
+        ret = system(commands[i]);
+        std::cout<<"system ret = "<<ret<<"\n";
+        if (ret<0)
         {
-            BUFFER_SIZE = atoi(argv[3]);
-            std::cout << "[INFO]Buffer size: " << BUFFER_SIZE << "\n";
+            std::cout<<"[ERROR]"<<__func__<<": failed media-ctl commands. index = "<<i<<"\n";
+            return;
         }
     }
+}
+int main(int argc, char **argv)
+{   
+    /* Argument Index */
+    uint8_t arg_index;
+    /* Minimum-Maximum vlue range of Frame interval and buffer size */
+    const uint8_t frame_interval_min    = 1;
+    const uint8_t frame_interval_max    = 16;
+    const uint8_t buffer_size_min       = 0;
+    const uint8_t buffer_size_max       = 10;
+
+    /* Get input Source WS/VIDEO/CAMERA */
+    std::string input_source = argv[1];
+    /* File source */
+    std::string source;
+    
     /* Input source : CAMERA */
     if (input_source == "CAMERA")
     {
-        std::cout << "\n[INFO]CAMERA_mode\n";
-        std::string gstreamer_pipeline = "v4l2src device=/dev/video0 ! videoconvert ! appsink";
-        capture_frame(gstreamer_pipeline);
+        arg_index = 0;
+        std::cout << "\n[INFO] CAMERA_mode\n";
+        source = "v4l2src device=/dev/video0 ! videoconvert ! appsink";
+        /* MIPI Camera Setup */
+        mipi_cam_init();
     }
     /* Input source : VIDEO */
+    else if(input_source == "VIDEO")
+    {
+        arg_index = 1;
+        std::cout << "\n[INFO] VIDEO_mode\n";
+        if(!argv[2])
+            goto label_1;
+        std::string video_source = argv[2];
+        std::string path1 = "filesrc location=";
+        std::string path2 = " ! decodebin ! videoconvert ! appsink";
+        source = path1+video_source+path2;
+    }
     else
     {
-        std::cout << "\n[INFO] VIDEO_mode\n";
-        capture_frame(argv[1]);
+        label_1:
+        std::cout << "\n[ERROR] Input mode is not matching!!\n";
+        goto label_2;
     }
+
+    /* Fetching Frame interval & Buffer size from arguments */
+    (!(argv[2+arg_index]) || (atoi(argv[2+arg_index]) <= frame_interval_min || atoi(argv[2+arg_index]) >= frame_interval_max)) ? std::cout << "[INFO] Default Frame interval: " : std::cout << "[INFO] Frame interval: ";
+    FRAME_INTERVAL = (!(argv[2+arg_index]) || ( atoi(argv[2+arg_index]) <= frame_interval_min || atoi(argv[2+arg_index]) >= frame_interval_max)) ? FRAME_INTERVAL : atoi(argv[2+arg_index]);
+    std::cout<<FRAME_INTERVAL<<"\n";
+
+    ((!(argv[3+arg_index]) || (atoi(argv[3+arg_index]) <= buffer_size_min || atoi(argv[3+arg_index]) >= buffer_size_max)) || (!(argv[2+arg_index]))) ? std::cout << "[INFO] Default Buffer size: " : std::cout << "[INFO] Buffer size: ";
+    BUFFER_SIZE = ((!(argv[3+arg_index]) || (atoi(argv[3+arg_index]) <= buffer_size_min || atoi(argv[3+arg_index]) >= buffer_size_max)) || (!(argv[2+arg_index])) ) ? BUFFER_SIZE : atoi(argv[3+arg_index]);
+    std::cout<<BUFFER_SIZE<<"\n";
+    /* Capture frame */
+    capture_frame(source);
+    
+    label_2:
     std::cout << "\n[INFO] Application End\n";
     return 0;
 }

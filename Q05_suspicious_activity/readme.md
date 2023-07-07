@@ -137,7 +137,11 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 ```sh 
 ./suspicious_activity CAMERA 
 ```
+- User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
 
+```sh
+./suspicious_activity CAMERA 5 5
+```
 ##### Mode: Video Input
 
 ```sh 
@@ -148,8 +152,9 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 - User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
 
 ```sh 
-./suspicious_activity VIDEO non_violence 5 5
+./suspicious_activity VIDEO non_violence.mp4 5 5
 ```
+
 
 - Press `Esc` key to terminate the application.
 
@@ -159,7 +164,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 <img src = "./images/suspicious_act_img.JPG" width="480" height="320">
 
-- The chart shown here will store the value of the previous 20 thresholds. 
+- The graph shown here will store the value of the previous 20 thresholds. 
 - The threshold represent whether the suspicious activity is being done or not.
 - With `0` being the suspicious activity being done and `1` for non-suspicious. The cut-off threshold is `0.5`.
 - On the display out, FPS(Frame Per Sec) and classification of activity is also shown. 
@@ -172,9 +177,11 @@ The application uses 2 model, 1 CNN and 1 MLP model.
     - `FRAME_INTERVAL` can also mean, skipping `FRAME_INTERVAL` frames and then selecting 1 frame.
     - This parameter is user configurable
     - User can pass int value ranging from [`2 - 15`]
+    - For optimal result, user are recommended to use the default values
  
 - The `BUFFER_SIZE` (default 2) will determine, the consecutive frames to be added or removed for the vector. 
     - The `BUFFER_SIZE` is User configurable with range [`1 - 9`]. 
+    - For optimal result, user are recommended to use the default values
 
 - For a `BATCH_SIZE` (fixed to 10), there will be `1280` vector size, which will be fed to the MLP for the classification. This variable is fixed and related to the AI model. 
 
@@ -260,8 +267,11 @@ Estimated Total Size (MB): 4.92
 #### Dataset 
 Dataset Contains 1000 Violence and 1000 non-violence videos collected from youtube videos.
 [Dataset-Link](https://www.kaggle.com/datasets/mohamedmustafa/real-life-violence-situations-dataset)
-#### AI Inference time
-Total AI inference time (Pre-processing + AI model inference) - 350 ms
-| Training Accuracy   |Validation Accuracy   |  Testing Accuracy |
-|---|---|---|
 
+#### AI Inference time
+
+Total AI inference time (Pre-processing + AI model inference) - 350 ms
+
+| Training Accuracy | Validation Accuracy |
+|---|---|
+|94.2% | 90.7% |
