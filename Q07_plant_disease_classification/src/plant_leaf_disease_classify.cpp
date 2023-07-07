@@ -71,7 +71,7 @@ MeraDrpRuntimeWrapper runtime;
 #define MODEL_IN_W (256)
 #define MODEL_IN_C (3)
 
-/*Model input info*/
+/*Frame input info*/
 #define FRAME_IN_H (480)
 #define FRAME_IN_W (640)
 #define FRAME_IN_C (3)
@@ -493,7 +493,7 @@ void capture_frame(std::string cap_pipeline)
         cv::putText(frame, "FPS: "+std::to_string(FPS), cv::Point(553, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7, BLUE, 2);        
         cv::rectangle(frame, boxes[0], BLUE, 2);
         cv::imshow("output", frame);
-        wait_key = waitKey(10);
+        wait_key = waitKey(1);
         if(wait_key == 27)
             break;
     }
@@ -517,17 +517,19 @@ int main(int argc, char **argv)
     /* Load model_dir structure and its weight to model_runtime object */
     runtime.LoadModel(model_dir);
     cout << "loaded model :" << model_dir << "\n\n";
-     /* Get input Source WS/VIDEO/CAMERA */
+     /* Get input Source VIDEO/CAMERA */
     std::string input_source = argv[1];
-
     switch (input_source_map[input_source])
     {
     /* Input Source : Video */
     case 1:
         {
             std::cout << "[INFO] Video \n";
+            /* Get input Source VIDEO filename */
+            std::string vid_src = argv[2];
+            std::string gstreamer_pipeline = "filesrc location="+vid_src+" ! decodebin ! videoconvert ! appsink";
             /* Open camera and capture frame*/
-            capture_frame(argv[2]);
+            capture_frame(gstreamer_pipeline);
         }
         break;
     /* Input Source : Camera */
