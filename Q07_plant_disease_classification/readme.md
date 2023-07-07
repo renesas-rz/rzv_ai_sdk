@@ -1,7 +1,7 @@
 # Plant leaf disease classification
 
 ## Application: Overview
-The Plant leaf disease classification application allows to classify between 38 different plant leaf disease/healthy. The developed model is able to recognize 38 different types of plant disease out of 14 different plants. The label list is provided at `[exe/plant_leaf_disease_class.txt](./exe/plant_leaf_disease_class.txt)`
+The Plant leaf disease classification application allows to classify between 38 different plant leaf disease/healthy. The developed model is able to recognize 38 different types of plant disease out of 14 different plants. The label list is provided at [`exe/plant_leaf_disease_class.txt`](./exe/plant_leaf_disease_class.txt)
 
 
 The application could be used to classify plant leaf whether healthy or not in agricultural sector 
@@ -23,6 +23,7 @@ It has 3 modes of running.
 - RZ/V2L Evaluation Board Kit
      - MIPI camera 
 - USB Keyboard
+- USB Mouse
 - USB Hub
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
@@ -31,6 +32,8 @@ It has 3 modes of running.
 [Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
 
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
+
+
 #### Software Requirements
 - Ubuntu 20.04
 - OpenCV 4.x
@@ -177,13 +180,8 @@ Frame Per Sec (FPS) is shown on top right corner
 - Application can be terminated by long pressing `esc` key (around 10 seconds) on the keyboard connected to the board.
 - Alternatively, User can force close the application using `CTRL+c` on the board console.
 
-#### Dataset 
-The class labels are mentioned in the [`plant_leaf_disease_class.txt`](./exe/plant_leaf_disease_class.txt)
-This dataset consists of about 87K rgb images of healthy and diseased crop leaves which is categorized into 38 different classes. The total dataset is divided into 80/20 ratio of training and validation set preserving the directory structure. A new directory containing 33 test images is created later for prediction purpose.
 
-[Dataset Link](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset)
-
-
+## Application: Specifications 
 
 
 #### Model Details
@@ -238,6 +236,15 @@ None
 base ResNet9 architecture
 
 ```
+
+#### Dataset 
+The class labels are mentioned in the [`plant_leaf_disease_class.txt`](./exe/plant_leaf_disease_class.txt)
+This dataset consists of about 87K rgb images of healthy and diseased crop leaves which is categorized into 38 different classes. The total dataset is divided into 80/20 ratio of training and validation set preserving the directory structure. A new directory containing 33 test images is created later for prediction purpose.
+
+[Dataset Link](https://www.kaggle.com/datasets/vipoooool/new-plant-diseases-dataset)
+
+
+
 
 #### AI Inference time
 Total AI inference time (Pre-processing + AI model inference) - 425ms (2 FPS)

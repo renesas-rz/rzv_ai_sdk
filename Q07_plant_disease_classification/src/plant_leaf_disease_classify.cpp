@@ -71,7 +71,15 @@ MeraDrpRuntimeWrapper runtime;
 #define MODEL_IN_W (256)
 #define MODEL_IN_C (3)
 
-bool drawing_box        = false;
+/*Model input info*/
+#define FRAME_IN_H (480)
+#define FRAME_IN_W (640)
+#define FRAME_IN_C (3)
+
+/*Threshold value info*/
+#define threshold 0.6
+
+bool drawing_box  = false;
 
 int slot_id;
 unsigned int out;
@@ -166,6 +174,8 @@ cv::Mat hwc2chw(const cv::Mat &image)
 int run_inference(Mat frame)
 {   
     float *output;
+    int max_ind     = -1;
+    float max_value = -1;
     std::map<float,int> result;
     int result_cnt = 0;
     auto t1 = std::chrono::high_resolution_clock::now();
@@ -201,9 +211,7 @@ int run_inference(Mat frame)
         int64_t out_size = std::get<2>(output_buffer);
         floatarr.resize(out_size);
         
-        int max_ind     = -1;
-        float max_value = -1;
-        float threshold = 0.9;
+
          /* Post-processing for FP16 */
         if(InOutDataType::FLOAT16 == std::get<0>(output_buffer))
         {
@@ -265,25 +273,25 @@ void classification(int out)
         char *strg = new char[class_names[out].length()+1];
         std::strcpy(strg,class_names[out].c_str());
         //std::cout << "\n[INFO] Class:" << class_names[out] << "\n";
-        cv::resize(frame, frame, cv::Size(640,480),cv::INTER_LINEAR);
+        cv::resize(frame, frame, cv::Size(FRAME_IN_W,FRAME_IN_H),cv::INTER_LINEAR);
         char *tknv = strtok(strg, "___");
         std::string tknv1,tknv2;
         while (tknv != NULL)
         {
             if(counter == 1)
             {
-                printf("Plant : %s\n", tknv);
+                std::cout<<"\n[INFO] Plant leaf: " << tknv << "\n";
                 tknv1 = std::string(tknv);
             }
             else if(counter == 2)
             {
-                printf("Status : %s\n", tknv);
+                std::cout<<"\n[INFO] Status: " << tknv << "\n";
                 tknv2 = std::string(tknv);
             }
         tknv = strtok(NULL, "___");
         counter++;
         }
-        cv::putText(frame, "Plant: "+tknv1, cv::Point(5, 17), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
+        cv::putText(frame, "Plant leaf: "+tknv1, cv::Point(5, 17), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
         cv::putText(frame, "Status: "+tknv2, cv::Point(5, 39), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);
         cv::putText(frame, "Score: "+score_per+"%", cv::Point(5, 60), cv::FONT_HERSHEY_SIMPLEX, 0.6,BLUE, 2);  
         cv::putText(frame,"AI-Inference Time(ms): "+std::to_string(duration), cv::Point(5, 80), cv::FONT_HERSHEY_SIMPLEX, 0.6, BLUE, 2);    
@@ -316,7 +324,7 @@ void get_patches(int event, int x, int y, int flags, void *param)
     {
         drawing_box = false;
         box_end = Point2f(x, y);
-        putText(img, "area_selected", box_start, FONT_HERSHEY_COMPLEX, 1.0, Scalar(255, 0, 0), 2);
+        putText(img, "area_selected", box_start, FONT_HERSHEY_COMPLEX, 1.0, BLUE, 2);
         slot_id += 1;
         rect = cv::Rect(box_start, box_end);
         Rect box(box_start, box_end);
@@ -325,18 +333,18 @@ void get_patches(int event, int x, int y, int flags, void *param)
 
     if (drawing_box)
     {
-        rectangle(frame_copy, box_start, box_end, Scalar(0, 0, 255), 2);
+        rectangle(frame_copy, box_start, box_end, RED, 2);
     }
     else if (!rect.empty())
     {
-        rectangle(frame_copy, rect, cv::Scalar(0, 0, 255), 2);
+        rectangle(frame_copy, rect, RED, 2);
     }
     for (int i = 0; i < boxes.size(); i++)
     {
-        rectangle(img, boxes[i], Scalar(0, 0, 255), 2);
+        rectangle(img, boxes[i],RED, 2);
     }
     box_end = Point2f(x, y);
-    cv::resize(frame_copy, frame_copy, cv::Size(640, 480), cv::INTER_LINEAR);
+    cv::resize(frame_copy, frame_copy, cv::Size(FRAME_IN_W,FRAME_IN_H), cv::INTER_LINEAR);
     imshow("image", frame_copy);
 }
 /*****************************************
@@ -375,14 +383,15 @@ std::map<int, std::string> load_label_file(std::string label_file_name)
 int draw_rectangle(void)
 {
     slot_id = boxes.size();
-    cv::resize(img, img, cv::Size(640, 480), cv::INTER_LINEAR);
+    cv::resize(img, img, cv::Size(FRAME_IN_W,FRAME_IN_H), cv::INTER_LINEAR);
     for (int i = 0; i < boxes.size(); i++)
     {
-        rectangle(img, boxes[i], Scalar(0, 0, 255), 2);
-        putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+        rectangle(img, boxes[i], RED, 2);
+        putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, BLUE, 2);
     }
     unsigned int key = 0;
     cv::putText(img, "Select area to classify(draw box)", cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX, 0.8, GREEN, 2);
+    cv::putText(img, "and Press 'ENTER' key", cv::Point(50, 77), cv::FONT_HERSHEY_SIMPLEX, 0.8, RED, 2);
     cv::namedWindow("image", cv::WINDOW_NORMAL);
     cv::imshow("image", img);
     cv::setMouseCallback("image", get_patches, &img);
@@ -450,8 +459,8 @@ void capture_frame(std::string cap_pipeline)
     {   
         cap.read(img);
     }
-    bool is_sucess = cap.read(img);
-    if (is_sucess == true)
+    bool is_success = cap.read(img);
+    if (is_success == true)
     {
         std::cout << "[INFO] Draw rectangle !!!\n";
         draw_rectangle();
@@ -473,7 +482,7 @@ void capture_frame(std::string cap_pipeline)
             std::cout << "[INFO] Video ended or corrupted frame !\n";
             return;
         }
-        cv::resize(frame, frame, cv::Size(640, 480), cv::INTER_LINEAR);
+        cv::resize(frame, frame, cv::Size(FRAME_IN_W,FRAME_IN_H), cv::INTER_LINEAR);
         cout<< boxes[0] <<endl;
         frames = frame(boxes[0]);
         out = run_inference(frames);
@@ -481,8 +490,8 @@ void capture_frame(std::string cap_pipeline)
         std::string stips2 = std::to_string(duration);
         int64_t FPS = 1000/duration;
         std::cout<<"\nFPS: "<<FPS<<endl;
-        cv::putText(frame, "FPS: "+std::to_string(FPS), cv::Point(555, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7, BLUE, 2);        
-        cv::rectangle(frame, boxes[0], Scalar(255, 0, 0), 2);
+        cv::putText(frame, "FPS: "+std::to_string(FPS), cv::Point(553, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7, BLUE, 2);        
+        cv::rectangle(frame, boxes[0], BLUE, 2);
         cv::imshow("output", frame);
         wait_key = waitKey(10);
         if(wait_key == 27)
@@ -541,9 +550,11 @@ int main(int argc, char **argv)
             out = run_inference(frame);
             classification(out);
             cv::imshow("output", frame);
-            cv::waitKey(2000);
+            cv::waitKey(3000);
         }
         break;
+    default:
+        std::cout << "[INFO] Invalid input argument \n";
     }
     std::cout<< "\n[INFO] Application End \n";
 }
