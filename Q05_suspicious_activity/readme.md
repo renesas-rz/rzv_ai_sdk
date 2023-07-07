@@ -5,8 +5,8 @@ The susspicious  activity classification application allows to classify between 
 
 It has 2 modes of running.
 
-3. Using Video as input
-4. Using Camera as Input
+1. Using Video as input
+2. Using MIPI Camera as Input
 
 #### Demo:
 
@@ -23,7 +23,7 @@ It has 2 modes of running.
 - USB Keyboard
 - USB Hub
 - HDMI monitor & Micro HDMI Cable
-- Ethernet Cable
+- SD Card (for file system)
 
 [Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
 
@@ -37,7 +37,7 @@ It has 2 modes of running.
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -68,7 +68,7 @@ export PROJECT_PATH=/drp-ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q05_suspicious_activity/suspicious_activity/src/
+cd ${PROJECT_PATH}/rzv_ai_sdk/Q05_suspicious_activity/src/
 ```
 >**Note:**`rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
 5. Build the application on docker environment by following the steps below
@@ -122,7 +122,8 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
-            ├── sample_video.mp4
+            ├── violence.mp4
+            ├── non_violence.mp4
             └── suspicious_activity
 
 ```
@@ -144,17 +145,39 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 ```
 > Note: Tested with video file format `.mp4` and `.avi`.
 
+- User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
+
+```sh 
+./suspicious_activity VIDEO non_violence 5 5
+```
 
 - Press `Esc` key to terminate the application.
 
+#### Application: Runtime Details
+
+- The application when running will look something like below
+
+<img src = "./images/suspicious_act_img.JPG" width="480" height="320">
+
+- The chart shown here will store the value of the previous 20 thresholds. 
+- The threshold represent whether the suspicious activity is being done or not.
+- With `0` being the suspicious activity being done and `1` for non-suspicious. The cut-off threshold is `0.5`.
+- On the display out, FPS(Frame Per Sec) and classification of activity is also shown. 
 
 ## Application: Specifications
 
 The application uses 2 model, 1 CNN and 1 MLP model. 
 - For each frame from the video/camera, CNN will produce `128` linear output. 
-- For every `FRAME_INTERVAL`, default 10, each frame will be processed to the CNN. The output vector is stored in the vector.
-- For a `BATCH_SIZE` (default 10), there will be `1280` vector size, which will be fed to the MLP for the classification.  
-- The `BUFFER_SIZE` will determine, the consecutive frames to be added or removed for the vector. 
+- For every `FRAME_INTERVAL`, default 10, each frame will be processed to the CNN. The output vector is stored in the vector. 
+    - `FRAME_INTERVAL` can also mean, skipping `FRAME_INTERVAL` frames and then selecting 1 frame.
+    - This parameter is user configurable
+    - User can pass int value ranging from [`2 - 15`]
+ 
+- The `BUFFER_SIZE` (default 2) will determine, the consecutive frames to be added or removed for the vector. 
+    - The `BUFFER_SIZE` is User configurable with range [`1 - 9`]. 
+
+- For a `BATCH_SIZE` (fixed to 10), there will be `1280` vector size, which will be fed to the MLP for the classification. This variable is fixed and related to the AI model. 
+
 
 #### Model Details
 
