@@ -1,7 +1,7 @@
 # Suspicious Activity Classification Application
 
 ## Application: Overview
-The susspicious  activity classification application allows to classify between Violence and Non-Violence from video input using a custom AI model which has a CNN module for feature extraction and MLP for aggregating features.
+The suspicious  activity classification application allows to classify between Violence and Non-Violence from video input using a custom AI model which has a CNN module for feature extraction and MLP for aggregating features.
 
 It has 2 modes of running.
 
@@ -271,6 +271,7 @@ Dataset Contains 1000 Violence and 1000 non-violence videos collected from youtu
 #### AI Inference time
 
 Total AI inference time (Pre-processing + AI model inference) - 350 ms
+AI Inference timing include both CNN and MLP model inference. 
 
 | Training Accuracy | Validation Accuracy |
 |---|---|
