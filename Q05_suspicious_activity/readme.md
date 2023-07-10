@@ -139,9 +139,12 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 ```
 - User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
 
+>**Note: `FRAME_INTERVAL` and `BUFFER_SIZE` details are explained in [Application: Specifications](#application-specifications).** 
+
 ```sh
 ./suspicious_activity CAMERA 5 5
 ```
+
 ##### Mode: Video Input
 
 ```sh 
@@ -151,10 +154,13 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 - User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
 
+>**Note: `FRAME_INTERVAL` and `BUFFER_SIZE` details are explained in [Application: Specifications](#application-specifications).** 
+
 ```sh 
 ./suspicious_activity VIDEO non_violence.mp4 5 5
 ```
 
+#### Application: termination
 
 - Press `Esc` key to terminate the application.
 
@@ -241,9 +247,11 @@ Input size (MB): 0.57
 Forward/backward pass size (MB): 54.38
 Params size (MB): 83.27
 Estimated Total Size (MB): 138.21
+```
 
 ##### MLP Module
 
+```python
 ==========================================================================================
 Layer (type:depth-idx)                   Output Shape              Param #
 ==========================================================================================
