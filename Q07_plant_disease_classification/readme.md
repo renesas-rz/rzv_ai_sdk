@@ -247,7 +247,7 @@ This dataset consists of about 87K rgb images of healthy and diseased crop leave
 
 
 #### AI Inference time
-Total AI inference time (Pre-processing + AI model inference) - 170 ms.
+Total AI inference time (Pre-processing + AI model inference) - 110 ms.
 
 | Training Accuracy   |Validation Accuracy   |  Testing Accuracy |
 |---|---|---|
