@@ -67,7 +67,7 @@ After completion of the guide, the user is expected of following things.
 3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
 
 ```sh
-export PROJECT_PATH=/drp_ai_tvm/data/
+export PROJECT_PATH=/drp-ai_tvm/data/
 ```
 4. Go to the `src` directory of the application
 
@@ -104,6 +104,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 
 Folder structure in the rootfs (SD Card) would look like:
+
 ```sh
 ├── usr/
 │   └── lib64/
@@ -112,6 +113,7 @@ Folder structure in the rootfs (SD Card) would look like:
     └── root/
         └── tvm/ 
             ├── plant_dis_onnx/
+            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
@@ -177,7 +179,7 @@ Frame Per Sec (FPS) is shown on top right corner
 
 
 #### Application: Termination
-- Application can be terminated by long pressing `esc` key (around 10 seconds) on the keyboard connected to the board.
+- Application can be terminated by pressing `Esc` key on the USB keyboard connected to the board.
 - Alternatively, User can force close the application using `CTRL+c` on the board console.
 
 
