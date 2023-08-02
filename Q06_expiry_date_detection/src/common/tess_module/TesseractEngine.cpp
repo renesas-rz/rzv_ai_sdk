@@ -42,9 +42,9 @@ TesseractEngine::TesseractEngine() {
     // tesseract::PageSegMode::PSM_SINGLE_LINE
 
     if (tessEngine.Init(NULL, "eng", tesseract::OEM_DEFAULT)) {
-        printf("Failed to initialize");
+        printf("[ERROR] Failed to initialize tesseract OCR engine");
     } else {
-        printf("Tesseract initialized \n");
+        printf("[Info] Tesseract OCR Engine initialized \n");
         tessEngine.SetPageSegMode(static_cast<tesseract::PageSegMode>(PAGE_SEGMENT_MODE));
 
         

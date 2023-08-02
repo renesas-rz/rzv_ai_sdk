@@ -77,7 +77,7 @@ std::map<boost::regex, std::string> create_regex_dict() {
         regex_dict.emplace(boost::regex(regex_patterns[i]), date_formats[i]);
     }
 
-    printf("Regex dictionary updated \n");
+    printf("[INFO] YY-MM-DD regular expression dictionary updated \n");
 
     return regex_dict;
 }

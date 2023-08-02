@@ -107,6 +107,9 @@ static float pre_time = 0;
 static float post_time = 0;
 static float ai_time = 0;
 static Wayland wayland;
+
+uint64_t drpaimem_addr_start = 0;
+bool runtime_status = false; 
 static vector<detection> det;
 
 static unordered_map<int, date_struct> date_struc_map;
@@ -1020,6 +1023,39 @@ main_proc_end:
     return main_ret;
 }
 
+/*****************************************
+* Function Name : get_drpai_start_addr
+* Description   : Function to get the start address of DRPAImem.
+* Arguments     : -
+* Return value  : uint32_t = DRPAImem start address in 32-bit.
+******************************************/
+uint32_t get_drpai_start_addr()
+{
+    int fd  = 0;
+    int ret = 0;
+    drpai_data_t drpai_data;
+
+    errno = 0;
+
+    fd = open("/dev/drpai0", O_RDWR);
+    if (0 > fd )
+    {
+        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
+        return NULL;
+    }
+
+    /* Get DRP-AI Memory Area Address via DRP-AI Driver */
+    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    if (-1 == ret)
+    {
+        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        return (uint32_t)NULL;
+    }
+
+    return drpai_data.address;
+}
+
+
 int32_t main(int32_t argc, char *argv[])
 {
     int8_t main_proc = 0;
@@ -1113,7 +1149,24 @@ int32_t main(int32_t argc, char *argv[])
     }
 
     /*Load model_dir structure and its weight to runtime object */
-    runtime.LoadModel(model_dir);
+    drpaimem_addr_start = get_drpai_start_addr();
+
+    if (drpaimem_addr_start == (uint64_t)NULL)
+    {
+        /* Error notifications are output from function get_drpai_start_addr(). */
+	    fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address. \n");
+        return -1;
+    }
+
+
+    runtime_status = runtime.LoadModel(model_dir, drpaimem_addr_start + DRPAI_MEM_OFFSET);
+    
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model. \n");
+        return -1;
+    }
+    
     /*Get input data */
     input_data_type = runtime.GetInputDataType(0);
     if (InOutDataType::FLOAT32 == input_data_type)

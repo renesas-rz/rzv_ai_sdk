@@ -72,7 +72,7 @@
 * Model Directory Information
 ******************************************/
 /* Model Binary */
-const static std::string model_dir = "date_tinyyolov3_onnx";
+const static std::string model_dir = "date_detection_tinyyolov3";
 /* Pre-processing Runtime Object */
 const static std::string pre_dir = model_dir + "/preprocess";
 
@@ -82,20 +82,23 @@ const static std::string label_list = "date_class_labels.txt";
 /* Empty List since labels will be loaded from label_list file */
 static std::vector<std::string> label_file_map = {};
 
+/* DRP-AI memory offset for model object file*/
+#define DRPAI_MEM_OFFSET            (0X38E0000)
+
 /*****************************************
  * Macro for YOLOv3
  ******************************************/
 /* Number of class to be detected */
-#define NUM_CLASS (4)
+#define NUM_CLASS                   (4)
 /* Number for [region] layer num parameter */
-#define NUM_BB (3)
-#define NUM_INF_OUT_LAYER (2)
+#define NUM_BB                      (3)
+#define NUM_INF_OUT_LAYER           (2)
 /* Thresholds */
-#define TH_PROB (0.2f)
-#define TH_NMS (0.5f)
+#define TH_PROB                     (0.2f)
+#define TH_NMS                      (0.5f)
 /* Size of input image to the model */
-#define MODEL_IN_W (416)
-#define MODEL_IN_H (416)
+#define MODEL_IN_W                  (416)
+#define MODEL_IN_H                  (416)
 
 /* Number of grids in the image. The length of this array MUST match with the NUM_INF_OUT_LAYER */
 const static uint8_t num_grids[] = {13, 26};

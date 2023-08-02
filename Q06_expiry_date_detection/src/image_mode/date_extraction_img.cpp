@@ -8,7 +8,7 @@
 #include "../common/text_proc_module/TextProc.h"
 #include "../common/utils/common_utils.h"
 #include "../common/comm_define.h"
-
+#include "../camera_mode/PreRuntime.h"
 
 using namespace std;
 
@@ -24,7 +24,8 @@ unsigned int out;
 uint32_t out_size_arr;
 std::vector<float> floatarr(1);
 
-
+uint64_t drpaimem_addr_start = 0;
+bool runtime_status = false; 
 static std::mutex mtx;
 static vector<detection> det;
 
@@ -610,6 +611,39 @@ cv::Mat create_output_frame()
     return background;
 }
 
+/*****************************************
+* Function Name : get_drpai_start_addr
+* Description   : Function to get the start address of DRPAImem.
+* Arguments     : -
+* Return value  : uint32_t = DRPAImem start address in 32-bit.
+******************************************/
+uint32_t get_drpai_start_addr()
+{
+    int fd  = 0;
+    int ret = 0;
+    drpai_data_t drpai_data;
+
+    errno = 0;
+
+    fd = open("/dev/drpai0", O_RDWR);
+    if (0 > fd )
+    {
+        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
+        return NULL;
+    }
+
+    /* Get DRP-AI Memory Area Address via DRP-AI Driver */
+    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    if (-1 == ret)
+    {
+        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        return (uint32_t)NULL;
+    }
+
+    return drpai_data.address;
+}
+
+
 int main(int argc, char *argv[])
 {
     std::cout << "Date-Extraction Application Start" << std::endl;
@@ -665,12 +699,24 @@ int main(int argc, char *argv[])
     /*Load Label from label_list file*/
     label_file_map = load_label_file(label_list);
 
-    /*Load the model */
-    model_inf_runtime.LoadModel(model_dir);
+    /*Load model_dir structure and its weight to runtime object */
+    drpaimem_addr_start = get_drpai_start_addr();
 
-    
+    if (drpaimem_addr_start == (uint64_t)NULL)
+    {
+        /* Error notifications are output from function get_drpai_start_addr(). */
+	    fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address. \n");
+        return -1;
+    }
 
+   
+    runtime_status = model_inf_runtime.LoadModel(model_dir, drpaimem_addr_start + DRPAI_MEM_OFFSET);
     
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model. \n");
+        return -1;
+    }    
 
     
 
