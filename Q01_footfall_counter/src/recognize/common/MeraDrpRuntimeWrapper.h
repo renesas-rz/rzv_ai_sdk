@@ -33,7 +33,7 @@ class MeraDrpRuntimeWrapper {
   MeraDrpRuntimeWrapper();
   ~MeraDrpRuntimeWrapper();
 
-  void LoadModel(const std::string& model_dir);
+  bool LoadModel(const std::string& model_dir, uint32_t start_address);
   template <typename T>
   void SetInput(int input_index, const T* data_ptr);
   void Run();

@@ -14,8 +14,8 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 **NOTE:** This sample application can be used to track different objects, like animal, car, etc. The list of objects that can be tracked are provided in [coco labels txt](./exe/coco-labels-2014_2017.txt) file. 
 
-#### Demo 
-<img src = "./images/ObjectTracking.gif" width="480" height="320">
+<a href="https://renesasgroup.sharepoint.com/:v:/r/sites/QuestGlobalxRenesasRZAIAppDev/Shared%20Documents/General/Delivarables_Storage/footfall_counter/footfall_counter_output.mp4?csf=1&web=1&e=VhiJNG" target="_blank">**Demo Video**</a>
+
 
 ## Application: Requirements
 
@@ -23,13 +23,9 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 - RZ/V2L Evaluation Board Kit
 - USB camera 
 - USB Keyboard
-- USB Hub
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
 - SD Card (for file system)
-
-[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
-
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 #### Software Requirements
 - Ubuntu 20.04
@@ -57,7 +53,7 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone <repository_url>
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
 2. Run(or start) the docker container and open the bash terminal on the container.
 
@@ -71,7 +67,7 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/<repository_name>/Q01_footfall_counter/src/
+cd ${PROJECT_PATH}/rzv_ai_sdk//Q01_footfall_counter/src/
 ```
 
 5. Download the `boost` tar file
@@ -88,6 +84,7 @@ tar -xvf boost_1_81_0.tar.bz2
 
 7. Copy the boost files to the `include` folder 
 ```sh
+mkdir -p include
 cp -r boost_1_81_0/boost include/
 ```
 
@@ -112,7 +109,6 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 
 |File | Details |
 |:---|:---|
-|preprocess_tvm_v2l/ | Pre-processing Runtime Object files. |
 |tinyyolov3_onnx | Model object files for deployment. |
 |coco-labels-2014_2017.txt | Label list for Object Detection. |
 |config.ini | user input config for line, region and object. |
@@ -136,10 +132,10 @@ Folder structure in the rootfs (SD Card) would look like:
     └── root/
         └── tvm/ 
             ├── tinyyolov3_onnx/
+            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
-            ├── preprocess_tvm_v2l
             ├── coco-labels-2014_2017.txt
             ├── config.ini
             └── object_tracker

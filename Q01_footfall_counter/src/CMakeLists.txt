@@ -1,4 +1,5 @@
 ﻿cmake_minimum_required (VERSION 3.8)
+set(CMAKE_CXX_STANDARD 17)
 project(V2L_SAMPLE_TRACKER)
 
 set(TVM_ROOT $ENV{TVM_HOME})
