@@ -25,7 +25,7 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 
 |File | Details |
 |:---|:---|
-|date_tinyyolov3_onnx | Model object files and pre-process files for deployment. |
+|date_detection_tinyyolov3| Model object files and pre-process files for deployment. |
 |date_class_labels.txt | Label list for Object Detection. |
 |date_extraction_img | application file for image. |
 |sample_img.jpg | Sample image file |

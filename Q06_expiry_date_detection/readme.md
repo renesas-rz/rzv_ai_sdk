@@ -153,7 +153,7 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 
 |File | Details |
 |:---|:---|
-|date_tinyyolov3_onnx | Model object files and pre-process files for deployment. |
+|date_detection_tinyyolov3 | Model object files and pre-process files for deployment. |
 |date_class_labels.txt | Label list for Object Detection. |
 |date_extraction_cam | MIPI camera application file. |
 |date_extraction_usb | USB camera application file. [optional]|
