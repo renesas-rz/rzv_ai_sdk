@@ -31,6 +31,7 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 - Ubuntu 20.04
 - OpenCV 4.x
 - C++11 or higher 
+- git 2.41 (or above)
 - [Boost C++ libraries](https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source) 
 - [Eigen linear algebra library](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 
@@ -39,7 +40,7 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -53,7 +54,7 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone -b footfall_counter --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
 2. Run(or start) the docker container and open the bash terminal on the container.
 
@@ -67,7 +68,7 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 4. Go to the `src` directory of the application
 
 ```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk//Q01_footfall_counter/src/
+cd ${PROJECT_PATH}/rzv_ai_sdk/Q01_footfall_counter/src/
 ```
 
 5. Download the `boost` tar file
@@ -88,7 +89,14 @@ mkdir -p include
 cp -r boost_1_81_0/boost include/
 ```
 
-8. Build the application on docker environment by following the steps below
+8. Remove boost files [Optional]
+
+```sh
+rm boost_1_81_0.tar.bz2
+rm -rf boost_1_81_0
+```
+
+9. Build the application on docker environment by following the steps below
 
 ```sh
 mkdir -p build && cd build
