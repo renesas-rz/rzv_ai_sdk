@@ -43,15 +43,15 @@ What's new
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-2023.06.30
+2023.08.08
             </h6>
             <ul>
                 <li>
-<b>RZ/V2L AI Applications Demo v1.00</b> is now available.
+<b>Tutorial Video - Getting Started v1.00</b> is now available.
                 </li>
-<h6>Users can use AI Applications without constructing the AI SDK environment.</h6>
+<h6>Users can learn the content of Getting Started in the video.</h6>
             </ul>
-For more details, see <a href="#demo">Demo</a>.
+For more details, see <a href="#video">Video</a>.
 <!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
 <br>
 <br>
@@ -75,7 +75,8 @@ Renesas RZ/V AI Software Development Kit (AI SDK) is the most comprehensive solu
 <br>
 <i>Getting Started</i> is a complete guide to learn <b>how to run AI Applications</b>, which explains the procedure for setting up the development environment, compiling AI Applications, setting up the board and running AI Applications.<br>
 <br>
-<h5>Get your target board now and <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">GET STARTED.</a></h5>  
+<h5>Get your target board now and <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">GET STARTED.</a></h5> 
+<a href="#video">Tutorial video</a> will help you understand better. <br>
         </div>
         <div class="start col-12 col-sm-4">
         <img  src="img/get_started.svg" alt="Get Started"/>
@@ -176,6 +177,28 @@ Download Demo
 </h6>
 <br>
         </div>
+    </div>
+</div>
+
+<br>
+<br>
+<h3 id="video">Video</h3>
+<br>
+<h5><b>Training video</b></h5>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-xl-4">
+            <iframe width="100%" height="55%" src="https://www.youtube.com/embed/wFbTomH8oPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <ul class="appdetails">
+                <li>
+                    <a href="https://youtu.be/wFbTomH8oPs">RZ/V2L AI Applications Tutorial - Getting Started (Youtube) </a>
+                    <br><br>
+                    This is a tutorial video explaining the content of getting started.<br>
+                    This tutorial is based on RZ/V2L AI SDK version 1.00.<br>
+                </li>
+            </ul>
+        </div>
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#page-top" role="button">
 Back to Top >
@@ -183,4 +206,6 @@ Back to Top >
         </div>
     </div>
 </div>
+
+
 

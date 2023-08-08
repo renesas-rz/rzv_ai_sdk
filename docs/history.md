@@ -18,6 +18,25 @@ Version History
 <!-- Topic below -->
             <i>
                 <h3 style="margin-bottom: 3px;" >
+Tutorial Video - Getting Started v1.00
+                </h3>
+                <h6 align="right" >
+2023.8.08
+                </h6>
+            </i>
+            <h5>
+            <ul>
+                <li>
+Tutorial Video - Getting Started v1.00 is released.
+                </li>
+Users can learn the content of Getting Started in the video.
+            </ul>
+        </h5>
+<br>
+<!-- Topic above -->
+<!-- Topic below -->
+            <i>
+                <h3 style="margin-bottom: 3px;" >
 AI Applications Demo v1.00
                 </h3>
                 <h6 align="right" >

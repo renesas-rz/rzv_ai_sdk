@@ -12,6 +12,9 @@ Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2L Evaluation Board Kit</b>.</h5>
 
+Tutorial video is available <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">here.</a>
+This tutorial is based on RZ/V2L AI SDK version 1.00.<br>
+
 <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus">Learn more about the RZ/V series.</a>
 
 
