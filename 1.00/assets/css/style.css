@@ -3225,7 +3225,7 @@ ul.category { list-style: none; height: 38px; padding: 0; background: #ffffff; b
 
 p.applications { padding: 0 0 0 0; margin: 0 0 0 0; text-align: center; line-height: 0; }
 
-.appdetails { color: #675C5C; list-style: none; min-height: 280px; padding: 3% 5%; background: #ffffff; border-radius: 0px; border: 1px solid #e0e0e0; border-top: none; text-align: left; }
+.appdetails { color: #675C5C; list-style: none; min-height: 140px; padding: 3% 5%; background: #ffffff; border-radius: 0px; border: 1px solid #e0e0e0; border-top: none; text-align: left; }
 
 img.appimage { border: 1px solid #e0e0e0; border-bottom: none; }
 
