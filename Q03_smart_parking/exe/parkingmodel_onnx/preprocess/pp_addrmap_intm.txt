@@ -1,9 +1,0 @@
-data_in 0 e1000
-data e1000 2df0
-data_out e3e00 24c0
-work e62c0 0
-weight e62c0 e
-drp_config e6300 12ef40
-drp_param 215240 f0
-desc_aimac 215340 d0
-desc_drp 215440 150
