@@ -7,12 +7,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_0", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_0"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "Compiler": "mera_drp", 
+        "hash": "a2de8beae23fab97"
       }, 
       "inputs": [
         [
@@ -30,7 +36,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply", 
-        "hash": "f6f9f55493a643d4"
+        "hash": "ccee02688e77fd80"
       }, 
       "inputs": [
         [
@@ -47,12 +53,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_9", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_9", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_9", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "3", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_9"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_9", 
+        "Compiler": "mera_drp", 
+        "hash": "755d913c068f8322"
       }, 
       "inputs": [
         [
@@ -70,7 +82,7 @@
         "num_inputs": "3", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_1", 
-        "hash": "ddff053730f2234b"
+        "hash": "e6fe24e20c9e9f73"
       }, 
       "inputs": [
         [
@@ -92,12 +104,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_18", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_18", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_18", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_18"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_18", 
+        "Compiler": "mera_drp", 
+        "hash": "e0f01d99dd198d4b"
       }, 
       "inputs": [
         [
@@ -120,7 +138,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_2", 
-        "hash": "6528564b017359a8"
+        "hash": "2ca08e8a5d3f4c41"
       }, 
       "inputs": [
         [
@@ -137,12 +155,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_30", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_30", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_30", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "3", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_30"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_30", 
+        "Compiler": "mera_drp", 
+        "hash": "9143181348a8ffa4"
       }, 
       "inputs": [
         [
@@ -160,7 +184,7 @@
         "num_inputs": "3", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_3", 
-        "hash": "12071f87f01e19d0"
+        "hash": "8c126701bafae2d6"
       }, 
       "inputs": [
         [
@@ -182,12 +206,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_41", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_41", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_41", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "3", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_41"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_41", 
+        "Compiler": "mera_drp", 
+        "hash": "a6f2079f8bee47e2"
       }, 
       "inputs": [
         [
@@ -204,13 +234,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_31", 
+      "name": "tvmgen_default_fused_multiply_3_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_3", 
-        "hash": "12071f87f01e19d0"
+        "hash": "8c126701bafae2d6"
       }, 
       "inputs": [
         [
@@ -232,12 +262,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_53", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_53", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_53", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_53"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_53", 
+        "Compiler": "mera_drp", 
+        "hash": "63cf0eb18adac940"
       }, 
       "inputs": [
         [
@@ -273,7 +309,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "79753d7f55ebdc1e"
+        "hash": "0d22bfe341e363e7"
       }, 
       "inputs": [
         [
@@ -295,12 +331,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_59", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_59", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_59", 
+        "layout": "NCHW", 
+        "hash": "d6ed34d8279ef5ea", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_59"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_59", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -318,7 +359,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_4", 
-        "hash": "66c607687c80ded4"
+        "hash": "b481295c6cda116b"
       }, 
       "inputs": [
         [
@@ -335,12 +376,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_64", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_64", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_64", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_64"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_64", 
+        "Compiler": "mera_drp", 
+        "hash": "bc55e4197d60170b"
       }, 
       "inputs": [
         [
@@ -371,7 +418,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "11c2b825fa04ad07"
+        "hash": "02cdd1f0fdb8dd9f"
       }, 
       "inputs": [
         [
@@ -393,12 +440,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_69", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_69", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_69", 
+        "layout": "NCHW", 
+        "hash": "82cba725bb3fa498", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_69"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_69", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -416,7 +468,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_5", 
-        "hash": "72c7f7de56d21018"
+        "hash": "f505d08092a318c4"
       }, 
       "inputs": [
         [
@@ -433,12 +485,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_74", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_74", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_74", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_74"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_74", 
+        "Compiler": "mera_drp", 
+        "hash": "192dc8771d53fead"
       }, 
       "inputs": [
         [
@@ -465,7 +523,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_11", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_1_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -474,7 +532,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "11c2b825fa04ad07"
+        "hash": "02cdd1f0fdb8dd9f"
       }, 
       "inputs": [
         [
@@ -496,12 +554,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_80", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_80", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_80", 
+        "layout": "NCHW", 
+        "hash": "62f69870e451a157", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_80"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_80", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -513,13 +576,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_51", 
+      "name": "tvmgen_default_fused_multiply_5_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_5", 
-        "hash": "72c7f7de56d21018"
+        "hash": "f505d08092a318c4"
       }, 
       "inputs": [
         [
@@ -536,12 +599,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_85", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_85", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_85", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_85"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_85", 
+        "Compiler": "mera_drp", 
+        "hash": "445ca3506d019ac6"
       }, 
       "inputs": [
         [
@@ -564,7 +633,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_6", 
-        "hash": "d9eccb826c80be8b"
+        "hash": "2e37f723df5a930f"
       }, 
       "inputs": [
         [
@@ -581,12 +650,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_97", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_97", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_97", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "3", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_97"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_97", 
+        "Compiler": "mera_drp", 
+        "hash": "641bce8f4335bd4a"
       }, 
       "inputs": [
         [
@@ -604,7 +679,7 @@
         "num_inputs": "3", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_7", 
-        "hash": "f0fdb09042eb18a7"
+        "hash": "d9a2069d3718435a"
       }, 
       "inputs": [
         [
@@ -626,12 +701,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_108", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_108", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_108", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "3", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_108"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_108", 
+        "Compiler": "mera_drp", 
+        "hash": "f28b483375b9a3e8"
       }, 
       "inputs": [
         [
@@ -648,13 +729,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_71", 
+      "name": "tvmgen_default_fused_multiply_7_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_7", 
-        "hash": "f0fdb09042eb18a7"
+        "hash": "d9a2069d3718435a"
       }, 
       "inputs": [
         [
@@ -676,12 +757,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_120", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_120", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_120", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "3", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_120"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_120", 
+        "Compiler": "mera_drp", 
+        "hash": "8b1640900ba5dfea"
       }, 
       "inputs": [
         [
@@ -698,13 +785,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_72", 
+      "name": "tvmgen_default_fused_multiply_7_2", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_7", 
-        "hash": "f0fdb09042eb18a7"
+        "hash": "d9a2069d3718435a"
       }, 
       "inputs": [
         [
@@ -726,12 +813,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_132", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_132", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_132", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "3", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_132"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_132", 
+        "Compiler": "mera_drp", 
+        "hash": "d723ff919548e6cf"
       }, 
       "inputs": [
         [
@@ -748,13 +841,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_73", 
+      "name": "tvmgen_default_fused_multiply_7_3", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_7", 
-        "hash": "f0fdb09042eb18a7"
+        "hash": "d9a2069d3718435a"
       }, 
       "inputs": [
         [
@@ -776,12 +869,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_144", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_144", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_144", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_144"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_144", 
+        "Compiler": "mera_drp", 
+        "hash": "9cdc01153e7998cb"
       }, 
       "inputs": [
         [
@@ -817,7 +916,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "0f6d3442ddcf3f37"
+        "hash": "f10532f32832be34"
       }, 
       "inputs": [
         [
@@ -839,12 +938,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_150", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_150", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_150", 
+        "layout": "NCHW", 
+        "hash": "81f2308e0bac36d0", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_150"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_150", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -862,7 +966,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_8", 
-        "hash": "e4f68e5e0c863297"
+        "hash": "15ed37fd5b0c712c"
       }, 
       "inputs": [
         [
@@ -879,12 +983,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_155", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_155", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_155", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_155"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_155", 
+        "Compiler": "mera_drp", 
+        "hash": "0a4bb6bebc07b675"
       }, 
       "inputs": [
         [
@@ -915,7 +1025,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "565a9943c3b304db"
+        "hash": "6af623c7d94c9219"
       }, 
       "inputs": [
         [
@@ -937,12 +1047,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_160", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_160", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_160", 
+        "layout": "NCHW", 
+        "hash": "f63c7cad65e0a334", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_160"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_160", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -960,7 +1075,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_9", 
-        "hash": "1580cae57059bbf2"
+        "hash": "4f743b1b0bf30c9c"
       }, 
       "inputs": [
         [
@@ -977,12 +1092,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_165", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_165", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_165", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_165"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_165", 
+        "Compiler": "mera_drp", 
+        "hash": "ada423c8a9321131"
       }, 
       "inputs": [
         [
@@ -1009,7 +1130,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_31", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_3_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -1018,7 +1139,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "565a9943c3b304db"
+        "hash": "6af623c7d94c9219"
       }, 
       "inputs": [
         [
@@ -1040,12 +1161,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_171", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_171", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_171", 
+        "layout": "NCHW", 
+        "hash": "6caf565022b34fbb", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_171"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_171", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1057,13 +1183,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_91", 
+      "name": "tvmgen_default_fused_multiply_9_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_9", 
-        "hash": "1580cae57059bbf2"
+        "hash": "4f743b1b0bf30c9c"
       }, 
       "inputs": [
         [
@@ -1080,12 +1206,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_176", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_176", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_176", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_176"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_176", 
+        "Compiler": "mera_drp", 
+        "hash": "9de79e3cebf47a79"
       }, 
       "inputs": [
         [
@@ -1112,7 +1244,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_32", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_3_2", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -1121,7 +1253,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "565a9943c3b304db"
+        "hash": "6af623c7d94c9219"
       }, 
       "inputs": [
         [
@@ -1143,12 +1275,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_182", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_182", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_182", 
+        "layout": "NCHW", 
+        "hash": "58d06cf0172e6d96", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_182"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_182", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1160,13 +1297,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_92", 
+      "name": "tvmgen_default_fused_multiply_9_2", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_9", 
-        "hash": "1580cae57059bbf2"
+        "hash": "4f743b1b0bf30c9c"
       }, 
       "inputs": [
         [
@@ -1183,12 +1320,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_187", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_187", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_187", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_187"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_187", 
+        "Compiler": "mera_drp", 
+        "hash": "ae5a5338f8f8ad1e"
       }, 
       "inputs": [
         [
@@ -1215,7 +1358,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_33", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_3_3", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -1224,7 +1367,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "565a9943c3b304db"
+        "hash": "6af623c7d94c9219"
       }, 
       "inputs": [
         [
@@ -1246,12 +1389,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_193", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_193", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_193", 
+        "layout": "NCHW", 
+        "hash": "6c4dfa95f1e62b09", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_193"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_193", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1263,13 +1411,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_93", 
+      "name": "tvmgen_default_fused_multiply_9_3", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_9", 
-        "hash": "1580cae57059bbf2"
+        "hash": "4f743b1b0bf30c9c"
       }, 
       "inputs": [
         [
@@ -1286,12 +1434,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_198", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_198", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_198", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_198"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_198", 
+        "Compiler": "mera_drp", 
+        "hash": "72cba78ec0b7a73c"
       }, 
       "inputs": [
         [
@@ -1327,7 +1481,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "ab36c7f0d28a0f2a"
+        "hash": "56a9b9e3d62223d6"
       }, 
       "inputs": [
         [
@@ -1349,12 +1503,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_204", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_204", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_204", 
+        "layout": "NCHW", 
+        "hash": "26e9b8dc442cc973", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_204"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_204", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1372,7 +1531,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_10", 
-        "hash": "fce3857ef7830dd7"
+        "hash": "9de54f3e6e212f59"
       }, 
       "inputs": [
         [
@@ -1389,12 +1548,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_209", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_209", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_209", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_209"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_209", 
+        "Compiler": "mera_drp", 
+        "hash": "51d2e9cbb7069bec"
       }, 
       "inputs": [
         [
@@ -1425,7 +1590,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "d8afef3ae62a292c"
+        "hash": "f6a4f9a6f003c0bf"
       }, 
       "inputs": [
         [
@@ -1447,12 +1612,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_214", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_214", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_214", 
+        "layout": "NCHW", 
+        "hash": "176cb13a0fc44833", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_214"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_214", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1470,7 +1640,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_11", 
-        "hash": "cc16bf906cee12e5"
+        "hash": "9d1757af52590757"
       }, 
       "inputs": [
         [
@@ -1487,12 +1657,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_219", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_219", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_219", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_219"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_219", 
+        "Compiler": "mera_drp", 
+        "hash": "7fe4d8d41fca9725"
       }, 
       "inputs": [
         [
@@ -1519,7 +1695,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_51", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_5_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -1528,7 +1704,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "d8afef3ae62a292c"
+        "hash": "f6a4f9a6f003c0bf"
       }, 
       "inputs": [
         [
@@ -1550,12 +1726,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_225", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_225", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_225", 
+        "layout": "NCHW", 
+        "hash": "9fed631358ebee38", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_225"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_225", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1567,13 +1748,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_111", 
+      "name": "tvmgen_default_fused_multiply_11_1", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_11", 
-        "hash": "cc16bf906cee12e5"
+        "hash": "9d1757af52590757"
       }, 
       "inputs": [
         [
@@ -1590,12 +1771,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_230", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_230", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_230", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_230"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_230", 
+        "Compiler": "mera_drp", 
+        "hash": "fdadf975fd1345ef"
       }, 
       "inputs": [
         [
@@ -1622,7 +1809,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_52", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_5_2", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -1631,7 +1818,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "d8afef3ae62a292c"
+        "hash": "f6a4f9a6f003c0bf"
       }, 
       "inputs": [
         [
@@ -1653,12 +1840,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_236", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_236", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_236", 
+        "layout": "NCHW", 
+        "hash": "ea78d27e69dad260", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_236"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_236", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1670,13 +1862,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_112", 
+      "name": "tvmgen_default_fused_multiply_11_2", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_11", 
-        "hash": "cc16bf906cee12e5"
+        "hash": "9d1757af52590757"
       }, 
       "inputs": [
         [
@@ -1693,12 +1885,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_241", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_241", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_241", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_241"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_241", 
+        "Compiler": "mera_drp", 
+        "hash": "520d8df53d29cb5a"
       }, 
       "inputs": [
         [
@@ -1725,7 +1923,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_53", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_5_3", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -1734,7 +1932,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "d8afef3ae62a292c"
+        "hash": "f6a4f9a6f003c0bf"
       }, 
       "inputs": [
         [
@@ -1756,12 +1954,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_247", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_247", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_247", 
+        "layout": "NCHW", 
+        "hash": "4f6b051627f9cb8f", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_247"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_247", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1773,13 +1976,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_113", 
+      "name": "tvmgen_default_fused_multiply_11_3", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_11", 
-        "hash": "cc16bf906cee12e5"
+        "hash": "9d1757af52590757"
       }, 
       "inputs": [
         [
@@ -1796,12 +1999,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_252", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_252", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_252", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_252"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_252", 
+        "Compiler": "mera_drp", 
+        "hash": "02aa00016a0c6033"
       }, 
       "inputs": [
         [
@@ -1828,7 +2037,7 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_54", 
+      "name": "tvmgen_default_fused_nn_conv2d_add_sigmoid_multiply_5_4", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "3", 
@@ -1837,7 +2046,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "d8afef3ae62a292c"
+        "hash": "f6a4f9a6f003c0bf"
       }, 
       "inputs": [
         [
@@ -1859,12 +2068,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_258", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_258", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_258", 
+        "layout": "NCHW", 
+        "hash": "d26f05e593c05d1e", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_258"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_258", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1876,13 +2090,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_114", 
+      "name": "tvmgen_default_fused_multiply_11_4", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_11", 
-        "hash": "cc16bf906cee12e5"
+        "hash": "9d1757af52590757"
       }, 
       "inputs": [
         [
@@ -1899,12 +2113,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_263", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_263", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_263", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_263"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_263", 
+        "Compiler": "mera_drp", 
+        "hash": "555b0109930412fc"
       }, 
       "inputs": [
         [
@@ -1940,7 +2160,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "f7e5099938f1fff4"
+        "hash": "77c2d6cdab077466"
       }, 
       "inputs": [
         [
@@ -1962,12 +2182,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_269", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_269", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_269", 
+        "layout": "NCHW", 
+        "hash": "04ccae848d1c909e", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_269"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_269", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -1979,13 +2204,13 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_fused_multiply_115", 
+      "name": "tvmgen_default_fused_multiply_11_5", 
       "attrs": {
         "num_outputs": "1", 
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_11", 
-        "hash": "cc16bf906cee12e5"
+        "hash": "9d1757af52590757"
       }, 
       "inputs": [
         [
@@ -2002,12 +2227,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_274", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_274", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_274", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "2", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_274"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_274", 
+        "Compiler": "mera_drp", 
+        "hash": "88460cb66fe9b044"
       }, 
       "inputs": [
         [
@@ -2038,7 +2269,7 @@
         "out_layout": "", 
         "kernel_layout": "OIHW", 
         "data_layout": "NCHW", 
-        "hash": "c0c7be8e571d2730"
+        "hash": "a0d0cc81bb67f59c"
       }, 
       "inputs": [
         [
@@ -2060,12 +2291,17 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_279", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_279", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_279", 
+        "layout": "NCHW", 
+        "hash": "a3ecde4a7712e9b2", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_279"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_279", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -2083,7 +2319,7 @@
         "num_inputs": "2", 
         "flatten_data": "0", 
         "func_name": "tvmgen_default_fused_multiply_12", 
-        "hash": "725426d5bad859e2"
+        "hash": "5b31a4835220bd99"
       }, 
       "inputs": [
         [
@@ -2100,12 +2336,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_284", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_284", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_284", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "2", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_284"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_284", 
+        "Compiler": "mera_drp", 
+        "hash": "b3cccf98ebc594af"
       }, 
       "inputs": [
         [
@@ -2314,6 +2556,158 @@
         "float16", 
         "float16", 
         "float16"
+      ]
+    ], 
+    "device_index": [
+      "list_int", 
+      [
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1
       ]
     ], 
     "storage_id": [

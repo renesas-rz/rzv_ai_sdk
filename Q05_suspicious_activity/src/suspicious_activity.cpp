@@ -39,6 +39,7 @@
 #include <thread>
 #include <cstring>
 #include "MeraDrpRuntimeWrapper.h"
+#include "PreRuntime.h"
 #include "opencv2/core.hpp"
 #include "iostream"
 #include "opencv2/imgproc.hpp"
@@ -57,6 +58,9 @@
 #include <sys/types.h>
 #include <string.h>
 #include <queue>
+#include <linux/drpai.h>
+#define DRPAI_MEM_OFFSET        (0x38E0000)
+#define DRPAI_MEM_OFFSET2        (0xF8E0000)
 
 #define GREEN cv::Scalar(0, 255, 0)
 #define RED cv::Scalar(0, 0, 255)
@@ -117,6 +121,36 @@ void capture_frame(std::string cap_pipeline);
 float float16_to_float32(uint16_t a);
 cv::Mat hwc2chw(const cv::Mat &image);
 cv::Mat run_inference(cv::Mat frame);
+
+
+/*****************************************
+* Function Name : get_drpai_start_addr
+* Description   : Function to get the start address of DRP-AI Memory Area.
+* Arguments     : -
+* Return value  : uint32_t = DRP-AI Memory Area start address in 32-bit.
+******************************************/
+uint32_t get_drpai_start_addr()
+{
+    int fd = 0;
+    int ret = 0;
+    drpai_data_t drpai_data;
+    errno = 0;
+    fd = open("/dev/drpai0", O_RDWR);
+    if (0 > fd )
+    {
+        fprintf(stderr, "[ERROR] Failed to open DRP-AI Driver : errno=%d\n", errno);
+        return (uint32_t)NULL;
+    }
+    /* Get DRP-AI Memory Area Address via DRP-AI Driver */
+    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    if (-1 == ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to get DRP-AI Memory Area : errno=%d\n", errno);
+        return (uint32_t)NULL;
+    }
+    return drpai_data.address;
+}
+
 
 /*****************************************
  * Function Name     : float16_to_float32
@@ -349,10 +383,33 @@ void process_frames(void)
     /* Model Binary */
     std::string mlp_model = "mlp_module";
 
+    uint64_t drpaimem_addr_start = 0;
+    bool runtime_status = false;
+
+
+    drpaimem_addr_start = get_drpai_start_addr();
+    if ((uint64_t)NULL == drpaimem_addr_start) 
+    {
+        fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
+        /*Error processing, i.e., return, goto, etc.*/
+        return;
+    }
     /* Load model_dir structure and its weight to model_runtime object */
-    embedding_model.LoadModel(model_dir);
+    runtime_status = embedding_model.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET);
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model.\n");
+        /*Error processing, i.e., return, goto, etc.*/
+        return;
+    }
     /* Load model_dir structure and its weight to model_runtime object */
-    prediction_model.LoadModel(mlp_model);
+    runtime_status = prediction_model.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET2);
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model.\n");
+        /*Error processing, i.e., return, goto, etc.*/
+        return;
+    }
 
     std::cout << "\n[INFO] loaded CNN model:" << model_dir << "\n";
     std::cout << "\n[INFO] loaded MLP model:" << mlp_model << "\n\n";

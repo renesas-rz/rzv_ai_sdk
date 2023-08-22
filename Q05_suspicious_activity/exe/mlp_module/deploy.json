@@ -7,12 +7,15 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_0", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "hash": "33a62d441b666419", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_0"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -42,12 +45,15 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_1", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+        "hash": "22b07972fd7d7b76", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_1"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+        "Compiler": "mera_drp"
       }, 
       "inputs": [
         [
@@ -94,6 +100,10 @@
         "float16", 
         "float16"
       ]
+    ], 
+    "device_index": [
+      "list_int", 
+      [1, 1, 1, 1, 1]
     ], 
     "storage_id": [
       "list_int", 
