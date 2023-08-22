@@ -38,6 +38,7 @@
 #include <cstdlib>
 #include <cstring>
 #include "MeraDrpRuntimeWrapper.h"
+#include "PreRuntime.h"
 #include "opencv2/core.hpp"
 #include "iostream"
 #include "opencv2/imgproc.hpp"
@@ -56,6 +57,11 @@
 #include <string.h>
 #include <arpa/inet.h>
 #include <time.h>
+#include <fcntl.h>    /* For O_RDWR */
+#include <sys/ioctl.h>
+/*DRP-AI memory area offset for model objects*/
+/*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
+#define DRPAI_MEM_OFFSET        (0x38E0000)
 
 #define GREEN cv::Scalar(0, 255, 0)
 #define RED cv::Scalar(0, 0, 255)
@@ -106,6 +112,34 @@ std::map<std::string, int> input_source_map = {
     {"CAMERA", 2},
     {"IMAGE", 3}
 };
+
+/*****************************************
+* Function Name : get_drpai_start_addr
+* Description   : Function to get the start address of DRP-AI Memory Area.
+* Arguments     : -
+* Return value  : uint32_t = DRP-AI Memory Area start address in 32-bit.
+******************************************/
+uint32_t get_drpai_start_addr()
+{
+    int fd = 0;
+    int ret = 0;
+    drpai_data_t drpai_data;
+    errno = 0;
+    fd = open("/dev/drpai0", O_RDWR);
+    if (0 > fd )
+    {
+        fprintf(stderr, "[ERROR] Failed to open DRP-AI Driver : errno=%d\n", errno);
+        return (uint32_t)NULL;
+    }
+    /* Get DRP-AI Memory Area Address via DRP-AI Driver */
+    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    if (-1 == ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to get DRP-AI Memory Area : errno=%d\n", errno);
+        return (uint32_t)NULL;
+    }
+    return drpai_data.address;
+}
 
 /*****************************************
  * Function Name     : float16_to_float32
@@ -258,6 +292,7 @@ int run_inference(Mat frame)
         std::cout << "[INFO]not setting the input!!!\n";
         return -1;
     }
+    return 0;
 }
 
 /*****************************************
@@ -514,8 +549,24 @@ int main(int argc, char **argv)
         std::cerr << "[ERROR] failed to load fish class list: " << plant_class_list << std::endl;
         return 0;
     }
-    /* Load model_dir structure and its weight to model_runtime object */
-    runtime.LoadModel(model_dir);
+    
+    uint64_t drpaimem_addr_start = 0;
+    bool runtime_status = false;
+    /*Load model_dir structure and its weight to runtime object */
+    drpaimem_addr_start = get_drpai_start_addr();
+    if ((uint64_t)NULL == drpaimem_addr_start) 
+    {
+        fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
+        /*Error processing, i.e., return, goto, etc.*/
+        return -1;
+    }
+    runtime_status = runtime.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET);
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model.\n");
+        /*Error processing, i.e., return, goto, etc.*/
+        return -1;
+    }
     cout << "loaded model :" << model_dir << "\n\n";
      /* Get input Source VIDEO/CAMERA */
     std::string input_source = argv[1];
