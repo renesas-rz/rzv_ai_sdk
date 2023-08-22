@@ -7,12 +7,18 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_mera_drp_0", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
       "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "kernel_layout": "OIHW", 
+        "data_layout": "NCHW", 
+        "out_layout": "", 
         "num_outputs": "1", 
         "num_inputs": "1", 
-        "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_mera_drp_0"
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "Compiler": "mera_drp", 
+        "hash": "a0fa43800f8ba4ad"
       }, 
       "inputs": [
         [
@@ -38,6 +44,10 @@
         "float32", 
         "float16"
       ]
+    ], 
+    "device_index": [
+      "list_int", 
+      [1, 1]
     ], 
     "storage_id": [
       "list_int", 

@@ -58,7 +58,7 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone -b plant_disease_classification --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
 2. Run(or start) the docker container and open the bash terminal on the container.
 
