@@ -60,7 +60,6 @@
 #include <queue>
 #include <linux/drpai.h>
 #define DRPAI_MEM_OFFSET        (0x38E0000)
-#define DRPAI_MEM_OFFSET2        (0xF8E0000)
 
 #define GREEN cv::Scalar(0, 255, 0)
 #define RED cv::Scalar(0, 0, 255)
@@ -379,7 +378,7 @@ void process_frames(void)
     std::vector<cv::Mat> features;
     
     /* Model Binary */
-    std::string model_dir = "cnn_module";
+    std::string cnn_model = "cnn_module";
     /* Model Binary */
     std::string mlp_model = "mlp_module";
 
@@ -395,23 +394,23 @@ void process_frames(void)
         return;
     }
     /* Load model_dir structure and its weight to model_runtime object */
-    runtime_status = embedding_model.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET);
+    runtime_status = embedding_model.LoadModel(cnn_model, drpaimem_addr_start+DRPAI_MEM_OFFSET);
     if(!runtime_status)
     {
-        fprintf(stderr, "[ERROR] Failed to load model.\n");
+        fprintf(stderr, "[ERROR] Failed to load CNN model.\n");
         /*Error processing, i.e., return, goto, etc.*/
         return;
     }
     /* Load model_dir structure and its weight to model_runtime object */
-    runtime_status = prediction_model.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET2);
+    runtime_status = prediction_model.LoadModel(mlp_model, drpaimem_addr_start);
     if(!runtime_status)
     {
-        fprintf(stderr, "[ERROR] Failed to load model.\n");
+        fprintf(stderr, "[ERROR] Failed to load MLP model.\n");
         /*Error processing, i.e., return, goto, etc.*/
         return;
     }
 
-    std::cout << "\n[INFO] loaded CNN model:" << model_dir << "\n";
+    std::cout << "\n[INFO] loaded CNN model:" << cnn_model << "\n";
     std::cout << "\n[INFO] loaded MLP model:" << mlp_model << "\n\n";
 
     while (running_process_frame)
