@@ -86,7 +86,7 @@ private:
     /* Pre-processing Runtime variables for pre-processing */
     PreRuntime preruntime;
     s_preproc_param_t in_param;
-    const std::string pre_dir = "preprocess_tvm_v2l";
+    const std::string pre_dir = std::string(TVM_MODEL_DIR_TINYYOLOV3) + "/preprocess";
     float mean[3] = { 0.0, 0.0, 0.0 };
     float stdev[3] = { 1.0, 1.0, 1.0 };
 

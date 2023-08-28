@@ -115,17 +115,17 @@ TVM_YOLO_DRPAI::TVM_YOLO_DRPAI(uint8_t id) : IRecognizeModel(0, TVM_MODEL_DIR_YO
     /*Define pre-processing parameter*/
     in_param.pre_in_shape_w = TVM_DRPAI_IN_WIDTH;
     in_param.pre_in_shape_h = TVM_DRPAI_IN_HEIGHT;
-    in_param.pre_in_format = INPUT_YUYV;
-    in_param.resize_w = TVM_MODEL_IN_W;
-    in_param.resize_h = TVM_MODEL_IN_H;
-    in_param.resize_alg = ALG_BILINEAR;
+    // in_param.pre_in_format = FORMAT_RGB;
+    // in_param.resize_w = TVM_MODEL_IN_W;
+    // in_param.resize_h = TVM_MODEL_IN_H;
+    // in_param.resize_alg = ALG_BILINEAR;
     /*Compute normalize coefficient, cof_add/cof_mul for DRP-AI from mean/std */
-    in_param.cof_add[0] = -255 * mean[0];
-    in_param.cof_add[1] = -255 * mean[1];
-    in_param.cof_add[2] = -255 * mean[2];
-    in_param.cof_mul[0] = 1 / (stdev[0] * 255);
-    in_param.cof_mul[1] = 1 / (stdev[1] * 255);
-    in_param.cof_mul[2] = 1 / (stdev[2] * 255);
+    // in_param.cof_add[0] = -255 * mean[0];
+    // in_param.cof_add[1] = -255 * mean[1];
+    // in_param.cof_add[2] = -255 * mean[2];
+    // in_param.cof_mul[0] = 1 / (stdev[0] * 255);
+    // in_param.cof_mul[1] = 1 / (stdev[1] * 255);
+    // in_param.cof_mul[2] = 1 / (stdev[2] * 255);
     /*Load label list for YOLOv3/TinyYOLOv3 */
     label_file_map = CommonFunc::load_label_file(LABEL_LIST.data());
     num_class = label_file_map.size();
@@ -305,7 +305,7 @@ shared_ptr<PredictNotifyBase> TVM_YOLO_DRPAI::track()
             continue;
         dat.name = label_file_map[det.c].c_str();
 
-        if (count(detection_object_vector.begin(), detection_object_vector.end(), dat.name) <= 0)
+        if (count(detection_object_vector.begin(), detection_object_vector.end(), dat.name) < 0)
             continue;
         dat.X = (int32_t)(det.bbox.x - (det.bbox.w / 2));
         dat.Y = (int32_t)(det.bbox.y - (det.bbox.h / 2));
@@ -404,7 +404,7 @@ int8_t TVM_YOLO_DRPAI::pre_process_drpai(uint32_t addr, float **output_buf, uint
 {
     in_param.pre_in_addr = (uintptr_t)addr;
     /*Run pre-processing*/
-    preruntime.Pre(&in_param, output_buf, buf_size);
+    preruntime.Pre(&in_param, (void**)output_buf, buf_size);
     start_time = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
     return 0;
 }

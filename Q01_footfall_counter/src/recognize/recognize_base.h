@@ -86,6 +86,9 @@ public:
     virtual void recognize_end();
     void start_recognize();
 
+    static uint64_t drpaimem_addr_start ;
+    static bool runtime_status ;
+    // uint32_t get_drpai_start_addr();
 private:
     pthread_t thPredict; 
 
@@ -96,6 +99,7 @@ private:
     static void run_predict(RecognizeBase* arg);
 
 private:
+    
     static void* capture_thread(void* arg);
     static void* tvm_inference_thread(void* arg);
     static void* framerate_thread(void* arg);
@@ -111,6 +115,7 @@ private:
 
     int8_t file_exist(std::string filename);
     int8_t model_exist(std::string dir);
+
 
 private:
 
