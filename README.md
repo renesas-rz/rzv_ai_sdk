@@ -37,8 +37,10 @@ The number information is present as:
 4. Serial connection port for connecting Host PC and the board
 5. Micro HDMI port to connect the HDMI Display to the board
 6. USB port to connect the USB Hub/USB device to the board
-7. SD Card Port
-8. Ethernet port  
+7. SD Card Port for eMMC Bootloader
+8. SD Card Port for eSD Bootloader
+9. MIPI Camera connection port
+10. Ethernet port  
 
 #### Board Setup
 - Connect power supply to the board at terminal `1`.
@@ -46,8 +48,9 @@ The number information is present as:
 - Connect micro HDMI cable to terminal `5` and the other end of the cable to the display
 - Connect USB Hub at terminal `6`
     - Connect USB Camera, USB Mouse, USB Keyboard to the USB Hub
-- Connect SD Card at terminal `7` (required for SD card file system)
-- Connect ethernet at terminal `8` (optional)
+- Connect SD Card at terminal `7` for for eMMC Bootloader or terminal `8` for eSD Bootloader (required for SD card file system)
+- Connect MIPI Camera at port `9` (if required)
+- Connect ethernet at terminal `10` (optional)
 
 #### Additional Requirements
 
