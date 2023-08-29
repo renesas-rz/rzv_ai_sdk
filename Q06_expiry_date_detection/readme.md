@@ -181,7 +181,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 └── home/
     └── root/
         └── tvm/ 
-            ├── date_tinyyolov3_onnx/
+            ├── date_detection_tinyyolov3/
             │   ├── deploy.json
             │   ├── deploy.params
             │   ├── deploy.so 
