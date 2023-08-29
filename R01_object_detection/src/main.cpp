@@ -199,7 +199,7 @@ int8_t get_result()
     for (i = 0;i<output_num;i++)
     {
         /* output_buffer below is tuple, which is { data type, address of output data, number of elements } */
-        output_buffer = runtime.GetOutput(0);
+        output_buffer = runtime.GetOutput(i);
         /*Output Data Size = std::get<2>(output_buffer). */
         output_size = std::get<2>(output_buffer);
 
@@ -694,15 +694,25 @@ void *R_Capture_Thread(void *threadid)
     int8_t ret = 0;
     int32_t counter = 0;
     uint8_t * img_buffer;
-    uint8_t * img_buffer0;
+    uint8_t * img_buffer0 = (unsigned char*)MAP_FAILED;
     const int32_t th_cnt = INF_FRAME_NUM;
-    uint8_t udmabuf_fd0;
+    int udmabuf_fd0 = -1;
     uint8_t capture_stabe_cnt = 8;  // Counter to wait for the camera to stabilize
 
     printf("Capture Thread Starting\n");
 
     udmabuf_fd0 = open("/dev/udmabuf0", O_RDWR );
+    if (0 > udmabuf_fd0)
+    {
+        fprintf(stderr, "[ERROR] Failed to open /dev/udmabuf0\n");
+        goto err;
+    }
     img_buffer0 = (unsigned char*) mmap(NULL, CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2 ,PROT_READ|PROT_WRITE, MAP_SHARED,  udmabuf_fd0, UDMABUF_INFIMAGE_OFFSET);
+    if (MAP_FAILED == img_buffer0)
+    {
+        fprintf(stderr, "[ERROR] Failed to mmap\n");
+        goto err;
+    }
     capture_address = (uint32_t)udmabuf_address + UDMABUF_INFIMAGE_OFFSET;
 
     while(1)
@@ -768,7 +778,14 @@ err:
     goto capture_end;
 
 capture_end:
-    munmap(img_buffer0, CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2);
+    if (MAP_FAILED != img_buffer0)
+    {
+        munmap(img_buffer0, CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2);
+    }
+    if (0 < udmabuf_fd0)
+    {
+        close(udmabuf_fd0);
+    }
     /*To terminate the loop in AI Inference Thread.*/
     inference_start.store(1);
 
@@ -920,6 +937,31 @@ main_proc_end:
     return main_ret;
 }
 
+uint32_t get_drpai_start_addr()
+{
+    int fd  = 0;
+    int ret = 0;
+    drpai_data_t drpai_data;
+
+    errno = 0;
+
+    fd = open("/dev/drpai0", O_RDWR);
+    if (0 > fd )
+    {
+        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
+        return (uint32_t)NULL;
+    }
+
+    /* Get DRP-AI Memory Area Address via DRP-AI Driver */
+    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    if (-1 == ret)
+    {
+        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        return (uint32_t)NULL;
+    }
+
+    return drpai_data.address;
+}
 
 int32_t main(int32_t argc, char * argv[])
 {
@@ -933,9 +975,10 @@ int32_t main(int32_t argc, char * argv[])
     int32_t sem_create = -1;
     Camera* capture = NULL;
     InOutDataType input_data_type;
+    bool runtime_status = false;
 
     /* Obtain udmabuf memory area starting address */
-    int8_t fd = 0;
+    int fd = 0;
     char addr[1024];
     int32_t read_ret = 0;
     errno = 0;
@@ -961,6 +1004,9 @@ int32_t main(int32_t argc, char * argv[])
     printf("Model : Darknet YOLOv3 | %s\n", model_dir.c_str());
     printf("Input : Coral Camera\n");
 
+    
+    uint32_t drpaimem_addr_start = 0;
+
     /*Load Label from label_list file*/
     label_file_map = load_label_file(label_list);
     if (label_file_map.empty())
@@ -979,7 +1025,21 @@ int32_t main(int32_t argc, char * argv[])
     }
 
     /*Load model_dir structure and its weight to runtime object */
-    runtime.LoadModel(model_dir);
+    drpaimem_addr_start = get_drpai_start_addr();
+    if ((uint32_t)NULL == drpaimem_addr_start) 
+    {
+        fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
+        goto end_main;
+    }
+
+    runtime_status = runtime.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET);
+
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model.\n");
+        goto end_main;
+    }
+
     /*Get input data */
     input_data_type = runtime.GetInputDataType(0);
     if (InOutDataType::FLOAT32 == input_data_type)

@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(object_detection_cpp)
 
+set(CMAKE_CXX_STANDARD 17)
+
 set(TVM_ROOT $ENV{TVM_HOME})
 include_directories(${TVM_ROOT}/include)
 include_directories(${TVM_ROOT}/3rdparty/dlpack/include)
