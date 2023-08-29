@@ -73,18 +73,36 @@ The sample applications already developed for RZ/V2L Evaluation Board Kit are li
 
 ### 1. Footfall Counter 
 
-This sample application [Footfall Counter](./Q01_footfall_counter) will count the number of persons entering the certain boundaries. There is added functionality of calculation time taken for people on the certain region of interest.\
+The [Footfall Counter](./Q01_footfall_counter) application will count the number of persons entering the certain boundaries. There is added functionality of calculation time taken for people on the certain region of interest.\
 Both the boundary line and the area of interest are decided by the user and can be set inside the config file.
 
 ### 2. Face Authentication
 
-This sample application [Face Authentication](./Q02_face_authentication) will recognize the face of the person and verify the same with images stored in the database.\
+The [Face Authentication](./Q02_face_authentication) application will recognize the face of the person and verify the same with images stored in the database.\
 This application could be used for passport verification at the airport.
 
 ### 3. Smart Parking Solutions
 
-This sample application [Smart Parking](./Q03_smart_parking) will detect the available parking slots from the real time camera feed using computer vision advanced algorithms.\
+The [Smart Parking](./Q03_smart_parking) application will detect the available parking slots from the real time camera feed using computer vision advanced algorithms.\
 The application could be used to get the available parking slots information from the certain parking area in real time.
+
+### 4. Fish Classification 
+The [Fish Classification](./Q04_fish_classification) application will classify the species of fishes using either image, video or camera feed.\
+The application can be used at fish markets or super market to identify the species of the fish. 
+
+### 5. Suspicious Activity Recognition
+The [Suspicious activity classification](./Q05_suspicious_activity) application will take a camera or video input and classify whether the activity is suspicious or non-suspicious.
+Some user-config like `FRAME_INTERVAL`, `BUFFER_SIZE`, etc can be passed through command line during execution. The detail explanation is provided in the application `readme.md`.\
+This application could be used for security purpose in government or corporate buildings. 
+
+### 6. Expiry Date Detection 
+The [Expiry Date Detection](./Q06_expiry_date_detection) application will extract the expiry date from the image or the camera feed and can show the remaining days for the product expiry.\
+The application could be used at medical or grocery store to extract the expiry date information on the product with less manual intervention.
+
+### 7. Plant Disease Classification 
+The [Plant disease classification](./Q07_plant_disease_classification) application will classify the diseases for certain plants.\
+This application could be used for farm monitoring and plant disease prevention and cure.
+
 
 ## Operating the sample application
 - Each sample application folder have their respective `readme.md` file to modify and run the sample application.
