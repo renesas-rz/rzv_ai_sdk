@@ -36,7 +36,6 @@
 #include <climits>
 #include <cstdlib>
 #include <cstring>
-#include "MeraDrpRuntimeWrapper.h"
 #include "opencv2/core.hpp"
 #include "iostream"
 #include "opencv2/imgproc.hpp"
@@ -44,13 +43,17 @@
 #include <vector>
 #include <glob.h>
 #include <cmath>
+#include "PreRuntime.h"
+#include "MeraDrpRuntimeWrapper.h"
 
-#define BLUE cv::Scalar(255, 0, 0)
-#define WHITE cv::Scalar(255, 255, 255)
-#define BLACK cv::Scalar(0, 0, 0)
-#define GREEN cv::Scalar(0, 255, 0)
-#define RED cv::Scalar(0, 0, 255)
-#define ASH cv::Scalar(150, 150, 150)
+#define BLUE                        cv::Scalar(255, 0, 0)
+#define WHITE                       cv::Scalar(255, 255, 255)
+#define BLACK                       cv::Scalar(0, 0, 0)
+#define GREEN                       cv::Scalar(0, 255, 0)
+#define RED                         cv::Scalar(0, 0, 255)
+#define ASH                         cv::Scalar(150, 150, 150)
+/* DRP-AI memory offset for model object file*/
+#define DRPAI_MEM_OFFSET            (0X38E0000)
 
 using namespace cv;
 using namespace std;
@@ -94,6 +97,9 @@ bool img1_array1_udated = false;
 bool img1_array2_udated = false;
 bool cam_kill_esc_key   = false;
 
+uint64_t drpaimem_addr_start = 0;
+bool runtime_status = false; 
+std::string gstreamer_pipeline;
 /*****************************************
  * Function Name : hwc2chw
  * Description   : This function takes an input image in HWC (height, width, channels)
@@ -263,20 +269,22 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
  * Function Name : capture_frame
  * Description   : This function captures a frame from a video source (in this case, a webcam) 
  *                 and displays it on the screen.
+ * Arguments     : string cap_pipeline input source pipeline
  * Return value  : returns the cropped image as a Mat object.
  ******************************************/
-Mat capture_frame(void)
+Mat capture_frame(std::string cap_pipeline)
 {
     cout << "capture frame\n";
     Mat patch1;
     Mat img1;
-    cv::VideoCapture vid(0);
+    cv::VideoCapture vid;
+    // cv::VideoCapture vid(0);
+    vid.open(cap_pipeline, cv::CAP_GSTREAMER);
     vid >> img1;
     int height = img1.rows;
     int width = img1.cols;
     int wait_key = 0;
-
-    cv::Rect roi((int)(img1.cols/2-width/8), (int)(img1.rows/2-width/8), width/3, width/3); // x,y,w,h
+    cv::Rect roi((int)(img1.cols/2-width/8), (int)(img1.rows/2-width/8), width/3, height/3); // x,y,w,h
     cv::Mat croppedImg;
     vector<string> predictions;
     while (1)
@@ -377,19 +385,107 @@ void img_preprocess(string text, int x0, int y0, int x1, int y1)
     if ((recognize_face_clicked == false) && (add_face_clicked == false))
         draw_rect_add_txt(text, x0, y0, x1, y1);
     destroyAllWindows();
-    Mat croppedImg = capture_frame();
+    Mat croppedImg = capture_frame(gstreamer_pipeline);
     floatarr = run_inference(croppedImg);
+}
+
+/*****************************************
+* Function Name : get_drpai_start_addr
+* Description   : Function to get the start address of DRPAImem.
+* Arguments     : -
+* Return value  : uint32_t = DRPAImem start address in 32-bit.
+******************************************/
+uint32_t get_drpai_start_addr()
+{
+    int fd  = 0;
+    int ret = 0;
+    drpai_data_t drpai_data;
+
+    errno = 0;
+
+    fd = open("/dev/drpai0", O_RDWR);
+    if (0 > fd )
+    {
+        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
+        return NULL;
+    }
+
+    /* Get DRP-AI Memory Area Address via DRP-AI Driver */
+    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    if (-1 == ret)
+    {
+        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        return (uint32_t)NULL;
+    }
+
+    return drpai_data.address;
+}
+
+/*****************************************
+ * Function Name : mipi_cam_init
+ * Description   : function to open camera or video source with respect to the source pipeline.
+ ******************************************/
+void mipi_cam_init(void)
+{
+    int ret = 0;
+    std::cout<<"[INFO] MIPI CAM Init \n";
+    const char* commands[4] =
+    {
+        "media-ctl -d /dev/media0 -r",
+        "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
+        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
+    };
+
+    /* media-ctl command */
+    for (int i=0; i<4; i++)
+    {
+        // std::cout<<commands[i]<<"\n";
+        ret = system(commands[i]);
+        std::cout<<"system ret = "<<ret<<"\n";
+        if (ret<0)
+        {
+            std::cout<<"[ERROR]"<<__func__<<": failed media-ctl commands. index = "<<i<<"\n";
+            return;
+        }
+    }
 }
 
 int main(int argc, char **argv)
 {
     const std::string app_name = "Face Recognition";
+
+    /*Load model_dir structure and its weight to runtime object */
+    // drpaimem_addr_start = 0;
+    drpaimem_addr_start = get_drpai_start_addr();
+
+    if (drpaimem_addr_start == (uint64_t)NULL)
+    {
+        /* Error notifications are output from function get_drpai_start_addr(). */
+	    fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address. \n");
+        return 0;
+    }
+
+    // runtime_status = false
+    runtime_status = runtime.LoadModel(model_dir, drpaimem_addr_start + DRPAI_MEM_OFFSET);
     
-    runtime.LoadModel(model_dir);
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model. \n");
+        return 0;
+    }
+    
+
+    // runtime.LoadModel(model_dir);
     cout << "loaded model:" << model_dir << endl;
     namedWindow(app_name, WINDOW_NORMAL);
     //resizeWindow(app_name,1200, 800);
     resizeWindow(app_name,800,600);
+
+    gstreamer_pipeline = "v4l2src device=/dev/video0 ! videoconvert ! appsink";
+
+    mipi_cam_init();
+
     while (waitKey(30) != 27)
     {
         frame = cv::imread("face_rec_bg.jpg");

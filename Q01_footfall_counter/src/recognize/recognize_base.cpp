@@ -53,12 +53,16 @@
 #include "../command/camera_image.h"
 #include "../include/lwsock.hpp"
 #include "common/recognize_define.h"
+#include "common/PreRuntime.h"
 #include <builtin_fp16.h>
 #include <fstream>
 #include <sys/time.h>
 #include "opencv2/core.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
+
+
+
 
 /**
  * @brief RecognizeBase
@@ -71,6 +75,39 @@ RecognizeBase::RecognizeBase()
     _pthread_capture = 0;
     _pthread_framerate = 0;
 }
+
+/*****************************************
+* Function Name : get_drpai_start_addr
+* Description   : Function to get the start address of DRPAImem.
+* Arguments     : -
+* Return value  : uint32_t = DRPAImem start address in 32-bit.
+******************************************/
+uint32_t get_drpai_start_addr()
+{
+    int fd  = 0;
+    int ret = 0;
+    drpai_data_t drpai_data;
+
+    errno = 0;
+
+    fd = open("/dev/drpai0", O_RDWR);
+    if (0 > fd )
+    {
+        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
+        return NULL;
+    }
+
+    /* Get DRP-AI Memory Area Address via DRP-AI Driver */
+    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    if (-1 == ret)
+    {
+        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        return (uint32_t)NULL;
+    }
+
+    return drpai_data.address;
+}
+
 /**
  * @brief print_measure_log
  * @details Print measurement log to console
@@ -349,7 +386,30 @@ void *RecognizeBase::tvm_inference_thread(void *arg)
         return 0;
     }
     /*DRP-AI TVM[*1]::Load model_dir structure and its weight to runtime object */
-    runtime.LoadModel(me->dir);
+
+    /*Load model_dir structure and its weight to runtime object */
+    // drpaimem_addr_start = 0;
+    drpaimem_addr_start = get_drpai_start_addr();
+
+    if (drpaimem_addr_start == (uint64_t)NULL)
+    {
+        /* Error notifications are output from function get_drpai_start_addr(). */
+	    fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address. \n");
+        return 0;
+    }
+
+    // runtime_status = false
+    runtime_status = runtime.LoadModel(me->dir, drpaimem_addr_start + DRPAI_MEM_OFFSET);
+    
+    if(!runtime_status)
+    {
+        fprintf(stderr, "[ERROR] Failed to load model. \n");
+        return 0;
+    }
+    
+
+
+    // runtime.LoadModel(me->dir);
     /*DRP-AI TVM[*1]::Get input data type*/
     input_data_type = runtime.GetInputDataType(0);
     /*Inference Loop Start*/

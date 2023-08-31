@@ -11,7 +11,7 @@ With this software, users can monitor parking areas such as parking lots, garage
 It provides an accurate and efficient way to manage parking spaces, helping to reduce congestion and improve traffic flow.
 
 #### Demo 
-[]()
+
 <img src = "./images/SmartParking.gif" width="480" height="320">
 
 Average FPS: 200/slot 
@@ -47,7 +47,7 @@ FPS - 200/10 ->20
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](../README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -61,7 +61,7 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone -b smart_parking --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
    >Note: Please verify the git repository url if error occurs.
 2. Run the docker container and open the bash terminal on the container.
@@ -128,6 +128,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
     └── root/
         └── tvm/
             ├── parkingmodel_onnx/
+            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
@@ -205,6 +206,7 @@ The runtime application will look something like this
 #### Application: Termination
 - Application can be terminated by pressing `Esc` key on the keyboard connected to the board.
 - Alternatively, User can force close the application using `CTRL+c` on the board console.
+- The whole application can be quit by pressing `q` on the Keyboard.
 
 ## Application: Specifications
 

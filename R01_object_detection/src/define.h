@@ -132,6 +132,10 @@ const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * 
 /* Coral Camera support */
 #define INPUT_CORAL
 
+/*DRP-AI memory area offset for model objects*/
+/*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
+#define DRPAI_MEM_OFFSET            (0x38E0000)
+
 /*Maximum DRP-AI Timeout threshold*/
 #define DRPAI_TIMEOUT               (5)
 

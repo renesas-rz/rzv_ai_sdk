@@ -61,4 +61,7 @@
 #define MODE_TVM_EMOTIONFP_DRPAI    (0b10010010)
 #define MODE_TVM_EMOTIONFP_CPU      (0b10010011)
 
+/* DRP-AI memory offset for model object file*/
+#define DRPAI_MEM_OFFSET            (0X38E0000)
+
 #endif // !RECOGNIE_DEFINE_H

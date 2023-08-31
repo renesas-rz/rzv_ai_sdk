@@ -19,7 +19,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 #include <tvm/runtime/module.h>
 #include <tvm/runtime/packed_func.h>
 #include <tvm/runtime/registry.h>
@@ -62,20 +62,22 @@ MeraDrpRuntimeWrapper::MeraDrpRuntimeWrapper() {
 
 MeraDrpRuntimeWrapper::~MeraDrpRuntimeWrapper() = default;
 
-void MeraDrpRuntimeWrapper::LoadModel(const std::string& model_dir) {
+bool MeraDrpRuntimeWrapper::LoadModel(const std::string& model_dir, uint32_t start_address = 0x00) {
     LOG(INFO) << "Loading json data...";
-
     const std::string json_file(model_dir + "/deploy.json");
     std::ifstream json_in(json_file.c_str(), std::ios::in);
     std::string json_data((std::istreambuf_iterator<char>(json_in)), std::istreambuf_iterator<char>());
     json_in.close();
+    if(json_data.find("drp") == json_data.npos && device_type != kDLCPU){
+        LOG(INFO) <<"Break! this model is Not for DRP-AI retry as CPU Only";
+        return false;
+    }
 
     LOG(INFO) << "Loading runtime module...";
     tvm::runtime::Module mod_syslib = tvm::runtime::Module::LoadFromFile(model_dir + "/deploy.so");
-    LOG(INFO) << "Loading runtime module...11111111";
     mod = (*tvm::runtime::Registry::Get("tvm.graph_executor_debug.create"))(
       json_data, mod_syslib, device_type, device_id);
-  LOG(INFO) << "heree runtime module...";
+
     LOG(INFO) << "Loading parameters...";
     tvm::runtime::PackedFunc load_params = mod.GetFunction("load_params");
     auto params_data = LoadBinary<char>(model_dir + "/deploy.params");
@@ -83,6 +85,11 @@ void MeraDrpRuntimeWrapper::LoadModel(const std::string& model_dir) {
     params_arr.data = params_data.data();
     params_arr.size = params_data.size();
     load_params(params_arr);
+    tvm::runtime::PackedFunc set_start_address = mod.GetFunction("set_start_address");
+    if(set_start_address != nullptr){
+      set_start_address(start_address);
+    }
+    return true;
 }
 
 template <typename T>

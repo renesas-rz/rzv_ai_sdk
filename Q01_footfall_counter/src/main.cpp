@@ -31,15 +31,19 @@
 
 static RecognizeBase* g_rc;
 
+uint64_t RecognizeBase::drpaimem_addr_start = 0;
+bool RecognizeBase::runtime_status = false;
+
 int32_t main(int32_t argc, char* argv[])
 {
     
     printf("################################################\n");
-    printf("#    RZ/V2M DRP-AI TVM Sample Application      #\n");
+    printf("#    RZ/V2L DRP-AI TVM Sample Application      #\n");
     printf("################################################\n");
+    
+    
 
     g_rc = new RecognizeBase();
-    
     g_rc->initialize(new TVM_YOLO_DRPAI(MODE_TVM_TINYYOLOV3_DRPAI));    /* MODEL: TINYYOLOV3*/
     g_rc->recognize_start();
     g_rc->start_recognize();

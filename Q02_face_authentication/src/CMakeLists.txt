@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 17)
 project(face_recognition)
 set(TVM_ROOT $ENV{TVM_HOME})
 find_package(OpenCV REQUIRED)
