@@ -754,6 +754,19 @@ void RecognizeBase::show_result(void)
 
     /*generate the output display frame*/
     cv::Mat bgra_image_org = create_output_frame(g_bgra_image);
+    /*display the count for each objects detected inside the current frame*/
+    for (std::map<std::string, int>::iterator it = detection_count.begin(); it != detection_count.end(); ++it)
+    {
+        cv::putText(bgra_image_org, std::string(it->first), cv::Point(text_width + 30, text_height), 
+                    cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
+        cv::putText(bgra_image_org, " : " + std::to_string(it->second), cv::Point(text_width + 100, text_height), 
+                    cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
+        total_count += (int)it->second;
+        text_height += 30;
+    }
+    cv::putText(bgra_image_org, "Total Objects : " + std::to_string(total_count), 
+                cv::Point(text_width, text_height_total_count), cv::FONT_HERSHEY_SIMPLEX, 
+                            font_size, WHITE, font_weight);
 
     /*put inference time inside the display frame*/
     cv::putText(bgra_image_org, "AI Inference time : " + std::to_string(infer_time_ms) + " [ms]", 
@@ -769,11 +782,13 @@ void RecognizeBase::show_result(void)
     detection_bb_vector.clear();
 }
 /**
- * @brief object_detector
- * @details function to detect the objects based on the input confidence score
+ * @brief object_counting
+ * @details function to count the number of objects based on the input confidence score
  */
-void RecognizeBase::object_detector(void)
+void RecognizeBase::object_counting(void)
 {
+    /*key : object, value:count*/
+    detection_count.clear();
 
     /*filter detection based on confidence score and objects selected*/
     for (detection det : postproc_data)
@@ -791,6 +806,12 @@ void RecognizeBase::object_detector(void)
         /*check if the detected object is in the list of objects to be detected(from the config.ini file)*/
         if (count(detection_object_set.begin(), detection_object_set.end(), dat.name) <= 0)
             continue;
+
+        /*map for storing the count of detected objects*/
+        if (detection_count.count(dat.name) > 0)
+            detection_count[dat.name]++;
+        else
+            detection_count[dat.name] = 1;
 
         dat.X = (int32_t)(det.bbox.x - (det.bbox.w / 2));
         dat.Y = (int32_t)(det.bbox.y - (det.bbox.h / 2));
@@ -825,7 +846,7 @@ void RecognizeBase::send_result(void *arg, uint8_t model_id, recognizeData_t &da
     {
         Measuretime m("Create predict result time");
         fps_calculation();
-        object_detector();
+        object_counting();
         show_result();
     }
     /* creates quit key thread*/

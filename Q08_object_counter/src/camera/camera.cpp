@@ -132,6 +132,7 @@ int8_t Camera::start_camera()
             }
         }
     }
+    
     ret = open_camera_device();
     if (0 != ret) return ret;
 

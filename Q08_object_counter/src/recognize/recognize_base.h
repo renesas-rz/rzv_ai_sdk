@@ -124,7 +124,7 @@ public:
     cv::Mat g_bgra_image;
 
     void fps_calculation(void);
-    void object_detector(void);
+    void object_counting(void);
     void show_result(void);
     cv::Mat create_output_frame(cv::Mat frame_g);
     /*pipeline for gstreamer output */
@@ -141,6 +141,8 @@ private:
     std::set<std::string> detection_object_set;
     /*filtered bb for displaying*/
     vector<bbox_t> detection_bb_vector;
+    /* detection count <key:object,value:count> */
+    std::map<std::string, int> detection_count;
 
 private:
     pthread_t thPredict;
