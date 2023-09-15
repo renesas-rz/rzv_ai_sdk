@@ -15,20 +15,32 @@ layout: default
             <br>
             <br>
             <!-- Topic below -->
-            <!-- <i>
+            <i>
                 <h3 class="history-title">
                     AI Applications Demo v2.00
                 </h3>
                 <h6 align="right" >
-                    2023.xx.xx
+                    2023.9.15
                 </h6>
             </i>
             <ul>
                 <li>
                     <h5 class="history-item">AI Applications Demo v2.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported RZ/V2L AI SDK v2.00.<br>
+                            Operation time limit due to Graphics Library Evaluation Version/Video Codec Library Evaluation Version is extended from 3 hours to 10 hours.
+                        </li>
+                        <li>
+                            Changed to eSD Bootloader, which does not require Windows PC to write bootloader. 
+                        </li>
+                        <li>
+                            Added 17 AI Applications.
+                        </li>
+                    </ul>
                 </li>
             </ul>
-            <br> -->
+            <br>
             <!-- Topic above -->
             <!-- Topic below -->
             <i>

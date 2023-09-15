@@ -43,33 +43,26 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2023.8.31
+                2023.9.15
             </h6>
             <ul>
                 <li>
-                    <b>AI Applications v2.00</b> is now available.<br>
+                    <b>AI Applications Demo v2.00</b> is now available.<br>
                     <ul>
                         <li> 
-                            Added 15 Applications.
-                        </li>
-                        <li>
-                            Improved AI accuracy for 8 Applications.
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>RZ/V2L AI SDK v2.00</b> is now available.<br>
-                    <ul>
-                        <li> 
+                            Supported AI SDK v2.00.<br>
                             Operation time limit due to Graphics Library Evaluation Version/Video Codec Library Evaluation Version is extended from 3 hours to 10 hours.
                         </li>
                         <li>
-                            Added support for eSD Bootloader, which does not require Windows PC to write bootloader. (Recommended boot mode)
+                            Changed to eSD Bootloader, which does not require Windows PC to write bootloader. 
+                        </li>
+                        <li>
+                            Added 17 AI Applications.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>.
             <br>
         </div>
         <div class="col-12" align="right">
@@ -177,10 +170,10 @@ layout: default
     <div class="row">
         <div class="col-12">
             With the demo binary, users can try the AI Applications without having AI SDK environment.<br>
-            Download the Demo and refer to <a href= "https://www.renesas.com/document/rln/rzv2l-ai-applications-demo-how-use-guide-version-100">How to Use Guide</a> for more details.
+            Download the Demo and refer to <a href= "{{ site.url }}{{ site.baseurl }}{% link demo.md %}">How to Use Guide</a> for more details.
             <br>
             <br>
-            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-100" role="button">
+            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-200" role="button">
                 Download Demo
             </a>
             <br>
@@ -188,9 +181,9 @@ layout: default
             <h6>
                 <b>Notes:
                     <ol>
-                        <li>Demo is based on AI Applications v1.00 and AI SDK v1.00.</li>
-                        <li>Demo zip filesize is more than 9GB.</li>
-                        <li>Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 3 hours.</li>
+                        <li>Demo is based on AI Applications v2.00 and AI SDK v2.00.</li>
+                        <li>Demo zip filesize is more than 5GB.</li>
+                        <li>Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 10 hours.</li>
                     </ol>
                 </b>
             </h6>

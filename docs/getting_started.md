@@ -1,12 +1,7 @@
 ---
 layout: default
 ---
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.min.js"></script>
-<script>
-  $(function(){
-    $("#a3reference").load("{{ site.url }}{{ site.baseurl }}{% link appendix.md %} a3reference");
-});
-</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <div class="container">
     <div class="row">
         <div class="top col-12">
@@ -113,7 +108,7 @@ This tutorial is based on RZ/V2L AI SDK version 1.00.<br>
       <td>SD card reader</td>
       <td>Used for setting up microSD card.<br></td>
     </tr>
-    <tr>
+    <tr id="EQ_WindowsPC">
       <td>Windows PC</td>
       <td><b>Optional.</b> Used as the serial communication console for eMMC Bootloader.<br>
       Operating Environment : Windows 10</td>
@@ -494,7 +489,6 @@ You can use Linux PC to format the microSD card and expand the kernel and the ro
     </table>
   </div>
   <br>
-<s7reference>
   <h5 id="step7-1b">
     <li type="A">Write the Linux files to SD card</li>
   </h5>
@@ -674,7 +668,6 @@ sudo eject /dev/sdb
       </li>
     </ol>
   </div>
-</s7reference>
 <h5 id="step7-1c">
   <li type="A">
     <span class="ContenteSD">
@@ -735,7 +728,6 @@ sudo eject /dev/sdb
 <br>
 
 <h4 id="step7-2" >2. Deploy Application to the Board</h4>
-<s8reference>
   This section explains how to copy the <a href="#step6">application binary created in Step 6</a> to the board.<br>
   Users are expected to have finished the instructions in <a href="#step7"> Setup RZ/V2L Evaluation Board Kit in Step 7-1</a>.
   <br>
@@ -807,7 +799,6 @@ sudo eject /dev/sdb
       </div>
     </li>
   </ol>
-</s8reference>
 <br>
 
 <h4 id="step7-3" >3. Boot RZ/V2L Evaluation Board Kit</h4>
@@ -821,7 +812,7 @@ Follow the instruction below to boot the board.
 <br>
 <div class="ContenteSD contenteSD-bg">
   <span class="ContenteSD-title">For eSD</span>
-  <reference5>
+  <reference3>
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-6">
@@ -866,7 +857,7 @@ Follow the instruction below to boot the board.
         </div>
       </div>
     </div>
-  </reference5>
+  </reference3>
 </div>
 <div class="ContenteMMC contenteMMC-bg">
   <span class="ContenteMMC-title">For eMMC</span>

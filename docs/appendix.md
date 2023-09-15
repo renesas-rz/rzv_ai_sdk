@@ -1,14 +1,10 @@
 ---
 layout: default
 ---
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
   $(function(){
-    $("#s7reference").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} s7reference");
-    $("#s8reference").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} s8reference");
-    $("#a2reference").load("{{ site.url }}{{ site.baseurl }}{% link appendix.md %} a2reference");
     $("#a3reference").load("{{ site.url }}{{ site.baseurl }}{% link appendix.md %} a3reference");
-    $("#s7referencedeploy").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} s7referencedeploy");
 });
 </script>
 
@@ -267,47 +263,46 @@ SpiFlashMemory End Address : H'000CC73F
   </li>
   <li>
     <h5 id="A1-4">4. Setup U-boot setting</h5>
-    <reference4>
-      Follow the procedure below to set the booting configuration of the board.<br><br>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <ol>
-              <li>Insert the microSD card to the <b>Board</b>.
-                <div class="note">
-                  <span class="note-title">Note</span>
-                  Use the microSD card slot <b>CN10</b> as shown in the figure.
-                </div>
-              </li><br>
-              <li>Change SW1 and SW11 setting as shown in the right figure.
-              </li><br>
-              <li>Connect the <b>Board</b> and <b>Windows PC</b> by the USB Serial to Micro USB cable.
-              </li><br>
-              <li>Connect the power cable to the <b>Board</b>.
-              </li><br>
-              <li>Press power button for 1 second to turn on the board.
-              </li><br>
-              <li>Open the terminal emulator, i.e., Tera Term, and connect with COMS port.
-                <div class="note">
-                  <span class="note-title">Note</span>
-                  When using Tera Term, change the configuration as explained in <a href="#A1-3">Write bootloaders to eMMC on the board</a>.
-                </div>
-              </li><br>
-              <li>On the terminal emulator, keep pressing ENTER key and on the board, press reset button.
-              </li><br>
-            </ol>
-          </div>
-          <div class="col-12 col-md-6">
-            <img class="procedure" src="img/uboot-setting.png" alt="boot" width="90%"/>
-            <br>
-          </div>
+    Follow the procedure below to set the booting configuration of the board.<br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <ol>
+            <li>Insert the microSD card to the <b>Board</b>.
+              <div class="note">
+                <span class="note-title">Note</span>
+                Use the microSD card slot <b>CN10</b> as shown in the figure.
+              </div>
+            </li><br>
+            <li>Change SW1 and SW11 setting as shown in the right figure.
+            </li><br>
+            <li>Connect the <b>Board</b> and <b>Windows PC</b> by the USB Serial to Micro USB cable.
+            </li><br>
+            <li>Connect the power cable to the <b>Board</b>.
+            </li><br>
+            <li>Press power button for 1 second to turn on the board.
+            </li><br>
+            <li>Open the terminal emulator, i.e., Tera Term, and connect with COMS port.
+              <div class="note">
+                <span class="note-title">Note</span>
+                When using Tera Term, change the configuration as explained in <a href="#A1-3">Write bootloaders to eMMC on the board</a>.
+              </div>
+            </li><br>
+            <li>On the terminal emulator, keep pressing ENTER key and on the board, press reset button.
+            </li><br>
+          </ol>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <ol start="8">
-              <li>U-boot console will be activated.
-              </li><br>
-              <li>Run the following commands to set the booting configuration.
+        <div class="col-12 col-md-6">
+          <img class="procedure" src="img/uboot-setting.png" alt="boot" width="90%"/>
+          <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <ol start="8">
+            <li>U-boot console will be activated.
+            </li><br>
+            <li>Run the following commands to set the booting configuration.
 {% highlight shell %}
 env default -a
 setenv bootargs 'root=/dev/mmcblk1p2 rootwait'
@@ -315,31 +310,30 @@ setenv bootcmd 'mmc dev 1;fatload mmc 1:1 0x48080000 Image-smarc-rzv2l.bin; fatl
 saveenv
 boot
 {% endhighlight %}
-              </li><br>
-              <li>After the boot-up, the login message will be shown on the console.
+            </li><br>
+            <li>After the boot-up, the login message will be shown on the console.
 {% highlight shell %}
 smarc-rzv2l login:
 {% endhighlight %}
-              </li><br>
-              <li>Log-in to the system using the information below.
-                <ul>
-                  <li>user: <code>root</code>
-                  </li>
-                  <li>password: none
-                  </li>
-                </ul>
-              </li><br>
-              <li>Shutdown the board to finish the U-boot setting.
-                <details class="boxdetails" open>
-                  <summary>Shutdown Procedures</summary>
-                  <quotedoc id="a3reference"></quotedoc>
-                </details>
-              </li><br>
-            </ol>
-          </div>
+            </li><br>
+            <li>Log-in to the system using the information below.
+              <ul>
+                <li>user: <code>root</code>
+                </li>
+                <li>password: none
+                </li>
+              </ul>
+            </li><br>
+            <li>Shutdown the board to finish the U-boot setting.
+              <details class="boxdetails" open>
+                <summary>Shutdown Procedures</summary>
+                <quotedoc id="a3reference"></quotedoc>
+              </details>
+            </li><br>
+          </ol>
         </div>
       </div>
-    </reference4>
+    </div>
   </li>
 </ul>
 <br>
@@ -348,37 +342,36 @@ Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md
 <br><br>
 
 <h3 id="A2">A2. Format SD card</h3>
-  <a2reference>
-    When writing the necessary files for the board, microSD card needs to have appropriate format.<br>
-    Note that you need to run this procedure only once as long as you use the same microSD card.
-    <br><br>
-    Follow the instruction below to format the microSD card partitions.<br>
-    <h5 id="A2prep">Preparation</h5>
-    <div class="note">
-      <span class="note-title">Click the button</span>
-      This section contains both eSD and eMMC Bootloader explanation.<br>
-      Please click the button below to update the explanation according to your bootloader interface.<br>
-      <div class="SelectButton">
-        <span class="ButtoneSD">eSD Bootloader</span>
-        <span class="ButtoneMMC">eMMC Bootloader</span>
-      </div>
-      <div class="ContenteSD contenteSD-bg">
-        <span class="ContenteSD-title">For eSD</span>
-        eSD explanation will be shown in this style if you click "eSD Bootloader" button above.
-      </div>
-      <div class="ContenteMMC contenteMMC-bg">
-        <span class="ContenteMMC-title">For eMMC</span>
-        eMMC explanation will be shown in this style if you click "eMMC Bootloader" button above.
-      </div>
+  When writing the necessary files for the board, microSD card needs to have appropriate format.<br>
+  Note that you need to run this procedure only once as long as you use the same microSD card.
+  <br><br>
+  Follow the instruction below to format the microSD card partitions.<br>
+  <h5 id="A2prep">Preparation</h5>
+  <div class="note">
+    <span class="note-title">Click the button</span>
+    This section contains both eSD and eMMC Bootloader explanation.<br>
+    Please click the button below to update the explanation according to your bootloader interface.<br>
+    <div class="SelectButton">
+      <span class="ButtoneSD">eSD Bootloader</span>
+      <span class="ButtoneMMC">eMMC Bootloader</span>
     </div>
-    <br>
-    <h5 id="A2-1">Check the SD card connection</h5>
-    <ol>
-      <li>Before inserting the microSD card to your Linux PC, open the terinal on Linux PC and run the following command to check the devices without microSD card.
+    <div class="ContenteSD contenteSD-bg">
+      <span class="ContenteSD-title">For eSD</span>
+      eSD explanation will be shown in this style if you click "eSD Bootloader" button above.
+    </div>
+    <div class="ContenteMMC contenteMMC-bg">
+      <span class="ContenteMMC-title">For eMMC</span>
+      eMMC explanation will be shown in this style if you click "eMMC Bootloader" button above.
+    </div>
+  </div>
+  <br>
+  <h5 id="A2-1">Check the SD card connection</h5>
+  <ol>
+    <li>Before inserting the microSD card to your Linux PC, open the terinal on Linux PC and run the following command to check the devices without microSD card.
 {% highlight shell %}
 lsblk
 {% endhighlight %}
-    Following is the example output.
+  Following is the example output.
 {% highlight shell %}
 NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 sda 8:0 0 30.9G 0 disk
@@ -387,16 +380,16 @@ sda 8:0 0 30.9G 0 disk
 └─sda5 8:5 0 30.3G 0 part /
 sr0 11:0 1 1024M 0 rom
 {% endhighlight %}
-      </li><br>
-      <li>Insert the microSD card to your Linux PC and run the following command again.
+    </li><br>
+    <li>Insert the microSD card to your Linux PC and run the following command again.
 {% highlight shell %}
 lsblk
 {% endhighlight %}
-      </li><br>
-      <li>Check the output and confirm the name appeared.<br>
-        This would be your microSD card device name.<br>
-        <ul>
-          <li>Following is the example output.
+    </li><br>
+    <li>Check the output and confirm the name appeared.<br>
+      This would be your microSD card device name.<br>
+      <ul>
+        <li>Following is the example output.
 {% highlight shell %}
 NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
 sda 8:0 0 30.9G 0 disk
@@ -407,27 +400,27 @@ sdb 8:16 1 29.7G 0 disk
 └─sdb1 8:17 1 29.7G 0 part
 sr0 11:0 1 1024M 0 rom
 {% endhighlight %}
-          </li>
-          <li>In this case, followings are your microSD card configuration.
-            <ul>
-              <li><b><code>/dev/sdb</code></b>: The device name for the entire microSD card.
-              </li>
-              <li><b><code>/dev/sdb1</code></b>: The paritition name in microSD card.  There may be multiple <code>sdb*</code> depending on the microSD card.
-              </li>
-            </ul>
-            <div class="warning">
-              <span class="warning-title">Warning</span>
-              Be careful not to use the name of other device since it may destruct your computer filesystem.
-            </div>
-          </li>
-        </ul>
-      </li><br>
-      <li>Run the following command to check the automatically mounted microSD card partitions.
+        </li>
+        <li>In this case, followings are your microSD card configuration.
+          <ul>
+            <li><b><code>/dev/sdb</code></b>: The device name for the entire microSD card.
+            </li>
+            <li><b><code>/dev/sdb1</code></b>: The paritition name in microSD card.  There may be multiple <code>sdb*</code> depending on the microSD card.
+            </li>
+          </ul>
+          <div class="warning">
+            <span class="warning-title">Warning</span>
+            Be careful not to use the name of other device since it may destruct your computer filesystem.
+          </div>
+        </li>
+      </ul>
+    </li><br>
+    <li>Run the following command to check the automatically mounted microSD card partitions.
 {% highlight shell %}
 df
 {% endhighlight %}
-      </li><br>
-      <li>Check the output and find the mount point, which is "<code>/media/user/A8D3-393D</code>" in the following example.
+    </li><br>
+    <li>Check the output and find the mount point, which is "<code>/media/user/A8D3-393D</code>" in the following example.
 {% highlight shell %}
 Filesystem 1K-blocks Used Available Use% Mounted on
 udev 745652 0 745652 0% /dev
@@ -436,18 +429,17 @@ snip
 :
 /dev/sdb1 511720 4904 506816 1% /media/user/A8D3-393B
 {% endhighlight %}
-      </li><br>
-      <li>Unmount the automatically mounted partitions.
+    </li><br>
+    <li>Unmount the automatically mounted partitions.
 {% highlight shell %}
 sudo umount /media/user/A8D3-393B
 {% endhighlight %}
-        <ul><li>
-          If there are more than one partitions on microSD card, unmount all partitions.
-        </li></ul>
-      </li>
-    </ol>
-    <br>
-  </a2reference>
+      <ul><li>
+        If there are more than one partitions on microSD card, unmount all partitions.
+      </li></ul>
+    </li>
+  </ol>
+  <br>
   <h5 id="A2-2">Create SD card partition</h5>
   <ol>
     <li>
