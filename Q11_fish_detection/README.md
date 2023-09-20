@@ -164,7 +164,7 @@ The expected output will be the same as shown in the demo video
 
 The runtime application will look something like this
   
-  <img src=./images/expected_results.JPG width="240">
+  <img src=./images/expected_results.JPG width="420">
 
 1. For each frame the detected fishes will be shown as a bounding box with confidence score. Each detected fish will be classified to which spicies they belong.
 2. AI-inference time for each frame and Frame Per Sec (FPS) is shown on top right corner.
