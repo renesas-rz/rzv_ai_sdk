@@ -21,7 +21,6 @@ It has 3 modes of running.
 ### Demo:
 
 
-#### Video Mode
 <img src = "./images/Q09_crack_video_demo.gif" width="480" height="320">
 
 
