@@ -20,8 +20,9 @@ It has 3 modes of running.
 
 ### Demo:
 
+
 #### Video Mode
-<img src = "./images/Q09_crack_video.gif" width="480" height="320">
+<img src = "./images/Q09_crack_video_demo.gif" width="480" height="320">
 
 
 
@@ -33,8 +34,7 @@ It has 3 modes of running.
 - USB Keyboard
 - USB Hub
 - HDMI monitor & Micro HDMI Cable
-- USB Camera (Optional)
-
+- USB Camera (Optional) 
 
 [Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
 
@@ -47,7 +47,7 @@ It has 3 modes of running.
 
 >**Note:** User can skip to the next stage [deploy](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Started Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -62,7 +62,7 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone -b crack_segmentation --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone -b crack_segmentation --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
    >Note: Please verify the git repository url if error occurs.
 2. Run the docker container and open the bash terminal on the container.
@@ -108,24 +108,23 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |output.mp4 | sample video |
 |crack_segmentation | application file |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
+Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
+* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
    * Copy the files present in [exe](./exe) directory, which are listed in the table above.
    * Copy the generated `crack_segmentation` application file if the application file is built at [build stage](#application-build-stage)
 
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
 
 #### Folder Structure in the board
-
 ```sh
+/
 └── home
     └── root
         └── tvm
             ├── crack_segmentation_model
             │   ├── deploy.json
             │   ├── deploy.params
-            │   ├── deploy.so
-            │   └── preprocess/
+            │   └── deploy.so
             ├── sample.jpg
             ├── output.mp4
             └── crack_segmentation
@@ -145,6 +144,8 @@ cd /home/root/tvm
 ```sh 
 ./crack_segmentation CAMERA 
 ```
+
+>**Note:** The application takes MIPI camera is default. In case MIPI camera is missing, the application will look for USB camera as alternative.
 
 #### Mode: Image Input
 
@@ -168,14 +169,19 @@ cd /home/root/tvm
 > Note: Tested with video file format `.mp4` and `.avi`.
 
 
-#### Expected Results
+## Application: Runtime output details
 
-The application will run like the below screen.
+The runtime application will look something like this
 
-<img src = "./images/expected_result.png" width="480">
+<img src = "./images/Q09_crack_pic.png" width="480" height="320">
 
-### Application: Termination
-Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Board.
+AI inference time and Frames Per Sec (FPS) is shown on top right corner.
+
+The cracks detected are shown in green mask/region.
+
+
+## Application: Termination
+Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
 
 
 ## Application: Specifications

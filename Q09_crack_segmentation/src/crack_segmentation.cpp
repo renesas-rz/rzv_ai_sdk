@@ -41,7 +41,6 @@
 #include <thread>
 #include <cstring>
 #include "MeraDrpRuntimeWrapper.h"
-#include "PreRuntime.h"
 #include "opencv2/core.hpp"
 #include "iostream"
 #include "opencv2/imgproc.hpp"
@@ -51,6 +50,9 @@
 #include <glob.h>
 #include <cmath>
 #include <cstring>
+#include <linux/drpai.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
 #define DRPAI_MEM_OFFSET    (0x38E0000)
@@ -232,6 +234,39 @@ float *start_runtime(float *input)
 }
 
 /*****************************************
+ * Function Name : colour_convert
+ * Description   : function to convert white colur to green colur.
+ * Arguments     : Mat image
+ * Return value  : Mat result
+ ******************************************/
+cv::Mat colour_convert(cv::Mat image)
+{
+    /* Convert the image to HSV */ 
+    cv::Mat hsv;
+    cv::cvtColor(image, hsv, cv::COLOR_BGR2HSV);
+
+    /* Define the lower and upper HSV range for white color */
+    cv::Scalar lower_white = cv::Scalar(0, 0, 200); // Adjust these values as needed
+    cv::Scalar upper_white = cv::Scalar(180, 30, 255); // Adjust these values as needed
+
+    /* Create a mask for the white color */
+    cv::Mat mask;
+    cv::inRange(hsv, lower_white, upper_white, mask);
+
+    /* Create a green image */
+    cv::Mat green_image = cv::Mat::zeros(image.size(), image.type());
+    green_image.setTo(cv::Scalar(0, 100, 0), mask);
+
+    /* Replace white regions in the original image with green */
+    cv::Mat result;
+    cv::bitwise_and(image, image, result, ~mask);
+    cv::add(result, green_image, result);
+    cv::resize(result, result, cv::Size(MODEL_IN_H, MODEL_IN_W));
+    /* return result */
+    return result;
+}
+
+/*****************************************
  * Function Name : run_inference
  * Description   : takes Mat frame as the input and passes through the model runtime and returns the output
  * Arguments     : Mat frame
@@ -282,8 +317,12 @@ cv::Mat run_inference(cv::Mat frame)
     std::cout << "\n[INFO] AI-Inference Time(ms): " << g_duration << " ms\n" <<"[INFO] FPS: "<<g_fps<<"\n";
 
     cv::cvtColor(img_mask, output_frame, cv::COLOR_RGB2BGR);
+
+    /* convert white colur from output frame to green colur */
+    output_frame = colour_convert(output_frame);
+
     /* blending both input and ouput frames that have same size and format and combined one single frame */
-    cv::addWeighted(input_frame, 0.5, output_frame, 0.5, 0.0, output_frame);
+    cv::addWeighted(input_frame, 0.9, output_frame, 0.5, 0.0, output_frame);
     /* resize the output image with respect to output window size */
     cv::cvtColor(output_frame, output_frame, cv::COLOR_BGR2RGB);
     cv::resize(output_frame, output_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
