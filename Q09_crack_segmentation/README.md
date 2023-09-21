@@ -14,13 +14,16 @@ Surface crack segmentation has a wide range of applications, including:
 
 It has 3 modes of running.
 
-1. Using MIPI Camera
+1. Using Camera as input
+    1. MIPI camera (default)
+    2. USB camera
 2. Using Image as input
 3. Using Video as input
 
 ### Demo:
 
 
+#### Video Mode
 <img src = "./images/Q09_crack_video_demo.gif" width="480" height="320">
 
 
@@ -31,6 +34,7 @@ It has 3 modes of running.
 - RZ/V2L Evaluation Board Kit
     - Coral Camera
 - USB Keyboard
+- USB Mouse
 - USB Hub
 - HDMI monitor & Micro HDMI Cable
 - USB Camera (Optional) 
@@ -108,15 +112,17 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |crack_segmentation | application file |
 
 Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
-   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `crack_segmentation` application file if the application file is built at [build stage](#application-build-stage)
+1. At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
+   1. Copy the files present in [exe](./exe) directory, which are listed in the table above.
+   2. Copy the generated `crack_segmentation` application file if the application file is built at [build stage](#application-build-stage)
 
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
+2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
 
 #### Folder Structure in the board
 ```sh
-/
+├── usr/
+│   └── lib64/
+│       └── libtvm_runtime.so
 └── home
     └── root
         └── tvm
@@ -140,6 +146,8 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Boar
 ```sh
 cd /home/root/tvm
 ```
+
+> Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
 ```sh 
 ./crack_segmentation CAMERA 
 ```
@@ -174,7 +182,7 @@ The runtime application will look something like this
 
 <img src = "./images/Q09_crack_pic.png" width="480" height="320">
 
-AI inference time and Frames Per Sec (FPS) is shown on top right corner.
+AI inferece time and Frames Per Sec (FPS) is shown on top right corner.
 
 The cracks detected are shown in green mask/region.
 
