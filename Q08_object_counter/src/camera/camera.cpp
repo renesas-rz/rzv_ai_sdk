@@ -134,6 +134,7 @@ int8_t Camera::start_camera()
     }
     
     ret = open_camera_device();
+    std::cout<<"ret,open_camera_device"<<ret<<"\n";
     if (0 != ret) return ret;
 
     ret = init_camera_fmt();
@@ -374,7 +375,8 @@ int8_t Camera::open_camera_device()
             return -1;
         }
 
-        if(DEFAULT_MIPI_CAMERA){
+        if(DEFAULT_MIPI_CAMERA)
+        {
             /* Search MIPI camera */
             ret = strcmp((const char*)fmt.driver, "rzg2l_cru");
             if (0 == ret)
@@ -398,7 +400,10 @@ int8_t Camera::open_camera_device()
 
     if (i >= 15)
     {
-        return -1;
+        if(DEFAULT_MIPI_CAMERA)
+            return -1;
+        else
+            return -2;
     }
     return 0;
 }

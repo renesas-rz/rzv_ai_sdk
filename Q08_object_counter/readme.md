@@ -1,16 +1,17 @@
 
 # Object Counter Application
 
+## Application: Overview
 The Object Counter Application is a user-friendly and efficient generic software tool that can be used to create custom counting applications for any scenario. This application uses the advanced Tiny-YOLOv3 algorithm to identify and count objects in images or videos.
 
-
-
-#### Use Cases
+### Use Cases
 The Generic Counter Application is a powerful tool that can be used to count objects in a variety of settings, including:
 
 - **Animal Counting**: The application can be fine tuned to count the animals only. This application can be used for zoo or farm monitoring, also could be used to prevent the road hazards due to animal interference. The list of animals on which the AI model is trained is available [animal_class.txt](./exe/animal/animal_class.txt)
 
-- **Vehicle Counting**: The application can be fine tuned to count the vehicle instances on per frame. This application can then be used for traffic monitoring at government/corporate buildings.The list of vehicles on which the AI model is trained is available [vehicle_class.txt](./exe/vehicle/vehicle_class.txt)
+- **Vehicle Counting**: The application can be fine tuned to count the vehicle instances per frame. This application can then be used for traffic monitoring at government/corporate buildings.The list of vehicles on which the AI model is trained is available [vehicle_class.txt](./exe/vehicle/vehicle_class.txt)
+
+- **General Counting**: The general counting applications can be used to count any type of object, from people and cars to inventory and products. They are often used in businesses to track customer traffic, inventory levels, and employee productivity. The list of object on which the AI model is trained is available [coco_class.txt](./exe/coc/coco_class.txt)
 
 The other use cases could be: 
 
@@ -18,7 +19,7 @@ The other use cases could be:
 - **Retail**: The application can be used to count products on a shelf or to track the number of customers in a store.
 - **Safety**: The application can be used to count people in a crowd or to monitor the traffic flow in a city.
 
-#### Key Features
+### Key Features
 Here are some of the key features of the Generic Counter Application:
 
 - **Automatic Object Detection**: 
@@ -28,7 +29,7 @@ Here are some of the key features of the Generic Counter Application:
 - **Customizable Settings**: 
     Users can adjust the detection and classification parameters by using the config file provided in the repository.
 
-#### Demo 
+### Demo 
 <img src = "./images/ObjectCounter.gif" width ="480" height= "320">
 
 ## Applications: Requirements
@@ -39,13 +40,17 @@ Here are some of the key features of the Generic Counter Application:
     - MIPI Camera
 - USB camera 
 - USB Keyboard
+- USB Mouse
 - USB Hub
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
 - SD Card (for file system)
 
+[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
+
 ### Software Requirements
 
+- Ubuntu 20.04
 - OpenCV 4.x
 - C++11 or higher
 
@@ -53,7 +58,7 @@ Here are some of the key features of the Generic Counter Application:
 
 >**Note:** User can skip to the next stage [deploy](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas
+**Note:** This project expects the user to have completed [Getting Started Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -77,26 +82,26 @@ After completion of the guide, the user is expected of following things.
 
 4. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
 
-```sh
-export PROJECT_PATH=/drp_ai_tvm/data/
-```
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/
+    ```
 
 5. Go to the `src` directory of the application
 
-```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q08_object_counter/src/
-```
+    ```sh
+    cd ${PROJECT_PATH}/rzv_ai_sdk/Q08_object_counter/src/
+    ```
 6. Build the application on docker environment by following the steps below
 
-```sh
-mkdir -p build && cd build
-```
-```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-```
-```sh
-make -j$(nproc)
-```
+    ```sh
+    mkdir -p build && cd build
+    ```
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    ```
+    ```sh
+    make -j$(nproc)
+    ```
 The following application file would be generated in the `src/build` directory
 - object_counter
 
@@ -119,11 +124,11 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |app_conf.ini | User input application config object |
 |object_counter | Application file |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
-* Copy the files present in [exe](./exe) directory, which are listed in the table above.
-* Copy the generated `object_counter` application file if the application file is built at [build stage](#application-build-stage)
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
+1. At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
+    1. Copy the files present in [exe](./exe) directory, which are listed in the table above.
+    2. Copy the generated `object_counter` application file if the application file is built at [build stage](#application-build-stage)
+2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
 
 Folder structure in the rootfs (SD Card) would look like:
 ```sh
@@ -174,43 +179,43 @@ Folder structure in the rootfs (SD Card) would look like:
 For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
 
 1. Go to the `/home/root/tvm` directory of the rootfs
-  ```sh
-  cd /home/root/tvm
-  ```
+    ```sh
+    cd /home/root/tvm
+    ```
 
 2. Change the values in `app_conf.ini` as per the requirements. Detailed explanation of the `app_conf.ini` file is given at below section.
-  ```sh
-  vi app_conf.ini
-  ```
+    ```sh
+    vi app_conf.ini
+    ```
 
 3. Run the application in the terminal of the RZ/V2L evaluation board kit using the command
   #### For MIPI Camera
   - COCO mode
-  ```sh
-  ./object_counter COCO
-  ```
+    ```sh
+    ./object_counter COCO
+    ```
   - animal 
-   ```sh
-  ./object_counter animal
-  ```
+    ```sh
+    ./object_counter animal
+    ```
   - vehicle
-   ```sh
-  ./object_counter vehicle
-  ```
+    ```sh
+    ./object_counter vehicle
+    ```
   #### For USB Camera
   - COCO mode
 
-  ```sh
-  ./object_counter COCO USB
-  ```
+    ```sh
+    ./object_counter COCO USB
+    ```
   - animal 
-   ```sh
-  ./object_counter animal USB
-  ```
+    ```sh
+    ./object_counter animal USB
+    ```
   - vehicle
-   ```sh
-  ./object_counter vehicle USB
-  ```
+     ```sh
+    ./object_counter vehicle USB
+    ```
  
 >**Note:** The mode will be the section name in app_conf.ini file.
 
@@ -240,7 +245,7 @@ The runtime application will look something like this
 - Total detected object counts are shown , alongside the counts for each user-defined classes
 
 ### Application: Termination 
-Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Board.
+Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
 
 ## Application: Specifications
 
@@ -280,7 +285,7 @@ The AI inference time is 150-190 msec.
 - The `anchors` are the yolo anchors for the object detection. 
 - The `objects` represents class to be identified and it can be changed to other classes present on the class label list.
 
-- To modify the configuration settings, edit the values in this file using VI Editor, from the RZ/V2L Board.
+- To modify the configuration settings, edit the values in this file using VI Editor, from the RZ/V2L Evaluation Board Kit.
 
 ```sh
 vi config.ini

@@ -177,7 +177,10 @@ int32_t RecognizeBase::recognize_start()
     int32_t create_thread_ai;
     if (0 != ret)
     {
-        fprintf(stderr, "[ERROR] Failed to initialize USB Camera.\n");
+        if(ret == -1)
+            fprintf(stderr, "[ERROR] Failed to initialize MIPI Camera.\n");
+        else if(ret == -2)
+            fprintf(stderr, "[ERROR] Failed to initialize USB Camera.\n");
         return -1;
     }
     wake_ = false;
@@ -215,6 +218,10 @@ int32_t RecognizeBase::recognize_start()
     output_writer = cv::VideoWriter(g_pipeline, cv::CAP_GSTREAMER,
                                     cv::VideoWriter::fourcc('H', '2', '6', '4'), 1, 
                                     cv::Size(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT), true);
+    /* creates quit key thread*/
+    pthread_create(&_pthread_quit_key, NULL, &get_quit_key, this);
+    /* detach quit key thread from all other thread*/
+    pthread_detach(_pthread_quit_key);
     start_recognize();
     return 0;
 }
@@ -663,9 +670,13 @@ void *RecognizeBase::get_quit_key(void *arg)
         if (key == 10)
         {
             std::cout << "[INFO] Enter Key Pressed!\n";
-            recognize_object->quit_application = true;
+            break;
         }
     }
+    /* terminates all thread and stops recognition*/
+    recognize_object->recognize_end();
+    /* end application */
+    exit(0);
 }
 /**
  * @brief create_output_frame
@@ -759,12 +770,12 @@ void RecognizeBase::show_result(void)
     {
         cv::putText(bgra_image_org, std::string(it->first), cv::Point(text_width + 30, text_height), 
                     cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
-        cv::putText(bgra_image_org, " : " + std::to_string(it->second), cv::Point(text_width + 100, text_height), 
+        cv::putText(bgra_image_org, " : " + std::to_string(it->second), cv::Point(text_width + 175, text_height), 
                     cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
         total_count += (int)it->second;
         text_height += 30;
     }
-    cv::putText(bgra_image_org, "Total Objects : " + std::to_string(total_count), 
+    cv::putText(bgra_image_org, "Total Objects     : " + std::to_string(total_count), 
                 cv::Point(text_width, text_height_total_count), cv::FONT_HERSHEY_SIMPLEX, 
                             font_size, WHITE, font_weight);
 
@@ -848,19 +859,6 @@ void RecognizeBase::send_result(void *arg, uint8_t model_id, recognizeData_t &da
         fps_calculation();
         object_counting();
         show_result();
-    }
-    /* creates quit key thread*/
-    pthread_create(&_pthread_quit_key, NULL, &get_quit_key, this);
-    /* detach quit key thread from all other thread*/
-    pthread_detach(_pthread_quit_key);
-    /* check for quit key press flag to set*/
-    if (quit_application == true)
-    {
-        quit_application = false;
-        /* terminates all thread and stops recognition*/
-        recognize_end();
-        /* end application */
-        exit(0);
     }
 }
 /**
