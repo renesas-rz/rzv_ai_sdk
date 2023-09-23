@@ -14,6 +14,10 @@ Here are some of the key features of the Suspicious Person Detection Application
 - **Customizable Settings**: 
     Users can adjust the detection parameters by using the config file provided in the repository.
 
+It has following input modes
+1. Using MIPI camera
+2. Using USB camera
+
 ### Demo
 
 <img src=./images/Q10_suspicious_demo.gif width="480">
@@ -54,7 +58,7 @@ After completion of the guide, the user is expected of following things.
 
 #### Application File Generation
 1. Copy the repository from the GitHub to the desired location. 
-2. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
 
     ```sh
     cd <path_to_data_folder_on_host>
@@ -63,22 +67,22 @@ After completion of the guide, the user is expected of following things.
 
     >Note: Please verify the git URL if some error occurs
 
-3. Run(or start) the docker container and open the bash terminal on the container.
+2. Run(or start) the docker container and open the bash terminal on the container.
 
-    > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
+  > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
 
-4. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
+3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
 
     ```sh
     export PROJECT_PATH=/drp-ai_tvm/data/
     ```
 
-5. Go to the `src` directory of the application
+4. Go to the `src` directory of the application
 
     ```sh
     cd ${PROJECT_PATH}/rzv_ai_sdk/Q10_suspicious_person_detection/src/
     ```
-6. Build the application on docker environment by following the steps below
+5. Build the application on docker environment by following the steps below
 
     ```sh
     mkdir -p build && cd build
