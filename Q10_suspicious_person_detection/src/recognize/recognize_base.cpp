@@ -180,7 +180,10 @@ int32_t RecognizeBase::recognize_start()
     int32_t create_thread_ai;
     if (0 != ret)
     {
-        fprintf(stderr, "[ERROR] Failed to initialize USB Camera.\n");
+        if(ret == -1)
+            fprintf(stderr, "[ERROR] Failed to initialize MIPI Camera.\n");
+        else if(ret == -2)
+            fprintf(stderr, "[ERROR] Failed to initialize USB Camera.\n");
         return -1;
     }
     wake_ = false;
@@ -677,18 +680,13 @@ void *RecognizeBase::get_quit_key(void *arg)
         if (key == 10)
         {
             std::cout << "[INFO] Enter Key Pressed!\n";
-            recognize_object->quit_application = true;
-        }
-        /* check for quit key press flag to set*/
-        if (recognize_object->quit_application == true)
-        {
-            recognize_object->quit_application = false;
-            /* terminates all thread and stops recognition*/
-            recognize_object->recognize_end();
-            /* end application */
-            exit(0);
+            break;
         }
     }
+    /* terminates all thread and stops recognition*/
+    recognize_object->recognize_end();
+    /* end application */
+    exit(0);
 }
 
 /**
@@ -744,16 +742,28 @@ void RecognizeBase::show_result(void)
     int text_height             = 160;
     int text_width              = 970;
     int text_height_total_count = 130;
-    int total_count             = 0;
 
     /*font size for text inside bounding box*/
     float font_size_bb = 0.5;
     /*font weight for text inside bounding box*/
     float font_weight_bb = 2;
+    /* predication score */
+    float pred_score = 0;
+    string bbox_text;
 
     for (bbox_t dat : detection_bb_vector)
     {
-        cv::Size text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, 2, 0);
+        /* get prediction score */
+        pred_score = ((int)dat.pred);
+        pred_score = pred_score/100;
+        /* convert float predict score to string */
+        std::string pred_score_str = std::to_string(pred_score);
+        /* remove trailing zeros in converted pred_score(string) */
+        size_t d_pos = pred_score_str.find_last_not_of('0');
+        if(d_pos != std::string::npos)
+            pred_score_str.erase(d_pos + 1,std::string::npos);
+        bbox_text = dat.name + " " + pred_score_str;
+        cv::Size text_size = cv::getTextSize(bbox_text, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, 2, 0);
 
         /*adjust the font size based on the detection text size*/
         if (text_size.width > dat.W)
@@ -781,9 +791,10 @@ void RecognizeBase::show_result(void)
         }
 
         /*writing class label to the display frame */
-        cv::putText(g_bgra_image, dat.name, cv::Point(dat.X + 5, dat.Y - 8), 
+        cv::putText(g_bgra_image, bbox_text, cv::Point(dat.X + 5, dat.Y - 8), 
                     cv::FONT_HERSHEY_SIMPLEX, font_size_bb, WHITE, font_weight_bb);
     }
+    
     /*coordinates for inference speed*/
     cv::Point ai_inf_postion(970, 60);
     /*coordinated for fps*/
@@ -791,6 +802,15 @@ void RecognizeBase::show_result(void)
 
     /*generate the output display frame*/
     cv::Mat bgra_image_org = create_output_frame(g_bgra_image);
+
+    for (bbox_t dat : detection_bb_vector)
+    {
+        cv::putText(bgra_image_org, dat.name, cv::Point(text_width + 30, text_height), 
+                    cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
+        cv::putText(bgra_image_org, " : " + std::to_string(int(dat.pred)) + " %", cv::Point(text_width + 175, text_height), 
+                    cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
+        text_height += 30;
+    }
 
     /*put inference time inside the display frame*/
     cv::putText(bgra_image_org, "AI Inference time : " + std::to_string(infer_time_ms) + " [ms]", 
@@ -834,7 +854,7 @@ void RecognizeBase::object_detector(void)
         dat.Y = (int32_t)(det.bbox.y - (det.bbox.h / 2));
         dat.W = (int32_t)det.bbox.w;
         dat.H = (int32_t)det.bbox.h;
-        dat.pred = det.prob * 100.0;
+        dat.pred = det.prob * 100.0;;
         detection_bb_vector.push_back(dat);
     }
 }

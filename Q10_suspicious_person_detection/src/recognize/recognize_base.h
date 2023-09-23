@@ -115,8 +115,6 @@ public:
     float font_size = 0.65;
     /*font weight*/
     float font_weight = 2;
-    /* quit application key detect flag */
-    bool quit_application = false;
     bool init = true;
     /*start and stop time for inference time/fps calculations*/
     long int init_time, end_time;
