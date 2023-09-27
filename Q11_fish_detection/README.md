@@ -1,6 +1,7 @@
 
 # Fish Detection Application
 
+## Application: Overview
 The Fish detection application uses the advanced Tiny-YOLOv3 algorithm to automatically detect fishes in real-time camera streams.
 Fish detection applications can be used in a variety of different settings, including:
 
@@ -17,6 +18,10 @@ Here are some of the key features of the Fish Detection Application:
 - **Customizable Settings**: 
     Users can adjust the detection parameters by using the config file provided in the repository.
 
+It has following input modes.
+1. Using MIPI camera
+2. Using USB camera
+
 ### Demo 
 
 <img src=./images/Q11_fish_usb.gif width="480">
@@ -30,6 +35,7 @@ Here are some of the key features of the Fish Detection Application:
   - MIPI Camera
 - USB Camera (optional)
 - USB Keyboard
+- USB Mouse
 - USB Hub
 - HDMI monitor with resolution 1280x720 
 - Micro HDMI to HDMI cable 
@@ -46,7 +52,7 @@ Here are some of the key features of the Fish Detection Application:
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas
+**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -56,30 +62,27 @@ After completion of the guide, the user is expected of following things.
 >**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
 
 #### Application File Generation
-1. Copy the repository from the GitHub to the desired location. 
-2. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+1. Copy the repository from the GitHub to the desired location.
+> It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+```sh
+cd <path_to_data_folder_on_host>
+git clone -b fish_detection --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+```
 
-    ```sh
-    cd <path_to_data_folder_on_host>
-    git clone -b fish_detection --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
-    ```
-
-3. Run(or start) the docker container and open the bash terminal on the container.
-
+2. Run(or start) the docker container and open the bash terminal on the container.
 > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
 
-4. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
-
+3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
 ```sh
 export PROJECT_PATH=/drp-ai_tvm/data/
 ```
 
-5. Go to the `src` directory of the application
-
+4. Go to the `src` directory of the application
 ```sh
 cd ${PROJECT_PATH}/rzv_ai_sdk/Q11_fish_detection/src/
 ```
-6. Build the application on docker environment by following the steps below
+> Note: `rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
+5. Build the application on docker environment by following the steps below
 
 ```sh
 mkdir -p build && cd build
@@ -106,10 +109,10 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |fish_detector | Application file |
 
 Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board.
-* Copy the files present in [exe](./exe) directory, which are listed in the table above.
-* Copy the generated `fish_detector` application file if the application file is built at [build stage](#application-build-stage)
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board.
+1. Copy following files to the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board.
+    1. The files present in [exe](./exe) directory, which are listed in the table above.
+    2. Generated `fish_detector` application file if the application file is built at [build stage](#application-build-stage)
+2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board.
 
 Folder structure in the rootfs (SD Card) would look like:
 ```sh
@@ -139,42 +142,33 @@ Folder structure in the rootfs (SD Card) would look like:
 For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
 
 1. Go to the `/home/root/tvm` directory of the rootfs
-  ```sh
-  cd /home/root/tvm
-  ```
+```sh
+cd /home/root/tvm
+```
 
 2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at below [section](#explanation-of-the-configini-file).
-  ```sh
-  vi config.ini
-  ```
+```sh
+vi config.ini
+```
 
 3. Run the application in the terminal of the RZ/V2L Evaluation board kit using the command
-  - For MIPI Camera
-  ```sh
-  ./fish_detector
-  ```
-  - For USB Camera
-  ```sh
-  ./fish_detector USB
-  ```
-
-The expected output will be the same as shown in the demo video
-
-### Application: Runtime output details
-
-The runtime application will look something like this
+- For MIPI Camera
+```sh
+./fish_detector
+```
+- For USB Camera
+```sh
+./fish_detector USB
+```
+4. The expected output will be shown below.
   
-  <img src=./images/expected_results.JPG width="420">
+    <img src=./images/expected_results.JPG width="480">
 
-1. For each frame the detected fishes will be shown as a bounding box with confidence score. Each detected fish will be classified to which spicies they belong.
-2. AI-inference time for each frame and Frame Per Sec (FPS) is shown on top right corner.
-3. The class confidence is also shown for each class detected on the frame.
+    1. For each frame the detected fishes will be shown as a bounding box with confidence score. Each detected fish will be classified to which spicies they belong.
+    2. AI-inference time for each frame and Frame Per Sec (FPS) is shown on top right corner.
+    3. The class confidence is also shown for each class detected on the frame.
 
-
-
-### Application: Termination 
-
-Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board.
+5. Press  `Super(windows key)+Tab`  to switch to the terminal and press `ENTER` key on the terminal of RZ/V2L Evaluation Board to terminate the application.
 
 ## Application: Specifications
 

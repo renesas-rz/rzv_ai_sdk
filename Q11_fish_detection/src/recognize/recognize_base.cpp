@@ -791,13 +791,12 @@ void RecognizeBase::show_result(void)
     cv::Mat bgra_image_org = create_output_frame(g_bgra_image);
     /*display the count for each objects detected inside the current frame*/
 
-    for (std::map<std::string, int>::iterator it = detection_score.begin(); it != detection_score.end(); ++it)
+    for (bbox_t dat : detection_bb_vector)
     {
-        cv::putText(bgra_image_org, std::string(it->first), cv::Point(text_width + 30, text_height), 
+        cv::putText(bgra_image_org, dat.name, cv::Point(text_width + 30, text_height), 
                     cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
-        cv::putText(bgra_image_org, " : " + std::to_string(it->second) + " %", cv::Point(text_width + 175, text_height), 
+        cv::putText(bgra_image_org, " : " + std::to_string(int(dat.pred)) + " %", cv::Point(text_width + 175, text_height), 
                     cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
-        total_count += (int)it->second;
         text_height += 30;
     }
 
@@ -821,8 +820,7 @@ void RecognizeBase::show_result(void)
  */
 void RecognizeBase::object_detector(void)
 {
-    /*key : object, value:score*/
-    detection_score.clear();
+
     /*filter detection based on confidence score and objects selected*/
     for (detection det : postproc_data)
     {
@@ -844,8 +842,6 @@ void RecognizeBase::object_detector(void)
         dat.W = (int32_t)det.bbox.w;
         dat.H = (int32_t)det.bbox.h;
         dat.pred = det.prob * 100.0;
-        /*map for storing the prediction score of detected objects*/
-        detection_score[dat.name] = dat.pred ;
         detection_bb_vector.push_back(dat);
     }
 }

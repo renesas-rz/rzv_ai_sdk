@@ -128,10 +128,6 @@ public:
     cv::VideoWriter output_writer;
 
 private:
-    /* prediction score <key:object,value:prediction score> */
-    std::map<std::string, int> detection_score;
-
-private:
     void predict_thread();
     static void *get_quit_key(void *);
     static void *predict_thread_wrapper(void *object);
