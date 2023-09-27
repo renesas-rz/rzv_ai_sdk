@@ -7,11 +7,11 @@ The Object Counter Application is a user-friendly and efficient generic software
 ### Use Cases
 The Generic Counter Application is a powerful tool that can be used to count objects in a variety of settings, including:
 
-- **Animal Counting**: The application can be fine tuned to count the animals only. This application can be used for zoo or farm monitoring, also could be used to prevent the road hazards due to animal interference. The list of animals on which the AI model is trained is available [animal_class.txt](./exe/animal/animal_class.txt)
+- **Animal Counting**: The application can be fine tuned to count the animals only. This application can be used for zoo or farm monitoring, also could be used to prevent the road hazards due to animal interference. The list of animals on which the AI model is trained is available in [animal_class.txt](./exe/animal/animal_class.txt)
 
-- **Vehicle Counting**: The application can be fine tuned to count the vehicle instances per frame. This application can then be used for traffic monitoring at government/corporate buildings.The list of vehicles on which the AI model is trained is available [vehicle_class.txt](./exe/vehicle/vehicle_class.txt)
+- **Vehicle Counting**: The application can be fine tuned to count the vehicle instances per frame. This application can then be used for traffic monitoring at government/corporate buildings.The list of vehicles on which the AI model is trained is available in [vehicle_class.txt](./exe/vehicle/vehicle_class.txt)
 
-- **General Counting**: The general counting applications can be used to count any type of object, from people and cars to inventory and products. They are often used in businesses to track customer traffic, inventory levels, and employee productivity. The list of object on which the AI model is trained is available [coco_class.txt](./exe/coc/coco_class.txt)
+- **General Counting**: The general counting applications can be used to count any type of object, from people and cars to inventory and products. They are often used in businesses to track customer traffic, inventory levels, and employee productivity. The list of objects on which the AI model is trained is available in [coco_class.txt](./exe/coco/coco_class.txt)
 
 The other use cases could be: 
 
@@ -28,6 +28,15 @@ Here are some of the key features of the Generic Counter Application:
     The application can be customized to meet the specific needs of any counting scenario.
 - **Customizable Settings**: 
     Users can adjust the detection and classification parameters by using the config file provided in the repository.
+
+It has following camera input modes.
+- Using MIPI Camera
+- Using USB Camera
+
+Users can select detection target from following list
+- Animal
+- Vehicle
+- General (COCO dataset)
 
 ### Demo 
 <img src = "./images/ObjectCounter.gif" width ="480" height= "320">
@@ -58,7 +67,7 @@ Here are some of the key features of the Generic Counter Application:
 
 >**Note:** User can skip to the next stage [deploy](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas
+**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -67,41 +76,42 @@ After completion of the guide, the user is expected of following things.
 
 >**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
 
-#### Application: File Generation
+### Application: File Generation
 1. Copy the repository from the GitHub to the desired location. 
-2. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
 
-    ```sh
-    cd <path_to_data_folder_on_host>
-    git clone -b object_counter --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
-    ```
+>It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+```sh
+cd <path_to_data_folder_on_host>
+git clone -b object_counter --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
+```
+>Note: Please verify the git repository url if error occurs.
 
-3. Run(or start) the docker container and open the bash terminal on the container.
+2. Run(or start) the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
 
-4. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
+3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
 
-    ```sh
-    export PROJECT_PATH=/drp-ai_tvm/data/
-    ```
+```sh
+export PROJECT_PATH=/drp-ai_tvm/data/
+```
 
-5. Go to the `src` directory of the application
+4. Go to the `src` directory of the application
 
-    ```sh
-    cd ${PROJECT_PATH}/rzv_ai_sdk/Q08_object_counter/src/
-    ```
-6. Build the application on docker environment by following the steps below
+```sh
+cd ${PROJECT_PATH}/rzv_ai_sdk/Q08_object_counter/src/
+```
+5. Build the application on docker environment by following the steps below
 
-    ```sh
-    mkdir -p build && cd build
-    ```
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-    ```
-    ```sh
-    make -j$(nproc)
-    ```
+```sh
+mkdir -p build && cd build
+```
+```sh
+cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+```
+```sh
+make -j$(nproc)
+```
 The following application file would be generated in the `src/build` directory
 - object_counter
 
@@ -125,9 +135,9 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |object_counter | Application file |
 
 Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
-1. At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
-    1. Copy the files present in [exe](./exe) directory, which are listed in the table above.
-    2. Copy the generated `object_counter` application file if the application file is built at [build stage](#application-build-stage)
+1. Copy following files to the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
+    1. The files present in [exe](./exe) directory, which are listed in the table above.
+    2. The generated `object_counter` application file if the application file is built at [build stage](#application-build-stage)
 2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
 
 Folder structure in the rootfs (SD Card) would look like:
@@ -179,73 +189,60 @@ Folder structure in the rootfs (SD Card) would look like:
 For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
 
 1. Go to the `/home/root/tvm` directory of the rootfs
-    ```sh
-    cd /home/root/tvm
-    ```
+```sh
+cd /home/root/tvm
+```
 
 2. Change the values in `app_conf.ini` as per the requirements. Detailed explanation of the `app_conf.ini` file is given at below section.
-    ```sh
-    vi app_conf.ini
-    ```
+```sh
+vi app_conf.ini
+```
 
 3. Run the application in the terminal of the RZ/V2L evaluation board kit using the command
-  #### For MIPI Camera
-  - COCO mode
-    ```sh
-    ./object_counter COCO
-    ```
-  - animal 
-    ```sh
-    ./object_counter animal
-    ```
-  - vehicle
-    ```sh
-    ./object_counter vehicle
-    ```
-  #### For USB Camera
-  - COCO mode
-
-    ```sh
-    ./object_counter COCO USB
-    ```
-  - animal 
-    ```sh
-    ./object_counter animal USB
-    ```
-  - vehicle
-     ```sh
-    ./object_counter vehicle USB
-    ```
+```sh
+./object_counter <mode> <camera>
+```    
+- mode options
+    |Value  |Description                          |
+    |-------|-------------------------------------|
+    |COCO   | Detects coco objects listed         |
+    |animal | Detects animals listed              |
+    |vehicle| Detects automobiles listed          |   
  
 >**Note:** The mode will be the section name in app_conf.ini file.
+- camera options      
+    |Value|Description                            |
+    |-----|---------------------------------------|
+    |     | Default option is MIPI camera         |
+    |USB  | USB option takes USB camera as input  |    
 
+For example, to run in "animal" mode with a USB camera, write the following command.    
+```sh
+./object_counter animal USB
+```
 The expected output will be the same as shown in the demo video
 
-### Application: Runtime output details
+4. Following window shows up on HDMI screen.
 
-The runtime application will look something like this
+- Coco Object counting 
 
-#### Coco Object counting 
+    <img src="./images/car1.png" width="360">
+>**Note:** In COCO mode, the default setting allows only limited types of detection. If you want to increase the number of detection targets, edit [exe/coco/config.ini](./exe/coco/config.ini). For details on how to write `config.ini` file, please refer to the [Explanation of the config.ini file](#explanation-of-the-configini-file) section.
 
-<img src="./images/car1.png" width="360">
+- Animal Counting
 
+    <img src="./images/animal1.png" width="360">
 
+- Vehicle Counting
 
-#### Animal Counting
-<img src="./images/animal1.png" width="360">
+    <img src="./images/auto1.png" width="360">
 
-
-
-#### Vehicle Counting
-<img src="./images/auto1.png" width="360">
-
-
+On application window, following information is displayed.
 - AI Infernce time is shown on top right
 - Frame Per Sec (FPS) is shown below this.
 - Total detected object counts are shown , alongside the counts for each user-defined classes
 
-### Application: Termination 
-Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
+5. To terminate the application, Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
 
 ## Application: Specifications
 
