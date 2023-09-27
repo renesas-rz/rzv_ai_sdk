@@ -2,7 +2,7 @@
 # Suspicious Person Detection Application
 
 ## Application: Overview
-The suspicious person detection application uses the advanced Tiny-YOLOv3 algorithm to automatically detect suspicious and non-suspicious people in real-time camera streams. It can identify and classify people in images or videos, and can be used to help security personnel monitor public areas for potential threats.
+The [suspicious person](#suspicious-person-definition) detection application uses the advanced Tiny-YOLOv3 algorithm to automatically detect suspicious and non-suspicious people in real-time camera streams. It can identify and classify people in images or videos, and can be used to help security personnel monitor public areas for potential threats.
 
 It can be used to enhance **Safety**  in different public places around the world like Banks, offices, Hospitals, Airports, shopping malls, Examination halls, Railway stations, etc.
 
@@ -14,10 +14,6 @@ Here are some of the key features of the Suspicious Person Detection Application
 - **Customizable Settings**: 
     Users can adjust the detection parameters by using the config file provided in the repository.
 
-It has following input modes
-1. Using MIPI camera
-2. Using USB camera
-
 ### Demo
 
 <img src=./images/Q10_suspicious_demo.gif width="480">
@@ -27,6 +23,7 @@ It has following input modes
 ### Hardware Requirements
 
 - RZ/V2L Evaluation Board Kit
+    - MIPI Camera  
 - USB Camera 
 - USB Keyboard
 - USB Mouse
@@ -47,7 +44,7 @@ It has following input modes
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md) provided by Renesas
+**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -58,41 +55,37 @@ After completion of the guide, the user is expected of following things.
 
 #### Application File Generation
 1. Copy the repository from the GitHub to the desired location. 
-    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
-
-    ```sh
-    cd <path_to_data_folder_on_host>
-    git clone -b suspicious_person_detection --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
-    ```
-
-    >Note: Please verify the git URL if some error occurs
+> It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+```sh
+cd <path_to_data_folder_on_host>
+git clone -b suspicious_person_detection --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+```
+>Note: Please verify the git URL if some error occurs
 
 2. Run(or start) the docker container and open the bash terminal on the container.
-
-  > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
+> Note: All the build steps/commands listed below are executed on the docker container bash terminal.
 
 3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
-
-    ```sh
-    export PROJECT_PATH=/drp-ai_tvm/data/
-    ```
+ ```sh
+ export PROJECT_PATH=/drp-ai_tvm/data/
+ ```
 
 4. Go to the `src` directory of the application
+```sh
+cd ${PROJECT_PATH}/rzv_ai_sdk/Q10_suspicious_person_detection/src/
+```
+> Note: `rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
 
-    ```sh
-    cd ${PROJECT_PATH}/rzv_ai_sdk/Q10_suspicious_person_detection/src/
-    ```
 5. Build the application on docker environment by following the steps below
-
-    ```sh
-    mkdir -p build && cd build
-    ```
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-    ```
-    ```sh
-    make -j$(nproc)
-    ```
+```sh
+mkdir -p build && cd build
+```
+```sh
+cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+```
+```sh
+make -j$(nproc)
+```
 The following application file would be generated in the `src/build` directory
 - suspicious_person_detector
 
@@ -142,39 +135,35 @@ Folder structure in the rootfs (SD Card) would look like:
 For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
 
 1. Go to the `/home/root/tvm` directory of the rootfs
-    ```sh
-    cd /home/root/tvm
-    ```
+```sh
+cd /home/root/tvm
+```
 
 2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at below section.
-    ```sh
-    vi config.ini
-    ```
+```sh
+vi config.ini
+```
 
 3. Run the application in the terminal of the RZ/V2L evaluation board kit using the command
-  - For MIPI Camera
-    ```sh
-    ./suspicious_person_detector
-    ```
-  - For USB Camera
-    ```sh
-    ./suspicious_person_detector USB
-    ```
-
+- For MIPI Camera
+```sh
+./suspicious_person_detector
+```
+- For USB Camera
+```sh
+./suspicious_person_detector USB
+```
 The expected output will be the same as shown in the demo video
 
-### Application: Runtime output details
+4. The runtime application will look something like this
 
-The runtime application will look something like this
+<img src=./images/suspicious_result.png width="480">
 
-  <img src=./images/suspicious_result.png width="480">
+- For each frame the detected person will be shown as a bounding box with confidence score. Each detected person will be classified into suspicious or non suspicious.
+- AI-inference time for each frame and Frame Per Sec (FPS) is shown on top right corner.
+- The class confidence is also shown for each class detected on the frame.
 
-1. For each frame the detected person will be shown as a bounding box with confidence score. Each detected person will be classified into suspicious or non suspicious.
-2. AI-inference time for each frame and Frame Per Sec (FPS) is shown on top right corner.
-3. The class confidence is also shown for each class detected on the frame.
-
-### Application: Termination 
-Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
+5. For Termination: Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
 
 ## Application: Specifications
 
@@ -186,10 +175,17 @@ Then the model is retrained with below mentioned dataset.
 
 ### Dataset
 
-Dataset used is the custom labelled dataset
+Dataset used is the custom labelled dataset created using below definition.
 
-### AI inference time
+#### Suspicious Person Definition
+A person is identified as suspicious - when a significant portion of their face is covered to conceal identity. This could involve, individual or combined use of hoodies, face masks/ face scarfs/robbery mask  sunglasses, dark coloured cloths etc.
+
+Example images from dataset are available [here.](./images/dataset_examples/)
+
+### AI Inference Time
 The AI inference time is 150-190 msec.
+
+### AI Accuracy
 AI Mean Average Precision (map) is around 66% .
 
 ## Application: Configuration 
