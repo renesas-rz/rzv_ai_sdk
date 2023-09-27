@@ -254,11 +254,25 @@ Then the model is retrained with below mentioned dataset.
 
 ### Dataset
 
-Dataset used is the same as mentioned in the below research paper 
-[Link](https://cocodataset.org/#download)
+| Model   | Dataset | Description |
+|---|---|---| 
+| coco    | [Link](https://cocodataset.org/#download) | Dataset used is the same as mentioned in the research paper |
+| animal  | [Link](https://github.com/myyyyw/NTLNP) | Dataset of wildlife in the mixed coniferous broad-leaved forest |
+| vehicle | [Link](https://universe.roboflow.com/) | Combined multiple sources for different classes from the given link |
 
 ### AI inference time
+
 The AI inference time is 150-190 msec.
+
+### AI Accuracy
+
+Mean Average Precision (mAP) for each model given in below table
+
+| Model   | mAP  |
+|---------|------|
+| coco    | 33.1 |
+| animal  | 67   |
+| vehicle | 70.9 |
 
 ## Application: Configuration 
 
