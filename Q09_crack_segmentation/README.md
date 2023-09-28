@@ -60,14 +60,14 @@ After completion of the guide, the user is expected of following things.
 
 >**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
 
-#### Application: File Generation
+### Application: File Generation
 
 1. Copy the repository from the GitHub to the desired location. 
-    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
-    ```sh
-    cd <path_to_data_folder_on_host>
-    git clone -b crack_segmentation --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
-    ```
+> It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+```sh
+cd <path_to_data_folder_on_host>
+git clone -b crack_segmentation --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
+```
    >Note: Please verify the git repository url if error occurs.
 2. Run the docker container and open the bash terminal on the container.
 
@@ -181,7 +181,7 @@ cd /home/root/tvm
 
 The runtime application will look something like this!
 
-| Input Image       | Outut          |
+| Input Image       | Output Image   |
 |-------------------|----------------|
 | <img src = "./images/image.png" width="420" height="280">  | <img src = "./images/Q09_crack_pic.png" width="420" height="280">    |
 
