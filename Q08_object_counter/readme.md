@@ -79,41 +79,42 @@ After completion of the guide, the user is expected of following things.
 ### Application: File Generation
 1. Copy the repository from the GitHub to the desired location. 
 
->It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
-```sh
-cd <path_to_data_folder_on_host>
-git clone -b object_counter --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
-```
->Note: Please verify the git repository url if error occurs.
+    i. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+    ```sh
+    cd <path_to_data_folder_on_host>
+    git clone -b object_counter --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
+    ```
+    >Note: Please verify the git repository url if error occurs.
 
 2. Run(or start) the docker container and open the bash terminal on the container.
 
-> Note: All the build steps/commands listed below are executed on the docker container bash terminal.
+    > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
 
 3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
 
-```sh
-export PROJECT_PATH=/drp-ai_tvm/data/
-```
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/
+    ```
 
 4. Go to the `src` directory of the application
 
-```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q08_object_counter/src/
-```
+    ```sh
+    cd ${PROJECT_PATH}/rzv_ai_sdk/Q08_object_counter/src/
+    ```
+
 5. Build the application on docker environment by following the steps below
 
-```sh
-mkdir -p build && cd build
-```
-```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-```
-```sh
-make -j$(nproc)
-```
-The following application file would be generated in the `src/build` directory
-- object_counter
+    ```sh
+    mkdir -p build && cd build
+    ```
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    ```
+    ```sh
+    make -j$(nproc)
+    ```
+    The following application file would be generated in the `src/build` directory
+    - object_counter
 
 
 ## Application: Deploy Stage
@@ -189,58 +190,60 @@ Folder structure in the rootfs (SD Card) would look like:
 For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
 
 1. Go to the `/home/root/tvm` directory of the rootfs
-```sh
-cd /home/root/tvm
-```
+
+    ```sh
+    cd /home/root/tvm
+    ```
 
 2. Change the values in `app_conf.ini` as per the requirements. Detailed explanation of the `app_conf.ini` file is given at below section.
-```sh
-vi app_conf.ini
-```
+    
+    ```sh
+    vi app_conf.ini
+    ```
 
-3. Run the application in the terminal of the RZ/V2L evaluation board kit using the command
-```sh
-./object_counter <mode> <camera>
-```    
-- mode options
-    |Value  |Description                          |
-    |-------|-------------------------------------|
-    |COCO   | Detects coco objects listed         |
-    |animal | Detects animals listed              |
-    |vehicle| Detects automobiles listed          |   
- 
->**Note:** The mode will be the section name in app_conf.ini file.
-- camera options      
-    |Value|Description                            |
-    |-----|---------------------------------------|
-    |     | Default option is MIPI camera         |
-    |USB  | USB option takes USB camera as input  |    
+3. Run the application in the terminal of the RZ/V2L Evaluation Board Kit using the command
+    ```sh
+    ./object_counter <mode> <camera>
+    ```    
+    - mode options
+        |Value  |Description                          |
+        |-------|-------------------------------------|
+        |COCO   | Detects coco objects listed         |
+        |animal | Detects animals listed              |
+        |vehicle| Detects automobiles listed          |   
+    
+    >**Note:** The mode will be the section name in app_conf.ini file.
+    - camera options      
+        |Value|Description                            |
+        |-----|---------------------------------------|
+        |     | Default option is MIPI camera         |
+        |USB  | USB option takes USB camera as input  |    
 
-For example, to run in "animal" mode with a USB camera, write the following command.    
-```sh
-./object_counter animal USB
-```
-The expected output will be the same as shown in the demo video
+    For example, to run in "animal" mode with a USB camera, write the following command.    
+    ```sh
+    ./object_counter animal USB
+    ```
+    The expected output will be the same as shown in the demo video
 
 4. Following window shows up on HDMI screen.
 
-- Coco Object counting 
+    - Coco Object counting 
 
-    <img src="./images/car1.png" width="360">
->**Note:** In COCO mode, the default setting allows only limited types of detection. If you want to increase the number of detection targets, edit [exe/coco/config.ini](./exe/coco/config.ini). For details on how to write `config.ini` file, please refer to the [Explanation of the config.ini file](#explanation-of-the-configini-file) section.
+        <img src="./images/car1.png" width="360">
+    >**Note:** In COCO mode, the default setting allows only limited types of detection. If you want to increase the number of detection targets, edit [exe/coco/config.ini](./exe/coco/config.ini). For details on how to write `config.ini` file, please refer to the [Explanation of the config.ini file](#explanation-of-the-configini-file) section.
 
-- Animal Counting
+    - Animal Counting
 
-    <img src="./images/animal1.png" width="360">
+        <img src="./images/animal1.png" width="360">
 
-- Vehicle Counting
+    - Vehicle Counting
 
-    <img src="./images/auto1.png" width="360">
+        <img src="./images/auto1.png" width="360">
 
-On application window, following information is displayed.
-- AI Infernce time is shown on top right
-- Frame Per Sec (FPS) is shown below this.
-- Total detected object counts are shown , alongside the counts for each user-defined classes
+    On application window, following information is displayed.
+    - AI Infernce time is shown on top right
+    - Frame Per Sec (FPS) is shown below this.
+    - Total detected object counts are shown , alongside the counts for each user-defined classes
 
 5. To terminate the application, Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
 
@@ -256,9 +259,26 @@ Then the model is retrained with below mentioned dataset.
 
 | Model   | Dataset | Description |
 |---|---|---| 
-| coco    | [Link](https://cocodataset.org/#download) | Dataset used is the same as mentioned in the research paper |
-| animal  | [Link](https://github.com/myyyyw/NTLNP) | Dataset of wildlife in the mixed coniferous broad-leaved forest |
-| vehicle | [Link](https://universe.roboflow.com/) | Combined multiple sources for different classes from the given link |
+| coco    | [Dataset Link](https://cocodataset.org/#download) | Dataset used is the same as mentioned in the research paper |
+| animal  | [Dataset Link](https://huggingface.co/datasets/myyyyw/NTLNP) | Dataset of wildlife in the mixed coniferous broad-leaved forest |
+| vehicle | [Site](https://universe.roboflow.com/) | Combined multiple sources for different classes from the given site. Sources used are listed in below table |
+
+| Class   | Dataset |
+|---|---|
+| motorcycle | [Dataset](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco) |
+| bus | [Dataset 1](https://universe.roboflow.com/titu/bus-jm7t3), [Dataset 2](https://universe.roboflow.com/final-year-project-shhpl/bus-detection-2wlyo), [Dataset 3](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bus) |
+| car | [Dataset 1](https://universe.roboflow.com/hungdk-t8jb0/nhandienxeoto-udgcp), [Dataset 2](https://universe.roboflow.com/project-fjp7n/car-detection-vwdhg) |
+| policecar | [Dataset 1](https://universe.roboflow.com/fyp-tc-idn2o/police-cars-sumfm), [Dataset 2](https://universe.roboflow.com/grad-project-tjt2u/vheicles-detection), [Dataset 3](https://universe.roboflow.com/maryam-mahmood-6hoeq/pol-tslhg) |
+| ambulance | [Dataset 1](https://universe.roboflow.com/ambulance-k0z3x/ambulance-detection-azspv), [Dataset 2](https://universe.roboflow.com/school-87zwx/emegency-vehicle-detection) |
+| truck | [Dataset 1](https://universe.roboflow.com/project-school-ulsua/truck-detection-g88di), [Dataset 2](https://universe.roboflow.com/kmec/truck-detection-vka5s) |
+| bicycle | [Dataset 1](https://universe.roboflow.com/vtc-ywqwf/tt-aio6y), [Dataset 2](https://universe.roboflow.com/north-south-university-faox7/bicycle-bdti6) |
+| bike | [Dataset 1](https://universe.roboflow.com/subham-bhansali-fedah/bike-detection-tzvlj), [Dataset 2](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bike) |
+| Auto |  [Dataset 1](https://universe.roboflow.com/rutviknirma/smart-traffic-management-system), [Dataset 2](https://universe.roboflow.com/graduation-project-rtgrc/tuk-tuk-labelling) |
+| LCV |  [Dataset 1](https://universe.roboflow.com/project-final-ltl6m/vehicle-detection-inlat), [Dataset 2](https://universe.roboflow.com/pooja-shri-v/lcvs-zqmsu) |
+| Fire engine |  [Dataset 1](https://universe.roboflow.com/grad-project-tjt2u/fire-truck-xumw3), [Dataset 2](https://universe.roboflow.com/pouria-maleki/firetruck) |
+
+>Note: Link for motorcycle dateset has additional classes bus, car and truck which is also used for training  
+
 
 ### AI inference time
 
