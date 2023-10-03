@@ -6,13 +6,17 @@ The [suspicious person](#suspicious-person-definition) detection application use
 
 It can be used to enhance **Safety**  in different public places around the world like Banks, offices, Hospitals, Airports, shopping malls, Examination halls, Railway stations, etc.
 
-#### Key Features
+### Key Features
 Here are some of the key features of the Suspicious Person Detection Application:
 
 - **Automatic Detection**: 
     The application utilizes Tiny-yolov3 model for detection, identifying and localizing people specified within the provided frame.
 - **Customizable Settings**: 
     Users can adjust the detection parameters by using the config file provided in the repository.
+
+It has following input modes.
+1. Using MIPI camera
+2. Using USB camera
 
 ### Demo
 
