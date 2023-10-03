@@ -268,7 +268,7 @@ Then the model is retrained with below mentioned dataset.
 | motorcycle | [Dataset](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco) |
 | bus | [Dataset 1](https://universe.roboflow.com/titu/bus-jm7t3), [Dataset 2](https://universe.roboflow.com/final-year-project-shhpl/bus-detection-2wlyo), [Dataset 3](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bus) |
 | car | [Dataset 1](https://universe.roboflow.com/hungdk-t8jb0/nhandienxeoto-udgcp), [Dataset 2](https://universe.roboflow.com/project-fjp7n/car-detection-vwdhg) |
-| policecar | [Dataset 1](https://universe.roboflow.com/fyp-tc-idn2o/police-cars-sumfm), [Dataset 2](https://universe.roboflow.com/grad-project-tjt2u/vheicles-detection), [Dataset 3](https://universe.roboflow.com/maryam-mahmood-6hoeq/pol-tslhg) |
+| policecar | [Dataset 1](https://universe.roboflow.com/fyp-tc-idn2o/police-cars-sumfm), [Dataset 2](https://universe.roboflow.com/maryam-mahmood-6hoeq/pol-tslhg) |
 | ambulance | [Dataset 1](https://universe.roboflow.com/ambulance-k0z3x/ambulance-detection-azspv), [Dataset 2](https://universe.roboflow.com/school-87zwx/emegency-vehicle-detection) |
 | truck | [Dataset 1](https://universe.roboflow.com/project-school-ulsua/truck-detection-g88di), [Dataset 2](https://universe.roboflow.com/kmec/truck-detection-vka5s) |
 | bicycle | [Dataset 1](https://universe.roboflow.com/vtc-ywqwf/tt-aio6y), [Dataset 2](https://universe.roboflow.com/north-south-university-faox7/bicycle-bdti6) |
