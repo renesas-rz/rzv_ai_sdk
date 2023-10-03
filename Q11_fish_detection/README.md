@@ -61,40 +61,45 @@ After completion of the guide, the user is expected of following things.
 
 >**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
 
-#### Application File Generation
+### Application File Generation
 1. Copy the repository from the GitHub to the desired location.
-> It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
-```sh
-cd <path_to_data_folder_on_host>
-git clone -b fish_detection --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
-```
-
+    
+    i. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+    ```sh
+    cd <path_to_data_folder_on_host>
+    git clone -b fish_detection --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    ```
+    >Note: Please verify the git URL if some error occurs
+    
 2. Run(or start) the docker container and open the bash terminal on the container.
-> Note: All the build steps/commands listed below are executed on the docker container bash terminal.
+
+    > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
 
 3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
-```sh
-export PROJECT_PATH=/drp-ai_tvm/data/
-```
+    
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/
+    ```
 
 4. Go to the `src` directory of the application
-```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q11_fish_detection/src/
-```
-> Note: `rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
+
+    ```sh
+    cd ${PROJECT_PATH}/rzv_ai_sdk/Q11_fish_detection/src/
+    ```
+    > Note: `rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
 5. Build the application on docker environment by following the steps below
 
-```sh
-mkdir -p build && cd build
-```
-```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-```
-```sh
-make -j$(nproc)
-```
-The following application file would be generated in the `src/build` directory
-- fish_detector
+    ```sh
+    mkdir -p build && cd build
+    ```
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    ```
+    ```sh
+    make -j$(nproc)
+    ```
+    The following application file would be generated in the `src/build` directory
+    - fish_detector
 
 
 ## Application: Deploy Stage
@@ -142,24 +147,27 @@ Folder structure in the rootfs (SD Card) would look like:
 For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
 
 1. Go to the `/home/root/tvm` directory of the rootfs
-```sh
-cd /home/root/tvm
-```
+
+    ```sh
+    cd /home/root/tvm
+    ```
 
 2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at below [section](#explanation-of-the-configini-file).
-```sh
-vi config.ini
-```
+    
+    ```sh
+    vi config.ini
+    ```
 
 3. Run the application in the terminal of the RZ/V2L Evaluation board kit using the command
-- For MIPI Camera
-```sh
-./fish_detector
-```
-- For USB Camera
-```sh
-./fish_detector USB
-```
+    
+    - For MIPI Camera
+    ```sh
+    ./fish_detector
+    ```
+    - For USB Camera
+    ```sh
+    ./fish_detector USB
+    ```
 4. The expected output will be shown below.
   
     <img src=./images/expected_results.JPG width="480">
