@@ -194,3 +194,6 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
 
 #### AI Inference time
 Total AI inference time (Pre-processing + AI model inference) - 115ms (8 FPS)
+
+## Known Issue
+- Noise may be visible on the application window when using a USB camera because the frame is downscaled for inference and upscaled for output by a large factor.
