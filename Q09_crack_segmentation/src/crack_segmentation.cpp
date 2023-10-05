@@ -98,7 +98,8 @@ std::map<std::string, int> input_source_map =
 {
     {"VIDEO", 1},
     {"IMAGE", 2},
-    {"CAMERA", 3}
+    {"MIPI", 3},
+    {"USB", 4}
 };
 
 /*****************************************
@@ -235,7 +236,7 @@ float *start_runtime(float *input)
 
 /*****************************************
  * Function Name : colour_convert
- * Description   : function to convert white colur to green colur.
+ * Description   : function to convert white colour to green colour.
  * Arguments     : Mat image
  * Return value  : Mat result
  ******************************************/
@@ -286,6 +287,7 @@ cv::Mat run_inference(cv::Mat frame)
     cv::Point fps_postion(975, 90);
 
     cv::Mat input_frame,output_frame;
+    input_frame = frame;
 
     /* get inference start time */
     auto t1 = std::chrono::high_resolution_clock::now();
@@ -293,7 +295,6 @@ cv::Mat run_inference(cv::Mat frame)
     cv::Size size(MODEL_IN_H, MODEL_IN_W);
     /*resize the image to the model input size*/
     cv::resize(frame, frame, size);
-    input_frame = frame;
     auto t1_pre = std::chrono::high_resolution_clock::now();
     /* start pre-processing */
     frame = start_preprocessing(frame);
@@ -318,20 +319,23 @@ cv::Mat run_inference(cv::Mat frame)
 
     cv::cvtColor(img_mask, output_frame, cv::COLOR_RGB2BGR);
 
-    /* convert white colur from output frame to green colur */
+    /* convert white colour from output frame to green colour */
     output_frame = colour_convert(output_frame);
 
+    cv::resize(input_frame, input_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
+    cv ::cvtColor(input_frame, input_frame, cv::COLOR_RGB2BGR);
+    cv::resize(output_frame, output_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
+
     /* blending both input and ouput frames that have same size and format and combined one single frame */
-    cv::addWeighted(input_frame, 0.9, output_frame, 0.5, 0.0, output_frame);
+    cv::addWeighted(input_frame, 1.0, output_frame, 0.5, 0.0, output_frame);
     /* resize the output image with respect to output window size */
     cv::cvtColor(output_frame, output_frame, cv::COLOR_BGR2RGB);
-    cv::resize(output_frame, output_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
     output_frame = create_output_frame(output_frame);
     /*put inference time inside the display frame*/
     cv::putText(output_frame, "AI Inference time : " + std::to_string(g_duration) + " [ms]", ai_inf_postion, 
                 cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
     /*put FPS inside display frame*/
-        cv::putText(output_frame, "       Total FPS : " + std::to_string(g_fps), fps_postion, 
+    cv::putText(output_frame, "       Total FPS : " + std::to_string(g_fps), fps_postion, 
                     cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
     return output_frame;
 }
@@ -361,15 +365,14 @@ void get_quit_key(void)
  * Description   : function to open camera or video source with respect to the source pipeline.
  * Arguments     : string cap_pipeline input source pipeline
  ******************************************/
-void capture_frame(std::string cap_pipeline)
+void capture_frame(std::string cap_pipeline,std::string input_source)
 {
-    std::cout << "cap pipeline" << cap_pipeline << "\n";
     /* Capture stream of frames from camera using Gstreamer pipeline */
     g_cap.open(cap_pipeline, cv::CAP_GSTREAMER);
     if (!g_cap.isOpened())
     {
         /* This section prompt an error message if no video stream is found */
-        std::cout << "[ERROR] Error opening video stream or camera !\n"
+        std::cout << "[ERROR] Error opening "<< input_source <<" source!!\n"
                   << std::endl;
         return;
     }
@@ -412,12 +415,12 @@ void mipi_cam_init(void)
     int ret = 0;
     std::cout << "[INFO] MIPI CAM Init \n";
     const char *commands[4] =
-        {
-            "media-ctl -d /dev/media0 -r",
-            "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
-            "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
-            "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
-        };
+    {
+        "media-ctl -d /dev/media0 -r",
+        "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
+        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
+    };
 
     /* media-ctl command */
     for (int i = 0; i < 4; i++)
@@ -431,6 +434,44 @@ void mipi_cam_init(void)
             return;
         }
     }
+}
+
+/*****************************************
+ * Function Name : query_device_status
+ * Description   : function to check USB/MIPI device is connectod.
+ * Return value  : media_port, media port that device is connectod. 
+ ******************************************/
+std::string query_device_status(std::string device_type)
+{
+    std::string media_port = "";
+    /* Linux command to be executed */
+    const char* command = "v4l2-ctl --list-devices";
+    /* Open a pipe to the command and execute it */ 
+    FILE* pipe = popen(command, "r");
+    if (!pipe) 
+    {
+        std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
+        return media_port;
+    }
+    /* Read the command output line by line */
+    char buffer[128];
+    size_t found;
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) 
+    {
+        std::string response = std::string(buffer);
+        found = response.find(device_type);
+        if (found != std::string::npos)
+        {
+            fgets(buffer, sizeof(buffer), pipe);
+            media_port = std::string(buffer);
+            pclose(pipe);
+            /* return media port*/
+            return media_port;
+        } 
+    }
+    pclose(pipe);
+    /* return media port*/
+    return media_port;
 }
 
 int main(int argc, char **argv)
@@ -474,7 +515,7 @@ int main(int argc, char **argv)
             std::string video_path = argv[2];
             /* gstremer pipeline to read input video source */
             gstreamer_pipeline = "filesrc location=" + video_path + " ! decodebin ! videoconvert ! appsink";
-            capture_frame(gstreamer_pipeline);
+            capture_frame(gstreamer_pipeline,input_source);
         }
         break;
         /* Input Source : Image */
@@ -486,23 +527,33 @@ int main(int argc, char **argv)
             std::string image_path = argv[2];
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "filesrc location=" + image_path + " ! jpegdec ! videoconvert ! appsink";
-            capture_frame(gstreamer_pipeline);
-            
+            capture_frame(gstreamer_pipeline,input_source);
             std::cout<<"[INFO] Press [ENTER] key to End Application\n";
             while(g_quit_application == false)
                 output_writer.write(g_fn_frame);
         }
         break;
-        /* Input Source : Camera */
+        /* Input Source : MIPI Camera */
         case 3:
         {
-            std::cout << "[INFO] CAMERA \n";
-            /* gstremer pipeline to load camera */
-            gstreamer_pipeline = "v4l2src device=/dev/video0 ! videoconvert ! appsink";
-            /* MIPI Camera Setup */
+            std::cout << "[INFO] MIPI CAMERA \n";
             mipi_cam_init();
-            /* Open camera and capture frame*/
-            capture_frame(gstreamer_pipeline);
+            /* check the status of device */
+            std::string media_port = query_device_status("CRU");
+            /* gstremer pipeline to read input image source */
+            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+            capture_frame(gstreamer_pipeline,input_source);
+            break;
+        }
+        /* Input Source : USB Camera */
+        case 4:
+        {
+            std::cout << "[INFO] USB CAMERA \n";
+            /* check the status of device */
+            std::string media_port = query_device_status("usb");
+            /* gstremer pipeline to read input image source */
+            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+            capture_frame(gstreamer_pipeline,input_source);
             break;
         }
         default:

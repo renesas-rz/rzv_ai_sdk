@@ -12,13 +12,12 @@ Surface crack segmentation has a wide range of applications, including:
 - Painting and coating inspection: The identification of cracks in paint or coatings can help to prevent the ingress of moisture and other harmful substances.
 
 
-It has 3 modes of running.
+It has 4 modes of running.
 
-1. Using Camera as input
-    1. MIPI camera (default)
-    2. USB camera
-2. Using Image as input
-3. Using Video as input
+1. Using MIPI Camera as input
+2. Using USB Camera as input
+3. Using Image as input
+4. Using Video as input
 
 ### Demo:
 
@@ -63,12 +62,14 @@ After completion of the guide, the user is expected of following things.
 ### Application: File Generation
 
 1. Copy the repository from the GitHub to the desired location. 
+
 > It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
 ```sh
 cd <path_to_data_folder_on_host>
 git clone -b crack_segmentation --single-branch  https://github.com/renesas-rz/rzv_ai_sdk.git
 ```
    >Note: Please verify the git repository url if error occurs.
+
 2. Run the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container terminal.
@@ -141,57 +142,45 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Boar
 
 ## Application: Runtime Stage
 
-#### Mode: Camera Input
-- The application takes input from MIPI Coral Camera.
+For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
 
-```sh
-cd /home/root/tvm
-```
+1. Go to the `/home/root/tvm` directory of the rootfs
+    
+    ```sh
+    cd /home/root/tvm
+    ```
 
-> Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
-```sh 
-./crack_segmentation CAMERA 
-```
+2. Run the application in the terminal of the RZ/V2L evaluation board kit using the command
 
->**Note:** The application takes MIPI camera is default. In case MIPI camera is missing, the application will look for USB camera as alternative.
+    - For MIPI Camera Mode
+    ```sh
+    ./crack_segmentation MIPI
+    ```
+    - For USB Camera Mode
+    ```sh
+    ./crack_segmentation USB
+    ```
+    - For Image Input Mode
+    ```sh
+    ./crack_segmentation IMAGE sample.jpg
+    ```
+    > Note: Tested with image file format `.png` and `.jpg`.
+    - For Video Input Mode
+    ```sh 
+    ./crack_segmentation VIDEO output.mp4
+    ```
+    > Note: Tested with video file format `.mp4` and `.avi`.
 
-#### Mode: Image Input
+3. The runtime application will look something like this
 
-```sh
-cd /home/root/tvm
-```
-```sh
-./crack_segmentation IMAGE sample.jpg
-```
-> Note: Tested with image file format `.png` and `.jpg`.
+    | Input Image       | Output Image   |
+    |-------------------|----------------|
+    | <img src = "./images/image.png" width="420" height="280">  | <img src = "./images/Q09_crack_pic.png" width="420" height="280">    |
 
+    - AI inferece time and Frames Per Sec (FPS) is shown on top right corner.
+    - The cracks detected are shown in green mask/region.
 
-#### Mode: Video Input
-
-```sh
-cd /home/root/tvm
-```
-```sh 
-./crack_segmentation VIDEO output.mp4
-```
-> Note: Tested with video file format `.mp4` and `.avi`.
-
-
-## Application: Runtime output details
-
-The runtime application will look something like this!
-
-| Input Image       | Output Image   |
-|-------------------|----------------|
-| <img src = "./images/image.png" width="420" height="280">  | <img src = "./images/Q09_crack_pic.png" width="420" height="280">    |
-
-AI inferece time and Frames Per Sec (FPS) is shown on top right corner.
-
-The cracks detected are shown in green mask/region.
-
-
-## Application: Termination
-Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
+4. For Termination: Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
 
 
 ## Application: Specifications
