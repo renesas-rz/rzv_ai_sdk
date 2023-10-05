@@ -13,6 +13,8 @@ cd docs
 bundle exec jekyll build
 cd ..
 
+./replace_to_latest_sitemap.sh ${VERSION}
+
 # git checkout origin/
 sed -i -e  "s/RELEASE_VERSION=[0-9]*\.[0-9][0-9]/RELEASE_VERSION=${VERSION}/g" ./.github/workflows/deploy-version.yml 
 git add .
