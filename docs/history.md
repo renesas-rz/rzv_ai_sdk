@@ -5,147 +5,83 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="top col-12">
-            Version History
+Version History
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <br>
-            <br>
-            <!-- Topic below -->
+<br>
+<br>
+
+<!-- Topic below -->
             <i>
-                <h3 class="history-title">
-                    AI Applications Demo v2.00
+                <h3 style="margin-bottom: 3px;" >
+Tutorial Video - Getting Started v1.00
                 </h3>
                 <h6 align="right" >
-                    2023.9.15
+2023.8.08
                 </h6>
             </i>
+            <h5>
             <ul>
                 <li>
-                    <h5 class="history-item">AI Applications Demo v2.00 is released.</h5>
-                    <ul>
-                        <li> 
-                            Supported RZ/V2L AI SDK v2.00.<br>
-                            Operation time limit due to Graphics Library Evaluation Version/Video Codec Library Evaluation Version is extended from 3 hours to 10 hours.
-                        </li>
-                        <li>
-                            Changed to eSD Bootloader, which does not require Windows PC to write bootloader. 
-                        </li>
-                        <li>
-                            Added 17 AI Applications.
-                        </li>
-                    </ul>
+Tutorial Video - Getting Started v1.00 is released.
                 </li>
+Users can learn the content of Getting Started in the video.
             </ul>
-            <br>
-            <!-- Topic above -->
-            <!-- Topic below -->
+        </h5>
+<br>
+<!-- Topic above -->
+<!-- Topic below -->
             <i>
-                <h3 class="history-title">
-                    AI Applications & AI SDK v2.00
+                <h3 style="margin-bottom: 3px;" >
+AI Applications Demo v1.00
                 </h3>
                 <h6 align="right" >
-                    2023.8.31
+2023.6.30
                 </h6>
             </i>
+            <h5>
             <ul>
                 <li>
-                    <h5 class="history-item">AI Applications v2.00 is released.</h5>
-                    <ul>
-                        <li> 
-                            Added 15 Applications.
-                        </li>
-                        <li>
-                            Improved AI accuracy for 8 Applications.
-                        </li>
-                    </ul>
+AI Applications Demo v1.00 is released.
                 </li>
-                <li>
-                    <h5 class="history-item">RZ/V2L AI SDK v2.00 is released.</h5>
-                    <ul>
-                        <li>
-                            Operation time limit due to Graphics Library Evaluation Version/Video Codec Library Evaluation Version is extended from 3 hours to 10 hours.
-                        </li>
-                        <li>
-                            Added support for eSD Bootloader, which does not require Windows PC to write bootloader. (Recommended boot mode)
-                        </li>
-                    </ul>
-                </li>
+Users can use AI Applications without constructing the AI SDK environment.
             </ul>
-            <br>
-            <!-- Topic above -->
-            <!-- Topic below -->
+        </h5>
+<br>
+<!-- Topic above -->
+<!-- Topic below -->
             <i>
-                <h3 class="history-title">
-                    Tutorial Video - Getting Started v1.00
+                <h3 style="margin-bottom: 3px;" >
+AI Applications & AI SDK v1.00
                 </h3>
                 <h6 align="right" >
-                    2023.8.08
+2023.4.23
                 </h6>
             </i>
+            <h5>
             <ul>
                 <li>
-                    <h5 class="history-item">Tutorial Video - Getting Started v1.00 is released.</h5>
-                </li>
-                <ul>
-                    <li>
-                        Users can learn the content of Getting Started in the video.
-                    </li>
-                </ul>
-            </ul>
-            <br>
-            <!-- Topic above -->
-            <!-- Topic below -->
-            <i>
-                <h3 class="history-title">
-                    AI Applications Demo v1.00
-                </h3>
-                <h6 align="right" >
-                    2023.6.30
-                </h6>
-            </i>
-            <ul>
-                <li>
-                    <h5 class="history-item">AI Applications Demo v1.00 is released.</h5>
-                </li>
-                <ul>
-                    <li>
-                        Users can use AI Applications without constructing the AI SDK environment.
-                    </li>
-                </ul>
-            </ul>
-            <br>
-            <!-- Topic above -->
-            <!-- Topic below -->
-            <i>
-                <h3 class="history-title">
-                    AI Applications & AI SDK v1.00
-                </h3>
-                <h6 align="right" >
-                    2023.4.23
-                </h6>
-            </i>
-            <ul>
-                <li>
-                    <h5 class="history-item">AI Applications v1.00 is released.</h5>
+AI Applications v1.00 is released.
                 </li>
                 <li>
-                    <h5 class="history-item">RZ/V2L AI SDK v1.00 is released.</h5>
+RZ/V2L AI SDK v1.00 is released.
                 </li>
             </ul>
-            <!-- Topic above -->
+        </h5>
+<!-- Topic above -->
         </div>
     </div>
-    <br>
-    <br>
-    <br>
+<br>
+<br>
+<br>
     <div class="row">
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">
-                Back to Home >
+Back to Home >
             </a>
         </div>
     </div>

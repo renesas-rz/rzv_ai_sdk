@@ -20,7 +20,7 @@ jobs:
       #     JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
 
       - name: get_version
-        run: echo "RELEASE_VERSION=2.00" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=1.00" >> $GITHUB_ENV
 
       # you probably would do build and test steps here
 

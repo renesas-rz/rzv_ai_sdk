@@ -19,12 +19,12 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Renesas RZ/V AI
-version: "2.00"
+version: "1.00"
 #email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
     The best solution for starting your AI applications.
 domain: "renesas-rz.github.io"
-baseurl: "/rzv_ai_sdk/2.00" # the subpath of your site, e.g. /blog
+baseurl: "/rzv_ai_sdk/1.00" # the subpath of your site, e.g. /blog
 repository: renesas-rz/rzv_ai_sdk
 url: "https://renesas-rz.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
