@@ -139,7 +139,7 @@ Please install following software <b>on Ubuntu PC</b>.
 <h3 id="step3" >Step 3: Obtain RZ/V2L AI SDK</h3>
 Download the RZ/V2L AI SDK from the link below.<br><br>
 <a class="btn btn-primary download-button" href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit" role="button">Download Link</a>
-<br>
+<br><br>
 Check the Release Note included in the package.
 <br><br>
 
@@ -281,7 +281,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
   <li><b>&lt;Application 1&gt;</b>: Provided in <a href="https://github.com/renesas-rz/rzv_ai_sdk/">RZ/V AI SDK GitHub repository</a>.
     <ul>
       <li>This repository provides the complete instruction in each application documentation.</li>
-      <li>In this page, we use the <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/ R01_object_detection">Object Detection</a> application from this repository for an example.</li>
+      <li>In this page, we use the <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection">Object Detection</a> application from this repository for an example.</li>
     </ul>
   </li>
   <li><b>&lt;Application 2&gt;</b>: Provided in <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary">RZV2L_AiLibrary repository</a>.
