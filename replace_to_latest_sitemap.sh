@@ -5,5 +5,5 @@ if [ $VERSION = "" ]; then
   exit 1
 fi
 
-target_path=sitemap.xml
+target_path=docs/_site/sitemap.xml
 cat ${target_path} | sed -e "s/\/${VERSION}\//\/latest\//" > ${target_path}
