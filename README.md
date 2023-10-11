@@ -106,6 +106,18 @@ The application could be used at medical or grocery store to extract the expiry 
 The [Plant disease classification](./Q07_plant_disease_classification) application will classify the diseases for certain plants.\
 This application could be used for farm monitoring and plant disease prevention and cure.
 
+### 8. Object Counter 
+The [Object Counter](./Q08_object_counter) application is a user-friendly and efficient generic software tool that can be used to create custom counting applications for any scenario.
+
+### 9. Crack Segmentation
+The [Crack Segmentation](./Q09_crack_segmentation) application is used for the task of automatically identifying and segmenting cracks in images of surfaces.
+
+### 10. Suspicious Person Detection
+The [Suspicious Person Detection](./Q10_suspicious_person_detection) application is a software used to automatically detect suspicious and non-suspicious people in real-time camera streams.
+
+### 11. Fish Detection
+The [Fish Detection](./Q11_fish_detection) application is a software used to automatically detect fishes in real-time camera streams.
+
 
 ## Operating the sample application
 - Each sample application folder have their respective `readme.md` file to modify and run the sample application.
