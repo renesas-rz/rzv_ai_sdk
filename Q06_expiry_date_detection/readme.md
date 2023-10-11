@@ -68,7 +68,7 @@ The application can be used with either of MIPI or USB camera. The details of wh
 
 >**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -181,7 +181,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 └── home/
     └── root/
         └── tvm/ 
-            ├── date_detection_tinyyolov3/
+            ├── date_tinyyolov3_onnx/
             │   ├── deploy.json
             │   ├── deploy.params
             │   ├── deploy.so 

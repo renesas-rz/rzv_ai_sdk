@@ -47,10 +47,10 @@ FPS - 200/10 ->20
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- The Board Set Up and booted. 
+- the Board Set Up and booted. 
 - SD Card Prepared 
 - The docker image and container for `rzv2l_ai_sdk_image` running on host machine.
 
@@ -128,7 +128,6 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
     └── root/
         └── tvm/
             ├── parkingmodel_onnx/
-            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
