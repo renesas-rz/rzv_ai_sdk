@@ -22,13 +22,18 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
-- USB camera 
+- USB Camera 
 - USB Keyboard
+- USB Mouse
 - USB Hub
 - HDMI monitor with resolution 1280x720 
 - micro HDMI to HDMI cable 
 - SD Card (for file system)
+
+[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
+
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
+
 #### Software Requirements
 - Ubuntu 20.04
 - OpenCV 4.x
@@ -125,12 +130,12 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |object_tracker | application file. |
 
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
-   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `object_tracker` application file if the application file is built at [build stage](#application-build-stage)
+Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
+1. Copy following files to the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
+   1. The files present in [exe](./exe) directory, which are listed in the table above.
+   2. The generated `object_tracker` application file if the application file is built at [build stage](#application-build-stage)
 
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
 
 
 Folder structure in the rootfs (SD Card) would look like:
@@ -193,7 +198,7 @@ The runtime application will look something like this
 
 ###### Explanation of the `config.ini` file 
 
-The file contains three sections: [**line**], [**region**], and [**tracking**].
+The file contains four sections: [**line**], [**region**], [**tracking**] and [**display**].
 
 >**Note:** The x,y coordinates are ranged from [0,0] to [img_height, img_width]. The img_height and img_width depends on the camera capture resolution. This sample application is tested on 640x480 image.
 
@@ -206,13 +211,16 @@ The n value indicates the number of points that define a region, followed by x a
 for each point.\
 The region is defined by connecting these points in the order they are listed.
 
-- The [**tracking**] section contains two key-value pairs.\
-The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number of key-points required for tracking.
+- The [**tracking**] section contains three key-value pairs.\
+The conf value is a confidence threshold used for object tracking, the kmin value is the minimum number of key-points required for tracking and objects value is the objects that should be tracked.
+
+- The [**display**] section contains two key-value pairs. 
+The display_text is the text to display along the count of the objects tracked, and region_display_text is the text to display along the count of the objects in the region of interest.
 
 >**Note:** The object tracked here is of class "Person", it can be changed to other classes present on the coco labels.
 
 
-To modify the configuration settings, edit the values in this file using VI Editor, from the RZ/V2L Board.
+To modify the configuration settings, edit the values in this file using VI Editor, from the RZ/V2L Evaluation Board Kit.
 
 ###### AI inference time
 The AI inference time is 100-120 msec.

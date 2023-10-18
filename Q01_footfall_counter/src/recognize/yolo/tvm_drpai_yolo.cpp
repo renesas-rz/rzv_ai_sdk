@@ -67,6 +67,8 @@ std::vector<string> detection_object_vector;
 std::vector<cv::Rect> bbox;
 vector<cv::Point> polygon;
 Mat bgra_image;
+std::string DISPLAY_TEXT = "human count: ";
+std::string DISPLAY_REGION_TEXT = "person in region: ";
 
 /**
  * @brief config_read
@@ -168,6 +170,8 @@ TVM_YOLO_DRPAI::TVM_YOLO_DRPAI(uint8_t id) : IRecognizeModel(0, TVM_MODEL_DIR_YO
     conf = stof(ini_values["tracking"]["conf"]);
     /*set kmin hits for tracking */
     kmin = stoi(ini_values["tracking"]["kmin"]);
+    DISPLAY_TEXT = ini_values["display"]["display_text"];
+    DISPLAY_REGION_TEXT = ini_values["display"]["region_display_text"];
     /*objects to be tracked*/
     string detection_object_string = ini_values["tracking"]["objects"];
     stringstream detection_object_ss(detection_object_string);
@@ -210,8 +214,8 @@ int32_t TVM_YOLO_DRPAI::inf_pre_process(uint8_t *input_data, uint32_t width, uin
     cv::Mat yuyv_image(height, width, CV_8UC2, (void *)input_data);
     cv::cvtColor(yuyv_image, bgra_image, cv::COLOR_YUV2BGRA_YUYV);
     cv::line(bgra_image, Point(pointx1, pointy1), Point(pointx2, pointy2), Scalar(0, 0, 255), 4);
-    cv::putText(bgra_image, "human count: " + to_string(actual_count), Point(30, 30), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
-    cv::putText(bgra_image, "person in region: " + to_string(crossing_count), Point(30, 50), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+    cv::putText(bgra_image, DISPLAY_TEXT + ": " + to_string(actual_count), Point(30, 30), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
+    cv::putText(bgra_image, DISPLAY_REGION_TEXT + ": " + to_string(crossing_count), Point(30, 50), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
     cv::putText(bgra_image, "FPS:" + to_string(1000 / infer_time_ms), Point(540, 30), FONT_HERSHEY_DUPLEX, 1.0, Scalar(255, 0, 0), 2);
     cv::polylines(bgra_image, polygon, true, Scalar(0, 255, 0), 2);
     cv::imshow("Object Tracker", bgra_image);
