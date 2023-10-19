@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/eSD_format_sd.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/2.00/eSD_format_sd.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2023-10-19T11:36:11+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/2.00/eSD_format_sd.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=22510499b83c97b1e46409455750795a8c7541a8">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/2.00/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+
+      <h3>Format SD card for eSD Boot</h3>
+<p>When writing the necessary files for the board, microSD card needs to have appropriate format.
+Note that you need to run this procedure only once as long as you use the same microSD card.<br />
+Follow the instruction below to format the microSD card partitions.<br />
+<br /></p>
+
+<h4 id="eSD_Format_1">1. Check the SD card connection</h4>
+<ol>
+  <li>Before inserting the microSD card to your Linux PC, open the terinal on Linux PC and run the following command to check the devices without microSD card.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">lsblk</code></pre></figure>
+
+    Following is the example output.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda 8:0 0 30.9G 0 disk
+├─sda1 8:1 0 512M 0 part /boot/efi
+├─sda2 8:2 0 1K 0 part
+└─sda5 8:5 0 30.3G 0 part /
+sr0 11:0 1 1024M 0 rom</code></pre></figure>
+
+  </li><br />
+  <li>Insert the microSD card to your Linux PC and run the following command again.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">lsblk</code></pre></figure>
+
+  </li><br />
+  <li>Check the output and confirm the name appeared. This would be your microSD card device name.<br />
+    <ul>
+      <li>Following is the example output.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda 8:0 0 30.9G 0 disk
+├─sda1 8:1 0 512M 0 part /boot/efi
+├─sda2 8:2 0 1K 0 part
+└─sda5 8:5 0 30.3G 0 part /
+sdb 8:16 1 29.7G 0 disk
+└─sdb1 8:17 1 29.7G 0 part
+sr0 11:0 1 1024M 0 rom</code></pre></figure>
+
+      </li><br />
+      <li>In this case, followings are your microSD card configuration.
+        <ul>
+          <li><b><code>/dev/sdb</code></b>: The device name for the entire microSD card.
+          </li>
+          <li><b><code>/dev/sdb1</code></b>: The paritition name in microSD card.  There may be multiple <code>sdb*</code> depending on the microSD card.
+          </li>
+        </ul>
+        <div class="warning">
+          <span class="warning-title">Warning</span>
+          Be careful not to use the name of other device since it may destruct your computer filesystem.
+        </div>
+      </li>
+    </ul>
+  </li><br />
+  <li>Run the following command to check the automatically mounted microSD card partitions.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">df</span></code></pre></figure>
+
+  </li><br />
+  <li>Check the output and find the mount point, which is "<code>/media/user/A8D3-393D</code>" in the following example.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Filesystem 1K-blocks Used Available Use% Mounted on
+udev 745652 0 745652 0% /dev
+:
+snip
+:
+/dev/sdb1 511720 4904 506816 1% /media/user/A8D3-393B</code></pre></figure>
+
+  </li><br />
+  <li>Unmount the automatically mounted partitions.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>umount /media/user/A8D3-393B</code></pre></figure>
+
+    <ul><li>
+      If there are more than one partitions on microSD card, unmount all partitions.<br />
+    </li></ul>
+  </li>
+</ol>
+<p><br /></p>
+
+<h4 id="eSD_Format_2">2. Create SD card partition</h4>
+<ol>
+  <li>Run <code>fdisk</code> command as shown below to change the partition table according to the following table.<br />
+    <div class="ContenteSD contenteSD-bg">
+      <table class="gstable">
+        <tr>
+          <th width="120">Type/Number</th>
+          <th>Size</th>
+          <th width="120">Filesystem</th>
+          <th width="120">Contents</th>
+        </tr>
+        <tr>
+          <td>Primary #1</td>
+          <td>500MB (minimum 128MB)</td>
+          <td>Ext4</td>
+          <td>Linux kernel<br />Device tree</td>
+        </tr>
+        <tr>
+          <td>Primary #2</td>
+          <td>All remaining</td>
+          <td>Ext4</td>
+          <td>root filesystem</td>
+        </tr>
+      </table>
+      <div class="note">
+        <span class="note-title">Note</span>
+        <i><b>"File system"</b></i> of <i><b>"Primary #1</b></i> containing <i><b>Linux kernel and Device tree"</b></i> is <b><i>Ext4</i></b>.<br />
+      </div>
+    </div>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>fdisk /dev/sdb</code></pre></figure>
+
+    <div class="warning">
+      <span class="warning-title">Warning</span>
+      Use device name. Do NOT use partition name such as <code>/dev/sdb1</code>.
+    </div>
+    <ul>
+      <li>Following log will be shown.<br />        
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Welcome to fdisk <span class="o">(</span>util-linux 2.34<span class="o">)</span><span class="nb">.</span>
+Changes will remain <span class="k">in </span>memory only, <span class="k">until </span>you decide to write them.
+Be careful before using the write command.
+
+Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>o</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Created a new DOS disklabel with disk identifier 0x6b6aac6e.
+
+Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>n</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Partition <span class="nb">type
+</span>p primary <span class="o">(</span>0 primary, 0 extended, 4 free<span class="o">)</span>
+e extended <span class="o">(</span>container <span class="k">for </span>logical partitions<span class="o">)</span>
+Select <span class="o">(</span>default p<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>p</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Partition number <span class="o">(</span>1-4, default 1<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Press ENTER key. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">First sector <span class="o">(</span>2048-62333951, default 2048<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Press ENTER key. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Last sector, +/-sectors or +/-size<span class="o">{</span>K,M,G,T,P<span class="o">}</span> <span class="o">(</span>2048-62333951,
+default 62333951<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>+500M</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Created a new partition 1 of <span class="nb">type</span> <span class="s1">'Linux'</span> and of size 500 MiB.
+Partition <span class="c">#1 contains a vfat signature.</span>
+
+Do you want to remove the signature? <span class="o">[</span>Y]es/[N]o:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>Y</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">The signature will be removed by a write command.
+
+Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>n</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Partition <span class="nb">type
+</span>p primary <span class="o">(</span>1 primary, 0 extended, 3 free<span class="o">)</span>
+e extended <span class="o">(</span>container <span class="k">for </span>logical partitions<span class="o">)</span>
+Select <span class="o">(</span>default p<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>p</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Partition number <span class="o">(</span>2-4, default 2<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Press ENTER key. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">First sector <span class="o">(</span>1026048-62333951, default 1026048<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Press ENTER key. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Last sector, +/-sectors or +/-size<span class="o">{</span>K,M,G,T,P<span class="o">}</span> <span class="o">(</span>1026048-62333951,
+default 62333951<span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Press ENTER key. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Created a new partition 2 of <span class="nb">type</span> <span class="s1">'Linux'</span> and of size 29.2 GiB.
+
+Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>:</code></pre></figure>
+
+      </li>
+      <li>Type "<code>p</code>" to console. The log continues.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Disk /dev/sdb: 29.74 GiB, 31914983424 bytes, 62333952 sectors
+Disk model: Transcend
+Units: sectors of 1 <span class="se">\*</span> 512 <span class="o">=</span> 512 bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512 bytes / 512 bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: 512 bytes / 512 bytes  
+ Disklabel <span class="nb">type</span>: dos
+Disk identifier: 0x6b6aac6e
+
+Device Boot Start End Sectors Size Id Type
+/dev/sdb1 2048 1026047 1024000 500M 83 Linux
+/dev/sdb2 1026048 62333951 61307904 29.2G 83 Linux
+
+Filesystem/RAID signature on partition 1 will be wiped.
+
+Command <span class="o">(</span>m <span class="k">for </span><span class="nb">help</span><span class="o">)</span>:</code></pre></figure>
+
+      </li><br />
+      <li>Type "<code>w</code>" to console. The <code>fdisk</code> interface will end.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">The partition table has been altered.
+Syncing disks.</code></pre></figure>
+
+      </li>
+    </ul>
+  </li><br />
+  <li>Check the partition table with the command below.
+  <br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">partprobe
+<span class="nb">sudo </span>fdisk <span class="nt">-l</span> /dev/sdb</code></pre></figure>
+
+    Output would be as follows. Note that there are two partitions.
+<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Disk /dev/sdb: 29.74 GiB, 31914983424 bytes, 62333952 sectors
+Disk model: Maker name etc.
+Units: sectors of 1 <span class="k">*</span> 512 <span class="o">=</span> 512 bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512 bytes / 512 bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: 512 bytes / 512 bytes
+Disklabel <span class="nb">type</span>: dos
+Disk identifier: 0x6b6aac6e
+Device Boot Start End Sectors Size Id Type
+/dev/sdb1 2048 1026047 1024000 500M 83 Linux 
+/dev/sdb2 1026048 62333951 61307904 29.2G 83 Linux</code></pre></figure>
+    
+  </li><br />
+  <li>Run the command below to format and mount the partitions 1.
+    <div class="note">
+      <span class="note-title">Note</span>
+      If the partitions were automatically mounted after the procedure 6 of "Check the SD card connection", please unmount them again.
+    </div>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>mkfs.ext4 <span class="nt">-L</span> boot /dev/sdb1</code></pre></figure>
+
+      Following log will be shown.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mke2fs 1.45.5 <span class="o">(</span>07-Jan-2020<span class="o">)</span>
+Creating filesystem with 128000 4k blocks and 128000 inodes
+Filesystem UUID: 0d2b995c-dd96-4ff6-953c-66a4701fa034
+Superblock backups stored on blocks:
+  32768, 98304
+Allocating group tables: <span class="k">done
+</span>Writing inode tables: <span class="k">done
+</span>Creating journal <span class="o">(</span>4096 blocks<span class="o">)</span>: <span class="k">done
+</span>Writing superblocks and filesystem accounting information: <span class="k">done</span></code></pre></figure>
+
+  </li><br />
+  <li>Run the command below to format and mount the partitions 2.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>mkfs.ext4 <span class="nt">-L</span> rootfs /dev/sdb2</code></pre></figure>
+
+    Following log will be shown.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">mke2fs 1.45.5 <span class="o">(</span>07-Jan-2020<span class="o">)</span>
+Creating filesystem with 7663488 4k blocks and 1916928 inodes
+Filesystem UUID: 63dddb3f-e268-4554-af51-1c6e1928d76c
+Superblock backups stored on blocks:
+32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+4096000
+Allocating group tables: <span class="k">done
+</span>Writing inode tables: <span class="k">done
+</span>Creating journal <span class="o">(</span>32768 blocks<span class="o">)</span>: <span class="k">done
+</span>Writing superblocks and filesystem accounting information: <span class="k">done</span></code></pre></figure>
+
+  </li><br />
+  <li>Eject the microSD card and insert it again to remount the partitions.
+  </li>
+</ol>
+<p><br />
+After this procedure, you can write the necessary data for the board into microSD card.<br />
+Go to  “<a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/RZV2L_board_setup_e2studio.html">Set up RZ/V2L Evaluation Board Kit</a>” to prepare a micro SD card for booting.</p>
+
+
+      </section>
+    </div>
+  </body>
+</html>
