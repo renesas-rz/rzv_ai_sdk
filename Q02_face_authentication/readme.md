@@ -33,7 +33,7 @@ This kind of application makes it easier to automate the authentication process,
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -144,14 +144,14 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
         - ***Validate:*** Button for validating the real face with document face ID.
         - ***Close button:*** Used to terminate the application.
 
-        <img src=./images/face_authentication_front.PNG width="420" height="360">
+        <img src= "./images/face_authentication_front.PNG" width="420" height="360">
         
     2. Then Click on the `Add ID image` button for recognizing the face from the document ID. We can see a new window. it contains three buttons.
         - ***Add Face:*** Button for taking pictures.
         - ***Back:*** It retrieves the previous page(Main page).
         - ***Exit:*** Used to terminate the application.
 
-        <img src=./images/FaceAuthentication_Addface.PNG width="420" height="360">
+        <img src= "./images/FaceAuthentication_Addface.PNG" width="420" height="360">
 
         1. The user have to align the documented face to the bounding box provided to be captured.
         2. Click `Add Face` button to capture the photo.
@@ -163,7 +163,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
         - ***Back:*** It retrieves the previous page(Main page).
         - ***Exit:*** Used to terminate the application.
 
-        <img src=./images/FaceAuthentication_validate.PNG width="420" height="360">
+        <img src= "./images/FaceAuthentication_validate.PNG" width="420" height="360">
 
         1. User need to align their face on the box shown on the display.
         2. Click `Validate` button to capture the real time image.Only 3 attempts of validating is provided. After that the application exit to initial state.
