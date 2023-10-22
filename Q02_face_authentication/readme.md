@@ -12,7 +12,7 @@ This kind of application makes it easier to automate the authentication process,
 
 #### Demo
 
-<img src = "./images/FaceAuthentication.gif" width="480" height="320">
+<img src = "./images/Q02_face.gif" width="480" height="320">
 
 ## Application: Requirements
 
@@ -33,7 +33,7 @@ This kind of application makes it easier to automate the authentication process,
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -119,42 +119,62 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 ## Application: Runtime Stage
 
-* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
+1. For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
     * Go to the `/home/root/tvm` directory of the rootfs
     ```sh
     cd /home/root/tvm
     ```
-    * Run the application in the terminal of the RZ/V2L board using the command
-	```sh
-    ./face_recognition
+2. Run the application in the terminal of the RZ/V2L evaluation board kit using the command
+    - For MIPI Camera Mode
+    ```sh
+    ./face_recognition CAMERA MIPI
     ```
-
+    - For USB Camera Mode
+    ```sh
+    ./face_recognition CAMERA USB
+    ```
 
 #### GUI for running the application
 --------------------------------
 1. The application can be used to authenticate the real time image of the person with the face on the document ID.
-2. The application consists of two buttons.
-	- ***Add ID image:*** Button for taking pictures from the document IDs.
-	- ***Validate:*** Button for validating the real face with document face ID.
+2. This application consists of three pages.
 
-	<img src=./images/face_authentication_front.JPG width="420" height="360">
+    1. The main page consists of Three buttons.
+        - ***Add ID image:*** Button for taking pictures from the document IDs.
+        - ***Validate:*** Button for validating the real face with document face ID.
+        - ***Close button:*** Used to terminate the application.
 
-3. Then Click on the `Add ID image` button for recognizing the face from the document ID. 
-	1. The user have to align the documented face to the bounding box provided to be captured.
-    2. Press `Enter` key on the keyboard to capture the photo.
-    3. User can press `Esc` key to exit to initial stage.
+        <img src=./images/face_authentication_front.PNG width="420" height="360">
+        
+    2. Then Click on the `Add ID image` button for recognizing the face from the document ID. We can see a new window. it contains three buttons.
+        - ***Add Face:*** Button for taking pictures.
+        - ***Back:*** It retrieves the previous page(Main page).
+        - ***Exit:*** Used to terminate the application.
 
-4. Then click on the `Validate` button to capture the real time image of the person that needs to be validated
-    1. User need to align their face on the box shown on the display.
-    2. Press `Enter` key on the keyboard to capture the real time image.
-    3. Only 3 attempts of validating is provided. After that the application exit to initial state.
-    4. User can press `Esc` key to exit to initial stage.
+        <img src=./images/FaceAuthentication_Addface.PNG width="420" height="360">
+
+        1. The user have to align the documented face to the bounding box provided to be captured.
+        2. Click `Add Face` button to capture the photo.
+        3. User can Click `Back` button to retrieves the previous page(Main page).
+        4. User can Click `Exit` button to terminate the application.
+
+    3. Then click on the `Validate` button to capture the real time image of the person that needs to be validated. We can see a new Window. It contains three buttons.
+        - ***Validate:*** It is used to capture the real time image.
+        - ***Back:*** It retrieves the previous page(Main page).
+        - ***Exit:*** Used to terminate the application.
+
+        <img src=./images/FaceAuthentication_validate.PNG width="420" height="360">
+
+        1. User need to align their face on the box shown on the display.
+        2. Click `Validate` button to capture the real time image.Only 3 attempts of validating is provided. After that the application exit to initial state.
+        3. User can Click `Back` button to retrieves the previous page(Main page).
+        4. User can Click `Exit` button to terminate the application.
 
 6. Please go through the demo video to get a better picture of the sample application.
 
 #### Application: Termination
-- Application can be terminated by pressing `Esc` key on the keyboard connected to the board.
-- Alternatively, User can force close the application using `CTRL+c` on the board console.
+- Application can be terminated by clicking the 'Close button'.
+- Alternatively, User can force close the application using `Exit` button.
 
 ## Application: Specifications
 
@@ -169,9 +189,3 @@ We then apply cosine similarity to match the incoming images.\
 The threshold kept for the match is `0.23`.
 
 The AI inference time for the model is `450` msec.
-
-
-
-
-
-
