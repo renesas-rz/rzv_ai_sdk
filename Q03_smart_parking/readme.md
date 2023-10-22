@@ -12,7 +12,7 @@ It provides an accurate and efficient way to manage parking spaces, helping to r
 
 #### Demo 
 
-<img src = "./images/SmartParking.gif" width="480" height="320">
+<img src = "./images/Q03_parking.gif" width="480" height="320">
 
 Average FPS: 200/slot 
 
@@ -47,10 +47,10 @@ FPS - 200/10 ->20
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- the Board Set Up and booted. 
+- The Board Set Up and booted. 
 - SD Card Prepared 
 - The docker image and container for `rzv2l_ai_sdk_image` running on host machine.
 
@@ -128,6 +128,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
     └── root/
         └── tvm/
             ├── parkingmodel_onnx/
+            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
@@ -146,13 +147,19 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
    * To run inference from video 
 
    ```sh 
-   ./parkinglot_detection <videofile_name.mp4>
+   ./parkinglot_detection VIDEO <videofile_name.mp4>
    ```
 
-   * To run inference from the camera feed 
+   * To run inference from the MIPI camera feed 
 
    ```sh
-   ./parkinglot_detection
+   ./parkinglot_detection CAMERA MIPI
+   ```
+   
+   * To run inference from the USB camera feed 
+
+   ```sh
+   ./parkinglot_detection CAMERA USB
    ```
 
    >**Note:** By default, the application will take inference from USB Camera.
@@ -161,16 +168,16 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 
 >**Note:** The application GUI is same for either of the sample video or the camera. 
 
-1. The application consists of two buttons when the application is run. 
-   - `Edit Slots` and `Start Inference`
+1. The application consists of three buttons when the application is run. 
+   - `Edit Slots` , `Start Inference` and `Close button`
    
-     <img src=./images/parking_app_front.JPG width="420">
+     <img src= "./images/parking_app_front.png" width="420">
    
 2. First click on `Edit Slots` button to add the slots on the parking slots.
 
    - Now you will see 2 other buttons. `Add Slot` and `Remove Slot`
 
-     <img src=./images/park_add_remove.JPG width="360" height="240">
+     <img src= "./images/park_add_remove.JPG" width="360" height="240">
 
 3. To add the slot, press `Add Slot` button. 
    1. When you see the camera(or the sample video) screen.
@@ -178,23 +185,29 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
    3. simply press and hold the mouse left click on the screen to start drawing the bounding boxes
    4. release the click to finish drawing boxes.
    5. Multiple bounding boxes can be drawn
+   6. Click `Exit` button to terminate the application.
+   7. Click `Back` button to retrieves the previous page(Main page).
 
-     <img src=./images/slot_add.JPG width="480">
+     <img src=./images/slot.png width="480">
 
-4. After you have drawn the slots, press `Esc` key to go to the home screen
-5. Click on the `Start inference` button
-6. To close the running application, press `Esc` key.
+4. After you have drawn the slots, click `Back` button or press `Enter` key to go to the home screen
+5. Click on the `Start inference` button. We can see a new window. it contains two buttons.
+   - ***Back:*** It retrieves the previous page(Main page).
+   - ***Exit:*** Used to terminate the application.
+6. To close the running application, click `Close button` .
 7. To remove the added slots
    1. Click on the `Remove Slot` button
    2. Type the parking slot IDs that needs to be removed.
+   6. Click `Exit` button to terminate the application.
+   7. Click `Back` button to retrieves the previous page(Main page).
 
-     <img src=./images/remove_slots.jpg width="360" height="240">
+     <img src=./images/remove_slots.png width="360" height="240">
 
 #### Application: Runtime output details
 
 The runtime application will look something like this 
 
-<img src=./images/smrt_prk_out.JPG width="480">
+<img src= "./images/inference.png" width="480">
 
 - Each bounding boxes (BB) are the parking slots drawn by the user
    - Green BB are the empty slots
@@ -203,9 +216,8 @@ The runtime application will look something like this
 - `DRP-AI Processing Time(ms)` is also shown in the bottom right corner. 
 
 #### Application: Termination
-- Application can be terminated by pressing `Esc` key on the keyboard connected to the board.
-- Alternatively, User can force close the application using `CTRL+c` on the board console.
-- The whole application can be quit by pressing `q` on the Keyboard.
+- Application can be terminated by Clicking `Close button`.
+- Alternatively, User can force close the application using `Exit` button .
 
 ## Application: Specifications
 
@@ -238,7 +250,7 @@ Estimated Total Size (MB): 0.67
 The network diagram will be as follows: 
 
 
-<img src=./model_info/model_parking.png width="110" height="480">
+<img src= "./model_info/model_parking.png" width="110" height="480">
 
 #### Dataset 
 The dataset used is the custom datasets. 
