@@ -38,8 +38,9 @@
 #include <cstdlib>
 #include <thread>
 #include <cstring>
+#include <fcntl.h>
+#include <sys/ioctl.h>
 #include "MeraDrpRuntimeWrapper.h"
-#include "PreRuntime.h"
 #include "opencv2/core.hpp"
 #include "iostream"
 #include "opencv2/imgproc.hpp"
@@ -61,9 +62,10 @@
 #include <linux/drpai.h>
 #define DRPAI_MEM_OFFSET        (0x38E0000)
 
-#define GREEN cv::Scalar(0, 255, 0)
-#define RED cv::Scalar(0, 0, 255)
-#define WHITE cv::Scalar( 255, 255, 255)
+#define WHITE                   cv::Scalar(255, 255, 255)
+#define GREEN                   cv::Scalar(0, 255, 0)
+#define RED                     cv::Scalar(0, 0, 255)
+#define BLUE                    cv::Scalar(255, 0, 0)
 
 #define MODEL_IN_H (128)
 #define MODEL_IN_W (128)
@@ -78,6 +80,7 @@ unsigned int FRAME_INTERVAL = 10;
 
 bool running_process_frame     = true;
 bool plot_g = false;
+bool doubleClicked = false;
 
 int wait_key        = 0;
 int duration        = 0;
@@ -90,6 +93,8 @@ float font_weight   = 2;
 double count        = 0;
 
 uint32_t out_size_arr;
+/*Argument Index*/
+uint8_t arg_index   = 0;
 
 std::vector<double> x;
 std::vector<double> y;
@@ -99,7 +104,10 @@ std::vector<float> floatarr(1);
 const std::string non_violence      = "Non Violence activity";
 const std::string violence          = "Violence activity detected !";
 const std::string none              = "None";
-std::string result                  =  none;
+std::string input_source            = "";
+std::string video_source            = "";
+std::string source                  = "";
+std::string result                  = none;
 std::string frame_interval          = "";
 std::string buffer_size             = "";
 
@@ -121,6 +129,13 @@ float float16_to_float32(uint16_t a);
 cv::Mat hwc2chw(const cv::Mat &image);
 cv::Mat run_inference(cv::Mat frame);
 
+/* Map to store input source list */
+std::map<std::string, int> input_source_map =
+{
+    {"VIDEO", 1},
+    {"MIPI", 2},
+    {"USB", 3}
+};
 
 /*****************************************
 * Function Name : get_drpai_start_addr
@@ -181,6 +196,19 @@ cv::Mat hwc2chw(const cv::Mat &image)
     return flat_image;
 }
 
+
+/*****************************************
+ * Function Name     : mouse_callback_button_click
+ * Description       : Slot Frame mouse callback(add slot and remove slot functionality).
+ ******************************************/
+void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
+{
+    if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        doubleClicked = true;
+    }
+}
+
 /*****************************************
  * Function Name : camera_thread
  * Description   : function to show the ouput camera result
@@ -217,9 +245,11 @@ void camera_thread(void)
                 putText(frame, "AI-Inference Time(ms): "+ std::to_string(duration), text_position_inftm, cv::FONT_HERSHEY_COMPLEX, 0.55, GREEN,font_weight);
             }
             /* display output frame*/
+            putText(frame,"Double Click to exit the Application!!", cv::Point((int)(frame.cols/2 - frame.cols/10) + 50, (int)(frame.rows) -20), cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, cv::LINE_AA);
             cv::imshow("Camera", frame);
+            cv::setMouseCallback("Camera", mouse_callback_button_click);
             wait_key = cv::waitKey(1);
-            if (wait_key == 27)
+            if (doubleClicked)
             {
                 running_process_frame = false;
                 break;
@@ -228,6 +258,7 @@ void camera_thread(void)
             if((x.size()> 10 || y.size()> 10) && plot_g == true)
             {
                 cv::imshow("Graph Plot",display );
+                cv::setMouseCallback("Graph Plot", mouse_callback_button_click);
                 cv::waitKey(5);
                 plot_g = false;
             }
@@ -285,6 +316,7 @@ void plot_graph(float value)
     putText(display,"Threshold : "+ std::to_string(value), text_position, cv::FONT_HERSHEY_COMPLEX, font_size, Color, font_weight);
     putText(display,"1",cv::Point(10,119), cv::FONT_HERSHEY_COMPLEX,0.65,WHITE,1);
     putText(display,"0.5",cv::Point(10,183), cv::FONT_HERSHEY_COMPLEX,0.65,WHITE,1);
+    putText(display,"Double Click to exit the Application!!", cv::Point((int)(display.cols/2 - display.cols/10) + 50, (int)(display.rows) -20), cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, cv::LINE_AA);
     plot_g = true;
     return;
 }
@@ -505,48 +537,150 @@ void mipi_cam_init(void)
         }
     }
 }
+
+/*****************************************
+ * Function Name : query_device_status
+ * Description   : function to check USB/MIPI device is connectod.
+ * Return value  : media_port, media port that device is connectod.
+ ******************************************/
+std::string query_device_status(std::string device_type)
+{
+    std::string media_port = "";
+    /* Linux command to be executed */
+    const char *command = "v4l2-ctl --list-devices";
+    /* Open a pipe to the command and execute it */
+    FILE *pipe = popen(command, "r");
+    if (!pipe)
+    {
+        std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
+        return media_port;
+    }
+    /* Read the command output line by line */
+    char buffer[128];
+    size_t found;
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr)
+    {
+        std::string response = std::string(buffer);
+        found = response.find(device_type);
+        if (found != std::string::npos)
+        {
+            fgets(buffer, sizeof(buffer), pipe);
+            media_port = std::string(buffer);
+            pclose(pipe);
+            /* return media port*/
+            return media_port;
+        }
+    }
+    pclose(pipe);
+    /* return media port*/
+    return media_port;
+}
+
+/*****************************************
+ * Function Name : input_source_select
+ * Description   : function to select input source
+ * Return value  : 0  = Input source selected
+ *                 -1 = Error selecting inputh source
+ ******************************************/
+int input_source_select(void)
+{
+    switch (input_source_map[input_source])
+    {
+        /* Input Source : Video file */
+        case 1:
+        {
+            arg_index = 1;
+            std::cout << "[INFO] VIDEO mode\n";
+            std::cout << "Loading from :" << video_source << "\n";
+            source = "filesrc location=" + video_source + " ! decodebin ! videoconvert ! appsink";
+            break;
+        }
+
+        /* Input Source : MIPI Camera */
+        case 2:
+        {
+            arg_index = 0;
+            std::cout << "[INFO] MIPI CAMERA mode\n";
+            /* check the status of device */
+            std::string media_port = query_device_status("CRU");
+            if (media_port == "")
+            {
+                fprintf(stderr, "[ERROR] MIPI Camera not connected. \n");
+                return -1;
+            }
+            mipi_cam_init();
+            /* gstremer pipeline to read input image source */
+            source = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+            break;
+        }
+        /* Input Source : USB Camera */
+        case 3:
+        {
+            arg_index = 0;
+            std::cout << "[INFO] USB CAMERA mode\n";
+            /* check the status of device */
+            std::string media_port = query_device_status("usb");
+            if (media_port == "")
+            {
+                fprintf(stderr, "[ERROR] USB Camera not connected. \n");
+                return -1;
+            }
+            /* gstremer pipeline to read input image source */
+            source = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+            break;
+        }
+        default:
+        {
+            std::cout << "[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+            return -1;
+        }
+    }
+    return 0;
+}
+
 int main(int argc, char **argv)
 {   
-    /* Argument Index */
-    uint8_t arg_index;
+    if (argc < 2 || argc > 5) 
+    {
+        std::cout << "[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+
+    input_source = argv[1];
+    if (input_source != "VIDEO" && (argc == 3 || argc == 5)) 
+    {
+        std::cout << "[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+    
+    if ((input_source == "VIDEO")) 
+    {
+        if(argc == 2 || argc == 4)
+        {
+            std::cout << "[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+            std::cout << "\n[INFO] End Application\n";
+            return -1;
+        }
+        video_source = argv[2];
+    }
+    /*Select input Source MIPI/USB/VIDEO*/
+    if(input_source_select() == -1)
+    {
+        std::cout << "\n[INFO] Application END\n";
+        return -1;
+    }
+
     /* Minimum-Maximum vlue range of Frame interval and buffer size */
     const uint8_t frame_interval_min    = 1;
     const uint8_t frame_interval_max    = 16;
     const uint8_t buffer_size_min       = 0;
-    const uint8_t buffer_size_max       = 10;
-
-    /* Get input Source WS/VIDEO/CAMERA */
-    std::string input_source = argv[1];
-    /* File source */
-    std::string source;
-    
-    /* Input source : CAMERA */
-    if (input_source == "CAMERA")
-    {
-        arg_index = 0;
-        std::cout << "\n[INFO] CAMERA_mode\n";
-        source = "v4l2src device=/dev/video0 ! videoconvert ! appsink";
-        /* MIPI Camera Setup */
-        mipi_cam_init();
-    }
-    /* Input source : VIDEO */
-    else if(input_source == "VIDEO")
-    {
-        arg_index = 1;
-        std::cout << "\n[INFO] VIDEO_mode\n";
-        if(!argv[2])
-            goto label_1;
-        std::string video_source = argv[2];
-        std::string path1 = "filesrc location=";
-        std::string path2 = " ! decodebin ! videoconvert ! appsink";
-        source = path1+video_source+path2;
-    }
-    else
-    {
-        label_1:
-        std::cout << "\n[ERROR] Input mode is not matching!!\n";
-        goto label_2;
-    }
+    const uint8_t buffer_size_max       = 10;    
 
     /* Fetching Frame interval & Buffer size from arguments */
     (!(argv[2+arg_index]) || (atoi(argv[2+arg_index]) <= frame_interval_min || atoi(argv[2+arg_index]) >= frame_interval_max)) ? std::cout << "[INFO] Default Frame interval: " : std::cout << "[INFO] Frame interval: ";
@@ -558,8 +692,6 @@ int main(int argc, char **argv)
     std::cout<<BUFFER_SIZE<<"\n";
     /* Capture frame */
     capture_frame(source);
-    
-    label_2:
     std::cout << "\n[INFO] Application End\n";
     return 0;
 }

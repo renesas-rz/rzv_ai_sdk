@@ -11,7 +11,7 @@ include_directories(${TVM_ROOT}/3rdparty/dmlc-core/include)
 include_directories(${TVM_ROOT}/3rdparty/compiler-rt)
 
 set(TVM_RUNTIME_LIB ${TVM_ROOT}/build_runtime/libtvm_runtime.so)
-set(SRC suspicious_activity.cpp MeraDrpRuntimeWrapper.cpp PreRuntime.cpp)
+set(SRC suspicious_activity.cpp MeraDrpRuntimeWrapper.cpp)
 set(EXE_NAME suspicious_activity)
 
 add_executable(${EXE_NAME} ${SRC})
