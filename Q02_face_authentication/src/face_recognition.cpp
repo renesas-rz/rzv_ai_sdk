@@ -36,60 +36,60 @@
 #include <climits>
 #include <cstdlib>
 #include <cstring>
-#include "opencv2/core.hpp"
-#include "iostream"
-#include "opencv2/imgproc.hpp"
-#include "opencv2/highgui.hpp"
 #include <vector>
 #include <glob.h>
 #include <cmath>
-#include "PreRuntime.h"
+#include <unistd.h>
+#include <linux/drpai.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
 #include "MeraDrpRuntimeWrapper.h"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/core.hpp"
 
+/*DRP-AI memory area offset for model objects*/
+/*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
+#define DRPAI_MEM_OFFSET            (0X38E0000)
+
+/*Output text colour info */
 #define BLUE                        cv::Scalar(255, 0, 0)
 #define WHITE                       cv::Scalar(255, 255, 255)
 #define BLACK                       cv::Scalar(0, 0, 0)
 #define GREEN                       cv::Scalar(0, 255, 0)
 #define RED                         cv::Scalar(0, 0, 255)
 #define ASH                         cv::Scalar(150, 150, 150)
-/* DRP-AI memory offset for model object file*/
-#define DRPAI_MEM_OFFSET            (0X38E0000)
+
+/* DRP-AI TVM[*1] Runtime object */
+MeraDrpRuntimeWrapper runtime;
 
 using namespace cv;
 using namespace std;
 
-MeraDrpRuntimeWrapper runtime;
-MeraDrpRuntimeWrapper runtime_age;
+/* Model Binary */
+std::string model_dir   = "facenet_model";
 
-std::string model_dir = "facenet_model";
-std::string str1 = "Add ID Image";
-std::string str2 = "Validate";
-std::string str3 = "X";
+/* GUI button text "Add ID Image" & "Validate" */
+std::string str1        = "Add ID Image";
+std::string str2        = "Validate";
 
+/* GUI button "Add ID Image" */
 unsigned int add_faces_x0   = 189;
 unsigned int add_faces_y0   = 350;
 unsigned int add_faces_x1   = 353;
 unsigned int add_faces_y1   = 400;
 
+/* GUI button "Validate" */
 unsigned int recognize_x0   = 481;
 unsigned int recognize_y0   = 350;
 unsigned int recognize_x1   = 631;
 unsigned int recognize_y1   = 400;
 
-unsigned int termination_x0 = 1150;
-unsigned int termination_y0 = 10;
-unsigned int termination_x1 = 1180;
-unsigned int termination_y1 = 40;
-
-unsigned int back_x0 = 0;
-unsigned int back_y0 = 0;
-unsigned int back_x1 = 60;
-unsigned int back_y1 = 30;
-
 unsigned int winWidth   = 0;
 unsigned int winHeight  = 0;
 
 cv::Mat img;
+cv::Mat img1;
 cv::Mat image;
 cv::Mat frame;
 
@@ -97,28 +97,28 @@ vector<float> floatarr(512);
 vector<float> img_arr1(512);
 vector<float> img_arr2(512);
 
-/* Image buffer (u-dma-buf) */
-unsigned char *img_buffer;
 unsigned int try_cnt;
+
+/* flags to detect all button clicks */
 bool add_face_clicked           = false;
 bool recognize_face_clicked     = false;
 bool termination_clicked        = false;
-bool back_clicked               = false;
 bool img1_array1_udated         = false;
-bool img1_array2_udated         = false;
 bool cam_kill_esc_key           = false;
 bool backButtonClicked          = false;
 bool addOrValidateButtonClicked = false;
+bool runtime_status             = false;
 
 uint64_t drpaimem_addr_start = 0;
-bool runtime_status = false; 
 std::string gstreamer_pipeline;
 
+/* GUI button "add_face" or "validate" */
 int ptb1;
 int ptb2;
 int ptb3;
 int ptb4;
 
+/* Map to store input camera source list */
 std::map<std::string, int> input_source_map =
 {
     {"MIPI", 1},
@@ -279,21 +279,20 @@ void ButtonCallBack(int event, int x, int y, int flags, void *userdata)
     if (event == EVENT_LBUTTONDOWN)
     {
         Rect backButton = Rect(0, 0, 60, 30);
-        Rect exitButton = Rect((winWidth-60), 0, winWidth, 30);
         Rect addOrValidateButton = Rect(ptb1,ptb2,ptb3,ptb4);
         if (backButton.contains(Point(x, y)))
         {
             backButtonClicked = true;
         }
-        else if (exitButton.contains(Point(x, y)))
-        {   
-            backButtonClicked = true;
-            termination_clicked = true;
-        }
         else if (addOrValidateButton.contains(Point(x, y)))
         {
             addOrValidateButtonClicked = true;
         }
+    }
+    else if(event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        backButtonClicked = true;
+        termination_clicked = true;
     }
 }
 /*****************************************
@@ -311,19 +310,20 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
     {
         if (add_faces_x0 < x && x < add_faces_x1 && add_faces_y0 < y && y < add_faces_y1 && img1_array1_udated == false)
         {
-            std::cout << "clicked add face \n";
+            std::cout << "[INFO] clicked add face \n";
             add_face_clicked = true;
         }
-        else if (recognize_x0 < x && x < recognize_x1 && recognize_y0 < y && y < recognize_y1 && img1_array1_udated == true) 
+        else if (recognize_x0 < x && x < recognize_x1 && recognize_y0 < y && y < recognize_y1) 
         {
-            std::cout << "cliked compare face \n";
+            std::cout << "[INFO] cliked compare face \n";
             recognize_face_clicked = true;
         }
-        else if((winWidth-50) < x && x < (winWidth-20) && 10 < y && y < 40)
-        {
-            std::cout << "cliked quit application \n";
-            termination_clicked = true;
-        }
+    }
+    /*mouse button double click callback*/ 
+    else if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        std::cout << "[INFO] Double tap !!\n";
+        termination_clicked = true;
     }
 }
 /*****************************************
@@ -337,22 +337,24 @@ Mat capture_frame(std::string cap_pipeline)
 {
     cout << "capture frame\n";
     Mat patch1;
-    Mat img1;
     cv::VideoCapture vid;
     
     vid.open(cap_pipeline, cv::CAP_GSTREAMER);
     vid >> img1;
+    cv::resize(img1,img1,cv::Size(800,600));
     int height = img1.rows;
     int width = img1.cols;
-    int wait_key = 0;
     cv::Rect roi((int)(img1.cols/2-width/8), (int)(img1.rows/2-width/8), width/3, height/3); /* x,y,w,h */ 
     cv::Mat croppedImg;
     vector<string> predictions;
     while (1)
     {
         vid >> img1;
+        cv::resize(img1,img1,cv::Size(800,600));
         flip(img1, img, 1);
-   
+        
+        std::string text = "Double Click to exit the Application!!";
+
         cv::Point pt1((int)(width/2-width/6), (int)(height/2-width/6));
         cv::Point pt2((int)(width/2+width/6), (int)(height/2+width/6));
 
@@ -362,9 +364,14 @@ Mat capture_frame(std::string cap_pipeline)
         vertices.push_back(cv::Point(pt2.x, pt1.y));
         vertices.push_back(pt2);
         vertices.push_back(cv::Point(pt1.x, pt2.y));
+        
         /* Draw rectangles */
         cv::polylines(img, std::vector<std::vector<cv::Point>>{vertices}, true, BLUE, 3);
-        cv::putText(img, "Adjust face into the box!!", cv::Point(pt1.x,pt1.y-30), cv::FONT_HERSHEY_DUPLEX, 1, BLUE, 4, false);
+        cv::putText(img,"Adjust face into the box!!", cv::Point(pt1.x,pt1.y-30), cv::FONT_HERSHEY_DUPLEX, 1, BLUE, 4,LINE_AA);
+        cv::Size text_size = cv::getTextSize(text,cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, 0);
+        cv::Point text_pos(winWidth - text_size.width - 10, winHeight - 10);
+        putText(img, text, text_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, cv::LINE_AA);
+        
         winWidth = img.cols;
         winHeight = img.rows;
 
@@ -373,19 +380,19 @@ Mat capture_frame(std::string cap_pipeline)
         ptb3 = ((int)(winWidth/5));
         ptb4 = ((int)(winHeight/10));
 
+        /* back button */
         Rect backButton(0, 0, 60, 30);
-        Rect exitButton((winWidth-60), 0, winWidth, 30);
+        rectangle(img, backButton, ASH, -1);
+        putText(img, "Back", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
+        
+        /* add-face or validate button */
         Rect addOrValidateButton((int)(winWidth/2-winWidth/10),(int)(winHeight/2+winHeight/4),(int)(winWidth/5),(int)(winHeight/10));
-        rectangle(img, backButton, Scalar(255, 255, 255), -1);
-        putText(img, "Back", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 0), 1, LINE_AA);
-        rectangle(img, exitButton, Scalar(255, 255, 255), -1);
-        putText(img, "Exit", Point((winWidth-50), 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 255), 1, LINE_AA);
-        rectangle(img, addOrValidateButton, Scalar(255, 255, 255), -1);
+        rectangle(img, addOrValidateButton, ASH, -1);
         if(add_face_clicked)
-            putText(img, "Add Face", cv::Point((int)(winWidth/2-winWidth/10) + 30,(int)(winHeight/2+winHeight/4) + 30), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 0), 1, LINE_AA);
+            putText(img, "Add Face", cv::Point((int)(winWidth/2-winWidth/10) + 30,(int)(winHeight/2+winHeight/4) + 30), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
         else if(recognize_face_clicked)
-            putText(img, "Validate", cv::Point((int)(winWidth/2-winWidth/10) + 30,(int)(winHeight/2+winHeight/4) + 30), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 0, 0), 1, LINE_AA);
-        wait_key = waitKey(10);
+            putText(img, "Validate", cv::Point((int)(winWidth/2-winWidth/10) + 30,(int)(winHeight/2+winHeight/4) + 30), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
+        cv::waitKey(10);
         if(addOrValidateButtonClicked || backButtonClicked)
         {
             if(backButtonClicked)
@@ -473,7 +480,7 @@ void img_preprocess(string text, int x0, int y0, int x1, int y1)
     destroyAllWindows();
     /* capture pre-processed image */
     Mat croppedImg = capture_frame(gstreamer_pipeline);
-    /* run infernce */
+    /* run inference */
     floatarr = run_inference(croppedImg);
 }
 
@@ -540,8 +547,8 @@ void mipi_cam_init(void)
 
 /*****************************************
  * Function Name : query_device_status
- * Description   : function to check USB/MIPI device is connectod.
- * Return value  : media_port, media port that device is connectod.
+ * Description   : function to check USB/MIPI device is connected.
+ * Return value  : media_port, media port that device is connected.
  ******************************************/
 std::string query_device_status(std::string device_type)
 {
@@ -576,6 +583,12 @@ std::string query_device_status(std::string device_type)
     return media_port;
 }
 
+/*****************************************
+ * Function Name : get_input_source
+ * Description   : function to check the camera source is MIPI or USB
+ * Return value  : return -1 , ERROR condition.
+ *                 return 0 , success.  
+ ******************************************/
 int get_input_source(std::string camera_source)
 {
     switch (input_source_map[camera_source])
@@ -614,54 +627,55 @@ int get_input_source(std::string camera_source)
         /* default case/ Invalid case */
         default:
         {
-            std::cout<<"\n[ERROR] Invalid CAMERA source: "<< camera_source <<"\n";
+            std::cout<<"\n[ERROR] Invalid input source\n";
             std::cout<<"[INFO] End Application\n";
             return -1;
         }
     }
     return 0;
 }
+/*****************************************
+ * Function Name : button_display
+ * Description   : function to display "Add ID image"&"Validate" button on GUI
+ ******************************************/
+void button_display(void)
+{
+    /* button for "Add ID image" */
+    draw_rect_add_txt(str1, add_faces_x0, add_faces_y0, add_faces_x1, add_faces_y1, ASH, WHITE,0.5,1);
+    /* button for "Validate" */
+    draw_rect_add_txt(str2, recognize_x0, recognize_y0, recognize_x1, recognize_y1, ASH, WHITE,0.5,1);
+    cv::putText(frame,"Double Click to exit the Application!!", cv::Point(380, 570), cv::FONT_HERSHEY_SIMPLEX, 0.7, WHITE, 2,LINE_AA);
+}
 
 int main(int argc, char **argv)
 {
+    /* GUI window */
     const std::string app_name = "Face Recognition";
     std::string input_source;
-    std::string camera_source;
     /* check the input source is valid or not */
-    if(argc == 2 || argc == 3)
+    if(argc == 2)
     {
-        /* get the valid input source */
         input_source = argv[1];
-        if(input_source == "CAMERA")
+        if((input_source != "MIPI") && (input_source != "USB"))
         {
-            if(argc == 2)
-            {
                 /* End application */
-                std::cout<<"\n[ERROR] please specify MIPI/USB camera\n";
-                std::cout << "[INFO] End Application\n";
+                std::cout<<"\n[ERROR] Please specify Input Source.\n";
+                std::cout<<"[INFO] usage: ./face_recognition MIPI|USB.\n";
+                std::cout << "\n[INFO] End Application.\n";
                 return -1;
-            }
-            else if(argc == 3)
-                camera_source = argv[2];
-        }
-        else
-        {
-            /* End application */
-            std::cout << "\n[ERROR] Invalid input source :"<<input_source<<"\n";
-            std::cout << "[INFO] End Application\n";
-            return -1;
         }
     }
     else
     {
         /* End application */
-        std::cout << "\n[ERROR] Input Source not given\n";
-        std::cout << "[INFO] End Application\n";
+        std::cout<<"\n[ERROR] Please specify Input Source.\n";
+        std::cout<<"[INFO] usage: ./face_recognition MIPI|USB.\n";
+        std::cout << "\n[INFO] End Application.\n";
         return -1;
     }
 
     /* check input source status */
-    int source_status = get_input_source(camera_source);
+    int source_status = get_input_source(input_source);
     if(source_status < 0)
         return -1;
 
@@ -683,7 +697,7 @@ int main(int argc, char **argv)
     }
     cout << "loaded model:" << model_dir << endl;
     
-    /* set outputwindow */
+    /* set output window */
     namedWindow(app_name, WINDOW_NORMAL);
     resizeWindow(app_name,800,600);
 
@@ -693,7 +707,7 @@ int main(int argc, char **argv)
         /* check if any button is clicked */
         if ((add_face_clicked) || (recognize_face_clicked) || (termination_clicked))
         {
-            /* check if addface button is clicked */
+            /* check if add_face button is clicked */
             if (add_face_clicked && img1_array1_udated == false)
             {
                 /* pre-process and post-process section */
@@ -715,57 +729,74 @@ int main(int argc, char **argv)
                 cam_kill_esc_key = false;
             }
             /* check if validate button if clicked */
-            else if (recognize_face_clicked && img1_array1_udated == true)
+            else if (recognize_face_clicked)
             {
                 INIT:
                 frame = cv::imread("face_rec_bg.jpg");
-                /* pre-process and post-process section */
-                img_preprocess(str2, recognize_x0, recognize_y0, recognize_x1, recognize_y1);
-                if(cam_kill_esc_key == false)
+                if(img1_array1_udated == true)
                 {
-                    /* updates image array 2 */
-                    for (int i = 0; i < 512; i++)
+                    /* pre-process and post-process section */
+                    img_preprocess(str2, recognize_x0, recognize_y0, recognize_x1, recognize_y1);
+                    if(cam_kill_esc_key == false)
                     {
-                        img_arr2[i] = floatarr[i];
-                    }
-                    /* compare two image arrays */
-                    string match = compare_with_existing_faces(img_arr1,img_arr2);
-                    cout << "return_string:" << match <<"\n";
-                    cv::waitKey(10);
-                    /* the two image array not matching */
-                    if (match == "none")
-                    {
-                        /* checking whether if maxmum retry is happend or not */
-                        if (try_cnt > 2)
+                        /* updates image array 2 */
+                        for (int i = 0; i < 512; i++)
                         {
-                            cv::putText(frame,"Face authentication failed !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                            img_arr2[i] = floatarr[i];
+                        }
+                        /* compare two image arrays */
+                        string match = compare_with_existing_faces(img_arr1,img_arr2);
+                        cout << "return_string:" << match <<"\n";
+                        cv::waitKey(10);
+                        /* the two image array not matching */
+                        if (match == "none")
+                        {
+                            /* checking whether if maximum retry is happened or not */
+                            if (try_cnt > 2)
+                            {
+                                cv::putText(frame,"Face authentication failed !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                                try_cnt = 0;
+                                std::fill(img_arr1.begin(),img_arr1.end(),0);
+                                std::fill(img_arr2.begin(),img_arr2.end(),0);
+                                img1_array1_udated = false;
+                                cv::imshow(app_name, frame);
+                                cv::waitKey(2000);
+                                frame = cv::imread("face_rec_bg.jpg");
+                                cv::imshow(app_name, frame);
+                                cv::waitKey(500);
+                                cv::putText(frame,"Failed 3 attempts. Back to start window.", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
+                                cv::imshow(app_name, frame);
+                                cv::waitKey(2000);
+                            }
+                            /* retry to add new image array */
+                            else 
+                            {
+                                cv::putText(frame,"Face authentication failed,Please try again!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
+                                cv::imshow(app_name, frame);
+                                cv::waitKey(1000);
+                                goto INIT;
+                            }
+                        }
+                        /* both image arrays are matching */
+                        else if(match == "match")
+                        {
+                            cv::putText(frame,"Face authentication using ID is succesfull !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
+                            cv::imshow(app_name, frame);
+                            cv::waitKey(2000);
                             try_cnt = 0;
                             std::fill(img_arr1.begin(),img_arr1.end(),0);
                             std::fill(img_arr2.begin(),img_arr2.end(),0);
                             img1_array1_udated = false;
-                            cv::imshow(app_name, frame);
-                            cv::waitKey(3000);
-                        }
-                        /* retry to add new image array */
-                        else 
-                        {
-                            cv::putText(frame,"Face authentication failed,Please try again!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
-                            cv::imshow(app_name, frame);
-                            cv::waitKey(3000);
-                            goto INIT;
-                        }
+                        }  
                     }
-                    /* both image arrays are matching */
-                    else if(match == "match")
-                    {
-                        cv::putText(frame,"Face authentication using ID is succesfull !!!", cv::Point(50, 150), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
-                        cv::imshow(app_name, frame);
-                        cv::waitKey(3000);
-                        try_cnt = 0;
-                        std::fill(img_arr1.begin(),img_arr1.end(),0);
-                        std::fill(img_arr2.begin(),img_arr2.end(),0);
-                        img1_array1_udated = false;
-                    }  
+                }
+                else
+                {
+                    cv::putText(frame,"Add ID image before validation", cv::Point(220,430), cv::FONT_HERSHEY_SIMPLEX, 0.8, RED, 2);
+                    /* Add ID image and validate button display */
+                    button_display();
+                    cv::imshow(app_name, frame);
+                    cv::waitKey(1000);
                 }
                 recognize_face_clicked = false;
                 cam_kill_esc_key = false;
@@ -773,6 +804,7 @@ int main(int argc, char **argv)
             /* Terminate application */
             else if(termination_clicked)
             {
+                destroyAllWindows();
                 std::cout << "\n[INFO] End Application\n";
                 break;
             }
@@ -780,18 +812,12 @@ int main(int argc, char **argv)
         /* check the termination butten is clicked */
         else
         {
-            winWidth = frame.cols;
-            /* button for add-face */
-            draw_rect_add_txt(str1, add_faces_x0, add_faces_y0, add_faces_x1, add_faces_y1, ASH, WHITE,0.5,1);
-            /* button for recogniz */
-            draw_rect_add_txt(str2, recognize_x0, recognize_y0, recognize_x1, recognize_y1, ASH, WHITE,0.5,1);
-            /* butten for termination */
-            rectangle(frame, Point((winWidth-50), 10), Point((winWidth-20), 40), Scalar(0, 0, 255), -1);
-            putText(frame, "X", Point((winWidth-45), 35), FONT_HERSHEY_SIMPLEX, 1, Scalar(255, 255, 255), 2);
+            /* Add ID image and validate button display */
+            button_display();
         }
         /* sets a common mouse callback for mouse butten click */
-        setMouseCallback(app_name, mouse_callback_button_click);
-        imshow(app_name, frame);
+        cv::setMouseCallback(app_name, mouse_callback_button_click);
+        cv::imshow(app_name, frame);
     }
     destroyAllWindows();
     return 0;

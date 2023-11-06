@@ -10,7 +10,14 @@ workplaces, law enforcement, and retail environments. With a simple and intuitiv
 
 This kind of application makes it easier to automate the authentication process, thus minimizing the redundant human intervention. 
 
-#### Demo
+
+It has 2 modes of running.
+
+1. Using MIPI Camera as input
+2. Using USB Camera as input
+
+
+### Demo:
 
 <img src = "./images/Q02_face.gif" width="480" height="320">
 
@@ -19,6 +26,7 @@ This kind of application makes it easier to automate the authentication process,
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
 - USB Camera
+- MIPI Camera
 - USB Mouse
 - USB Keyboard
 - USB Hub
@@ -33,7 +41,7 @@ This kind of application makes it easier to automate the authentication process,
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
 - The Board Set Up and booted. 
@@ -47,9 +55,11 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone -b face_authentication --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-    >Note: Please verify the git repository url if error occurs.
+    >Note 1: Please verify the git repository url if error occurs.
+
+    >Note 2: This command will download the whole repository, which include all other applications. If you have already downloaded the repository of the same version, you may not need to run this command.
 
 2. Run the docker container and open the bash terminal on the container.
 
@@ -58,7 +68,7 @@ After completion of the guide, the user is expected of following things.
 3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
 
 ```sh
-export PROJECT_PATH=/drp_ai_tvm/data/
+export PROJECT_PATH=/drp-ai_tvm/data/
 ```
 
 4. Go to the `src` directory of the application
@@ -109,7 +119,6 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
     └── root/
         └── tvm/
             ├── facenet_model/
-            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
@@ -127,11 +136,11 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 2. Run the application in the terminal of the RZ/V2L evaluation board kit using the command
     - For MIPI Camera Mode
     ```sh
-    ./face_recognition CAMERA MIPI
+    ./face_recognition MIPI
     ```
     - For USB Camera Mode
     ```sh
-    ./face_recognition CAMERA USB
+    ./face_recognition USB
     ```
 
 #### GUI for running the application
@@ -139,42 +148,39 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 1. The application can be used to authenticate the real time image of the person with the face on the document ID.
 2. This application consists of three pages.
 
-    1. The main page consists of Three buttons.
+    1. The main page consists of Two buttons.
         - ***Add ID image:*** Button for taking pictures from the document IDs.
         - ***Validate:*** Button for validating the real face with document face ID.
-        - ***Close button:*** Used to terminate the application.
 
-        <img src= "./images/face_authentication_front.png" width="420" height="360">
+        <img src=./images/face_authentication_front.PNG width="420" height="360">
         
-    2. Then Click on the `Add ID image` button for recognizing the face from the document ID. We can see a new window. it contains three buttons.
+    2. Then Click on the `Add ID image` button for recognizing the face from the document ID. We can see a new window. it contains two buttons.
         - ***Add Face:*** Button for taking pictures.
         - ***Back:*** It retrieves the previous page(Main page).
-        - ***Exit:*** Used to terminate the application.
 
-        <img src= "./images/FaceAuthentication_Addface.png" width="420" height="360">
+        <img src=./images/FaceAuthentication_Addface.PNG width="420" height="360">
 
         1. The user have to align the documented face to the bounding box provided to be captured.
         2. Click `Add Face` button to capture the photo.
         3. User can Click `Back` button to retrieves the previous page(Main page).
-        4. User can Click `Exit` button to terminate the application.
+        4. User can `Mouse Double Click` to terminate the application.
 
-    3. Then click on the `Validate` button to capture the real time image of the person that needs to be validated. We can see a new Window. It contains three buttons.
+    3. Then click on the `Validate` button to capture the real time image of the person that needs to be validated. We can see a new Window. It contains two buttons.
         - ***Validate:*** It is used to capture the real time image.
         - ***Back:*** It retrieves the previous page(Main page).
-        - ***Exit:*** Used to terminate the application.
 
-        <img src= "./images/FaceAuthentication_validate.png" width="420" height="360">
+        <img src=./images/FaceAuthentication_validate.PNG width="420" height="360">
 
         1. User need to align their face on the box shown on the display.
         2. Click `Validate` button to capture the real time image.Only 3 attempts of validating is provided. After that the application exit to initial state.
         3. User can Click `Back` button to retrieves the previous page(Main page).
-        4. User can Click `Exit` button to terminate the application.
+        4. User can `Mouse Double Click` to terminate the application.
 
 6. Please go through the demo video to get a better picture of the sample application.
 
 #### Application: Termination
-- Application can be terminated by clicking the 'Close button'.
-- Alternatively, User can force close the application using `Exit` button.
+- Application can be terminated by clicking the left mouse double click.
+- Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
 
 ## Application: Specifications
 
