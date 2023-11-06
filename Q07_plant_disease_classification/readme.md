@@ -6,9 +6,10 @@ The Plant leaf disease classification application allows to classify between 38 
 
 The application could be used to classify plant leaf whether healthy or not in agricultural sector 
 
-It has 3 modes of running.
+It has 4 modes of running.
 
 1. Using MIPI Camera
+2. Using USB Camera
 2. Using Image as input
 3. Using Video as input
 
@@ -21,7 +22,8 @@ It has 3 modes of running.
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
-     - MIPI camera 
+- MIPI Camera 
+- USB Camera
 - USB Keyboard
 - USB Mouse
 - USB Hub
@@ -58,8 +60,12 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone -b plant_disease_classification --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
+    > Note 1: Please verify the git repository url if error occurs.
+
+    > Note 2: This command will download whole repository, which include all other applications. if you have already downloaded the repository of the same version, you may not need to run this command.
+    
 2. Run(or start) the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
@@ -113,7 +119,6 @@ Folder structure in the rootfs (SD Card) would look like:
     └── root/
         └── tvm/ 
             ├── plant_dis_onnx/
-            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
@@ -134,11 +139,18 @@ Folder structure in the rootfs (SD Card) would look like:
   cd /home/root/tvm
   ```
 
-##### Mode: Camera Input
+##### Mode: MIPI Camera Input
 - The application takes input from MIPI Coral Camera.
 
 ```sh 
-./plant_leaf_disease_classify CAMERA 
+./plant_leaf_disease_classify MIPI 
+```
+
+##### Mode: USB Camera Input
+- The application takes input from MIPI Coral Camera.
+
+```sh 
+./plant_leaf_disease_classify USB 
 ```
 
 ##### Mode: Image Input
@@ -162,7 +174,7 @@ Folder structure in the rootfs (SD Card) would look like:
 - The application will classify the whether the plant leaf is healthy or diseased. 
 
 ##### Video/Camera Mode
-- The user can draw the box for which specific area to classify from both VIDEO and CAMERA approach. After selecting the area(rectangle box drawn via mouse connected to board) press `enter` key on keyboard connected to the board the inference starts and shows the classification result.
+- The user can draw the box for which specific area to classify from both VIDEO and CAMERA approach. After selecting the area(rectangle box drawn via mouse connected to board) press `Done` button in left corner of the window. The inference starts and shows the classification result.
 
 <img src=./images/Plant_vid_mode_ar_select.JPG width="480">
 
@@ -179,8 +191,8 @@ Frame Per Sec (FPS) is shown on top right corner
 
 
 #### Application: Termination
-- Application can be terminated by pressing `Esc` key on the USB keyboard connected to the board.
-- Alternatively, User can force close the application using `CTRL+c` on the board console.
+- Application can be terminated by Double clicking on the window.
+- Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
 
 
 ## Application: Specifications 

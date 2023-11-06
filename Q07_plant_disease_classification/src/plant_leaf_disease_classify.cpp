@@ -38,7 +38,6 @@
 #include <cstdlib>
 #include <cstring>
 #include "MeraDrpRuntimeWrapper.h"
-#include "PreRuntime.h"
 #include "opencv2/core.hpp"
 #include "iostream"
 #include "opencv2/imgproc.hpp"
@@ -59,13 +58,17 @@
 #include <time.h>
 #include <fcntl.h>    /* For O_RDWR */
 #include <sys/ioctl.h>
+#include <linux/drpai.h>
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
 #define DRPAI_MEM_OFFSET        (0x38E0000)
 
-#define GREEN cv::Scalar(0, 255, 0)
-#define RED cv::Scalar(0, 0, 255)
-#define BLUE cv::Scalar(255, 0, 0)
+#define ASH                     cv::Scalar(150, 150, 150)
+#define WHITE                   cv::Scalar(255, 255, 255)
+#define BLUE                    cv::Scalar(255, 0, 0)
+#define GREEN                   cv::Scalar(0, 255, 0)
+#define RED                     cv::Scalar(0, 0, 255)
+#define BLACK                   cv::Scalar(0, 0, 0)
 
 using namespace cv;
 using namespace std;
@@ -86,12 +89,19 @@ MeraDrpRuntimeWrapper runtime;
 #define threshold 0.6
 
 bool drawing_box  = false;
+bool doneClicked = false;
+bool exitClicked = false;
 
 int slot_id;
 unsigned int out;
 int duration;
+int winWidth = 0;
+int winHeight = 0;
 
 std::string score_per = "";
+std::string input_source = "";
+std::string input_file = "";
+std::string gstreamer_pipeline = "";
 std::vector<float>floatarr(1);
 std::vector<Rect> boxes;
 Point2f box_start, box_end;
@@ -109,8 +119,9 @@ std::map<int, std::string> class_names;
 /* Map to store input source list */
 std::map<std::string, int> input_source_map = {
     {"VIDEO", 1},
-    {"CAMERA", 2},
-    {"IMAGE", 3}
+    {"MIPI", 2},
+    {"USB", 3},
+    {"IMAGE", 4}
 };
 
 /*****************************************
@@ -336,6 +347,21 @@ void classification(int out)
         cv::putText(frame,"Cannot Identify ! ",cv::Point(5, 17), cv::FONT_HERSHEY_SIMPLEX, 0.6, RED, 2);
 }
 /*****************************************
+ * Function Name : ButtonCallBack.
+ * Description   : This is a mouse callback function that is triggered when a mouse button is clicked.
+ * Arguments     : event: represents the mouse event (e.g., left button down, right button up)
+ *                 x, y: the x and y coordinates of the mouse click.
+ *                 flags: additional flags associated with the mouse event (e.g., control key pressed).
+ *                 userdata: a pointer to user-defined data that can be used to pass additional information 
+ *                 to the callback function.
+ ******************************************/
+void buttonCallBack(int event, int x, int y, int flags, void *userdata)
+{
+    if (event == cv::EVENT_LBUTTONDBLCLK)
+        exitClicked = true;
+}
+
+/*****************************************
  * Function Name     : get_patches
  * Description       : Function for drawing bounding box for parking slot.
  * Arguments         : event = int number
@@ -345,17 +371,26 @@ void classification(int out)
 void get_patches(int event, int x, int y, int flags, void *param)
 {
     cv::Mat frame_copy = img.clone();
+    Rect doneButton = Rect(0, 0, 60, 30);
     if (event == EVENT_LBUTTONDOWN)
     {
-        drawing_box = true;
-        box_start = Point2f(x, y);
+        if (doneButton.contains(Point(x, y)))
+        {
+            doneClicked = true;
+            drawing_box = false;
+        }
+        else
+        {
+            drawing_box = true;
+            box_start = Point2f(x, y);
+        }
     }
-    else if (event == EVENT_MOUSEMOVE)
+    else if (event == EVENT_MOUSEMOVE && drawing_box == true)
     {
         if (drawing_box)
             box_end = Point2f(x, y);
     }
-    else if (event == EVENT_LBUTTONUP)
+    else if (event == EVENT_LBUTTONUP && drawing_box == true)
     {
         drawing_box = false;
         box_end = Point2f(x, y);
@@ -364,6 +399,11 @@ void get_patches(int event, int x, int y, int flags, void *param)
         rect = cv::Rect(box_start, box_end);
         Rect box(box_start, box_end);
         boxes.push_back(box);
+    }
+    else if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        exitClicked = true;
+        drawing_box = false;
     }
 
     if (drawing_box)
@@ -381,6 +421,10 @@ void get_patches(int event, int x, int y, int flags, void *param)
     box_end = Point2f(x, y);
     cv::resize(frame_copy, frame_copy, cv::Size(FRAME_IN_W,FRAME_IN_H), cv::INTER_LINEAR);
     imshow("image", frame_copy);
+    if(doneClicked || exitClicked)
+    {
+        destroyAllWindows();
+    }
 }
 /*****************************************
  * Function Name     : load_label_file
@@ -419,27 +463,25 @@ int draw_rectangle(void)
 {
     slot_id = boxes.size();
     cv::resize(img, img, cv::Size(FRAME_IN_W,FRAME_IN_H), cv::INTER_LINEAR);
+    winWidth = img.cols;
+    winHeight = img.rows;
     for (int i = 0; i < boxes.size(); i++)
     {
         rectangle(img, boxes[i], RED, 2);
         putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, BLUE, 2);
     }
-    unsigned int key = 0;
-    cv::putText(img, "Select area to classify(draw box)", cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX, 0.8, GREEN, 2);
-    cv::putText(img, "and Press 'ENTER' key", cv::Point(50, 77), cv::FONT_HERSHEY_SIMPLEX, 0.8, RED, 2);
+    cv::putText(img, "Select area to classify(draw box)", cv::Point(60, 70), cv::FONT_HERSHEY_SIMPLEX, 0.6, GREEN, 2);
+    Rect doneButton(0, 0, 60, 30);
+    rectangle(img, doneButton, ASH, -1);
+    putText(img, "Done", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
+    putText(img,"Double Click to exit the Application!!", Point((int)(winWidth/2 - winWidth/10) + 50, (int)(winHeight) -20), cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, LINE_AA);
+    // cv::putText(img, "and Press 'ENTER' key", cv::Point(50, 77), cv::FONT_HERSHEY_SIMPLEX, 0.8, RED, 2);
     cv::namedWindow("image", cv::WINDOW_NORMAL);
     cv::imshow("image", img);
     cv::setMouseCallback("image", get_patches, &img);
-    
-    w_key:
-    key = cv::waitKey(0);
-    if(key == 13)
-    {
-        cv::destroyAllWindows();
-        return 0;
-    }
-    else
-        goto w_key;
+    cv::waitKey(0);
+    cv::destroyAllWindows();
+    return 0;
 }
 
 /*****************************************
@@ -471,6 +513,45 @@ void mipi_cam_init(void)
         }
     }
 }
+
+/*****************************************
+ * Function Name : query_device_status
+ * Description   : function to check USB/MIPI device is connectod.
+ * Return value  : media_port, media port that device is connectod.
+ ******************************************/
+std::string query_device_status(std::string device_type)
+{
+    std::string media_port = "";
+    /* Linux command to be executed */
+    const char *command = "v4l2-ctl --list-devices";
+    /* Open a pipe to the command and execute it */
+    FILE *pipe = popen(command, "r");
+    if (!pipe)
+    {
+        std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
+        return media_port;
+    }
+    /* Read the command output line by line */
+    char buffer[128];
+    size_t found;
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr)
+    {
+        std::string response = std::string(buffer);
+        found = response.find(device_type);
+        if (found != std::string::npos)
+        {
+            fgets(buffer, sizeof(buffer), pipe);
+            media_port = std::string(buffer);
+            pclose(pipe);
+            /* return media port*/
+            return media_port;
+        }
+    }
+    pclose(pipe);
+    /* return media port*/
+    return media_port;
+}
+
 /*****************************************
  * Function Name : capture_frame
  * Description   : function to open camera or video source with respect to the source pipeline.
@@ -478,7 +559,6 @@ void mipi_cam_init(void)
  ******************************************/
 void capture_frame(std::string cap_pipeline)
 {
-    int8_t wait_key;
     int8_t key  = 0;
     std::cout << "cap pipeline:  " << cap_pipeline << "\n";
     /* Capture stream of frames from camera using Gstreamer pipeline */
@@ -508,7 +588,7 @@ void capture_frame(std::string cap_pipeline)
         return;
     }
     /* Taking an everlasting loop to show the video */     
-    while (1)
+    while (!exitClicked)
     {
         cap >> frame;
         /* Breaking the loop if no video frame is detected */
@@ -519,25 +599,129 @@ void capture_frame(std::string cap_pipeline)
         }
         cv::resize(frame, frame, cv::Size(FRAME_IN_W,FRAME_IN_H), cv::INTER_LINEAR);
         cout<< boxes[0] <<endl;
+        cout << "reach\n";
         frames = frame(boxes[0]);
         out = run_inference(frames);
         classification(out);
         std::string stips2 = std::to_string(duration);
         int64_t FPS = 1000/duration;
         std::cout<<"\nFPS: "<<FPS<<endl;
-        cv::putText(frame, "FPS: "+std::to_string(FPS), cv::Point(553, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7, BLUE, 2);        
+        cv::putText(frame, "FPS: "+std::to_string(FPS), cv::Point(FRAME_IN_W-100, 20), cv::FONT_HERSHEY_SIMPLEX, 0.7, BLUE, 2);        
         cv::rectangle(frame, boxes[0], BLUE, 2);
+        putText(frame,"Double Click to exit the Application!!", Point((int)(FRAME_IN_W/2 - FRAME_IN_W/10) + 50, (int)(FRAME_IN_H) -20), cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, LINE_AA);
         cv::imshow("output", frame);
-        wait_key = waitKey(1);
-        if(wait_key == 27)
-            break;
+        cv::setMouseCallback("output", buttonCallBack);
+        waitKey(1);
     }
     cap.release();/* Releasing the buffer memory */
     destroyAllWindows();
     return;
 }
+
+/*****************************************
+ * Function Name : input_source_select
+ * Description   : function to select input source
+ * Return value  : 0  = Input source selected
+ *                 -1 = Error selecting inputh source
+ ******************************************/
+int input_source_select(void)
+{
+     /* Get input Source VIDEO/CAMERA */
+    switch (input_source_map[input_source])
+    {
+    /* Input Source : Video */
+    case 1:
+        {
+            std::cout << "[INFO] Video \n";
+            gstreamer_pipeline = "filesrc location=" + input_file + " ! decodebin ! videoconvert ! appsink";
+        }
+        break;
+    /* Input Source : MIPI Camera */
+    case 2:
+        {
+            std::cout << "[INFO] MIPI CAMERA \n";
+            std::string media_port = query_device_status("CRU");
+            if (media_port == "")
+            {
+                fprintf(stderr, "[ERROR] MIPI Camera not connected. \n");
+                return -1;
+            }
+            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+            /* MIPI Camera Setup */
+            mipi_cam_init();
+        }
+        break;
+    /* Input Source : USB Camera */
+    case 3:
+        {
+            std::cout << "[INFO] USB CAMERA \n";
+            std::string media_port = query_device_status("usb");
+            if (media_port == "")
+            {
+                fprintf(stderr, "[ERROR] USB Camera not connected. \n");
+                return -1;
+            }
+            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+        }
+        break;
+    /* Input Source : Image */
+    case 4:
+        {
+            std::cout << "[INFO] Image \n";
+            /* read input image */
+            frame = cv::imread(input_file);
+        }
+        break;
+    default:
+        {
+            std::cout << "[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO|IMAGE]" << std::endl;
+            return -1;
+        }
+    }
+    return 0;
+}
+
 int main(int argc, char **argv)
 {
+
+    if (argc < 2 || argc > 3) 
+    {
+        std::cout << "[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO|IMAGE]" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+
+    input_source = argv[1];
+
+    if (input_source != "VIDEO" && input_source != "IMAGE" && argc == 3) 
+    {
+        std::cout << "[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO|IMAGE]" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+    
+    if ((input_source == "VIDEO" || input_source == "IMAGE")) 
+    {
+        if(argc == 2)
+        {
+            std::cout << "[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO|IMAGE]" << std::endl;
+            std::cout << "\n[INFO] End Application\n";
+            return -1;
+        }
+        input_file = argv[2];
+    }
+
+    /*Select input Source MIPI/USB/IMAGE/VIDEO*/
+    if(input_source_select() == -1)
+    {
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+
     /* Model Binary */
     std::string model_dir = "plant_dis_onnx";
     /*  class list file */
@@ -568,46 +752,19 @@ int main(int argc, char **argv)
         return -1;
     }
     cout << "loaded model :" << model_dir << "\n\n";
-     /* Get input Source VIDEO/CAMERA */
-    std::string input_source = argv[1];
-    switch (input_source_map[input_source])
+
+    if(input_source == "IMAGE")
     {
-    /* Input Source : Video */
-    case 1:
-        {
-            std::cout << "[INFO] Video \n";
-            /* Get input Source VIDEO filename */
-            std::string vid_src = argv[2];
-            std::string gstreamer_pipeline = "filesrc location="+vid_src+" ! decodebin ! videoconvert ! appsink";
-            /* Open camera and capture frame*/
-            capture_frame(gstreamer_pipeline);
-        }
-        break;
-    /* Input Source : Camera */
-    case 2:
-        {
-            std::cout << "[INFO] CAMERA \n";
-            std::string gstreamer_pipeline = "v4l2src device=/dev/video0 ! videoconvert ! appsink";
-            /* MIPI Camera Setup */
-            mipi_cam_init();
-            /* Open camera and capture frame*/
-            capture_frame(gstreamer_pipeline);
-        }
-        break;
-    /* Input Source : Image */
-    case 3:
-        {
-            std::cout << "[INFO] Image \n";
-            /* read input image */
-            frame = cv::imread(argv[2]);
-            out = run_inference(frame);
-            classification(out);
-            cv::imshow("output", frame);
-            cv::waitKey(3000);
-        }
-        break;
-    default:
-        std::cout << "[INFO] Invalid input argument \n";
+        out = run_inference(frame);
+        classification(out);
+        cv::imshow("output", frame);
+        cv::waitKey(3000);
+    } 
+    else
+    {
+        /* Open camera and capture frame*/
+        capture_frame(gstreamer_pipeline);
     }
     std::cout<< "\n[INFO] Application End \n";
+    return 0;
 }
