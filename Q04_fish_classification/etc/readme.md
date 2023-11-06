@@ -18,7 +18,7 @@ In web application mode, User can use any host machine (Windows/Linux) which is 
 <img src=./images/hardware_req.JPG width="240" >
 
 
-[Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
+[Details](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started)
 
 
 #### Software Requirements for building the Webapp
@@ -109,7 +109,7 @@ chmod a+x init_app.sh
 
 * Please note that the Host PC require internet connection to run the web application. 
 
-* Get IP config of the RZ/V2L Board, Run the command on the RZ/V2L board terminal.
+* Get IP of the RZ/V2L Evaluation Board Kit, Run the command on the RZ/V2L Evaluation Board Kit terminal.
 
 ```sh
 ifconfig

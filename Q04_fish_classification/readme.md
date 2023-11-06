@@ -9,9 +9,10 @@ The application could be used to classify fishes during fish farming, or from ce
 It has 4 modes of running.
 
 1. Using MIPI Camera
-2. Using Image as input
-3. Using Video as input
-4. Input from Websocket [Link to Readme](./etc/readme.md)
+2. Using USB Camera
+3. Using Image as input
+4. Using Video as input
+5. Input from Websocket
 
 #### Demo:
 
@@ -23,7 +24,8 @@ It has 4 modes of running.
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
-    - Coral Camera
+- MIPI Camera
+- USB Camera
 - USB Mouse
 - USB Keyboard
 - USB Hub
@@ -56,9 +58,12 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone -b fish_classification --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-   >Note: Please verify the git repository url if error occurs.
+   >Note 1: Please verify the git repository url if error occurs.
+
+   >Note 2: This command will download whole repository, which include all other applications. if you have already downloaded the repository of the same version, you may not need to run this command.
+
 2. Run the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container terminal.
@@ -103,12 +108,12 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |output.mp4 | sample video |
 |fish_classification | application file. |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
-   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `fish_classification` application file if the application file is built at [build stage](#application-build-stage)
+Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
+1. Copy following files to the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
+   1. The files present in [exe](./exe) directory, which are listed in the table above.
+   2. The generated `fish_classification` application file if the application file is built at [build stage](#application-build-stage)
 
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
 
 ##### Folder Structure in the board
 ```sh
@@ -131,25 +136,27 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 ## Application: Runtime Stage
 
-##### Mode: Camera Input
+* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
+  * Go to the `/home/root/tvm` directory of the rootfs
+  ```sh
+  cd /home/root/tvm
+  ```
+##### Mode: MIPI Camera Input
 - The application takes input from MIPI Coral Camera.
-
-```sh
-cd /home/root/tvm
-```
 
 > Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
 ```sh 
-./fish_classification CAMERA 
+./fish_classification MIPI 
 ```
 
-<img src=./images/fish_camera_mode.JPG width="480">
+##### Mode: USB Camera Input
+- The application takes input from USB Camera.
 
+```sh 
+./fish_classification USB 
+```
 ##### Mode: Image Input
 
-```sh
-cd /home/root/tvm
-```
 ```sh
 ./fish_classification IMAGE Bangus.jpg
 ```
@@ -161,20 +168,14 @@ cd /home/root/tvm
 
 ##### Mode: Video Input
 
-```sh
-cd /home/root/tvm
-```
 ```sh 
 ./fish_classification VIDEO output.mp4
 ```
 > Note: Tested with video file format `.mp4` and `.avi`.
 
-<img src=./images/fish_video_mode.JPG width="480">
-
-
 ### Application: Termination
-- Press `Esc` key to terminate the application.
-
+- Use `Mouse Double Click` to terminate the application.
+- Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
 
 ## Application: Specifications
 

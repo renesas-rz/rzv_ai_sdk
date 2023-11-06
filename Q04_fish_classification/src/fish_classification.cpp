@@ -37,13 +37,6 @@
 #include <climits>
 #include <cstdlib>
 #include <cstring>
-#include "MeraDrpRuntimeWrapper.h"
-#include "PreRuntime.h"
-#include "opencv2/core.hpp"
-#include "iostream"
-#include "opencv2/imgproc.hpp"
-#include "opencv2/highgui.hpp"
-#include "opencv2/opencv.hpp"
 #include <vector>
 #include <glob.h>
 #include <cmath>
@@ -54,17 +47,25 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <ifaddrs.h>
-#include <linux/drpai.h>
-#include <fcntl.h>    /* For O_RDWR */
 #include <unistd.h>
+#include <linux/drpai.h>
+#include <fcntl.h>    
 #include <sys/ioctl.h>
+#include "MeraDrpRuntimeWrapper.h"
+#include "opencv2/core.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/opencv.hpp"
+
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
 #define DRPAI_MEM_OFFSET        (0x38E0000)
 
 
-#define GREEN cv::Scalar(0, 255, 0)
-#define RED cv::Scalar(0, 0, 255)
+#define GREEN   cv::Scalar(0, 255, 0)
+#define RED     cv::Scalar(0, 0, 255)
+#define BLUE    cv::Scalar(255, 0, 0)
+
 /*Model input info*/
 #define MODEL_IN_H (224)
 #define MODEL_IN_W (224)
@@ -73,12 +74,19 @@
 /* DRP-AI TVM[*1] Runtime object */
 MeraDrpRuntimeWrapper model_runtime;
 
+/* flags to detect double click */
+bool termination_clicked = false;
 
 int duration,fps;
 unsigned int out;
+unsigned int winWidth   = 0;
+unsigned int winHeight  = 0;
+
 uint32_t out_size_arr;
+
 std::vector<float> floatarr(1);
 std::string score_per = "";
+
 cv::Mat frame;
 cv::VideoCapture cap;
 
@@ -86,11 +94,14 @@ cv::VideoCapture cap;
 std::map<int, std::string> class_names;
 
 /* Map to store input source list */
-std::map<std::string, int> input_source_map = {
+std::map<std::string, int> input_source_map = 
+{
     {"WS", 1},
     {"VIDEO", 2},
     {"IMAGE", 3},
-    {"CAMERA", 4}};
+    {"MIPI", 4},
+    {"USB", 5}
+};
 
 /*****************************************
 * Function Name : get_drpai_start_addr
@@ -338,18 +349,44 @@ std::string getipaddress()
  ******************************************/
 void show_result(int out)
 {
+    /* output window fixed resolution 1024*768 */
+    cv::resize(frame,frame,cv::Size(800,600));
+    std::string text = "Double Click to exit the Application!!";
+    winWidth = frame.cols;
+    winHeight = frame.rows;
     if (out != -1)
     {
         std::cout << "\n[INFO] Identified Fish: " << class_names[out] << "\n\n";
-        cv::putText(frame,  "Fish class: " + std::string(class_names[out]), cv::Point(20, 40), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2);
-        cv::putText(frame,  "Score: " + score_per, cv::Point(20, 70), cv::FONT_HERSHEY_SIMPLEX, 0.8, GREEN, 2);
+        cv::putText(frame,  "Fish class: " + std::string(class_names[out]), cv::Point(20, 40), cv::FONT_HERSHEY_SIMPLEX, 1.0, GREEN, 2,cv::LINE_AA);
+        cv::putText(frame,  "Score: " + score_per, cv::Point(20, 70), cv::FONT_HERSHEY_SIMPLEX, 0.8, GREEN, 2,cv::LINE_AA);
     }
     else
         cv::putText(frame,  "Cannot Identify !", cv::Point(20, 60), cv::FONT_HERSHEY_SIMPLEX, 1.0, RED, 2);
-    cv::putText(frame,  "AI-Inference Time(ms): "+std::to_string(duration), cv::Point(20, 95), cv::FONT_HERSHEY_SIMPLEX, 0.7, GREEN, 2);    
-    cv::putText(frame,  "FPS: " + std::to_string(fps), cv::Point(20,120), cv::FONT_HERSHEY_SIMPLEX, 0.7, GREEN, 2);    
+    cv::putText(frame,  "AI-Inference Time(ms): "+std::to_string(duration), cv::Point(20, 95), cv::FONT_HERSHEY_SIMPLEX, 0.7, GREEN, 2,cv::LINE_AA);    
+    cv::putText(frame,  "FPS: " + std::to_string(fps), cv::Point(20,120), cv::FONT_HERSHEY_SIMPLEX, 0.7, GREEN, 2,cv::LINE_AA);
+    cv::Size text_size = cv::getTextSize(text,cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, 0);
+    cv::Point text_pos(winWidth - text_size.width - 10, winHeight - 10);
+    putText(frame, text, text_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, cv::LINE_AA);
 }
 
+/*****************************************
+ * Function Name : mouse_callback_button_click.
+ * Description   : This is a mouse callback function that is triggered when a mouse button is clicked.
+ * Arguments     : event: represents the mouse event (e.g., left button down, right button up)
+ *                 x, y: the x and y coordinates of the mouse click.
+ *                 flags: additional flags associated with the mouse event (e.g., control key pressed).
+ *                 userdata: a pointer to user-defined data that can be used to pass additional information 
+ *                 to the callback function.
+ ******************************************/
+void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
+{
+    /*mouse button double click callback*/ 
+    if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        std::cout << "[INFO] Double tap !!\n";
+        termination_clicked = true;
+    }
+}
 
 /*****************************************
  * Function Name : capture_frame
@@ -359,7 +396,6 @@ void show_result(int out)
 void capture_frame(std::string cap_pipeline)
 {
     int wait_key;
-    std::cout << "cap pipeline" << cap_pipeline << "\n";
     /* Capture stream of frames from camera using Gstreamer pipeline */
     cap.open(cap_pipeline, cv::CAP_GSTREAMER);
     if (!cap.isOpened())
@@ -382,9 +418,10 @@ void capture_frame(std::string cap_pipeline)
         {
             out = run_inference(frame);
             show_result(out);
-            imshow("output", frame);
+            cv::imshow("output", frame);
             wait_key = cv::waitKey(30); /* Allowing 30 milliseconds frame processing time and initiating break condition */
-            if (wait_key == 27) /* If 'Esc' is entered break the loop */
+            cv::setMouseCallback("output", mouse_callback_button_click);
+            if(termination_clicked == true)
                 break;
         }
     }
@@ -424,8 +461,66 @@ void mipi_cam_init(void)
     }
 }
 
+/*****************************************
+ * Function Name : query_device_status
+ * Description   : function to check USB/MIPI device is connectod.
+ * Return value  : media_port, media port that device is connectod.
+ ******************************************/
+std::string query_device_status(std::string device_type)
+{
+    std::string media_port = "";
+    /* Linux command to be executed */
+    const char *command = "v4l2-ctl --list-devices";
+    /* Open a pipe to the command and execute it */
+    FILE *pipe = popen(command, "r");
+    if (!pipe)
+    {
+        std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
+        return media_port;
+    }
+    /* Read the command output line by line */
+    char buffer[128];
+    size_t found;
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr)
+    {
+        std::string response = std::string(buffer);
+        found = response.find(device_type);
+        if (found != std::string::npos)
+        {
+            fgets(buffer, sizeof(buffer), pipe);
+            media_port = std::string(buffer);
+            pclose(pipe);
+            /* return media port*/
+            return media_port;
+        }
+    }
+    pclose(pipe);
+    /* return media port*/
+    return media_port;
+}
+
 int main(int argc, char **argv)
 {
+    if (argc < 2 || argc > 3) 
+    {
+        std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] usage: ./fish_classification MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+    else
+    {
+        std::string input_source = argv[1];
+        if(((input_source != "VIDEO" && input_source != "IMAGE") && argc == 3) || 
+           ((input_source != "MIPI" && input_source != "USB") && argc == 2))
+        {
+            std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[INFO] usage: ./fish_classification MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
+            std::cout << "\n[INFO] End Application\n";
+            return -1;
+        }
+    }
+
     /* Model Binary */
     std::string model_dir = "fish_classification_model";
     /* Fish class list file */
@@ -448,6 +543,7 @@ int main(int argc, char **argv)
         /*Error processing, i.e., return, goto, etc.*/
         return -1;
     }
+
     runtime_status = model_runtime.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET);
     if(!runtime_status)
     {
@@ -530,23 +626,53 @@ int main(int argc, char **argv)
             std::cout << "[INFO] Image \n";
             /* read input image */
             frame = cv::imread(argv[2]);
+            if (frame.empty())
+            {
+                std::cout << "[ERROR] corrupted image frame !!\n";
+                break;
+            }
             out = run_inference(frame);
             show_result(out);
             cv::imshow("output", frame);
             cv::waitKey(1000);
         }
         break;
-        /* Input Source : Camera */
+        /* Input Source : MIPI */
         case 4:
         {
-            std::cout << "[INFO] CAMERA \n";
-            std::string gstreamer_pipeline = "v4l2src device=/dev/video0 ! videoconvert ! appsink";
+            std::cout << "[INFO] MIPI CAMERA \n";
             /* MIPI Camera Setup */
             mipi_cam_init();
+            /* check the status of device */
+            std::string media_port = query_device_status("CRU");
+            if (media_port == "")
+            {
+                fprintf(stderr, "\n[ERROR] MIPI Camera not connected. \n");
+                return -1;
+            }
+            /* gstremer pipeline to read input image source */
+            std::string gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+            /* Open camera and capture frame*/
+            capture_frame(gstreamer_pipeline);
+            break;
+        }
+        /* Input Source : USB */
+        case 5:
+        {
+            std::cout << "[INFO] USB CAMERA \n";
+            /* check the status of device */
+            std::string media_port = query_device_status("usb");
+            if (media_port == "")
+            {
+                fprintf(stderr, "\n[ERROR] USB Camera not connected. \n");
+                return -1;
+            }
+            /* gstremer pipeline to read input image source */
+            std::string gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
             /* Open camera and capture frame*/
             capture_frame(gstreamer_pipeline);
             break;
         }
     }
-    std::cout << "[INFO] Application End\n";
+    std::cout << "\n[INFO] Application End\n";
 }
