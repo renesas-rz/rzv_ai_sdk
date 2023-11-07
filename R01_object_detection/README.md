@@ -50,6 +50,10 @@ After completion of the guide, the user is expected of following things.
     cd <path_to_data_folder_on_host>/data
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
+    > Note 1: Please verify the git repository url if error occurs
+
+    > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
+    
 2. Run (or start) the docker container and open the bash terminal on the container.  
 Here, we use the `rzv2l_ai_sdk_container` as the name of container created from  `rzv2l_ai_sdk_image` docker image.  
     > Note that all the build steps/commands listed below are executed on the docker container bash terminal.  
