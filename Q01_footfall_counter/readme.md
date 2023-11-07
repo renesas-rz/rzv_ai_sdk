@@ -14,8 +14,13 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 
 **NOTE:** This sample application can be used to track different objects, like animal, car, etc. The list of objects that can be tracked are provided in [coco labels txt](./exe/coco-labels-2014_2017.txt) file. 
 
+It has 2 modes of running.
+
+1. Using MIPI Camera as input
+2. Using USB Camera as input
+
 #### Demo 
-<img src = "./images/ObjectTracking.gif" width="480" height="320">
+<img src = "./images/Q01_footfall.gif" width="480" height="320">
 
 
 ## Application: Requirements
@@ -39,9 +44,7 @@ The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/p
 - OpenCV 4.x
 - C++11 or higher 
 - git 2.41 (or above)
-- [Boost C++ libraries](https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source) 
 - [Eigen linear algebra library](https://eigen.tuxfamily.org/index.php?title=Main_Page)
-
 
 ## Application: Build Stage
 
@@ -61,8 +64,12 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone -b footfall_counter --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
+    > Note 1: Please verify the git repository url if error occurs.
+
+    > Note 2: This command will download the whole repository, which include all other applications. If you have already downloaded the repository of the same version, you may not need to run this command.
+
 2. Run(or start) the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
@@ -77,33 +84,7 @@ export PROJECT_PATH=/drp_ai_tvm/data/
 ```sh
 cd ${PROJECT_PATH}/rzv_ai_sdk/Q01_footfall_counter/src/
 ```
-
-5. Download the `boost` tar file
-```sh
-wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
-```
->**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the `src` folder present on the mounted `data` directory.
-
-6. Extract tar file to the current location 
-
-```sh
-tar -xvf boost_1_81_0.tar.bz2
-```
-
-7. Copy the boost files to the `include` folder 
-```sh
-mkdir -p include
-cp -r boost_1_81_0/boost include/
-```
-
-8. Remove boost files [Optional]
-
-```sh
-rm boost_1_81_0.tar.bz2
-rm -rf boost_1_81_0
-```
-
-9. Build the application on docker environment by following the steps below
+5. Build the application on docker environment by following the steps below
 
 ```sh
 mkdir -p build && cd build
@@ -116,7 +97,6 @@ make -j$(nproc)
 ```
 The following application file would be generated in the `src/build` directory
 - object_tracker
-
 
 ## Application: Deploy Stage
 
@@ -180,19 +160,19 @@ Folder structure in the rootfs (SD Card) would look like:
 
 The runtime application will look something like this 
 
-<img src=./images/obj_trk_out.JPG width="480">
+<img src="./images/Q01_image.png" width="480">
  
 - The application will track the person if the person crossed the `red line` and increment the `human count` and decrement it when the person crosses again.
     - As per current logic, left to right crossing will increment the human count, and right to left crossing will decrement the count.
     - Users need to arrange the line according to the requirement.
 - The application will also keep track of the person in the available region `green box` and increment the `person in region` count. It will also decrement the count if the person leaves the area.
-- Frame Per Sec (FPS) is shown on top right corner. 
+- The pre-processing time, inference time, and post-processing time are displayed in the top right corner, respectively. 
 - Each person tracked is given a unique `id`.
     - The `time` parameter of the tracked person indicates the time spent on the desired location. This incremented at regular interval.
 
 #### Application: Termination
-- Application can be terminated by long pressing `esc` key (around 10 seconds) on the keyboard connected to the board.
-- Alternatively, User can force close the application using `CTRL+c` on the board console.
+- Application can be terminated by clicking the left mouse double click.
+- Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
 
 ## Application: Configuration 
 
@@ -211,11 +191,11 @@ The n value indicates the number of points that define a region, followed by x a
 for each point.\
 The region is defined by connecting these points in the order they are listed.
 
-- The [**tracking**] section contains three key-value pairs.\
-The conf value is a confidence threshold used for object tracking, the kmin value is the minimum number of key-points required for tracking and objects value is the objects that should be tracked.
+- The [**tracking**] section contains two key-value pairs.\
+The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number of key-points required for tracking.
 
-- The [**display**] section contains two key-value pairs. 
-The display_text is the text to display along the count of the objects tracked, and region_display_text is the text to display along the count of the objects in the region of interest.
+- The [**display**] section contains two key-value pairs.\
+The display_text shows the no of objects that crossed the line and region_display_text shows the object present in the region.
 
 >**Note:** The object tracked here is of class "Person", it can be changed to other classes present on the coco labels.
 
