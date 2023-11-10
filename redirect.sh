@@ -27,7 +27,6 @@ done
 
 git add .
 git commit -m "redirect latest to new version $VERSION"
-# git pull origin origin/gh-pages
 git push origin origin/gh-pages
 
 
