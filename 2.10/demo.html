@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2023-10-05T19:14:37+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=db281ce319c3d4d84b53a94e531130a4cdbd206a">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/2.00/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/">Renesas RZ/V AI</a></h1> -->
+
+        <h1 class="web-title"><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/">Renesas <br class="br-sp-web-title">RZ/V AI</a></h1>
+        <p class="version"><u><a class="version" href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/version.html">2.00</a></u></p>
+        
+
+        <!-- <p>The best solution for starting your AI applications.</p> -->
+        <p>The best solution for <br class="br-sp">starting your AI applications.</p>
+        <p class="small">Provided by Renesas Electronics Corporation</p>
+        <br>
+
+
+        
+
+        
+        <div class="container">
+          <div class="row">
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/board.png" alt="board" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
+              </ul>
+            </div>
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/ai_sdk.svg" alt="ai_sdk" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        
+
+        <p class="view">
+          <h5 style="margin-bottom: 5px;">
+            To keep you updated, <br class="br-nsp"><b>Watch</b> our <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a><br> 
+          </h5>
+          <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a>
+        </p>
+        
+
+        <div class="web_index">
+          <input type="checkbox" id="menu-btn-check">
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <div class="menu-content">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/ai-sdk.html">AI SDK</a>
+              </summary>
+            </details>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/#getting-started">Getting Started</a>
+              </summary>
+              <ul class="index">
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step1">1. Obtain a Board</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step2">2. Obtain Necessary Environment</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step3">3. Obtain AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step4">4. Extract AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step5">5. Setup AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step6">6. Build AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step7">7. Deploy AI Application</a></li>
+                    <ul class="index">
+                      <li>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step7prep">Preparation</a>
+                      </li>
+                      <li>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step7-1">1. Setup the Board</a>
+                      </li>
+                      <li>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step7-2">2. Deploy Application to the Board</a>
+                      </li>
+                      <li>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step7-3">3. Boot the Board</a>
+                      </li>
+                    </ul>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html#step8">8. Run AI Application</a></li>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/appendix.html">Appendix</a>
+                  </summary>
+                    <ul class="index">
+                      <li>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/appendix.html#A1">A1. Setup for eMMC Bootloader</a>
+                      </li>
+                      <li>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/appendix.html#A2">A2. Format SD card</a>
+                      </li>
+                      <li>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/appendix.html#A3">A3. Shutdown the Board</a>
+                      </li>
+                    </ul>
+                  </details>
+              </ul>
+            </details>
+
+    <!-- Copy index_list.html start -->
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/#ai-applications">AI Applications</a>
+              </summary>
+              <ul class="index">
+                <h6 style="margin-bottom: 0px;">
+                <font color="#267CB9">
+                &#10004;: Newly added
+                <br>
+                *: Updated
+                </font>
+              </h6>
+                    <details open>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#agriculture">Agriculture</a>
+                  </summary>
+                  <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#agriculture1">Defense wild animals for crop</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#agriculture2">&#10004;Fruit and Vegetable Plant Disease Check</a></li>
+                  </ul>
+                </details>
+                <details open>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building">Smart Building</a>
+                  </summary>
+                  <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building1">Elevator passengers Counting</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building2">*Conference Room Usage Monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building3">*Lighting Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building4">Security Area Intrusion Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building5">Wear management at construction sites</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building6">*Touchless Controller for elevator</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#building7">&#10004;Employee ID check for Restricted Area</a></li>
+                  </ul>
+                </details>
+                <details open>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city">Smart City</a>
+                  </summary>
+                  <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city1">*Congestion Detection in Railway Station</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city2">Prohibited Area Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city3">Distracted driving detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city4">&#10004;Duration monitoring for surveillance camera</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city5">Parking Spot Reservation</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city6">&#10004;Illegal Parking Check</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city7">Passport check support</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city8">&#10004;Bus passenger counting</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city9">&#10004;Backtravel Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#city10">&#10004;Violence Activity Check in Surveillance Camera</a></li>
+                  </ul>
+                </details>
+                <details open>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#healthcare">Healthcare</a>
+                  </summary>
+                  <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#healthcare1">Physical Condition Monitor</a></li>
+                  </ul>
+                </details>
+                <details open>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#home">Smart Home</a>
+                  </summary>
+                  <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#home1">*Air Conditioner Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#home2">&#10004;Smart TV</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#home3">Pet Detection in Kitchen and Child's Room</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#home4">*Touchless Controller for Kitchen Appliance</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#home5">&#10004;Food Package Expiry Date Check</a></li>
+                  </ul>
+                </details>
+                <details open>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#industrial">Industrial</a>
+                  </summary>
+                  <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#industrial1">Work Area Personnel Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#industrial2">&#10004;Access Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#industrial3">Helmet and safety vest wearing monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#industrial4">*Touchless Controller for Industrial machine</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#industrial5">&#10004;Driver Monitoring System</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#industrial6">&#10004;Species check support in Fish Factory</a></li>
+                  </ul>
+                </details>
+                <details open>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#retail">Retail</a>
+                  </summary>
+                  <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#retail1">*Congestion Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#retail2">&#10004;Smart POS</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#retail3">&#10004;Marketing Interest Analysis</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#retail4">Staying and flow line monitoring</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/applications.html#retail5">&#10004;Exhibition Participants Monitoring</a></li>
+                  </ul>
+                </details>
+              </ul>
+            </details>
+
+    <!-- Copy index_list.html end -->
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/#demo">Demo</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html">How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#shutdown">3. Shutdown process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#tips">Tips</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <br>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/#video">Video</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/#training-video">Training video</a>
+                </li>
+              </ul>
+            </details>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div>
+          
+          <p>This project is maintained by <a href="https://github.com/renesas-rz">renesas-rz</a></p>
+          
+          <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </div>
+      </header>
+      <section>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+
+<script>
+  $(function(){
+    $("#reference1").load("https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html reference1");
+    $("#reference2").load("https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html reference2");
+    $("#reference3").load("https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html reference3");
+    $("#reference4").load("https://renesas-rz.github.io/rzv_ai_sdk/2.00/appendix.html a3reference");
+  });
+</script>
+
+<style>
+  /**
+   * This <style> tag is used to hide some rows of the table in the "Hardware Preparation" section.
+   * This style applies only to this demo.md file, so do not put it in assets/css/style.scss file.
+   */
+  #EQ_WindowsPC{
+    display:none;
+  }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="top col-12">
+AI Applications Demo<br />
+How to Use Guide
+        </div>
+    </div>
+</div>
+<p><br />
+<br /></p>
+
+<p>This guide supports <b>RZ/V2L AI SDK v2.00</b></p>
+
+<p><br /></p>
+
+<h2 id="overview">Overview</h2>
+
+<p>This page explains how to setup the RZ/V2L Evaluation Board Kit (EVK) using the demo binary file.<br />
+Unlike the procedure described in <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/getting_started.html"><b>Getting Started</b></a>, this page does not build the AI Software Development Kit (AI SDK) environment, so you can easily try running the AI Applications.
+<br /></p>
+
+<p>In this guide, you will be able to learn followings.</p>
+
+<ul>
+  <li>Prepare microSD card to set up operating environment</li>
+  <li>Run AI Applications on the board</li>
+</ul>
+
+<p><br />
+The goal of this guide is to run the application and display the captured data with AI inference results on an HDMI monitor as shown below.</p>
+
+<p><a href="img/demo_app_example.jpg" target="_blank">
+  <img src="img/demo_app_example.jpg" alt="demo_example" width="100%" />
+</a></p>
+
+<p>To see a list of applications included in this demo, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#apptable"><b>List of AI Applications Demo</b></a>.</p>
+
+<p>For more information about the RZ/V series, click <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus"><b>here</b></a>.</p>
+
+<p><br /></p>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>This chapter describes the procedures up to the first startup of the RZ/V2L Evaluation Board Kit.</p>
+
+<h3 id="step1">Step 1: Hardware Preparation</h3>
+
+<p>Refer to the guide in the link below and prepare what you need.</p>
+
+<ol>
+  <li>
+  RZ/V2L Evaluation Board Kit<br />
+  <details class="boxdetails" open="">
+    <summary>Details are shown below</summary>
+    <quotedoc id="reference1"></quotedoc>
+  </details>
+  </li><br />
+  <li>
+  Other necessary equipments<br />
+  <details class="boxdetails" open="">
+    <summary>Details are shown below</summary>
+    <quotedoc id="reference2"></quotedoc>
+  </details>
+  <br />
+  <div class="note">
+    <span class="note-title">Note</span>
+    Unlike Demo v1.00, Windows PC is no longer required.
+  </div>
+  </li>
+</ol>
+<p><br /></p>
+
+<h3 id="step2">Step 2: Demo file extraction to microSD card</h3>
+
+<ol>
+  <li>If you have not yet obtained the demo file, click on the link below to download it.
+    <br /><br />
+    <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-200" role="button">Download Link</a>
+    <br /><br />
+    <div class="note">
+      <span class="note-title">Note</span>
+      In this section, we use a Linux PC to prepare the microSD card. If you want to use a Windows PC, we have experience with the following Windows applications to write a disk image.
+      <ul>
+        <li><a href="https://sourceforge.net/projects/win32diskimager/"><b>Win32 Disk Imager download | SourceForge.net</b></a></li>
+        <li><a href="https://www.raspberrypi.com/software/"><b>Raspberry Pi OS - Raspberry Pi</b></a></li>
+      </ul>
+    </div>
+  </li><br />
+  <li>Put the downloaded Zip file into a Linux PC and unzip it using the following command in a terminal.
+  <br /><br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">unzip RTK0EF0166F02000SJ.zip</code></pre></figure>
+
+    Make sure the following folders and files are generated after unzipping the file.
+    <table id="demodirs" class="mytable">
+      <caption>Demo File Structure</caption>
+      <tr>
+        <th>Folder Name</th>
+        <th>Folder Content</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td rowspan="3">licenses/</td>
+        <td>linux_licenses.zip</td>
+        <td>Linux license information.</td>
+      </tr>
+      <tr>
+        <td>r11an0752ej0200-rzv2l-ai-sdk(Linux License List).pdf</td>
+        <td>List of Linux license information included in Demo microSD image. Copyright information is not included. Please refer to Open Source Software packages(oss_pkg_rzv_v2.00.7z) to see copyright information.</td>
+      </tr>
+      <tr>
+        <td>oss_pkg_rzv_v2.00.7z</td>
+        <td>Source code of Open Source Software packages used when building the files in Demo microSD image.</td>
+      </tr>
+      <tr>
+        <td>sd_image/</td>
+        <td>ai_applications_demo_v2.00.dd.zip</td>
+        <td>Zip file containing the Demo microSD image.</td>
+      </tr>
+      <tr>
+        <td colspan="2">r11an0762ej0200-rzv2l.pdf</td>
+        <td>ReadMe document describing the contents of the Demo zip file.</td>
+    </tr>
+    </table>
+  </li><br />
+  <li>Run the following command to extract <code>ai_applications_demo_v2.00.dd.zip</code> in the <code>sd_image</code> folder.
+    <br /><br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd </span>sd_image
+unzip ai_applications_demo_v2.00.dd.zip</code></pre></figure>
+
+  </li><br />
+  <li>Run the following command to check the device connected to the Linux PC <strong>before</strong> inserting the microSD card.
+    <br /><br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">lsblk</code></pre></figure>
+
+    Then, insert the microSD card into the Linux PC and run the same command (<code>lsblk</code>) again.<br />
+    Confirm that the microSD device name (<code>/dev/sdb</code>) has been added to the terminal after inserting the card, as shown in the console window below.
+    <br /><br />
+    <a href="img/demo_lsblk_check.jpg" target="_blank">
+      <img src="img/demo_lsblk_check.jpg" alt="demo_lsblk_check" width="80%" />
+    </a>
+    <br />
+    <div class="note">
+      <span class="note-title">Note</span>
+      The microSD card device name may vary depending on the PC environment.<br />In this manual, we use <code>/dev/sdb</code> as the microSD card device name.
+    </div>
+  </li><br />
+  <li>Using the device name found above (<code>/dev/sdb</code>), write the disk image file into the microSD card.
+    <br /><br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>ai_applications_demo_v2.00.dd <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">bs</span><span class="o">=</span>1M <span class="nv">status</span><span class="o">=</span>progress</code></pre></figure>
+
+    <div class="warning">
+      <span class="warning-title">Warning</span>
+      Change <code>/dev/sdb</code> to your microSD card device name.<br />
+    </div>
+    <div class="note">
+      <span class="note-title">Note</span>
+      Writing the microSD card image with the dd command takes time.<br />
+      (Depending on your environment, it takes about 30 minutes.)
+    </div>
+  </li><br />
+  <li>Execute the following command to eject the microSD card.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>eject /dev/sdb</code></pre></figure>
+
+    <div class="warning">
+      <span class="warning-title">Warning</span>
+      Change <code>/dev/sdb</code> to your microSD card device name.<br />
+    </div>
+  </li>
+</ol>
+<p><br /></p>
+
+<p>This completes the board setup. Let’s move on to the next chapter and run the applications.</p>
+
+<p><br /></p>
+
+<h2 id="runapp">Running Applications</h2>
+
+<p>This chapter describes how to run the AI Applications in the demo file.</p>
+
+<h3 id="linuxboot">Step 1: Boot process</h3>
+
+<ol>
+  <li>
+    Once the <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#preparation"><b>Preparation</b></a> chapter is complete, you can boot the board in the following way.
+    <details class="boxdetails" open="">
+      <summary>Boot procedures</summary>
+      <quotedoc id="reference3"></quotedoc>
+    </details>
+  </li>
+</ol>
+<p><br /></p>
+
+<h3 id="executedemo">Step 2: Demo execution</h3>
+
+<ol>
+  <li>The list of AI applications is shown below.
+    Select the application you want to run from the list.
+    <table id="apptable" class="mytable">
+      <caption>List of AI Applications Demo</caption>
+      <tr>
+        <th>Category</th>
+        <th>Application Name</th>
+        <th>Execution Script</th>
+        <th>Details</th>
+        <th>Supported<br />Camera Devices</th>
+        <th>User Interface</th>
+      </tr>
+      <tr>
+        <td rowspan="2">Agriculture</td>
+        <td>Defense wild animals for crop</td>
+        <td><code style="font-size:80%">Defense-wild-animals-for-crop.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/07_Animal_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Fruit and Vegetable Plant Disease Check</td>
+        <td><code>Fruit-and-Vegetable-Plant-Disease-Check.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q07_plant_disease_classification"><b>GitHub Link</b></a></td>
+        <td>MIPI</td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q07_plant_disease_classification#application-run-stage"><b>GUI</b></a></td>
+      </tr>
+      <tr>
+        <td rowspan="7">Smart Building</td>
+        <td>Elevator passengers Counting</td>
+        <td><code>Elevator-passengers-Counting.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/01_Head_count"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Conference Room Usage Monitor</td>
+        <td><code>Conference-Room-Usage-Monitor.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Lighting Control</td>
+        <td><code>Lighting-Control.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Security Area Intrusion Detection</td>
+        <td><code>Security-Area-Intrusion-Detection.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/02_Line_crossing_object_counting"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Wear management at construction sites</td>
+        <td><code>Wear-management-at-construction-sites.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/04_Safety_helmet_vest_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Touchless Controller for elevator</td>
+        <td><code>Touchless-Controller-for-elevator.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/12_Hand_gesture_recognition_v2"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Employee ID check for Restricted Area</td>
+        <td><code>Employee-ID-check-for-Restricted-Area.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication"><b>GitHub Link</b></a></td>
+        <td>USB</td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication#gui-for-running-the-application"><b>GUI</b></a></td>
+      </tr>
+      <tr>
+        <td rowspan="10">Smart City</td>
+        <td>Congestion Detection in Railway Station</td>
+        <td><code>Congestion-Detection-in-Railway-Station.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Prohibited Area Management</td>
+        <td><code>Prohibited-Area-Management.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/02_Line_crossing_object_counting"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Distracted driving detection</td>
+        <td><code>Distracted-driving-detection.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/09_Human_gaze_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Parking Spot Reservation</td>
+        <td><code>Parking-Spot-Reservation.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q03_smart_parking"><b>GitHub Link</b></a></td>
+        <td>USB</td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q03_smart_parking#gui-for-running-the-application"><b>GUI</b></a></td>
+      </tr>
+      <tr>
+        <td>Passport check support</td>
+        <td><code>Passport-check-support.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication"><b>GitHub Link</b></a></td>
+        <td>USB</td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication#gui-for-running-the-application"><b>GUI</b></a></td>
+      </tr>
+      <tr>
+        <td>Duration monitoring for surveillance camera</td>
+        <td><code>Duration-monitoring-for-surveillance-camera.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter"><b>GitHub Link</b></a></td>
+        <td>USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Illegal Parking Check</td>
+        <td><code>Illegal-Parking-Check.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q03_smart_parking"><b>GitHub Link</b></a></td>
+        <td>USB</td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q03_smart_parking#gui-for-running-the-application"><b>GUI</b></a></td>
+      </tr>
+      <tr>
+        <td>Bus passenger counting</td>
+        <td><code>Bus-passenger-counting.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Backtravel Detection</td>
+        <td><code>Backtravel-Detection.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/02_Line_crossing_object_counting"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Violence Activity Check in Surveillance Camera</td>
+        <td><code>/Violence-Activity-Check-in-Surveillance-Camera.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q05_suspicious_activity"><b>GitHub Link</b></a></td>
+        <td>MIPI</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Healthcare</td>
+        <td>Physical Condition Monitor</td>
+        <td><code>Physical-Condition-Monitor.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/03_Elderly_fall_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td rowspan="5">Smart Home</td>
+        <td>Air Conditioner Control</td>
+        <td><code>Air-Conditioner-Control.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Pet Detection in Kitchen and Child's Room</td>
+        <td><code>Pet-Detection-in-Kitchen-and-Childs-Room.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/07_Animal_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Touchless Controller for Kitchen Appliance</td>
+        <td><code>Touchless-Controller-for-Kitchen-Appliance.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/12_Hand_gesture_recognition_v2"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td><del>Smart TV</del></td>
+        <td><code>-</code></td>
+        <td>Not included in<br />Demo v2.00</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>Food Package Expiry Date Check</td>
+        <td><code>Food-Package-Expiry-Date-Check.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q06_expiry_date_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td rowspan="6">Industrial</td>
+        <td>Work Area Personnel Management</td>
+        <td><code>Work-Area-Personnel-Management.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/01_Head_count"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Helmet and safety vest wearing monitor</td>
+        <td><code>Helmet-and-safety-vest-wearing-monitor.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/04_Safety_helmet_vest_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Touchless Controller for Industrial machine</td>
+        <td><code>Touchless-controller-for-Industrial-machine.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/12_Hand_gesture_recognition_v2"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Access Control</td>
+        <td><code>Access-Control.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/02_Line_crossing_object_counting"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Driver Monitoring System</td>
+        <td><code>Driver-Monitoring-System.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/10_Driver_monitoring_system"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Species check support in Fish Factory</td>
+        <td><code>Species-check-support-in-Fish-Factory.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q04_fish_classification"><b>GitHub Link</b></a></td>
+        <td>MIPI</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td rowspan="5">Retail</td>
+        <td>Congestion Detection</td>
+        <td><code>Congestion-Detection.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Staying and flow line monitoring</td>
+        <td><code>Staying-and-flow-line-monitoring.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter"><b>GitHub Link</b></a></td>
+        <td>USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Smart POS</td>
+        <td><code>Smart-POS.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/05_Age_gender_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Marketing Interest Analysis</td>
+        <td><code>Marketing-Interest-Analysis.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/09_Human_gaze_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Exhibition Participants Monitoring</td>
+        <td><code>Exhibition-Participants-Monitoring.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+    </table>
+  </li><br />
+  <li>After following the boot procedure in the <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#linuxboot"><b>previous section</b></a>, you should be able to enter commands into the terminal screen on the HDMI monitor.<br />
+    Execute the following commands. Replace <code>&lt;category&gt;</code> and <code>&lt;application-name&gt;</code> with the selected application.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /home/root
+./&lt;category&gt;/&lt;application-name&gt;.sh</code></pre></figure>
+
+    <div class="box1">
+      <u><b>Example:</b></u><br />
+      To run <b>"Elevator passengers Counting"</b> application, write following command.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">./SmartBuilding/Elevator-passengers-Counting.sh</code></pre></figure>
+
+    </div>
+    <div class="note">
+      <span class="note-title">Note</span>
+      Some applications support both MIPI/USB camera input. (Refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#apptable"><b>List of AI Applications Demo</b></a>). To use USB camera for those applications, run following command.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">./&lt;category&gt;/&lt;application-name&gt;.sh USB</code></pre></figure>
+
+    </div>
+  </li><br />
+  <li>On monitor, the application will automatically start.
+    <div class="note">
+      <span class="note-title">Note</span>
+      Some applications require GUI control. See the link in the user interface column of <a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/demo.html#apptable"><b>List of AI Applications Demo</b></a>.
+    </div>
+  </li><br />
+  <li>To terminate the application, press <code>Super (Windows key)</code> + <code>Tab</code> keys to switch back to terminal window and press <code>Enter</code> key.<br />
+    If the application does not terminate, press <code>Ctrl</code> +  <code>C</code> keys on the terminal window.
+  </li>
+</ol>
+<p><br /></p>
+
+<h3 id="shutdown">Step 3: Shutdown process</h3>
+<ol>
+  <li>Follow these steps to power down the board.
+    <details class="boxdetails" open="">
+      <summary>Shutdown Procedures</summary>
+      <quotedoc id="reference4"></quotedoc>
+    </details>
+  </li>
+</ol>
+<p><br /></p>
+
+<h3 id="tips">Tips</h3>
+
+<p>Linux terminal has the auto-completion functionality.</p>
+
+<ul>
+  <li>Users can type "<code>A</code>"&rArr;<code>[Tab]</code> to get the full file/directory name that starts with "<code>A</code>".
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>./A</code></pre></figure>
+
+    &rArr; Press <code>[Tab]</code> and remaining characters are completed automatically if there is only one directory/file starts from "<code>A</code>".
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>./Agriculture</code></pre></figure>
+
+  </li><br />
+  <li>Users can press <code>[Tab]</code> for 2 times to get the path suggestion.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span><span class="nb">cd</span> /home/root
+<span class="nv">$ </span>./SmartBuilding/</code></pre></figure>
+
+    &rArr; Press <code>[Tab]</code> for 2 times and following suggestions will be shown.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>./SmartBuilding/
+Conference-Room-Usage-Monitor.sh
+Elevator-passengers-Counting.sh
+Employee-ID-check-for-Restricted-Area.sh
+...</code></pre></figure>
+
+  </li>
+</ul>
+
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+    <script src="/rzv_ai_sdk/2.00/assets/js/scale.fix.js"></script>
+  </body>
+</html>
