@@ -47,10 +47,10 @@ FPS - 200/10 ->20
 
 >**Note:** User can skip to the [deploy stage](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Startup Guide](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md#startup-guide) provided by Renesas. 
+**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- The Board Set Up and booted. 
+- the Board Set Up and booted. 
 - SD Card Prepared 
 - The docker image and container for `rzv2l_ai_sdk_image` running on host machine.
 
@@ -61,9 +61,12 @@ After completion of the guide, the user is expected of following things.
     1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
     ```sh
     cd <path_to_data_folder_on_host>
-    git clone -b smart_parking --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-   >Note: Please verify the git repository url if error occurs.
+   > Note 1: Please verify the git repository url if error occurs
+
+   > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
+   
 2. Run the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container terminal.
@@ -128,7 +131,6 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
     └── root/
         └── tvm/
             ├── parkingmodel_onnx/
-            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
