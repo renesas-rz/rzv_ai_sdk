@@ -43,27 +43,16 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2023.9.15
+2023.11.10
             </h6>
-            <ul>
-                <li>
-                    <b>AI Applications Demo v2.00</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            Supported AI SDK v2.00.<br>
-                            Operation time limit due to Graphics Library Evaluation Version/Video Codec Library Evaluation Version is extended from 3 hours to 10 hours.
-                        </li>
-                        <li>
-                            Changed to eSD Bootloader, which does not require Windows PC to write bootloader. 
-                        </li>
-                        <li>
-                            Added 17 AI Applications.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>.
-            <br>
+            <font color="red">
+This web page contains information about AI Applications and AI SDK v2.00.<br>
+<b>To see the latest information, please refer to following URL.</b><br>
+<a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
+<!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
+<br>
+<br>
         </div>
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link history.md %}" role="button">
