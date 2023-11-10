@@ -185,6 +185,7 @@ a.applications:hover ul.applabel>li, a.applications:focus ul.applabel>li {
 
 ul.index {
   list-style:none;
+  margin: 0 0 0 0;
 }
 p.downloads {
   padding:0;
@@ -824,4 +825,101 @@ pre {
   border:1px solid #e0e0e0;
   border-top: none;
   text-align: left;
+}
+/** meistier **/
+.titlebox {
+  background-color: #2a289d;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: bold;
+  font-style:italic;
+  padding: 20px;
+  border: 1px solid #2a289d;
+  margin: 0px
+}
+
+.grid{
+  display: flex;
+}
+
+.griditem{
+  background-color: #f5f5f5;
+  font-size: 18px;
+  padding: 20px;
+  border: 2px solid #ffffff;
+  margin: 0px
+}
+
+.griditem-add{
+  background-color: #f5f5f5;
+  color: #696969;
+  font-size: 15px;
+  text-align: left;
+}
+
+.appspec{
+  background-color:#f5f5f5;
+  font-size: 15px;
+  padding: 0px;
+  margin: 0px;
+  align-items: flex-end;
+}
+
+
+.grid-col-3{
+  width :33.3%;
+  padding: 0px;
+}
+
+.grid-col-4{
+  width :25%;
+  padding: 0px;
+}
+
+.devicelinkbutton_parent { 
+  text-align: center;
+}
+
+.devicelinkbutton {
+  margin:2px 6px 0px 0px;
+  background-color: #2a289d;
+  color: white;
+  padding: 5px 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px; 
+}
+
+.devicelinkbutton:hover {
+  background-color:rgb(67, 171, 226); 
+  transform: scale(1.1);
+  // transition-duration: 1s;
+  transition-duration: 0.3s; //Edited by Renesas
+  color: white;
+}
+
+//Added by meistier for no reason, but affects the Getting Started.
+// tabel tr,th,td{
+//   border-style: 1;
+//   border-collapse: collapse;
+//   border-spacing: 0;
+//   margin: 0;
+//   padding: 0;
+//   font-size: 12px;
+// }
+
+.Perf-Framerate{
+  margin:5px 6px 0px 0px;
+  font-size: 14px;
+  text-align: center;
+}
+
+dl {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
 }

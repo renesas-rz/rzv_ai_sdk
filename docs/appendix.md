@@ -451,7 +451,7 @@ sudo umount /media/user/A8D3-393B
           <tr>
             <th>Type/Number</th>
             <th>Size</th>
-            <th>Filesystem</th>
+            <th>Type of Filesystem</th>
             <th>Contents</th>
           </tr>
           <tr>
@@ -469,7 +469,7 @@ sudo umount /media/user/A8D3-393B
         </table>
         <div class="note">
           <span class="note-title">Note</span>
-          <i><b>"File system"</b></i> of <i><b>"Primary #1 Linux kernel and Device tree"</b></i> Contents is <b><i>Ext4</i></b>.<br>
+          <i><b>"Type of Filesystem"</b></i> of <i><b>"Primary #1 Linux kernel and Device tree"</b></i> Contents is <b><i>Ext4</i></b>.<br>
         </div>
       </div>
       <div class="ContenteMMC contenteMMC-bg">
@@ -478,7 +478,7 @@ sudo umount /media/user/A8D3-393B
           <tr>
             <th>Type/Number</th>
             <th>Size</th>
-            <th>Filesystem</th>
+            <th>Type of Filesystem</th>
             <th>Contents</th>
           </tr>
           <tr>
@@ -496,7 +496,7 @@ sudo umount /media/user/A8D3-393B
         </table>
         <div class="note">
           <span class="note-title">Note</span>
-          <i><b>"File system"</b></i> of <i><b>"Primary #1 Linux kernel and Device tree"</b></i> Contents is <b><i>FAT32</i></b>.<br>
+          <i><b>"Type of Filesystem"</b></i> of <i><b>"Primary #1 Linux kernel and Device tree"</b></i> Contents is <b><i>FAT32</i></b>.<br>
         </div>
       </div>
       <br>

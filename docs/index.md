@@ -43,16 +43,32 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-2023.11.10
+                2023.11.10
             </h6>
-            <font color="red">
-This web page contains information about AI Applications and AI SDK v2.00.<br>
-<b>To see the latest information, please refer to following URL.</b><br>
-<a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
-<!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
-<br>
-<br>
+            <ul>
+                <li>
+                    <b>AI Applications v2.10</b> is now available.<br>
+                    <ul>
+                        <li> 
+                            Added 13 Applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>RZ/V2L AI SDK v2.10</b> is now available.<br>
+                    <ul>
+                        <li> 
+                            AI SDK Source Code is provided as an additional zip file.<br>
+                            Users can customize Linux environment.
+                        </li>
+                        <li>
+                            AI SDK filesize is decreased to 2.8GB, which is easier to download.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>.
+            <br>
         </div>
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link history.md %}" role="button">

@@ -17,6 +17,39 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    AI Applications & AI SDK v2.10
+                </h3>
+                <h6 align="right" >
+                    2023.11.10
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Applications v2.10 is released.</h5>
+                    <ul>
+                        <li> 
+                            Added 13 Applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2L AI SDK v2.10 is released.</h5>
+                    <ul>
+                        <li> 
+                            AI SDK Source Code is provided as an additional zip file.<br>
+                            Users can customize Linux environment.
+                        </li>
+                        <li>
+                            AI SDK filesize is decreased to 2.8GB, which is easier to download.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     AI Applications Demo v2.00
                 </h3>
                 <h6 align="right" >
@@ -29,7 +62,7 @@ layout: default
                     <ul>
                         <li> 
                             Supported RZ/V2L AI SDK v2.00.<br>
-                            Operation time limit due to Graphics Library Evaluation Version/Video Codec Library Evaluation Version is extended from 3 hours to 10 hours.
+                            Operation time limit due to Graphics Library Evaluation Version/Video Codec Library Evaluation Version is extended from 3 hours to approximately 10 hours.
                         </li>
                         <li>
                             Changed to eSD Bootloader, which does not require Windows PC to write bootloader. 

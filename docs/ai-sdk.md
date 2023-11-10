@@ -24,6 +24,14 @@ layout: default
             In the AI Applications, USB/MIPI camera can be used with Video for Linux 2 (V4L2) API.
             <br>
             <br>
+            AI SDK is specifically made for RZ/V2L Evaluation Board Kit with fixed Linux components.
+            For those of you who would like to customize Linux environment, i.e., change memory map or develop your own board, you need to build the Yocto Linux source code.
+            <br>
+            Yocto Linux source code is provided as AI SDK Source Code.
+            <br>
+            Please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}">How to Build AI SDK</a> for more details.
+            <br>
+            <br>
             For more information, see <a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">RZ/V2L AI SDK download page</a>.
             <br>
             <br>
@@ -77,7 +85,9 @@ layout: default
                     <li>Tesseract</li>
                     <li>Other OSS packages</li>
                 </ul>
-                *1: Note that Graphics Library and Codecs Library Evaluation Version have a limitation that system stops running after around 10 hours.<br>
+                *1: Note that Graphics Library and Video Codecs Library Evaluation Version have a limitation that system stops running after around 10 hours.<br>
+                If you would like to use unristricted version, please build AI SDK with Graphics Library Unristrictd Version and Video Codecs Library Unristricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button">How to Build AI SDK
+            </a>.<br>
             </h6>
             <br>
             For more information on AI SDK, see <a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">RZ/V2L AI SDK Rlease Note</a>.

@@ -98,10 +98,10 @@ unzip eSD.zip
     <li>Check if the two partitions are created successfully by running <code>df</code> command.<br>
 {% highlight shell %}
 df -h
-Filesystem 	Size	Used	Avail	Use %	Mounted on	
-...		...	...	...	...	...
-/dev/sdb1	...	...	...	...	...	
-/dev/sdb2	...	...	...	...	...	
+Filesystem 	Size		Used	Avail	Use %	Mounted on	
+...		…		…	…	…	…
+/dev/sdb1		…		…	…	…	…	
+/dev/sdb2		…		…	…	…	…	
 {% endhighlight %}
       <div class="warning">
           <span class="warning-title">Warning</span>
@@ -233,7 +233,7 @@ Once the <a href="#step1_setup_V2Lboard"><b>Setup RZ/V2L Evaluation Board Kit</b
         <li value = "11">To communicate between your Linux PC and the target board via Ethernet, configure their respective IP addresses.<br>
         <ul>
           <li><b>Linux PC</b>:<br>
-          This uses the device name of the Ethernet interface "enp2s1" as an example and sets its IP address to <b>192.168.1.10</b>.<br>
+          This uses the device name of the Ethernet interface "enp2s1" as an example and sets its IP address to <b>192.168.1.10.</b>.<br>
 {% highlight shell %}
 ifconfig enp2s1 192.168.1.10
 {% endhighlight %}

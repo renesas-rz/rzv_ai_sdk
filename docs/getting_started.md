@@ -19,7 +19,7 @@ This tutorial is based on RZ/V2L AI SDK version 1.00.<br>
 <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus">Learn more about the RZ/V series.</a>
 
 
-<h5>Supported version: <b>RZ/V2L AI SDK v2.00</b></h5>
+<h5>Supported version: <b>RZ/V2L AI SDK v2.10</b></h5>
 
 <h3 id="step1" >Step 1: Obtain an evaluation board</h3>
 <reference1>
@@ -137,10 +137,28 @@ Please install following software <b>on Ubuntu PC</b>.
 <br>
 
 <h3 id="step3" >Step 3: Obtain RZ/V2L AI SDK</h3>
-Download the RZ/V2L AI SDK from the link below.<br><br>
+AI SDK provides following packages.
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Package</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td><font color="red"><b>RZ/V2L AI SDK</b></font></td>
+    <td><font color="red"><b>RTK0EF0160F*SJ.zip</b></font></td>
+    <td><font color="red"><b>Package used for AI development.</b></font></td>
+  </tr>
+  <tr>
+    <td>RZ/V2L AI SDK Source Code</td>
+    <td>RTK0EF0160F*SJ_linux-src.zip</td>
+    <td>Package used for Linux development.<br>Please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}">How to Build AI SDK</a> for more details on this package.</td>
+  </tr>
+</table>
+For this Getting Started, please download <font color="red"><b>"RZ/V2L AI SDK"</b></font> from the link below.<br><br>
 <a class="btn btn-primary download-button" href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit" role="button">Download Link</a>
 <br><br>
-Check the Release Note included in the package.
+Once downloaded, please check the Release Note included in the package.
 <br><br>
 
 <h3 id="step4" >Step 4: Extract RZ/V2L AI SDK package</h3>
@@ -448,7 +466,7 @@ You can use Linux PC to format the microSD card and expand the kernel and the ro
       <tr>
         <th>Type/Number</th>
         <th>Size</th>
-        <th>Filesystem</th>
+        <th>Type of Filesystem</th>
         <th>Contents</th>
       </tr>
       <tr>
@@ -471,7 +489,7 @@ You can use Linux PC to format the microSD card and expand the kernel and the ro
       <tr>
         <th>Type/Number</th>
         <th>Size</th>
-        <th>Filesystem</th>
+        <th>Type of Filesystem</th>
         <th>Contents</th>
       </tr>
       <tr>
@@ -938,6 +956,10 @@ You have experienced the AI Application development procedures.<br>
 Next step is to change the application to create your own AI Application.<br>
 You can use the applications listed in <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Applications</a> to expand your ideas!
 <br><br>
+
+If you would like to customize Yocto Linux or develop your own board, please change and build the AI SDK Source Code based on your environment.
+<br>
+For how to build the AI SDK Source Code, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}">How to Build AI SDK</a>.
 
 <script>
 /************ Read Cookie **************/
