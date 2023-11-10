@@ -6,8 +6,8 @@ if [ $VERSION = "" ]; then
   exit 1
 fi
 
-sed -i -e  "s/version: [0-9]*\.[0-9][0-9]/version: ${VERSION}/g" ./docs/_config.yml 
-sed -i -e  "s/baseurl: \/rzv_ai_sdk\/[0-9]*\.[0-9][0-9]/baseurl: \/rzv_ai_sdk\/${VERSION}/g" ./docs/_config.yml 
+sed -i -e  "s/version: \"[0-9]*\.[0-9][0-9]\"/version: \"${VERSION}\"/g" ./docs/_config.yml 
+sed -i -e  "s/baseurl: \"\/rzv_ai_sdk\/[0-9]*\.[0-9][0-9]\"/baseurl: \"\/rzv_ai_sdk\/${VERSION}\"/g" ./docs/_config.yml 
 
 cd docs
 bundle exec jekyll build
