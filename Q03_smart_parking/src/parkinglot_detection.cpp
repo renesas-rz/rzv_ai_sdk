@@ -623,7 +623,7 @@ int input_source_select(void)
         default:
         {
             std::cout << "[ERROR] Please specify Input Source" << std::endl;
-            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+            std::cout << "[INFO] Usage : ./parkinglot_detection MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
             return -1;
         }
     }
@@ -635,7 +635,7 @@ int main(int argc, char **argv)
     if (argc < 2 || argc > 3) 
     {
         std::cout << "[ERROR] Please specify Input Source" << std::endl;
-        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+        std::cout << "[INFO] Usage : ./parkinglot_detection MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
         std::cout << "\n[INFO] End Application\n";
         return -1;
     }
@@ -644,7 +644,7 @@ int main(int argc, char **argv)
     if (input_mode != "VIDEO" && argc == 3) 
     {
         std::cout << "[ERROR] Please specify Input Source" << std::endl;
-        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+        std::cout << "[INFO] Usage : ./parkinglot_detection MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
         std::cout << "\n[INFO] End Application\n";
         return -1;
     }
@@ -654,7 +654,7 @@ int main(int argc, char **argv)
         if(argc == 2)
         {
             std::cout << "[ERROR] Please specify Input Source" << std::endl;
-            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+            std::cout << "[INFO] Usage : ./parkinglot_detection MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
             std::cout << "\n[INFO] End Application\n";
             return -1;
         }
