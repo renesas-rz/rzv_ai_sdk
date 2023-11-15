@@ -158,7 +158,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
         - ***Add Face:*** Button for taking pictures.
         - ***Back:*** It retrieves the previous page(Main page).
 
-        <img src="./images/FaceAuthentication_Addface.PNG" width="420" height="360">
+        <img src="./images/FaceAuthentication_Addface.png" width="420" height="360">
 
         1. The user have to align the documented face to the bounding box provided to be captured.
         2. Click `Add Face` button to capture the photo.
@@ -169,7 +169,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
         - ***Validate:*** It is used to capture the real time image.
         - ***Back:*** It retrieves the previous page(Main page).
 
-        <img src="./images/FaceAuthentication_validate.PNG" width="420" height="360">
+        <img src="./images/FaceAuthentication_validate.png" width="420" height="360">
 
         1. User need to align their face on the box shown on the display.
         2. Click `Validate` button to capture the real time image.Only 3 attempts of validating is provided. After that the application exit to initial state.
