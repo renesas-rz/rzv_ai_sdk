@@ -66,7 +66,6 @@ After completion of the guide, the user is expected of following things.
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
     > Note 1: Please verify the git repository url if error occurs
-
     > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
 
 2. Run(or start) the docker container and open the bash terminal on the container.
