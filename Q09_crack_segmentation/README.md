@@ -23,7 +23,7 @@ It has 4 modes of running.
 
 
 #### Video Mode
-<img src = "./images/Q09_crack_video_demo.gif" width="480" height="320">
+<img src = "./images/Q09_crack_demo.gif" width="480" height="320">
 
 
 
@@ -69,7 +69,6 @@ cd <path_to_data_folder_on_host>
 git clone https://github.com/renesas-rz/rzv_ai_sdk.git
 ```
 > Note 1: Please verify the git repository url if error occurs
-
 > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
 
 2. Run the docker container and open the bash terminal on the container.
@@ -182,7 +181,7 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
     - AI inferece time and Frames Per Sec (FPS) is shown on top right corner.
     - The cracks detected are shown in green mask/region.
 
-4. For Termination: Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
+4. For Termination: Double click on the window using the mouse connected to the board.
 
 
 ## Application: Specifications

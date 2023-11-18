@@ -40,12 +40,6 @@
 #include <cstdlib>
 #include <thread>
 #include <cstring>
-#include "MeraDrpRuntimeWrapper.h"
-#include "opencv2/core.hpp"
-#include "iostream"
-#include "opencv2/imgproc.hpp"
-#include "opencv2/highgui.hpp"
-#include "opencv2/opencv.hpp"
 #include <vector>
 #include <glob.h>
 #include <cmath>
@@ -53,6 +47,14 @@
 #include <linux/drpai.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include "MeraDrpRuntimeWrapper.h"
+#include "opencv2/core.hpp"
+#include "iostream"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/opencv.hpp"
+#include "utils.h"
+
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
 #define DRPAI_MEM_OFFSET    (0x38E0000)
@@ -74,8 +76,10 @@
 /* DRP-AI TVM[*1] Runtime object */
 MeraDrpRuntimeWrapper model_runtime;
 
-/* flags to detect quit-key function and image mode*/
-bool g_quit_application   = false;
+/* Connected devises object */
+devices dev;
+
+/* flags to detect image mode*/
 bool g_image_mode         = false;
 
 /* variables to calculate total fps and inference time */
@@ -280,6 +284,7 @@ cv::Mat run_inference(cv::Mat frame)
     float font_size = 0.65;
     /*font weight*/
     float font_weight = 2;
+    std::string text = "Double Click to exit the Application!!";
 
     /*coordinates for inference speed*/
     cv::Point ai_inf_postion(970, 60);
@@ -337,27 +342,13 @@ cv::Mat run_inference(cv::Mat frame)
     /*put FPS inside display frame*/
     cv::putText(output_frame, "       Total FPS : " + std::to_string(g_fps), fps_postion, 
                     cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
-    return output_frame;
-}
+    unsigned int winWidth = output_frame.cols;
+    unsigned int winHeight = output_frame.rows;
+    cv::Size text_size = cv::getTextSize(text,cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, 0);
+    cv::Point text_pos(winWidth - text_size.width - 10, winHeight - 10);
+    cv::putText(output_frame, text, text_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, WHITE, 1, cv::LINE_AA);
 
-/*****************************************
- * Function Name    : get_quit_key
- * Description      : Get application quit key from keyboard
- *****************************************/
-void get_quit_key(void)
-{
-    /*continuous loop for checking exist trigger*/
-    while (true)
-    {
-        /*get input from the user */
-        int key = getchar();
-        /*if [ENTER] key is pressed*/
-        if (key == 10)
-        {
-            std::cout << "[INFO] Enter Key Pressed!\n";
-            g_quit_application = true;
-        }
-    }
+    return output_frame;
 }
 
 /******************************************
@@ -396,9 +387,9 @@ void capture_frame(std::string cap_pipeline,std::string input_source)
             /*write the final frame to the gstreamer pipeline*/
             output_writer.write(g_fn_frame);
             /* check for if the quit key is pressed */
-            if(g_quit_application == true)
+            if(dev.g_quit_application == true)
             {
-                g_quit_application = false;
+                dev.g_quit_application = false;
                 break;
             }
         }
@@ -436,53 +427,36 @@ void mipi_cam_init(void)
     }
 }
 
-/*****************************************
- * Function Name : query_device_status
- * Description   : function to check USB/MIPI device is connectod.
- * Return value  : media_port, media port that device is connectod. 
- ******************************************/
-std::string query_device_status(std::string device_type)
-{
-    std::string media_port = "";
-    /* Linux command to be executed */
-    const char* command = "v4l2-ctl --list-devices";
-    /* Open a pipe to the command and execute it */ 
-    FILE* pipe = popen(command, "r");
-    if (!pipe) 
-    {
-        std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
-        return media_port;
-    }
-    /* Read the command output line by line */
-    char buffer[128];
-    size_t found;
-    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) 
-    {
-        std::string response = std::string(buffer);
-        found = response.find(device_type);
-        if (found != std::string::npos)
-        {
-            fgets(buffer, sizeof(buffer), pipe);
-            media_port = std::string(buffer);
-            pclose(pipe);
-            /* return media port*/
-            return media_port;
-        } 
-    }
-    pclose(pipe);
-    /* return media port*/
-    return media_port;
-}
-
 int main(int argc, char **argv)
 {
-    uint64_t drpaimem_addr_start = 0;
     bool runtime_status = false;
-
+    uint64_t drpaimem_addr_start = 0;
     /* Gstreamer input pipeline*/
     std::string gstreamer_pipeline;
     /* Model Binary */
     std::string model_dir = "crack_segmentation_model";
+
+    /* Check the input source is valid.*/
+    if (argc < 2 || argc > 3) 
+    {
+        std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] usage: ./crack_segmentation MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+    else
+    {
+        std::string input_source = argv[1];
+        if(((input_source != "VIDEO" && input_source != "IMAGE") && argc == 3) || 
+           ((input_source != "MIPI" && input_source != "USB") && argc == 2))
+        {
+            std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[INFO] usage: ./crack_segmentation MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
+            std::cout << "\n[INFO] End Application\n";
+            return -1;
+        }
+    }
+
     /* Load model_dir structure and its weight to runtime object */
     drpaimem_addr_start = get_drpai_start_addr();
     std::cout<<"drpaimem_addr_start: "<<drpaimem_addr_start<<"\n";
@@ -502,7 +476,7 @@ int main(int argc, char **argv)
     std::string input_source = argv[1];
 
     /* Thread to detect [ENTER] key to quit application */
-    std::thread end_app_thread(get_quit_key);
+    std::thread end_app_thread(&devices::detect_mouse_click,&dev);
     end_app_thread.detach();
 
     switch (input_source_map[input_source])
@@ -528,8 +502,7 @@ int main(int argc, char **argv)
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "filesrc location=" + image_path + " ! jpegdec ! videoconvert ! appsink";
             capture_frame(gstreamer_pipeline,input_source);
-            std::cout<<"[INFO] Press [ENTER] key to End Application\n";
-            while(g_quit_application == false)
+            while(dev.g_quit_application == false)
                 output_writer.write(g_fn_frame);
         }
         break;
@@ -539,7 +512,7 @@ int main(int argc, char **argv)
             std::cout << "[INFO] MIPI CAMERA \n";
             mipi_cam_init();
             /* check the status of device */
-            std::string media_port = query_device_status("CRU");
+            std::string media_port = dev.query_device_status("CRU");
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
             capture_frame(gstreamer_pipeline,input_source);
@@ -550,12 +523,13 @@ int main(int argc, char **argv)
         {
             std::cout << "[INFO] USB CAMERA \n";
             /* check the status of device */
-            std::string media_port = query_device_status("usb");
+            std::string media_port = dev.query_device_status("usb");
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
             capture_frame(gstreamer_pipeline,input_source);
             break;
         }
+        /* default case */
         default:
         {
             std::cout << "[ERROR] Invalid Input source\n";
