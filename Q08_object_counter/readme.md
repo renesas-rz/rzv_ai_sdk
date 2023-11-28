@@ -39,7 +39,7 @@ Users can select detection target from following list
 - General (COCO dataset)
 
 ### Demo 
-<img src = "./images/ObjectCounter.gif" width ="480" height= "320">
+<img src = "./images/Q08_counter_demo.gif" width ="480" height= "320">
 
 ## Applications: Requirements
 
@@ -84,7 +84,7 @@ After completion of the guide, the user is expected of following things.
     cd <path_to_data_folder_on_host>
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-    > Note 1: Please verify the git repository url if error occurs
+    >Note: Please verify the git repository url if error occurs.
 
     > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
 
@@ -155,8 +155,7 @@ Folder structure in the rootfs (SD Card) would look like:
             │   ├── tinyyolov3_onnx/
             │   │   ├── deploy.json
             │   │   ├── deploy.params
-            │   │   ├── deploy.so
-            │   │   └── preprocess/
+            │   │   └── deploy.so
             │   │   
             │   ├── coco_class.txt
             │   └── config.ini
@@ -164,8 +163,7 @@ Folder structure in the rootfs (SD Card) would look like:
             │   ├── animal_onnx/
             │   │   ├── deploy.json
             │   │   ├── deploy.params
-            │   │   ├── deploy.so
-            │   │   └── preprocess/
+            │   │   └── deploy.so
             │   │   
             │   ├── animal_class.txt
             │   └── config.ini
@@ -173,8 +171,7 @@ Folder structure in the rootfs (SD Card) would look like:
             │   ├── vehicle_onnx/
             │   │   ├── deploy.json
             │   │   ├── deploy.params
-            │   │   ├── deploy.so
-            │   │   └── preprocess/
+            │   │   └── deploy.so
             │   │   
             │   ├── vehicle_class.txt
             │   └── config.ini
@@ -216,10 +213,10 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
     
     >**Note:** The mode will be the section name in app_conf.ini file.
     - camera options      
-        |Value|Description                            |
-        |-----|---------------------------------------|
-        |     | Default option is MIPI camera         |
-        |USB  | USB option takes USB camera as input  |    
+        |Value|Description                                 |
+        |-----|--------------------------------------------|
+        |MIPI | MIPI option takes is MIPI camera as input  |
+        |USB  | USB option takes USB camera as input       |    
 
     For example, to run in "animal" mode with a USB camera, write the following command.    
     ```sh
@@ -231,23 +228,24 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
 
     - Coco Object counting 
 
-        <img src="./images/car1.png" width="360">
+        <img src="./images/Q08_coco.png" width="360">
     >**Note:** In COCO mode, the default setting allows only limited types of detection. If you want to increase the number of detection targets, edit [exe/coco/config.ini](./exe/coco/config.ini). For details on how to write `config.ini` file, please refer to the [Explanation of the config.ini file](#explanation-of-the-configini-file) section.
 
     - Animal Counting
 
-        <img src="./images/animal1.png" width="360">
+        <img src="./images/Q08_animal.png" width="360">
 
     - Vehicle Counting
 
-        <img src="./images/auto1.png" width="360">
+        <img src="./images/Q08_vehicle.png" width="360">
 
     On application window, following information is displayed.
-    - AI Infernce time is shown on top right
-    - Frame Per Sec (FPS) is shown below this.
+    - The pre-processing time, inference time, and post-processing time are displayed in the top right corner, respectively.
     - Total detected object counts are shown , alongside the counts for each user-defined classes
 
-5. To terminate the application, Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Evaluation Board Kit.
+5. Application Termination
+    - Application can be terminated by clicking the left mouse double click. 
+    - Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
 
 ## Application: Specifications
 
