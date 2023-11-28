@@ -24,7 +24,7 @@ It has following input modes.
 
 ### Demo 
 
-<img src=./images/Q11_fish_usb.gif width="480">
+<img src=./images/Q11_fish_demo.gif width="480">
 
 
 ## Application: Requirements
@@ -69,7 +69,7 @@ After completion of the guide, the user is expected of following things.
     cd <path_to_data_folder_on_host>
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-    > Note 1: Please verify the git repository url if error occurs
+    >Note: Please verify the git URL if some error occurs
 
     > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
     
@@ -164,21 +164,23 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
     
     - For MIPI Camera
     ```sh
-    ./fish_detector
+    ./fish_detector MIPI
     ```
     - For USB Camera
     ```sh
     ./fish_detector USB
     ```
 4. The expected output will be shown below.
-  
-    <img src=./images/expected_results.JPG width="480">
+
+    <img src=./images/Q11_fish_example.png width="480">
 
     1. For each frame the detected fishes will be shown as a bounding box with confidence score. Each detected fish will be classified to which spicies they belong.
-    2. AI-inference time for each frame and Frame Per Sec (FPS) is shown on top right corner.
+    2. The pre-processing time, inference time, and post-processing time are displayed in the top right corner, respectively.
     3. The class confidence is also shown for each class detected on the frame.
 
-5. Press  `Super(windows key)+Tab`  to switch to the terminal and press `ENTER` key on the terminal of RZ/V2L Evaluation Board to terminate the application.
+5. Termination
+    - Application can be terminated by clicking the left mouse double click.
+    - Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
 
 ## Application: Specifications
 
@@ -194,7 +196,7 @@ Dataset used is the custom labelled dataset with classes listed [here](./exe/fis
 
 
 ### AI inference time
-The AI inference time is 120-160 msec.
+The AI inference time is 80-120 msec.
 
 ## Application: Configuration 
 
