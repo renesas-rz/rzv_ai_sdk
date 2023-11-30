@@ -32,7 +32,7 @@ How to Use Guide
 <br>
 <br>
 
-This guide supports <b>RZ/V2L AI SDK v2.00</b>
+This guide supports <b>RZ/V2L AI SDK v2.10</b>
 
 <br>
 
@@ -86,8 +86,13 @@ Refer to the guide in the link below and prepare what you need.
   </details>
   <br>
   <div class="note">
-    <span class="note-title">Note</span>
+    <span class="note-title">Note 1</span>
     Unlike Demo v1.00, Windows PC is no longer required.
+  </div>
+    <div class="note">
+    <span class="note-title">Note 2</span>
+    Some applications support audio output in addition to the visual presentation on HDMI monitor.<br>
+    If you would like to have the audio output, please prepare the HDMI monitor with speaker.
   </div>
   </li>
 </ol>
@@ -98,7 +103,7 @@ Refer to the guide in the link below and prepare what you need.
 <ol>
   <li>If you have not yet obtained the demo file, click on the link below to download it.
     <br><br>
-    <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-200" role="button">Download Link</a>
+    <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">Download Link</a>
     <br><br>
     <div class="note">
       <span class="note-title">Note</span>
@@ -112,7 +117,7 @@ Refer to the guide in the link below and prepare what you need.
   <li>Put the downloaded Zip file into a Linux PC and unzip it using the following command in a terminal.
   <br><br>
 {% highlight shell %}
-unzip RTK0EF0166F02000SJ.zip
+unzip RTK0EF0166F02100SJ.zip
 {% endhighlight %}
     Make sure the following folders and files are generated after unzipping the file.
     <table id="demodirs" class="mytable">
@@ -123,34 +128,30 @@ unzip RTK0EF0166F02000SJ.zip
         <th>Description</th>
       </tr>
       <tr>
-        <td rowspan="3">licenses/</td>
+        <td rowspan="2">licenses/</td>
         <td>linux_licenses.zip</td>
         <td>Linux license information.</td>
       </tr>
       <tr>
-        <td>r11an0752ej0200-rzv2l-ai-sdk(Linux License List).pdf</td>
-        <td>List of Linux license information included in Demo microSD image. Copyright information is not included. Please refer to Open Source Software packages(oss_pkg_rzv_v2.00.7z) to see copyright information.</td>
-      </tr>
-      <tr>
-        <td>oss_pkg_rzv_v2.00.7z</td>
-        <td>Source code of Open Source Software packages used when building the files in Demo microSD image.</td>
+        <td>r11an0752ej0210-rzv2l-ai-sdk(Linux License List).pdf</td>
+        <td>List of Linux license information included in Demo microSD image. Copyright information is not included. Please refer to Open Source Software packages included in <a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">AI SDK v2.10 Source Code</a> to see copyright information.</td>
       </tr>
       <tr>
         <td>sd_image/</td>
-        <td>ai_applications_demo_v2.00.dd.zip</td>
+        <td>ai_applications_demo_v2.10.dd.zip</td>
         <td>Zip file containing the Demo microSD image.</td>
       </tr>
       <tr>
-        <td colspan="2">r11an0762ej0200-rzv2l.pdf</td>
+        <td colspan="2">r11an0762ej0210-rzv2l.pdf</td>
         <td>ReadMe document describing the contents of the Demo zip file.</td>
     </tr>
     </table>
   </li><br>
-  <li>Run the following command to extract <code>ai_applications_demo_v2.00.dd.zip</code> in the <code>sd_image</code> folder.
+  <li>Run the following command to extract <code>ai_applications_demo_v2.10.dd.zip</code> in the <code>sd_image</code> folder.
     <br><br>
 {% highlight shell %}
 cd sd_image
-unzip ai_applications_demo_v2.00.dd.zip
+unzip ai_applications_demo_v2.10.dd.zip
 {% endhighlight %}
   </li><br>
   <li>Run the following command to check the device connected to the Linux PC <strong>before</strong> inserting the microSD card.
@@ -173,7 +174,7 @@ lsblk
   <li>Using the device name found above (<code>/dev/sdb</code>), write the disk image file into the microSD card.
     <br><br>
 {% highlight shell %}
-sudo dd if=ai_applications_demo_v2.00.dd of=/dev/sdb bs=1M status=progress
+sudo dd if=ai_applications_demo_v2.10.dd of=/dev/sdb bs=1M status=progress
 {% endhighlight %}
     <div class="warning">
       <span class="warning-title">Warning</span>
@@ -234,7 +235,7 @@ This chapter describes how to run the AI Applications in the demo file.
         <th>User Interface</th>
       </tr>
       <tr>
-        <td rowspan="2">Agriculture</td>
+        <td rowspan="3">Agriculture</td>
         <td>Defense wild animals for crop</td>
         <td><code style="font-size:80%">Defense-wild-animals-for-crop.sh</code></td>
         <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/07_Animal_detection"><b>GitHub Link</b></a></td>
@@ -247,6 +248,13 @@ This chapter describes how to run the AI Applications in the demo file.
         <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q07_plant_disease_classification"><b>GitHub Link</b></a></td>
         <td>MIPI</td>
         <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q07_plant_disease_classification#application-run-stage"><b>GUI</b></a></td>
+      </tr>
+      <tr>
+        <td>Ranch Livestock Management</td>
+        <td><code>Ranch-Livestock-Management.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter"><b>GitHub Link</b></a></td>
+        <td>MIPI/USB</td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter#application-run-stage"><b>CUI</b></a></td>
       </tr>
       <tr>
         <td rowspan="7">Smart Building</td>
@@ -299,7 +307,7 @@ This chapter describes how to run the AI Applications in the demo file.
         <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication#gui-for-running-the-application"><b>GUI</b></a></td>
       </tr>
       <tr>
-        <td rowspan="10">Smart City</td>
+        <td rowspan="19">Smart City</td>
         <td>Congestion Detection in Railway Station</td>
         <td><code>Congestion-Detection-in-Railway-Station.sh</code></td>
         <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
@@ -364,9 +372,72 @@ This chapter describes how to run the AI Applications in the demo file.
       </tr>
       <tr>
         <td>Violence Activity Check in Surveillance Camera</td>
-        <td><code>/Violence-Activity-Check-in-Surveillance-Camera.sh</code></td>
+        <td><code>Violence-Activity-Check-in-Surveillance-Camera.sh</code></td>
         <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q05_suspicious_activity"><b>GitHub Link</b></a></td>
         <td>MIPI</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Bird Damage Prevention</td>
+        <td><code>Bird-Damage-Prevention.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Blind Spot Monitor</td>
+        <td><code>Blind-Spot-Monitor.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Preceding Vehicle Movement Alert</td>
+        <td><code>Preceding-Vehicle-Movement-Alert.sh</code></td>
+        <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/13_Car_ahead_departure_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI<br>+Audio Output</td>
+      </tr>
+      <tr>
+        <td>Emergency Vehicles Detector</td>
+        <td><code>Emergency-Vehicles-Detector.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Illegal Bicycle Approach Detection</td>
+        <td><code>Illegal-Bicycle-Approach-Detection.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Bicycle Rental Stock Management</td>
+        <td><code>Bicycle-Rental-Stock-Management.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Illegal Bicycle Parking Monitor Support</td>
+        <td><code>Illegal-Bicycle-Parking-Monitor-Support.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Infrastructure Defect Prevention</td>
+        <td><code>Infrastructure-Defect-Prevention.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q09_crack_segmentation"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Crime Prevention Support for School</td>
+        <td><code>Crime-Prevention-Support-for-School.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q10_suspicious_person_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
         <td>CUI</td>
       </tr>
       <tr>
@@ -402,7 +473,7 @@ This chapter describes how to run the AI Applications in the demo file.
       <tr>
         <td><del>Smart TV</del></td>
         <td><code>-</code></td>
-        <td>Not included in<br>Demo v2.00</td>
+        <td>Not included in<br>Demo v2.10</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -414,7 +485,7 @@ This chapter describes how to run the AI Applications in the demo file.
         <td>CUI</td>
       </tr>
       <tr>
-        <td rowspan="6">Industrial</td>
+        <td rowspan="8">Industrial</td>
         <td>Work Area Personnel Management</td>
         <td><code>Work-Area-Personnel-Management.sh</code></td>
         <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/01_Head_count"><b>GitHub Link</b></a></td>
@@ -457,7 +528,21 @@ This chapter describes how to run the AI Applications in the demo file.
         <td>CUI</td>
       </tr>
       <tr>
-        <td rowspan="5">Retail</td>
+        <td>Defect Inspection Support</td>
+        <td><code>Defect-Inspection-Support.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q09_crack_segmentation"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td>Aquaculture Industrial Support</td>
+        <td><code>Aquaculture-Industrial-Support.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q11_fish_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
+      <tr>
+        <td rowspan="6">Retail</td>
         <td>Congestion Detection</td>
         <td><code>Congestion-Detection.sh</code></td>
         <td><a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
@@ -492,6 +577,13 @@ This chapter describes how to run the AI Applications in the demo file.
         <td>MIPI / USB</td>
         <td>CUI</td>
       </tr>
+      <tr>
+        <td>Store Crime Prevention</td>
+        <td><code>Store-Crime-Prevention.sh</code></td>
+        <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q10_suspicious_person_detection"><b>GitHub Link</b></a></td>
+        <td>MIPI / USB</td>
+        <td>CUI</td>
+      </tr>
     </table>
   </li><br>
   <li>After following the boot procedure in the <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#linuxboot"><b>previous section</b></a>, you should be able to enter commands into the terminal screen on the HDMI monitor.<br>
@@ -517,8 +609,13 @@ cd /home/root
   </li><br>
   <li>On monitor, the application will automatically start.
     <div class="note">
-      <span class="note-title">Note</span>
+      <span class="note-title">Note 1</span>
       Some applications require GUI control. See the link in the user interface column of <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#apptable"><b>List of AI Applications Demo</b></a>.
+    </div>
+    <div class="note">
+      <span class="note-title">Note 2</span>
+      Applications with Audio Output provide the sound alert from HDMI monitor speaker in addition to the visual presentation.<br>
+      E.g. Preceding Vehicle Movement Alert.<br>
     </div>
   </li><br>
   <li>To terminate the application, press <code>Super (Windows key)</code> + <code>Tab</code> keys to switch back to terminal window and press <code>Enter</code> key.<br>

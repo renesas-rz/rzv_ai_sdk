@@ -43,31 +43,24 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2023.11.10
+                2023.11.30
             </h6>
             <ul>
                 <li>
-                    <b>AI Applications v2.10</b> is now available.<br>
+                    <b>AI Applications Demo v2.10</b> is now available.<br>
                     <ul>
                         <li> 
-                            Added 13 Applications.
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>RZ/V2L AI SDK v2.10</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            AI SDK Source Code is provided as an additional zip file.<br>
-                            Users can customize Linux environment.
+                            Supported RZ/V2L AI SDK v2.10.<br>
+                            The file size is decreased to around 3.4GB since the OSS package is deleted and provided in AI SDK Source Code.
                         </li>
                         <li>
-                            AI SDK filesize is decreased to 2.8GB, which is easier to download.
+                            Added 13 AI Applications.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>.
+            <!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
             <br>
         </div>
         <div class="col-12" align="right">
@@ -178,7 +171,7 @@ layout: default
             Download the Demo and refer to <a href= "{{ site.url }}{{ site.baseurl }}{% link demo.md %}">How to Use Guide</a> for more details.
             <br>
             <br>
-            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-200" role="button">
+            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
                 Download Demo
             </a>
             <br>
@@ -186,8 +179,8 @@ layout: default
             <h6>
                 <b>Notes:
                     <ol>
-                        <li>Demo is based on AI Applications v2.00 and AI SDK v2.00.</li>
-                        <li>Demo zip filesize is more than 5GB.</li>
+                        <li>Demo is based on AI Applications v2.10 and AI SDK v2.10.</li>
+                        <li>Demo zip filesize is around 3.4GB.</li>
                         <li>Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 10 hours.</li>
                     </ol>
                 </b>
