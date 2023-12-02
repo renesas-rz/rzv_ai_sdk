@@ -26,31 +26,39 @@
 * Includes
 ******************************************/
 #include "TextProc.h"
+#include <iostream>
+#include <algorithm>
+#include <cctype>
+
 /**
  * @brief remove white spaces from start and end
  * 
  * @param char_arr 
  * @return std::string 
  */
-std::string trim_white_spc(char* char_arr) {
-    // Remove leading whitespace
-    while (isspace(*char_arr)) {
+std::string trim_white_spc(char* char_arr) 
+{
+    std::string ex_string;
+    /* Remove leading whitespace */
+    while (isspace(*char_arr)) 
+    {
         ++char_arr;
     }
-    
-    // If the string is empty after removing leading whitespace
+    /* If the string is empty after removing leading whitespace */
     if (*char_arr == '\0') {
         return char_arr;
     }
-    
-    // Remove trailing whitespace
+    /* Remove trailing whitespace */
     char* end = char_arr + strlen(char_arr) - 1;
     while (end > char_arr && isspace(*end)) {
         --end;
     }
-    
-    // Null-terminate the string after removing trailing whitespace
+    /* Null-terminate the string after removing trailing whitespace */
     *(end + 1) = '\0';
-    
-    return std::string(char_arr);
+    ex_string = std::string(char_arr);
+    /* Remove all space from the extracted string */
+    ex_string.erase(std::remove_if(ex_string.begin(), ex_string.end(), ::isspace), ex_string.end());
+    /* Replace all "O" with "0" in the extracted string */
+    std::replace(ex_string.begin(), ex_string.end(),'O','0');
+    return ex_string;
 }

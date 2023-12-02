@@ -96,7 +96,6 @@ ymd_struct get_yymmddd(const std::map<boost::regex, std::string>& regex_dict,
     result.matched = false;
     
     for (const auto& pair : regex_dict) {
-
         // extract pairs 
         const auto& regex_obj = pair.first;
         const auto& date_format = pair.second;
