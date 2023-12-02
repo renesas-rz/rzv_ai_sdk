@@ -132,17 +132,17 @@ rm -rf boost_1_81_0
 ```
 9. Build the application on docker environment by following the steps below
 
-    ```sh
-    mkdir -p build && cd build
-    ```
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-    ```
-    ```sh
-    make -j$(nproc)
-    ```
-    The following application file would be generated in the `src/build` directory
-    - date_extraction
+```sh
+mkdir -p build && cd build
+```
+```sh
+cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+```
+```sh
+make -j$(nproc)
+```
+The following application file would be generated in the `src/build` directory
+- date_extraction
 
 
 ## Application: Deploy Stage
@@ -153,7 +153,7 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |:---|:---|
 |date_detection_tinyyolov3 | Model object files for deployment |
 |date_class_labels.txt | Label list for Object Detection |
-|expiry_date_detection | application file |
+|date_extraction | application file |
 |sample_img.jpg | sample image for image mode
 
 
