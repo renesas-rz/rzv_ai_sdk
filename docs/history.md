@@ -17,6 +17,56 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    Tutorial Video - Getting Started v2.10
+                </h3>
+                <h6 align="right" >
+                    2023.12.04
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Tutorial Video - Getting Started v2.10 is released.</h5>
+                </li>
+                <ul>
+                    <li>
+                        Users can learn the content of Getting Started in the video.<br>
+                        It contains the boot demonstration using eSD bootloader.
+                    </li>
+                    <li> 
+                        Based on RZ/V2L AI SDK v2.10.<br>
+                    </li>
+                </ul>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    AI Applications Demo v2.10
+                </h3>
+                <h6 align="right" >
+                    2023.11.30
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Applications Demo v2.10 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported RZ/V2L AI SDK v2.10.<br>
+                            Filesize is decreased to around 3.4GB since the OSS package is moved to AI SDK Source Code.
+                        </li>
+                        <li>
+                            Added 13 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     AI Applications & AI SDK v2.10
                 </h3>
                 <h6 align="right" >

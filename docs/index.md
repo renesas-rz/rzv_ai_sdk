@@ -43,31 +43,46 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2023.11.10
+                2023.12.4
             </h6>
             <ul>
                 <li>
-                    <b>AI Applications v2.10</b> is now available.<br>
+                    <b>Tutorial Video - Getting Started v2.10</b> is now available.<br>
                     <ul>
                         <li> 
-                            Added 13 Applications.
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>RZ/V2L AI SDK v2.10</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            AI SDK Source Code is provided as an additional zip file.<br>
-                            Users can customize Linux environment.
+                            Users can learn the content of Getting Started in the video.<br>
+                            It contains the boot demonstration using eSD bootloader.
                         </li>
                         <li>
-                            AI SDK filesize is decreased to 2.8GB, which is easier to download.
+                            Based on RZ/V2L AI SDK v2.10.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">Video</a>.
+            <!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
+            <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
+                2023.11.30
+            </h6>
+            <ul>
+                <li>
+                    <b>AI Applications Demo v2.10</b> is now available.<br>
+                    <ul>
+                        <li> 
+                            Supported RZ/V2L AI SDK v2.10.<br>
+                            The file size is decreased to around 3.4GB since the OSS package is deleted and provided in AI SDK Source Code.
+                        </li>
+                        <li>
+                            Added 13 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>.
+            <!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
             <br>
         </div>
         <div class="col-12" align="right">
@@ -178,7 +193,7 @@ layout: default
             Download the Demo and refer to <a href= "{{ site.url }}{{ site.baseurl }}{% link demo.md %}">How to Use Guide</a> for more details.
             <br>
             <br>
-            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-200" role="button">
+            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
                 Download Demo
             </a>
             <br>
@@ -186,8 +201,8 @@ layout: default
             <h6>
                 <b>Notes:
                     <ol>
-                        <li>Demo is based on AI Applications v2.00 and AI SDK v2.00.</li>
-                        <li>Demo zip filesize is more than 5GB.</li>
+                        <li>Demo is based on AI Applications v2.10 and AI SDK v2.10.</li>
+                        <li>Demo zip filesize is around 3.4GB.</li>
                         <li>Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 10 hours.</li>
                     </ol>
                 </b>
@@ -205,19 +220,33 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-xl-4">
+            <iframe width="100%" height="55%" src="https://www.youtube.com/embed/CPeE2q3TdOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <ul class="videodetails">
+                <li>
+                    <a href="https://youtu.be/CPeE2q3TdOY">RZ/V2L AI Applications Tutorial - Getting Started v2.10 (Youtube) </a>
+                    <br><br>
+                    This is a tutorial video explaining the content of getting started.<br>
+                    This tutorial is based on RZ/V2L AI SDK version <b>2.10</b>, which supports both eSD bootloder and eMMC bootloader.<br>
+                    In this video, eSD bootloader is used.<br>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-6 col-xl-4">
             <iframe width="100%" height="55%" src="https://www.youtube.com/embed/wFbTomH8oPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
             </iframe>
             <ul class="videodetails">
                 <li>
-                    <a href="https://youtu.be/wFbTomH8oPs">RZ/V2L AI Applications Tutorial - Getting Started (Youtube) </a>
+                    <a href="https://youtu.be/wFbTomH8oPs">RZ/V2L AI Applications Tutorial - Getting Started v1.00 (Youtube) </a>
                     <br><br>
                     This is a tutorial video explaining the content of getting started.<br>
-                    This tutorial is based on RZ/V2L AI SDK version 1.00.<br>
+                    This tutorial is based on RZ/V2L AI SDK version <b>1.00</b>, which only supports eMMC bootloader.<br>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+<br>
 <br>
 <div class="container">
     <div class="row">
