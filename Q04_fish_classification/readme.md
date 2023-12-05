@@ -12,7 +12,7 @@ It has 4 modes of running.
 2. Using USB Camera
 3. Using Image as input
 4. Using Video as input
-5. Input from Websocket
+5. Input from Websocket [Link to Readme](./etc/readme.md)
 
 #### Demo:
 
