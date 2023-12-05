@@ -358,7 +358,10 @@ void classification(int out)
 void buttonCallBack(int event, int x, int y, int flags, void *userdata)
 {
     if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        std::cout << "[INFO] Double Tap !!\n";
         exitClicked = true;
+    }
 }
 
 /*****************************************
@@ -402,6 +405,7 @@ void get_patches(int event, int x, int y, int flags, void *param)
     }
     else if (event == cv::EVENT_LBUTTONDBLCLK)
     {
+        std::cout << "[INFO] Double Tap !!\n";
         exitClicked = true;
         drawing_box = false;
     }
