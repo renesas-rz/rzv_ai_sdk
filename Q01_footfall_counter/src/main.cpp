@@ -100,6 +100,8 @@ int pointx1, pointy1, pointx2, pointy2, actual_count = 0;
 std::vector<cv::Point> polygon;
 static float conf = 0;
 
+std::ofstream log_file("log_file.txt", std::ios_base::out | std::ios_base::app);
+
 /*****************************************
 * Function Name     : float16_to_float32
 * Description       : Function by Edgecortex. Cast uint16_t a into float value.
@@ -506,6 +508,7 @@ void R_Post_Proc(float* floatarr)
         dat.H = (int32_t)detect.bbox.h;
         bbox.emplace_back(dat.X, dat.Y, dat.W, dat.H);
         trackedbbox.emplace_back(dat);
+        log_file << "Bbox " << dat.name << ": " << dat.X << " " << dat.Y << " " << dat.W << " " << dat.H << std::endl;
     }
     /*run the tracker with detected bbox*/
     tracker.Run(bbox);
@@ -828,6 +831,7 @@ int8_t R_Main_Process()
     int32_t sem_check = 0;
     /*Variable for checking return value*/
     int8_t ret = 0;
+    int track_count;
     config_read();
     uint8_t img_buf_id;
     std::map<int, int> id_time;
@@ -905,6 +909,7 @@ int8_t R_Main_Process()
             infer_time_ms = total_time;
             const auto tracks = tracker.GetTracks();
             region_count = 0;
+            track_count = 0;
             /* result tracks */
             for (auto &trk : tracks)
             {
@@ -961,35 +966,33 @@ int8_t R_Main_Process()
                     }
                     dat.W = bbox_trk.width;
                     dat.H = bbox_trk.height;
+                    if (dat.Y < 20){
+                        dat.Y = 20;
+                    }
                     cv::Rect rect(dat.X, dat.Y, dat.W, dat.H);
-                    for (const auto &x : id_time)
+                    log_file << "Bbox " << track_count << ": " << dat.X << " " << dat.Y << " " << dat.W << " " << dat.H << std::endl;
+                    try
                     {
-                        std::cout << "tracking id : " << x.first << " n_frames detected : " << x.second << "\n";
+                        dat.name = trackedbbox.at(track_count).name + " " + dat.name;
+                        track_count++;
                     }
-                    for (auto bbx: trackedbbox)
+                    catch (const std::out_of_range & ex)
                     {
-                        if (std::abs(bbx.X - dat.X) < 10 && std::abs(bbx.Y - dat.Y) < 10 && std::abs(bbx.W - dat.W) < 10 && std::abs(bbx.H - dat.H) < 10)
-                        {
-                            dat.name = bbx.name + " " + dat.name;
-                            break;
-                        }
+                        std::cout << "out_of_range Exception Caught :: " << ex.what() << std::endl;
                     }
-                    cv::Rect rect_text_box(dat.X, dat.Y - 20, dat.W, 20);
-                    cv::rectangle(bgra_image, rect_text_box, cv::Scalar(0, 255, 0), cv::FILLED);
+                    
                     cv::rectangle(bgra_image, rect, cv::Scalar(0, 255, 0), 1.5);
+                    font_weight_bb = 1;
+                    font_size_bb = 0.5;
                     cv::Size text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, font_weight_bb, 0);
                     if (text_size.width > dat.W)
                     {
-                        font_weight_bb = .75;
                         font_size_bb = 0.3;
+                        text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, font_weight_bb, 0);
                     } 
-                    else 
-                    {
-                        font_weight_bb = 1;
-                        font_size_bb = 0.5;
-                    }
+                    cv::Rect rect_text_box(dat.X, dat.Y - 20, text_size.width + 20, 20);
+                    cv::rectangle(bgra_image, rect_text_box, cv::Scalar(0, 255, 0), cv::FILLED);
                     cv::putText(bgra_image, dat.name, cv::Point(dat.X + 10, dat.Y - 7), cv::FONT_HERSHEY_SIMPLEX, font_size_bb, cv::Scalar(0, 0, 0), font_size_bb, cv::LINE_AA);
-
                 }
             }
             cv::line(bgra_image, cv::Point(pointx1, pointy1), cv::Point(pointx2, pointy2), cv::Scalar(0, 0, 255), 4);
@@ -1312,6 +1315,7 @@ end_threads:
     goto end_main;
 
 end_main:
+    log_file.close();
     printf("Application End\n");
     return ret_main;
 }

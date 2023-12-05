@@ -27,6 +27,7 @@ It has 2 modes of running.
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
+  - MIPI Camera
 - USB Camera 
 - USB Keyboard
 - USB Mouse
@@ -77,7 +78,7 @@ After completion of the guide, the user is expected of following things.
 3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
 
 ```sh
-export PROJECT_PATH=/drp_ai_tvm/data/
+export PROJECT_PATH=/drp-ai_tvm/data/
 ```
 4. Go to the `src` directory of the application
 
@@ -150,9 +151,14 @@ Folder structure in the rootfs (SD Card) would look like:
   vi config.ini
   ```
   * Run the application in the terminal of the RZ/V2L evaluation board kit using the command
-  ```sh
-  ./object_tracker
-  ```
+    - For USB Camera
+    ```sh
+    ./object_tracker USB
+    ```
+    - For MIPI Camera
+    ```sh
+    ./object_tracker MIPI
+    ```
 * The expected output will be the same as shown in the demo video
 
 #### Application: Runtime output details

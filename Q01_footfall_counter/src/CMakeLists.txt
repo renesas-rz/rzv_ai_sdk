@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(object_detection_cpp)
+project(object_tracker_cpp)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -10,7 +10,7 @@ include_directories(${TVM_ROOT}/3rdparty/dmlc-core/include)
 include_directories(${TVM_ROOT}/3rdparty/compiler-rt)
 
 set(TVM_RUNTIME_LIB ${TVM_ROOT}/build_runtime/libtvm_runtime.so)
-set(EXE_NAME object_detection)
+set(EXE_NAME object_tracker)
 
 file(GLOB SOURCE *.cpp *.h)
 add_executable (${EXE_NAME}
