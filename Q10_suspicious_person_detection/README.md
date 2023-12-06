@@ -20,7 +20,7 @@ It has following input modes.
 
 ### Demo
 
-<img src="./images/Q10_suspicious_demo.gif" width="480">
+<img src="./images/Suspicious_person_demo.gif" width="480">
 
 ## Application: Requirements
 

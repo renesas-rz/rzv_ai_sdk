@@ -732,6 +732,7 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
 {
     if (event == cv::EVENT_LBUTTONDBLCLK)
     {
+        std::cout << "[INFO] Double Tap !!\n";
         sem_trywait(&terminate_req_sem);
     }
 }
@@ -789,7 +790,7 @@ int8_t R_Main_Process()
             objects_not_available += item + "\n";
         }
     }
-     std::cout << "[INFO] *******************Detection Parameters*******************" << std::endl;
+     std::cout << "[INFO] *******************Detection Parameters*******************\n";
     if (!objects_not_available.empty())
     {
         std::cout << "[INFO] Selected objects in config.ini which is not found in the label list\n"
@@ -806,7 +807,8 @@ int8_t R_Main_Process()
     }
 
     std::string g_pipeline = "appsrc ! videoconvert ! autovideosink sync=false ";
-    float font_size = 0.75;
+    float font_size = 0.70;
+    float font_size_small = 0.50;
     float font_weight = 1;
     float font_size_dt = 0.65;
     float font_size_bb = 0.55;
@@ -916,11 +918,12 @@ int8_t R_Main_Process()
             }
             mtx.unlock();
             bgra_image = create_output_frame(bgra_image);
-            cv::putText(bgra_image, "Preprocess Time: " + std::to_string(int(pre_time)), cv::Point(970, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "AI Inference Time: " + std::to_string(int(ai_time)), cv::Point(970, 90), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Postprocess Time: " + std::to_string(int(post_time)), cv::Point(970, 120), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Total AI Time[ms] : " + std::to_string(int(total_time)) + "ms", cv::Point(970, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Preprocess : " + std::to_string(int(pre_time)) + "ms", cv::Point(1000, 90), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "AI Inference : " + std::to_string(int(ai_time)) + "ms", cv::Point(1000, 120), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Postprocess : " + std::to_string(int(post_time)) + "ms", cv::Point(1000, 150), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(970, 700), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
-            text_height = 170;
+            text_height = 200;
             for (std::string res : results)
             {
                 cv::putText(bgra_image, res, cv::Point(970, text_height), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
@@ -1061,6 +1064,13 @@ int32_t main(int32_t argc, char * argv[])
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
+    if (argc < 2 || argc > 2)
+    {
+        std::cout << "[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] Usage : ./suspicious_person_detector MIPI|USB" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
     std::string input_source = argv[1];
     switch (input_source_map[input_source])
     {
@@ -1085,7 +1095,9 @@ int32_t main(int32_t argc, char * argv[])
         break;
         default:
         {
-            std::cout << "[ERROR] Invalid Input source\n";
+            std::cout << "[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[INFO] Usage : ./suspicious_person_detector MIPI|USB" << std::endl;
+            std::cout << "\n[INFO] End Application\n";
             return -1;
         }
     }
@@ -1234,6 +1246,6 @@ end_threads:
     goto end_main;
 
 end_main:
-    printf("Application End\n");
+    printf("\n[INFO] Application End\n");
     return ret_main;
 }
