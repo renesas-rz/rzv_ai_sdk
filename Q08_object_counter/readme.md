@@ -302,7 +302,7 @@ Mean Average Precision (mAP) for each model given in below table
 
 - The section should contains three variables - `model_path`, `label_path` & `config_path`.
 
-- The `model_path` value is the path to the folder containing compiled model. The folder should also contains also contain preprocess folder. 
+- The `model_path` value is the path to the folder containing compiled model. 
 
 - The `label_path` value is the path to the label list the model supports.
 
