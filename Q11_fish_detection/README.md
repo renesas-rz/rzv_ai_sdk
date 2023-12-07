@@ -133,7 +133,6 @@ Folder structure in the rootfs (SD Card) would look like:
             │   ├── deploy.json
             │   ├── deploy.params
             │   ├── deploy.so
-            │   └── preprocess/
             │   
             ├── fish_class.txt           
             ├── config.ini
@@ -206,7 +205,7 @@ The AI inference time is 80-120 msec.
 
 - The section [**path**] should contains two variables - 'model_path' & 'label_path'.
 
-- The `model_path` value is the path to the folder containing compiled model. The folder should also contains also contain preprocess folder. 
+- The `model_path` value is the path to the folder containing compiled model. 
 
 - The `label_path` value is the path to the label list the model supports.
 
