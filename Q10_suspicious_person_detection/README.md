@@ -128,7 +128,6 @@ Folder structure in the rootfs (SD Card) would look like:
             │   ├── deploy.json
             │   ├── deploy.params
             │   ├── deploy.so
-            │   └── preprocess/
             │   
             ├── suspicious_class.txt            
             ├── config.ini
