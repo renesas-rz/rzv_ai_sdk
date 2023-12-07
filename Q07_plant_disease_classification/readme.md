@@ -153,6 +153,8 @@ Folder structure in the rootfs (SD Card) would look like:
 ./plant_leaf_disease_classify USB 
 ```
 
+>**Note:** For USB camera input there could be noise on the GUI depending on the USB Camera you use. Consider using a different USB Camera for better performance.
+
 ##### Mode: Image Input
 ```sh
 ./plant_leaf_disease_classify IMAGE sampleimg.jpg
