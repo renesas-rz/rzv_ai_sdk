@@ -55,7 +55,8 @@
 #include "define.h"
 /*box drawing*/
 #include "box.h"
-#include "tracker.h"
+
+#include "sort.h"
 
 /*****************************************
 * Global Variables
@@ -93,14 +94,13 @@ cv::Mat yuyv_image;
 cv::Mat input_image;
 std::unordered_map<std::string, std::unordered_map<std::string, std::string>> ini_values;
 std::vector<std::string> detection_object_vector;
-std::vector<cv::Rect> bbox;
-static std::vector<bbox_t> trackedbbox;
-Tracker tracker;
+// std::vector<cv::Rect> bbox;
+static cv::Mat trackerbbox = cv::Mat(0, 6, CV_32F);
+static std::vector<bbox_t> bbox;
 int pointx1, pointy1, pointx2, pointy2, actual_count = 0;
 std::vector<cv::Point> polygon;
 static float conf = 0;
 
-std::ofstream log_file("log_file.txt", std::ios_base::out | std::ios_base::app);
 
 /*****************************************
 * Function Name     : float16_to_float32
@@ -492,7 +492,7 @@ void R_Post_Proc(float* floatarr)
     filter_boxes_nms(det, det.size(), TH_NMS);
     
     bbox.clear();
-    trackedbbox.clear();
+    trackerbbox = cv::Mat(0, 6, CV_32F);
     for (detection detect : det)
     {
         bbox_t dat;
@@ -506,12 +506,10 @@ void R_Post_Proc(float* floatarr)
         dat.Y = (int32_t)(detect.bbox.y - (detect.bbox.h / 2));
         dat.W = (int32_t)detect.bbox.w;
         dat.H = (int32_t)detect.bbox.h;
-        bbox.emplace_back(dat.X, dat.Y, dat.W, dat.H);
-        trackedbbox.emplace_back(dat);
-        log_file << "Bbox " << dat.name << ": " << dat.X << " " << dat.Y << " " << dat.W << " " << dat.H << std::endl;
+        bbox.emplace_back(dat);
+        cv::Mat bbox = (cv::Mat_<float>(1, 6) << dat.X, dat.Y, dat.W, dat.H, detect.prob, detect.c);
+        cv::vconcat(trackerbbox, bbox, trackerbbox);
     }
-    /*run the tracker with detected bbox*/
-    tracker.Run(bbox);
     mtx.unlock();
     return ;
 }
@@ -811,6 +809,7 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
 {
     if (event == cv::EVENT_LBUTTONDBLCLK)
     {
+        std::cout << "[INFO] Double tap !!!" << std::endl;
         sem_trywait(&terminate_req_sem);
     }
 }
@@ -831,7 +830,6 @@ int8_t R_Main_Process()
     int32_t sem_check = 0;
     /*Variable for checking return value*/
     int8_t ret = 0;
-    int track_count;
     config_read();
     uint8_t img_buf_id;
     std::map<int, int> id_time;
@@ -842,6 +840,9 @@ int8_t R_Main_Process()
     std::stringstream stream;
     std::string result_str;
     int8_t region_count;
+    int tracker_id;
+    int class_id;
+    std::string class_name;
     int8_t kmin = stoi(ini_values["tracking"]["kmin"]);
     conf = stof(ini_values["tracking"]["conf"]);
     /*set point 1*/
@@ -882,6 +883,7 @@ int8_t R_Main_Process()
     {
         font_size_dt = .45;
     }
+    sort::Sort::Ptr mot = std::make_shared<sort::Sort>(1, 3, 0.3f);
     cv::namedWindow("Object Tracker", cv::WINDOW_NORMAL);
     cv::setWindowProperty("Object Tracker", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
     cv::setMouseCallback("Object Tracker", mouse_callback_button_click);
@@ -907,93 +909,83 @@ int8_t R_Main_Process()
         {
             bgra_image = yuyv_image;
             infer_time_ms = total_time;
-            const auto tracks = tracker.GetTracks();
+            cv::Mat tracks = mot->update(trackerbbox);
             region_count = 0;
-            track_count = 0;
             /* result tracks */
-            for (auto &trk : tracks)
+            for (int i = 0; i < tracks.rows; ++i)
             {
                 bbox_t dat;
-                const auto &bbox_trk = trk.second.GetStateAsBbox();
-                /*kmin hit and kmaxcoast cycle*/
-                if (trk.second.coast_cycles_ < kMaxCoastCycles && trk.second.hit_streak_ >= kmin)
+                tracker_id = int(tracks.at<float>(i, 8));
+                class_id = int(tracks.at<float>(i, 5));
+                class_name = label_file_map[class_id];
+                dat.X = tracks.at<float>(i, 0);
+                dat.Y = tracks.at<float>(i, 1);
+                if (id_time.find(tracker_id) == id_time.end())
                 {
-                    if (id_time.find(trk.first) == id_time.end())
-                        dat.name = "Id : " + std::to_string(trk.first);
-                    dat.name = "Id: " + std::to_string(trk.first) + " Time: " + std::to_string(id_time[trk.first] / 1000);
-                    dat.X = bbox_trk.tl().x;
-                    dat.Y = bbox_trk.tl().y;
-                    int s = check_above_or_below((int)(dat.X + dat.W / 2), (int)(dat.Y + dat.H));
-                    const bool is_in = unique_ids.find(trk.first) != unique_ids.end();
-                    if (s)
+                    dat.name = class_name + " Id : " + std::to_string(tracker_id);
+                }
+                else
+                {
+                    dat.name = class_name + " Id: " + std::to_string(tracker_id) + " Time: " + std::to_string(id_time[tracker_id] / 1000);
+                }
+                int s = check_above_or_below((int)(dat.X + dat.W / 2), (int)(dat.Y + dat.H));
+                if (s)
+                {
+                    if (location_history.find(tracker_id) == location_history.end())
+                        location_history[tracker_id] = s;
+                    else
                     {
-                        if (location_history.find(trk.first) == location_history.end())
-                            location_history[trk.first] = s;
-                        else
+                        if (!location_history[tracker_id])
                         {
-                            if (!location_history[trk.first])
-                            {
-                                actual_count++;
-                            }
-                            location_history[trk.first] = s;
+                            actual_count++;
                         }
+                        location_history[tracker_id] = s;
+                    }
+                }
+                else
+                {
+                    if (location_history.find(tracker_id) == location_history.end())
+                        location_history[tracker_id] = s;
+                    else
+                    {
+                        if (location_history[tracker_id])
+                        {
+                            actual_count--;
+                        }
+                        location_history[tracker_id] = s;
+                    }
+                }
+                bool is_in_rect = check_inside_rectangle((int)(dat.X + dat.W / 2), (int)(dat.Y + dat.H));
+                if (is_in_rect)
+                {
+                    region_count++;
+                    if (id_time.find(tracker_id) == id_time.end())
+                    {
+                        id_time[tracker_id] = infer_time_ms;
                     }
                     else
                     {
-                        if (location_history.find(trk.first) == location_history.end())
-                            location_history[trk.first] = s;
-                        else
-                        {
-                            if (location_history[trk.first])
-                            {
-                                actual_count--;
-                            }
-                            location_history[trk.first] = s;
-                        }
+                        id_time[tracker_id] += infer_time_ms;
                     }
-                    bool is_in_rect = check_inside_rectangle((int)(dat.X + dat.W / 2), (int)(dat.Y + dat.H));
-                    if (is_in_rect)
-                    {
-                        region_count++;
-                        if (id_time.find(trk.first) == id_time.end())
-                        {
-                            id_time[trk.first] = infer_time_ms;
-                        }
-                        else
-                        {
-                            id_time[trk.first] += infer_time_ms;
-                        }
-                    }
-                    dat.W = bbox_trk.width;
-                    dat.H = bbox_trk.height;
-                    if (dat.Y < 20){
-                        dat.Y = 20;
-                    }
-                    cv::Rect rect(dat.X, dat.Y, dat.W, dat.H);
-                    log_file << "Bbox " << track_count << ": " << dat.X << " " << dat.Y << " " << dat.W << " " << dat.H << std::endl;
-                    try
-                    {
-                        dat.name = trackedbbox.at(track_count).name + " " + dat.name;
-                        track_count++;
-                    }
-                    catch (const std::out_of_range & ex)
-                    {
-                        std::cout << "out_of_range Exception Caught :: " << ex.what() << std::endl;
-                    }
-                    
-                    cv::rectangle(bgra_image, rect, cv::Scalar(0, 255, 0), 1.5);
-                    font_weight_bb = 1;
-                    font_size_bb = 0.5;
-                    cv::Size text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, font_weight_bb, 0);
-                    if (text_size.width > dat.W)
-                    {
-                        font_size_bb = 0.3;
-                        text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, font_weight_bb, 0);
-                    } 
-                    cv::Rect rect_text_box(dat.X, dat.Y - 20, text_size.width + 20, 20);
-                    cv::rectangle(bgra_image, rect_text_box, cv::Scalar(0, 255, 0), cv::FILLED);
-                    cv::putText(bgra_image, dat.name, cv::Point(dat.X + 10, dat.Y - 7), cv::FONT_HERSHEY_SIMPLEX, font_size_bb, cv::Scalar(0, 0, 0), font_size_bb, cv::LINE_AA);
                 }
+                dat.W = tracks.at<float>(i, 2);
+                dat.H = tracks.at<float>(i, 3);
+                if (dat.Y < 20){
+                    dat.Y = 20;
+                }
+                cv::Rect rect(dat.X, dat.Y, dat.W, dat.H);                
+                cv::rectangle(bgra_image, rect, cv::Scalar(0, 255, 0), 1.5);
+                font_weight_bb = 1;
+                font_size_bb = 0.5;
+                cv::Size text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, font_weight_bb, 0);
+                if (text_size.width > dat.W)
+                {
+                    font_size_bb = 0.3;
+                    text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, font_weight_bb, 0);
+                } 
+                cv::Rect rect_text_box(dat.X, dat.Y - 20, text_size.width + 20, 20);
+                cv::rectangle(bgra_image, rect_text_box, cv::Scalar(0, 255, 0), cv::FILLED);
+                cv::putText(bgra_image, dat.name, cv::Point(dat.X + 10, dat.Y - 7), cv::FONT_HERSHEY_SIMPLEX, font_size_bb, cv::Scalar(0, 0, 0), font_size_bb, cv::LINE_AA);
             }
             cv::line(bgra_image, cv::Point(pointx1, pointy1), cv::Point(pointx2, pointy2), cv::Scalar(0, 0, 255), 4);
             cv::polylines(bgra_image, polygon, true, cv::Scalar(0, 255, 0), 2);
@@ -1001,14 +993,14 @@ int8_t R_Main_Process()
             cv::putText(bgra_image, "Preprocess Time: " + std::to_string(int(pre_time)), cv::Point(970, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "AI Inference Time: " + std::to_string(int(ai_time)), cv::Point(970, 90), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Postprocess Time: " + std::to_string(int(post_time)), cv::Point(970, 120), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, DISPLAY_TEXT + ": " + std::to_string(actual_count), cv::Point(970, 150), cv::FONT_HERSHEY_DUPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, DISPLAY_REGION_TEXT + ": " + std::to_string(region_count), cv::Point(970, 180), cv::FONT_HERSHEY_DUPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, DISPLAY_TEXT + ": " + std::to_string(actual_count), cv::Point(970, 180), cv::FONT_HERSHEY_DUPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, DISPLAY_REGION_TEXT + ": " + std::to_string(region_count), cv::Point(970, 210), cv::FONT_HERSHEY_DUPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(970, 700), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
-            cv::putText(bgra_image, "Objects Detected: ", cv::Point(970, 220), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Objects Detected: ", cv::Point(970, 270), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             mtx.lock();
-            for (int i = 0; i < trackedbbox.size(); i++)
+            for (int i = 0; i < bbox.size(); i++)
             {
-                cv::putText(bgra_image, trackedbbox[i].name, cv::Point(980, (250 + (i * 20))), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+                cv::putText(bgra_image, bbox[i].name, cv::Point(980, (300 + (i * 20))), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             }
             mtx.unlock();
             cv::imshow("Object Tracker", bgra_image);
@@ -1146,6 +1138,14 @@ int32_t main(int32_t argc, char * argv[])
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
+    if (argc < 2) 
+    {
+        std::cout << "[ERROR] Please specify Input Source\n";
+        std::cout << "[INFO] usage: ./object_tracker MIPI|USB.\n";
+        std::cout << "[INFO] End Application.\n";
+        return -1;
+
+    }
     std::string input_source = argv[1];
     switch (input_source_map[input_source])
     {
@@ -1315,7 +1315,6 @@ end_threads:
     goto end_main;
 
 end_main:
-    log_file.close();
     printf("Application End\n");
     return ret_main;
 }

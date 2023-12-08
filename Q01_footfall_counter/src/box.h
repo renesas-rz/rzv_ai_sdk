@@ -50,7 +50,7 @@ typedef struct detection
 } detection;
 
 /*****************************************
-* detection : Detected result
+* bbox_t : Detected result
 ******************************************/
 struct bbox_t
 {
