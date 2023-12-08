@@ -860,6 +860,7 @@ int8_t R_Main_Process()
     }
 
     float font_size = 0.75;
+    float font_size_small= 0.5;
     float font_weight = 1;
     float font_size_dt = 0.65;
     float font_size_bb = 0.55;
@@ -957,23 +958,25 @@ int8_t R_Main_Process()
             }
             mtx.unlock();
             bgra_image = create_output_frame(bgra_image);
-            cv::putText(bgra_image, "Preprocess Time: " + std::to_string(int(pre_time)), cv::Point(970, 60), 
+            cv::putText(bgra_image, "Total AI Time[ms]:" + std::to_string(int(total_time)) + "ms", cv::Point(970, 60),
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "AI Inference Time: " + std::to_string(int(ai_time)), cv::Point(970, 90), 
-                        cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Postprocess Time: " + std::to_string(int(post_time)), cv::Point(970, 120), 
-                        cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Preprocess : " + std::to_string(int(pre_time)) + "ms", cv::Point(1000, 90),
+                        cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "AI Inference : " + std::to_string(int(ai_time)) + "ms", cv::Point(1000, 120),
+                        cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Postprocess : " + std::to_string(int(post_time)) + "ms", cv::Point(1000, 150),
+                        cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(970, 700), 
                         cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             for (std::map<std::string, int>::iterator it = detection_count.begin(); it != detection_count.end(); ++it)
             {
                 cv::putText(bgra_image, std::string(it->first) + ": " + std::to_string(it->second), 
-                            cv::Point(980, 180 + 30*items), cv::FONT_HERSHEY_DUPLEX, font_size, 
+                            cv::Point(980, 240 + 30*items), cv::FONT_HERSHEY_DUPLEX, font_size, 
                             cv::Scalar(255, 255, 255), font_weight);
                 total_count += (int)it->second;
                 items++;
             }
-            cv::putText(bgra_image, "Total Objects:  " + std::to_string(total_count), cv::Point(970, 150), 
+            cv::putText(bgra_image, "Total Objects:  " + std::to_string(total_count), cv::Point(970, 210), 
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             output_writer.write(bgra_image);
             img_obj_ready.store(0);
@@ -1109,6 +1112,13 @@ int32_t main(int32_t argc, char * argv[])
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
+    if (argc < 3 || argc > 3)
+    {
+        std::cout << "[ERROR] Please specify Mode and Input Source" << std::endl;
+        std::cout << "[INFO] Usage : ./object_counter animal|vehicle|COCO MIPI|USB" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
     std::string mode = argv[1];
     std::string input_source = argv[2];
     INI_FORMAT config_values = config_read("app_conf.ini");
@@ -1145,7 +1155,9 @@ int32_t main(int32_t argc, char * argv[])
         break;
         default:
         {
-            std::cout << "[ERROR] Invalid Input source\n";
+            std::cout << "[ERROR] Please specify Mode and Input Source" << std::endl;
+            std::cout << "[INFO] Usage : ./object_counter animal|vehicle|COCO MIPI|USB" << std::endl;
+            std::cout << "\n[INFO] End Application\n";
             return -1;
         }
     }
