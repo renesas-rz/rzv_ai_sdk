@@ -43,7 +43,6 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-<<<<<<< HEAD
                 2023.12.4
             </h6>
             <ul>
@@ -73,15 +72,6 @@ layout: default
                     <b>AI Applications Demo v2.10</b> is now available.<br>
                     <ul>
                         <li> 
-=======
-                2023.11.30
-            </h6>
-            <ul>
-                <li>
-                    <b>AI Applications Demo v2.10</b> is now available.<br>
-                    <ul>
-                        <li> 
->>>>>>> 39d4462e29b9e5a11df8378721f899d96e1b917b
                             Supported RZ/V2L AI SDK v2.10.<br>
                             The file size is decreased to around 3.4GB since the OSS package is deleted and provided in AI SDK Source Code.
                         </li>

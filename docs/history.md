@@ -17,7 +17,6 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
-<<<<<<< HEAD
                     Tutorial Video - Getting Started v2.10
                 </h3>
                 <h6 align="right" >
@@ -43,8 +42,6 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
-=======
->>>>>>> 39d4462e29b9e5a11df8378721f899d96e1b917b
                     AI Applications Demo v2.10
                 </h3>
                 <h6 align="right" >

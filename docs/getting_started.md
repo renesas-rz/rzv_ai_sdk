@@ -259,8 +259,13 @@ This step explains how to build AI application.
 
 AI Applications are provided in the GitHub repository.
 <br>
-To access the application, please see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#ai-applications">AI Applications</a>.
-<br><br>
+To access the application, please see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Applications</a>.
+<div class="note">
+  <span class="note-title">Note</span>
+  The link in <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Applications</a> page guides you to the latest GitHub repository.<br>
+  Please be aware that latest AI Application requires latest AI SDK.<br>
+</div>
+<br>
 Application directory has the following structure.
 <br>
 <table>
@@ -302,7 +307,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
   <li><b>&lt;Application 1&gt;</b>: Provided in <a href="https://github.com/renesas-rz/rzv_ai_sdk/">RZ/V AI SDK GitHub repository</a>.
     <ul>
       <li>This repository provides the complete instruction in each application documentation.</li>
-      <li>In this page, we use the <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection">Object Detection</a> application from this repository for an example.</li>
+      <li>In this page, we use the <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">Object Detection</a> application from this repository for an example.</li>
     </ul>
   </li>
   <li><b>&lt;Application 2&gt;</b>: Provided in <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary">RZV2L_AiLibrary repository</a>.
@@ -319,12 +324,24 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
       <li>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection">Object Detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection#application-build-stage">here</a> to generate the following application binary.
+          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">Object Detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection#application-build-stage">here</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
         </div>
       </li>
+      <!-- From here: Delete when making latest version -->
+      <li>
+        <div class="note">
+          <span class="note-title">Note</span>
+          The <code>git clone</code> command shown in the <code>README.md</code> will download the <b style="color: red;">latest</b> source code and related files. <br><br>
+          To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code>  when you running the <code>git clone</code> command as shown below.
+{% highlight shell%}
+git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
+{% endhighlight %}
+        </div>
+      </li>
+      <!-- Until here: Delete when making latest version -->
     </ul>
     <br>
     After you generated the application binary, please proceed to <a href="#step7">Step 7</a>
@@ -358,11 +375,21 @@ cd /drp-ai_tvm/data
 {% endhighlight %}
       </li><br>
       <li>Download the application source code.<br>
-        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/01_Head_count">RZV2L_AiLibrary repository Head Counter application</a> as an example.
+        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v{{ site.version }}/01_Head_count">RZV2L_AiLibrary repository Head Counter application</a> as an example.
         <br>
 {% highlight shell%}
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
+        <!-- From here: Delete when making latest version -->
+        <div class="note">
+          <span class="note-title">Note</span>
+          The command above will download the <b style="color: red;">latest</b> source code and related files. <br><br>
+          To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code> when you running the <code>git clone</code> command as shown below.
+{% highlight shell%}
+git clone -b v{{ site.version }} https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
+{% endhighlight %}
+        </div>
+        <!-- Until here: Delete when making latest version -->
       </li><br>
       <li>Move to the application directory.
 {% highlight shell%}
@@ -782,7 +809,7 @@ sudo mkdir /mnt/sd/home/root/tvm
       <br><br>
       <div class="box1">
         <u><b>Example:</b></u><br>
-        In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection">Object Detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
+        In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">Object Detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
       </div>
       <br>
       Use the following command to copy the files to root filesystem.
@@ -939,7 +966,7 @@ Document of applications on GitHub has the instructions to run the application.<
 
 <div class="box1">
   <u><b>Example:</b></u><br>
-  For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection">Object Detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/R01_object_detection#application-run-stage">here</a> to run the application.
+  For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">Object Detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection#application-run-stage">here</a> to run the application.
   <br>
   If you have successfully run the application, you will see following window on HDMI screen.
   <br><br>
