@@ -63,28 +63,29 @@ using namespace std;
 
 /* Global variables */
 /* flags for mouse callback functions*/
-bool add_slot_in_figure = false;
-bool backButtonTrue = true;
-bool start_inference_parking_slot = false;
-bool exit_all = false;
-bool drawing_box = false;
-bool re_draw = false;
-bool stop = false;
-bool runtime_status = false; 
+bool add_slot_in_figure             = false;
+bool backButtonTrue                 = true;
+bool start_inference_parking_slot   = false;
+bool exit_all                       = false;
+bool drawing_box                    = false;
+bool re_draw                        = false;
+bool stop                           = false;
+bool runtime_status                 = false; 
 
-const string model_dir = "parking_model";
-const string app_name = "Parking Lot Assistance";
+const string model_dir  = "parking_model";
+const string app_name   = "Parking Lot Assistance";
 
-int slot_id = 0;
-
-uint64_t drpaimem_addr_start = 0;
-uint32_t winWidth = 0;
-uint32_t winHeight = 0;
+int slot_id                     = 0;
+uint64_t drpaimem_addr_start    = 0;
+uint32_t winWidth               = 0;
+uint32_t winHeight              = 0;
+unsigned int frame_count        = 0;
 
 vector<Rect> boxes;
 
-Mat img;
-Mat frame1 = Mat::zeros(400, 400, CV_8UC3);
+cv::Mat img;
+cv::Mat frame1 = Mat::zeros(400, 400, CV_8UC3);
+cv::VideoCapture g_cap;
 
 /* gstreamer output pipeline */
 std::string gstreamer_pipeline;
@@ -146,6 +147,7 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
     else if (event == cv::EVENT_LBUTTONDBLCLK)
     {
         exit_all = true;
+        std::cout << "\n[INFO] Double Tap !!\n";
     }
 }
 
@@ -169,6 +171,7 @@ void backOrExitButtonCallback(int event, int x, int y, int flags, void *userdata
     {
         stop = true;
         exit_all = true;
+        std::cout << "\n[INFO] Double Tap !!\n";
     }
 }
 
@@ -208,7 +211,7 @@ void get_patches(int event, int x, int y, int flags, void *param)
         Rect box(box_start, box_end);
         boxes.push_back(box);
     }
-    /*mouse button double click callback*/ 
+    /* mouse button double click callback */ 
     else if (event == cv::EVENT_LBUTTONDBLCLK)
     {
         stop = true;
@@ -260,7 +263,8 @@ int draw_rectangle(void)
     cv::imshow("image", img);
     cv::setMouseCallback("image", get_patches, &img);
     key = cv::waitKey(0);
-    if (key == 114) // Wait for 'r' key press to redraw!!
+    /* Wait for 'r' key press to redraw!! */
+    if (key == 114) 
     {
         std::cout << "re-draw!!\n";
         cv::destroyAllWindows();
@@ -353,6 +357,75 @@ void removeButtonCallback(int, void *)
 }
 
 /*****************************************
+ * Function Name     : show_gui_window
+ * Description       : Function to display main GUI window.
+ * Arguments         : cv::Mat frame
+ * Return value      : cv::Mat frame
+ ******************************************/
+cv::Mat show_gui_window(cv::Mat frame)
+{
+    /* Edit slots button */
+    winWidth = frame.cols;
+    rectangle(frame, Point(winWidth/2 - 300, 523), Point(winWidth/2 - 100, 573), BLUE, -1);
+    putText(frame, "Edit Slots", Point(winWidth/2 - 300 + (int)200 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
+    /* Start Inference Button */
+    rectangle(frame, Point(winWidth/2 + 100, 523), Point(winWidth/2 + 300, 573), BLUE, -1);
+    putText(frame, "Start Inference", Point(winWidth/2 + 100 + (int)200 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
+    /*To get text width*/
+    Size text_size = getTextSize(text, FONT_HERSHEY_SIMPLEX, 0.75, 2, 0);
+    Point text_pos(frame.cols/2 - text_size.width/2, 620);
+    putText(frame, text, text_pos, FONT_HERSHEY_SIMPLEX, 0.75, WHITE, 2, LINE_AA);
+    return frame;
+}
+
+/*****************************************
+ * Function Name     : start_preprocess
+ * Description       : Function to perform the pre processing.
+ * Arguments         : cv::Mat frame
+ * Return value      : cv::Mat frame
+ ******************************************/
+cv::Mat start_preprocess(cv::Mat frame)
+{
+    resize(frame, frame, Size(28, 28));
+    cvtColor(frame, frame, COLOR_BGR2RGB);
+    frame = hwc2chw(frame);
+    if (!frame.isContinuous())
+        frame = frame.clone();
+    else
+        frame = frame;
+    cv::normalize(frame, frame, 0, 1, cv::NORM_MINMAX, CV_32FC1);
+    return frame;
+}
+
+/*****************************************
+ * Function Name     : start_runtime
+ * Description       : Function to give pre-processed data to DRPAI runtime 
+ *                     and processing and post processing.
+ * Arguments         : *input = frame input address
+ * Return value      : int 
+ ******************************************/
+int start_runtime(float *input)
+{
+    /*Set Pre-processing output to be inference input. */
+    runtime.SetInput(0, input);
+    runtime.Run();
+    /* Get the number of output.  */
+    auto output_num = runtime.GetNumOutput();
+    if (output_num != 1)
+    {
+        std::cout << "[ERROR] Output size : not 1." << std::endl;
+        abort();
+    }
+    /* get output buffer */
+    auto output_buffer = runtime.GetOutput(0);
+    float *data_ptr = reinterpret_cast<float *>(std::get<1>(output_buffer));
+    if(data_ptr[0] > data_ptr[1])
+        return 1;
+    else
+        return 0;
+}
+
+/*****************************************
  * Function Name : process_frames
  * Description   : takes Mat frames as the input and passes through the model runtime and process the frames
  * Arguments     : queue Mat frames
@@ -362,7 +435,7 @@ void process_frames(queue<Mat> &frames, bool &stop)
 {
     Rect box;
     Mat patch1, patch_con, patch_norm, inp_img;
-    while (!stop)
+    if(!stop)
     {
         if (!frames.empty())
         {
@@ -374,39 +447,17 @@ void process_frames(queue<Mat> &frames, bool &stop)
             {
                 box = boxes[i];
                 patch1 = img(box);
-                resize(patch1, patch1, Size(28, 28));
-                cvtColor(patch1, patch1, COLOR_BGR2RGB);
-                inp_img = hwc2chw(patch1);
-                if (!inp_img.isContinuous())
-                    patch_con = inp_img.clone();
-                else
-                    patch_con = inp_img;
-                cv::normalize(patch_con, patch_norm, 0, 1, cv::NORM_MINMAX, CV_32FC1);
-                float *temp_input = new float[patch_norm.total() * 3];
-                memcpy(temp_input, patch_norm.ptr<float>(), 3 * patch_norm.total() * sizeof(float));
-                runtime.SetInput(0, temp_input);
-                runtime.Run();
-                auto output_num = runtime.GetNumOutput();
-                if (output_num != 1)
-                {
-                    std::cerr << "[ERROR] Output size : not 1." << std::endl;
-                    return;
-                }
-                auto output_buffer = runtime.GetOutput(0);
-                int64_t out_size = std::get<2>(output_buffer);
-                float floatarr[out_size];
-                float *data_ptr = reinterpret_cast<float *>(std::get<1>(output_buffer));
-                for (int n = 0; n < out_size; n++)
-                {
-                    floatarr[n] = data_ptr[n];
-                }
-                if (floatarr[0] > floatarr[1])
+                patch_norm = start_preprocess(patch1);
+                /*start inference using drp runtime*/
+                int ret = start_runtime(patch_norm.ptr<float>());
+
+                if (ret == 1)
                 {
                     putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, BLUE, 2);
                     cv::rectangle(img, boxes[i], RED, 2);
                     cv::putText(img, "occupied", Point(boxes[i].x - 10, boxes[i].y + boxes[i].height + 25), cv::FONT_HERSHEY_DUPLEX, 1, RED, 2, false);
                 }
-                else
+                else 
                 {
                     putText(img, "id: " + to_string(i + 1), Point(boxes[i].x + 10, boxes[i].y - 10), FONT_HERSHEY_DUPLEX, 1.0, BLUE, 2);
                     cv::rectangle(img, boxes[i], GREEN, 2);
@@ -428,7 +479,7 @@ void process_frames(queue<Mat> &frames, bool &stop)
             if(stop)
             {
                 destroyAllWindows();
-                break;
+                return;
             }
         }
     }
@@ -544,9 +595,6 @@ std::string query_device_status(std::string device_type)
  ******************************************/
 void capture_frame(std::string cap_pipeline, std::string input_mode, queue<Mat> &frames, bool &stop)
 {
-    cv::VideoCapture g_cap;
-    /* Capture stream of frames from camera using Gstreamer pipeline */
-    g_cap.open(cap_pipeline, cv::CAP_GSTREAMER);
     if (!g_cap.isOpened())
     {
         /* This section prompt an error message if no video stream is found */
@@ -556,16 +604,21 @@ void capture_frame(std::string cap_pipeline, std::string input_mode, queue<Mat> 
     }
     /* Taking an everlasting loop to show the output */
     Mat frame;
-    while (!stop)
+    if(!stop)
     {
         g_cap.read(frame);
+        frame_count++;
         /* Breaking the loop if no video frame is detected */
         if (frame.empty())
         {
             std::cout << "[INFO] Video ended or corrupted frame !\n";
             return;
         }
-        frames.push(frame);
+        if(frame_count == 2)
+        {
+            frames.push(frame);
+            frame_count = 0;
+        }
     }
 }
 
@@ -630,6 +683,8 @@ int input_source_select(void)
     return 0;
 }
 
+
+
 int main(int argc, char **argv)
 {
     if (argc < 2 || argc > 3) 
@@ -683,27 +738,19 @@ int main(int argc, char **argv)
         fprintf(stderr, "[ERROR] Failed to load model. \n");
         return -1;
     }
-
     std::cout << "loaded model:" << model_dir << "\n";
     
     namedWindow(app_name, WINDOW_NORMAL);
     resizeWindow(app_name, 1200, 800);
+
+    /* Mat frame to read back UI image*/
+    cv::Mat frame;
+    frame = cv::imread("parking_bg.jpg");
+    cv::resize(frame, frame, cv::Size(1200,800));
     while (waitKey(1))
     {
-        Mat frame;
-        frame = cv::imread("parking_bg.jpg");
-        cv::resize(frame, frame, cv::Size(1200,800));
-        /* Edit slots button */
-        winWidth = frame.cols;
-        rectangle(frame, Point(winWidth/2 - 300, 523), Point(winWidth/2 - 100, 573), BLUE, -1);
-        putText(frame, "Edit Slots", Point(winWidth/2 - 300 + (int)200 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
-        /* Start Inference Button */
-        rectangle(frame, Point(winWidth/2 + 100, 523), Point(winWidth/2 + 300, 573), BLUE, -1);
-        putText(frame, "Start Inference", Point(winWidth/2 + 100 + (int)200 / 4, 553), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 255), 1);
-        /*To get text width*/
-        Size text_size = getTextSize(text, FONT_HERSHEY_SIMPLEX, 0.75, 2, 0);
-        Point text_pos(frame.cols/2 - text_size.width/2, 620);
-        putText(frame, text, text_pos, FONT_HERSHEY_SIMPLEX, 0.75, WHITE, 2, LINE_AA);
+        /* GUI display */
+        frame = show_gui_window(frame);
         /* Edit slot window */
         if (add_slot_in_figure)
         {
@@ -743,18 +790,23 @@ int main(int argc, char **argv)
             start_inference_parking_slot = false;
             destroyAllWindows();
             std::cout << "Running tvm runtime" << std::endl;
-
+            /* frame queue */
             queue<Mat> frames;
             stop = false;
-            thread readThread(capture_frame, gstreamer_pipeline, input_mode, ref(frames), ref(stop));
-            cout << "Waiting for read frames to add frames to buffer!!!!!" << endl;
-            this_thread::sleep_for(std::chrono::seconds(0));
-            thread processThread(process_frames, ref(frames), ref(stop));
-            cout << "Processing thread started......" << endl;
-            waitKey(0);
-            stop = false;
-            readThread.join();
-            processThread.join();
+            /* Capture stream of frames from camera using Gstreamer pipeline */
+            g_cap.open(gstreamer_pipeline, cv::CAP_GSTREAMER);
+            if (!g_cap.isOpened())
+            {
+                /* This section prompt an error message if no video stream is found */
+                std::cout << "[ERROR] Error opening " << input_mode << " source!!\n"
+                        << std::endl;
+                break;
+            }
+            while (exit_all == false)
+            {
+                capture_frame(gstreamer_pipeline,input_mode,frames,stop);
+                process_frames(frames,stop);
+            }
         }
         /* Exit the application */
         else if (exit_all)
