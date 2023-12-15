@@ -118,6 +118,9 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Boar
 ##### Folder Structure in the board
 ```sh
 /
+└── usr
+    └── lib64
+        └── libtvm_runtime.so
 └── home
     └── root
         └── tvm
@@ -144,7 +147,6 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Boar
 ##### Mode: MIPI Camera Input
 - The application takes input from MIPI Coral Camera.
 
-> Note: The output resolution depends on the input camera resolution, which could be modified from the script, before running it. Default resolution:1920x1080
 ```sh 
 ./fish_classification MIPI 
 ```
