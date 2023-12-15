@@ -249,7 +249,7 @@ Estimated Total Size (MB): 369.83
 ----------------------------------------------------------------
 None
 
-base ResNet9 architecture
+base ResNet34 architecture
 
 ```
 
