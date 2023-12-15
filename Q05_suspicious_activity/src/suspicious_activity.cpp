@@ -206,6 +206,7 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
     if (event == cv::EVENT_LBUTTONDBLCLK)
     {
         doubleClicked = true;
+        std::cout << "\n[INFO] Double Tap !!\n";
     }
 }
 
@@ -632,7 +633,7 @@ int input_source_select(void)
         default:
         {
             std::cout << "[ERROR] Please specify Input Source" << std::endl;
-            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+            std::cout << "[INFO] Usage : ./suspicious_activity MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
             return -1;
         }
     }
@@ -644,7 +645,7 @@ int main(int argc, char **argv)
     if (argc < 2 || argc > 5) 
     {
         std::cout << "[ERROR] Please specify Input Source" << std::endl;
-        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+        std::cout << "[INFO] Usage : ./suspicious_activity MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
         std::cout << "\n[INFO] End Application\n";
         return -1;
     }
@@ -653,7 +654,7 @@ int main(int argc, char **argv)
     if (input_source != "VIDEO" && (argc == 3 || argc == 5)) 
     {
         std::cout << "[ERROR] Please specify Input Source" << std::endl;
-        std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+        std::cout << "[INFO] Usage : ./suspicious_activity MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
         std::cout << "\n[INFO] End Application\n";
         return -1;
     }
@@ -663,7 +664,7 @@ int main(int argc, char **argv)
         if(argc == 2 || argc == 4)
         {
             std::cout << "[ERROR] Please specify Input Source" << std::endl;
-            std::cout << "[INFO] Usage : ./plant_leaf_disease_classify MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
+            std::cout << "[INFO] Usage : ./suspicious_activity MIPI|USB|VIDEO [Input_file for VIDEO]" << std::endl;
             std::cout << "\n[INFO] End Application\n";
             return -1;
         }

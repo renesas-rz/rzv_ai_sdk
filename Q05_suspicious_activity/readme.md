@@ -115,6 +115,9 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 ##### Folder Structure in the board
 ```sh
 /
+└── usr
+    └── lib64
+        └── libtvm_runtime.so
 └── home
     └── root
         └── tvm
