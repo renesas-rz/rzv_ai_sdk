@@ -45,7 +45,6 @@ It has 2 modes of running.
 - OpenCV 4.x
 - C++11 or higher 
 - git 2.41 (or above)
-- [Eigen linear algebra library](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 
 ## Application: Build Stage
 
@@ -146,7 +145,7 @@ Folder structure in the rootfs (SD Card) would look like:
   ```sh
   cd /home/root/tvm
   ```
-  * Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at below section.
+  * Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at [Application:Configuration](#explanation-of-the-configini-file)
   ```sh
   vi config.ini
   ```
@@ -192,16 +191,18 @@ The file contains four sections: [**line**], [**region**], [**tracking**] and [*
 The x1, y1, x2, and y2 values correspond to the x and y coordinates of the boundary line's
 starting and ending points.
 
-- The [**region**] section contains five key-value pairs, which defines the Region of Interest.\
+- The [**region**] section contains 9 key-value pairs, which defines the Region of Interest.\
 The n value indicates the number of points that define a region, followed by x and y coordinates
 for each point.\
 The region is defined by connecting these points in the order they are listed.
 
-- The [**tracking**] section contains two key-value pairs.\
+- The [**tracking**] section contains 3 key-value pairs.\
 The conf value is a confidence threshold used for object tracking, and the kmin value is the minimum number of key-points required for tracking.
+The "objects" is for which objects to be tracked. Please specify any other classes present in the [coco labels](exe/coco-labels-2014_2017.txt) to change the tracked object.
 
 - The [**display**] section contains two key-value pairs.\
-The display_text shows the no of objects that crossed the line and region_display_text shows the object present in the region.
+The "display text" is the text shown on GUI for the number of objects that crossed the line.
+The "region_display_text" is the text shown on GUI for the number of object present in the region
 
 >**Note:** The object tracked here is of class "Person", it can be changed to other classes present on the coco labels.
 
