@@ -201,20 +201,20 @@ The AI inference time is 80-120 msec.
 
 ### Explanation of the `config.ini` file
 
-- The config.ini file should contain two sections [**path**] & [**detect**].
+The config.ini file should contain two sections [**path**] & [**detect**].
 
 - The section [**path**] should contains two variables - 'model_path' & 'label_path'.
 
-- The `model_path` value is the path to the folder containing compiled model. 
+    - The `model_path` value is the path to the folder containing compiled model. 
 
-- The `label_path` value is the path to the label list the model supports.
+    - The `label_path` value is the path to the label list the model supports.
 
 - The [**detect**] section contains three variables - 'conf', 'anchors' & 'objects'.
 
-- The `conf` value is the confidence threshold used for object detection.
+    - The `conf` value is the confidence threshold used for object detection.
 
-- The `anchors` are a set of predefined bounding boxes values of a certain height and width. These boxes are defined to capture the scale and aspect ratio of specific object classes you want to detect and are typically chosen based on object sizes in your training datasets.
+    - The `anchors` are a set of predefined bounding boxes values of a certain height and width. These boxes are defined to capture the scale and aspect ratio of specific object classes you want to detect and are typically chosen based on object sizes in your training datasets.
 
-- The `objects` represents class and it can be changed to other classes present on the label list.
+    - The `objects` represents class and it can be changed to other classes present on the label list.
 
 - To modify the configuration settings, edit the values in this file using VI Editor, from the RZ/V2L Evaluation Board.
