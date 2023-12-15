@@ -55,8 +55,6 @@
 #include "define.h"
 /*box drawing*/
 #include "box.h"
-/*Double cliick termination*/
-#include "utils.h"
 
 using INI_FORMAT = std::unordered_map<std::string, std::unordered_map<std::string, std::string>>;
 
@@ -84,7 +82,6 @@ static std::vector<std::string> label_file_map = {};
 /*Multithreading*/
 static sem_t terminate_req_sem;
 static pthread_t ai_inf_thread;
-static pthread_t exit_thread;
 static pthread_t capture_thread;
 static std::mutex mtx;
 
@@ -134,6 +131,21 @@ float float16_to_float32(uint16_t a)
 static double timedifference_msec(struct timespec t0, struct timespec t1)
 {
     return (t1.tv_sec - t0.tv_sec) * 1000.0 + (t1.tv_nsec - t0.tv_nsec) / 1000000.0;
+}
+
+/*****************************************
+ * Function Name    : mouse_callback_button_click
+ * Description      : Callback function to exit on mouse double click
+ * Arguments        : Default opencv formats for callbacks
+ * Return value     : -
+ *****************************************/
+void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
+{
+    if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        std::cout << "[INFO] Double Tap !!\n";
+        sem_trywait(&terminate_req_sem);
+    }
 }
 
 /*****************************************
@@ -708,65 +720,6 @@ capture_end:
 }
 
 /*****************************************
-* Function Name : R_exit_Thread
-* Description   : Executes the double click exit thread
-* Arguments     : threadid = thread identification
-* Return value  : -
-******************************************/
-void *R_exit_Thread(void *threadid)
-{
-    /*Semaphore Variable*/
-    int32_t kh_sem_check = 0;
-
-    /*Variable for checking return value*/
-    int8_t ret = 0;
-    devices dev;
-
-    /*Set Standard Input to Non Blocking*/
-    errno = 0;
-    ret = fcntl(0, F_SETFL, O_NONBLOCK);
-    if (-1 == ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
-        goto err;
-    }
-
-    while(1)
-    {
-        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
-        /*Checks if sem_getvalue is executed wihtout issue*/
-        errno = 0;
-        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
-        if (0 != ret)
-        {
-            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
-            goto err;
-        }
-        /*Checks the semaphore value*/
-        if (1 != kh_sem_check)
-        {
-            goto exit_end;
-        }
-
-        dev.detect_mouse_click();
-        if (doubleClick)
-        {
-            goto err;
-        }
-    }
-
-/*Error Processing*/
-err:
-    /*Set Termination Request Semaphore to 0*/
-    sem_trywait(&terminate_req_sem);
-    goto exit_end;
-
-exit_end:
-    printf("Exit Thread Terminated\n");
-    pthread_exit(NULL);
-}
-
-/*****************************************
  * Function Name    : create_output_frame
  * Description      : create the output frame with space for displaying inference details
  * Arguments        : cv::Mat frame_g, input frame to be displayed in the background
@@ -854,6 +807,7 @@ int8_t R_Main_Process()
     }
 
     float font_size = 0.75;
+    float font_size_small = 0.5;
     float font_weight = 1;
     float font_size_bb = 0.55;
     float font_weight_bb = 1;
@@ -863,10 +817,6 @@ int8_t R_Main_Process()
     std::string bbox_text;
     std::vector<std::string> detection_string_vector;
     int text_height = 150;
-
-    std::string g_pipeline = "appsrc ! videoconvert ! autovideosink sync=false ";
-    cv::VideoWriter output_writer(g_pipeline, cv::CAP_GSTREAMER, cv::VideoWriter::fourcc('H', '2', '6', '4'), 1,
-                                    cv::Size(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT), true);
 
     printf("Main Loop Starts\n");
     while(1)
@@ -953,22 +903,28 @@ int8_t R_Main_Process()
             }
             mtx.unlock();
             bgra_image = create_output_frame(bgra_image);
-            cv::putText(bgra_image, "Preprocess Time: " + std::to_string(int(pre_time)), cv::Point(970, 60), 
+            cv::putText(bgra_image, "Total AI Time[ms]:" + std::to_string(int(total_time)), cv::Point(970, 60),
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "AI Inference Time: " + std::to_string(int(ai_time)), cv::Point(970, 90), 
-                        cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Postprocess Time: " + std::to_string(int(post_time)), cv::Point(970, 120), 
-                        cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Preprocess Time: " + std::to_string(int(pre_time)), cv::Point(1000, 90), 
+                        cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "AI Inference Time: " + std::to_string(int(ai_time)), cv::Point(1000, 120), 
+                        cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Postprocess Time: " + std::to_string(int(post_time)), cv::Point(1000, 150), 
+                        cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(970, 700), 
                         cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
-            text_height = 150;            
+            text_height = 200;            
             for (std::string bb_string : detection_string_vector)
             {
                 cv::putText(bgra_image, bb_string, cv::Point(970, text_height), 
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
                 text_height += 30;
             }
-            output_writer.write(bgra_image);
+            cv::namedWindow("Fish Detector", cv::WINDOW_NORMAL);
+            cv::setWindowProperty("Fish Detector", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
+            cv::setMouseCallback("Fish Detector", mouse_callback_button_click);
+            cv::imshow("Fish Detector", bgra_image);
+            cv::waitKey(1);
             img_obj_ready.store(0);
         }
         /*Wait for 1 TICK.*/
@@ -1102,6 +1058,13 @@ int32_t main(int32_t argc, char * argv[])
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
+    if (argc < 2 || argc > 2)
+    {
+        std::cout << "[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] Usage : ./fish_detector MIPI|USB" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
     std::string input_source = argv[1];
     config_read();
     switch (input_source_map[input_source])
@@ -1127,7 +1090,9 @@ int32_t main(int32_t argc, char * argv[])
         break;
         default:
         {
-            std::cout << "[ERROR] Invalid Input source\n";
+            std::cout << "[ERROR] Please specify Mode and Input Source" << std::endl;
+            std::cout << "[INFO] Usage : ./fish_detector MIPI|USB" << std::endl;
+            std::cout << "\n[INFO] End Application\n";
             return -1;
         }
     }
@@ -1211,15 +1176,6 @@ int32_t main(int32_t argc, char * argv[])
         goto end_threads;
     }
 
-    /*Create exit Thread*/
-    create_thread_exit = pthread_create(&exit_thread, NULL, R_exit_Thread, NULL);
-    if (0 != create_thread_exit)
-    {
-        fprintf(stderr, "[ERROR] Failed to create exit Thread.\n");
-        ret_main = -1;
-        goto end_threads;
-    }
-
     /*Create Inference Thread*/
     create_thread_ai = pthread_create(&ai_inf_thread, NULL, R_Inf_Thread, NULL);
     if (0 != create_thread_ai)
@@ -1268,15 +1224,6 @@ end_threads:
             ret_main = -1;
         }
     }
-    if (0 == create_thread_exit)
-    {
-        ret = wait_join(&exit_thread, EXIT_THREAD_TIMEOUT);
-        if (0 != ret)
-        {
-            fprintf(stderr, "[ERROR] Failed to exit Exit Thread on time.\n");
-            ret_main = -1;
-        }
-    }
 
     /*Delete Terminate Request Semaphore.*/
     if (0 == sem_create)
@@ -1286,6 +1233,6 @@ end_threads:
     goto end_main;
 
 end_main:
-    printf("Application End\n");
+    printf("\n[INFO] Application End\n");
     return ret_main;
 }
