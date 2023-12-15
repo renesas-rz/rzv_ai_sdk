@@ -53,7 +53,6 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
-#include "utils.h"
 
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
@@ -76,26 +75,21 @@
 /* DRP-AI TVM[*1] Runtime object */
 MeraDrpRuntimeWrapper model_runtime;
 
-/* Connected devises object */
-devices dev;
-
 /* flags to detect image mode*/
 bool g_image_mode         = false;
+/* flag for detecting double click*/
+bool doubleClick          = false;
 
 /* variables to calculate total fps and inference time */
 int g_duration;
 int g_fps;
 uint32_t g_out_size_arr;
 
-/* gstreamer output pipeline */
-std::string g_pipeline = "appsrc ! videoconvert ! autovideosink sync=false ";
 std::vector<float> floatarr(1);
 
 cv::Mat g_frame;
 cv::Mat g_fn_frame;
 cv::VideoCapture g_cap;
-cv::VideoWriter output_writer(g_pipeline, cv::CAP_GSTREAMER,cv::VideoWriter::fourcc('H', '2', '6', '4'), 1, 
-                              cv::Size(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT), true);
 
 /* Map to store input source list */
 std::map<std::string, int> input_source_map =
@@ -165,6 +159,22 @@ float float16_to_float32(uint16_t a)
 {
     return __extendXfYf2__<uint16_t, uint16_t, 10, float, uint32_t, 23>(a);
 }
+
+/*****************************************
+ * Function Name    : mouse_callback_button_click
+ * Description      : Callback function to exit on mouse double click
+ * Arguments        : Default opencv formats for callbacks
+ * Return value     : -
+ *****************************************/
+void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
+{
+    if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        std::cout << "[INFO] Double Tap !!\n";
+        doubleClick = true;
+    }
+}
+
 /*****************************************
  * Function Name    : create_output_frame
  * Description      : create the output frame with space for displaying inference details
@@ -337,7 +347,7 @@ cv::Mat run_inference(cv::Mat frame)
     cv::cvtColor(output_frame, output_frame, cv::COLOR_BGR2RGB);
     output_frame = create_output_frame(output_frame);
     /*put inference time inside the display frame*/
-    cv::putText(output_frame, "AI Inference time : " + std::to_string(g_duration) + " [ms]", ai_inf_postion, 
+    cv::putText(output_frame, "AI Inference time [ms] : " + std::to_string(g_duration), ai_inf_postion, 
                 cv::FONT_HERSHEY_SIMPLEX, font_size, WHITE, font_weight);
     /*put FPS inside display frame*/
     cv::putText(output_frame, "       Total FPS : " + std::to_string(g_fps), fps_postion, 
@@ -384,17 +394,59 @@ void capture_frame(std::string cap_pipeline,std::string input_source)
             /* check for image mode*/
             if(g_image_mode == true)
                 return;
-            /*write the final frame to the gstreamer pipeline*/
-            output_writer.write(g_fn_frame);
+            /**/
+            cv::namedWindow("Crack Detection", cv::WINDOW_NORMAL);
+            cv::setWindowProperty("Crack Detection", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
+            cv::setMouseCallback("Crack Detection", mouse_callback_button_click);
+            cv::imshow("Crack Detection", g_fn_frame);
+            cv::waitKey(10);
             /* check for if the quit key is pressed */
-            if(dev.g_quit_application == true)
+            if(doubleClick == true)
             {
-                dev.g_quit_application = false;
+                doubleClick = false;
                 break;
             }
         }
     }
     return;
+}
+
+/*****************************************
+ * Function Name : query_device_status
+ * Description   : function to check USB/MIPI device is connectod.
+ * Return value  : media_port, media port that device is connectod.
+ ******************************************/
+std::string query_device_status(std::string device_type)
+{
+    std::string media_port = "";
+    /* Linux command to be executed */
+    const char *command = "v4l2-ctl --list-devices";
+    /* Open a pipe to the command and execute it */
+    FILE *pipe = popen(command, "r");
+    if (!pipe)
+    {
+        std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
+        return media_port;
+    }
+    /* Read the command output line by line */
+    char buffer[128];
+    size_t found;
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr)
+    {
+        std::string response = std::string(buffer);
+        found = response.find(device_type);
+        if (found != std::string::npos)
+        {
+            fgets(buffer, sizeof(buffer), pipe);
+            media_port = std::string(buffer);
+            pclose(pipe);
+            /* return media port*/
+            return media_port;
+        }
+    }
+    pclose(pipe);
+    /* return media port*/
+    return media_port;
 }
 
 /*****************************************
@@ -475,10 +527,6 @@ int main(int argc, char **argv)
     /* Get input Source WS/VIDEO/CAMERA */
     std::string input_source = argv[1];
 
-    /* Thread to detect [ENTER] key to quit application */
-    std::thread end_app_thread(&devices::detect_mouse_click,&dev);
-    end_app_thread.detach();
-
     switch (input_source_map[input_source])
     {
         /* Input Source : Video */
@@ -502,8 +550,14 @@ int main(int argc, char **argv)
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "filesrc location=" + image_path + " ! jpegdec ! videoconvert ! appsink";
             capture_frame(gstreamer_pipeline,input_source);
-            while(dev.g_quit_application == false)
-                output_writer.write(g_fn_frame);
+            while(doubleClick == false)
+            {
+                cv::namedWindow("Crack Detection", cv::WINDOW_NORMAL);
+                cv::setWindowProperty("Crack Detection", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
+                cv::setMouseCallback("Crack Detection", mouse_callback_button_click);
+                cv::imshow("Crack Detection", g_fn_frame);
+                cv::waitKey(10);
+            }
         }
         break;
         /* Input Source : MIPI Camera */
@@ -512,7 +566,7 @@ int main(int argc, char **argv)
             std::cout << "[INFO] MIPI CAMERA \n";
             mipi_cam_init();
             /* check the status of device */
-            std::string media_port = dev.query_device_status("CRU");
+            std::string media_port = query_device_status("CRU");
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
             capture_frame(gstreamer_pipeline,input_source);
@@ -523,7 +577,7 @@ int main(int argc, char **argv)
         {
             std::cout << "[INFO] USB CAMERA \n";
             /* check the status of device */
-            std::string media_port = dev.query_device_status("usb");
+            std::string media_port = query_device_status("usb");
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
             capture_frame(gstreamer_pipeline,input_source);
@@ -535,6 +589,6 @@ int main(int argc, char **argv)
             std::cout << "[ERROR] Invalid Input source\n";
         }
     }
-    std::cout << "[INFO] Application End\n";
+    std::cout << "\n[INFO] Application End\n";
     return 0;
 }
