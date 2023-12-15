@@ -127,7 +127,6 @@ Folder structure in the rootfs (SD Card) would look like:
     └── root/
         └── tvm/ 
             ├── tinyyolov3_onnx/
-            │   ├── preprocess/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
