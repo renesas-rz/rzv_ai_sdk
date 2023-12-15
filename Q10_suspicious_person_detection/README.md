@@ -173,9 +173,9 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
     - AI-inference time for each frame and Frame Per Sec (FPS) is shown on top right corner.
     - The class confidence is also shown for each class detected on the frame.
 
-#### Application: Termination
-    . Application can be terminated by clicking the left mouse double click.
-    . Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
+5. Application: Termination
+    - Application can be terminated by clicking the left mouse double click.
+    - Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
 
 ## Application: Specifications
 
