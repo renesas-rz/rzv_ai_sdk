@@ -12,7 +12,6 @@
 #include "common/utils/common_utils.h"
 #include "common/comm_define.h"
 #include "image_processing.h"
-#include "utils.h"
 
 /* Brings the entire standard C++ library into the current scope */
 using namespace std;
@@ -22,7 +21,6 @@ using namespace std;
 MeraDrpRuntimeWrapper model_inf_runtime;
 
 /* Connected devises object */
-devices dev;
 
 /* Global variables */
 unsigned int out;
@@ -40,6 +38,8 @@ static float ai_time            = 0;
 
 /* Global frame */
 cv::Mat frame_g;
+/* Create Display frame */
+cv::Mat disp_frame;
 
 /* Creates a global variable "g_cap" of type */ 
 /* for capturing camera source */ 
@@ -47,7 +47,10 @@ cv::VideoCapture g_cap;
 
 /* flags to detect image mode*/
 bool g_image_mode           = false;
+/* flag for detecting double click*/
+bool doubleClick = false;
 
+bool imageMode = false;
 /* To fill the extracted date variable*/
 static unordered_map<int, date_struct> date_struc_map;
 
@@ -68,10 +71,20 @@ std::map<std::string, int> input_source_map =
     {"USB",   3}
 };
 
-/* gstreamer output pipeline */
-std::string g_pipeline = "appsrc ! videoconvert ! autovideosink sync=false ";
-cv::VideoWriter output_writer(g_pipeline, cv::CAP_GSTREAMER,cv::VideoWriter::fourcc('H', '2', '6', '4'), 1, 
-                              cv::Size(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT), true);
+/*****************************************
+ * Function Name    : mouse_callback_button_click
+ * Description      : Callback function to exit on mouse double click
+ * Arguments        : Default opencv formats for callbacks
+ * Return value     : -
+ *****************************************/
+void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
+{
+    if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        std::cout << "[INFO] Double Tap !!\n";
+        doubleClick = true;
+    }
+}
 
 /*****************************************
  * Function Name : pre_process
@@ -456,7 +469,7 @@ cv::Mat draw_bounding_box(cv::Mat frame)
         cv::Point bottomRight(x_max, y_max);
 
         /* Creating bounding box and class labels */
-        cv::rectangle(frame, topLeft, bottomRight, CV_BLACK, CHAR_SCALE_SMALL);
+        cv::rectangle(frame, topLeft, bottomRight, CV_BLACK, CHAR_SCALE_LARGE);
 
         /* Create a rectangle for the background */
         cv::Rect back_rect(x_min, y_min-8, x_max - x_min, 8);
@@ -486,17 +499,17 @@ cv::Mat print_result(cv::Mat& frame)
     string ymd_string = "";
 
     /* Add total inference AI-time into the output frame */
-    cv::putText(frame,"Total AI Time  : "+ std::to_string((int)ai_time)+" msec", cv::Point(x+10, 55), CV_FONT, 
-                    CHAR_SCALE_SMALL, CV_WHITE, CHAR_THICKNESS_OUT);
+    cv::putText(frame, "Total AI Time [ms] : " + std::to_string((int)ai_time), cv::Point(x + 10, 55), CV_FONT,
+                CHAR_SCALE_LARGE, CV_WHITE, CHAR_THICKNESS_OUT);
     /* Add total inference Infernce-time into the output frame */
-    cv::putText(frame,"Infernce     : "+ std::to_string((int)ai_inference_time)+" msec", cv::Point(x+32, 85), CV_FONT, 
-                    CHAR_SCALE_SMALL, CV_WHITE, CHAR_THICKNESS_OUT);
+    cv::putText(frame,"Infernce : "+ std::to_string((int)ai_inference_time), cv::Point(x+30, 85), CV_FONT, 
+                    CHAR_SCALE_SMALLER, CV_WHITE, CHAR_THICKNESS);
     /* Add total inference PreProcess-time into the output frame */
-    cv::putText(frame,"PreProcess  : "+ std::to_string((int)pre_time)+" msec", cv::Point(x+30, 110), CV_FONT, 
-                    CHAR_SCALE_SMALL, CV_WHITE, CHAR_THICKNESS_OUT);
+    cv::putText(frame,"PreProcess : "+ std::to_string((int)pre_time), cv::Point(x+30, 110), CV_FONT, 
+                    CHAR_SCALE_SMALLER, CV_WHITE, CHAR_THICKNESS);
     /* Add total inference PostProcess-time into the output frame */
-    cv::putText(frame,"PostProcess : "+ std::to_string((int)post_time)+" msec", cv::Point(x+30, 135), CV_FONT, 
-                    CHAR_SCALE_SMALL, CV_WHITE, CHAR_THICKNESS_OUT);
+    cv::putText(frame,"PostProcess : "+ std::to_string((int)post_time), cv::Point(x+30, 135), CV_FONT, 
+                    CHAR_SCALE_SMALLER, CV_WHITE, CHAR_THICKNESS);
     /* For detected classes  */
     for (int i = 0; i < det.size(); i++)
     {
@@ -511,11 +524,12 @@ cv::Mat print_result(cv::Mat& frame)
         stream.str("");
 
         /* Create bounding box label of class */
+        label_file_map[det[i].c].erase(std::remove_if(label_file_map[det[i].c].begin(), label_file_map[det[i].c].end(), ::isspace), label_file_map[det[i].c].end());
         stream << "Class : " << label_file_map[det[i].c].c_str() << " " << round(det[i].prob * 100) << "%";
         str = stream.str();
         y = LINE_HEIGHT*result_cnt;
 
-        cv::putText(frame, str, cv::Point(x, 175 + i*25), CV_FONT, 
+        cv::putText(frame, str, cv::Point(x+30, 175 + i*25), CV_FONT, 
                     CHAR_SCALE_SMALL, CV_WHITE, CHAR_THICKNESS_OUT);
    
         /* If the detected class is date and the index is stored in the formatted string */
@@ -556,7 +570,7 @@ cv::Mat print_result(cv::Mat& frame)
                 default:
                     break;
                 }
-                cv::putText(frame, stream.str(), cv::Point(x, 300 + ymd*27), CV_FONT, CHAR_SCALE_SMALL, color, CHAR_THICKNESS_OUT);
+                cv::putText(frame, stream.str(), cv::Point(x+10, 250 + ymd*27), CV_FONT, CHAR_SCALE_SMALL, color, CHAR_THICKNESS_OUT);
             }
         }
     }
@@ -584,7 +598,7 @@ int date_extraction_on_frame(void)
     /* Preprocess end time */
     auto t6 = std::chrono::high_resolution_clock::now();
     pre_time = std::chrono::duration_cast<std::chrono::milliseconds>(t6 - t5).count();
-    std::cout << "\n[INFO] Post-ProcessTime(ms): " << pre_time << " ms\n";
+    std::cout << "\n[INFO] Pre-Process Time(ms): " << pre_time << " ms\n";
     int ret = 0;
 
     /* Inference start time */
@@ -683,7 +697,7 @@ void camera_thread(void)
     /* frame inter val count to limit frame*/
     unsigned int interval_count = 0; 
     /* Taking an everlasting loop to show the output */
-    while (true && dev.g_quit_application == false)
+    while (true && doubleClick == false)
     {
         g_cap.read(frame_c);
         interval_count++;
@@ -765,8 +779,6 @@ int capture_frame(std::string cap_pipeline,std::string input_source)
  ******************************************/
 void process_frames(void)
 {
-    /* Create Display frame */
-    cv::Mat disp_frame;
     /* Output frame */
     cv::Mat frame_out; 
     while(true)
@@ -774,7 +786,7 @@ void process_frames(void)
         if(frame_queue.empty())
         {
             /* Check for whether a double click has occurred. */
-            if(dev.g_quit_application == true)
+            if(doubleClick == true)
                 break;
             continue;
         }
@@ -794,15 +806,89 @@ void process_frames(void)
                 disp_frame = create_output_frame(frame_out);
                 /* Print result on the frame */
                 disp_frame = print_result(disp_frame);
-                output_writer.write(disp_frame);
+                cv::namedWindow("Date Extraction", cv::WINDOW_NORMAL);
+                cv::setWindowProperty("Date Extraction", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
+                cv::setMouseCallback("Date Extraction", mouse_callback_button_click);
+                cv::imshow("Date Extraction", disp_frame);
+                cv::waitKey(10);
             }
         }
+        if(imageMode)
+            break;
         /* Check for whether a double click has occurred. */
-        if(dev.g_quit_application == true)
+        if(doubleClick == true)
         {
-            dev.g_quit_application = false;
+            cv::destroyAllWindows();
+            doubleClick = false;
             g_image_mode = false;
             break;
+        }
+    }
+}
+
+/*****************************************
+ * Function Name : query_device_status
+ * Description   : function to check USB/MIPI device is connectod.
+ * Return value  : media_port, media port that device is connectod.
+ ******************************************/
+std::string query_device_status(std::string device_type)
+{
+    std::string media_port = "";
+    /* Linux command to be executed */
+    const char *command = "v4l2-ctl --list-devices";
+    /* Open a pipe to the command and execute it */
+    FILE *pipe = popen(command, "r");
+    if (!pipe)
+    {
+        std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
+        return media_port;
+    }
+    /* Read the command output line by line */
+    char buffer[128];
+    size_t found;
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr)
+    {
+        std::string response = std::string(buffer);
+        found = response.find(device_type);
+        if (found != std::string::npos)
+        {
+            fgets(buffer, sizeof(buffer), pipe);
+            media_port = std::string(buffer);
+            pclose(pipe);
+            /* return media port*/
+            return media_port;
+        }
+    }
+    pclose(pipe);
+    /* return media port*/
+    return media_port;
+}
+
+/*****************************************
+ * Function Name : mipi_cam_init
+ * Description   : function to open camera or video source with respect to the source pipeline.
+ ******************************************/
+void mipi_cam_init(void)
+{
+    int ret = 0;
+    std::cout << "[INFO] MIPI CAM Init \n";
+    const char *commands[4] =
+        {
+            "media-ctl -d /dev/media0 -r",
+            "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+            "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
+            "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""};
+
+    /* media-ctl command */
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << commands[i] << "\n";
+        ret = system(commands[i]);
+        std::cout << "system ret = " << ret << "\n";
+        if (ret < 0)
+        {
+            std::cout << "[ERROR]" << __func__ << ": failed media-ctl commands. index = " << i << "\n";
+            return;
         }
     }
 }
@@ -810,6 +896,7 @@ void process_frames(void)
 int main(int argc, char *argv[])
 {
     bool runtime_status             = false;
+    bool errorHandle                = false;
     uint64_t drpaimem_addr_start    = 0;
 
     /* Gstreamer input pipeline*/
@@ -817,32 +904,63 @@ int main(int argc, char *argv[])
     std::cout << "Date-Extraction Application Start" << std::endl;
     
     /* Check the input source is valid.*/
-    if (argc < 2 || argc > 3) 
+    if (argc < 2) 
     {
-        std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
-        std::cout << "[INFO] usage: ./date_extraction MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
-        std::cout << "\n[INFO] End Application\n";
-        return -1;
+        errorHandle = true;
+    }
+    else if(argc == 3 || argc == 4)
+    {
+        std::string input_source = argv[1];
+        if(input_source == "IMAGE" && argc == 4)
+        {
+            std::string remainDay = argv[3];
+            if (remainDay == "-rem")
+                rem_days_shown = true;
+            else
+            {
+                errorHandle = true;
+            }
+            
+        }
+        else if ((input_source == "MIPI" || input_source == "USB") && argc == 3)
+        {
+            std::string remainDay = argv[2];
+            if (remainDay == "-rem")
+                rem_days_shown = true;
+            else
+            {
+                errorHandle = true;
+            }
+        }
+        else if ((input_source == "MIPI" || input_source == "USB") && argc == 4)
+        {
+            errorHandle = true;
+        }
+    }
+    else if(argc == 2 )
+    {
+        std::string input_source = argv[1];
+        if (input_source == "MIPI" || input_source == "USB");
+        else
+        {
+            errorHandle = true;
+        }   
     }
     else
     {
-        std::string input_source = argv[1];
-        if(((input_source != "IMAGE") && argc == 3) || 
-           ((input_source != "MIPI" && input_source != "USB") && argc == 2))
-        {
-            std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
-            std::cout << "[INFO] usage: ./date_extraction MIPI|USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
-            std::cout << "\n[INFO] End Application\n";
-            return -1;
-        }
+        errorHandle = true;
     }
-    rem_days_shown = true;
-    /* Thread to detect Double tap to quit application */
-    std::thread end_app_thread(&devices::detect_mouse_click,&dev);
-    end_app_thread.detach();
-    
-    /* initialize tesseract engine */ 
-    TesseractEngine &tesseract = TesseractEngine::getInstance();
+
+    if (errorHandle)
+    {
+        std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
+        std::cout << "[INFO] usage: ./date_extraction MIPI|USB|IMAGE [Input_file for IMAGE] -rem[Optional]" << std::endl;
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+
+        /* initialize tesseract engine */
+        TesseractEngine &tesseract = TesseractEngine::getInstance();
     /* create regex dictionary from regex module functions */
     regex_dict_g = create_regex_dict();
     /* Load Label from label_list file */
@@ -876,17 +994,26 @@ int main(int argc, char *argv[])
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "filesrc location=" + image_path + " ! jpegdec ! videoconvert ! appsink";
             int ret = capture_frame(gstreamer_pipeline,input_source);
+            imageMode = true;
             if(ret == 0)
                 process_frames();
+            while (doubleClick == false)
+            {
+                cv::namedWindow("Date Extraction", cv::WINDOW_NORMAL);
+                cv::setWindowProperty("Date Extraction", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
+                cv::setMouseCallback("Date Extraction", mouse_callback_button_click);
+                cv::imshow("Date Extraction", disp_frame);
+                cv::waitKey(10);
+            }
         }
         break;
         /* Input Source : MIPI Camera */
         case 2:
         {
             std::cout << "[INFO] MIPI CAMERA \n";
-            dev.mipi_cam_init();
+            mipi_cam_init();
             /* check the status of device */
-            std::string media_port = dev.query_device_status("CRU");
+            std::string media_port = query_device_status("CRU");
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
             int ret = capture_frame(gstreamer_pipeline,input_source);
@@ -899,7 +1026,7 @@ int main(int argc, char *argv[])
         {
             std::cout << "[INFO] USB CAMERA \n";
             /* check the status of device */
-            std::string media_port = dev.query_device_status("usb");
+            std::string media_port = query_device_status("usb");
             /* gstremer pipeline to read input image source */
             gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
             int ret = capture_frame(gstreamer_pipeline,input_source);

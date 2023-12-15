@@ -16,7 +16,7 @@ set(EXE_NAME "date_extraction")
 file(GLOB COMM_SRC ./common/*.cpp ./common/*.h ./common/*/*.cpp ./common/*/*.h)
 
 # set image file source
-file(GLOB DEF_SRC date_extraction.cpp image_processing.cpp utils.cpp)
+file(GLOB DEF_SRC date_extraction.cpp image_processing.cpp)
 add_executable (${EXE_NAME}
     ${DEF_SRC}
     ${COMM_SRC}

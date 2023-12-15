@@ -2,8 +2,9 @@
 #define DEFINE_MACRO_H
 
 /*Image:: Text information to be drawn on image*/
-#define CHAR_SCALE_LARGE            (0.8)
-#define CHAR_SCALE_SMALL            (0.7)
+#define CHAR_SCALE_LARGE            (0.7)
+#define CHAR_SCALE_SMALL            (0.6)
+#define CHAR_SCALE_SMALLER          (0.5)
 #define CHAR_SCALE_XS               (0.3)
 #define CHAR_THICKNESS              (1)
 #define CHAR_THICKNESS_OUT          (2)
