@@ -918,10 +918,10 @@ int8_t R_Main_Process()
             }
             mtx.unlock();
             bgra_image = create_output_frame(bgra_image);
-            cv::putText(bgra_image, "Total AI Time[ms] : " + std::to_string(int(total_time)) + "ms", cv::Point(970, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Preprocess : " + std::to_string(int(pre_time)) + "ms", cv::Point(1000, 90), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "AI Inference : " + std::to_string(int(ai_time)) + "ms", cv::Point(1000, 120), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Postprocess : " + std::to_string(int(post_time)) + "ms", cv::Point(1000, 150), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Total AI Time[ms] : " + std::to_string(int(total_time)), cv::Point(970, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Preprocess : " + std::to_string(int(pre_time)), cv::Point(1000, 90), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "AI Inference : " + std::to_string(int(ai_time)), cv::Point(1000, 120), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Postprocess : " + std::to_string(int(post_time)), cv::Point(1000, 150), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(970, 700), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             text_height = 200;
             for (std::string res : results)
