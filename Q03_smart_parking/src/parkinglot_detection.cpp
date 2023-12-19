@@ -215,6 +215,7 @@ void get_patches(int event, int x, int y, int flags, void *param)
     else if (event == cv::EVENT_LBUTTONDBLCLK)
     {
         stop = true;
+        std::cout << "\n[INFO] Double Tap !!\n";
         exit_all = true;
     }
     if(drawing_box)
@@ -249,7 +250,7 @@ int draw_rectangle(void)
     winWidth = img.cols;
     winHeight = img.rows;
     rectangle(img, backButton, ASH, -1);
-    putText(img, "Back", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
+    putText(img, "Done", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
     Size text_size = getTextSize(text, FONT_HERSHEY_SIMPLEX, 0.5, 1, 0);
     Point text_pos(winWidth - text_size.width - 10, winHeight - 10);
     putText(img, text, text_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, LINE_AA);
@@ -315,7 +316,7 @@ void removeButtonCallback(int, void *)
     winWidth = frame.cols;
     winHeight = frame.rows;
     rectangle(frame, backButton, ASH, -1);
-    putText(frame, "Back", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
+    putText(frame, "Done", Point(10, 20), FONT_HERSHEY_SIMPLEX, 0.5, BLACK, 1, LINE_AA);
     Size text_size = getTextSize(text, FONT_HERSHEY_SIMPLEX, 0.5, 1, 0);
     Point text_pos(winWidth - text_size.width - 10, winHeight - 10);
     putText(frame, text, text_pos, cv::FONT_HERSHEY_SIMPLEX, 0.5, BLUE, 1, LINE_AA);

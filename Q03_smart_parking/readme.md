@@ -37,7 +37,7 @@ FPS - 200/10 ->20
 - USB Camera
 - MIPI Camera
 - USB Mouse
-- USB Keyboard
+- USB Keyboard (Only required when removing added slots)
 - USB Hub
 - HDMI Monitor & Cable
 
