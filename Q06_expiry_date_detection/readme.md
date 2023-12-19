@@ -227,8 +227,8 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
     <img src=./images/expected_results.png width="480" height="320">
 
 #### Application: Termination
-    . Application can be terminated by clicking the left mouse double click.
-    . Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
+    - Application can be terminated by clicking the left mouse double click.
+    - Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
 
 ## Application: Specifications
 
