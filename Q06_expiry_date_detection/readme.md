@@ -222,6 +222,7 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
     ```
     >Note: To findout the remaining days to expiry, please add "-rem" at the end of the command used
 4. The expected output will be shown below.
+   >Note: The image shown below is generated with "-rem"- option.
   
     <img src=./images/expected_results.png width="480" height="320">
 
