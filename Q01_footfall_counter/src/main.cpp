@@ -920,6 +920,8 @@ int8_t R_Main_Process()
                 class_name = label_file_map[class_id];
                 dat.X = tracks.at<float>(i, 0);
                 dat.Y = tracks.at<float>(i, 1);
+                dat.W = tracks.at<float>(i, 2);
+                dat.H = tracks.at<float>(i, 3);
                 if (id_time.find(tracker_id) == id_time.end())
                 {
                     dat.name = class_name + " Id : " + std::to_string(tracker_id);
@@ -968,8 +970,6 @@ int8_t R_Main_Process()
                         id_time[tracker_id] += infer_time_ms;
                     }
                 }
-                dat.W = tracks.at<float>(i, 2);
-                dat.H = tracks.at<float>(i, 3);
                 if (dat.Y < 20){
                     dat.Y = 20;
                 }
