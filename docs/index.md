@@ -43,45 +43,33 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2023.12.4
+                2024.1.26
             </h6>
             <ul>
                 <li>
-                    <b>Tutorial Video - Getting Started v2.10</b> is now available.<br>
+                    <b>e<sup>2</sup>studio for RZ/V2L</b> is now available.<br>
                     <ul>
                         <li> 
-                            Users can learn the content of Getting Started in the video.<br>
-                            It contains the boot demonstration using eSD bootloader.
+                            Users can develop AI Applications using e2 studio (GUI tool).
                         </li>
                         <li>
-                            Based on RZ/V2L AI SDK v2.10.
+                            Supported 22 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>RZ/V AI Transfer Learning Tool v2.10</b> is now available.<br>
+                    <ul>
+                        <li> 
+                            Users can re-train the AI model of AI Applications v2.10 using Transfer Learning Tool.
+                        </li>
+                        <li>
+                            Supported 16 AI Applications.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">Video</a>.
-            <!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
-            <br>
-        </div>
-        <div class="col-12">
-            <h6 align="right" >
-                2023.11.30
-            </h6>
-            <ul>
-                <li>
-                    <b>AI Applications Demo v2.10</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            Supported RZ/V2L AI SDK v2.10.<br>
-                            The file size is decreased to around 3.4GB since the OSS package is deleted and provided in AI SDK Source Code.
-                        </li>
-                        <li>
-                            Added 13 AI Applications.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}">How to re-train AI model</a>.
             <!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
             <br>
         </div>

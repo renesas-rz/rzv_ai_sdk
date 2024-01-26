@@ -17,6 +17,45 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    e<sup>2</sup>studio for RZ/V2L and RZ/V AI Transfer Learning Tool v2.10 
+                </h3>
+                <h6 align="right" >
+                    2024.1.26
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">
+                        e<sup>2</sup>studio for RZ/V2L is released.<br>
+                    </h5>
+                    <ul>
+                        <li> 
+                            Users can develop AI Applications using e2 studio (GUI tool).
+                        </li>
+                        <li>
+                            Supported 22 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">
+                    RZ/V AI Transfer Learning Tool v2.10 is released.<br>
+                    </h5>
+                    <ul>
+                        <li> 
+                            Users can re-train the AI model of AI Applications v2.10 using Transfer Learning Tool.
+                        </li>
+                        <li>
+                            Supported 16 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     Tutorial Video - Getting Started v2.10
                 </h3>
                 <h6 align="right" >

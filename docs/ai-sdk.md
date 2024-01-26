@@ -32,7 +32,40 @@ layout: default
             Please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}">How to Build AI SDK</a> for more details.
             <br>
             <br>
-            For more information, see <a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">RZ/V2L AI SDK download page</a>.
+            AI SDK has a CUI enviroment and a GUI environment.<br>
+            Each has the following functions.<br><br>
+            <table class="gstable">
+                <tr>
+                    <th>Functions</th>
+                    <th>CUI env.</th>
+                    <th>GUI env. (e<sup>2</sup>studio)</th>
+                </tr>
+                <tr>
+                    <td>Install AI SDK</td>
+                    <td>&#10004;</td>
+                    <td>&#10004;</td>
+                </tr>
+                <tr>
+                    <td>Build AI Applications</td>
+                    <td>&#10004;</td>
+                    <td>&#10004;<a href="#footnote_gui"><sup>*1</sup></a></td>
+                </tr>
+                <tr>
+                    <td>Build AI SDK</td>
+                    <td>&#10004;</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>Transfer Learning</td>
+                    <td>-</td>
+                    <td>&#10004;<a href="#footnote_gui"><sup>*1</sup></a></td>
+                </tr>
+            </table>
+            <span id="footnote_gui">*1: There is a limit to the number of AI Applications supported.</span>
+            <br>
+            <br>
+            To use the CUI environment, see <a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">RZ/V2L AI SDK download page</a>.<br>
+            To use the GUI environment (e<sup>2</sup>studio), see <a href="https://www.renesas.com/software-tool/e2studio-information-rz-family">e<sup>2</sup>studio for RZ Family download page</a>.<br>
             <br>
             <br>
             <br>
@@ -78,16 +111,17 @@ layout: default
                 RZ/V2L Linux contains following packages.
                 <ul>
                     <li>DRP-AI Driver</li>
-                    <li>Graphics Library Evaluation Version *1</li>
-                    <li>Video Codec Library Evaluation Version *1 (H.264)</li>
+                    <li>Graphics Library Evaluation Version <a href="#footnote_eval"><sup>*2</sup></a></li>
+                    <li>Video Codec Library Evaluation Version <a href="#footnote_eval"><sup>*2</sup></a> (H.264)</li>
                     <li>Video for Linux 2 (V4L2)</li>
                     <li>OpenCV</li>
                     <li>Tesseract</li>
                     <li>Other OSS packages</li>
                 </ul>
-                *1: Note that Graphics Library and Video Codecs Library Evaluation Version have a limitation that system stops running after around 10 hours.<br>
-                If you would like to use unristricted version, please build AI SDK with Graphics Library Unristrictd Version and Video Codecs Library Unristricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button">How to Build AI SDK
-            </a>.<br>
+                <span id="footnote_eval">
+                *2: Note that Graphics Library and Video Codecs Library Evaluation Version have a limitation that system stops running after around 10 hours.<br>
+                If you would like to use unristricted version, please build AI SDK with Graphics Library Unristrictd Version and Video Codecs Library Unristricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button">How to Build AI SDK</a>.<br>
+                </span>
             </h6>
             <br>
             For more information on AI SDK, see <a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">RZ/V2L AI SDK Rlease Note</a>.

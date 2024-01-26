@@ -21,7 +21,12 @@ Getting Started
 <div class="note">
   <span class="note-title">Tutorial video</span>
   Tutorial video is available <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">here.</a>
-Latest tutorial video is based on RZ/V2L AI SDK version 2.10.<br>
+  Latest tutorial video is based on RZ/V2L AI SDK version 2.10.<br>
+</div>
+<div class="note">
+  <span class="note-title">GUI environment</span>
+  AI SDK has a CUI environment and a GUI environment.<br>
+  For the GUI environment, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK page</a>.<br>
 </div>
 
 <h3 id="step1" >Step 1: Obtain an evaluation board</h3>
