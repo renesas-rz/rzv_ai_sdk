@@ -43,34 +43,14 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.1.26
+2024.02.29
             </h6>
-            <ul>
-                <li>
-                    <b>e<sup>2</sup>studio for RZ/V2L</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            Users can develop AI Applications using e2 studio (GUI tool).
-                        </li>
-                        <li>
-                            Supported 22 AI Applications.
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>RZ/V AI Transfer Learning Tool v2.10</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            Users can re-train the AI model of AI Applications v2.10 using Transfer Learning Tool.
-                        </li>
-                        <li>
-                            Supported 16 AI Applications.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}">How to re-train AI model</a>.
-            <!-- For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a>. -->
+            <font color="red">
+This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+<b>Users are recommended to use the latest version in the following URL.</b><br>
+<a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
+            <br>
             <br>
         </div>
         <div class="col-12" align="right">
