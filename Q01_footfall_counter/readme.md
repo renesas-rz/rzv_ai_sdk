@@ -10,188 +10,364 @@ has the ability to measure the time spent by a particular person within a specif
 This software could be useful in a variety of settings, such as retail stores, museums, and events,
 where managers need to monitor and analyze traffic flow and customer behavior.
 
-The AI model used for the sample application is [TinyYoloV3](https://arxiv.org/pdf/1804.02767.pdf).
+The AI model used for the sample application is [YOLOV3/Tiny YOLOv3](https://arxiv.org/pdf/1804.02767.pdf).
 
 **NOTE:** This sample application can be used to track different objects, like animal, car, etc. The list of objects that can be tracked are provided in [coco labels txt](./exe/coco-labels-2014_2017.txt) file. 
 
-#### Demo 
-<img src = "./images/ObjectTracking.gif" width="480" height="320">
+It has following mode of running.
 
+- Using USB Camera as input
+
+### Supported Product 
+- RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
+- RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
+
+### Demo 
+Following is the demo for RZ/V2L EVK.  
+<img src = "./images/ObjectTracking.gif" width="480" height="320">
 
 ## Application: Requirements
 
-#### Hardware Requirements
-- RZ/V2L Evaluation Board Kit
-- USB camera 
-- USB Keyboard
-- USB Hub
-- HDMI monitor with resolution 1280x720 
-- micro HDMI to HDMI cable 
-- SD Card (for file system)
->**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
-#### Software Requirements
-- Ubuntu 20.04
-- OpenCV 4.x
-- C++11 or higher 
-- git 2.41 (or above)
-- [Boost C++ libraries](https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source) 
-- [Eigen linear algebra library](https://eigen.tuxfamily.org/index.php?title=Main_Page)
+### Hardware Requirements
+<table>
+    <tr>
+      <th>For</th>
+      <th>Equipment</th>
+      <th>Details</th>
+    </tr>
+    <tr>
+      <td rowspan="3">RZ/V2L</td>
+      <td>RZ/V2L EVK</td>
+      <td>Evaluation Board Kit for RZ/V2L.<br>Includes followings.
+        <ul class="mb-1">
+          <li>
+            MIPI Camera Module(Google Coral Camera)
+          </li>
+          <li>MicroUSB to Serial Cable for serial communication.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.</td>
+    </tr>
+    <tr>
+      <td>MicroHDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2L EVK has microHDMI port.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">RZ/V2H</td>
+      <td>RZ/V2H EVK</td>
+      <td>Evaluation Board Kit for RZ/V2H.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2H EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
+      <td rowspan="8">Common</td>
+      <td>USB Cable Type-C</td>
+      <td>Connect AC adapter and the board.</td>
+    </tr>
+    <tr>
+      <td>HDMI Monitor</td>
+      <td>Used to display the graphics of the board.</td>
+    </tr>
+    <tr>
+      <td>microSD card</td>
+      <td>Used as the filesystem.<br>
+      Must have over 4GB capacity of blank space.<br>
+      Operating Environment: Transcend UHS-I microSD 300S 16GB</td>
+    </tr>
+    <tr>
+      <td>Linux PC</td>
+      <td>Used to build application and setup microSD card.<br>
+      Operating Environment: Ubuntu 20.04</td>
+    </tr>
+    <tr>
+      <td>SD card reader</td>
+      <td>Used for setting up microSD card.<br></td>
+    </tr>
+    <tr>
+      <td>USB Hub</td>
+      <td>Used to connect USB Keyboard and USB Mouse to the board.</td>
+    </tr>
+    <tr>
+      <td>USB Keyboard</td>
+      <td>Used to type strings on the terminal of board.</td>
+    </tr>
+    <tr>
+      <td>USB Mouse</td>
+      <td>Used to operate the mouse on the screen of board.</td>
+    </tr>
+  </table>
 
+>**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
+
+Connect the hardware as shown below.  
+
+|RZ/V2L EVK | RZ/V2H EVK |
+|:---|:---|
+|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |
+
+>**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.  
+**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
+USB camera needs to be connected to appropriate port based on its requirement.
 
 ## Application: Build Stage
 
->**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
+>**Note:** User can skip to the [next stage (deploy)](#application-deploy-stage) if they do not want to build the application.  
+All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
+### Prerequisites
+This section expects the user to have completed Step 5 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- The Board Set Up and booted. 
-- SD Card Prepared 
-- The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
+- AI SDK setup is done.
+- Following docker container is running on the host machine.
+    |Board | Docker container |
+    |:---|:---|
+    |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
 
->**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
+    >**Note:** Docker environment is required for building the sample application. 
 
-#### Application File Generation
-1. Copy the repository from the GitHub to the desired location. 
-    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+
+### Application File Generation
+1. On your host machine, copy the repository from the GitHub to the desired location. 
+    1. It is recommended to copy/clone the repository on the `data` folder, which is mounted on the Docker container. 
     ```sh
-    cd <path_to_data_folder_on_host>
-    git clone -b footfall_counter --single-branch https://github.com/renesas-rz/rzv_ai_sdk.git
+    cd <path_to_data_folder_on_host>/data
+    git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-2. Run(or start) the docker container and open the bash terminal on the container.
+    >Note: This command will download the whole repository, which include all other applications.  
+    If you have already downloaded the repository of the same version, you may not need to run this command.  
 
-> Note: All the build steps/commands listed below are executed on the docker container bash terminal.
+2. Run (or start) the docker container and open the bash terminal on the container.  
+E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container created from  `rzv2l_ai_sdk_image` docker image.  
+    > Note that all the build steps/commands listed below are executed on the docker container bash terminal.  
 
-3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
+3. Set your clone directory to the environment variable.  
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
+    ```
+3. Go to the application source code directory.  
+    ```sh
+    cd ${PROJECT_PATH}/Q01_footfall_counter/<SRC_DIR>
+    ```
+    |Board | `SRC_DIR` |
+    |:---|:---|
+    |RZ/V2L EVK|`src`  |
+    |RZ/V2H EVK|`src_v2h`  |
 
-```sh
-export PROJECT_PATH=/drp_ai_tvm/data/
-```
-4. Go to the `src` directory of the application
+4. **[For RZ/V2L only]** Prepare the `boost` library.  
+    1. Download the `boost` tar file
+      ```sh
+      wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
+      ```
+      >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the `src` folder present on the mounted `data` directory.
 
-```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q01_footfall_counter/src/
-```
+    2. Extract tar file to the current location 
 
-5. Download the `boost` tar file
-```sh
-wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
-```
->**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the `src` folder present on the mounted `data` directory.
+      ```sh
+      tar -xvf boost_1_81_0.tar.bz2
+      ```
 
-6. Extract tar file to the current location 
+    3. Copy the boost files to the `include` folder 
+      ```sh
+      mkdir -p include
+      cp -r boost_1_81_0/boost include/
+      ```
 
-```sh
-tar -xvf boost_1_81_0.tar.bz2
-```
+    4. Remove boost files [Optional]
 
-7. Copy the boost files to the `include` folder 
-```sh
-mkdir -p include
-cp -r boost_1_81_0/boost include/
-```
+      ```sh
+      rm boost_1_81_0.tar.bz2
+      rm -rf boost_1_81_0
+      ```
 
-8. Remove boost files [Optional]
-
-```sh
-rm boost_1_81_0.tar.bz2
-rm -rf boost_1_81_0
-```
-
-9. Build the application on docker environment by following the steps below
-
-```sh
-mkdir -p build && cd build
-```
-```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-```
-```sh
-make -j$(nproc)
-```
-The following application file would be generated in the `src/build` directory
-- object_tracker
+4. Create and move to the `build` directory.
+    ```sh
+    mkdir -p build && cd build
+    ``````
+5. Build the application by following the commands below.  
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    make -j$(nproc)
+    ```
+6. The following application file would be generated in the `${PROJECT_PATH}/Q01_footfall_counter/<SRC_DIR>/build` directory
+    - object_tracker
 
 
 ## Application: Deploy Stage
+### Prerequisites
+This section expects the user to have completed Step 7-1 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7) provided by Renesas. 
 
-For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
+After completion of the guide, the user is expected of following things.
+- microSD card setup is done.
+
+### File Configuration
+For ease of deployment, all deployable files and folders are provided in the following folders.  
+|Board | `EXE_DIR` |
+|:---|:---|
+|RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+
+Each folder contains following items.
 
 |File | Details |
 |:---|:---|
-|tinyyolov3_onnx | Model object files for deployment. |
+|tinyyolov3_onnx | **[RZ/V2L only]** Model object files for deployment. |
+|d-yolov3 | **[RZ/V2H only]** Model object files for deployment. |
 |coco-labels-2014_2017.txt | Label list for Object Detection. |
 |config.ini | user input config for line, region and object. |
 |object_tracker | application file. |
+<!-- <br>Pre-processing Runtime Object files included but not used. | -->
+<!-- |coco-labels-2014_2017.txt | Label list for Object Detection. | -->
 
+### Instruction
+1. **[For RZ/V2H only]** Run following commands to download the necessary file.  
+    ```sh
+      cd <path_to_data_folder_on_host>/data/Q01_footfall_counter/exe_v2h/d-yolov3
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v3.00/Q01_footfall_counter_deploy_tvm_v2h-v210.so
+    ```
+2. **[For RZ/V2H only]** Rename the `Q01_footfall_counter_deploy_*.so` to `deploy.so`.
+    ```sh
+    mv Q01_footfall_counter_deploy_tvm_v2h-v210.so deploy.so
+    ```
+3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+    |File | Details |
+    |:---|:---|
+    |All files in `EXE_DIR` directory | Including `deploy.so` file. |
+    |`object_tracker` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
-   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `object_tracker` application file if the application file is built at [build stage](#application-build-stage)
+4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+5. Folder structure in the rootfs (SD Card) would look like:
+    ```sh
+    ├── usr/
+    │   └── lib64/
+    │       └── libtvm_runtime.so
+    └── home/
+        └── root/
+            └── tvm/ 
+                ├── tinyyolov3_onnx/  #RZ/V2L only
+                │   ├── preprocess/   #RZ/V2L only
+                │   ├── deploy.json   #RZ/V2L only
+                │   ├── deploy.params #RZ/V2L only
+                │   └── deploy.so     #RZ/V2L only
+                │
+                ├── d-yolov3/         #RZ/V2H only
+                │   ├── deploy.json   #RZ/V2H only
+                │   ├── deploy.params #RZ/V2H only
+                │   └── deploy.so     #RZ/V2H only
+                │
+                ├── coco-labels-2014_2017.txt
+                ├── config.ini
+                └── object_tracker
+    ```
 
-
-Folder structure in the rootfs (SD Card) would look like:
-```sh
-├── usr/
-│   └── lib64/
-│       └── libtvm_runtime.so
-└── home/
-    └── root/
-        └── tvm/ 
-            ├── tinyyolov3_onnx/
-            │   ├── preprocess/
-            │   ├── deploy.json
-            │   ├── deploy.params
-            │   └── deploy.so
-            ├── coco-labels-2014_2017.txt
-            ├── config.ini
-            └── object_tracker
-
-```
->**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
+>**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
 
-* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
-  * Go to the `/home/root/tvm` directory of the rootfs
-  ```sh
-  cd /home/root/tvm
-  ```
-  * Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at below section.
-  ```sh
-  vi config.ini
-  ```
-  * Run the application in the terminal of the RZ/V2L evaluation board kit using the command
-  ```sh
-  ./object_tracker
-  ```
-* The expected output will be the same as shown in the demo video
+### Prerequisites
+This section expects the user to have completed Step 7-3 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7-3) provided by Renesas. 
 
-#### Application: Runtime output details
+After completion of the guide, the user is expected of following things.  
+- The board setup is done.  
+- The board is booted with microSD card, which contains the application file.  
 
+### Instruction
+1. On Board terminal, go to the `tvm` directory of the rootfs.
+    ```sh
+    cd /home/root/tvm/
+    ```
+2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at [below section](#explanation-of-the-configini-file).
+    ```sh
+    vi config.ini
+    ```
+3. Run the application.
+    ```sh
+    ./object_tracker USB
+    ```
+4. Following window shows up on HDMI screen.  
 
-The runtime application will look something like this 
+    |RZ/V2L EVK | RZ/V2H EVK |
+    |:---|:---|
+    |<img src=./images/obj_trk_out.JPG width=350>| <img src=./images/Q01_image_V2H.png width=350>  |
 
-<img src=./images/obj_trk_out.JPG width="480">
- 
-- The application will track the person if the person crossed the `red line` and increment the `human count` and decrement it when the person crosses again.
-    - As per current logic, left to right crossing will increment the human count, and right to left crossing will decrement the count.
-    - Users need to arrange the line according to the requirement.
-- The application will also keep track of the person in the available region `green box` and increment the `person in region` count. It will also decrement the count if the person leaves the area.
-- Frame Per Sec (FPS) is shown on top right corner. 
-- Each person tracked is given a unique `id`.
-    - The `time` parameter of the tracked person indicates the time spent on the desired location. This incremented at regular interval.
+    <!-- On application window, following information is displayed.  
+    - Camera capture  
+    - AI result 
+    - Processing time  
+        - Total AI Time: Sum of all processing time below.  
+        - Inference: Processing time taken for AI inference.  
+        - PreProcess: Processing time taken for AI pre-processing.  
+        - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).   -->
+        
+      - The application will track the person if the person crossed the `red line` and increment the `human count` and decrement it when the person crosses again.
+      - As per current logic, left to right crossing will increment the human count, and right to left crossing will decrement the count.
+      - Users need to arrange the line according to the requirement.
+      - The application will also keep track of the person in the available region `green box` and increment the `person in region` count. It will also decrement the count if the person leaves the area.
+      - Each person tracked is given a unique `id`.
+          - The `time` parameter of the tracked person indicates the time spent on the desired location. This incremented at regular interval.
 
-#### Application: Termination
-- Application can be terminated by long pressing `esc` key (around 10 seconds) on the keyboard connected to the board.
-- Alternatively, User can force close the application using `CTRL+c` on the board console.
+5. To terninate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
 ## Application: Configuration 
+### AI Model
+#### RZ/V2L EVK
+- TinyYOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+Dataset: [COCO](https://cocodataset.org/#home)  
+Input size: 1x3x416x416  
+Output1 size: 1x13x13x255  
+Output2 size: 1x26x26x255  
 
-###### Explanation of the `config.ini` file 
+#### RZ/V2H EVK
+- YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+Dataset: [COCO](https://cocodataset.org/#home)  
+Input size: 1x3x416x416  
+Output1 size: 1x13x13x255  
+Output2 size: 1x26x26x255  
+Output3 size: 1x52x52x255   
+
+### AI inference time
+
+|Board | AI model | AI inference time|
+|:---|:---|:---|
+|RZ/V2L EVK|Tiny YOLOv3| Approximately 110ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 40ms  |
+
+### Processing
+
+|Processing | RZ/V2L EVK | RZ/V2H EVK |
+|:---|:---|:---|
+|Pre-processing | Processed by DRP-AI. <br> | Processed by CPU. <br> |
+|Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
+|Post-processing | Processed by CPU. |Processed by CPU. |
+
+
+### Image buffer size
+
+|Board | Camera capture buffer size|HDMI output buffer size|
+|:---|:---|:---|
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+  
+
+### Explanation of the `config.ini` file 
 
 The file contains three sections: [**line**], [**region**], and [**tracking**].
 
@@ -212,10 +388,7 @@ The conf value is a confidence threshold used for object tracking, and the kmin 
 >**Note:** The object tracked here is of class "Person", it can be changed to other classes present on the coco labels.
 
 
-To modify the configuration settings, edit the values in this file using VI Editor, from the RZ/V2L Board.
-
-###### AI inference time
-The AI inference time is 100-120 msec.
+To modify the configuration settings, edit the values in this file using VI Editor, from the Board.
 
 ### Time Tracking Backend Integration
 
@@ -228,3 +401,9 @@ The AI inference time is 100-120 msec.
 - After each sec the application can call the API for inserting the data on the DB, if not present. and show the time taken for the persons in the ROI
 
 - When the person goes out of the ROI, the application can call the API to remove the person data from the DB and cache.
+
+## Reference
+- For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.  
+FHD resolution is supported by e-CAM22_CURZH camera (MIPI).  
+Please refer to following URL for how to change camera input to MIPI camera.  
+[https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  
