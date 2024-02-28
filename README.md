@@ -1,14 +1,19 @@
-# RZ/V2L AI Applications 
+# RZ/V AI Applications 
 
 ## Overview
-This repository consists of the various sample AI applications that are implemented on the RZ/V2L evaluation board kit.\
+This repository consists of the various functions of AI applications that are implemented on the RZ/V evaluation board kit.\
 Each application is provided in their respective folder alongside the respective `readme.md` file to operate the application.
 
 ## Hardware Requirements and Setup
 
-Users need some additional hardware setup for executing the sample application. 
-Each hardware requirements are specified in the respective `readme.md` of the sample applications.
+Users need some additional hardware setup for executing the application. 
+Each hardware requirements are specified in the respective `readme.md` of the applications.
 
+### Supported board
+- [RZ/V2L Evaluation Board Kit](#rzv2l-evaluation-board-kit)  
+- [RZ/V2H Evaluation Board Kit](#rzv2h-evaluation-board-kit)  
+
+### RZ/V2L Evaluation Board Kit
 Here it is specified how to connect those hardware equipment to the RZ/V2L Evaluation Board Kit.
 
 ###### Lists of hardware equipments required
@@ -54,25 +59,27 @@ The number information is present as:
 
 #### Additional Requirements
 
-For building the sample applications
+For building the applications
 - Linux Host PC with more than 100 GB free space is required.
 - Ubuntu 20.04 LTS
 - OpenCV 4.x
 - C++11 or higher
 
+### RZ/V2H Evaluation Board Kit
+Please refer to [Getting Started](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) for the details of RZ/V2H Evaluation Board Kit.
 
 
 ## Startup Guide
 
-The users are mandate to follow the [startup guide](https://renesas-rz.github.io/rzv_ai_sdk/getting_started.html) provided by the Renesas, before building the sample application.
+The users are mandate to follow the [Getting Started](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by the Renesas, before building the application.
 After completion of the startup guide, users are expected to have
-- Completed the bootup procedure of RZ/V2L Evaluation board kit
-- `rzv2l_ai_sdk_image` docker container running on the host machine. This docker container will contain RZ/V2L sdk and tvm environment.
-    >Note: The docker container is required for building the sample applications. Users can skip this, if they want to use the pre-built binaries.
+- Completed the bootup procedure of RZ/V Evaluation board kit
+- Docker container running on the host machine. This docker container will contain AI SDK and DRP-AI TVM environment.
+    >Note: The docker container is required for building the applications. Users can skip this, if they want to use the pre-built binaries.
 - Necessary Hardware equipments
 
-## Sample Application list
-The sample applications already developed for RZ/V2L Evaluation Board Kit are listed as:
+## Functions of AI Applications
+The applications already developed for RZ/V Evaluation Board Kit are listed as:
 
 ### 1. Footfall Counter 
 
@@ -106,8 +113,20 @@ The application could be used at medical or grocery store to extract the expiry 
 The [Plant disease classification](./Q07_plant_disease_classification) application will classify the diseases for certain plants.\
 This application could be used for farm monitoring and plant disease prevention and cure.
 
+### 8. Object Counter 
+The [Object Counter](./Q08_object_counter) application is a user-friendly and efficient generic software tool that can be used to create custom counting applications for any scenario.
 
-## Operating the sample application
-- Each sample application folder have their respective `readme.md` file to modify and run the sample application.
+### 9. Crack Segmentation
+The [Crack Segmentation](./Q09_crack_segmentation) application is used for the task of automatically identifying and segmenting cracks in images of surfaces.
+
+### 10. Suspicious Person Detection
+The [Suspicious Person Detection](./Q10_suspicious_person_detection) application is a software used to automatically detect suspicious and non-suspicious people in real-time camera streams.
+
+### 11. Fish Detection
+The [Fish Detection](./Q11_fish_detection) application is a software used to automatically detect fishes in real-time camera streams.
+
+
+## Operating the application
+- Each application folder have their respective `readme.md` file to modify and run the application.
 
 ## References
