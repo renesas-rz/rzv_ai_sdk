@@ -777,7 +777,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v2.10<br>
                         <b>Supported RZ/V2H AI SDK:</b> -<br>
-                        <b>Function:</b> 13_Car_ahead_departure_detection (Vehicle Counting)<br>
+                        <b>Function:</b> 13_Car_ahead_departure_detection<br>
                         <b>Model:</b> Tiny YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
                         <br>
