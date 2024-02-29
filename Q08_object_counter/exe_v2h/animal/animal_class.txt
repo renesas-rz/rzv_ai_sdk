@@ -1,0 +1,13 @@
+boar
+bear
+bird
+cat
+cow
+dog
+horse
+sheep
+rabbit
+raccoon
+monkey
+fox
+deer
