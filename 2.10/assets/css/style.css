@@ -3205,23 +3205,9 @@ h3, .h3 { padding: 0.5rem 0 0.8rem; margin-bottom: 5px; border-bottom: 1px solid
 
 .top { font-size: 35px; background-color: #2a289d; color: white; display: flex; align-items: center; font-family: "Arial"; font-style: italic; padding: 20px 10px; }
 
-.product-button { font-weight: bold; color: #676767; padding-left: 30px; padding-right: 30px; min-width: 187px; }
-
-.download-button-yellow { font-weight: bold; color: #676767; }
-
 .download-button { font-weight: bold; }
 
 .square-button { font-weight: bold; font-size: medium; border-radius: 0px; background-color: #2a289d; border-color: #2a289d; }
-
-.square-button-gray { font-weight: bold; font-size: medium; border-radius: 0px; background-color: #7c909b; border-color: #7c909b; }
-
-.banner-title { font-weight: bold; font-size: 1.3em; padding-right: 0.5em; }
-
-.banner-line-md { display: block; padding-left: 0.5em; font-weight: normal; font-size: 1.0em; }
-
-.banner-line { display: block; padding-left: 0.5em; font-weight: normal; font-size: 0.8em; }
-
-.table-small-text { font-weight: normal; font-size: 0.7em; }
 
 .skip { color: red; font-weight: bold; }
 
@@ -3263,8 +3249,6 @@ a.applications:hover li, a.applications:focus li { color: #267cb9; font-weight: 
 a.applications:hover ul.applabel > li, a.applications:focus ul.applabel > li { color: white; font-weight: bold; }
 
 ul.index { list-style: none; margin: 0 0 0 0; }
-
-.index-string { color: #267CB9; }
 
 p.downloads { padding: 0; margin: 0 0 0 0; text-align: center; }
 
@@ -3329,8 +3313,6 @@ h2, .h2 { padding: 1rem 1rem; border-left: 8px solid #2a289d; color: #2a289d; ba
 
 h3, .h3 { position: relative; margin: 15px 0px; border-bottom: 2px solid #2a289d; }
 
-h4.u_line, .u_line.h4 { margin: 15px 5px; padding: 5px 0px; border-bottom: 1.5px solid #afafaf; }
-
 .container { max-width: 100%; }
 
 .note { display: block; position: relative; margin: 1em 0; padding: 23px 10px 7px; max-width: fit-content; color: #000000; background: #f3f3fc; }
@@ -3371,17 +3353,8 @@ code { word-wrap: normal; color: #444; background: #f0f0f0; border-radius: 3px; 
 
 pre { border-radius: 5px; color: #444; background: #f0f0f0; border: solid 1px #dddddd; overflow: auto; -webkit-overflow-scrolling: touch; }
 
-.ham-display { display: none; }
-
 /********** Hamburger Menu **********/
-@media print, screen and (max-width: 960px) { .index-string { color: white; }
-  .ham-string { color: white; }
-  .ham-nodisplay { display: none; }
-  .ham-small { font-size: 12px; margin-bottom: 3px; }
-  .ham-very-small { font-size: 10px; margin-bottom: 3px; }
-  .ham-display { display: block; }
-  .product-button { width: auto; min-width: none; }
-  .menu-btn { position: fixed; top: 5px; right: 5px; display: flex; height: 50px; width: 50px; justify-content: center; align-items: center; z-index: 10; background-color: #2a289d; border-radius: 5px; }
+@media print, screen and (max-width: 960px) { .menu-btn { position: fixed; top: 5px; right: 5px; display: flex; height: 50px; width: 50px; justify-content: center; align-items: center; z-index: 10; background-color: #2a289d; border-radius: 5px; }
   .menu-btn span, .menu-btn span:before, .menu-btn span:after { content: ''; display: block; height: 2px; width: 25px; border-radius: 3px; background-color: #ffffff; position: absolute; }
   .menu-btn span:before { bottom: 8px; }
   .menu-btn span:after { top: 8px; }
@@ -3393,7 +3366,8 @@ pre { border-radius: 5px; color: #444; background: #f0f0f0; border: solid 1px #d
   .menu-content summary { list-style: none; font-size: 110%; margin-left: 25px; padding-top: 10px; position: relative; }
   .menu-content a { list-style: none; display: block; width: 100%; font-size: 110%; box-sizing: border-box; color: #ffffff; border-bottom: solid 1px #ffffff; padding: 9px 15px 5px 0; position: relative; }
   .menu-content a::before { content: ""; width: 7px; height: 7px; border-top: solid 2px #ffffff; border-right: solid 2px #ffffff; transform: rotate(45deg); position: absolute; right: 11px; top: 20px; }
-  .menu-content details:has(ul) > summary > a { border-bottom: none; }
+  .menu-content details:has(ul) > summary > a { border-bottom: none; pointer-events: none; }
+  .menu-content details:has(ul) > summary > a::before { content: none; }
   .menu-content details > summary::before { content: ""; width: 12px; height: 12px; border-top: solid 2px #ffffff; border-right: solid 2px #ffffff; transform: rotate(45deg); position: absolute; left: -25px; top: 26px; transition: all 0.3s; }
   .menu-content details[open] > summary::before { top: 25px; transform: rotate(135deg); transition: all 0.3s; } }
 #menu-btn-check { display: none; }
@@ -3457,23 +3431,3 @@ pre { border-radius: 5px; color: #444; background: #f0f0f0; border: solid 1px #d
 .Perf-Framerate { margin: 5px 6px 0px 0px; font-size: 14px; text-align: center; }
 
 dl { display: flex; flex-wrap: wrap; margin: 0; }
-
-/****************************************************/
-@media (max-width: 991px) { #application-filter { position: fixed; top: 56px; right: 0; width: 50%; max-height: 80vh; overflow-y: auto; display: none; }
-  #filter-title { background-color: #706f6f; color: white; padding: 10px; position: sticky; top: 0; z-index: 1; width: 100%; }
-  #application-filter-body { color: white; padding-top: 0; padding: 10px; padding-bottom: 10px; background-color: #706f6f; margin-top: -15px; }
-  #application-filter-visible-button { display: none; position: fixed; top: 60px; right: 0px; z-index: 2; color: #000077; display: block; }
-  #application-filter-erase-button { position: relative; display: none; color: darkgrey; padding: 0; margin: 0px 0px 0px -30px; box-shadow: none; }
-  #application-filter-hide-button { position: relative; top: -80px; right: -50%; display: none; color: #2a289d; }
-  #category-filter-titlecolor { color: white; border-bottom-color: white; }
-  #filter-titlecolor { color: white; margin-bottom: 0; } }
-@media (min-width: 992px) { #application-filter { position: fixed; top: 56px; right: 0; width: 200px; max-height: 80vh; overflow-y: auto; }
-  #filter-title { background-color: #fff; padding: 10px; position: sticky; top: 0; z-index: 1; width: 100%; }
-  #application-filter-body { padding-top: 0; padding: 10px; padding-bottom: 10px; margin-top: -10%; }
-  #application-filter-visible-button { display: none; position: fixed; top: 60px; right: 0px; z-index: 2; color: #000077; display: block; }
-  #application-filter-erase-button { position: relative; display: none; color: darkgrey; padding-left: 0; margin-left: -20%; margin-top: -30px; margin-bottom: -10px; box-shadow: none; }
-  #application-filter-erase-button :hover { color: dodgerblue; }
-  #application-filter-hide-button { position: relative; display: none; } }
-#application-filter-button-container { position: fixed; top: 145px; right: 30px; z-index: 2; }
-
-.checkbox-group:hover { color: dodgerblue; }
