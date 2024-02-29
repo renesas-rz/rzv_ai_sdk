@@ -24,7 +24,7 @@ layout: default
         <br>
         <div class="col-12 text-center">
             <br>
-            <a href="img/top.svg" data-lightbox="group"><img src="img/top.svg" alt="AI Application and AI SDK overview"></a><br>
+            <a href="img/top_rzv.svg" data-lightbox="group"><img src="img/top_rzv.svg" alt="AI Application and AI SDK overview"></a><br>
         </div>
         <div class="col-12"  align="right">
             <br>
@@ -43,14 +43,39 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-2024.02.29
+                2024.2.29
             </h6>
-            <font color="red">
-This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-<b>Users are recommended to use the latest version in the following URL.</b><br>
-<a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>AI Application v3.00</b> is now available.<br>
+                    <ul>
+                        <li> 
+                            Added RZ/V2H Evaluation Board Kit support for 21 applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>RZ/V2H AI SDK v3.00</b> is now available.<br>
+                </li>
+            </ul>
+            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK page</a>.
             <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
+                2024.2.29
+            </h6>
+            <ul>
+                <li>
+                    <b>e<sup>2</sup> studio for RZ/V2L - AI Navigator Quick Start Guide</b> is now available.<br>
+                    <ul>
+                        <li> 
+                            Users can start AI Applications development with e<sup>2</sup> studio (GUI tool).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a>.
             <br>
         </div>
         <div class="col-12" align="right">
@@ -86,8 +111,11 @@ This web page contains information about AI Applications and AI SDK v{{ site.ver
 <br>
 
 <h3 id="ai-applications" align="center">AI Applications</h3>
-<p align="center">AI Applications provides the source code, pre-build application binary and pre-trained AI model objects,<br>
-    which allow you to select the application from various use cases, and run it on the board immediately.</p>
+<p align="center">
+    AI Applications provides the source code, pre-build application binary and pre-trained AI model objects,<br>
+    which allow you to select the application from various use cases, and run it on the board immediately.<br>
+    To see the overview about AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">About AI Applications</a> page.<br>
+</p>
 <p align="center">Choose the category of applications.</p>
 
 <div class="container">
@@ -162,14 +190,14 @@ This web page contains information about AI Applications and AI SDK v{{ site.ver
             <br>
             <br>
             <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
-                Download Demo
+                Download RZ/V2L EVK Demo
             </a>
             <br>
             <br>
             <h6>
                 <b>Notes:
                     <ol>
-                        <li>Demo is based on AI Applications v2.10 and AI SDK v2.10.</li>
+                        <li>Demo is based on AI Applications v2.10 and RZ/V2L AI SDK v2.10.</li>
                         <li>Demo zip filesize is around 3.4GB.</li>
                         <li>Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 10 hours.</li>
                     </ol>
@@ -211,6 +239,89 @@ This web page contains information about AI Applications and AI SDK v{{ site.ver
                     This tutorial is based on RZ/V2L AI SDK version <b>1.00</b>, which only supports eMMC bootloader.<br>
                 </li>
             </ul>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<h3 id="blog">Blogs</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <!-- Template Start -->
+            <!-- 
+            <div>
+                <h5 class="mb-2">
+                    <a href="★LINK★">★Title★</a>
+                </h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            ★Overview★（ブログ掲載時に指定している文章）
+                        </div>
+                        <div class="col-4" align="right">
+                            Published: <b>★掲載日：Mmm. dd, yyyy.</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr style="border-top: 1px solid grey;"> -->
+            <!-- Template End -->
+            <div>
+                <h5 class="mb-2">
+                    <a href="https://www.renesas.com/blogs/check-out-latest-features-ai-applications-v210">Check Out the Latest Features in AI Applications v2.10!</a>
+                </h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            Introducing the lineup of RZ/V AI applications, offered with AI Applications v2.10.
+                        </div>
+                        <div class="col-4" align="right">
+                            Published: <b>Dec. 22, 2023.</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr style="border-top: 1px solid grey;">
+            <div>
+                <h5 class="mb-2">
+                    <a href="https://www.renesas.com/blogs/check-out-new-features-ai-applications-v200">Check Out the New Features in AI Applications v2.00!</a>
+                </h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            To facilitate the tedious task of designing AI solutions from scratch, Renesas proposes RZ/V MPU AI Apps, AI applications that can be easily implemented without AI training.
+                        </div>
+                        <div class="col-4" align="right">
+                            Published: <b>Sep. 22, 2023.</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr style="border-top: 1px solid grey;">
+            <div>
+                <h5 class="mb-2">
+                    <a href="https://www.renesas.com/blogs/lets-find-ai-apps-you-want-introducing-renesas-ai-apps-available-free-charge">Let's find the AI Apps You Want, Introducing Renesas AI Apps Available Free of Charge</a>
+                </h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            Introduction to RZ/V AI applications that can be easily implemented without AI training
+                        </div>
+                        <div class="col-4" align="right">
+                            Published: <b>Jun. 12, 2023.</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr style="border-top: 1px solid grey;">
         </div>
     </div>
 </div>

@@ -46,16 +46,8 @@ How to Re-train AI model
 <div class="container">
   <div class="row">
     <div class="col-12">
-      RZ/V AI Transfer Learning Tool is recommended to be linked with e<sup>2</sup>studio for RZ Family.<br>
-      To use this tool, please download the January 22, 2024 release version of e<sup>2</sup>studio Linux from the URL below.<br>
-      <ul style="list-style:none;">
-        <li>
-          URL: <a href="https://www.renesas.com/software-tool/e2studio-information-rz-family">https://www.renesas.com/software-tool/e2studio-information-rz-family</a><br>
-        </li>
-        <li>
-          Version: e2 studio 2024-01 Linux Host
-        </li>
-      </ul>
+      RZ/V AI Transfer Learning Tool is recommended to be linked with e<sup>2</sup> studio for RZ Family.<br>
+      To download and install the tool, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a>.
     </div>
   </div>
 </div>

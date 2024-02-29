@@ -4,7 +4,7 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="top col-12">
-          How to build AI SDK Source Code
+          How to build RZ/V2L AI SDK Source Code
         </div>
     </div>
 </div>
@@ -36,7 +36,7 @@ layout: default
     <div class="col-12">
       <br>
       This page explains how to build AI SDK Source Code.<br>
-      After you have completed this page, you would be able to change the source code and customize Linux environment, (i.e., memory map, additional OSS etc...)<br>
+      After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
@@ -99,10 +99,6 @@ layout: default
             AI SDK Source Code provides this file to reproduce the same Linux environment provided in RZ/V2L AI SDK.
           </td>
         </tr>
-        <tr>
-          <td>poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</td>
-          <td>Cross compiler installer.<br></td>
-        </tr>
       </table>
     </div>
   </div>
@@ -124,7 +120,7 @@ printenv WORK
 {% highlight plaintext %}
 <path to the working directory>/ai_sdk_work
 {% endhighlight %}
-      If not, please register the working directory path to an environment variable according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step4">Step4: Extract RZ/V2L AI SDK package in Getting Started</a>.
+      If not, please register the working directory path to an environment variable according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step4">Step4: Extract RZ/V AI SDK package in Getting Started</a>.
       </li>
     </ul>
   </li>
@@ -216,7 +212,7 @@ poky
       <span class="note-title">Note 1</span>
       These Yocto recipes are provided for eSD Bootloader as default.<br>
       When using eMMC Bootloader, run the command to apply a patch file in addition.<br>
-      About the difference of these two types, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7">Step7: Deploy RZ/V2L AI Application in Getting Started</a>.
+      About the difference of these two types, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7">Step7: Deploy AI Application in RZ/V2L EVK Getting Started</a>.
 {% highlight shell%}
 cd ${YOCTO_WORK}/meta-renesas
 patch -R -p1 -i ./patch/0001-VLP-v3.0.4-based-smart-rzv2l-eSD-Boot-support.patch
@@ -455,7 +451,7 @@ You have prepared following files, which is same as the one provided in <a href=
 <div class="note">
   <span class="note-title">Note 2</span>
   For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/3.1.5/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.5/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
+  <a href="https://docs.yoctoproject.org/3.1.21/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.21/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 3</span>

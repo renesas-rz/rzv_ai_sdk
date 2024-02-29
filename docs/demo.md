@@ -7,7 +7,7 @@ layout: default
   $(function(){
     $("#reference1").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} reference1");
     $("#reference2").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} reference2");
-    $("#reference3").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} reference3");
+    $("#reference3").load("{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %} reference3");
     $("#reference4").load("{{ site.url }}{{ site.baseurl }}{% link appendix.md %} a3reference");
   });
 </script>

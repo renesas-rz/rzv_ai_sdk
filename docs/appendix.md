@@ -64,7 +64,7 @@ Follow the instruction below to setup the board.
       <span class="note-title">Note</span>
       If you have already installed the serial port driver, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1-3">next procedure</a>.
     </div>
-    The serial communication between Windows PC and RZ/V2L Evaluation Board Kit requires following driver.<br>
+    The serial communication between Windows PC and RZ/V2L EVK requires following driver.<br>
     <a href="https://ftdichip.com/drivers/vcp-drivers/">https://ftdichip.com/drivers/vcp-drivers/</a>
     <br><br>
     <ol>
@@ -338,7 +338,7 @@ smarc-rzv2l login:
 </ul>
 <br>
 After this procedure, you can copy the AI Application and boot the board.<br>
-Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-2">Step 7: 2. Deploy Application to the Board</a>.
+Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">Step 7: 2. Deploy Application to the Board in RZ/V2L EVK Getting Started</a>.
 <br><br>
 
 <h3 id="A2">A2. Format SD card</h3>
@@ -367,7 +367,7 @@ Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md
   <br>
   <h5 id="A2-1">Check the SD card connection</h5>
   <ol>
-    <li>Before inserting the microSD card to your Linux PC, open the terinal on Linux PC and run the following command to check the devices without microSD card.
+    <li>Before inserting the microSD card to your Linux PC, open the terminal on Linux PC and run the following command to check the devices without microSD card.
 {% highlight shell %}
 lsblk
 {% endhighlight %}
@@ -756,11 +756,12 @@ Writing superblocks and filesystem accounting information: done
 </ol>
 <br>
 After this procedure, you can write the necessary data for the board into microSD card.<br>
-Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-1b">Write the Linux files to SD card in Getting Started</a> to write files to the microSD card.
+Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1b">Write the Linux files to SD card in RZ/V2L EVK Getting Started</a>.<br>
+
 <br><br>
 
-<h3 id="A3">A3. Shutdown RZ/V2L Evaluation Board Kit</h3>
-To power-off the RZ/V2L Evaluation Board Kit, follow the procedures below.
+<h3 id="A3">A3. Shutdown RZ/V2L EVK</h3>
+To power-off the RZ/V2L EVK, follow the procedures below.
 <br><br>
 <a3reference>
   <ol>
@@ -782,6 +783,34 @@ shutdown -h now
     </li>
   </ol>
 </a3reference>
+<br><br>
+<h3 id="A4">A4. Shutdown RZ/V2H EVK</h3>
+To power-off the RZ/V2H EVK, follow the procedures below.
+<br><br>
+<ol>
+  <li>Run the <code>shutdown</code> command on board console.
+    <br>
+{% highlight shell %}
+shutdown -h now
+{% endhighlight %}
+  </li>
+  <li>On board console, check that shutdown procedure runs and ends with following log.
+    <br>
+{% highlight shell %}
+[xxxxx.xxxxxx] reboot: Power down
+{% endhighlight %}
+  </li>
+  <li>
+    Turn SW2 to OFF.
+    <br><br>
+  </li>
+  <li>
+    Turn SW3 to OFF.
+    <br><br>
+    <img src="img/v2h_evk_shutdown.png" alt="board" width="350px" /><br>
+  </li>
+</ol>
+<br><br>
 
 <script>
 /************ Read Cookie **************/

@@ -17,7 +17,52 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
-                    e<sup>2</sup>studio for RZ/V2L and RZ/V AI Transfer Learning Tool v2.10 
+                    AI Applications & RZ/V2H AI SDK v3.00
+                </h3>
+                <h6 align="right" >
+                    2024.2.29
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Applications v3.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Added RZ/V2H Evaluation Board Kit support for 21 applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI SDK v3.00 is released.</h5>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2L - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2024.2.29
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">e<sup>2</sup> studio for RZ/V2L - AI Navigator Quick Start Guide is released.</h5>
+                    <ul>
+                        <li> 
+                            Users can start AI Applications development with e<sup>2</sup> studio (GUI tool).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2L and RZ/V AI Transfer Learning Tool v2.10 
                 </h3>
                 <h6 align="right" >
                     2024.1.26
@@ -26,7 +71,7 @@ layout: default
             <ul>
                 <li>
                     <h5 class="history-item">
-                        e<sup>2</sup>studio for RZ/V2L is released.<br>
+                        e<sup>2</sup> studio for RZ/V2L is released.<br>
                     </h5>
                     <ul>
                         <li> 
