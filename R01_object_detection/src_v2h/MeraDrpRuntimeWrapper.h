@@ -1,10 +1,6 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
-<<<<<<< HEAD
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023　
-=======
  * Modified Code (C) Copyright Renesas Electronics Corporation 2023
->>>>>>> object_detection
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -38,6 +34,7 @@ class MeraDrpRuntimeWrapper {
   ~MeraDrpRuntimeWrapper();
 
   bool LoadModel(const std::string& model_dir, uint32_t start_address);
+  bool LoadModel(const std::string& model_dir, uint64_t start_address);
   template <typename T>
   void SetInput(int input_index, const T* data_ptr);
   void Run();
