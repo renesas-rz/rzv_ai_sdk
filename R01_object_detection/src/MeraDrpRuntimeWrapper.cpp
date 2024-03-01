@@ -1,14 +1,6 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
-<<<<<<< HEAD
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023　
-=======
  * Modified Code (C) Copyright Renesas Electronics Corporation 2023
-<<<<<<< HEAD
->>>>>>> object_detection
-=======
->>>>>>> origin/object_detection
->>>>>>> 70f3b0c640adc971f9457b74a36c80b5ce533e35
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
