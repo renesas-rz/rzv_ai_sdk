@@ -1,0 +1,10 @@
+bus
+car
+motorcycle
+truck
+ambulance
+Fire truck
+LCV
+Policecar
+bicycle
+automobile
