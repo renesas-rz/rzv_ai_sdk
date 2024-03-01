@@ -20,28 +20,11 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
     <tr>
       <td>RZ/V2L EVK</td>
       <td>MIPI camera</td>
-      <td>HDMI</td>
+      <td rowspan="2">HDMI</td>
     </tr>
     <tr>
       <td >RZ/V2H EVK</td>
-      <td colspan="2" style="text-align:center;">USB camera</td>
-    </tr>
-</table>
-<table>
-    <tr>
-      <th>I/O</th>
-      <th>RZ/V2L EVK</th>
-      <th>RZ/V2H EVK</th>
-    </tr>
-    <tr>
-      <td>Input</td>
-      <td>MIPI camera</td>
-      <td>USB camera
-      </td>
-    </tr>
-    <tr>
-      <td >Output</td>
-      <td colspan="2" style="text-align:center;">HDMI</td>
+      <td style="text-align:center;">USB camera</td>
     </tr>
 </table>
 
