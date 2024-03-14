@@ -192,18 +192,27 @@ layout: default
     </div>
     <div class="row">
         <div class="col-12">
-            <h4 class="u_line" tag="v2l-component">RZ/V2L AI SDK Components</h4>
+            <h4 class="u_line" id="v2l-component">RZ/V2L AI SDK Components</h4>
         </div>
         <div class="col-8">
-                RZ/V2L Linux contains following components.
+                RZ/V2L AI SDK contains following components.
                 <ul>
-                    <li>DRP-AI Driver</li>
+                    <li>DRP-AI TVM</li>
+                    <li>RZ/V2L Linux BSP 
+                        <ul>
+                            <li>DRP-AI Driver</li>
+                            <li>Other device drivers</li>
+                        </ul>
+                    </li>
                     <li>Graphics Library Evaluation Version *2</li>
                     <li>Video Codec Library Evaluation Version *2 (H.264)</li>
                     <li>Video for Linux 2 (V4L2)</li>
-                    <li>OpenCV</li>
-                    <li>Tesseract</li>
-                    <li>Other OSS packages</li>
+                    <li>Other OSS packages
+                        <ul>
+                            <li>OpenCV</li>
+                            <li>Tesseract</li>
+                        </ul>
+                    </li>
                 </ul>
             <br>
             For more information on AI SDK, see RZ/V2L AI SDK Release Note from the AI SDK download page.<br>
@@ -241,19 +250,28 @@ layout: default
     </div>
     <div class="row">
         <div class="col-12">
-            <h4 class="u_line" tag="v2h-component">RZ/V2H AI SDK Components</h4>
+            <h4 class="u_line" id="v2h-component">RZ/V2H AI SDK Components</h4>
         </div>
         <div class="col-8">
-            RZ/V2H Linux contains following components.
+            RZ/V2H AI SDK contains following components.
             <ul>
-                <li>DRP-AI Driver [<a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver">GitHub</a>]</li>
-                <li>Graphics Library Evaluation Version *3</li>
-                <li>Video Codec Library *4</li>
+                <li>DRP-AI TVM</li>
+                <li>RZ/V2H Linux BSP 
+                    <ul>
+                        <li>DRP-AI Driver [<a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver">GitHub</a>]</li>
+                        <li>e-CAM22_CURZH camera driver (MIPI) *3</li>
+                        <li>Other device drivers [<a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">Manual</a>]</li>
+                    </ul>
+                </li>
+                <li>Graphics Library Evaluation Version *4</li>
+                <li>Video Codec Library *5</li>
                 <li>Video for Linux 2 (V4L2) supporting USB camera</li>
                 <li>OpenCV Accelerator (supporting OpenCV 4.1.0) [<a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator">GitHub</a>]</li>
-                <li>Tesseract</li>
-                <li>Other OSS packages</li>
-                <li>e-CAM22_CURZH camera driver (MIPI) *5</li>
+                <li>Other OSS packages
+                    <ul>
+                        <li>Tesseract</li>
+                    </ul>
+                </li>
             </ul>
             <br>
             For more information on AI SDK, see RZ/V2H AI SDK Release Note from the AI SDK download page.<br>
@@ -279,11 +297,11 @@ layout: default
         </div>
         <div class="col-12">
             <h6>
-                *3: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.<br>
+                *3: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.<br>
+                *4: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.<br>
                 If you would like to use unrestricted version, please build AI SDK with Graphics Library Unrestricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">How to Build RZ/V2H AI SDK</a>.<br>
-                *4: Video Codec Library support only H.264 Enc in v3.00.<br>
+                *5: Video Codec Library support only H.264 Enc in v3.00.<br>
                 H.265 Enc/Dec and H.264 Dec will be supported later.<br>
-                *5: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.<br>
             </h6>
         </div>
         <div class="col-12">

@@ -37,6 +37,7 @@ layout: default
       <br>
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">RZ/V2H BSP Manual Set</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
@@ -349,8 +350,15 @@ You have prepared following files, which is same as the one provided in <a href=
 </div>
 <div class="note">
   <span class="note-title">Note 2</span>
-  When customizing Linux development environment, following link may help.<br>
-	<a href="https://docs.yoctoproject.org/">https://docs.yoctoproject.org/</a>
+  When customizing Linux development environment, following information may help.<br>
+  <ul>
+    <li>
+      <a href="https://docs.yoctoproject.org/">https://docs.yoctoproject.org/</a>
+    </li>
+    <li>
+      <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">RZ/V2H BSP Manual Set</a>
+    </li>
+  </ul>
 </div>
 <br>
 If you have any questions about AI SDK Source Code,<br>
