@@ -17,6 +17,30 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    Tutorial Video - RZ/V2H Getting Started v3.00
+                </h3>
+                <h6 align="right" >
+                    2024.4.11
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Tutorial Video - RZ/V2H Getting Started v3.00 is released.</h5>
+                </li>
+                <ul>
+                    <li>
+                        Users can learn the content of Getting Started in the video.<br>
+                    </li>
+                    <li> 
+                        Based on RZ/V2H AI SDK v3.00.<br>
+                    </li>
+                </ul>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     AI Applications & RZ/V2H AI SDK v3.00
                 </h3>
                 <h6 align="right" >

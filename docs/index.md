@@ -43,39 +43,22 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.2.29
+                2024.4.11
             </h6>
             <ul>
                 <li>
-                    <b>AI Application v3.00</b> is now available.<br>
+                    <b>Tutorial Video - RZ/V2H Getting Started v3.00</b> is now available.<br>
                     <ul>
                         <li> 
-                            Added RZ/V2H Evaluation Board Kit support for 21 applications.
+                            Users can learn the content of Getting Started in the video.<br>
                         </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>RZ/V2H AI SDK v3.00</b> is now available.<br>
-                </li>
-            </ul>
-            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK page</a>.
-            <br>
-        </div>
-        <div class="col-12">
-            <h6 align="right" >
-                2024.2.29
-            </h6>
-            <ul>
-                <li>
-                    <b>e<sup>2</sup> studio for RZ/V2L - AI Navigator Quick Start Guide</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            Users can start AI Applications development with e<sup>2</sup> studio (GUI tool).
+                        <li>
+                            Based on RZ/V2H AI SDK v3.00.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">Video</a>.
             <br>
         </div>
         <div class="col-12" align="right">
@@ -216,15 +199,31 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-xl-4">
+            <iframe width="100%" height="55%" src="https://www.youtube.com/embed/ErmISuWkkBQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            </iframe>
+            <ul class="videodetails">
+                <li>
+                    <a href="https://youtu.be/ErmISuWkkBQ">RZ/V2H AI Applications Tutorial - Getting Started v3.00 (Youtube) </a>
+                    <br><br>
+                    For <b>RZ/V2H</b> AI SDK <b>v3.00</b> (latest).<br>
+                    This is a tutorial video explaining the content of getting started.<br>
+                    This tutorial is for RZ/V2H EVK.<br>
+                    The AI SDK only supports eSD bootloader.
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-6 col-xl-4">
             <iframe width="100%" height="55%" src="https://www.youtube.com/embed/CPeE2q3TdOY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
             </iframe>
             <ul class="videodetails">
                 <li>
                     <a href="https://youtu.be/CPeE2q3TdOY">RZ/V2L AI Applications Tutorial - Getting Started v2.10 (Youtube) </a>
                     <br><br>
+                    For <b>RZ/V2L</b> AI SDK <b>v2.10</b> (latest).<br>
                     This is a tutorial video explaining the content of getting started.<br>
-                    This tutorial is based on RZ/V2L AI SDK version <b>2.10</b>, which supports both eSD bootloder and eMMC bootloader.<br>
-                    In this video, eSD bootloader is used.<br>
+                    This tutorial is for RZ/V2L EVK.<br>
+                    The AI SDK supports both eSD bootloder and eMMC bootloader.<br>
+                    In this video, eSD bootloader is used.
                 </li>
             </ul>
         </div>
@@ -235,8 +234,10 @@ layout: default
                 <li>
                     <a href="https://youtu.be/wFbTomH8oPs">RZ/V2L AI Applications Tutorial - Getting Started v1.00 (Youtube) </a>
                     <br><br>
+                    For <b>RZ/V2L</b> AI SDK <b>v1.00</b>.<br>
                     This is a tutorial video explaining the content of getting started.<br>
-                    This tutorial is based on RZ/V2L AI SDK version <b>1.00</b>, which only supports eMMC bootloader.<br>
+                    This tutorial is for RZ/V2L EVK.<br>
+                    The AI SDK only supports eMMC bootloader.
                 </li>
             </ul>
         </div>

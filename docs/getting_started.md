@@ -53,7 +53,10 @@ Its version varies depending on the supported board.
 <div class="note">
   <span class="note-title">Tutorial video</span>
   Tutorial video is available <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">here.</a><br>
-  Latest tutorial video is based on RZ/V2L AI SDK version 2.10.<br>
+  <ul class="mb-1">
+    <li>For RZ/V2L EVK: RZ/V2L AI SDK v2.10</li>
+    <li>For RZ/V2H EVK: RZ/V2H AI SDK v3.00</li>
+  </ul>
 </div>
 
 <div class="note">
