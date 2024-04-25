@@ -55,6 +55,9 @@ layout: default
             <a class="btn btn-outline-primary btn-lg rounded-pill download-button" href="https://www.renesas.com/software-tool/rzv2h-ai-software-development-kit" role="button">
             <img src="img/ai_sdk.svg" alt="ai-sdk" height=40px class="me-1"/>
             Get RZ/V2H AI SDK</a>
+            <br>
+            <br>
+            If you would like to use the GUI environment (e<sup>2</sup> studio for RZ/V2H), see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a> instead of "Get RZ/V2H AI SDK" Button above.
         </div>
     </div>
     <br>

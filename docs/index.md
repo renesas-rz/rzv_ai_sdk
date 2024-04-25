@@ -43,6 +43,23 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2024.4.25
+            </h6>
+            <ul>
+                <li>
+                    <b>e<sup>2</sup> studio for RZ/V2H - AI Navigator Quick Start Guide</b> is now available.<br>
+                    <ul>
+                        <li> 
+                           Users can start AI Applications development with e<sup>2</sup> studio (GUI tool).<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a>.
+            <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
                 2024.4.11
             </h6>
             <ul>

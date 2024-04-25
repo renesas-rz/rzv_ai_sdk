@@ -17,6 +17,27 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2H - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2024.4.25
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">e<sup>2</sup> studio for RZ/V2H - AI Navigator Quick Start Guide is released.</h5>
+                    <ul>
+                        <li> 
+                            Users can start AI Applications development with e<sup>2</sup> studio (GUI tool).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     Tutorial Video - RZ/V2H Getting Started v3.00
                 </h3>
                 <h6 align="right" >
