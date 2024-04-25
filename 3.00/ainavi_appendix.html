@@ -33,7 +33,7 @@
 {"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-02-29T10:44:37+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/3.00/ainavi_appendix.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=acad73638e600c602f1f7363ca80759d2afb2555">
+    <link rel="stylesheet" href="assets/css/style.css?v=e4cb81d19151e2230361ab096ca5430854e342d7">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -541,13 +541,13 @@ AI Navigator Quick Start Guide Appendix
 </ul>
 
 <h3 id="ainavi_appendix_a">A. AI Navigator Uninstallation</h3>
-<p>Follow the steps below to uninstall the plugins, AI Navigator, RZ/V AI TLT, and DRP-AI TVM.<br />
+<p>Follow the steps below to uninstall the plugins, AI Navigator, AI Transfer Learning Tool Plugin, and AI Model Conversion Tool Plugin.<br />
 <br /></p>
 <ol>
   <li>Launch e<sup>2</sup> studio.</li>
   <li>Click <b>[Help] &gt; [About e<sup>2</sup> studio]</b> and <b>"About e<sup>2</sup> studio"</b> will appear.</li>
   <li>Click <b>[Installation Details]</b>.</li>
-  <li>Click the <b>[Installed Software]</b> tab and select <b>"Renesas AI Framework"</b>/<b>"RZ/V AI TLT"</b>/<b>"DRP-AI TVM"</b>.
+  <li>Click the <b>[Installed Software]</b> tab and select <b>"Renesas AI Framework"</b>/<b>"AI Transfer Learning Tool Plugin"</b>/<b>"AI Model Conversion Tool Plugin"</b>.
     <div class="note">
     <span class="note-title">Note</span>
     You can select only one plugin at this time. Repeat this procedure for other plugins if you have finished uninstalling one.
@@ -560,24 +560,24 @@ AI Navigator Quick Start Guide Appendix
 <p><br /></p>
 <div class="note">
   <span class="note-title">Note</span>
-  The Docker containers and the directory that RZ/V AI TLT and DRP-AI TVM plugins installed remains when uninstalling.<br /> 
+  The Docker containers and the directory that AI Transfer Learning Tool Plugin and AI Model Conversion Tool Plugin installed remains when uninstalling.<br /> 
   If you never use these Docker containers and directories, run the following commands to remove them.<br />
   <br />
   <ul>
-    <li><b>For RZ/V AI TLT</b>
+    <li><b>For AI Transfer Learning Tool Plugin</b>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c">#Delete docker container and image RZ/V AI TLT Plugin installed.</span>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c">#Delete docker container and image AI Transfer Learning Tool Plugin installed.</span>
 docker stop tltdoc
 docker <span class="nb">rm </span>tltdoc
 docker rmi tlt_backend:latest
-<span class="c">#Delete the installed RZ/V AI TLT Plugin directory as shown below.</span>
+<span class="c">#Delete the installed AI Transfer Learning Tool Plugin directory as shown below.</span>
 <span class="c">#e.g. if e2 studio is installed in ~/.local/share/renesas/e2_studio</span>
 <span class="nb">sudo rm</span> <span class="nt">-rf</span> ~/.local/share/renesas/rzv_ai_tlt</code></pre></figure>
 
     </li>
-    <li><b>For DRP-AI TVM</b>
+    <li><b>For AI Model Conversion Tool Plugin</b>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c">#Delete docker image DRP-AI TVM Plugin installed.</span>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c">#Delete docker image AI Model Conversion Tool Plugin installed.</span>
 docker rmi rzv2l_ai_sdk_image:latest
 <span class="c">#Delete the installed RZ/V AI TVM Plugin directory as shown below.</span>
 <span class="c">#e.g. if e2 studio is installed in ~/.local/share/renesas/e2_studio</span>
