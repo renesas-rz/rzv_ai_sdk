@@ -43,6 +43,23 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2024.5.17
+            </h6>
+            <ul>
+                <li>
+                    <b>RZ/V2H Video Codecs Library Package v3 for AI SDK v3.00</b> is now available.<br>
+                    <ul>
+                        <li>
+                           Users can use RZ/V2H Video Codec Library with H.264 Enc/Dec and H.265 Enc/Dec function.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.
+            <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
                 2024.4.25
             </h6>
             <ul>

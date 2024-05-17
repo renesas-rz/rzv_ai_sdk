@@ -33,7 +33,7 @@
 {"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-03-14T10:52:10+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/3.00/howto_build_aisdk_v2h.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=e4cb81d19151e2230361ab096ca5430854e342d7">
+    <link rel="stylesheet" href="assets/css/style.css?v=a2595f65cd3a611db340c7ede7d0dae52583a87e">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -740,10 +740,16 @@ poky</code></pre></figure>
       </li>
     </ul>
     <div class="note">
-      <span class="note-title">Note</span>
+      <span class="note-title">Note 1</span>
       Evaluation version of Graphics Library has restriction on their running time.<br />
       If you would like to use unrestricted version of Graphics Library,
 	    please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/3.00/howto_build_aisdk_v2h.html#A1">Appendix 1: Build Graphics Library for Unrestricted Version</a>.<br />
+    </div>
+    <div class="note">
+      <span class="note-title">Note 2</span>
+      Video Codec Library supports only H.264 Enc in AI SDK v3.00.<br />
+      If you would like to use H.264 Dec and H.265 Enc/Dec function,
+	    please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/3.00/howto_build_aisdk_v2h.html#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.<br />
     </div>
   </li>
   <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
@@ -985,7 +991,92 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">1048576</mark>"
     </li>
   </ol>
 <p>After this procedure, please proceed to <a href="https://renesas-rz.github.io/rzv_ai_sdk/3.00/howto_build_aisdk_v2h.html#step3-8"> Step 3-8 in How to build RZ/V2H AI SDK Source Code</a> to build the Linux kernel files.
-<br /></p>
+<br /><br /></p>
+
+<h3 id="A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</h3>
+<p>This section explains how to prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  Following instruction assumes that you have completed <a href="https://renesas-rz.github.io/rzv_ai_sdk/3.00/howto_build_aisdk_v2h.html#step3-6">Step 3-6 in How to build RZ/V2H AI SDK Source Code</a>.
+</div>
+<ol>
+    <li>Download zip file from the link below.
+      <br /><br />
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/swo/rzv2h-linux-video-codecs-library-package-rtk0ef0192z00001zjzip" role="button">Download Link</a>
+    </li>
+    <br />
+    <li>After you downloaded the zip file, please move the zip file to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
+    <br />
+    </li>
+    <br />
+    <li>Check that zip file are moved to appropriate location.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup
+<span class="nb">ls</span> <span class="nt">-1</span> </code></pre></figure>
+
+      <ul>
+        <li>If the above command prints followings, the package is extracted correctly.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">README.txt
+RTK0EF0192Z00001ZJ.zip
+rzv2h_ai-sdk_yocto_recipe_v3.00.tar.gz
+yocto</code></pre></figure>
+
+        </li>
+      </ul>
+    </li>
+    <li>Run the below command to delete current Video Codec Library and OpenCVA directories.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">rm</span> <span class="nt">-rf</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-rz-features/meta-rz-codecs
+<span class="nb">rm</span> <span class="nt">-rf</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-rz-features/meta-rz-opencva</code></pre></figure>
+
+    </li>
+    <li>Run the below command to extract the Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">unzip RTK0EF0192Z00001ZJ.zip
+<span class="nb">tar </span>xvf RTK0EF0192Z00001ZJ/meta-rz-features.tar.gz <span class="nt">-C</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
+
+    </li>
+    <li>Run the below command to apply a patch file to add Video Codec Library.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> <span class="nt">-d</span> meta-renesas &lt; <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/RTK0EF0192Z00001ZJ/0001-rzv2h-conf-r9a09g057-Add-hwcodec-to-MACHINE_FEATURE.patch</code></pre></figure>
+
+    </li>
+  </ol>
+<p>After this procedure, please proceed to <a href="https://renesas-rz.github.io/rzv_ai_sdk/3.00/howto_build_aisdk_v2h.html#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
+<br /><br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+      Examples of running the Video Codecs Library is shown below.
+      <ul>
+        <li>H.264 Encode<br />
+        Input from a USB camera, encode in H.264, and output to an MP4 file (H264_MP4_file.mp4).
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">gst-launch-1.0 v4l2src num-buffers<span class="o">=</span>100 <span class="nv">device</span><span class="o">=</span>/dev/video0 <span class="o">!</span> videoconvert <span class="o">!</span> video/x-raw, <span class="nv">format</span><span class="o">=</span>NV12 <span class="o">!</span> omxh264enc control-rate<span class="o">=</span>2 target-bitrate<span class="o">=</span>10485760 <span class="nv">interval_intraframes</span><span class="o">=</span>14 periodicty-idr<span class="o">=</span>2 <span class="o">!</span> video/x-h264, <span class="nv">profile</span><span class="o">=</span><span class="se">\(</span>string<span class="se">\)</span>high, <span class="nv">level</span><span class="o">=</span><span class="se">\(</span>string<span class="se">\)</span>4 <span class="o">!</span> h264parse <span class="o">!</span> video/x-h264, stream-format<span class="o">=</span>avc, <span class="nv">alignment</span><span class="o">=</span>au <span class="o">!</span> qtmux <span class="o">!</span> filesink <span class="nv">location</span><span class="o">=</span>H264_MP4_file.mp4</code></pre></figure>
+  
+        </li>
+        <li>H.264 Decode<br />
+        Decode and display the above MP4 file (H264_MP4_file.mp4).
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">gst-launch-1.0 filesrc <span class="nv">location</span><span class="o">=</span>H264_MP4_file.mp4 <span class="o">!</span> qtdemux <span class="o">!</span> h264parse <span class="o">!</span> omxh264dec <span class="o">!</span> waylandsink</code></pre></figure>
+  
+        </li>
+        <li>H.265 Encode<br />
+        Input from a USB camera, encode in H.265, and output to an MP4 file (H265_MP4_file.mp4).
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">gst-launch-1.0 v4l2src num-buffers<span class="o">=</span>100 <span class="nv">device</span><span class="o">=</span>/dev/video0 <span class="o">!</span> videoconvert <span class="o">!</span> video/x-raw, <span class="nv">format</span><span class="o">=</span>NV12 <span class="o">!</span> omxh265enc control-rate<span class="o">=</span>2 target-bitrate<span class="o">=</span>10485760 <span class="nv">interval_intraframes</span><span class="o">=</span>14 <span class="o">!</span> video/x-h265, <span class="nv">profile</span><span class="o">=</span><span class="se">\(</span>string<span class="se">\)</span>main, <span class="nv">level</span><span class="o">=</span><span class="se">\(</span>string<span class="se">\)</span>5 <span class="o">!</span> h265parse <span class="o">!</span> qtmux <span class="o">!</span> filesink <span class="nv">location</span><span class="o">=</span>H265_MP4_file.mp4</code></pre></figure>
+  
+        </li>
+        <li>H.265 Decode<br />
+        Decode and display the above MP4 file (H265_MP4_file.mp4).
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">gst-launch-1.0 filesrc <span class="nv">location</span><span class="o">=</span>H265_MP4_file.mp4 <span class="o">!</span> qtdemux <span class="o">!</span> h265parse <span class="o">!</span> omxh265dec <span class="o">!</span> waylandsink</code></pre></figure>
+  
+        </li>
+      </ul>
+</div>
+
 <div class="row">
   <div class="col-12" align="right">
     <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/3.00/" role="button">

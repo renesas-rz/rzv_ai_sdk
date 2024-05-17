@@ -17,6 +17,27 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2H Video Codec Library for AI SDK v3.00
+                </h3>
+                <h6 align="right" >
+                    2024.5.17
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H Video Codecs Library Package v3 for AI SDK v3.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Users can use RZ/V2H Video Codec Library with H.264 Enc/Dec and H.265 Enc/Dec function.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     e<sup>2</sup> studio for RZ/V2H - AI Navigator Quick Start Guide
                 </h3>
                 <h6 align="right" >

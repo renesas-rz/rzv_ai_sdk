@@ -225,10 +225,16 @@ poky
       </li>
     </ul>
     <div class="note">
-      <span class="note-title">Note</span>
+      <span class="note-title">Note 1</span>
       Evaluation version of Graphics Library has restriction on their running time.<br>
       If you would like to use unrestricted version of Graphics Library,
 	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A1">Appendix 1: Build Graphics Library for Unrestricted Version</a>.<br>
+    </div>
+    <div class="note">
+      <span class="note-title">Note 2</span>
+      Video Codec Library supports only H.264 Enc in AI SDK v3.00.<br>
+      If you would like to use H.264 Dec and H.265 Enc/Dec function,
+	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.<br>
     </div>
   </li>
   <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
@@ -470,7 +476,92 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">1048576</mark>"
     </li>
   </ol>
 After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-8"> Step 3-8 in How to build RZ/V2H AI SDK Source Code</a> to build the Linux kernel files.
-<br>
+<br><br>
+
+<h3 id="A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</h3>
+This section explains how to prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br>
+<div class="note">
+  <span class="note-title">Note</span>
+  Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-6">Step 3-6 in How to build RZ/V2H AI SDK Source Code</a>.
+</div>
+  <ol>
+    <li>Download zip file from the link below.
+      <br><br>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/swo/rzv2h-linux-video-codecs-library-package-rtk0ef0192z00001zjzip" role="button">Download Link</a>
+    </li>
+    <br>
+    <li>After you downloaded the zip file, please move the zip file to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
+    <br>
+    </li>
+    <br>
+    <li>Check that zip file are moved to appropriate location.
+{% highlight shell %}
+cd ${WORK}/src_setup
+ls -1 
+{% endhighlight %}
+      <ul>
+        <li>If the above command prints followings, the package is extracted correctly.
+{% highlight shell %}
+README.txt
+RTK0EF0192Z00001ZJ.zip
+rzv2h_ai-sdk_yocto_recipe_v3.00.tar.gz
+yocto
+{% endhighlight %}
+        </li>
+      </ul>
+    </li>
+    <li>Run the below command to delete current Video Codec Library and OpenCVA directories.<br>
+{% highlight shell %}
+rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-codecs
+rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-opencva
+{% endhighlight %}
+    </li>
+    <li>Run the below command to extract the Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br>
+{% highlight shell %}
+unzip RTK0EF0192Z00001ZJ.zip
+tar xvf RTK0EF0192Z00001ZJ/meta-rz-features.tar.gz -C ${YOCTO_WORK}
+{% endhighlight %}
+    </li>
+    <li>Run the below command to apply a patch file to add Video Codec Library.<br>
+{% highlight shell %}
+cd ${YOCTO_WORK}
+patch -p1 -d meta-renesas < ${WORK}/src_setup/RTK0EF0192Z00001ZJ/0001-rzv2h-conf-r9a09g057-Add-hwcodec-to-MACHINE_FEATURE.patch
+{% endhighlight %}
+    </li>
+  </ol>
+After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
+<br><br>
+<div class="note">
+  <span class="note-title">Note</span>
+      Examples of running the Video Codecs Library is shown below.
+      <ul>
+        <li>H.264 Encode<br>
+        Input from a USB camera, encode in H.264, and output to an MP4 file (H264_MP4_file.mp4).
+{% highlight shell%}
+gst-launch-1.0 v4l2src num-buffers=100 device=/dev/video0 ! videoconvert ! video/x-raw, format=NV12 ! omxh264enc control-rate=2 target-bitrate=10485760 interval_intraframes=14 periodicty-idr=2 ! video/x-h264, profile=\(string\)high, level=\(string\)4 ! h264parse ! video/x-h264, stream-format=avc, alignment=au ! qtmux ! filesink location=H264_MP4_file.mp4
+{% endhighlight %}  
+        </li>
+        <li>H.264 Decode<br>
+        Decode and display the above MP4 file (H264_MP4_file.mp4).
+{% highlight shell%}
+gst-launch-1.0 filesrc location=H264_MP4_file.mp4 ! qtdemux ! h264parse ! omxh264dec ! waylandsink
+{% endhighlight %}  
+        </li>
+        <li>H.265 Encode<br>
+        Input from a USB camera, encode in H.265, and output to an MP4 file (H265_MP4_file.mp4).
+{% highlight shell%}
+gst-launch-1.0 v4l2src num-buffers=100 device=/dev/video0 ! videoconvert ! video/x-raw, format=NV12 ! omxh265enc control-rate=2 target-bitrate=10485760 interval_intraframes=14 ! video/x-h265, profile=\(string\)main, level=\(string\)5 ! h265parse ! qtmux ! filesink location=H265_MP4_file.mp4
+{% endhighlight %}  
+        </li>
+        <li>H.265 Decode<br>
+        Decode and display the above MP4 file (H265_MP4_file.mp4).
+{% highlight shell%}
+gst-launch-1.0 filesrc location=H265_MP4_file.mp4 ! qtdemux ! h265parse ! omxh265dec ! waylandsink
+{% endhighlight %}  
+        </li>
+      </ul>
+</div>
+
 <div class="row">
   <div class="col-12" align="right">
     <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">

@@ -300,8 +300,9 @@ layout: default
                 *3: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.<br>
                 *4: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.<br>
                 If you would like to use unrestricted version, please build AI SDK with Graphics Library Unrestricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">How to Build RZ/V2H AI SDK</a>.<br>
-                *5: Video Codec Library support only H.264 Enc in v3.00.<br>
-                H.265 Enc/Dec and H.264 Dec will be supported later.<br>
+                *5: Video Codec Library support only H.264 Enc in AI SDK v3.00.<br>
+                If you would like to use H.264 Dec and H.265 Enc/Dec function,<br>
+                please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.<br>
             </h6>
         </div>
         <div class="col-12">
