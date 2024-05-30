@@ -182,18 +182,9 @@ const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * 
 /*For termination method display*/
 #define TEXT_START_X                (1440) 
 
-/* DRP_MAX_FREQ and DRPAI_FREQ are the   */
-/* frequency settings for DRP-AI.        */
+/* DRPAI_FREQ is the frequency settings  */
+/* for DRP-AI.                           */
 /* Basically use the default values      */
-
-#define DRP_MAX_FREQ                (2)
-/* DRP_MAX_FREQ can be set from 2 to 127 */
-/* 2: 420MHz                             */
-/* 3: 315MHz                             */
-/* ...                                   */
-/* 127: 9.84MHz                          */
-/* Calculation Formula:                  */
-/*     1260MHz /(DRP_MAX_FREQ + 1)       */
 
 #define DRPAI_FREQ                  (2)
 /* DRPAI_FREQ can be set from 1 to 127   */
