@@ -1,6 +1,6 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2024
  *　
  *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
@@ -38,7 +38,7 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
 * File Name    : main.cpp
@@ -89,7 +89,6 @@ cv::Mat input_image;
 std::unordered_map<std::string, std::string> ini_values;
 std::vector<double> anchors;
 bool doubleClick = false;
-static int32_t drp_max_freq;
 static int32_t drpai_freq;
 using INI_FORMAT = std::unordered_map<std::string, std::unordered_map<std::string, std::string>>; 
 /*****************************************
@@ -614,7 +613,7 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
 
-        runtime.Run();
+        runtime.Run(drpai_freq);
 
         /*Gets AI Inference End Time*/
         ret = timespec_get(&inf_end_time, TIME_UTC);
@@ -943,8 +942,8 @@ int8_t R_Main_Process()
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Postprocess Time: " + std::to_string(int(post_time)), cv::Point(1520, 120), 
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            // cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(1540, 1020), 
-            //             cv::FONT_HERSHEY_SIMPLEX, 0.60, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
+            cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(1540, 1020), 
+                        cv::FONT_HERSHEY_SIMPLEX, 0.60, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             for (std::map<std::string, int>::iterator it = detection_count.begin(); it != detection_count.end(); ++it)
             {
                 cv::putText(bgra_image, std::string(it->first) + ": " + std::to_string(it->second), 
@@ -1049,38 +1048,6 @@ std::string query_device_status(std::string device_type)
     return media_port;
 }
 
-/*****************************************
-* Function Name : set_drpai_freq
-* Description   : Function to set the DRP and DRP-AI frequency.
-* Arguments     : drpai_fd: DRP-AI file descriptor
-* Return value  : 0 if succeeded
-*                 not 0 otherwise
-******************************************/
-int set_drpai_freq(int drpai_fd)
-{
-    int ret = 0;
-    uint32_t data;
-
-    errno = 0;
-    data = drp_max_freq;
-    ret = ioctl(drpai_fd , DRPAI_SET_DRP_MAX_FREQ, &data);
-    if (-1 == ret)
-    {
-        std::cerr << "[ERROR] Failed to set DRP Max Frequency : errno=" << errno << std::endl;
-        return -1;
-    }
-
-    errno = 0;
-    data = drpai_freq;
-    ret = ioctl(drpai_fd , DRPAI_SET_DRPAI_FREQ, &data);
-    if (-1 == ret)
-    {
-        std::cerr << "[ERROR] Failed to set DRP-AI Frequency : errno=" << errno << std::endl;
-        return -1;
-    }
-
-    return 0;
-}
 
 /*****************************************
 * Function Name : init_drpai
@@ -1097,13 +1064,6 @@ uint64_t init_drpai(int drpai_fd)
     /*Get DRP-AI memory start address*/
     drpai_addr = get_drpai_start_addr(drpai_fd);
     if (drpai_addr == 0)
-    {
-        return 0;
-    }
-
-    /*Set DRP-AI frequency*/
-    ret = set_drpai_freq(drpai_fd);
-    if (ret != 0)
     {
         return 0;
     }
@@ -1188,6 +1148,12 @@ int32_t main(int32_t argc, char * argv[])
     int8_t ret = 0;
     int8_t ret_w = 0;
     int8_t ret_main = 0;
+
+    /*Disable OpenCV Accelerator due to the use of multithreading */
+    unsigned long OCA_list[16];
+    for(int i = 0; i < 16; i++) OCA_list[i] = 0;
+    OCA_Activate(&OCA_list[0]);
+
     /*Multithreading Variables*/
     int32_t create_thread_ai = -1;
     int32_t create_thread_capture = -1;
@@ -1197,11 +1163,6 @@ int32_t main(int32_t argc, char * argv[])
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
-
-    /*Disable OpenCV Accelerator due to the use of multithreading */
-    unsigned long OCA_list[16];
-    for (int i=0; i < 16; i++) OCA_list[i] = 0;
-    OCA_Activate( &OCA_list[0] );
 
     if (argc<3) 
     {
@@ -1215,16 +1176,25 @@ int32_t main(int32_t argc, char * argv[])
     std::string mode = argv[1];
     std::string input_source = argv[2];
 
+    std::map<std::string, std::string> args;
+    /* Parse input arguments */
+    for (int i = 1; i < argc; ++i) 
+    {
+        std::string arg = argv[i];
+        size_t pos = arg.find('=');
+        if (pos != std::string::npos) 
+        {
+            std::string key = arg.substr(0, pos);
+            std::string value = arg.substr(pos + 1);
+            args[key] = value;
+        }
+    }
     /* DRP-AI Frequency Setting */
-    if (4 <= argc)
-        drp_max_freq = atoi(argv[3]);
-    else
-        drp_max_freq = DRP_MAX_FREQ;
-    if (5 <= argc)
-        drpai_freq = atoi(argv[4]);
-    else
+    if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0) 
+        drpai_freq = std::stoi(args["--drpai_freq"]);
+    else 
         drpai_freq = DRPAI_FREQ;
-    std::cout<<"\n[INFO] DRP MAX FREQUENCY : "<<drp_max_freq<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+    std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
     
     /* Read the configuration file */
     INI_FORMAT config_values = config_read("app_conf.ini");
@@ -1252,14 +1222,14 @@ int32_t main(int32_t argc, char * argv[])
 
     if(input_source=="USB")
     {
-    std::cout << "[INFO] USB CAMERA \n";
-    std::string media_port = query_device_status("usb");
-    gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";   
+        std::cout << "[INFO] USB CAMERA \n";
+        std::string media_port = query_device_status("usb");
+        gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";   
     }
     else
     {
-    std::cout << "[ERROR] Invalid Input source\n";
-    return -1; 
+        std::cout << "[ERROR] Invalid Input source\n";
+        return -1; 
     }
 
  
@@ -1271,7 +1241,6 @@ int32_t main(int32_t argc, char * argv[])
     }
     
     uint64_t drpaimem_addr_start = 0;
-   // uint64_t drpaimem_addr_start = 1073741824;
 
     /*Load Label from label_list file*/
     label_file_map = load_label_file(ini_values["label_path"]);
