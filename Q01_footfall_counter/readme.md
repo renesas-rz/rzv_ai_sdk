@@ -1,6 +1,6 @@
 # Footfall Counter
 
-## Application: Overview
+## Application: Overview 
 This application is designed to track and count the number of people entering a designated boundary line,
 while simultaneously reducing the count for those exiting the boundary line.
 
