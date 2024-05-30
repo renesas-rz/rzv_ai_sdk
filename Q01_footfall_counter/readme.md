@@ -1,6 +1,6 @@
 # Footfall Counter
 
-## Application: Overview 
+## Application: Overview
 This application is designed to track and count the number of people entering a designated boundary line,
 while simultaneously reducing the count for those exiting the boundary line.
 
@@ -240,11 +240,11 @@ Each folder contains following items.
 1. **[For RZ/V2H only]** Run following commands to download the necessary file.  
     ```sh
       cd <path_to_data_folder_on_host>/data/Q01_footfall_counter/exe_v2h/d-yolov3
-      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v3.00/Q01_footfall_counter_deploy_tvm_v2h-v210.so
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/Q01_footfall_counter_deploy_tvm_v2h-v221.so
     ```
 2. **[For RZ/V2H only]** Rename the `Q01_footfall_counter_deploy_*.so` to `deploy.so`.
     ```sh
-    mv Q01_footfall_counter_deploy_tvm_v2h-v210.so deploy.so
+    mv Q01_footfall_counter_deploy_*.so deploy.so
     ```
 3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
@@ -255,27 +255,26 @@ Each folder contains following items.
 4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
-    ```sh
-    ├── usr/
-    │   └── lib64/
-    │       └── libtvm_runtime.so
-    └── home/
-        └── root/
-            └── tvm/ 
-                ├── tinyyolov3_onnx/  #RZ/V2L only
-                │   ├── preprocess/   #RZ/V2L only
-                │   ├── deploy.json   #RZ/V2L only
-                │   ├── deploy.params #RZ/V2L only
-                │   └── deploy.so     #RZ/V2L only
-                │
-                ├── d-yolov3/         #RZ/V2H only
-                │   ├── deploy.json   #RZ/V2H only
-                │   ├── deploy.params #RZ/V2H only
-                │   └── deploy.so     #RZ/V2H only
-                │
-                ├── coco-labels-2014_2017.txt
-                ├── config.ini
-                └── object_tracker
+    ```
+    |-- usr
+    |   `-- lib64
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- root
+            `-- tvm
+                |-- tinyyolov3_onnx           #RZ/V2L only
+                |   |-- preprocess            #RZ/V2L only          
+                |   |-- deploy.json           #RZ/V2L only
+                |   |-- deploy.params         #RZ/V2L only
+                |   `-- deploy.so             #RZ/V2L only
+                |
+                |-- d-yolov3                  #RZ/V2H only
+                |   |-- deploy.json           #RZ/V2H only
+                |   |-- deploy.params         #RZ/V2H only
+                |   `-- deploy.so             #RZ/V2H only
+                |-- config.ini
+                |-- coco-labels-2014_2017.txt
+                `-- object_tracker
     ```
 
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
@@ -306,7 +305,7 @@ After completion of the guide, the user is expected of following things.
 
     |RZ/V2L EVK | RZ/V2H EVK |
     |:---|:---|
-    |<img src=./images/obj_trk_out.JPG width=350>| <img src=./images/Q01_image_V2H.png width=350>  |
+    |<img src=./images/obj_trk_out.JPG width=350>| <img src=./images/Q01_image_V2H.png width=420>  |
 
     <!-- On application window, following information is displayed.  
     - Camera capture  
@@ -348,7 +347,7 @@ Output3 size: 1x52x52x255
 |Board | AI model | AI inference time|
 |:---|:---|:---|
 |RZ/V2L EVK|Tiny YOLOv3| Approximately 110ms  |
-|RZ/V2H EVK |YOLOv3 | Approximately 40ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 30ms  |
 
 ### Processing
 
@@ -407,3 +406,7 @@ To modify the configuration settings, edit the values in this file using VI Edit
 FHD resolution is supported by e-CAM22_CURZH camera (MIPI).  
 Please refer to following URL for how to change camera input to MIPI camera.  
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  
+
+## License 
+Apache License 2.0   
+For third party OSS library, please see the source code file itself.

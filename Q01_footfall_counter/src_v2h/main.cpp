@@ -1,6 +1,6 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2024
  *　
  *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
@@ -38,7 +38,7 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
 * File Name    : main.cpp
@@ -92,10 +92,7 @@ MeraDrpRuntimeWrapper runtime;
 /* Sets a flag to indicate whether a double click has been detected. */
 bool doubleClick = false;
 
-/* DRP_MAX_FREQ and DRPAI_FREQ are the   */
-/* frequency settings for DRP-AI.        */
-/* Basically use the default values      */
-static int32_t drp_max_freq;
+/*DRP-AI Frequency setting*/
 static int32_t drpai_freq;
 
 static float pre_time   = 0;
@@ -655,7 +652,7 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
 
-        runtime.Run();
+        runtime.Run(drpai_freq);
 
         /*Gets AI Inference End Time*/
         ret = timespec_get(&inf_end_time, TIME_UTC);
@@ -1235,39 +1232,6 @@ std::string query_device_status(std::string device_type)
 }
 
 /*****************************************
-* Function Name : set_drpai_freq
-* Description   : Function to set the DRP and DRP-AI frequency.
-* Arguments     : drpai_fd: DRP-AI file descriptor
-* Return value  : 0 if succeeded
-*                 not 0 otherwise
-******************************************/
-int set_drpai_freq(int drpai_fd)
-{
-    int ret = 0;
-    uint32_t data;
-
-    errno = 0;
-    data = drp_max_freq;
-    ret = ioctl(drpai_fd , DRPAI_SET_DRP_MAX_FREQ, &data);
-    if (-1 == ret)
-    {
-        std::cerr << "[ERROR] Failed to set DRP Max Frequency : errno=" << errno << std::endl;
-        return -1;
-    }
-
-    errno = 0;
-    data = drpai_freq;
-    ret = ioctl(drpai_fd , DRPAI_SET_DRPAI_FREQ, &data);
-    if (-1 == ret)
-    {
-        std::cerr << "[ERROR] Failed to set DRP-AI Frequency : errno=" << errno << std::endl;
-        return -1;
-    }
-
-    return 0;
-}
-
-/*****************************************
 * Function Name : init_drpai
 * Description   : Function to initialize DRP-AI.
 * Arguments     : drpai_fd: DRP-AI file descriptor
@@ -1286,13 +1250,6 @@ uint64_t init_drpai(int drpai_fd)
         return 0;
     }
 
-    /*Set DRP-AI frequency*/
-    ret = set_drpai_freq(drpai_fd);
-    if (ret != 0)
-    {
-        return 0;
-    }
-
     return drpai_addr;
 }
 
@@ -1301,6 +1258,11 @@ int32_t main(int32_t argc, char * argv[])
     int8_t main_proc = 0;
     int8_t ret_main = 0;
     int8_t ret = 0;
+
+    /*Disable OpenCV Accelerator due to the use of multithreading */
+    unsigned long OCA_list[16];
+    for(int i = 0; i < 16; i++) OCA_list[i] = 0;
+    OCA_Activate(&OCA_list[0]);
 
     /*Multithreading Variables*/
     int32_t create_thread_ai = -1;
@@ -1312,11 +1274,6 @@ int32_t main(int32_t argc, char * argv[])
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
-
-    /*Disable OpenCV Accelerator due to the use of multithreading */
-    unsigned long OCA_list[16];
-    for (int i=0; i < 16; i++) OCA_list[i] = 0;
-    OCA_Activate( &OCA_list[0] );
 
     if (argc < 2) 
     {
@@ -1343,21 +1300,29 @@ int32_t main(int32_t argc, char * argv[])
             return -1;
         }
     }
+    std::map<std::string, std::string> args;
+    /* Parse input arguments */
+    for (int i = 1; i < argc; ++i) 
+    {
+        std::string arg = argv[i];
+        size_t pos = arg.find('=');
+        if (pos != std::string::npos) 
+        {
+            std::string key = arg.substr(0, pos);
+            std::string value = arg.substr(pos + 1);
+            args[key] = value;
+        }
+    }
     /* DRP-AI Frequency Setting */
-    if (3 <= argc)
-        drp_max_freq = atoi(argv[2]);
-    else
-        drp_max_freq = DRP_MAX_FREQ;
-    if (4 <= argc)
-        drpai_freq = atoi(argv[3]);
-    else
+    if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0) 
+        drpai_freq = std::stoi(args["--drpai_freq"]);
+    else 
         drpai_freq = DRPAI_FREQ;
-    std::cout<<"\n[INFO] DRP MAX FREQUENCY : "<<drp_max_freq<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+    std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
     
     /* RZ/V2H AI SDK Sample Application */
     printf("\nRZ/V2H AI SDK Sample Application\n");
     printf("Model : Darknet YOLOv3 | %s\n", model_dir.c_str());
-    printf("Input : Coral Camera\n");
 
     int drpai_fd = open("/dev/drpai0", O_RDWR);
     if (0 > drpai_fd)
@@ -1367,7 +1332,7 @@ int32_t main(int32_t argc, char * argv[])
         return -1;
     }
     /* Set drpai mem start address */
-    uint64_t drpaimem_addr_start = 1073741824;
+    uint64_t drpaimem_addr_start = 0;
 
     /*Load Label from label_list file*/
     label_file_map = load_label_file(label_list);
