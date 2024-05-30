@@ -7,14 +7,14 @@
     }, 
     {
       "op": "tvm_op", 
-      "name": "tvmgen_default_tvmgen_default_tvmgen_default_mera_drp_main_0", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
       "attrs": {
         "flatten_data": "0", 
-        "func_name": "tvmgen_default_tvmgen_default_tvmgen_default_mera_drp_main_0", 
-        "hash": "8204a5bc4fae0685", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "hash": "eb1640a6874236c6", 
         "num_outputs": "3", 
         "num_inputs": "1", 
-        "global_symbol": "tvmgen_default_tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
         "Compiler": "mera_drp"
       }, 
       "inputs": [
