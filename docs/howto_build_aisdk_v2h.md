@@ -181,6 +181,29 @@ cd ${YOCTO_WORK}
 tar zxvf ${WORK}/src_setup/rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
   </li>
+  <li>Apply a patch file to fix lind error.<br>
+    <ol type="A">
+      <li>Obtain the patch file below from <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v3.00/0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch">this link</a>.
+        <table class="mytable">
+          <tr>
+            <th>File name</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch</td>
+            <td>patch file for fixing glibc link error</td>
+          </tr>
+        </table>
+      </li>
+      <li>Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}/meta-renesas
+patch -p1 < ../0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch
+{% endhighlight %}
+      </li>
+    </ol>
+  </li>
   <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
     The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
     <ol type="A">
@@ -212,6 +235,7 @@ ls -1 ${YOCTO_WORK}
     <ul>
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 {% highlight shell%}
+0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch
 0001-tesseract.patch
 e-CAM22_CURZ*.patch
 meta-econsys
@@ -363,6 +387,15 @@ You have prepared following files, which is same as the one provided in <a href=
     </li>
     <li>
       <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">RZ/V2H BSP Manual Set</a>
+    </li>
+  </ul>
+</div>
+<div class="note">
+  <span class="note-title">Note 3</span>
+  To add more functionality to AI SDK, please refer to following URL.
+  <ul>
+    <li>
+      <a href="https://www.renesas.com/software-tool/rzv2h-ros2-package">RZ/V2H ROS2 Package</a>
     </li>
   </ul>
 </div>

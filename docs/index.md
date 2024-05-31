@@ -43,57 +43,15 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.5.17
+                2024.5.31
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V2H Video Codecs Library Package v3 for AI SDK v3.00</b> is now available.<br>
-                    <ul>
-                        <li>
-                           Users can use RZ/V2H Video Codec Library with H.264 Enc/Dec and H.265 Enc/Dec function.<br>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.
-            <br>
-        </div>
-        <div class="col-12">
-            <h6 align="right" >
-                2024.4.25
-            </h6>
-            <ul>
-                <li>
-                    <b>e<sup>2</sup> studio for RZ/V2H - AI Navigator Quick Start Guide</b> is now available.<br>
-                    <ul>
-                        <li> 
-                           Users can start AI Applications development with e<sup>2</sup> studio (GUI tool).<br>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a>.
-            <br>
-        </div>
-        <div class="col-12">
-            <h6 align="right" >
-                2024.4.11
-            </h6>
-            <ul>
-                <li>
-                    <b>Tutorial Video - RZ/V2H Getting Started v3.00</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            Users can learn the content of Getting Started in the video.<br>
-                        </li>
-                        <li>
-                            Based on RZ/V2H AI SDK v3.00.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">Video</a>.
-            <br>
+            <font color="red">
+    This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+    <b>Users are recommended to use the latest version in the following URL.</b><br>
+    <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
+    <br>
+    <br>
         </div>
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link history.md %}" role="button">
