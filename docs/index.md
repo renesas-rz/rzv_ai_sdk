@@ -45,13 +45,29 @@ layout: default
             <h6 align="right" >
                 2024.5.31
             </h6>
-            <font color="red">
-    This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-    <b>Users are recommended to use the latest version in the following URL.</b><br>
-    <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
-    <br>
-    <br>
+            <ul>
+                <li>
+                    <b>AI Applications v4.00</b> is now available.<br>
+                    <ul>
+                        <li> 
+                            Added RZ/V2H Evaluation Board Kit support for 15 applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>RZ/V2H AI SDK v4.00</b> is now available.<br>
+                    <ul>
+                        <li>
+                           Supported DRP-AI TVM v2.2.1.<br>
+                        </li>
+                        <li>
+                           Changed the size of WIC format SD card image to 16GB.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK page</a>.
+            <br>
         </div>
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link history.md %}" role="button">

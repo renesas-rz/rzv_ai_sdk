@@ -34,7 +34,7 @@ Its version varies depending on the supported board.
   </tr>
   <tr>
     <td>RZ/V2H Evaluation Board Kit</td>
-    <td>RZ/V2H AI SDK <b>v3.00</b></td>
+    <td>RZ/V2H AI SDK <b>v4.00</b></td>
   </tr>
 </table>
 <a class="ms-4" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus">Learn more about the RZ/V series.</a>
@@ -354,7 +354,7 @@ Its version varies depending on the supported board.
         microSD card
       </td>
       <td>
-        Must have over 4GB capacity of blank space.<br>
+        Must have over 16GB capacity of blank space.<br>
         Operating Environment: Transcend UHS-I microSD 300S 16GB
       </td>
     </tr>

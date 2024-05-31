@@ -12,7 +12,7 @@ layout: default
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2H AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2H AI SDK v3.00</b></h5>
+<h5>Supported version: <b>RZ/V2H AI SDK v4.00</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -142,7 +142,7 @@ ls -1 ${WORK}/src_setup
       <li>If the above command prints followings, the package is extracted correctly.
 {% highlight shell %}
 README.txt
-rzv2h_ai-sdk_yocto_recipe_v3.00.tar.gz
+rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
       </li>
     </ul>
@@ -181,29 +181,6 @@ cd ${YOCTO_WORK}
 tar zxvf ${WORK}/src_setup/rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
   </li>
-  <li>Apply a patch file to fix lind error.<br>
-    <ol type="A">
-      <li>Obtain the patch file below from <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v3.00/0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch">this link</a>.
-        <table class="mytable">
-          <tr>
-            <th>File name</th>
-            <th>Description</th>
-          </tr>
-          <tr>
-            <td>0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch</td>
-            <td>patch file for fixing glibc link error</td>
-          </tr>
-        </table>
-      </li>
-      <li>Copy and apply the patch file.
-{% highlight shell%}
-cp <Path to the file>/0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch ${YOCTO_WORK}
-cd ${YOCTO_WORK}/meta-renesas
-patch -p1 < ../0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch
-{% endhighlight %}
-      </li>
-    </ol>
-  </li>
   <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
     The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
     <ol type="A">
@@ -235,8 +212,8 @@ ls -1 ${YOCTO_WORK}
     <ul>
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 {% highlight shell%}
-0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch
 0001-tesseract.patch
+0002-sd-image-size-16gb.patch
 e-CAM22_CURZ*.patch
 meta-econsys
 meta-gplv2
@@ -256,7 +233,7 @@ poky
     </div>
     <div class="note">
       <span class="note-title">Note 2</span>
-      Video Codec Library supports only H.264 Enc in AI SDK v3.00.<br>
+      Video Codec Library supports only H.264 Enc in AI SDK v4.00.<br>
       If you would like to use H.264 Dec and H.265 Enc/Dec function,
 	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.<br>
     </div>
@@ -266,11 +243,6 @@ poky
 cd ${YOCTO_WORK}
 TEMPLATECONF=${PWD}/meta-renesas/meta-rzv2h/docs/template/conf/ source poky/oe-init-build-env
 {% endhighlight %}
-    <div class="note">
-      <span class="note-title">Note</span>
-      The default size of the microSD card image created in this guide is approximately 4 GB.<br>
-      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A2">Appendix 2: Change the size of the microSD card image in WIC format</a>.<br>
-    </div>
   </li>
   <li id="step3-8">Run the following commands to add necessary layers for AI application to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
 {% highlight shell%}
@@ -286,7 +258,17 @@ bitbake-layers add-layer ../meta-econsys
 patch -p1 < ../0001-tesseract.patch
 {% endhighlight %}
   </li>
-  <li>Run the following command below to builde <b>Linux kernel files.</b><br>
+  <li id="step3-10">Apply a patch file to change SD card image size.
+{% highlight shell%}
+patch -p1 < ../0002-sd-image-size-16gb.patch
+{% endhighlight %}
+    <div class="note">
+      <span class="note-title">Note</span>
+      The default size of the microSD card image created in this guide is approximately 16 GB.<br>
+      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A2">Appendix 2: Change the size of the microSD card image in WIC format</a>.<br>
+    </div>
+  </li>
+  <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>
     (It takes a few hours to finish building depending on the user's host PC performance)
 {% highlight shell%}
 MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
@@ -445,7 +427,7 @@ ls -1
 {% highlight shell %}
 README.txt
 RTK0EF0*ZJ-v*_rzv_*.zip
-rzv2h_ai-sdk_yocto_recipe_v3.00.tar.gz
+rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 yocto
 {% endhighlight %}
         </li>
@@ -470,7 +452,7 @@ After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }
 This section explains how to change the microSD card image size by changing the build settings of the WIC file.<br>
 <div class="note">
   <span class="note-title">Note</span>
-  Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-7">Step 3-7 in How to build RZ/V2H AI SDK Source Code</a>.
+  Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-10">Step 3-10 in How to build RZ/V2H AI SDK Source Code</a>.
 </div>
   <ol>
     <li>Open <b><code>${YOCTO_WORK}/build/conf/local.conf</code></b> file in a text editor.
@@ -484,7 +466,7 @@ WKS_DEFAULT_FILE_rzv2h-dev = "rz-image-bootpart-mmc.wks"
 WKS_DEFAULT_FILE_rzv2h-evk-alpha = "rz-image-bootpart-esd_rzv2h.wks"
 WKS_DEFAULT_FILE_rzv2h-evk-ver1 = "rz-image-bootpart-esd_rzv2h.wks"
 # Defines additional free disk space created in the image in Kbytes.
-IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">1048576</mark>"
+IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
 ...
 </code></pre>
       The table below shows examples of setting values written in <b><code>local.conf</code></b> file.<br>
@@ -499,11 +481,15 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">1048576</mark>"
         </tr>
         <tr>
           <td>4</td>
-          <td>1048576 (default)</td>
+          <td>1048576</td>
         </tr>
         <tr>
           <td>8</td>
           <td>4194304</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>8388608 (default)</td>
         </tr>
       </table>
     </li>
@@ -537,7 +523,7 @@ ls -1
 {% highlight shell %}
 README.txt
 RTK0EF0192Z00001ZJ.zip
-rzv2h_ai-sdk_yocto_recipe_v3.00.tar.gz
+rzv2h_ai-sdk_yocto_recipe_v4.00.tar.gz
 yocto
 {% endhighlight %}
         </li>
@@ -564,36 +550,6 @@ patch -p1 -d meta-renesas < ${WORK}/src_setup/RTK0EF0192Z00001ZJ/0001-rzv2h-conf
   </ol>
 After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
 <br><br>
-<div class="note">
-  <span class="note-title">Note</span>
-      Examples of running the Video Codecs Library is shown below.
-      <ul>
-        <li>H.264 Encode<br>
-        Input from a USB camera, encode in H.264, and output to an MP4 file (H264_MP4_file.mp4).
-{% highlight shell%}
-gst-launch-1.0 v4l2src num-buffers=100 device=/dev/video0 ! videoconvert ! video/x-raw, format=NV12 ! omxh264enc control-rate=2 target-bitrate=10485760 interval_intraframes=14 periodicty-idr=2 ! video/x-h264, profile=\(string\)high, level=\(string\)4 ! h264parse ! video/x-h264, stream-format=avc, alignment=au ! qtmux ! filesink location=H264_MP4_file.mp4
-{% endhighlight %}  
-        </li>
-        <li>H.264 Decode<br>
-        Decode and display the above MP4 file (H264_MP4_file.mp4).
-{% highlight shell%}
-gst-launch-1.0 filesrc location=H264_MP4_file.mp4 ! qtdemux ! h264parse ! omxh264dec ! waylandsink
-{% endhighlight %}  
-        </li>
-        <li>H.265 Encode<br>
-        Input from a USB camera, encode in H.265, and output to an MP4 file (H265_MP4_file.mp4).
-{% highlight shell%}
-gst-launch-1.0 v4l2src num-buffers=100 device=/dev/video0 ! videoconvert ! video/x-raw, format=NV12 ! omxh265enc control-rate=2 target-bitrate=10485760 interval_intraframes=14 ! video/x-h265, profile=\(string\)main, level=\(string\)5 ! h265parse ! qtmux ! filesink location=H265_MP4_file.mp4
-{% endhighlight %}  
-        </li>
-        <li>H.265 Decode<br>
-        Decode and display the above MP4 file (H265_MP4_file.mp4).
-{% highlight shell%}
-gst-launch-1.0 filesrc location=H265_MP4_file.mp4 ! qtdemux ! h265parse ! omxh265dec ! waylandsink
-{% endhighlight %}  
-        </li>
-      </ul>
-</div>
 
 <div class="row">
   <div class="col-12" align="right">

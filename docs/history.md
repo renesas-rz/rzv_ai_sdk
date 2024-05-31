@@ -17,6 +17,38 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    AI Applications & RZ/V2H AI SDK v4.00
+                </h3>
+                <h6 align="right" >
+                    2024.5.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Applications v4.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Added RZ/V2H Evaluation Board Kit support for 15 applications.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI SDK v4.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.2.1.<br>
+                        </li>
+                        <li> 
+                            Changed the size of WIC format SD card image to 16GB.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V2H Video Codec Library for AI SDK v3.00
                 </h3>
                 <h6 align="right" >

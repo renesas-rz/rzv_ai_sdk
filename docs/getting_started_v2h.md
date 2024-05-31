@@ -18,7 +18,7 @@ RZ/V2H EVK Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2H Evaluation Board Kit</b>.</h5>
 
-<h5>Supported version: <b>RZ/V2H AI SDK v3.00</b></h5>
+<h5>Supported version: <b>RZ/V2H AI SDK v4.00</b></h5>
 
 <details class="boxdetails" open>
   <summary>Terminology</summary>
@@ -147,7 +147,7 @@ RZ/V2H EVK Getting Started
       </div>
       <div class="note">
         <span class="note-title">Note</span>
-        The size of WIC format SD card image is 4GB.<br>
+        The size of WIC format SD card image is 16GB.<br>
         If you would like to expand the SD card image size, please build the RZ/V2H AI SDK Source Code according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A2">Appendix 2 in How to Build RZ/V2H AI SDK</a>.
       </div>
       <ol>
@@ -185,11 +185,54 @@ unzip eSD.zip
           </tr>
         </table>
         Follow the instruction below to prepare the microSD card.<br>
-        <div class="warning">
-          <span class="warning-title">Warning</span>
-            Here, we use "<b><code>/dev/sdb</code></b>" as microSD card device name.
-        </div>
         <ol>
+          <li>Before inserting the microSD card to your Linux PC, open the terinal on Linux PC and run the following command to check the devices without microSD card.<br>
+{% highlight shell %}
+lsblk
+{% endhighlight %}
+            Following is the example output.<br>
+{% highlight shell %}
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda 8:0 0 30.9G 0 disk
+├─sda1 8:1 0 512M 0 part /boot/efi
+├─sda2 8:2 0 1K 0 part
+└─sda5 8:5 0 30.3G 0 part /
+sr0 11:0 1 1024M 0 rom
+{% endhighlight %}
+          </li><br>
+          <li>Insert the microSD card to your Linux PC and run the following command again.<br>
+{% highlight shell %}
+lsblk
+{% endhighlight %}
+          </li><br>
+          <li>Check the output and confirm the name appeared. This would be your microSD card device name.<br>
+            <ul>
+              <li>Following is the example output.<br>
+{% highlight shell %}
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda 8:0 0 30.9G 0 disk
+├─sda1 8:1 0 512M 0 part /boot/efi
+├─sda2 8:2 0 1K 0 part
+└─sda5 8:5 0 30.3G 0 part /
+sdb 8:16 1 29.7G 0 disk
+└─sdb1 8:17 1 29.7G 0 part
+sr0 11:0 1 1024M 0 rom
+{% endhighlight %}
+              </li><br>
+              <li>In this case, followings are your microSD card configuration.
+                <ul>
+                  <li><b><code>/dev/sdb</code></b>: The device name for the entire microSD card.
+                  </li>
+                  <li><b><code>/dev/sdb1</code></b>: The paritition name in microSD card.  There may be multiple <code>sdb*</code> depending on the microSD card.
+                  </li>
+                </ul>
+                <div class="warning">
+                  <span class="warning-title">Warning</span>
+                  Be careful not to use the name of other device since it may destruct your computer filesystem.
+                </div>
+              </li>
+            </ul>
+          </li><br>
           <li>To use bmaptools, microSD card partitions must be unmounted.<br>
             Run the following command to check the automatically mounted microSD card partitions.<br>
 {% highlight shell %}
@@ -247,7 +290,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 snip
 :
 /dev/sdb1        17M  3.0M   14M  18% /media/user/bootloaderf
-/dev/sdb2       3.8G  1.6G  2.0G  45% /media/user/root
+/dev/sdb2        13G  1.6G   11G  14% /media/user/root
 {% endhighlight %}
                 <div class="warning">
                   <span class="warning-title">Warning</span>

@@ -268,7 +268,7 @@ downloads
 patch -p1 -i ../patch/0002-no-network-tesseract.patch
 {% endhighlight %}
   </li>
-  <li>Run the following command below to builde <b>Linux kernel files.</b><br>
+  <li>Run the following command to build the <b>Linux kernel files.</b><br>
     (It takes a few hours to finish building depending on the user’s host PC performance)
 {% highlight shell%}
 MACHINE=smarc-rzv2l bitbake core-image-weston
