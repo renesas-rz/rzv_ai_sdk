@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-05-31T15:10:58+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=6f51f3363961d51659e658f9f32dc49ee107c098">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/4.00/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/">Renesas RZ/V AI</a></h1> -->
+
+        <h1 class="web-title"><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/">Renesas <br class="br-sp-web-title">RZ/V AI</a></h1>
+        <p class="version"><u><a class="version" href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/version.html">4.00</a></u></p>
+        
+
+        <!-- <p>The best solution for starting your AI applications.</p> -->
+        <p class="ham-small">The best solution for <br class="br-sp">starting your AI applications.</p>
+        <p class="ham-very-small small">Provided by Renesas Electronics Corporation</p>
+        <!-- <br> -->
+
+
+        
+
+        
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <div class="col-12">
+              <img src="img/board.svg" alt="board" style="max-width: 80px" class="me-3"/>
+              <img src="img/ai_sdk.svg" alt="ai-sdk" style="max-width: 80px"/>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <a class="btn btn-warning btn-lg rounded-pill product-button" href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/download.html" role="button">
+                Get the Board<br class="ham-nodisplay br-nsp"> and Software
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="container">
+          <div class="row">
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/board.png" alt="board" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
+              </ul>
+            </div>
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/ai_sdk.svg" alt="ai_sdk" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        
+        
+
+        <p class="mb-0 view">
+          <h5 class="ham-nodisplay mt-3" style="margin-bottom: 5px;">
+            To keep you updated, <br class="br-nsp"><b>Watch</b> our <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a><br> 
+          </h5>
+          <span class="ham-nodisplay">
+            <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a>
+          </span>
+        </p>
+        
+
+        <div class="web_index">
+          <input type="checkbox" id="menu-btn-check">
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <div class="menu-content">
+            <p class="ham-display">
+              <span class="ham-string">
+                <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a><br> 
+                <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a>
+              </span>
+            </p>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ai-sdk.html">AI SDK</a>
+              </summary>
+            </details>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/#getting-started">Getting Started</a>
+              </summary>
+              <ul class="index">
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step1">1. Obtain a Board</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step2">2. Obtain Necessary Environment</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step3">3. Obtain AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step4">4. Extract AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step5">5. Setup AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step6">6. Build AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step7">7. Deploy AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step8">8. Run AI Application</a></li>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html">RZ/V2L EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html#step7prep">Preparation</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2l.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2h.html">RZ/V2H EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2h.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2h.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2h.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2h.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2h.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started_v2h.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                 </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/appendix.html">Appendix</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/appendix.html#A1">A1. Setup for eMMC Bootloader</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/appendix.html#A2">A2. Format SD card</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/appendix.html#A3">A3. Shutdown the RZ/V2L EVK</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/appendix.html#A4">A4. Shutdown the RZ/V2H EVK</a>
+                    </li>
+                  </ul>
+                 </details>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk.html">How to Build RZ/V2L AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk.html#step3">3. Build AI SDK</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk.html#A1">Appendix. Unrestricted Version</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html">How to Build RZ/V2H AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step3">3. Build AI SDK</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#A1">Appendix 1. Unrestricted Version</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#A2">Appendix 2. Resize microSD card image</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_retrain.html">How to Re-train AI model</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_retrain.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_retrain.html#obtain">Obtain the Tool</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_retrain.html#restriction">Restrictions</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_quick_start_guide.html">How to use GUI env.</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_quick_start_guide.html#ainavi_intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_quick_start_guide.html#ainavi_preparation">Preparation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_quick_start_guide.html#ainavi_step1">1. AI Navigator Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_quick_start_guide.html#ainavi_step2">2. Start AI Navigator</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_quick_start_guide.html#ainavi_step3">3. Import AI Applications</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_quick_start_guide.html#ainavi_step4">4. Run on the Board</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ainavi_appendix.html">Appendix</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/about-applications.html">About AI Applications</a>
+              </summary>
+            </details>
+    <!-- Copy index_list.html start -->
+
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/#ai-applications">AI Applications</a>
+              </summary>
+              <ul class="index">
+                <h6 style="margin-bottom: 0px;">
+                  <span class="index-string">
+                    &#10004;: Newly added
+                    <br>
+                    *: Updated
+                  </span>
+                </h6>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#agriculture">Agriculture</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#agriculture1">Defense wild animals for crop</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#agriculture2">Fruit and Vegetable Plant Disease Check</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#agriculture3">Ranch Livestock Management</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building">Smart Building</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building1">Elevator passengers Counting</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building2">Conference Room Usage Monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building3">Lighting Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building4">Security Area Intrusion Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building5">Wear management at construction sites</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building6">*Touchless Controller for elevator</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#building7">Employee ID check for Restricted Area</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city">Smart City</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city1">Congestion Detection in Railway Station</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city2">Prohibited Area Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city3">*Distracted driving detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city4">Duration monitoring for surveillance camera</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city5">Parking Spot Reservation</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city6">Illegal Parking Check</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city7">Passport check support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city8">Bus passenger counting</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city9">Backtravel Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city10">Violence Activity Check in Surveillance Camera</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city11">Bird Damage Prevention</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city12">Blind Spot Monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city13">Preceding Vehicle Movement Alert</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city14">Emergency Vehicles Detector</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city15">*Illegal Bicycle Approach Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city16">*Bicycle Rental Stock Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city17">*Illegal Bicycle Parking Monitor Support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city18">*Infrastructure Defect Prevention</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#city19">*Crime Prevention Support for School</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#healthcare">Healthcare</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#healthcare1">Physical Condition Monitor</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#home">Smart Home</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#home1">Air Conditioner Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#home2">Smart TV</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#home3">Pet Detection in Kitchen and Child's Room</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#home4">*Touchless Controller for Kitchen Appliance</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#home5">*Food Package Expiry Date Check</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial">Industrial</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial1">Work Area Personnel Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial2">Access Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial3">Helmet and safety vest wearing monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial4">*Touchless Controller for Industrial machine</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial5">*Driver Monitoring System</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial6">Species check support in Fish Factory</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial7">*Defect Inspection Support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#industrial8">*Aquaculture Industrial Support</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#retail">Retail</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#retail1">Congestion Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#retail2">Smart POS</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#retail3">*Marketing Interest Analysis</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#retail4">Staying and flow line monitoring</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#retail5">Exhibition Participants Monitoring</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html#retail6">*Store Crime Prevention</a></li>
+                  </ul>
+                </details>
+              </ul>
+            </details>
+    <!-- Copy index_list.html end -->
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/#demo">Demo</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html">How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#shutdown">3. Shutdown process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#tips">Tips</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/#video">Video</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/#training-video">Training video</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/#blog">Blogs</a>
+              </summary>
+            </details>
+          </div>
+        </div>
+        <br class="ham-nodisplay">
+        <br class="ham-nodisplay">
+        <div style="line-height: 1.15em;">
+          
+          <p class="mb-0 ham-small">This project is maintained by <a href="https://github.com/renesas-rz">renesas-rz</a></p>
+          
+          <p class="mb-1 ham-very-small"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </div>
+      </header>
+      <section>
+
+        <div class="container">
+    <div class="row">
+        <div class="top col-12">
+          How to build RZ/V2H AI SDK Source Code
+        </div>
+    </div>
+</div>
+<p><br />
+<br /></p>
+<h5>This page explains how to build Linux with <b>RZ/V2H AI SDK Source Code.</b></h5>
+
+<h5>Supported version: <b>RZ/V2H AI SDK v4.00</b></h5>
+
+<h3 id="intro">Introduction</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      AI SDK is a quick and easy AI Application development environment.<br />
+      It is specifically made for RZ/V2H Evaluation Board Kit with fixed Linux components.<br />
+      (For more information, please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html">Getting Started</a> and <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ai-sdk.html">AI SDK</a>.)<br />
+      <br />
+      To modify Linux component, you need to build AI SDK from source code.<br />
+      AI SDK Source Code can generate the same Linux environment as AI SDK.<br />
+      <br />
+    </div>
+  </div>
+</div>
+<div class="col-12  col-md-6 text-center">
+  <a href="img/aisdk_sc_v2h.svg" data-lightbox="group"><img src="img/aisdk_sc_v2h.svg" alt="AI Application and AI SDK software" /></a><br />
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <br />
+      This page explains how to build AI SDK Source Code.<br />
+      After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br />
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">RZ/V2H BSP Manual Set</a>.<br />
+      <br />
+      <div class="note">
+        <span class="note-title">Requirement</span>
+        <ol>
+          <li>Users have launched RZ/V2H Evaluation Board Kit according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html">Getting Started</a>, which means they can run <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html">AI Application</a> on the board.<br />
+          </li>
+          <li>To build Yocto Linux, the below equipment should be prepared.<br />
+            <table class="gstable">
+              <tr>
+                <th>Equipment</th>
+                <th colspan="2">Details</th>
+              </tr>
+              <tr>
+                <td rowspan="2">Linux PC</td>
+                <td colspan="2">Approximately <b>120GB free space</b> is necessary.</td>
+              </tr>
+              <tr>
+                <td>OS</td>
+                <td><b>Ubuntu 20.04 LTS</b><br />
+                    64bit OS must be used.</td>      
+              </tr>
+            </table>
+          </li>
+        </ol>
+      </div>
+      <br />
+      Now you are ready to build your Linux development environment.<br />
+      <h5><b><i>Let's get started!!</i></b></h5><br />
+    </div>
+  </div>
+</div>
+<p><br /></p>
+
+<h3 id="step1">Step 1: Obtain RZ/V2H AI SDK Source Code</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      Download the RZ/V2H AI SDK Source Code from the link below.<br /><br />
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v300-source-code" role="button">Download Link</a>
+      <br /><br />
+ 	    AI SDK Source Code (<b><code>RTK0EF0180F*_linux-src.zip</code></b>) contains following files:<br />
+      <table class="mytable">
+        <tr>
+          <th>File name</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>README.txt</td>
+          <td>README file.</td>
+        </tr>
+        <tr>
+          <td>rzv2h_ai-sdk_yocto_recipe_v*.tar.gz</td>
+          <td>Yocto recipe.<br />
+          Yocto recipes are text files that contains necessary information to build Yocto Linux.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<p><br /></p>
+
+<h3 id="step2">Step 2: Extract RZ/V2H AI SDK Source Code</h3>
+<p><br />
+This step explains how to extract RZ/V2H AI SDK Source Code zip file.
+<br /></p>
+<ol>
+  <li>On your Linux PC, check you have already registered the environment variable <b><code>WORK</code></b> with the below command.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">printenv </span>WORK</code></pre></figure>
+
+    <ul>
+      <li>
+      If the above command prints followings, proceed next step. <br />
+
+<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">&lt;path to the working directory&gt;/ai_sdk_work</code></pre></figure>
+
+      If not, please register the working directory path to an environment variable according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step4">Step4: Extract RZ/V AI SDK package in Getting Started</a>.
+      </li>
+    </ul>
+  </li>
+  <br />
+  <li>Make the working directory on your Linux PC.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
+
+  </li>
+  <li>Move to the working directory.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
+
+  </li>
+  <li>Extract RZ/V2H AI SDK Sorce Code zip file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">unzip &lt;Path to the file&gt;/RTK0EF0180F<span class="k">*</span>_linux-src.zip <span class="nt">-d</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
+
+  </li>
+  <li>Check the working directory to confirm the package contents.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="nt">-1</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
+
+    <ul>
+      <li>If the above command prints followings, the package is extracted correctly.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">README.txt
+rzv2h_ai-sdk_yocto_recipe_v<span class="k">*</span>.tar.gz</code></pre></figure>
+
+      </li>
+    </ul>
+  </li>
+</ol>
+<p><br /></p>
+
+<h3 id="step3">Step 3: Build RZ/V2H AI SDK Source Code</h3>
+<p>This step explains how to build Linux environment with RZ/V2H AI SDK Source Code</p>
+<ol>
+  <li> To install necessary sofware, run the following commands on your Linux PC.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>gawk wget git-core diffstat unzip texinfo gcc-multilib <span class="se">\</span>
+build-essential chrpath socat cpio python python3 python3-pip python3-pexpect <span class="se">\</span>
+xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev <span class="se">\</span>
+libssl-dev </code></pre></figure>
+
+  </li>
+  <li>Run the following commands and set the user name and email address before starting the build procedure.<br />
+    It is needed to avoid errors when using git command to apply patches.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">git config <span class="nt">--global</span> user.email <span class="s2">"you@example.com"</span>
+git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span></code></pre></figure>
+
+  </li>
+  <li>Register the working directory path to an environment variable.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">export </span><span class="nv">YOCTO_WORK</span><span class="o">=</span><span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/yocto
+<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
+
+  </li>
+  <li>Extract Yocto recipe package.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">tar </span>zxvf <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/rzv2h_ai-sdk_yocto_recipe_v<span class="k">*</span>.tar.gz</code></pre></figure>
+
+  </li>
+  <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br />
+    The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
+    <ol type="A">
+      <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2H Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">this link</a> to obtain the patch file below.
+        <table class="mytable">
+          <tr>
+            <th>File name</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>e-CAM22_CURZ*.patch</td>
+            <td>e-CAM22_CURZH camera driver (MIPI) Yocto patch file for RZ/V2H</td>
+          </tr>
+        </table>
+      </li>
+      <li>Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/e-CAM22_CURZ<span class="k">*</span>.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span class="k">*</span>.patch</code></pre></figure>
+
+      </li>
+    </ol>
+  </li>
+  <li id="step3-6">Check the working directory to confirm Yocto recipes content.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="nt">-1</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
+
+    <ul>
+      <li>If the above command prints followings, Yocto recipes are extracted correctly.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">0001-tesseract.patch
+0002-sd-image-size-16gb.patch
+e-CAM22_CURZ<span class="k">*</span>.patch
+meta-econsys
+meta-gplv2
+meta-openembedded
+meta-renesas
+meta-rz-features
+meta-virtualization
+poky</code></pre></figure>
+
+      </li>
+    </ul>
+    <div class="note">
+      <span class="note-title">Note 1</span>
+      Evaluation version of Graphics Library has restriction on their running time.<br />
+      If you would like to use unrestricted version of Graphics Library,
+	    please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#A1">Appendix 1: Build Graphics Library for Unrestricted Version</a>.<br />
+    </div>
+    <div class="note">
+      <span class="note-title">Note 2</span>
+      Video Codec Library supports only H.264 Enc in AI SDK v4.00.<br />
+      If you would like to use H.264 Dec and H.265 Enc/Dec function,
+	    please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.<br />
+    </div>
+  </li>
+  <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nv">TEMPLATECONF</span><span class="o">=</span><span class="k">${</span><span class="nv">PWD</span><span class="k">}</span>/meta-renesas/meta-rzv2h/docs/template/conf/ <span class="nb">source </span>poky/oe-init-build-env</code></pre></figure>
+
+  </li>
+  <li id="step3-8">Run the following commands to add necessary layers for AI application to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
+bitbake-layers add-layer ../meta-rz-features/meta-rz-drpai
+bitbake-layers add-layer ../meta-rz-features/meta-rz-opencva
+bitbake-layers add-layer ../meta-rz-features/meta-rz-codecs
+bitbake-layers add-layer ../meta-econsys</code></pre></figure>
+
+  </li>
+  <li>Apply a patch file to add Tesseract Open Source OCR Engine for AI applications.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> &lt; ../0001-tesseract.patch</code></pre></figure>
+
+  </li>
+  <li id="step3-10">Apply a patch file to change SD card image size.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> &lt; ../0002-sd-image-size-16gb.patch</code></pre></figure>
+
+    <div class="note">
+      <span class="note-title">Note</span>
+      The default size of the microSD card image created in this guide is approximately 16 GB.<br />
+      If you would like to change the microSD card image size, please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#A2">Appendix 2: Change the size of the microSD card image in WIC format</a>.<br />
+    </div>
+  </li>
+  <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br />
+    (It takes a few hours to finish building depending on the user's host PC performance)
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>rzv2h-evk-ver1 bitbake core-image-weston</code></pre></figure>
+
+    All necessary files listed below will be generated by the build command and 
+	  they will be located in <b><code>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</code></b> directory.<br />
+    <table class="mytable">
+      <tr>
+        <th>File name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          core-image-weston-rzv2h-evk-ver1.wic.bmap<br />
+          core-image-weston-rzv2h-evk-ver1.wic.gz
+        </td>
+        <td>WIC format SD card image</td>
+      </tr>
+    </table>
+  </li>
+  <li>Run the following command to build <b>cross compiler installer</b>.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>rzv2h-evk-ver1 bitbake core-image-weston <span class="nt">-c</span> populate_sdk</code></pre></figure>
+
+    A necessary file listed below will be generated by the build command and the cross compiler installer will be located in <b><code>${YOCTO_WORK}/build/tmp/deploy/sdk/poky-glibc-x86_64-core-image-weston-aarch64-rzv2h-evk-ver1-toolchain-*.sh</code></b>.<br />
+    <table class="mytable">
+      <tr>
+        <th>File name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>poky-glibc-x86_64-core-image-weston-aarch64-rzv2h-evk-ver1-toolchain-*.sh</td>
+        <td>Cross compiler installer</td>
+      </tr>
+    </table>
+    <div class="note">
+      <span class="note-title">Note</span>
+      If some errors occurred during the build, 
+      please clean the directory and rebuild it after a period of time according to the below commands.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build
+<span class="nv">MACHINE</span><span class="o">=</span>rzv2h-evk-ver1 bitbake core-image-weston <span class="nt">-c</span> cleanall</code></pre></figure>
+
+      And run the build command again.
+      <ul>
+        <li>For Linux kernel files
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>rzv2h-evk-ver1 bitbake core-image-weston</code></pre></figure>
+  
+        </li>
+        <li>For cross compiler installer
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>rzv2h-evk-ver1 bitbake core-image-weston <span class="nt">-c</span> populate_sdk</code></pre></figure>
+
+        </li>
+      </ul>
+    </div>
+  </li>
+</ol>
+<p><br /></p>
+
+<h4>
+This is the end of how to build AI SDK Source Code.
+</h4>
+<p>You have prepared following files, which is same as the one provided in <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html#step3">Step 3: Obtain RZ/V2H AI SDK in Getting Started</a>, and you can run <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/applications.html">AI Applications</a> according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/getting_started.html">Getting Started</a>.
+<br /></p>
+<table class="mytable">
+  <tr>
+    <th>Path</th>
+    <th>File name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</td>
+    <td>
+      core-image-weston-rzv2h-evk-ver1.wic.bmap<br />
+      core-image-weston-rzv2h-evk-ver1.wic.gz
+    </td>
+    <td>WIC format SD card image</td>
+  </tr>
+  <tr>
+    <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
+    <td>poky-glibc-x86_64-core-image-weston-aarch64-rzv2h-evk-ver1-toolchain-*.sh</td>
+    <td>Cross compiler installer</td>
+  </tr>
+</table>
+<div class="note">
+  <span class="note-title">Note 1</span>
+  For more Yocto Project information, please refer the link below:<br />
+  <a href="https://docs.yoctoproject.org/3.1.26/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.26/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
+</div>
+<div class="note">
+  <span class="note-title">Note 2</span>
+  When customizing Linux development environment, following information may help.<br />
+  <ul>
+    <li>
+      <a href="https://docs.yoctoproject.org/">https://docs.yoctoproject.org/</a>
+    </li>
+    <li>
+      <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">RZ/V2H BSP Manual Set</a>
+    </li>
+  </ul>
+</div>
+<div class="note">
+  <span class="note-title">Note 3</span>
+  To add more functionality to AI SDK, please refer to following URL.
+  <ul>
+    <li>
+      <a href="https://www.renesas.com/software-tool/rzv2h-ros2-package">RZ/V2H ROS2 Package</a>
+    </li>
+  </ul>
+</div>
+<p><br />
+If you have any questions about AI SDK Source Code,<br />
+please add new issues to AI SDK GitHub issues.<br />
+<br />
+<a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button">Go to GitHub issues</a></p>
+
+<div class="row">
+  <div class="col-12" align="right">
+    <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/" role="button">
+      Back to Home &gt;
+    </a>
+  </div>
+</div>
+<p><br /><br /></p>
+
+<h3 id="A1">Appendix 1: Prepare Graphics Library for Unrestricted Version</h3>
+<p>This section explains how to prepare Graphics Library for unrestricted version, intead of evaluation version.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  Following instruction assumes that you have completed <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step3-6">Step 3-6 in How to build RZ/V2H AI SDK Source Code</a>.
+</div>
+<ol>
+    <li>Download zip files from the link below.
+      <br />
+      <div class="note">
+        <span class="note-title">Note</span>
+        It may take much time to obtain Graphics Library for unrestricted version due to necessary examinations on your business purpose. 
+      </div>
+      <br />
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/secure/rzv2-graphics-library-secure-content" role="button">Download Link</a>
+    </li>
+    <br />
+    <li>After you downloaded the zip files, please move the zip files to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
+    <br />
+    </li>
+    <br />
+    <li>Check that zip files are moved to appropriate location.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup
+<span class="nb">ls</span> <span class="nt">-1</span> </code></pre></figure>
+
+      <ul>
+        <li>If the above command prints followings, the package is extracted correctly.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">README.txt
+RTK0EF0<span class="k">*</span>ZJ-v<span class="k">*</span>_rzv_<span class="k">*</span>.zip
+rzv2h_ai-sdk_yocto_recipe_v<span class="k">*</span>.tar.gz
+yocto</code></pre></figure>
+
+        </li>
+      </ul>
+    </li>
+    <li>Run the below command to delete evaluation version.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">rm</span> <span class="nt">-rf</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-rz-features/meta-rz-graphics</code></pre></figure>
+
+    </li>
+    <li>Run the below command to extract the unristricted version.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">unzip RTK0EF0045Z14001ZJ<span class="k">*</span>.zip
+<span class="nb">tar </span>zxvf RTK0EF0045Z14001ZJ<span class="k">*</span>/meta-rz-features_graphics_<span class="k">*</span>.tar.gz <span class="nt">-C</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
+
+    </li>
+  </ol>
+<p>After this procedure, please proceed to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
+<br /><br /></p>
+
+<h3 id="A2">Appendix 2: Change the size of the microSD card image in WIC format</h3>
+<p>This section explains how to change the microSD card image size by changing the build settings of the WIC file.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  Following instruction assumes that you have completed <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step3-10">Step 3-10 in How to build RZ/V2H AI SDK Source Code</a>.
+</div>
+<ol>
+    <li>Open <b><code>${YOCTO_WORK}/build/conf/local.conf</code></b> file in a text editor.
+    </li>
+    <li>Find the following text in the file and edit the highlighted value to define the disk space of the image in Kbytes.
+<pre><code>...
+# Support WIC images with default wks from WKS_DEFAULT_FILE
+# Reupdate WKS_DEFAULT_FILE if want to support another wks file.
+WKS_SUPPORT ?= "1"
+WKS_DEFAULT_FILE_rzv2h-dev = "rz-image-bootpart-mmc.wks"
+WKS_DEFAULT_FILE_rzv2h-evk-alpha = "rz-image-bootpart-esd_rzv2h.wks"
+WKS_DEFAULT_FILE_rzv2h-evk-ver1 = "rz-image-bootpart-esd_rzv2h.wks"
+# Defines additional free disk space created in the image in Kbytes.
+IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
+...
+</code></pre>
+      The table below shows examples of setting values written in <b><code>local.conf</code></b> file.<br />
+      <div class="note">
+        <span class="note-title">Note</span>
+        If you have customized Linux, the disk image size may differ from the table.
+      </div>
+      <table class="mytable">
+        <tr>
+          <th>SD card image size<br />(Gbytes)</th>
+          <th>Setting values in the "local.conf" file<br />(Kbytes)</th>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>1048576</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>4194304</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>8388608 (default)</td>
+        </tr>
+      </table>
+    </li>
+  </ol>
+<p>After this procedure, please proceed to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step3-8"> Step 3-8 in How to build RZ/V2H AI SDK Source Code</a> to build the Linux kernel files.
+<br /><br /></p>
+
+<h3 id="A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</h3>
+<p>This section explains how to prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  Following instruction assumes that you have completed <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step3-6">Step 3-6 in How to build RZ/V2H AI SDK Source Code</a>.
+</div>
+<ol>
+    <li>Download zip file from the link below.
+      <br /><br />
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/swo/rzv2h-linux-video-codecs-library-package-rtk0ef0192z00001zjzip" role="button">Download Link</a>
+    </li>
+    <br />
+    <li>After you downloaded the zip file, please move the zip file to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
+    <br />
+    </li>
+    <br />
+    <li>Check that zip file are moved to appropriate location.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup
+<span class="nb">ls</span> <span class="nt">-1</span> </code></pre></figure>
+
+      <ul>
+        <li>If the above command prints followings, the package is extracted correctly.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">README.txt
+RTK0EF0192Z00001ZJ.zip
+rzv2h_ai-sdk_yocto_recipe_v4.00.tar.gz
+yocto</code></pre></figure>
+
+        </li>
+      </ul>
+    </li>
+    <li>Run the below command to delete current Video Codec Library and OpenCVA directories.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">rm</span> <span class="nt">-rf</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-rz-features/meta-rz-codecs
+<span class="nb">rm</span> <span class="nt">-rf</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-rz-features/meta-rz-opencva</code></pre></figure>
+
+    </li>
+    <li>Run the below command to extract the Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">unzip RTK0EF0192Z00001ZJ.zip
+<span class="nb">tar </span>xvf RTK0EF0192Z00001ZJ/meta-rz-features.tar.gz <span class="nt">-C</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
+
+    </li>
+    <li>Run the below command to apply a patch file to add Video Codec Library.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> <span class="nt">-d</span> meta-renesas &lt; <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/RTK0EF0192Z00001ZJ/0001-rzv2h-conf-r9a09g057-Add-hwcodec-to-MACHINE_FEATURE.patch</code></pre></figure>
+
+    </li>
+  </ol>
+<p>After this procedure, please proceed to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/howto_build_aisdk_v2h.html#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
+<br /><br /></p>
+
+<div class="row">
+  <div class="col-12" align="right">
+    <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/" role="button">
+      Back to Home &gt;
+    </a>
+  </div>
+</div>
+
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+    <script src="/rzv_ai_sdk/4.00/assets/js/scale.fix.js"></script>
+  </body>
+</html>
