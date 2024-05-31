@@ -697,7 +697,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v{{ site.version }}/01_Head_count">01_Head_count</a>
+            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v2.10/01_Head_count">01_Head_count</a>
           </h6>
         </td>
     </tr>
@@ -716,6 +716,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
           </ul>
         </div>
           <!-- From here: Delete when making latest version -->
+          <!--
         <div class="note">
           <span class="note-title">Note</span>
           The <code>git clone</code> command shown in the <code>README.md</code> will download the <b style="color: red;">latest</b> source code and related files. <br><br>
@@ -724,6 +725,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
 git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
 {% endhighlight %}
         </div>
+          -->
           <!-- Until here: Delete when making latest version -->
       </li>
     </ol>
@@ -759,20 +761,20 @@ cd /drp-ai_tvm/data
 {% endhighlight %}
       </li><br>
       <li>Download the application source code.<br>
-        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v{{ site.version }}/01_Head_count">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
+        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v2.10/01_Head_count">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
         <br>
 {% highlight shell%}
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
         <!-- From here: Delete when making latest version -->
-        <div class="note">
+        <!-- <div class="note">
           <span class="note-title">Note</span>
           The command above will download the <b style="color: red;">latest</b> source code and related files. <br><br>
           To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code> when you running the <code>git clone</code> command as shown below.
 {% highlight shell%}
 git clone -b v{{ site.version }} https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
-        </div>
+        </div> -->
         <!-- Until here: Delete when making latest version -->
       </li><br>
       <li>Move to the application directory.
