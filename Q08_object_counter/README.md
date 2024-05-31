@@ -29,7 +29,7 @@ Here are some of the key features of the Generic Counter Application:
     Users can adjust the detection and classification parameters by using the config file provided in the repository.
 
 It has following camera input modes.
-- Using MIPI Camera
+- Using MIPI Camera (**RZ/V2L only**)
 - Using USB Camera
 
 Users can select detection target from following list
@@ -244,18 +244,19 @@ Replace each variable according to your board.
     cd <path_to_data_folder_on_host>/data/Q08_object_counter/<EXE_PATH> 
     wget <URL>/<SO_FILE>
     ```
-    | Target | `EXE_PATH` |`SO_FILE` |`URL` |
-    |:---|:---|:---|:---|
-    |Animal|[exe_v2h/animal/animal_onnx](./exe_v2h/animal/animal_onnx)  |<span style="font-size: small">`Q08_object_counter_animal_deploy_tvm_v2h-v210.so`</span> |[Release v3.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v3.00/)  |
-    |Vehicle|[exe_v2h/vehicle/vehicle_onnx](./exe_v2h/vehicle/vehicle_onnx)  |<span style="font-size: small">`Q08_object_counter_vehicle_deploy_tvm_v2h-v210.so`</span> |[Release v3.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v3.00/)  |
-    |COCO|[exe_v2h/coco/yolov3_onnx](./exe_v2h/coco/yolov3_onnx)  |<span style="font-size: small">`Q08_object_counter_coco_deploy_tvm_v2h-v210.so`</span> |[Release v3.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v3.00/)  |
+    | Target | `EXE_PATH` |`URL` |`SO_FILE` |`File Location` |
+    |:---|:---|:---|:---|:---|
+    |Animal|[exe_v2h/animal/animal_onnx](./exe_v2h/animal/animal_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/` |<span style="font-size: small">`Q08_object_counter_animal_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
+    |Vehicle|[exe_v2h/vehicle/vehicle_onnx](./exe_v2h/vehicle/vehicle_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/` |<span style="font-size: small">`Q08_object_counter_vehicle_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
+    |COCO|[exe_v2h/coco/yolov3_onnx](./exe_v2h/coco/yolov3_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/` |<span style="font-size: small">`Q08_object_counter_coco_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
+
 
     - E.g., for Animal counting, use following commands.
         ```sh
         cd <path_to_data_folder_on_host>/data/Q08_object_counter/exe_v2h/animal/animal_onnx
-        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v3.00/Q08_object_counter_animal_deploy_tvm_v2h-v210.so
+        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/Q08_object_counter_animal_deploy_tvm_v2h-v221.so
         ```
-2. **[For RZ/V2H only]** Rename the `Q08_object_counter_deploy_*.so` to `deploy.so`.
+2. **[For RZ/V2H only]** Rename the `Q08_object_counter_*.so` to `deploy.so`.
     ```sh
     mv <SO_FILE> deploy.so
     ```
@@ -268,47 +269,42 @@ Replace each variable according to your board.
 4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
-    ```sh
-    ├── usr/
-    │   └── lib64/
-    │       └── libtvm_runtime.so
-    └── home/
-        └── root/
-            └── tvm/ 
-                ├── coco/
-                │   ├── tinyyolov3_onnx/  #RZ/V2L only
-                │   │   ├── deploy.json   #RZ/V2L only
-                │   │   ├── deploy.params #RZ/V2L only
-                │   │   ├── deploy.so     #RZ/V2L only
-                │   │   └── preprocess/   #RZ/V2L only
-                │   │
-                │   ├── yolov3_onnx/      #RZ/V2H only
-                │   │   ├── deploy.json   #RZ/V2H only
-                │   │   ├── deploy.params #RZ/V2H only
-                │   │   └── deploy.so     #RZ/V2H only
-                │   │   
-                │   ├── coco_class.txt
-                │   └── config.ini
-                ├── animal/
-                │   ├── animal_onnx/
-                │   │   ├── deploy.json
-                │   │   ├── deploy.params
-                │   │   └── deploy.so
-                │   │   
-                │   ├── animal_class.txt
-                │   └── config.ini
-                ├── vehicle/
-                │   ├── vehicle_onnx/
-                │   │   ├── deploy.json
-                │   │   ├── deploy.params
-                │   │   └── deploy.so
-                │   │   
-                │   ├── vehicle_class.txt
-                │   └── config.ini
-                │   
-                ├── app_conf.ini
-                └── object_counter
-      ```
+    ```
+    |-- usr
+    |   `-- lib64
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- root
+            `-- tvm
+                |-- coco
+                |   |-- tinyyolov3_onnx       #RZ/V2L only
+                |   |   |-- deploy.json       #RZ/V2L only
+                |   |   |-- deploy.params     #RZ/V2L only
+                |   |   `-- deploy.so         #RZ/V2L only
+                |   |
+                |   |-- yolov3_onnx           #RZ/V2H only
+                |   |   |-- deploy.json       #RZ/V2H only
+                |   |   |-- deploy.params     #RZ/V2H only
+                |   |   `-- deploy.so         #RZ/V2H only
+                |   |-- coco_class.txt 
+                |   `-- config.ini
+                |-- animal
+                |   |-- animal_onnx
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- animal_class.txt
+                |   `-- config.ini
+                |-- vehicle
+                |   |-- vehicle_onnx
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- vehicle_class.txt
+                |   `-- config.ini
+                |-- app_conf.ini
+                `-- object_counter
+    ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
@@ -348,7 +344,7 @@ After completion of the guide, the user is expected of following things.
     - camera options      
         |Value|Description                            |
         |-----|---------------------------------------|
-        |     | MIPI camera as input **[RZ/V2L only]**|
+        |MIPI | MIPI camera as input **[RZ/V2L only]**|
         |USB  | USB camera as input                   |    
 
     For example, to run in "animal" mode with a USB camera, write the following command.    
@@ -358,9 +354,9 @@ After completion of the guide, the user is expected of following things.
 
 3. Following window shows up on HDMI screen.  
 
-    |RZ/V2L EVK (COCO) | RZ/V2H EVK (COCO) |
+    |RZ/V2L EVK (Animal) | RZ/V2H EVK (Animal) |
     |:---|:---|
-    |<img src=./images/car1.png width=350>| <img src=./images/COCO_v2h.png width=350>  |
+    |<img src=./images/animal1.png width=480>| <img src=./images/animal_v2h.png width=480>  |
 
     On application window, following information is displayed.  
     - Camera capture  
@@ -376,20 +372,20 @@ After completion of the guide, the user is expected of following things.
 
 ## Application: Configuration 
 ### AI Model
-#### RZ/V2L EVK
-- TinyYOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
-Dataset: [COCO](https://cocodataset.org/#home)  
-Input size: 1x3x416x416  
-Output1 size: 1x13x13x255  
-Output2 size: 1x26x26x255  
-
-#### RZ/V2H EVK
-- YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
-Dataset: [COCO](https://cocodataset.org/#home)  
-Input size: 1x3x416x416  
-Output1 size: 1x13x13x255  
-Output2 size: 1x26x26x255  
-Output3 size: 1x52x52x255   
+- RZ/V2L
+    - Tiny YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+    Dataset: [COCO](https://cocodataset.org/#home)
+    Input size: 1x3x416x416  
+    Output1 size: 1x13x13x255 (COCO) / 1x13x13x54 (Animal) / 1x13x13x45 (Vehicle)   
+    Output2 size: 1x26x26x255 (COCO) / 1x26x26x54 (Animal) / 1x26x26x45 (Vehicle)   
+  
+- RZ/V2H
+    - YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+    Dataset: [COCO](https://cocodataset.org/#home)  
+    Input size: 1x3x416x416   
+    Output1 size: 1x13x13x255 (COCO) / 1x13x13x54 (Animal) / 1x13x13x45 (Vehicle)    
+    Output2 size: 1x26x26x255 (COCO) / 1x26x26x54 (Animal) / 1x26x26x45 (Vehicle)    
+    Output2 size: 1x52x52x255 (COCO) / 1x52x52x54 (Animal) / 1x52x52x45 (Vehicle)    
 
 ### Dataset
 
@@ -426,7 +422,7 @@ Output3 size: 1x52x52x255
 
 |Processing | RZ/V2L EVK | RZ/V2H EVK |
 |:---|:---|:---|
-|Pre-processing | Processed by DRP-AI. <br> | Processed by CPU. <br> |
+|Pre-processing | Processed by DRP-AI. | Processed by CPU. |
 |Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
 |Post-processing | Processed by CPU. |Processed by CPU. |
 
@@ -469,3 +465,7 @@ vi config.ini
 FHD resolution is supported by e-CAM22_CURZH camera (MIPI).  
 Please refer to following URL for how to change camera input to MIPI camera.  
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  
+
+## License 
+Apache License 2.0   
+For third party OSS library, please see the source code file itself.

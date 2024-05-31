@@ -1,6 +1,6 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2024
  *　
  *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
@@ -38,7 +38,7 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
 * File Name    : define.h
@@ -115,6 +115,7 @@ const static uint8_t num_grids[] = { 13, 26, 52 };
 /*Timer Related*/
 #define CAPTURE_TIMEOUT             (20)  /* seconds */
 #define AI_THREAD_TIMEOUT           (20)  /* seconds */
+#define EXIT_THREAD_TIMEOUT         (3)  /* seconds */
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
 #define DRPAI_MEM_OFFSET            (0)
@@ -153,19 +154,10 @@ const static uint8_t num_grids[] = { 13, 26, 52 };
 #define CAPTURE_TIMEOUT             (20)  /* seconds */
 #define AI_THREAD_TIMEOUT           (20)  /* seconds */
 #define KEY_THREAD_TIMEOUT          (5)   /* seconds */
-/* DRP_MAX_FREQ and DRPAI_FREQ are the   */
-/* frequency settings for DRP-AI.        */
-/*Basicallyuse the default values      */
 
-#define DRP_MAX_FREQ               (2)
-/* DRP_MAX_FREQ can be set from 2 to 127 */
-/* 2: 420MHz                             */
-/* 3: 315MHz                             */
-/* ...                                   */
-/* 127: 9.84MHz                          */
-/* Calculation Formula:                  */
-/*     1260MHz /(DRP_MAX_FREQ + 1)       */
-
+/* DRPAI_FREQ is the frequency settings  */
+/* for DRP-AI.                           */
+/* Basically use the default values      */
 #define DRPAI_FREQ                 (2)
 /* DRPAI_FREQ can be set from 1 to 127   */
 /* 1,2: 1GHz                             */

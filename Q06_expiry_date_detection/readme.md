@@ -12,14 +12,11 @@ Extracted date formats from
 "YYYY-MMM-DD",
 "DD-MMM-YYYY",
 "DDst-MMM-YYYY",
-"MMM-DD-YYYY"
+"MMM-DD-YYYY" 
 
 >Note: The separator is not limited to "-", it could be any special character like [`@`,`,`,`-`,`.`,` `, `/`].  
 
-This software could be useful in a variety of settings, such as retail stores, hospitals, etc. 
-where managers/users need to verify the product expiry dates.
-
-The AI model as object detection used for the sample application is [TinyYoloV3](https://arxiv.org/pdf/1804.02767.pdf).
+This software caters to the needs of managers and users in diverse environments like retail and healthcare, where verifying product expiry dates is crucial.
 
 There are 4 classes for object detection.
 - Date : Expiry date
@@ -27,178 +24,303 @@ There are 4 classes for object detection.
 - Prod : Production tag 
 - Due : Due date tag
 
-#### Image Mode 
+It has following mode of running.
+  - Using MIPI Camera as input (RZ/V2L EVK only)
+  - Using USB Camera as input
+  - Using Image as input
 
-The application to test with images is provided here [Link](./src/image_mode/readme.md)
 
-#### Camera Mode
-The application can be used with either of MIPI or USB camera. The details of which will be explained here. 
+### Supported Product
+- RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
+- RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
 
-#### Demo 
+### Demo
 
-<img src = "./images/ExpiryDateExtraction.gif" width="480" height="320">
-
+Following is the demo for RZ/V2H EVK.  
+<img src="./images/ExpiryDateExtraction.gif" width="480" height="320">
 
 ## Application: Requirements
 
-#### Hardware Requirements
-- RZ/V2L Evaluation Board Kit
-    - Coral camera 
-- USB Camera [optional]
-- USB Keyboard
-- USB Mouse
-- USB Hub
-- HDMI monitor with resolution 1280x720 
-- micro HDMI to HDMI cable 
-- SD Card (for file system)
+### Hardware Requirements
+<table class="gstable">
+    <tr>
+      <th>For</th>
+      <th>Equipment</th>
+      <th>Details</th>
+    </tr>
+    <tr>
+      <td rowspan="3">RZ/V2L</td>
+      <td>RZ/V2L EVK</td>
+      <td>Evaluation Board Kit for RZ/V2L.<br>Includes followings.
+        <ul class="mb-1">
+          <li>
+            MIPI Camera Module(Google Coral Camera)<br>
+            Used as a camera input source.
+          </li>
+          <li>MicroUSB to Serial Cable for serial communication.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.</td>
+    </tr>
+    <tr>
+      <td>MicroHDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2L EVK has microHDMI port.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">RZ/V2H</td>
+      <td>RZ/V2H EVK</td>
+      <td>Evaluation Board Kit for RZ/V2H.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2H EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
+      <td rowspan="8">Common</td>
+      <td>USB Cable Type-C</td>
+      <td>Connect AC adapter and the board.</td>
+    </tr>
+    <tr>
+      <td>HDMI Monitor</td>
+      <td>Used to display the graphics of the board.</td>
+    </tr>
+    <tr>
+      <td>microSD card</td>
+      <td>Used as the filesystem.<br>
+      Must have over 4GB capacity of blank space.<br>
+      Operating Environment: Transcend UHS-I microSD 300S 16GB</td>
+    </tr>
+    <tr>
+      <td>Linux PC</td>
+      <td>Used to build application and setup microSD card.<br>
+      Operating Environment: Ubuntu 20.04</td>
+    </tr>
+    <tr>
+      <td>SD card reader</td>
+      <td>Used for setting up microSD card.<br></td>
+    </tr>
+    <tr>
+      <td>USB Hub</td>
+      <td>Used to connect USB Keyboard and USB Mouse to the board.</td>
+    </tr>
+    <tr>
+      <td>USB Keyboard</td>
+      <td>Used to type strings on the terminal of board.</td>
+    </tr>
+    <tr>
+      <td>USB Mouse</td>
+      <td>Used to operate the mouse on the screen of board.</td>
+    </tr>
+  </table>
 
-[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
+>**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)   
 
->**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
+Connect the hardware as shown below.  
 
-#### Software Requirements
-- Ubuntu 20.04
-- OpenCV 4.x
-- C++11 or higher 
-- [Boost C++ libraries](https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source) 
-- Tesseract 3.05 or higher
+|RZ/V2L EVK | RZ/V2H EVK |
+|:---|:---|
+|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |
 
+>**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
+>**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
+USB camera needs to be connected to appropriate port based on its requirement.
 
 ## Application: Build Stage
 
->**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
+>**Note:** User can skip to the [next stage (deploy)](#application-deploy-stage) if they do not want to build the application.  
+All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
+### Prerequisites
+This section expects the user to have completed Step 5 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- The Board Set Up and booted. 
-- SD Card Prepared 
-- The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
+- AI SDK setup is done.
+- Following docker container is running on the host machine.
+    |Board | Docker container |
+    |:---|:---|
+    |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
 
->**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
+    >**Note:** Docker environment is required for building the sample application. 
 
-#### Application File Generation
-1. Copy the repository from the GitHub to the desired location. 
-    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+
+### Application File Generation
+1. On your host machine, copy the repository from the GitHub to the desired location. 
+    1. It is recommended to copy/clone the repository on the `data` folder, which is mounted on the Docker container. 
     ```sh
-    cd <path_to_data_folder_on_host>
+    cd <path_to_data_folder_on_host>/data
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
+    >Note: This command will download the whole repository, which include all other applications.  
+    If you have already downloaded the repository of the same version, you may not need to run this command.  
 
-    > Note 1: Please verify the git repository url if error occurs
+2. Run (or start) the docker container and open the bash terminal on the container.  
+E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container created from  `rzv2l_ai_sdk_image` docker image.  
+    > Note that all the build steps/commands listed below are executed on the docker container bash terminal.  
 
-    > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
-
-2. Run(or start) the docker container and open the bash terminal on the container.
-
-> Note: All the build steps/commands listed below are executed on the docker container bash terminal.
-
-3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
-
-```sh
-export PROJECT_PATH=/drp_ai_tvm/data/
-```
-4. Go to the `src` directory of the application
-
-```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q06_expiry_date_detection/src/
-```
->**Note:**`rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
+3. Set your clone directory to the environment variable.  
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
+    ```
+4. Go to the application source code directory.  
+    ```sh
+    cd ${PROJECT_PATH}/Q06_expiry_date_detection/<SRC_DIR>
+    ```
+    |Board | `SRC_DIR` |
+    |:---|:---|
+    |RZ/V2L EVK|`src`  |
+    |RZ/V2H EVK|`src_v2h`  |
 
 5. Download the `boost` tar file
-```sh
-wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
-```
->**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the `src` folder present on the mounted `data` directory.
+   ```sh
+   wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
+   ```
+   >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the <SRC_DIR> folder present on the mounted `data` directory.
 
 6. Extract tar file to the current location 
-
-```sh
-tar -xvf boost_1_81_0.tar.bz2
-```
+   ```sh
+   tar -xvf boost_1_81_0.tar.bz2
+   ```
 
 7. Copy the boost files to the `include` folder 
 
-```sh
-mkdir -p include
-cp -r boost_1_81_0/boost include/
-```
+    ```sh
+    mkdir -p include
+    cp -r boost_1_81_0/boost include/
+    ```
 8. Remove boost files [Optional]
 
-```sh
-rm boost_1_81_0.tar.bz2
-rm -rf boost_1_81_0
-```
-9. [Optional] For USB Camera Application, comment out[`#define INPUT_CORAL`](./src/camera_mode/define.h#L78) at `./src/camera_mode/define.h`
-```
-// #define INPUT_CORAL
-```
+    ```sh
+    rm boost_1_81_0.tar.bz2
+    rm -rf boost_1_81_0
+    ```
 
-10. Build the application on docker environment by following the steps below
+9. [For RZ/V2L only, Optional] For USB Camera Application, comment out [`#define INPUT_CORAL`](./src/camera_mode/define.h#L78) at `./src/camera_mode/define.h`
+    ```
+    // #define INPUT_CORAL
+    ```
 
-```sh
-mkdir -p build && cd build
-```
-```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-```
-```sh
-make -j$(nproc) date_extraction_cam
-```
-The following application file would be generated in the `src/build` directory
-- date_extraction_cam
+10. Create and move to the `build` directory.
+    ```sh
+    mkdir -p build && cd build
+    ```
+11. Build the application by following the commands below.  
+    - For RZ/V2L
+      - camera input
+      ```sh
+      cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+      make -j$(nproc) data_extraction_cam
+      ```
+      - image input
+      ```sh
+      cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+      make -j$(nproc) data_extraction_img
+      ```
+    - For RZ/V2H
+      ```sh
+      cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+      make -j$(nproc)
+      ```
+12. The following application file would be generated in the `${PROJECT_PATH}/Q06_expiry_date_detection/<SRC_DIR>/build` directory
+    - date_extraction*
 
 
 ## Application: Deploy Stage
+### Prerequisites
+This section expects the user to have completed Step 7-1 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7) provided by Renesas. 
 
-For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
+After completion of the guide, the user is expected of following things.
+- microSD card setup is done.
 
+### File Configuration
+For the ease of deployment all the deployable file and folders are provided in following folders.  
+|Board | `EXE_DIR` |
+|:---|:---|
+|RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+
+Each folder contains following items.
 |File | Details |
 |:---|:---|
-|date_detection_tinyyolov3 | Model object files and pre-process files for deployment. |
-|date_class_labels.txt | Label list for Object Detection. |
-|date_extraction_cam | MIPI camera application file. |
-|date_extraction_usb | USB camera application file. [optional]|
-|date_extraction_img | image mode application file [optional]
-|sample_img.jpg | sample image for image mode [optional]
+|date_detection_tinyyolov3 | [RZ/V2L only] Model object files for deployment |
+|expiry_yolov3_onnx | [RZ/V2H only] Model object files for deployment |
+|date_class_labels.txt | Label list for Object Detection |
+|date_extraction_cam | [RZ/V2L only] MIPI camera application file |
+|date_extraction_usb | [RZ/V2L only] USB camera application file |
+|date_extraction_img | [RZ/V2L only] Image mode application file |
+|date_extraction | [RZ/V2H only] Application file |
+|sample_img.jpg | Sample image for image mode |
 
 
+### Instruction
+1. [FOR RZ/V2H only] Run following commands to download the necessary file.  
+    ```sh
+     cd <path_to_data_folder_on_host>/rzv_ai_sdk/Q06_expiry_date_detection/exe_v2h/expiry_yolov3_onnx/
+     wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/Q06_expiry_date_detection_deploy_tvm_v2h-v221.so
+    ```
+    
+2. [FOR RZ/V2H only] Rename the `Q06_expiry_date_detection_deploy_*.so` to `deploy.so`.
+    ```sh
+    mv Q06_expiry_date_detection_deploy_*.so deploy.so
+    ```
+3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+    |File | Details |
+    |:---|:---|
+    |All files in `EXE_DIR` directory | Including `deploy.so` file. |
+    |`date_extraction` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
-   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `date_extraction_cam` application file if the application file is built at [build stage](#application-build-stage)
+4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
-
-
-#### Folder structure in the rootfs (SD Card) would look like:
-
-> Note: The optional application binary are not mentioned in the folder structure 
-
-```sh
-├── usr/
-│   └── lib64/
-│       └── libtvm_runtime.so
-└── home/
-    └── root/
-        └── tvm/ 
-            ├── date_tinyyolov3_onnx/
-            │   ├── deploy.json
-            │   ├── deploy.params
-            │   ├── deploy.so 
-            │   └── preprocess/
-            ├── date_class_labels.txt
-            └── date_extraction_cam
-
-```
->**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
+5. Folder structure in the rootfs (SD Card) would look like:
+    ```
+    |-- usr
+    |   `-- lib64
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- root
+            `-- tvm
+                |-- date_detection_tinyyolov3   #RZ/V2L only
+                |   |-- deploy.json             #RZ/V2L only
+                |   |-- deploy.params           #RZ/V2L only
+                |   `-- deploy.so               #RZ/V2L only
+                |-- expiry_yolov3_onnx          #RZ/V2H only
+                |   |-- deploy.json             #RZ/V2H only
+                |   |-- deploy.params           #RZ/V2H only
+                |   `-- deploy.so               #RZ/V2H only
+                |-- date_class_labels.txt
+                |-- date_extraction_cam         #RZ/V2L only
+                |-- date_extraction_img         #RZ/V2L only
+                |-- date_extraction_usb         #RZ/V2L only
+                |-- date_extraction
+                `-- sample_img.jpg
+    ```
+>**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
 
-#### With Remaining Days shown 
-* The date on the RZ/V2L board may be different. [Mandatory in case opted for remaining day calculation]
+### Prerequisites
+This section expects the user to have completed Step 7-3 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7-3) provided by Renesas. 
 
+After completion of the guide, the user is expected of following things.  
+- The board setup is done.  
+- The board is booted with microSD card, which contains the application file.  
+
+### Instruction
+1. [Optional] The date on the RZ/V board may be different. [Mandatory in case opted for remaining day calculation].
     - To check use following on board terminal.
     ```sh
     date
@@ -207,61 +329,104 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
     ```sh
     date +%Y%m%d -s "20230615" 
     ```
-* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
-    * Go to the `/home/root/tvm` directory of the rootfs
+
+2. On Board terminal, go to the `tvm` directory of the rootfs.
     ```sh
-    cd /home/root/tvm
-    ```
-    * Run the application
-    ```sh
-    ./date_extraction_cam -rem
+    cd /home/root/tvm/
     ```
     
-    <img src = "./images/Expiry_date_video_mode.JPG" width="480" height="320">
+3. Run the application.
+    - For RZ/V2L
+        - For Image Mode
+        ```sh
+        ./date_extraction_img sample_img.jpg [-rem]
+        ```
+        - For USB Camera Mode
+        ```sh
+        ./date_extraction_usb [-rem]
+        ```
+        - For MIPI Camera Mode
+        ```sh
+        ./date_extraction_cam [-rem]
+        ```
+        > `-rem` is an optional argument to display the remaining days to expire
+    - For RZ/V2H
+        - For Image Mode
+        ```sh
+        ./date_extraction IMAGE sample_img.jpg [--rem=true]
+        ```
+        - For USB Camera Mode
+        ```sh
+        ./date_extraction USB [--rem=true]
+        ```    
+        > `-rem=true` is an optional argument to display the remaining days to expire.   
+        > Users write `–rem=true` only if they want to display the remaining days, otherwise do not write this option or write `-rem=false`.
+4. Following window shows up on HDMI screen.  
+
+    |RZ/V2L EVK | RZ/V2H EVK |
+    |:---|:---|
+    |<img src=./images/expected_results1.png width=350>| <img src=./images/expected_results2.png width=350>  |
+
+    On application window, following information is displayed.  
+    - Camera capture  
+    - Object Detection result (Bounding boxes, class name and score.)
+    - Remaining days: Number of days remaining until expiration date (if "-rem" option is specified)
+    - Processing time  
+        - Total AI Time: Sum of all processing time below.  
+        - Inference: Processing time taken for AI inference.  
+        - PreProcess: Processing time taken for AI pre-processing.  
+        - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
+        
+5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
 
-#### Default Mode
+## Application: Configuration 
+### AI Model
+- RZ/V2L
+    - Tiny YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+    Dataset: Custom labelled dataset with classes listed [here](./exe_v2l/date_class_labels.txt)   
+    Input size: 1x3x416x416  
+    Output1 size: 1x13x13x27  
+    Output2 size: 1x26x26x27  
+  
+- RZ/V2H
+    - YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+    Dataset: Custom labelled dataset with classes listed [here](./exe_v2h/date_class_labels.txt)  
+    Input size: 1x3x416x416  
+    Output1 size: 1x13x13x27  
+    Output2 size: 1x26x26x27  
+    Output3 size: 1x52x52x27 
 
-* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
-    * Go to the `/home/root/tvm` directory of the rootfs
-    ```sh
-    cd /home/root/tvm
-    ```
-    * Run the application
-    ```sh
-    ./date_extraction_cam
-    ```
+### AI inference time
+|Board | AI model | AI inference time|
+|:---|:---|:---|
+|RZ/V2L EVK |Tiny YOLOv3 | Approximately 100ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 25ms  |
 
-    <img src = "./images/Expiry_date_video_mode_default.JPG" width="480" height="320">
+### Processing
 
-
-#### Application: Termination 
-- Switch from the application window to the terminal with using `Super(windows key)+Tab` and press `ENTER` key on the terminal of RZ/V2L Board.
-
-## Application: Specifications
-
-#### Model Details
-
-- Tiny Yolov3 is used. Model weights are taken from [Darknet-Yolo](https://pjreddie.com/darknet/yolo/)
-- Then the model is retrained with below mentioned dataset. 
-
-#### Dataset
-
-- Dataset used is the same as mentioned in the below research paper 
-[Link](https://www.sciencedirect.com/science/article/pii/S0957417422006728?via%3Dihub)
-
-
-## Known Issue
-
-1. The tesseract engine will work fine mostly on solid black with white background. The tesseract engine used is v3.05.  
-2. The model used is TinyYolov3 for date detection for increasing the performance. 
-For better performance, user can change the model to YoloV3 which will require retraining.
-3. For efficient date detection, User are expected to take image with proper lighting and contrast. 
-4. USB Camera has shown much better resolution than coral camera. 
-
-6. Performance Issue: The tesseract processing may take some time, if the date is detected, it may feel like screen freeze.
+|Processing | RZ/V2L EVK | RZ/V2H EVK |
+|:---|:---|:---|
+|Pre-processing | Processed by DRP-AI. | Processed by CPU. |
+|Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
+|Post-processing | Processed by CPU. | Processed by CPU. |
 
 
+### Image buffer size
 
+|Board | Camera capture buffer size|HDMI output buffer size|
+|:---|:---|:---|
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+  
+  
+## Reference
+ 
+- For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.\
+To use FHD, please use MIPI camera.\
+Please refer to following URL for how to change camera input to MIPI camera.\
+[https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).
 
-
+## License
+Apache License 2.0  
+For third party OSS library, please see the source code file itself.

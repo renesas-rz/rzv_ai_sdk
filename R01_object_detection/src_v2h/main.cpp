@@ -115,7 +115,6 @@ static uint32_t array_cap_time[30] = {1000,1000,1000,1000,1000,1000,1000,1000,10
 #endif /* DISP_CAM_FRAME_RATE */
 
 /*DRP-AI Frequency setting*/
-static int32_t drp_max_freq;
 static int32_t drpai_freq;
 
 static Wayland wayland;
@@ -712,7 +711,7 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
 
-        runtime.Run();
+        runtime.Run(drpai_freq);
 
         /*Gets AI Inference End Time*/
         ret = timespec_get(&inf_end_time, TIME_UTC);
@@ -1188,38 +1187,6 @@ uint64_t get_drpai_start_addr(int drpai_fd)
 }
 
 /*****************************************
-* Function Name : set_drpai_freq
-* Description   : Function to set the DRP and DRP-AI frequency.
-* Arguments     : drpai_fd: DRP-AI file descriptor
-* Return value  : 0 if succeeded
-*                 not 0 otherwise
-******************************************/
-int set_drpai_freq(int drpai_fd)
-{
-    int ret = 0;
-    uint32_t data;
-
-    errno = 0;
-    data = drp_max_freq;
-    ret = ioctl(drpai_fd , DRPAI_SET_DRP_MAX_FREQ, &data);
-    if (-1 == ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to set DRP Max Frequency : errno=%d\n", errno);
-        return -1;
-    }
-
-    errno = 0;
-    data = drpai_freq;
-    ret = ioctl(drpai_fd , DRPAI_SET_DRPAI_FREQ, &data);
-    if (-1 == ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to set DRP-AI Frequency : errno=%d\n", errno);
-        return -1;
-    }
-    return 0;
-}
-
-/*****************************************
 * Function Name : init_drpai
 * Description   : Function to initialize DRP-AI.
 * Arguments     : drpai_fd: DRP-AI file descriptor
@@ -1235,13 +1202,6 @@ uint64_t init_drpai(int drpai_fd)
     drpai_addr = get_drpai_start_addr(drpai_fd);
     
     if (drpai_addr == 0)
-    {
-        return 0;
-    }
-
-    /*Set DRP-AI frequency*/
-    ret = set_drpai_freq(drpai_fd);
-    if (ret != 0)
     {
         return 0;
     }
@@ -1266,6 +1226,8 @@ int32_t main(int32_t argc, char * argv[])
     bool runtime_status = false;
     int drpai_fd;
 
+    uint64_t drpaimem_addr_start = 0;
+
     std::string media_port = query_device_status("usb");
     gstreamer_pipeline = "v4l2src device=" + media_port +" ! video/x-raw, width="+std::to_string(CAM_IMAGE_WIDTH)+", height="+std::to_string(CAM_IMAGE_HEIGHT)+" ,framerate=30/1 ! videoconvert ! appsink -v";
 
@@ -1282,25 +1244,22 @@ int32_t main(int32_t argc, char * argv[])
     /* Usually, users can use default values. */
     if (2 <= argc)
     {
-        drp_max_freq = atoi(argv[1]);
-        printf("Argument : <DRP0_max_freq_factor> = %d\n", drp_max_freq);
-    }
-    else
-    {
-        drp_max_freq = DRP_MAX_FREQ;
-    }
-    if (3 <= argc)
-    {
-        drpai_freq = atoi(argv[2]);
-        printf("Argument : <AI-MAC_freq_factor> = %d\n", drpai_freq);
+        drpai_freq = atoi(argv[1]);
+        if ((1 <= drpai_freq) && (127 >= drpai_freq))
+        {
+            printf("Argument : <AI-MAC_freq_factor> = %d\n", drpai_freq);
+        }
+        else
+        {
+            fprintf(stderr,"[ERROR] Invalid Command Line Argument : <AI-MAC_freq_factor>=%d\n", drpai_freq);
+            goto end_main;
+        }
     }
     else
     {
         drpai_freq = DRPAI_FREQ;
     }
     
-    uint64_t drpaimem_addr_start = 0;
-
     /*Load Label from label_list file*/
     label_file_map = load_label_file(label_list);
     if (label_file_map.empty())

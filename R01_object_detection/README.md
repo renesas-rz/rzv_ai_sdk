@@ -91,7 +91,7 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
     <tr>
       <td>microSD card</td>
       <td>Used as the filesystem.<br>
-      Must have over 4GB capacity of blank space.<br>
+      Must have over 16GB capacity of blank space.<br>
       Operating Environment: Transcend UHS-I microSD 300S 16GB</td>
     </tr>
     <tr>
@@ -224,10 +224,10 @@ Replace each variable according to your board.
     cd ${PROJECT_PATH}/R01_object_detection/<EXE_DIR>/yolov3_onnx
     wget <URL>/<SO_FILE>
     ```
-    |Board | `EXE_DIR` |`SO_FILE` |`URL` |
-    |:---|:---|:---|:---|
-    |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`R01_object_detection_deploy_tvm-v111.so`</span>  |[Release v2.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v2.00/)  |
-    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v210.so`</span> |[Release v3.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v3.00/)  |
+    |Board | `EXE_DIR` |`URL` |`SO_FILE` |File Location |
+    |:---|:---|:---|:---|:---|
+    |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v2.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm-v111.so`</span>  |[Release v2.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v2.00/)  |
+    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
 
     - E.g., for RZ/V2L EVK, use following commands.
         ```sh
@@ -247,20 +247,20 @@ Replace each variable according to your board.
 4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
-    ```sh
-    ├── usr/
-    │   └── lib64/
-    │       └── libtvm_runtime.so
-    └── home/
-        └── root/
-            └── tvm/ 
-                ├── yolov3_onnx/
-                │   ├── preprocess
-                │   ├── deploy.json
-                │   ├── deploy.params
-                │   └── deploy.so
-                ├── coco-labels-2014_2017.txt
-                └── object_detection
+    ```
+    |-- usr/
+    |   `-- lib64/
+    |       `-- libtvm_runtime.so
+    `-- home/
+        `-- root/
+            `-- tvm/ 
+                |-- yolov3_onnx/
+                |   |-- preprocess
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   `-- deploy.so
+                |-- coco-labels-2014_2017.txt
+                `-- object_detection
     ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
@@ -287,7 +287,7 @@ After completion of the guide, the user is expected of following things.
 
     |RZ/V2L EVK | RZ/V2H EVK |
     |:---|:---|
-    |<img src=./img/objectdetection.png width=350>| <img src=./img/objectdetection_v2h.png width=350>  |
+    |<img src=./img/objectdetection.png width=350>| <img src=./img/objectdetection_v2h.jpg width=350>  |
 
     On application window, following information is displayed.  
     - Camera capture  
@@ -314,7 +314,7 @@ Output3 size: 1x52x52x255
 |Board | AI inference time|
 |:---|:---|
 |RZ/V2L EVK| Approximately 430ms  |
-|RZ/V2H EVK | Approximately 40ms  |
+|RZ/V2H EVK | Approximately 30ms  |
 
 ### Processing
 
