@@ -17,6 +17,40 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Web Reference
+                </h3>
+                <h6 align="right" >
+                    2024.6.7
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Reference to related software/documentation is added.</h5>
+                    E.g., 
+                    <ul>
+                        <li> 
+                            DRP-AI TVM
+                        </li>
+                        <li> 
+                            RZ/V2H Video Codec Library  User's Manual
+                        </li>
+                        <li> 
+                            RZ/V2H OpenCV Accelerator 
+                        </li>
+                        <li> 
+                            RZ/V2H ROS2 Package
+                        </li>
+                        <li> 
+                            RZ/V Multi-OS Package
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     AI Applications & RZ/V2H AI SDK v4.00
                 </h3>
                 <h6 align="right" >

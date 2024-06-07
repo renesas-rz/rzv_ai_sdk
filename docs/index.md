@@ -43,6 +43,36 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2024.6.7
+            </h6>
+            <ul>
+                <li>
+                    <b>Reference to related software/documentation</b> is now available.<br>
+                    E.g., 
+                    <ul>
+                        <li> 
+                            DRP-AI TVM
+                        </li>
+                        <li> 
+                            RZ/V2H Video Codec Library  User's Manual
+                        </li>
+                        <li> 
+                            RZ/V2H OpenCV Accelerator 
+                        </li>
+                        <li> 
+                            RZ/V2H ROS2 Package
+                        </li>
+                        <li> 
+                            RZ/V Multi-OS Package
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="#reference">Reference</a>.
+            <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
                 2024.5.31
             </h6>
             <ul>
@@ -331,6 +361,170 @@ layout: default
             </div>
             <br>
             <hr style="border-top: 1px solid grey;">
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+<br>
+<br>
+<h3 id="reference">Reference</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            Followings are references of related software/documentation.<br><br>
+            <table class="gstable ms-4">
+                <tr>
+                    <th>Product</th>
+                    <th>Link</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td rowspan="1">Common</td>
+                    <td>
+                        <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
+                            DRP-AI TVM
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Machine Learning Compiler plugin for Apache TVM with AI accelerator DRP-AI.<br>
+                        <b>Automatically installed in AI SDK.</b>
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="3">RZ/V2L</td>
+                    <td>
+                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/drp-ai-translator">
+                            DRP-AI Translator
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        AI model conversion tool for DRP-AI embedded in RZ/V2L.<br>
+                        Included in RZ/V2L AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package">
+                            RZ/V Verified Linux Package
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Linux Packages for MPUs of the RZ/V2L.<br>
+                        Used in RZ/V2L AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package">
+                            RZ/V2L DRP-AI Support Package
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Software to use DRP-AI with RZ/V Vefiried Linux Package, which includes DRP-AI Driver.<br>
+                        Used in RZ/V2L AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="7">RZ/V2H</td>
+                    <td>
+                            <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8">
+                                DRP-AI Translator i8
+                            </a>
+                    </td>
+                    <td>
+                        <small>
+                        AI model conversion tool for DRP-AI embedded in RZ/V2H.<br>
+                        Included in RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">
+                            RZ/V2H BSP Manual Set
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Document for Linux Drivers used in RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/document/mas/rzv2h-group-linux-interface-specification-gstreamer-users-manual-software">
+                            RZ/V2H Video Codec Library  User's Manual
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        RZ/V2H Group Linux Interface Specification GStreamer User's Manual: Software.<br>
+                        Document for GStreamer in Video Codec Library used in RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator">
+                            RZ/V2H OpenCV Accelerator 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        OpenCV Accelerator which performs OpenCV function in high performance by using DRP.<br>
+                        Used in RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver">
+                            RZ/V2H DRP-AI Driver
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Linux driver to use DRP-AI on RZ/V2H.<br>
+                        Used in RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package">
+                            RZ/V2H ROS2 Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package that can be applied to RZ/V2H AI SDK to use ROS2.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package">
+                            RZ/V Multi-OS Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package consisting of RZ/V Flexible Software Package (FSP) as software package for Renesas MCU with Arm&reg; Cortex-M, R Core and OpenAMP as standardization API of framework for interprocessor communication for developing multi OS solution.<br>
+                        This package can be applied to RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

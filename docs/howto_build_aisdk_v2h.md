@@ -377,7 +377,10 @@ You have prepared following files, which is same as the one provided in <a href=
   To add more functionality to AI SDK, please refer to following URL.
   <ul>
     <li>
-      <a href="https://www.renesas.com/software-tool/rzv2h-ros2-package">RZ/V2H ROS2 Package</a>
+      <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package">RZ/V2H ROS2 Package</a>
+    </li>
+    <li>
+      <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package">RZ/V Multi-OS Package</a>
     </li>
   </ul>
 </div>
