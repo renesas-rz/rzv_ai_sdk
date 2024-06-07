@@ -423,7 +423,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package">
+                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package">
                             RZ/V2L DRP-AI Support Package
                         </a>
                     </td>
