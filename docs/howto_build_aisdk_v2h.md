@@ -76,7 +76,7 @@ layout: default
   <div class="row">
     <div class="col-12">
       Download the RZ/V2H AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v300-source-code" role="button">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v400-source-code" role="button">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0180F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
