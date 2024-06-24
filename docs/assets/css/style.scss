@@ -94,6 +94,25 @@ h3 {
   background-color: #7c909b;
   border-color: #7c909b;
 }
+/* For Apps and AI SDK overview button in default.html */
+.square-button-link-small{
+  position: relative;
+  padding-right:25px; /*Allocate empty space for arrow*/
+  text-align: left;
+  font-size: 12px;
+}
+a.square-button-link-small::before{
+  content: "";
+  width: 7px;   /*Arrow left length*/
+  height: 7px;  /*Arrow right lentgh*/
+  border-top: solid 2px #ffffff;  /*Arrow left weight and color*/
+  border-right: solid 2px #ffffff;/*Arrow right weight and color*/
+  transform: rotate(45deg);         /*Arrow direction::right*/
+  position: absolute;
+  right: 11px;
+  top: 12px;
+  margin: auto;
+}
 .banner-title
 {
   font-weight: bold;

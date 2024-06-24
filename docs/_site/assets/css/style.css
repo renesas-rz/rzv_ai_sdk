@@ -3215,6 +3215,11 @@ h3, .h3 { padding: 0.5rem 0 0.8rem; margin-bottom: 5px; border-bottom: 1px solid
 
 .square-button-gray { font-weight: bold; font-size: medium; border-radius: 0px; background-color: #7c909b; border-color: #7c909b; }
 
+/* For Apps and AI SDK overview button in default.html */
+.square-button-link-small { position: relative; padding-right: 25px; /*Allocate empty space for arrow*/ text-align: left; font-size: 12px; }
+
+a.square-button-link-small::before { content: ""; width: 7px; /*Arrow left length*/ height: 7px; /*Arrow right lentgh*/ border-top: solid 2px #ffffff; /*Arrow left weight and color*/ border-right: solid 2px #ffffff; /*Arrow right weight and color*/ transform: rotate(45deg); /*Arrow direction::right*/ position: absolute; right: 11px; top: 12px; margin: auto; }
+
 .banner-title { font-weight: bold; font-size: 1.3em; padding-right: 0.5em; }
 
 .banner-line-md { display: block; padding-left: 0.5em; font-weight: normal; font-size: 1.0em; }

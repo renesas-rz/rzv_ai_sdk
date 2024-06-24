@@ -46,7 +46,6 @@
         <p class="ham-very-small small">Provided by Renesas Electronics Corporation</p>
         <!-- <br> -->
 
-
         {% if site.github.is_user_page %}
         <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
         {% endif %}
@@ -55,8 +54,8 @@
         <div class="container">
           <div class="row ham-nodisplay">
             <div class="col-12">
-              <img src="img/board.svg" alt="board" style="max-width: 80px" class="me-3"/>
-              <img src="img/ai_sdk.svg" alt="ai-sdk" style="max-width: 80px"/>
+                <img src="img/board.svg" alt="board" style="width:48%;max-width: 90px;"/>
+                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%;max-width: 90px;"/>  
             </div>
           </div>
           <div class="row mt-2">
@@ -67,6 +66,21 @@
             </div>
           </div>
         </div>
+        <br>
+        <br class="br-nsp">
+        <div class="row">
+          <div class="col-12 mb-1">
+            <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:190px;" href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">
+                AI Applications Overview
+            </a>
+        </div>
+        <div class="col-12">
+            <a class="btn btn-secondary square-button square-button-link-small" style="width:190px;" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">
+                AI SDK Overview
+            </a>
+        </div>
+      </div>
+      <br class="br-nsp">
         <!-- <div class="container">
           <div class="row">
             <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
@@ -111,6 +125,41 @@
               <summary>
                 <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK</a>
               </summary>
+              <ul class="index">
+                <li>
+                  <details>
+                    <summary>
+                      <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#features">Key Features</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#devices">Supported Devices</a></li>
+                      <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#files">File Contents</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-spec">RZ/V2L AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-overview">Overview</a></li>
+                      <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec">RZ/V2H AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-overview">Overview</a></li>
+                      <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
             </details>
             <details open>
               <summary>
@@ -247,6 +296,9 @@
                 </li>
                 <li>
                   <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A2">Appendix 2. Resize microSD card image</a>
+                </li>
+                <li>
+                  <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3. Prepare H.264/H.265 Enc/Dec</a>
                 </li>
               </ul>
             </details>

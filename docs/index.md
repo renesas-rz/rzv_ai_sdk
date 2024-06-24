@@ -26,15 +26,8 @@ layout: default
             <br>
             <a href="img/top_rzv.svg" data-lightbox="group"><img src="img/top_rzv.svg" alt="AI Application and AI SDK overview"></a><br>
         </div>
-        <div class="col-12"  align="right">
-            <br>
-            <a class=" text-right btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">View AI Applications ></a>
-            <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}" role="button">View AI SDK ></a>
-        </div>
     </div>
 </div>
-<br>
-<br>
 <br>
 <h3 id="new" >
     What's new
@@ -43,60 +36,22 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.6.7
+                2024.6.24
             </h6>
             <ul>
                 <li>
-                    <b>Reference to related software/documentation</b> is now available.<br>
-                    E.g., 
+                    <b>RZ/V AI SDK Specification</b> is now available.<br>
                     <ul>
                         <li> 
-                            DRP-AI TVM
+                            Updated RZ/V2L AI SDK Specification, i.e. Linux Components.
                         </li>
                         <li> 
-                            RZ/V2H Video Codec Library  User's Manual
-                        </li>
-                        <li> 
-                            RZ/V2H OpenCV Accelerator 
-                        </li>
-                        <li> 
-                            RZ/V2H ROS2 Package
-                        </li>
-                        <li> 
-                            RZ/V Multi-OS Package
+                            Updated RZ/V2H AI SDK Specification, i.e., Linux Conponents, Driver list and Limitation.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="#reference">Reference</a>.
-            <br>
-        </div>
-        <div class="col-12">
-            <h6 align="right" >
-                2024.5.31
-            </h6>
-            <ul>
-                <li>
-                    <b>AI Applications v4.00</b> is now available.<br>
-                    <ul>
-                        <li> 
-                            Added RZ/V2H Evaluation Board Kit support for 15 applications.
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>RZ/V2H AI SDK v4.00</b> is now available.<br>
-                    <ul>
-                        <li>
-                           Supported DRP-AI TVM v2.2.1.<br>
-                        </li>
-                        <li>
-                           Changed the size of WIC format SD card image to 16GB.<br>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases">GitHub Release Note</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK page</a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">RZ/V AI SDK Overview page</a>.
             <br>
         </div>
         <div class="col-12" align="right">

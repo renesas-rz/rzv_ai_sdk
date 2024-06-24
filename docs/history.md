@@ -17,6 +17,30 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2024.6.24
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI SDK Specification is updated.</h5>
+                    <ul>
+                        <li> 
+                            Updated RZ/V2L AI SDK Specification, i.e. Linux Components.
+                        </li>
+                        <li> 
+                            Updated RZ/V2H AI SDK Specification, i.e., Linux Conponents, Driver list and Limitation.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Web Reference
                 </h3>
                 <h6 align="right" >
