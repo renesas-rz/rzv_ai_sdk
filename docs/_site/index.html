@@ -30,10 +30,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Renesas RZ/V AI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","dateModified":"2024-06-07T14:11:05+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","name":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/4.00/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","dateModified":"2024-06-24T13:11:09+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","name":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/4.00/"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=0ed1fcd54f25a909a3732beac96f17c65654e128">
+    <link rel="stylesheet" href="assets/css/style.css?v=cef6553311405a4ff39276d719acd995ca7a9d18">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -498,7 +498,7 @@
                 <li>
                   <details open>
                     <summary>
-                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html">How to Use Guide</a>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html">RZ/V2L How to Use Guide</a>
                     </summary>
                     <ul class="index">
                       <li>
@@ -529,6 +529,45 @@
                             <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#executedemo">2. Demo execution</a></li>
                             <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#shutdown">3. Shutdown process</a></li>
                             <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html#tips">Tips</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html">RZ/V2H How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html#shutdown">3. Shutdown process</a></li>
                           </ul>
                         </details>
                       </li>
@@ -607,22 +646,30 @@
     <div class="row">
         <div class="col-12">
             <h6 align="right">
-                2024.6.24
+                2024.6.28
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V AI SDK Specification</b> is now available.<br />
+                    <b>RZ/V2H AI Applications Demo v4.00</b> is now available.<br />
                     <ul>
                         <li> 
-                            Updated RZ/V2L AI SDK Specification, i.e. Linux Components.
+                            Supported RZ/V2H AI SDK v4.00.
+                            <ul>
+                                <li>
+                                    The size of WIC format microSD card image is 16 GB.
+                                </li>
+                            </ul>
                         </li>
                         <li> 
-                            Updated RZ/V2H AI SDK Specification, i.e., Linux Conponents, Driver list and Limitation.
+                            Supported 36 AI Applications.
+                        </li>
+                        <li> 
+                            Supported GUI operation.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/ai-sdk.html">RZ/V AI SDK Overview page</a>.
+            For more details, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html"><b>RZ/V2H AI Applications Demo How to Use Guide</b></a>.
             <br />
         </div>
         <div class="col-12" align="right">
@@ -733,24 +780,98 @@
     <div class="row">
         <div class="col-12">
             With the demo binary, users can try the AI Applications without having AI SDK environment.<br />
-            Download the Demo and refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html">How to Use Guide</a> for more details.
-            <br />
-            <br />
-            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
-                Download RZ/V2L EVK Demo
+            Download the Demo for your Evaluation Board Kit (EVK) and see each how to use guide.
+            <h4 class="u_line">
+                For RZ/V2L EVK
+            </h4>
+            <p>
+                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
+                    Download RZ/V2L AI Applications Demo
+                </a>
+            </p>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo.html" role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    <span style="font-size:70%;">
+                        RZ/V2L AI Applications Demo
+                    </span><br />
+                    How to Use Guide
+                </span><br />
+                <span class="banner-line">
+                    What is RZ/V2L AI Applications Demo?<br />
+                    How can I run the Demo?<br />
+                </span>
             </a>
+            <br /><br />
+            <ul>
+                <li>
+                    Environment:
+                    <ul>
+                        <li>
+                            AI Applications v2.10
+                        </li>
+                        <li>
+                            RZ/V2L AI SDK v2.10
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Demo zip file size: 3.4GB
+                </li>
+                <li>
+                    Note:
+                    <ul>
+                        <li>
+                            Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops running after around 10 hours.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             <br />
-            <br />
-            <h6>
-                <b>Notes:
-                    <ol>
-                        <li>Demo is based on AI Applications v2.10 and RZ/V2L AI SDK v2.10.</li>
-                        <li>Demo zip filesize is around 3.4GB.</li>
-                        <li>Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 10 hours.</li>
-                    </ol>
-                </b>
-            </h6>
-            <br />
+            <h4 class="u_line">
+                For RZ/V2H EVK
+            </h4>
+            <p>
+                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-400" role="button">
+                    Download RZ/V2H AI Applications Demo
+                </a>
+            </p>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://renesas-rz.github.io/rzv_ai_sdk/4.00/demo_v2h.html" role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    <span style="font-size:70%;">
+                        RZ/V2H AI Applications Demo
+                    </span><br />
+                    How to Use Guide
+                </span><br />
+                <span class="banner-line">
+                    What is RZ/V2H AI Applications Demo?<br />
+                    How can I run the Demo?<br />
+                </span>
+            </a>
+            <br /><br />
+            <ul>
+                <li>
+                    Environment:
+                    <ul>
+                        <li>
+                            AI Applications v4.00
+                        </li>
+                        <li>
+                            RZ/V2H AI SDK v4.00
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Demo zip file size: 2.8GB
+                </li>
+                <li>
+                    Note:
+                    <ul>
+                        <li>
+                            Demo zip file is created using the evaluation version of RZ/V2H Graphics Library, which has a limitation that system stops running after around 10 hours.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

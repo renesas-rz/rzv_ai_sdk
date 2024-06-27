@@ -17,6 +17,38 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2H AI Applications Demo v4.00
+                </h3>
+                <h6 align="right" >
+                    2024.6.28
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI Applications Demo v4.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported RZ/V2H AI SDK v4.00.
+                            <ul>
+                                <li>
+                                    The size of WIC format microSD card image is 16 GB.
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Supported 36 AI Applications.
+                        </li>
+                        <li> 
+                            Supported GUI operation.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >

@@ -24,7 +24,7 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="top col-12">
-AI Applications Demo<br>
+RZ/V2L AI Applications Demo<br>
 How to Use Guide
         </div>
     </div>
@@ -32,7 +32,9 @@ How to Use Guide
 <br>
 <br>
 
-This guide supports <b>RZ/V2L AI SDK v2.10</b>
+<h5>This page explains how to use RZ/V2L AI Applications Demo on the <b>RZ/V2L Evaluation Board Kit.</b></h5>
+
+<h5>Supported version: <b>RZ/V2L AI SDK v2.10</b></h5>
 
 <br>
 
@@ -56,7 +58,7 @@ The goal of this guide is to run the application and display the captured data w
   <img src="img/demo_app_example.jpg" alt="demo_example" width="100%">
 </a>
 
-To see a list of applications included in this demo, see <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#apptable"><b>List of AI Applications Demo</b></a>.
+To see a list of applications included in this demo, see <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#apptable"><b>List of RZ/V2L AI Applications Demo</b></a>.
 
 For more information about the RZ/V series, click <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus"><b>here</b></a>.
 
@@ -225,7 +227,7 @@ This chapter describes how to run the AI Applications in the demo file.
   <li>The list of AI applications is shown below.
     Select the application you want to run from the list.
     <table id="apptable" class="mytable">
-      <caption>List of AI Applications Demo</caption>
+      <caption>List of RZ/V2L AI Applications Demo</caption>
       <tr>
         <th>Category</th>
         <th>Application Name</th>
@@ -601,7 +603,7 @@ cd /home/root
     </div>
     <div class="note">
       <span class="note-title">Note</span>
-      Some applications support both MIPI/USB camera input. (Refer to <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#apptable"><b>List of AI Applications Demo</b></a>). To use USB camera for those applications, run following command.
+      Some applications support both MIPI/USB camera input. (Refer to <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#apptable"><b>List of RZ/V2L AI Applications Demo</b></a>). To use USB camera for those applications, run following command.
 {% highlight shell %}
 ./<category>/<application-name>.sh USB
 {% endhighlight %}
@@ -610,7 +612,7 @@ cd /home/root
   <li>On monitor, the application will automatically start.
     <div class="note">
       <span class="note-title">Note 1</span>
-      Some applications require GUI control. See the link in the user interface column of <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#apptable"><b>List of AI Applications Demo</b></a>.
+      Some applications require GUI control. See the link in the user interface column of <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}#apptable"><b>List of RZ/V2L AI Applications Demo</b></a>.
     </div>
     <div class="note">
       <span class="note-title">Note 2</span>

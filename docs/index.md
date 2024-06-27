@@ -36,22 +36,30 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.6.24
+                2024.6.28
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V AI SDK Specification</b> is now available.<br>
+                    <b>RZ/V2H AI Applications Demo v4.00</b> is now available.<br>
                     <ul>
                         <li> 
-                            Updated RZ/V2L AI SDK Specification, i.e. Linux Components.
+                            Supported RZ/V2H AI SDK v4.00.
+                            <ul>
+                                <li>
+                                    The size of WIC format microSD card image is 16 GB.
+                                </li>
+                            </ul>
                         </li>
                         <li> 
-                            Updated RZ/V2H AI SDK Specification, i.e., Linux Conponents, Driver list and Limitation.
+                            Supported 36 AI Applications.
+                        </li>
+                        <li> 
+                            Supported GUI operation.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">RZ/V AI SDK Overview page</a>.
+            For more details, see <a href= "{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}"><b>RZ/V2H AI Applications Demo How to Use Guide</b></a>.
             <br>
         </div>
         <div class="col-12" align="right">
@@ -162,24 +170,98 @@ layout: default
     <div class="row">
         <div class="col-12">
             With the demo binary, users can try the AI Applications without having AI SDK environment.<br>
-            Download the Demo and refer to <a href= "{{ site.url }}{{ site.baseurl }}{% link demo.md %}">How to Use Guide</a> for more details.
-            <br>
-            <br>
-            <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
-                Download RZ/V2L EVK Demo
+            Download the Demo for your Evaluation Board Kit (EVK) and see each how to use guide.
+            <h4 class="u_line">
+                For RZ/V2L EVK
+            </h4>
+            <p>
+                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
+                    Download RZ/V2L AI Applications Demo
+                </a>
+            </p>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}" role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    <span style="font-size:70%;">
+                        RZ/V2L AI Applications Demo
+                    </span><br>
+                    How to Use Guide
+                </span><br>
+                <span class="banner-line">
+                    What is RZ/V2L AI Applications Demo?<br>
+                    How can I run the Demo?<br>
+                </span>
             </a>
+            <br><br>
+            <ul>
+                <li>
+                    Environment:
+                    <ul>
+                        <li>
+                            AI Applications v2.10
+                        </li>
+                        <li>
+                            RZ/V2L AI SDK v2.10
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Demo zip file size: 3.4GB
+                </li>
+                <li>
+                    Note:
+                    <ul>
+                        <li>
+                            Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops running after around 10 hours.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             <br>
-            <br>
-            <h6>
-                <b>Notes:
-                    <ol>
-                        <li>Demo is based on AI Applications v2.10 and RZ/V2L AI SDK v2.10.</li>
-                        <li>Demo zip filesize is around 3.4GB.</li>
-                        <li>Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops runinng after around 10 hours.</li>
-                    </ol>
-                </b>
-            </h6>
-            <br>
+            <h4 class="u_line">
+                For RZ/V2H EVK
+            </h4>
+            <p>
+                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-400" role="button">
+                    Download RZ/V2H AI Applications Demo
+                </a>
+            </p>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}" role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    <span style="font-size:70%;">
+                        RZ/V2H AI Applications Demo
+                    </span><br>
+                    How to Use Guide
+                </span><br>
+                <span class="banner-line">
+                    What is RZ/V2H AI Applications Demo?<br>
+                    How can I run the Demo?<br>
+                </span>
+            </a>
+            <br><br>
+            <ul>
+                <li>
+                    Environment:
+                    <ul>
+                        <li>
+                            AI Applications v4.00
+                        </li>
+                        <li>
+                            RZ/V2H AI SDK v4.00
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Demo zip file size: 2.8GB
+                </li>
+                <li>
+                    Note:
+                    <ul>
+                        <li>
+                            Demo zip file is created using the evaluation version of RZ/V2H Graphics Library, which has a limitation that system stops running after around 10 hours.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

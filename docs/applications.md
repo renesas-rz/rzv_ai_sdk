@@ -1620,7 +1620,7 @@ layout: default
                     <dt class="mt-1" style="color: #2a289d;">Marketing Interest Analysis</dt>
                     <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
-                        "Monitors the gaze direction of customer in the retail store,  which can be used to collect marketing information."<br><br>
+                        Monitors the gaze direction of customer in the retail store,  which can be used to collect marketing information.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v2.10<br>

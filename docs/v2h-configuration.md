@@ -625,7 +625,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <br>
             <ul>
                 <li>
-                    Reboot command *related to WDT in <a href="#v2h-supported">Driver list</a>
+                    Reboot command *related to WDT in <a href="#v2h-driver">Driver list</a>
                 </li>
                 <li>
                     CPU 1.8GHz
