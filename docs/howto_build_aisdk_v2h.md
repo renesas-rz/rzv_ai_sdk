@@ -181,6 +181,35 @@ cd ${YOCTO_WORK}
 tar zxvf ${WORK}/src_setup/rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
   </li>
+  <li>Apply patch files to fix link error.<br>
+    <ol type="A">
+      <li>Obtain the patch file from the link below.
+        <table class="mytable">
+          <tr>
+            <th>Patch file link</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch">0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch</a></td>
+            <td>patch file for fixing glibc link error</td>
+          </tr>          <tr>
+            <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/61835_update_url_gst_common.patch">61835_update_url_gst_common.patch</a></td>
+            <td>patch file for fixing codec library link error</td>
+          </tr>
+        </table>
+      </li>
+      <li>Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}/meta-renesas
+patch -p1 < ../0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch
+
+cp <Path to the file>/61835_update_url_gst_common.patch ${YOCTO_WORK}
+patch -d ${YOCTO_WORK}/meta-rz-features/meta-rz-codecs -p1 < ${YOCTO_WORK}/61835_update_url_gst_common.patch
+{% endhighlight %}
+      </li>
+    </ol>
+  </li>
   <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
     The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
     <ol type="A">
@@ -212,8 +241,10 @@ ls -1 ${YOCTO_WORK}
     <ul>
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 {% highlight shell%}
+0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch
 0001-tesseract.patch
 0002-sd-image-size-16gb.patch
+61835_update_url_gst_common.patch
 e-CAM22_CURZ*.patch
 meta-econsys
 meta-gplv2
