@@ -696,17 +696,25 @@ git config <span class="nt">--global</span> user.name <span class="s2">"Your Nam
 <span class="nb">tar </span>zxvf <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/rzv2h_ai-sdk_yocto_recipe_v<span class="k">*</span>.tar.gz</code></pre></figure>
 
   </li>
-  <li>Apply a patch file to fix lind error.<br />
+  <li>Apply patch files to fix link error.<br />
     <ol type="A">
-      <li>Obtain the patch file below from <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v3.00/0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch">this link</a>.
+      <li>Obtain the patch file from the link below.
         <table class="mytable">
           <tr>
-            <th>File name</th>
+            <th>Patch file link</th>
             <th>Description</th>
           </tr>
           <tr>
-            <td>0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch</td>
+            <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v3.00/0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch">0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch</a></td>
             <td>patch file for fixing glibc link error</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v3.00/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch">0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch</a></td>
+            <td>patch file for fixing glibc link error</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v3.00/61835_update_url_gst_common.patch">61835_update_url_gst_common.patch</a></td>
+            <td>patch file for fixing codec library link error</td>
           </tr>
         </table>
       </li>
@@ -714,8 +722,16 @@ git config <span class="nt">--global</span> user.name <span class="s2">"Your Nam
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
 <span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-renesas
-patch <span class="nt">-p1</span> &lt; ../0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch</code></pre></figure>
+patch <span class="nt">-p1</span> &lt; ../0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch
 
+<span class="nb">cp</span> &lt;Path to the file&gt;/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-renesas
+patch <span class="nt">-p1</span> &lt; ../0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch
+
+<span class="nb">cp</span> &lt;Path to the file&gt;/61835_update_url_gst_common.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-d</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-rz-features/meta-rz-codecs <span class="nt">-p1</span> &lt; <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/61835_update_url_gst_common.patch
+</code></pre></figure>
+          
       </li>
     </ol>
   </li>
@@ -751,7 +767,9 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">0001-recipes-debian-buster-glibc-Update-version-from-2.28.patch
+0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch
 0001-tesseract.patch
+61835_update_url_gst_common.patch
 e-CAM22_CURZ<span class="k">*</span>.patch
 meta-econsys
 meta-gplv2
