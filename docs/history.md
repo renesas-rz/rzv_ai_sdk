@@ -17,6 +17,30 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Transfer Learning Tool v4.00
+                </h3>
+                <h6 align="right" >
+                    2024.8.7
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Transfer Learning Tool v4.00 is released.</h5>
+                    <ul>
+                        <li>
+                            Supported AI Applications v4.00 for RZ/V2H and RZ/V2L.
+                        </li>
+                        <li>
+                            Supported 42 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V2H AI Applications Demo v4.00
                 </h3>
                 <h6 align="right" >

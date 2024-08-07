@@ -36,6 +36,26 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2024.8.7
+            </h6>
+            <ul>
+                <li>
+                    <b>RZ/V AI Transfer Learning Tool v4.00</b> is now available.<br>
+                    <ul>
+                        <li>
+                            Supported AI Applications v4.00 for RZ/V2H and RZ/V2L.
+                        </li>
+                        <li>
+                            Supported 42 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href= "{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}"><b>How to Re-train AI model</b></a>.
+            <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
                 2024.6.28
             </h6>
             <ul>
