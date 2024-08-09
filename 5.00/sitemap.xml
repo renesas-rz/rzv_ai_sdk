@@ -2,11 +2,11 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications.html</loc>
-<lastmod>2024-02-29T10:44:37+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html</loc>
-<lastmod>2024-06-24T13:11:09+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/ainavi_appendix.html</loc>
@@ -38,11 +38,11 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html</loc>
-<lastmod>2024-08-09T11:36:17+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started_v2h.html</loc>
-<lastmod>2024-05-31T15:36:47+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started_v2l.html</loc>
@@ -50,7 +50,7 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/history.html</loc>
-<lastmod>2024-08-07T12:06:46+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/howto_build_aisdk.html</loc>
@@ -58,7 +58,7 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/howto_build_aisdk_v2h.html</loc>
-<lastmod>2024-08-09T11:36:17+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/howto_retrain.html</loc>
@@ -66,11 +66,11 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/</loc>
-<lastmod>2024-08-09T11:36:17+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html</loc>
-<lastmod>2024-06-27T17:39:45+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/v2l-configuration.html</loc>
@@ -78,6 +78,6 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/version.html</loc>
-<lastmod>2024-05-31T15:36:47+09:00</lastmod>
+<lastmod>2024-08-09T11:51:59+09:00</lastmod>
 </url>
 </urlset>
