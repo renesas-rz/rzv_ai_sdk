@@ -323,7 +323,7 @@ layout: default
                             Provided as a 7z file.
                         </td>
                         <td>                <!-- RZ/V2H -->
-                            Not provided in v4.00.
+                            Not provided in v5.00.
                         </td>
                     </tr>
                 </table>
@@ -491,7 +491,7 @@ layout: default
             </h3>
             <h5>
                 <b>
-                    Target Version: 4.00
+                    Target Version: 5.00
                 </b>
             </h5>
         </div>
@@ -504,7 +504,7 @@ layout: default
             RZ/V2H AI SDK configuration is as follows.
             <ul>
                 <li>
-                    DRP-AI TVM v2.2.1 
+                    DRP-AI TVM v2.3.0 
                     [
                         <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
                             GitHub
@@ -520,7 +520,7 @@ layout: default
                     ]
                     <ul>
                         <li>
-                            DRP-AI Driver v1.00 
+                            DRP-AI Driver v1.01 
                             [
                                 <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver">
                                     GitHub
@@ -554,7 +554,7 @@ layout: default
                     </ul>
                 </li>
                 <li>
-                    Graphics Library Evaluation Version v1.2.1
+                    Graphics Library Evaluation Version v1.2.2
                     <a href="#footnote_v2h_ev">
                         <sup>
                             *4
@@ -562,15 +562,10 @@ layout: default
                     </a>
                 </li>
                 <li>
-                    Video Codec Library v3.0.0
-                    <a href="#footnote_v2h_codec">
-                        <sup>
-                            *5
-                        </sup>
-                    </a>
+                    Video Codec Library v3.1.1
                 </li>
                 <li>
-                    OpenCV Accelerator v1.00 (supporting OpenCV 4.1.0) 
+                    OpenCV Accelerator v1.10 (supporting OpenCV 4.1.0) 
                     [
                         <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator">
                             GitHub
@@ -627,14 +622,6 @@ layout: default
                     *4: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.
                     <br>
                     If you would like to use unrestricted version, please build AI SDK with Graphics Library Unrestricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">How to Build RZ/V2H AI SDK</a>.
-                    <br>
-                </span>
-                <span id="footnote_v2h_codec">
-                    *5: Video Codec Library support only H.264 Enc in AI SDK v4.00.
-                    <br>
-                    If you would like to use H.264 Dec and H.265 Enc/Dec function,
-                    <br>
-                    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.
                     <br>
                 </span>
             </h6>

@@ -18,7 +18,7 @@ RZ/V2H EVK Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2H Evaluation Board Kit</b>.</h5>
 
-<h5>Supported version: <b>RZ/V2H AI SDK v4.00</b></h5>
+<h5>Supported version: <b>RZ/V2H AI SDK v5.00</b></h5>
 
 <details class="boxdetails" open>
   <summary>Terminology</summary>
@@ -135,6 +135,15 @@ RZ/V2H EVK Getting Started
       You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br>
       <img class="procedure2" src="img/esd.svg" alt="docker" style="max-height: 200px" />
       <br>
+      <div class="note">
+        <span class="note-title">Note</span>
+        Regarding the eSD (Embedded SD) booting, please note the following:
+        <ul class="mb-1">
+          <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>
+          <li>If you use the eSD boot, please implement the eSD on your board according to the standard "SD Specification Part 1 eSD Addendum (version 2.10)".</li>
+          <li>The reboot command cannot be used when using the eSD boot procedure using microSD card described in this guide.</li>
+        </ul>
+      </div>
       <br>
       <h4 id="step7-1" class="u_line">1. Setup RZ/V2H EVK </h4>
       microSD card needs to contain bootloaders, the Linux kernel and root filesystem to boot-up the board.<br>
@@ -362,7 +371,7 @@ sudo mkdir /mnt/sd/home/root/tvm
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
+            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
           </div>
           <br>
           Use the following command to copy the files to root filesystem.
@@ -484,7 +493,7 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection#application-run-stage">here</a> to run the application.
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection#application-run-stage">here</a> to run the application.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>

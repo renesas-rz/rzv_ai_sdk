@@ -173,7 +173,7 @@ git clone -b v1.00 <GitHub repository url>
                                     <br>
                                     <div class="box1">
                                         <u><b>Example:</b></u><br>
-                                        In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">R01_object_detection</a>, change the <a herf="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection/src/define.h"><code>define.h</code></a> as shown below.<br>
+                                        In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a>, change the <a herf="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection/src/define.h"><code>define.h</code></a> as shown below.<br>
                                         <b>Before</b>
 {% highlight cpp %}
 #define CAM_IMAGE_WIDTH             (640)
@@ -193,7 +193,7 @@ git clone -b v1.00 <GitHub repository url>
                                     <br>
                                     <div class="box1">
                                         <u><b>Example:</b></u><br>
-                                        In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection">R01_object_detection</a>, change the <a herf="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection/src/define.h"><code>define.h</code></a> as shown below.<br>
+                                        In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a>, change the <a herf="https://github.com/renesas-rz/rzv_ai_sdk/tree/v{{ site.version }}/R01_object_detection/src/define.h"><code>define.h</code></a> as shown below.<br>
                                         <b>Before</b>
 {% highlight cpp %}
 const static std::string model_dir = "yolov3_onnx";

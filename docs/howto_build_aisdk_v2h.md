@@ -12,7 +12,7 @@ layout: default
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2H AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2H AI SDK v4.00</b></h5>
+<h5>Supported version: <b>RZ/V2H AI SDK v5.00</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -183,35 +183,41 @@ tar zxvf ${WORK}/src_setup/rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
   </li>
   <li>Run the following procedures to apply the patch file.<br>
     <ol>
+  <!-- MEMO:: Uncomment when patch file is necessary. -->
+  <!-- 
       <li>Apply patch files to fix link error.<br>
         <ol type="A">
-          <li>Obtain the patch file from the link below.
+          <li>
+            Obtain the patch file from the link below.
             <table class="mytable">
               <tr>
                 <th>Patch file link</th>
                 <th>Description</th>
               </tr>
               <tr>
-                <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch">0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch</a></td>
-                <td>patch file for fixing glibc link error</td>
-              </tr>          <tr>
-                <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/61835_update_url_gst_common.patch">61835_update_url_gst_common.patch</a></td>
-                <td>patch file for fixing codec library link error</td>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/PATCH_FILENAME.patch">
+                    PATCH_FILENAME.patch
+                  </a>
+                </td>
+                <td>
+                  Write description of patch file.<br>
+                  e.g., patch file for fixing glibc link error
+                </td>
               </tr>
             </table>
           </li>
-          <li>Copy and apply the patch file.
+          <li>
+            Copy and apply the patch file.
 {% highlight shell%}
-cp <Path to the file>/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch ${YOCTO_WORK}
+cp <Path to the file>/PATCH_FILENAME.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}/meta-renesas
-patch -p1 < ../0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch
-
-cp <Path to the file>/61835_update_url_gst_common.patch ${YOCTO_WORK}
-patch -d ${YOCTO_WORK}/meta-rz-features/meta-rz-codecs -p1 < ${YOCTO_WORK}/61835_update_url_gst_common.patch
+patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
 {% endhighlight %}
           </li>
         </ol>
       </li>
+  -->
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
         The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
         <ol type="A">
@@ -244,11 +250,10 @@ ls -1 ${YOCTO_WORK}
 {% endhighlight %}
     <ul>
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
+<!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
-0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch
 0001-tesseract.patch
 0002-sd-image-size-16gb.patch
-61835_update_url_gst_common.patch
 e-CAM22_CURZ*.patch
 meta-econsys
 meta-gplv2
@@ -261,16 +266,10 @@ poky
       </li>
     </ul>
     <div class="note">
-      <span class="note-title">Note 1</span>
+      <span class="note-title">Note</span>
       Evaluation version of Graphics Library has restriction on their running time.<br>
       If you would like to use unrestricted version of Graphics Library,
 	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A1">Appendix 1: Build Graphics Library for Unrestricted Version</a>.<br>
-    </div>
-    <div class="note">
-      <span class="note-title">Note 2</span>
-      Video Codec Library supports only H.264 Enc in AI SDK v4.00.<br>
-      If you would like to use H.264 Dec and H.265 Enc/Dec function,
-	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</a>.<br>
     </div>
   </li>
   <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
@@ -393,7 +392,7 @@ You have prepared following files, which is same as the one provided in <a href=
 <div class="note">
   <span class="note-title">Note 1</span>
   For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/3.1.26/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.26/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
+  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 2</span>
@@ -418,6 +417,15 @@ You have prepared following files, which is same as the one provided in <a href=
       <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package">RZ/V Multi-OS Package</a>
     </li>
   </ul>
+</div>
+<div class="note">
+  <span class="note-title">Note 4</span>
+    Regarding the eSD (Embedded SD) booting, please note the following:
+    <ul class="mb-1">
+      <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>
+      <li>If you use the eSD boot, please implement the eSD on your board according to the standard "SD Specification Part 1 eSD Addendum (version 2.10)".</li>
+      <li>The reboot command cannot be used when using the eSD boot procedure using microSD card described in this guide.</li>
+    </ul>
 </div>
 <br>
 If you have any questions about AI SDK Source Code,<br>
@@ -533,60 +541,6 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
     </li>
   </ol>
 After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-11"> Step 3-11 in How to build RZ/V2H AI SDK Source Code</a> to build the Linux kernel files.
-<br><br>
-
-<h3 id="A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</h3>
-This section explains how to prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br>
-<div class="note">
-  <span class="note-title">Note</span>
-  Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-6">Step 3-6 in How to build RZ/V2H AI SDK Source Code</a>.
-</div>
-  <ol>
-    <li>Download zip file from the link below.
-      <br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/swo/rzv2h-linux-video-codecs-library-package-rtk0ef0192z00001zjzip" role="button">Download Link</a>
-    </li>
-    <br>
-    <li>After you downloaded the zip file, please move the zip file to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
-    <br>
-    </li>
-    <br>
-    <li>Check that zip file are moved to appropriate location.
-{% highlight shell %}
-cd ${WORK}/src_setup
-ls -1 
-{% endhighlight %}
-      <ul>
-        <li>If the above command prints followings, the package is extracted correctly.
-{% highlight shell %}
-README.txt
-RTK0EF0192Z00001ZJ.zip
-rzv2h_ai-sdk_yocto_recipe_v4.00.tar.gz
-yocto
-{% endhighlight %}
-        </li>
-      </ul>
-    </li>
-    <li>Run the below command to delete current Video Codec Library and OpenCVA directories.<br>
-{% highlight shell %}
-rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-codecs
-rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-opencva
-{% endhighlight %}
-    </li>
-    <li>Run the below command to extract the Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function.<br>
-{% highlight shell %}
-unzip RTK0EF0192Z00001ZJ.zip
-tar xvf RTK0EF0192Z00001ZJ/meta-rz-features.tar.gz -C ${YOCTO_WORK}
-{% endhighlight %}
-    </li>
-    <li>Run the below command to apply a patch file to add Video Codec Library.<br>
-{% highlight shell %}
-cd ${YOCTO_WORK}
-patch -p1 -d meta-renesas < ${WORK}/src_setup/RTK0EF0192Z00001ZJ/0001-rzv2h-conf-r9a09g057-Add-hwcodec-to-MACHINE_FEATURE.patch
-{% endhighlight %}
-    </li>
-  </ol>
-After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
 <br><br>
 
 <div class="row">

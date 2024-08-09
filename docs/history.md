@@ -17,6 +17,39 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2H AI SDK v5.00
+                </h3>
+                <h6 align="right" >
+                    2024.8.9
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI SDK v5.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.3.0.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H Linux BSP.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H Graphics Library to v1.2.2.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H Video Codec Library to v3.1.1.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H OpenCV Accelerator to v1.10.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Transfer Learning Tool v4.00
                 </h3>
                 <h6 align="right" >

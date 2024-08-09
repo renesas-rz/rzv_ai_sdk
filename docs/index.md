@@ -38,12 +38,49 @@ layout: default
             <h6 align="right" >
                 2024.8.9
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>RZ/V2H AI SDK v5.00 </b> is now available.<br>
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.3.0.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H Linux BSP.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H Graphics Library to v1.2.2.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H Video Codec Library to v3.1.1.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H OpenCV Accelerator to v1.10.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see RZ/V2H AI SDK Specification in <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V AI SDK Overview page</b></a>.
             <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
+                2024.8.7
+            </h6>
+            <ul>
+                <li>
+                    <b>RZ/V AI Transfer Learning Tool v4.00</b> is now available.<br>
+                    <ul>
+                        <li>
+                            Supported AI Applications v4.00 for RZ/V2H and RZ/V2L.
+                        </li>
+                        <li>
+                            Supported 42 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href= "{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}"><b>How to Re-train AI model</b></a>.
             <br>
         </div>
         <div class="col-12" align="right">

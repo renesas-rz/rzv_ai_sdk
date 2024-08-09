@@ -23,7 +23,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 4.00
+                    Target Version: 5.00
                 </b>
             </h5>
         </div>
@@ -74,7 +74,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         Yocto Linux
                     </td>
                     <td>                <!-- Version -->
-                        Yocto version: 3.1.26 (Dunfell)
+                        Yocto version: 3.1.31 (Dunfell)
                         <br>
                         Kernel version: 5.10.145-cip17
                     </td>
@@ -135,7 +135,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     </td>
                     <td>                <!-- Explanation -->
                         <h6 class="mb-1">
-                            This is used for H.264 encoding.
+                            This is used for H.264 encoding/decoding and H.265 encoding/decoding.
                         </h6>
                     </td>
                 </tr>
@@ -154,12 +154,11 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             </h3>
             Following table shows the list of drivers. 
             <!-- UNCOMMENT following for v5.00 release. -->
-            <!-- 
             <div class="note">
                 <span class="note-title">Note</span>
                 <span class="text-info">&#10004;</span> shows newly supported drivers.
                 <br>
-            </div> -->
+            </div>
             <!-- MEMO: For maintenance
                     When updating the version, follow the rules below
                     - For existing support      &#10004;
@@ -239,7 +238,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             Image Scaling Unit
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>                        <td>
                             <!-- Empty -->
                         </td>
@@ -282,11 +281,11 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         <td>                    <!-- IP -->
                             H.264
                         </td>
-                        <td>&#10004;<br>Encoder only</td>
-                        <td rowspan="2">
-                            Has released as an indivisual package
-                            work for AI SDK v4.00 (codec H.264/H.265).<br>
-                            See <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A3">How to Build RZ/V2H AI SDK Appendix 3</a>.
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>
+                            AI SDK v5.00 newly supports Decoder in addition to Encoder.
                         </td>
                     </tr>
                     <tr>
@@ -295,6 +294,9 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             H.265
                         </td>
                         <td>                    <!-- Remarks -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>
                             <!-- Empty -->
                         </td>
                     </tr>
@@ -306,7 +308,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             SSIF-2 TDM x8
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -318,7 +320,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             SPDIF x3
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -330,7 +332,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             ASRC(Asynchronous sample rate conversion)
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -368,7 +370,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             WDT/4ch
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -380,7 +382,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             RTC
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -394,7 +396,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             ADC 12bitx8
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -406,7 +408,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             TSU
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -496,7 +498,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             CANFD
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -508,7 +510,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             RSCI-2 x10
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -532,7 +534,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             I2C x9
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -544,7 +546,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             I3C x1
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -556,7 +558,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             IRQ
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -568,7 +570,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             NMI
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -580,7 +582,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             GPIO
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -594,7 +596,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             CPG
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -606,7 +608,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             DMAC/80ch (16ch/unit * 5unit)
                         </td>
                         <td>                    <!-- Support -->
-                            <!-- Not supported-->
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -620,18 +622,19 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <h3 id="v2h-limit">
                 Limitations
             </h3>
-            Following functionalities are not supported in RZ/V2H AI SDK v4.00.
+            RZ/V2H AI SDK v5.00 has the following limitations.
             <br>
             <br>
             <ul>
                 <li>
-                    Reboot command *related to WDT in <a href="#v2h-driver">Driver list</a>
+                    RZ/V2H Linux BSP supports CPU/CA55 operation at 1.1 GHz, 1.5 GHz, 1.6 GHz, and 1.7 GHz. It does not support CPU/CA55 operation at 1.8 GHz.
                 </li>
                 <li>
-                    CPU 1.8GHz
+                    When using the ISP equipped camera e-CAM22_CURZH, supported transfer size is only combinations with HD (1280x720), 30 fps, 2 cameras (Total access bytes = 1843200 x 30 x 2) or less.
                 </li>
                 <li>
-                    CPU Shutdown
+                    Some AI models with frequent memory accesses may affect the performance of other LSI functions that access memory.
+                    We are considering to improve this issue in the next release version.
                 </li>
             </ul>
             <br>
