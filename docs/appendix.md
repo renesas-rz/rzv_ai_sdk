@@ -26,7 +26,7 @@ This section explains how to setup the board for eMMC Bootloader.
 <div class="note">
   <span class="note-title">Note</span>
   This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-  If you have already setup the microSD card and the bootloader written in eMMC on the board, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-2">the next step (Step7:2. Deploy Application to the Board in Getting Started)</a>.
+  If you have already setup the microSD card and the bootloader written in eMMC on the board, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">the next step (Step7:2. Deploy Application to the Board in Getting Started)</a>.
 </div>
 
 Follow the instruction below to setup the board.
