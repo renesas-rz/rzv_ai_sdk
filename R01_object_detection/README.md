@@ -47,7 +47,7 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
             MIPI Camera Module(Google Coral Camera)<br>
             Used as a camera input source.
           </li>
-          <li>MicroUSB to Serical Cable for serial communication.</li>
+          <li>MicroUSB to Serial Cable for serial communication.</li>
         </ul>
       </td>
     </tr>
@@ -178,7 +178,7 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
 4. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
-    ``````
+    ```
 4. Build the application by following the commands below.  
     - For RZ/V2L,
       ```sh
@@ -202,7 +202,7 @@ After completion of the guide, the user is expected of following things.
 - microSD card setup is done.
 
 ### File Configuration
-For the ease of deployment all the deployables file and folders are provided in following folders.  
+For the ease of deployment all the deployable files and folders are provided in following folders.  
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
@@ -211,7 +211,7 @@ For the ease of deployment all the deployables file and folders are provided in 
 Each folder contains following items.
 |File | Details |
 |:---|:---|
-|licecnses | License information of AI model. <br>Not necessary for running application. |
+|licenses | License information of AI model. <br>Not necessary for running application. |
 |yolov3_onnx | Model object files for deployment.<br>Pre-processing Runtime Object files included. |
 |yolov3_onnx_fhd | **For `exe_v2h` only.**  <br>Required when using FHD camera input image.<br>See [Reference](#reference). |
 |coco-lables-2014_2017.txt | Label list for Object Detection. |
@@ -227,7 +227,7 @@ Replace each variable according to your board.
     |Board | `EXE_DIR` |`URL` |`SO_FILE` |File Location |
     |:---|:---|:---|:---|:---|
     |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v2.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm-v111.so`</span>  |[Release v2.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v2.00/)  |
-    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
+    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00pre/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v230.so`</span> |[Release v5.00pre](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00pre/)  |
 
     - E.g., for RZ/V2L EVK, use following commands.
         ```sh
@@ -298,7 +298,7 @@ After completion of the guide, the user is expected of following things.
         - PreProcess: Processing time taken for AI pre-processing.  
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
-4. To terninate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
 
 ## Application: Configuration 

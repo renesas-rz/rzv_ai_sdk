@@ -5,8 +5,8 @@ work f00c00 80
 weight f00c80 80
 drp_config f00d00 efe10
 aimac_param_cmd ff0b40 20
-aimac_param_desc ff0b80 10
+aimac_param_desc ff0b80 20
 aimac_cmd ff0bc0 180
-aimac_desc ff0d40 50
+aimac_desc ff0d40 60
 drp_param ff0e00 f0
 drp_desc ff0f00 110
