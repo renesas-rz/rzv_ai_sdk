@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-04-25T15:35:29+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=9240d199057e18f1c55b685f021f9a15922a0eaa">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/5.00/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/">Renesas RZ/V AI</a></h1> -->
+
+        <h1 class="web-title"><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/">Renesas <br class="br-sp-web-title">RZ/V AI</a></h1>
+        <p class="version"><u><a class="version" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/version.html">5.00</a></u></p>
+        
+
+        <!-- <p>The best solution for starting your AI applications.</p> -->
+        <p class="ham-small">The best solution for <br class="br-sp">starting your AI applications.</p>
+        <p class="ham-very-small small">Provided by Renesas Electronics Corporation</p>
+        <!-- <br> -->
+
+        
+
+        
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <div class="col-12">
+                <img src="img/board.svg" alt="board" style="width:48%;max-width: 90px;"/>
+                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%;max-width: 90px;"/>  
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <a class="btn btn-warning btn-lg rounded-pill product-button" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/download.html" role="button">
+                Get the Board<br class="ham-nodisplay br-nsp"> and Software
+              </a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br class="br-nsp">
+        <div class="row">
+          <div class="col-12 mb-1">
+            <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:190px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/about-applications.html">
+                AI Applications Overview
+            </a>
+        </div>
+        <div class="col-12">
+            <a class="btn btn-secondary square-button square-button-link-small" style="width:190px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html">
+                AI SDK Overview
+            </a>
+        </div>
+      </div>
+      <br class="br-nsp">
+        <!-- <div class="container">
+          <div class="row">
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/board.png" alt="board" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
+              </ul>
+            </div>
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/ai_sdk.svg" alt="ai_sdk" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        
+        
+
+        <p class="mb-0 view">
+          <h5 class="ham-nodisplay mt-3" style="margin-bottom: 5px;">
+            To keep you updated, <br class="br-nsp"><b>Watch</b> our <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a><br> 
+          </h5>
+          <span class="ham-nodisplay">
+            <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a>
+          </span>
+        </p>
+        
+
+        <div class="web_index">
+          <input type="checkbox" id="menu-btn-check">
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <div class="menu-content">
+            <p class="ham-display">
+              <span class="ham-string">
+                <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a><br> 
+                <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a>
+              </span>
+            </p>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html">AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#features">Key Features</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#devices">Supported Devices</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#files">File Contents</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2l-spec">RZ/V2L AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2l-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2l-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2h-spec">RZ/V2H AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2h-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2h-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#getting-started">Getting Started</a>
+              </summary>
+              <ul class="index">
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step1">1. Obtain a Board</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step2">2. Obtain Necessary Environment</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step3">3. Obtain AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step4">4. Extract AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step5">5. Setup AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step6">6. Build AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step7">7. Deploy AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step8">8. Run AI Application</a></li>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html">RZ/V2L EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7prep">Preparation</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html">RZ/V2H EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                 </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html">Appendix</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A1">A1. Setup for eMMC Bootloader</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A2">A2. Format SD card</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A3">A3. Shutdown the RZ/V2L EVK</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A4">A4. Shutdown the RZ/V2H EVK</a>
+                    </li>
+                  </ul>
+                 </details>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html">How to Build RZ/V2L AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#step3">3. Build AI SDK</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#A1">Appendix. Unrestricted Version</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html">How to Build RZ/V2H AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#step3">3. Build AI SDK</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#A1">Appendix 1. Unrestricted Version</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#A2">Appendix 2. Resize microSD card image</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html">How to Re-train AI model</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#install">Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#retrain">Re-train the AI model</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#tips">Tips</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html">How to use GUI env.</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_preparation">Preparation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step1">1. AI Navigator Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step2">2. Start AI Navigator</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step3">3. Import AI Applications</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step4">4. Run on the Board</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_appendix.html">Appendix</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/about-applications.html">About AI Applications</a>
+              </summary>
+            </details>
+    <!-- Copy index_list.html start -->
+
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#ai-applications">AI Applications</a>
+              </summary>
+              <ul class="index">
+                <h6 style="margin-bottom: 0px;">
+                  <span class="index-string">
+                    &#10004;: Newly added
+                    <br>
+                    *: Updated
+                  </span>
+                </h6>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture">Agriculture</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture1">Defense wild animals for crop</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture2">Fruit and Vegetable Plant Disease Check</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture3">Ranch Livestock Management</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building">Smart Building</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building1">Elevator passengers Counting</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building2">Conference Room Usage Monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building3">Lighting Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building4">Security Area Intrusion Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building5">Wear management at construction sites</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building6">*Touchless Controller for elevator</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building7">Employee ID check for Restricted Area</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city">Smart City</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city1">Congestion Detection in Railway Station</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city2">Prohibited Area Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city3">*Distracted driving detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city4">Duration monitoring for surveillance camera</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city5">Parking Spot Reservation</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city6">Illegal Parking Check</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city7">Passport check support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city8">Bus passenger counting</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city9">Backtravel Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city10">Violence Activity Check in Surveillance Camera</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city11">Bird Damage Prevention</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city12">Blind Spot Monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city13">Preceding Vehicle Movement Alert</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city14">Emergency Vehicles Detector</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city15">*Illegal Bicycle Approach Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city16">*Bicycle Rental Stock Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city17">*Illegal Bicycle Parking Monitor Support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city18">*Infrastructure Defect Prevention</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city19">*Crime Prevention Support for School</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#healthcare">Healthcare</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#healthcare1">Physical Condition Monitor</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home">Smart Home</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home1">Air Conditioner Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home2">Smart TV</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home3">Pet Detection in Kitchen and Child's Room</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home4">*Touchless Controller for Kitchen Appliance</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home5">*Food Package Expiry Date Check</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial">Industrial</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial1">Work Area Personnel Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial2">Access Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial3">Helmet and safety vest wearing monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial4">*Touchless Controller for Industrial machine</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial5">*Driver Monitoring System</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial6">Species check support in Fish Factory</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial7">*Defect Inspection Support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial8">*Aquaculture Industrial Support</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail">Retail</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail1">Congestion Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail2">Smart POS</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail3">*Marketing Interest Analysis</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail4">Staying and flow line monitoring</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail5">Exhibition Participants Monitoring</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail6">*Store Crime Prevention</a></li>
+                  </ul>
+                </details>
+              </ul>
+            </details>
+    <!-- Copy index_list.html end -->
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#demo">Demo</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html">RZ/V2L How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#shutdown">3. Shutdown process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#tips">Tips</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html">RZ/V2H How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#shutdown">3. Shutdown process</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#video">Video</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#training-video">Training video</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#blog">Blogs</a>
+              </summary>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#reference">Reference</a>
+              </summary>
+            </details>
+          </div>
+        </div>
+        <br class="ham-nodisplay">
+        <br class="ham-nodisplay">
+        <div style="line-height: 1.15em;">
+          
+          <p class="mb-0 ham-small">This project is maintained by <a href="https://github.com/renesas-rz">renesas-rz</a></p>
+          
+          <p class="mb-1 ham-very-small"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </div>
+      </header>
+      <section>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="top col-12">
+        AI Navigator Quick Start Guide<br />
+        ~ How to develop and run RZ/V AI applications on e2 studio ~
+        </div>
+    </div>
+</div>
+<p><br />
+<br /></p>
+<h5 id="ainavi_top">This page explains how to develop and run RZ/V AI applications using a GUI environment.<br />
+For this GUI environment, Renesas provides <b>AI Navigator</b>, which is a set of plugins for the Renesas IDE e<sup>2</sup> studio and supports your application development.<br />
+<br />
+Please read the <a href="https://www.renesas.com/us/en/software-tool/e2studio-information-rz-family#documents">AI Navigator Release Note</a> first. This document describes the changes, restrictions, and some notes.<br />
+<br />
+<table>
+  <tr>
+    <th>Target version</th>
+    <td>AI Navigator V1.1.0</td>
+  </tr>
+  <tr>
+    <th>Supported environment</th>
+    <td>Ubuntu 20.04 LTS, Renesas e<sup>2</sup> studio 2024-04 (or later) for Linux</td>
+  </tr>
+  <tr>
+    <th>Supported Devices</th>
+    <td>RZ/V2L, RZ/V2H</td>
+  </tr>
+  <tr>
+    <th>Supported Board</th>
+    <td>
+        (RZ/V2L) RZ/V2L Evaluation Board Kit<br />
+        (RZ/V2H) RZ/V2H Evaluation Board Kit
+    </td>
+  </tr>
+  <tr>
+    <th>Supported Functions of AI Applications</th>
+    <td>
+        (RZ/V2L) Q01-Q11 in RZ/V AI SDK V2.10<br />
+        (RZ/V2H) Q01, Q08, 01, 02, 07, 11 in RZ/V AI SDK V3.00
+    </td>
+  </tr>
+</table>
+
+<div class="note">
+  <span class="note-title">Recommended</span>
+  Please also watch <b>"AI Navigator Tutorial"</b> videos. These videos will help you quickly learn how to use AI Navigator.<br />
+  (Link)
+  <ul>
+    <li><a href="https://www.renesas.com/us/en/video/ai-navigator-tutorial-1-run-ai-application">AI Navigator Tutorial #1 (Run AI Application)</a></li>
+    <li><a href="https://www.renesas.com/us/en/video/ai-navigator-tutorial-2-customize-ai-model-transfer-learning-tool">AI Navigator Tutorial #2 (Customize AI model by Transfer Learning Tool)</a></li>
+  </ul>
+</div>
+
+<div class="note">
+  <span class="note-title">Note</span>
+  For the users who want to use your own customized environment (Linux, target board, and so on), see <a href="ainavi_appendix.html#ainavi_appendix_d">"Build the Linux and Use your Custom PCB Board or 3rd Party Board"</a>.<br />
+</div>
+</h5>
+
+<h3 id="ainavi_intro">Introduction</h3>
+<p>AI Navigator is a set of plugins for e<sup>2</sup> studio that makes it easy to run AI applications on Renesas devices. <br />
+By using AI Navigator, you can try out Renesas AI application from importing to running on the board with just a few clicks.<br />
+<br />
+In addition, AI Navigator includes some plugins for transfer learning tool (RZ/V AI Transfer Learning Tool) and AI model conversion tool (DRP-AI TVM). That’s why you can also develop your AI embedded systems with AI Navigator, such as training and converting AI models and building application source codes on e<sup>2</sup> studio.<br />
+<br />
+The development steps for RZ/V AI applications are shown below. All steps can be controlled by the AI Navigator. <br />
+The tools “RZ/V AI Transfer Learning Tool” and “DRP-AI TVM” are called by AI Transfer Learning Tool Plugin and AI Model Conversion Tool Plugin, respectively.<br />
+<br />
+<a href="img/ainavi/ainavi_usecases.png" data-lightbox="ainavi_usecases"><img src="img/ainavi/ainavi_usecases.png" alt="AI Navi usecase" /></a><br />
+<br />
+Please follow the steps below to start developing your AI applications with AI Navigator. Note that you can skip some steps depending on your use case.<br /></p>
+
+<h3 id="ainavi_preparation">Preparation</h3>
+<p>Before you start using the AI Navigator, prepare the necessary equipment and software as described in <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step1">Step 1</a> and <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step2">Step 2</a> in <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html">Getting Started</a>.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  You must first install Docker before using AI Navigator. <br />
+  To install Docker, see "<b>1. Set up Docker's apt repository</b>" and "<b>2. Install the Docker packages</b>" on the following Docker web page.<br />
+  <a href="https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository">Install using the apt repository in Docker docs</a><br />
+  <br />
+  In  addition, some plugins in AI Navigator run Docker as a non-root user.
+  See "<b>Manage Docker as a non-root user</b>" in the following Docker web page to run as a non-root user.<br />
+  <a href="https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user">Manage Docker as a non-root user in Docker docs</a>
+</div>
+
+<h3 id="ainavi_step1">Step 1: AI Navigator Installation</h3>
+<div class="note">
+  <span class="note-title">Note</span>
+  AI Navigator V1.1.0 works on e<sup>2</sup> studio <b>Linux Host</b> only.<br />
+</div>
+<div class="note">
+  <span class="note-title">Note</span>
+  If you want to update AI Navigator from the previous version, you can follow the same procedures below.
+</div>
+<p><br /></p>
+<ul>
+  <li><h5>Non-users of e<sup>2</sup> studio</h5></li>
+  Download <b>e<sup>2</sup> studio <u>Linux Host</u></b> from the Renesas website.
+  <br /><br />
+  <a class="btn btn-primary download-button" href="https://www.renesas.com/us/en/software-tool/e2studio-information-rz-family#downloads" role="button">Get e<sup>2</sup> studio</a>
+  <br /><br />
+  <div class="note">
+    <span class="note-title">Note</span>
+    MyRenesas account is required to download e<sup>2</sup> studio.<br />
+  </div>
+  After downloading, install e<sup>2</sup> studio. Read the <a href="https://www.renesas.com/us/en/software-tool/e2studio-information-rz-family#documents">e<sup>2</sup> studio Release Note</a> for the installation.<br />
+  Select the following each item when installing.<br />
+  <ul>
+    <li><b>Device Families</b>: Linux on Renesas RZ</li>
+    <li><b>Additional Software</b>: Renesas AI Navigator, AI Transfer Learning Tool Plugin, AI Model Conversion Tool Plugin</li>
+  </ul>
+  <br /><br />
+  <li><h5>Users of e<sup>2</sup> studio</h5></li>
+  Add the necessary plugins by following the steps below.<br />
+  <ol>
+    <li>Launch e<sup>2</sup> studio.</li>
+    <li>Click <b>[Help] &gt; [Install Renesas IDE Features...]</b>.</li>
+    <li>Select <b>[Renesas AI Navigator]</b>, <b>[AI Transfer Learning Tool Plugin]</b>, <b>[AI Model Conversion Tool Plugin]</b> and click <b>[Finish]</b>.</li>
+    <li>Confirm that these plugins are selected in the "install" dialog box and click <b>[Next]</b>.</li>
+    <li>Confirm these plugins are selected as the installation target and click <b>[Next]</b>.</li>
+    <li>Read the license agreements and select "I accept the terms of the license agreement" if you agree.
+        Then, click <b>[Finish]</b> to start the plugins installation.</li>
+    <li>If the dialog of the trust certificate dialog appears during the installation, check the certificate and click <b>[OK]</b>.</li>
+    <li>After the installation is finished, e<sup>2</sup> studio will prompt you to restart. Click <b>[Restart Now]</b>.</li>
+  </ol>
+  <div class="note">
+    <span class="note-title">Note</span>
+    The device family "Linux on Renesas RZ" must be available on your e<sup>2</sup> studio environment. Otherwise, you may not be able to build your AI application.<br />
+  </div>
+  <div class="note">
+    <span class="note-title">Note</span>
+    If you want to uninstall these plugins, see <a href="ainavi_appendix.html#ainavi_appendix_a">"AI Navigator Uninstallation"</a>.<br />
+  </div>
+  <br />
+</ul>
+
+<h3 id="ainavi_step2">Step 2: Start AI Navigator</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      Click <b>[Renesas Views] &gt; [Renesas AI] &gt; [AI Navi]</b> and the AI Navigator will launch.  
+      <br />
+      <div class="note">
+        <span class="note-title">Note</span>
+        For each view and button in the AI Navigator, see the help page for AI Navigator. You can access it by clicking the <b>[Learn more...]</b> in the start view (on the top page of AI Navigator) or by selecting <b>[Help] &gt; [Help Contents] &gt; [Renesas AI Navigator]</b>.
+      </div>
+      <div class="note">
+        <span class="note-title">Note</span>
+        If you want to restart the project, select it from the pull-down menu in the start view and click <b>[Continue]</b> in the start view.
+      </div>
+    </div>
+    <div class="col-6">
+      <a href="img/ainavi/ainavi_top_view.png" data-lightbox="ainavi_top"><img src="img/ainavi/ainavi_top_view.png" alt="AI Navigator top" width="90%" /></a>
+    </div>
+  </div>
+</div>
+<p><br /></p>
+
+<h3 id="ainavi_step3">Step 3: Import AI Applications Project</h3>
+<p>Import an AI application project from Renesas AI server by the following steps.</p>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <p>1. Click <b>[Create New AI]</b> in the start view.</p><br />
+    </div>
+    <div class="col-6">
+      <a href="img/ainavi/ainavi_import_app_1.png" data-lightbox="ainavi_import_app_1"><img src="img/ainavi/ainavi_import_app_1.png" alt="ainavi" width="90%" /></a>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-6">
+      <p>2. Select a category of AI application based on your case. You can search the proper category if you enter keywords in Filter.</p><br />
+      <div class="note">
+        <span class="note-title">Note</span>
+        "Bring Your Own Model" is an empty project for utilizing your own AI models and applications. To understand its usage, see this importing step, and then see <a href="ainavi_appendix.html#ainavi_appendix_b"> B. How to use Bring Your Own Model Project</a>.
+      </div>
+    </div>
+    <div class="col-6">
+      <a href="img/ainavi/ainavi_import_app_2.png" data-lightbox="ainavi_import_app_2"><img src="img/ainavi/ainavi_import_app_2.png" alt="ainavi app importing step2" width="90%" /></a>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-6">
+      <p>3. Select an AI application.</p><br />
+    </div>
+    <div class="col-6">
+      <a href="img/ainavi/ainavi_import_app_3.png" data-lightbox="ainavi_import_app_3"><img src="img/ainavi/ainavi_import_app_3.png" alt="ainavi app importing step3" width="90%" /></a>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-6">
+      <p id="ainavi_step1-4">4. Click <b>[Import]</b> and import an AI application.</p><br />
+      <div class="note">
+        <span class="note-title">Note</span>
+        Once you import an AI application, you cannot import an AI application which has the same function (same number like "Qxx") in the same work space.
+      </div>
+    </div>
+    <div class="col-6">
+      <a href="img/ainavi/ainavi_import_app_4.png" data-lightbox="ainavi_import_app_4"><img src="img/ainavi/ainavi_import_app_4.png" alt="ainavi app importing step4" width="90%" /></a>
+    </div>
+  </div>
+    <br />
+  <div class="row">
+    <div class="col-6">
+      <p>5. The Project and AI information view will appear if the import is successful.  </p>
+      From this view, you should specify the location of the downloaded and extracted RZ/V AI SDK directory.<br />
+      <u>If you haven't downloaded the RZ/V AI SDK</u>, which is the environment for the imported AI application, click <b>[Download...]</b> to download and extract it. And then, specify the directory path.<br />
+      <u>If you've already downloaded and extracted the RZ/V AI SDK</u>, click <b>[Set the download folder...]</b> and specify the directory.<br />
+    </div>
+    <div class="col-6">
+      <a href="img/ainavi/ainavi_import_app_5.png" data-lightbox="ainavi_import_app_5"><img src="img/ainavi/ainavi_import_app_5.png" alt="ainavi app importing step5" /></a>
+    </div>
+  </div>
+</div>
+<p><br />
+<br />
+That’s it for the steps to import an AI application project.<br />
+Please proceed to each step according to your requirements.<br /></p>
+<ul>
+  <li><b>For the users who just want to run an AI application: go to <u>Step 4: Run on the Board</u></b></li>
+  <li><b>For the users who want to customize AI models: go to <u>Option 1: Train AI model -&gt; Option 2: Convert AI model -&gt; Option3: Edit Application -&gt; Step 4: Run on the Board</u></b></li>
+  <li><b>For the users who want to use AI models without any changes, but want to edit AI application source code: go to  <u>Option3: Edit Application -&gt; Step 4: Run on the Board</u></b></li>
+</ul>
+<div class="note">
+  <span class="note-title">Click the button</span>
+  As you click each button, the guides for that option appear and the color of the button changes to gray. Click them as needed.<br />
+  When you click a button again, the option guides close and the button returns to its default color.<br />
+  <br />
+  <div class="ButtonTLT">Option1: Train AI Model</div>
+  <div class="ButtonTVM">Option2: Convert AI Model</div>
+  <div class="ButtonAppBuild">Option3: Edit Application</div>
+</div>
+<div class="ContentsTLT">
+  <h3 id="ainavi_option1">Option1: Train AI Model</h3>
+  For RZ/V, you can train any AI models provided in any Renesas AI application using the <b>RZ/V AI Transfer Learning Tool</b> (hereinafter referred to as RZ/V AI TLT).
+  <div class="note">
+    <span class="note-title">Note</span>
+    Refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html">RZ/V AI Transfer Learning Tool How to Re-train AI model</a> to know the supported AI applications and how to use RZ/V AI TLT. This section just explains launching RZ/V AI TLT from AI Navigator.
+  </div>
+  <div class="note">
+    <span class="note-title">Note</span>
+    RZ/V AI TLT launched by AI Navigator V1.1.0 only supports <b>RZ/V2L AI Applications v2.10</b>.
+  </div>
+  <br />
+  <h5 id="ainavi_option1-1">1. Configure the environment for the transfer learning tool</h5>
+  <div class="note">
+    <span class="note-title">Note</span>
+    This is mandatory only for the first time. If you have already completed this step, you can pass to the next <a href="#ainavi_option1-2">2. Launch the transfer learning tool</a>.
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        (1) Click <b>[Start Setting...]</b> to configure the environments for RZ/V AI TLT.<br />
+        At this time, the download page for RZ/V AI Transfer Learning Tool on the Renesas website will open automatically. Read the "SOFTWARE LICENSE AGREEMENT" and click "Accept and download" if you agree. <br />
+        After the download is completed, select the downloaded file.<br />
+        <br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tlt_step1-1.png" data-lightbox="ainavi_tlt_step1-1"><img src="img/ainavi/ainavi_tlt_step1-1.png" alt="ainavi TLT install 1" width="90%" /></a>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        (2) The confirmation window appears indicating that it may take a long time to complete, then click <b>[OK]</b>.<br />
+        <br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tlt_step1-2.png" data-lightbox="ainavi_tlt_step1-2"><img src="img/ainavi/ainavi_tlt_step1-2.png" alt="ainavi TLT install 2" /></a>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        (3) The RZ/V AI TLT setup process begins. During the setup, a window appears prompting you to enter the root password. Enter your root password and the process will continue.<br />
+        <br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tlt_step1-3.png" data-lightbox="ainavi_tlt_step1-3"><img src="img/ainavi/ainavi_tlt_step1-3.png" alt="ainavi TLT install 3" width="90%" /></a>
+      </div>
+    </div>
+  </div>
+  <br />
+  (4) When the setup process is complete, the installation window will close automatically. <br />
+  At this point, please confirm the console on e<sup>2</sup> studio and logged as below. If it is the same, the setup process has completed successfully. <br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Finished at <span class="nb">exit </span>code 0
+Please confirm the console log.</code></pre></figure>
+
+  <div class="note">
+    <span class="note-title">Note</span>
+    The RZ/V AI TLT is installed as below:<br />
+    (e.g.) If e<sup>2</sup> studio is installed in ~/.local/share/renesas/<b>e2_studio</b>, RZ/V AI TLT is  installed in ~/.local/share/renesas/<b>rzv_ai_tlt</b>.<br />
+    <br />
+    In addition, RZ/V AI TLT provides this user's manual (r21ut0254ej0210-rzv-ai-tlt.pdf), which is stored in rzv_ai_tlt/2.10/docs.<br />
+  </div>
+  <br />
+  <h5 id="ainavi_option1-2">2. Launch the transfer learning tool</h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        Click <b>[Transfer Learning...]</b> and open RZ/V AI TLT.<br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tlt_step2.png" data-lightbox="ainavi_tlt_step2"><img src="img/ainavi/ainavi_tlt_step2.png" alt="ainavi" width="90%" /></a>
+      </div>
+    </div>
+  </div>
+  <br />
+  After finishing the transfer learning, you need to convert the trained AI model with DRP-AI TVM to run it on the target board. <br />
+  Click the above button on this page <b>[Option2: Convert AI Model]</b> and see the procedures. <br />
+  <br />
+</div>
+
+<div class="ContentsTVM">
+  <h3 id="ainavi_option2">Option2: Convert AI Model</h3>
+  After training an AI model, convert an AI model to generate an executable runtime on the target device. For RZ/V, DRP-AI TVM is used, which is a machine learning compiler plugin for Apache TVM with AI accelerator DRP-AI.<br />
+  <b>AI Model Conversion Tool Plugin</b> (hereafter referred to as "<b>TVM Plugin</b>") is a plugin for DRP-AI TVM and enables it to run on e<sup>2</sup> studio.<br />
+  <br />
+  For DRP-AI TVM, please refer to the following website and GitHub page.<br />
+  <ul>
+    <li><a href="https://www.renesas.com/us/en/key-technologies/artificial-intelligence/ai-tool-drp-ai-tvm">AI Tool: DRP-AI TVM (Renesas website)</a></li>
+    <li><a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">DRP-AI TVM (GitHub)</a></li>
+  </ul>
+  <div class="note">
+    <span class="note-title">Note</span>
+    See the AI Model Conversion Tool Plugin help page for details on how to use it. You can view it by selecting <b>[Help] &gt; [Help Contents] &gt; [AI Model Conversion Tool]</b>.<br />
+    This section briefly describes the steps in the AI model conversion procedure usingy DRP-AI TVM on e<sup>2</sup> studio.
+  </div>
+  <div class="note">
+    <span class="note-title">Note</span>
+    Some AI models available in Renesas AI application need to skip the preprocessing setting. Refer to the <a href="https://www.renesas.com/us/en/software-tool/e2studio-information-rz-family#documents">AI Navigator Release Note</a> for the status of support.<br />
+  </div>
+  <br />
+  <h5 id="ainavi_option2-1">1. Configure the environment for DRP-AI TVM on e<sup>2</sup> studio</h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        (1) Click <b>[Convert AI model]</b> on AI Navigator menu and open the "Convert AI Model" view.<br />
+        <br />
+        (2) Click <b>[Start Settings...]</b> and open the DRP-AI TVM.<br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_step1-1-2.png" data-lightbox="ainavi_tvm_step1-1-2"><img src="img/ainavi/ainavi_tvm_step1-1-2.png" alt="ainavi tvm_step1-1,2" width="90%" /></a>
+      </div>
+    </div>
+    <br /><br />
+  </div>
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        (3) Confirm that the directory path has set and click <b>[Setup now]</b> if there is no problem.<br />
+        <div class="note">
+          <span class="note-title">Note</span>
+          The directory path is set automatically when you specified the directory path in <a href="#ainavi_step1-4">Step 3-4</a>. If the path is not set, click <b>[Browse]</b> and set the path manually.
+        </div>
+        When the setup is completed, the Installation Success screen appears. Click <b>[Close]</b> to close the window.<br />
+        <br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_step1-4.png" data-lightbox="ainavi_tvm_step1-4"><img src="img/ainavi/ainavi_tvm_step1-4.png" alt="ainavi tvm_step1-4" /></a>
+      </div>
+    </div>
+  </div>
+  <br />
+  <h5 id="ainavi_option2-2">2. Input File Setting</h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        You need to set up the target project for DRP-AI TVM first. Specify the following items.<br />
+        <br />
+        <ul>
+          <li><b>Project name</b></li>
+          Select your target AI application project.
+          <li><b>Device</b></li>
+          Select your target device.
+          <li><b>AI SDK Docker image name</b></li>
+          Select the RZ/V AI SDK that you have set up to convert your AI model.
+          <li><b>Select framework</b></li>f
+          Select an AI framework that the input AI model file uses.
+          <li><b>Input model file</b></li>
+          The file path of your AI model is automatically set by RZ/V AI TLT. It is not necessary to specify this field.
+          <li><b>Output directory</b></li>
+          Specify the output directory after conversion.
+        </ul>
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_pjsetting.png" data-lightbox="ainavi_tvm_pjsetting"><img src="img/ainavi/ainavi_tvm_pjsetting.png" alt="ainavi" weight="90%" /></a>
+      </div>
+    </div>
+    After setting, click <b>[Next]</b>.
+    <div class="note">
+      <span class="note-title">Note</span>
+      <b>[Setup environment]</b> on this view has the same function as <a href="#ainavi_option2-1">1. Configure the environment for DRP-AI TVM on e<sup>2</sup> studio</a>.<br />
+      If you have already set up the DRP-AI TVM environment for your application, you do not need to click this button.
+    </div>
+  </div>
+  <br />
+  <h5 id="ainavi_option2-3">3. Preprocess Setting</h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        The pre-processing parameters are already set by default and do not need to be changed. Click <b>[Next]</b> on this Preprocessing Settings screen to proceed to the next step, <a href="#ainavi_option2-4">AI model conversion</a>. <br />
+        However, if you want to use another input, such as using another camera, etc, configure the preprocessing parameters by following the steps below.<br />
+        <br />
+        (1) Select the target input node.<br />
+        <br />
+        (2) Confirm the <b>"Preprocessing output directory"</b> and change it if necessary.<br />
+        By default, <b>"Use DRP-AI to speed up preprocessing"</b> is checked. If you want to skip preprocessing, clear the check box and click <b>[Next]</b> to go to the next step <a href="#ainavi_option2-4">AI model conversion</a>.<br />
+        <br />
+        (3) Set the input data parameters for preprocessing.<br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_preprocessing_1-3.png" data-lightbox="ainavi_tvm_preprocessing_1-3"><img src="img/ainavi/ainavi_tvm_preprocessing_1-3.png" alt="ainavi tvm preprocessing setting 1-3" weight="90%" /></a>
+      </div>
+    </div>
+    <br /><br />
+    <div class="row">
+      <div class="col-6">
+        (4) Select the preprocessing operator parameters and enter each setting value.<br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_preprocessing_4.png" data-lightbox="ainavi_tvm_preprocessing_4"><img src="img/ainavi/ainavi_tvm_preprocessing_4.png" alt="ainavi tvm preprocessing setting 4" weight="90%" /></a>
+      </div>
+    </div>
+    <br /><br />
+    <div class="row">
+      <div class="col-6">
+        (5) Specify the preprocessing output data format. These parameters are passed to the AI model.<br />
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_preprocessing_5.png" data-lightbox="ainavi_tvm_preprocessing_5"><img src="img/ainavi/ainavi_tvm_preprocessing_5.png" alt="ainavi tvm preprocessing setting 5" weight="90%" /></a>
+      </div>
+    </div>
+  </div>
+  <br />
+  <h5 id="ainavi_option2-4">4. AI model conversion</h5>
+  <div class="note">
+    <span class="note-title">Click the button</span>
+    The AI model conversion procedure is different for each device.<br />
+    Click the button below that corresponds to your target device and the appropriate conversion procedure will appear.<br />
+    <br />
+    <div class="ButtonTVM_V2L">RZ/V2L</div>
+    <div class="ButtonTVM_V2H">RZ/V2H</div>
+    <br />
+  </div>
+  <div class="ContentsTVM_V2L">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          Start the AI model conversion to generate its runtime for <b>RZ/V2L</b> by following the steps below.<br />
+          <br />
+          (1) Configure the option setting.<br />
+          Select "Optimization level".<br />
+          If you want to check edit a conversion script here uses this conversion, click <b>[Check conversion script]</b>.<br />
+          <br />
+          (2)Click <b>[Start conversion]</b> and the conversion process will start. At this time, the console on e<sup>2</sup> studio will appear and display logs.<br />
+          <br />
+        </div>
+        <div class="col-6">
+          <a href="img/ainavi/ainavi_tvm_conversion_1-2.png" data-lightbox="ainavi_tvm_conversion_1-2"><img src="img/ainavi/ainavi_tvm_conversion_1-2.png" alt="ainavi ai model conversion start" weight="90%" /></a>
+        </div>
+      </div>
+      <br /><br />
+      <div class="row">
+        <div class="col-6">
+          (3) When finishing the conversion, the result will be shown in the <b>"Conversion result"</b> area.<br />
+        </div>
+        <div class="col-6">
+          <a href="img/ainavi/ainavi_tvm_conversion_3.png" data-lightbox="ainavi_tvm_conversion_3"><img src="img/ainavi/ainavi_tvm_conversion_3.png" alt="ainavi ai model conversion complete" weight="90%" /></a>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    After the conversion is finished, you need to edit and build your AI application. <br />
+    Click the above button on this page <b>[Option3: Edit Application]</b> and see the procedures. <br />
+    <br />
+    <div class="note">
+      <span class="note-title">Note</span>
+      Before moving to the next step, close the AI Model Conversion Tool.
+    </div>
+  <br />
+  </div>
+  <div class="ContentsTVM_V2H">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          Start the AI model conversion to generate its runtime for <b>RZ/V2H</b> by following the steps below.<br />
+          <br />
+          (1) Configure the option setting.Select "Optimization level".<br />
+          If you want to check edit a conversion script here uses this conversion, click <b>[Check conversion script]</b>.<br />
+          <br />
+        </div>
+        <div class="col-6">
+          <a href="img/ainavi/ainavi_tvm_conversion_v2h_1-2.png" data-lightbox="/ainavi_tvm_conversion_v2h_1-2"><img src="img/ainavi//ainavi_tvm_conversion_v2h_1-2.png" alt="ainavi ai model conversion start(v2h)" weight="90%" /></a>
+        </div>
+      </div>
+      (2) Configure the quantization setting.<br />
+      <ol type="a">
+        <li>Select the target input node.</li>
+        <li>Specify the calibration data directory containing data to be used during the quantization process.</li>
+        <div class="note">
+          <span class="note-title">Note</span>
+          For the calibration data directory, specify the directory where the data is stored.
+          TVM Plugin supports the following extensions.<br />
+          <i>.jpg .jpeg .png .bmp .gif .tif .tiff .npy</i>
+        </div>
+        <li>The Mean and Standard deviation parameters are already set by default and do not need to be changed.</li>
+        <div class="note">
+          <span class="note-title">Note</span>
+          The Mean and Standard deviation parameters are the most important parameters for maintaining the model's accuracy.<br />
+          If you want to change these parameters, make sure that the specified parameters match the normalization parameters used during training.<br />
+          <br />
+          For more details on how to change the Mean and Standard deviation, please see the TVM Plugin Help.(Click [Help]-[Help Contents] - [AI Model Conversion Tool].)
+        </div>
+      </ol>
+      (3)Click <b>[Start conversion]</b> and the conversion process will start. At this time, the console on e<sup>2</sup> studio will appear and display logs.<br />
+      <br />
+      <div class="row">
+        <div class="col-6">
+          (4) When finishing the conversion, the result will be shown in the <b>"Conversion result"</b> area.<br />
+        </div>
+        <div class="col-6">
+          <a href="img/ainavi/ainavi_tvm_conversion_v2h_4.png" data-lightbox="ainavi_tvm_conversion_v2h_4"><img src="img/ainavi/ainavi_tvm_conversion_v2h_4.png" alt="ainavi ai model conversion complete (v2h)" weight="90%" /></a>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    After the conversion is finished, you need to edit and build your AI application. <br />
+    Click the above button on this page <b>[Option3: Edit Application]</b> and see the procedures. <br />
+    <br />
+    <div class="note">
+      <span class="note-title">Note</span>
+      Before moving to the next step, close the AI Model Conversion Tool.
+    </div>
+  <br />
+  </div>
+  <br />
+</div>
+
+<div class="ContentsAppBuild">
+  <h3 id="ainavi_option3">Option3: Edit Application</h3>
+  You can modify your AI application source codes and build them on e<sup>2</sup> studio.<br />
+  Click <b>[Edit Application]</b> on the AI Navigator menu and follow the instructions below. <br />
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-8">
+        <a href="img/ainavi/ainavi_build.png" data-lightbox="ainavi_build"><img src="img/ainavi/ainavi_build.png" alt="ainavi build" weight="90%" /></a><br />
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+  </div>
+  <br />
+  <h5 id="build_setup">1. Configure the build environment</h5>
+  Click <b>[Start Settings...]</b>, and then start configuring the build environment for the AI application. <br />
+  Once the setup process is complete, the appropriate toolchain for the target e<sup>2</sup> studio project is automatically registered.<br />
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="note">
+          <span class="note-title">Note</span>
+          After registering the toolchain, you need to specify the toolchain version for your AI application.<br />
+          Click <b>[Project] -&gt; [Properties] -&gt; [C/C++ Build] -&gt; [Settings]</b>, and click the <b>"Toolchain"</b> tab.<br />
+          Then, select the toolchain version in <b>"Use integrated tool chain version"</b> as shown in the figure, and click <b>[Apply and Close]</b>. <br />
+          *The toolchain version is (RZ/V2L) 3.1.21, (RZ/V2H) 3.1.26 in AI Navigator 1.1.0.
+        </div>
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_build_set_toolchain_ver.png" data-lightbox="ainavi_build_set_toolchain_ver"><img src="img/ainavi/ainavi_build_set_toolchain_ver.png" alt="ainavi build set toolchain version" width="90%" /></a>
+      </div>
+    </div>
+  </div>
+  <br />
+  <h5 id="build_edit_source">2. Edit Source codes</h5>
+  Click <b>[Edit...]</b> and edit a source code.<br />
+  <div class="note">
+    <span class="note-title">Note</span>
+    When you click <b>[Edit...]</b>, a main source file of the target AI application appears.<br />
+    If you want to edit another source file, select it in the src directory on the project explorer.
+  </div>
+  <br />
+  <h5 id="build_source">3. Build</h5>
+  Click <b>[Build]</b> and start building. The build result will be shown in the console on the e<sup>2</sup> studio.<br />
+  <br />
+</div>
+<p><br /></p>
+
+<h3 id="ainavi_step4">Step 4: Run on the Board</h3>
+<p>It’s time to run your AI application on the target board.<br />
+Click <b>[Run on the Board]</b> on the AI Navigator menu and follow the steps below. <br /></p>
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col-8">
+      <a href="img/ainavi/ainavi_run_the_ai.png" data-lightbox="ainavi_run_ai"><img src="img/ainavi/ainavi_run_the_ai.png" alt="ainavi run ai" weight="90%" /></a><br />
+    </div>
+    <div class="col-2">
+    </div>
+  </div>
+</div>
+<p><br /></p>
+<h5 id="ainavi_format_sd">1. Format SD card</h5>
+<p>Insert your micro SD card into your Linux host PC.<br />
+Click on <b>[Create a bootable disk…]</b> and you can automatically format your SD for booting the board.<br /></p>
+
+<div class="note">
+  <span class="note-title">Note</span>
+  For formatting procedure on Linux console, please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A2">A2. Format SD card</a>, <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7-1">1. Setup RZ/V2L EVK</a> or <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7-1">1. Setup RZ/V2H EVK</a>, and click on <b>eSD Bootloader</b>.
+</div>
+<div class="note">
+  <span class="note-title">Note for RZ/V2H users</span>
+  <b>bmap-tools</b> is used to set up the RZ/V2H EVK. If you do not have it installed, the following message will appear when creating a bootable disk.<br />
+  <i>"bmaptool is required for this setup program. Do you want to install it now?"</i><br />
+  If you accept it, type "yes" and the creation process will continue.
+</div>
+<p><br /></p>
+<h5 id="ainavi_boot_board">2. Boot the board</h5>
+<p>Start booting the board with the formatted SD card. 
+If you are not sure how to boot the target board, click on <b>[Boot instruction…]</b> and the instructions for <a href="https://Tool-support.renesas.com/tool-support/Zoo/boot_boad_guide/RZV2L_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2L Evaluation Board Kit</a> or <a href="https://Tool-support.renesas.com/tool-support/Zoo/boot_boad_guide/RZV2H_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2H Evaluation Board Kit</a> will appear.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  At this point, be sure to configure each IP address for the connection between your Linux host PC and the target board.<br />
+  This may cause the later process (copying AI models and applications, and running the AI application) to fail if you have not configured it.<br />
+  <br />
+  In addition, if you want to use IP addresses other than those set by default in AI Navigator, please see <a href="ainavi_appendix.html#ainavi_appendix_c">Settings required when using other IP addresses of target board</a>.
+</div>
+<p><br /></p>
+<h5 id="ai_navi_copy_ai">3. Copy AI model and Application to the board</h5>
+<p>Once the board is configured, you are ready to transfer your AI models and AI applications to the board.<br />
+<br />
+Click <b>[Copy AI]</b> to copy your AI models to the board.<br />
+Then, click <b>[Copy App]</b> to copy your AI applications to the board.<br />
+<br /></p>
+<h5 id="build_source">4. Run AI application</h5>
+<p>Click <b>[Run the AI]</b> and start running your AI application on the board.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  Please read the readme.md in each AI application project before using it. Each readme.md describes the specification, such as which input mode (such as MIPI or USB camera) is supported, how to run the application, and so on.<br />
+  <br />
+  Also, read "RZV_AI_App_mode_switching_guide_en.pdf" in your imported AI application project. This document describes how to change some configurations when changing the input mode of AI application.<br />
+</div>
+<p><br /></p>
+<h4>
+  This is the end of AI Navigator Quick Start Guide.
+</h4>
+<p>Please refer to <a href="ainavi_appendix.html">AI Navigator Quick Start Guide Appendix</a> for the additional information.<br />
+<br /><br /></p>
+
+<script>
+$(function() {
+    $(".ButtonTLT").click(function() {
+        $(".ContentsTLT").toggleClass("DisplayTLT");
+        $(".ButtonTLT").toggleClass("clicked");
+        $(".ButtonTVM").removeClass("clicked");
+        $(".ButtonAppBuild").removeClass("clicked");
+        $(".ContentsTVM").removeClass("DisplayTVM");
+        $(".ContentsAppBuild").removeClass("DisplayAppBuild");
+    });
+    $(".ButtonTVM").click(function() {
+        $(".ContentsTVM").toggleClass("DisplayTVM");
+        $(".ButtonTVM").toggleClass("clicked");
+        $(".ButtonTLT").removeClass("clicked");
+        $(".ButtonAppBuild").removeClass("clicked");
+        $(".ContentsTLT").removeClass("DisplayTLT");
+        $(".ContentsAppBuild").removeClass("DisplayAppBuild");
+    });
+    $(".ButtonAppBuild").click(function() {
+        $(".ContentsAppBuild").toggleClass("DisplayAppBuild");
+        $(".ButtonAppBuild").toggleClass("clicked");
+        $(".ButtonTLT").removeClass("clicked");
+        $(".ButtonTVM").removeClass("clicked");
+        $(".ContentsTLT").removeClass("DisplayTLT");
+        $(".ContentsTVM").removeClass("DisplayTVM");
+    });
+    $(".ButtonTVM_V2L").click(function() {
+        $(".ContentsTVM_V2L").toggleClass("DisplayTVM_V2L");
+        $(".ButtonTVM_V2L").toggleClass("clicked");
+        $(".ButtonTVM_V2H").removeClass("clicked");
+        $(".ContentsTVM_V2H").removeClass("DisplayTVM_V2H");
+    });
+    $(".ButtonTVM_V2H").click(function() {
+        $(".ContentsTVM_V2H").toggleClass("DisplayTVM_V2H");
+        $(".ButtonTVM_V2H").toggleClass("clicked");
+        $(".ButtonTVM_V2L").removeClass("clicked");
+        $(".ContentsTVM_V2L").removeClass("DisplayTVM_V2L");
+    });
+});
+</script>
+
+<style>
+  .ButtonTLT{
+      display: inline-block;
+      background: #4471A9;
+      color: #FFFFFF;
+      font-weight: bold;
+      min-width: max-content;
+      padding: 5px 20px 5px;
+      cursor: pointer;
+  }
+  .ButtonTLT.clicked{
+      background: #797979;
+  }
+  .ContentsTLT{
+    display: none;
+    background: #FFFFFF;
+    border: 1px dotted #B1C6E0;
+    margin-top: 20px; 
+  }
+  .DisplayTLT{
+    display: block;
+  }
+  .ButtonTVM{
+      display: inline-block;
+      background: #669933;
+      color: #FFFFFF;
+      font-weight: bold;
+      min-width: max-content;
+      padding: 5px 20px 5px;
+      cursor: pointer;
+  }
+  .ButtonTVM.clicked{
+      background: #797979;
+  }
+  .ContentsTVM{
+    display: none;
+    background: #FFFFFF;
+    border: 1px dotted #B1C6E0;
+    margin-top: 20px; 
+  }
+  .DisplayTVM{
+    display: block;
+  }
+  .ButtonAppBuild{
+      display: inline-block;
+      background: #993399;
+      color: #FFFFFF;
+      font-weight: bold;
+      min-width: max-content;
+      padding: 5px 20px 5px;
+      cursor: pointer;
+  }
+  .ButtonAppBuild.clicked{
+      background: #797979;
+  }
+  .ContentsAppBuild{
+    display: none;
+    background: #FFFFFF;
+    border: 1px dotted #B1C6E0;
+    margin-top: 20px; 
+  }
+  .DisplayAppBuild{
+    display: block;
+  }
+    .ButtonTVM_V2L{
+      display: inline-block;
+      background: #2a289d;
+      color: #FFFFFF;
+      font-weight: bold;
+      min-width: max-content;
+      padding: 5px 20px 5px;
+      cursor: pointer;
+  }
+  .ButtonTVM_V2L.clicked{
+      background: #797979;
+  }
+  .ContentsTVM_V2L{
+    display: none;
+    background: #FFFFFF;
+    border: 0px;
+    margin-top: 20px; 
+  }
+  .DisplayTVM_V2L{
+    display: block;
+  }
+  .ButtonTVM_V2H{
+      display: inline-block;
+      background: #2a289d;
+      color: #FFFFFF;
+      font-weight: bold;
+      min-width: max-content;
+      padding: 5px 20px 5px;
+      cursor: pointer;
+  }
+  .ButtonTVM_V2H.clicked{
+      background: #797979;
+  }
+  .ContentsTVM_V2H{
+    display: none;
+    background: #FFFFFF;
+    border: 0px;
+    margin-top: 20px; 
+  }
+  .DisplayTVM_V2H{
+    display: block;
+  }
+</style>
+
+
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+    <script src="/rzv_ai_sdk/5.00/assets/js/scale.fix.js"></script>
+  </body>
+</html>

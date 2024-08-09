@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-08-07T12:06:46+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=9240d199057e18f1c55b685f021f9a15922a0eaa">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/5.00/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/">Renesas RZ/V AI</a></h1> -->
+
+        <h1 class="web-title"><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/">Renesas <br class="br-sp-web-title">RZ/V AI</a></h1>
+        <p class="version"><u><a class="version" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/version.html">5.00</a></u></p>
+        
+
+        <!-- <p>The best solution for starting your AI applications.</p> -->
+        <p class="ham-small">The best solution for <br class="br-sp">starting your AI applications.</p>
+        <p class="ham-very-small small">Provided by Renesas Electronics Corporation</p>
+        <!-- <br> -->
+
+        
+
+        
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <div class="col-12">
+                <img src="img/board.svg" alt="board" style="width:48%;max-width: 90px;"/>
+                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%;max-width: 90px;"/>  
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <a class="btn btn-warning btn-lg rounded-pill product-button" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/download.html" role="button">
+                Get the Board<br class="ham-nodisplay br-nsp"> and Software
+              </a>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br class="br-nsp">
+        <div class="row">
+          <div class="col-12 mb-1">
+            <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:190px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/about-applications.html">
+                AI Applications Overview
+            </a>
+        </div>
+        <div class="col-12">
+            <a class="btn btn-secondary square-button square-button-link-small" style="width:190px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html">
+                AI SDK Overview
+            </a>
+        </div>
+      </div>
+      <br class="br-nsp">
+        <!-- <div class="container">
+          <div class="row">
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/board.png" alt="board" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
+              </ul>
+            </div>
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/ai_sdk.svg" alt="ai_sdk" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        
+        
+
+        <p class="mb-0 view">
+          <h5 class="ham-nodisplay mt-3" style="margin-bottom: 5px;">
+            To keep you updated, <br class="br-nsp"><b>Watch</b> our <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a><br> 
+          </h5>
+          <span class="ham-nodisplay">
+            <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a>
+          </span>
+        </p>
+        
+
+        <div class="web_index">
+          <input type="checkbox" id="menu-btn-check">
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <div class="menu-content">
+            <p class="ham-display">
+              <span class="ham-string">
+                <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a><br> 
+                <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a>
+              </span>
+            </p>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html">AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#features">Key Features</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#devices">Supported Devices</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#files">File Contents</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2l-spec">RZ/V2L AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2l-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2l-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2h-spec">RZ/V2H AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2h-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2h-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#getting-started">Getting Started</a>
+              </summary>
+              <ul class="index">
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step1">1. Obtain a Board</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step2">2. Obtain Necessary Environment</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step3">3. Obtain AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step4">4. Extract AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step5">5. Setup AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step6">6. Build AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step7">7. Deploy AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html#step8">8. Run AI Application</a></li>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html">RZ/V2L EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7prep">Preparation</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2l.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html">RZ/V2H EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started_v2h.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                 </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html">Appendix</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A1">A1. Setup for eMMC Bootloader</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A2">A2. Format SD card</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A3">A3. Shutdown the RZ/V2L EVK</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/appendix.html#A4">A4. Shutdown the RZ/V2H EVK</a>
+                    </li>
+                  </ul>
+                 </details>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html">How to Build RZ/V2L AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#step3">3. Build AI SDK</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html#A1">Appendix. Unrestricted Version</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html">How to Build RZ/V2H AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#step3">3. Build AI SDK</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#A1">Appendix 1. Unrestricted Version</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#A2">Appendix 2. Resize microSD card image</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html">How to Re-train AI model</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#install">Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#retrain">Re-train the AI model</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#tips">Tips</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html">How to use GUI env.</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_preparation">Preparation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step1">1. AI Navigator Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step2">2. Start AI Navigator</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step3">3. Import AI Applications</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html#ainavi_step4">4. Run on the Board</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_appendix.html">Appendix</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/about-applications.html">About AI Applications</a>
+              </summary>
+            </details>
+    <!-- Copy index_list.html start -->
+
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#ai-applications">AI Applications</a>
+              </summary>
+              <ul class="index">
+                <h6 style="margin-bottom: 0px;">
+                  <span class="index-string">
+                    &#10004;: Newly added
+                    <br>
+                    *: Updated
+                  </span>
+                </h6>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture">Agriculture</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture1">Defense wild animals for crop</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture2">Fruit and Vegetable Plant Disease Check</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#agriculture3">Ranch Livestock Management</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building">Smart Building</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building1">Elevator passengers Counting</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building2">Conference Room Usage Monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building3">Lighting Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building4">Security Area Intrusion Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building5">Wear management at construction sites</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building6">*Touchless Controller for elevator</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#building7">Employee ID check for Restricted Area</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city">Smart City</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city1">Congestion Detection in Railway Station</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city2">Prohibited Area Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city3">*Distracted driving detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city4">Duration monitoring for surveillance camera</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city5">Parking Spot Reservation</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city6">Illegal Parking Check</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city7">Passport check support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city8">Bus passenger counting</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city9">Backtravel Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city10">Violence Activity Check in Surveillance Camera</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city11">Bird Damage Prevention</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city12">Blind Spot Monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city13">Preceding Vehicle Movement Alert</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city14">Emergency Vehicles Detector</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city15">*Illegal Bicycle Approach Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city16">*Bicycle Rental Stock Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city17">*Illegal Bicycle Parking Monitor Support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city18">*Infrastructure Defect Prevention</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#city19">*Crime Prevention Support for School</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#healthcare">Healthcare</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#healthcare1">Physical Condition Monitor</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home">Smart Home</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home1">Air Conditioner Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home2">Smart TV</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home3">Pet Detection in Kitchen and Child's Room</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home4">*Touchless Controller for Kitchen Appliance</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#home5">*Food Package Expiry Date Check</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial">Industrial</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial1">Work Area Personnel Management</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial2">Access Control</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial3">Helmet and safety vest wearing monitor</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial4">*Touchless Controller for Industrial machine</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial5">*Driver Monitoring System</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial6">Species check support in Fish Factory</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial7">*Defect Inspection Support</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#industrial8">*Aquaculture Industrial Support</a></li>
+                  </ul>
+                </details>
+                <details open>
+                <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail">Retail</a>
+                </summary>
+                <ul class="index">
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail1">Congestion Detection</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail2">Smart POS</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail3">*Marketing Interest Analysis</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail4">Staying and flow line monitoring</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail5">Exhibition Participants Monitoring</a></li>
+                    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html#retail6">*Store Crime Prevention</a></li>
+                  </ul>
+                </details>
+              </ul>
+            </details>
+    <!-- Copy index_list.html end -->
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#demo">Demo</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html">RZ/V2L How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#shutdown">3. Shutdown process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo.html#tips">Tips</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html">RZ/V2H How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/demo_v2h.html#shutdown">3. Shutdown process</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#video">Video</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#training-video">Training video</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#blog">Blogs</a>
+              </summary>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/#reference">Reference</a>
+              </summary>
+            </details>
+          </div>
+        </div>
+        <br class="ham-nodisplay">
+        <br class="ham-nodisplay">
+        <div style="line-height: 1.15em;">
+          
+          <p class="mb-0 ham-small">This project is maintained by <a href="https://github.com/renesas-rz">renesas-rz</a></p>
+          
+          <p class="mb-1 ham-very-small"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </div>
+      </header>
+      <section>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<style>
+  /**
+   * This <style> tag is used to hide some rows of the table in the "Hardware Preparation" section.
+   * This style applies only to this demo.md file, so do not put it in assets/css/style.scss file.
+   */
+  .forV2LDemo{
+    display:none;
+  }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="top col-12">
+How to Re-train AI model
+        </div>
+    </div>
+</div>
+<p><br />
+<br /></p>
+<h5>
+  This page explains how to re-train the AI model of AI Applications using <b>RZ/V AI Transfer Learning Tool</b>.
+  <br /><br />
+  Supported version: <b>RZ/V AI Applications v4.00</b><br />
+</h5>
+
+<p><br /></p>
+
+<h2 id="intro">Introduction</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      RZ/V AI Transfer Learning Tool (TLT) can re-train AI model used in  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html"><b>RZ/V AI Applications</b></a> with different datasets.
+      <br />
+      <br />
+    </div>
+    <div class="col-12 text-center">
+      <a href="img/tlt_overview.svg" data-lightbox="group">
+        <img src="img/tlt_overview.svg" alt="RZ/V TLT overview" />
+      </a>
+      <br />
+      <br />
+      <br />
+    </div>
+    <div class="col-12">
+      RZ/V AI Transfer Learning Tool has 5 Sections.<br />
+      <ul>
+        <li>PROJECT DETAILS: Create new project or load an existing project.</li>
+        <li>ANNOTASTION: Create your own training data by labeling images.</li>
+        <li>DATASET: Load the dataset to be used for training.</li>
+        <li>TRAINING: Train the model on the selected dataset.</li>
+        <li>INFERENCE: Test the trained model.</li>
+      </ul>
+    </div>
+    <div class="col-12 text-center">
+      <a href="img/tlt_home_page.png" data-lightbox="group">
+        <img src="img/tlt_home_page.png" alt="RZ/V TLT Launch page" style="max-width: 900px; border:1px solid #acacac;" />
+      </a>
+    </div>
+    <br />
+  </div>
+</div>
+
+<p><br />
+<br />
+<br /></p>
+
+<h3 id="functions">Supported Functions of AI Applications</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="gstable" style="font-size: 0.8em">
+        <tr>
+          <th rowspan="2">
+            Function Name of AI Application
+          </th>
+          <th rowspan="2">
+            TLT Project Name
+          </th>
+          <th rowspan="2">
+            AI Model
+          </th>
+          <th rowspan="2">
+            Task Type
+          </th>
+          <th rowspan="2">
+            Download Dataset Name
+            <a href="#footnote_dataset" class="text-white">
+              <sup>*1</sup>
+            </a>
+          </th>
+          <th colspan="2">
+            Target product <br />
+            in AI Application
+          </th>
+        </tr>
+        <tr>
+          <th>RZ/V2L</th>
+          <th>RZ/V2H</th>
+        </tr>
+        <tr>
+          <td>01_Head_count</td>
+          <td>01_Head_count_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Head Count(140MB)</td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="2">02_Line_crossing_object_counting</td>
+          <td>02_Line_crossing_object_counting_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Line Cross Object Counting(141MB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>02_Line_crossing_object_counting_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Line Cross Object Counting(141MB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>04_Safety_helmet_vest_detection</td>
+          <td>04_Safety_helmet_vest_detection_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Safety Helmet Vest Detection(3.4GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>07_Animal_detection</td>
+          <td>07_Animal_detection_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Animal Detection(1.83GB)</td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="2">09_Human_gaze_detection</td>
+          <td>09_Human_gaze_detection_resnet18</td>
+          <td>ResNet18</td>
+          <td>Classification</td>
+          <td>Human gaze detection resnet18(17GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>09_Human_gaze_detection_tinyyolov2</td>
+          <td>TinyYOLOv2</td>
+          <td>Object detection</td>
+          <td>Human gaze detection(4.43GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>11_Head_count_topview</td>
+          <td>11_Head_count_topview_yolov3</td>
+          <td>YOLOV3</td>
+          <td>Object detection</td>
+          <td>Head Count Topview(1.8GB)</td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="3">12_Hand_gesture_recognition_v2</td>
+          <td>12_Hand_gesture_recognition_v2_resnet_18</td>
+          <td>ResNet18</td>
+          <td>Classification</td>
+          <td>Hand Gesture Recognition Resnet(21.9GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>12_Hand_gesture_recognition_v2_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Hand Gesture Recognition Tiny Yolo(21.9GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>12_Hand_gesture_recognition_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Hand gesture recognitionyolov3(160MB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>13_Car_ahead_departure_detection</td>
+          <td>13_Car_ahead_departure_detection_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Coco</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Q01_footfall_counter</td>
+          <td>Q01_footfall_counter_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Coco</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q01_footfall_counter_yolov3</td>
+          <td>YOLOV3</td>
+          <td>Object detection</td>
+          <td>Coco</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>Q03_smart_parking</td>
+          <td>Q03_smart_parking</td>
+          <td>Custom model</td>
+          <td>Classification</td>
+          <td>Smart Parking(414MB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q04_fish_classification</td>
+          <td>Q04_fish_classification_resnet34</td>
+          <td>ResNet34</td>
+          <td>Classification</td>
+          <td>Fish Classification(1.57GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Q06_expiry_date_detection</td>
+          <td>Q06_expiry_date_detection_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Expiry Date Detection(1.32GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q06_expiry_date_detection_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Expiry Date Detection(1.32GB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>Q07_plant_disease_classification</td>
+          <td>Q07_plant_disease_classification_resnet34</td>
+          <td>ResNet34</td>
+          <td>Classification</td>
+          <td>Plant Disease(1.34GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td rowspan="6">Q08_object_counter</td>
+          <td>Q08_object_counter_animal_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Object Counter Animal(6.97GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q08_object_counter_animal_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Object Counter Animal(6.97GB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>Q08_object_counter_coco_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Coco</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q08_object_counter_coco_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Coco</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>Q08_object_counter_vehicle_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Object Counter Vehicle(1.5GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q08_object_counter_vehicle_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Object Counter Vehicle(1.5GB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>Q09_crack_segmentation</td>
+          <td>Q09_crack_segmentation_unet</td>
+          <td>UNet</td>
+          <td>Segmentation</td>
+          <td>Crack Segmentation(0.99GB)</td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Q10_suspicious_person_detection</td>
+          <td>Q10_suspicious_person_detection_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Suspicious Person Detection(1.57GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q10_suspicious_person_detection_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Suspicious Person Detection(1.57GB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Q11_fish_detection</td>
+          <td>Q11_fish_detection_tinyyolov3</td>
+          <td>TinyYOLOv3</td>
+          <td>Object detection</td>
+          <td>Fish Detection(700MB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>Q11_fish_detection_yolov3</td>
+          <td>YOLOv3</td>
+          <td>Object detection</td>
+          <td>Fish Detection(700MB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+      </table>
+      <h6>
+        <span id="footnote_dataset">
+          *1: Datasets will be downloaded automatically as needed.
+          <br />
+        </span>
+        <span id="footnote_09data">
+          *2: This file is temporarily unavailable for automatic download. To obtain the file, please contact <a href="https://www.renesas.com/support">Renesas Technical Support</a>.
+          <br />
+        </span>
+      </h6>
+    </div>
+    <div class="col-12">
+      <h4 id="unsupport">Unsupported Functions of AI Applications</h4>
+      The following Functions of AI Applications are NOT supported.<br />
+      <ul>
+        <li>03_Elderly_fall_detection</li>
+        <li>05_Age_gender_detection</li>
+        <li>06_Face_recognition_spoof_detection</li>
+        <li>08_Hand_gesture_recognition</li>
+        <li>10_Driver_monitoring_system</li>
+        <li>Q02_face_authentication</li>
+        <li>Q05_suspicious_activity</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h2 id="install">Installation</h2>
+<p>To start using RZ/V AI Transfer Learning Tool, PC that can display the desktop with the following environment is recommended.<br /></p>
+
+<h3 id="hw">Hardware</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table>
+        <tr>
+          <th>Description</th>
+          <th>Specification</th>
+        </tr>
+        <tr>
+          <td>Linux OS</td>
+          <td>Ubuntu 20.04 and above.</td>
+        </tr>
+        <tr>
+          <td>Processor</td>
+          <td>Intel(R) Xeon(R) and above.</td>
+        </tr>
+        <tr>
+          <td>GPU</td>
+          <td>Any GPU with CUDA.</td>
+        </tr>
+        <tr>
+          <td>Storage</td>
+          <td>At least 100GB of free space is necessary.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<h3 id="sw">Software</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table>
+        <tr>
+          <th>Description</th>
+          <th>Specification</th>
+        </tr>
+        <tr>
+          <td>Python</td>
+          <td>3.10.5</td>
+        </tr>
+        <tr>
+          <td>Docker</td>
+          <td>27.0.3</td>
+        </tr>
+      </table>
+      Other software not listed above will be installed automatically when you install the tool.
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h3 id="installpro">Installation procedures</h3>
+<p>This chapter describes the installation procedure when using <b>RZ/V AI Transfer Learning Tool alone</b>.<br /></p>
+<div class="note">
+    <span class="note-title">Note</span>
+    If you use <b>AI Navigator of e<sup>2</sup> studio</b>, the installation procedure is different, so please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_quick_start_guide.html">AI Navigator Quick Start Guide</a>.
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <ol>
+        <li>
+          If you have not yet obtained <b>RZ/V AI Transfer Learning Tool v4.00</b>, click on the link below to download it.
+          <br /><br />
+          <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv-ai-transfer-learning-tool-v400" role="button">Download Link</a>
+          <br /><br />
+        </li>
+        <li>
+          Put the downloaded tar file into a Linux PC and extract it using the following command in a terminal.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">tar</span> <span class="nt">-xzvf</span> RTK0EF0178Z04000SJ_rzv-ai-tlt.tar.gz</code></pre></figure>
+
+          <br />
+          Make sure the following folders and files are generated after extracting the tar file.
+          <table id="demodirs" class="mytable">
+            <caption>Tool File Structure</caption>
+            <tr>
+              <th>Folder or File Name</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td rowspan="1">rzv_ai_tlt_v4.00/</td>
+              <td>Working directory.</td>
+            </tr>
+            <tr>
+              <td rowspan="1">docs/</td>
+              <td>User's Manual.</td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          Change to <code>tlt_backend</code> directory and install the tool.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd </span>RTK0EF0178Z04000SJ_rzv-ai-tlt/rzv_ai_tlt_v4.00/tlt_backend
+./install_docker.sh</code></pre></figure>
+
+          <br />
+        </li>
+        <li>
+          Build the docker image and start the docker container.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">./launch_tlt_service.sh</code></pre></figure>
+
+          <br />
+        </li>
+        <li>
+          Change to <code>rzv_ai_tlt_v4.00</code> directory and launch the tool.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ../
+./start_rzv_ai_tlt_gui.sh</code></pre></figure>
+
+          <br />
+          <a href="img/tlt_launch.png" data-lightbox="group">
+            <img src="img/tlt_launch.png" alt="RZ/V TLT Launch" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+          If the popup is "Docker container is up and running", click "OK" to start.<br />
+          <div class="note">
+            <span class="note-title">Note</span>
+            If the docker container is not running, close the GUI and start the docker container with the following command.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>docker restart tltdoc</code></pre></figure>
+
+            Once the container is started, please start again from step 4.
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h2 id="retrain">Re-train the AI model</h2>
+<p>Once the <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html#install"><b>installation</b></a> is complete, you can retrain the model.<br /></p>
+
+<h3 id="project">Step 1: Create the TLT project</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <ol>
+        <li>Select <b>PROJECT DETAILS</b>.<br />
+          <br />
+          <a href="img/tlt_home_project.png" data-lightbox="group">
+            <img src="img/tlt_home_project.png" alt="RZ/V TLT Project Details" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>After selecting <b>UPLOAD</b>, upload the YAML file in <b>UPLAOD YAML</b>.<br />
+          The YAML files for existing projects are located at <code>rzv_ai_tlt_v4.00/tlt_backend/assets/(any YAML file of TLT project)/config.yaml</code>.<br />
+          This time, we uploaded <code>rzv_ai_tlt_v4.00/tlt_backend/assets/Q03_smart_parking/config.yaml</code>.<br />
+          <br />
+          <a href="img/tlt_project_uplaod.png" data-lightbox="group">
+            <img src="img/tlt_project_uplaod.png" alt="RZ/V TLT Project Upload" style="max-width: 600px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li><b>Set the project name</b> and click <b>SUBMIT SELECTION</b>.<br />
+          (The project name must be different from any existing project.)<br />
+          If successful, <b>Successfully created the task!!</b> will be displayed.
+          <br />
+          <br />
+          <a href="img/tlt_project_loaded.png" data-lightbox="group">
+            <img src="img/tlt_project_loaded.png" alt="RZ/V TLT Project Loaded" style="max-width: 600px" />
+          </a>
+          <br />
+          <br />
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h3 id="annotation">Step 2: Create the custom dataset</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      In ANNOTATION, you can create custom datasets <b>only for object detection</b>.<br />
+      <br />
+      <a href="img/tlt_annotation.png" data-lightbox="group">
+      <img src="img/tlt_annotation.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+      </a>
+      <br />
+      <br />
+      This time, since <code>Q03_smart_parking</code> is a classification model, we will skip ANNOTATION.<br />
+      Please refer to the user's manual for how to use ANNOTATION.<br />
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h3 id="dataset">Step 3: Load the dataset</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <ol>
+        <li>Select <b>DATASET</b>.<br />
+          <br />
+          <a href="img/tlt_dataset.png" data-lightbox="group">
+            <img src="img/tlt_dataset.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Click <b>Download Dataset</b> and Select a dataset from the list.<br />
+          This time, we use <code>Smart Parking</code>.<br />
+          <br />
+          <a href="img/tlt_dataset_list.png" data-lightbox="group">
+            <img src="img/tlt_dataset_list.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Click <b>the Download button</b> to download the dataset.<br />
+          (After it reaches 100%, it will take some time to unpack the downloaded file, depending on the size of the dataset.)<br />
+          <br />
+          <a href="img/tlt_dataset_download.png" data-lightbox="group">
+            <img src="img/tlt_dataset_download.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Click <b>SELECT DIRECTORY</b> to select the dataset directory, and click <b>NEXT</b>.<br />
+          The downloaded dataset is located at <code>rzv_ai_tlt_v4.00/tlt_backend/datasets/</code>.<br />
+          This time, we use <code>rzv_ai_tlt_v4.00/tlt_backend/datasets/Q03_smart_parking/</code>.<br />
+          <br />
+          <a href="img/tlt_dataset_set.pngg" data-lightbox="group">
+            <img src="img/tlt_dataset_set.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Set the image size to input to the model and select Augmentation.<br />
+          This time, leave the defaults and click <b>NEXT</b>.<br />
+          <br />
+          <a href="img/tlt_dataset_image.png" data-lightbox="group">
+            <img src="img/tlt_dataset_image.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Set the dataloader parameters according to your PC environment.<br />
+          This time, leave the defaults and click <b>FINISH</b>.<br />
+          <br />
+          <a href="img/tlt_dataset_parameters.png" data-lightbox="group">
+            <img src="img/tlt_dataset_parameters.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>After confirming the settings, click <b>SUBMIT SELECTION</b>.<br />
+          If the load is successful, the dataset configuration will be displayed.<br />
+          <br />
+          <a href="img/tlt_dataset_finish.png" data-lightbox="group">
+            <img src="img/tlt_dataset_finish.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h3 id="training">Step 4: Re-train the model</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <ol>
+        <li>Select <b>TRAINING</b>.<br />
+          <br />
+          <a href="img/tlt_training.png" data-lightbox="group">
+            <img src="img/tlt_training.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Check the model and set the optimizer parameters.<br />
+          Click <b>SUBMIT SELECTION</b> and the learning log will be displayed.<br />
+          This time, leave everything as default.<br />
+          <br />
+          <a href="img/tlt_training_model.png" data-lightbox="group">
+            <img src="img/tlt_training_model.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>When <b>Training Completed!!!</b> pop-up appears, click <b>OK</b> to complete the training.<br />
+          <br />
+          <a href="img/tlt_training_ok.png" data-lightbox="group">
+            <img src="img/tlt_training_ok.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+          The trained model is stored in the following directory.<br />
+          <code>rzv_ai_tlt_v4.00/tlt_backend/assets/(Your TLT prject name)</code>.<br />
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h3 id="inference">Step 5: Test the trained model</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <ol>
+        <li>Select <b>INFERENCE</b><br />
+          <br />
+          <a href="img/tlt_inference.png" data-lightbox="group">
+            <img src="img/tlt_inference.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Click <b>UPLOAD IMAGE</b> to select a test image.<br />
+          This time, we use <code>rzv_ai_tlt_v4.00/tlt_backend/datasets/Q03_smart_parking/valid/occupied/0.jpg</code>.<br />
+          <br />
+          <a href="img/tlt_inference_upload.png" data-lightbox="group">
+            <img src="img/tlt_inference_upload.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px" />
+          </a>
+          <br />
+          <br />
+        </li>
+        <li>Click <b>PREDICT</b> to test.<br />
+          Since <code>Q03_smart_parking</code> is a classification that predicts whether it is "occupied" or "empty", the result is displayed as a string.<br />
+          <br />
+          <a href="img/tlt_inference_predict.png" data-lightbox="group">
+            <img src="img/tlt_inference_predict.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px" />
+          </a>
+          <br />
+          <br />
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h2 id="tips">Tips</h2>
+<h3 id="next">Next steps</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      Once the model has been trained, the next step is to convert it for DRP-AI using DRP-AI TVM.<br />
+      For instructions on how to use DRP-AI TVM, please see <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">DRP-AI TVM GitHub</a>.<br />
+      If you use DRP-AI TVM with AI Navigator, sample code for DRP-AI TVM conversion scripts for each model is provided.<br />
+    </div>
+  </div>
+</div>
+
+<p><br /></p>
+
+<h3 id="uninstall">Uninstallation</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      For instructions on how to uninstall TLT, please refer to the user's manual.<br />
+    </div>
+  </div>
+</div>
+
+<p><br />
+<br /></p>
+
+<div class="container">
+  <div class="row">
+      <div class="col-12" align="right">
+          <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/" role="button">
+              Back to Home &gt;
+          </a>
+      </div>
+  </div>
+</div>
+
+
+      </section>
+      <footer>
+      </footer>
+    </div>
+    <script src="/rzv_ai_sdk/5.00/assets/js/scale.fix.js"></script>
+  </body>
+</html>
