@@ -181,24 +181,26 @@ cd ${YOCTO_WORK}
 tar zxvf ${WORK}/src_setup/rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
   </li>
-  <li>Apply patch files to fix link error.<br>
-    <ol type="A">
-      <li>Obtain the patch file from the link below.
-        <table class="mytable">
-          <tr>
-            <th>Patch file link</th>
-            <th>Description</th>
-          </tr>
-          <tr>
-            <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch">0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch</a></td>
-            <td>patch file for fixing glibc link error</td>
-          </tr>          <tr>
-            <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/61835_update_url_gst_common.patch">61835_update_url_gst_common.patch</a></td>
-            <td>patch file for fixing codec library link error</td>
-          </tr>
-        </table>
-      </li>
-      <li>Copy and apply the patch file.
+  <li>Run the following procedures to apply the patch file.<br>
+    <ol>
+      <li>Apply patch files to fix link error.<br>
+        <ol type="A">
+          <li>Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch">0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch</a></td>
+                <td>patch file for fixing glibc link error</td>
+              </tr>          <tr>
+                <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/61835_update_url_gst_common.patch">61835_update_url_gst_common.patch</a></td>
+                <td>patch file for fixing codec library link error</td>
+              </tr>
+            </table>
+          </li>
+          <li>Copy and apply the patch file.
 {% highlight shell%}
 cp <Path to the file>/0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb10u4.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}/meta-renesas
@@ -207,30 +209,32 @@ patch -p1 < ../0001-rz-common-recipes-debian-buster-glibc-update-to-v2.28-10+deb
 cp <Path to the file>/61835_update_url_gst_common.patch ${YOCTO_WORK}
 patch -d ${YOCTO_WORK}/meta-rz-features/meta-rz-codecs -p1 < ${YOCTO_WORK}/61835_update_url_gst_common.patch
 {% endhighlight %}
+          </li>
+        </ol>
       </li>
-    </ol>
-  </li>
-  <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
-    The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
-    <ol type="A">
-      <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2H Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">this link</a> to obtain the patch file below.
-        <table class="mytable">
-          <tr>
-            <th>File name</th>
-            <th>Description</th>
-          </tr>
-          <tr>
-            <td>e-CAM22_CURZ*.patch</td>
-            <td>e-CAM22_CURZH camera driver (MIPI) Yocto patch file for RZ/V2H</td>
-          </tr>
-        </table>
-      </li>
-      <li>Copy and apply the patch file.
+      <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
+        The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
+        <ol type="A">
+          <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2H Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">this link</a> to obtain the patch file below.
+            <table class="mytable">
+              <tr>
+                <th>File name</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>e-CAM22_CURZ*.patch</td>
+                <td>e-CAM22_CURZH camera driver (MIPI) Yocto patch file for RZ/V2H</td>
+              </tr>
+            </table>
+          </li>
+          <li>Copy and apply the patch file.
 {% highlight shell%}
 cp <Path to the file>/e-CAM22_CURZ*.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}
 patch -p1 -i e-CAM22_CURZ*.patch
 {% endhighlight %}
+          </li>
+        </ol>
       </li>
     </ol>
   </li>
@@ -528,7 +532,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
       </table>
     </li>
   </ol>
-After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-8"> Step 3-8 in How to build RZ/V2H AI SDK Source Code</a> to build the Linux kernel files.
+After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-11"> Step 3-11 in How to build RZ/V2H AI SDK Source Code</a> to build the Linux kernel files.
 <br><br>
 
 <h3 id="A3">Appendix 3: Prepare Video Codec Library for H.264 Enc/Dec and H.265 Enc/Dec function</h3>
