@@ -9,7 +9,7 @@ fi
 # git checkout origin/master
 git fetch
 git merge --allow-unrelated-histories origin/gh-pages
-git pull origin origin/gh-pages
+git pull origin gh-pages
 
 rm -rf latest
 ln -sf $VERSION latest
@@ -27,7 +27,7 @@ done
 
 git add .
 git commit -m "redirect latest to new version $VERSION"
-git push origin origin/gh-pages
+git push origin gh-pages
 
 
 
