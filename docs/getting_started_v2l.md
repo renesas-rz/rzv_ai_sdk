@@ -479,7 +479,7 @@ sudo eject /dev/sdb
       </ol>
       <br>
       <h4 id="step7-2" class="u_line">2. Deploy Application to the Board</h4>
-        This section explains how to copy the <a href="#step6">application binary created in Step 6</a> to the board.<br>
+        This section explains how to copy the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6">application binary created in Getting Started Step 6</a> to the board.<br>
         Users are expected to have finished the instructions in <a href="#step7"> Setup RZ/V2L EVK in Step 7-1</a>.
         <br>
         <br>
