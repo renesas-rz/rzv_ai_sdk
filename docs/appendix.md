@@ -787,6 +787,7 @@ shutdown -h now
 <h3 id="A4">A4. Shutdown RZ/V2H EVK</h3>
 To power-off the RZ/V2H EVK, follow the procedures below.
 <br><br>
+<a4reference>
 <ol>
   <li>Run the <code>shutdown</code> command on board console.
     <br>
@@ -810,6 +811,7 @@ shutdown -h now
     <img src="img/v2h_evk_shutdown.png" alt="board" width="350px" /><br>
   </li>
 </ol>
+</a4reference>
 <br><br>
 
 <script>

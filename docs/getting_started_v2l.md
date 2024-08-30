@@ -9,7 +9,7 @@ layout: default
 </script>
 <div class="container">
     <div class="row">
-        <div class="top col-12">
+        <div id="page-top" class="top col-12">
 RZ/V2L EVK Getting Started
         </div>
     </div>
@@ -505,7 +505,7 @@ sudo mkdir /mnt/sd/home/root/tvm
             </div>
           </li>
           <li>Copy the necessary files in execution environment.<br>
-            Select the appropriate option below based on the application type explained in <a href="#build-instruction">Building instructions in Step 6</a>.
+            Select the appropriate option below based on the application type explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#build-instruction"> Getting Started Step 6</a>.
             <br><br>
             <p id="deploy-option1"><b>Option 1: &lt;Application 1&gt;</b></p>
             Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Deploy Stage"</b> (or similar) to deploy the application.
@@ -726,7 +726,7 @@ sudo eject /dev/sdb
 <div class="container">
   <div class="row">
     <div class="col-12" align="right">
-      <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#page-top" role="button">
+      <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#page-top" role="button">
 Back to Top >
       </a>
     </div>

@@ -36,51 +36,32 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.8.9
+                2024.8.30
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V2H AI SDK v5.00 </b> is now available.<br>
+                    <b>RZ MPU Security Package for RZ/V2H AI SDK v5.00</b> is released.<br>
                     <ul>
                         <li> 
-                            Supported DRP-AI TVM v2.3.0.<br>
-                        </li>
-                        <li> 
-                            Updated RZ/V2H Linux BSP.<br>
-                        </li>
-                        <li> 
-                            Updated RZ/V2H Graphics Library to v1.2.2.<br>
-                        </li>
-                        <li> 
-                            Updated RZ/V2H Video Codec Library to v3.1.1.<br>
-                        </li>
-                        <li> 
-                            Updated RZ/V2H OpenCV Accelerator to v1.10.<br>
+                            This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see RZ/V2H AI SDK Specification in <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V AI SDK Overview page</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}"><b>How to Build RZ/V2H AI SDK</b></a>.
             <br>
-        </div>
-        <div class="col-12">
-            <h6 align="right" >
-                2024.8.7
-            </h6>
+            <br>
             <ul>
                 <li>
-                    <b>RZ/V AI Transfer Learning Tool v4.00</b> is now available.<br>
+                    <b>Developer's Guide</b> is published for Linux developer.<br>
                     <ul>
-                        <li>
-                            Supported AI Applications v4.00 for RZ/V2H and RZ/V2L.
-                        </li>
-                        <li>
-                            Supported 42 AI Applications.
+                        <li> 
+                            How to boot from xSPI on RZ/V2H EVK is added.<br>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href= "{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}"><b>How to Re-train AI model</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3"><b>Developer's Guide</b></a>.
             <br>
         </div>
         <div class="col-12" align="right">
@@ -493,7 +474,7 @@ layout: default
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="7">RZ/V2H</td>
+                    <td rowspan="8">RZ/V2H</td>
                     <td>
                             <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8">
                                 DRP-AI Translator i8
@@ -578,6 +559,19 @@ layout: default
                     <td>
                         <small>
                         Package consisting of RZ/V Flexible Software Package (FSP) as software package for Renesas MCU with Arm&reg; Cortex-M, R Core and OpenAMP as standardization API of framework for interprocessor communication for developing multi OS solution.<br>
+                        This package can be applied to RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package">
+                            RZ MPU Security Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
                         This package can be applied to RZ/V2H AI SDK.
                         </small>
                     </td>

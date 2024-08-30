@@ -13,7 +13,7 @@ layout: default
 </style>
 <div class="container">
     <div class="row">
-        <div class="top col-12">
+        <div id="page-top" class="top col-12">
 Getting Started
         </div>
     </div>
@@ -900,7 +900,16 @@ Please refer to How to Build AI SDK page shown below for more details.<br>
   How can I build RZ/V2H AI SDK Source Code?<br>
   </span>
 </a>
-
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-12" align="right">
+      <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#page-top" role="button">
+Back to Top >
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
 /************ Read Cookie **************/

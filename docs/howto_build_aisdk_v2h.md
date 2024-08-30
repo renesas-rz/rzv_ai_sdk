@@ -269,7 +269,7 @@ poky
       <span class="note-title">Note</span>
       Evaluation version of Graphics Library has restriction on their running time.<br>
       If you would like to use unrestricted version of Graphics Library,
-	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A1">Appendix 1: Build Graphics Library for Unrestricted Version</a>.<br>
+	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D1">D1. For RZ/V2H: Change the Graphics Library to the Unrestricted Version</a>.<br>
     </div>
   </li>
   <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
@@ -299,7 +299,7 @@ patch -p1 < ../0002-sd-image-size-16gb.patch
     <div class="note">
       <span class="note-title">Note</span>
       The default size of the microSD card image created in this guide is approximately 16 GB.<br>
-      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A2">Appendix 2: Change the size of the microSD card image in WIC format</a>.<br>
+      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D2">D2. For RZ/V2H: Change the size of the microSD card image in WIC format</a>.<br>
     </div>
   </li>
   <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>
@@ -320,6 +320,14 @@ MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
           core-image-weston-rzv2h-evk-ver1.wic.gz
         </td>
         <td>WIC format SD card image</td>
+      </tr>
+      <tr>
+        <td>
+          Flash_Writer_SCIF_RZV2H_DEV_INTERNAL_MEMORY.mot<br>
+          bl2_bp_spi-rzv2h-evk-ver1.srec<br>
+          fip-rzv2h-evk-ver1.srec
+        </td>
+        <td>Boot loader used when booting from xSPI</td>
       </tr>
     </table>
   </li>
@@ -376,12 +384,20 @@ You have prepared following files, which is same as the one provided in <a href=
     <th>Description</th>
   </tr>
   <tr>
-    <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</td>
+    <td rowspan="2">${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</td>
     <td>
       core-image-weston-rzv2h-evk-ver1.wic.bmap<br>
       core-image-weston-rzv2h-evk-ver1.wic.gz
     </td>
     <td>WIC format SD card image</td>
+  </tr>
+  <tr>
+    <td>
+      Flash_Writer_SCIF_RZV2H_DEV_INTERNAL_MEMORY.mot<br>
+      bl2_bp_spi-rzv2h-evk-ver1.srec<br>
+      fip-rzv2h-evk-ver1.srec
+    </td>
+    <td>Boot loader used when booting from xSPI</td>
   </tr>
   <tr>
     <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
@@ -416,6 +432,9 @@ You have prepared following files, which is same as the one provided in <a href=
     <li>
       <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package">RZ/V Multi-OS Package</a>
     </li>
+    <li>
+      <a href="https://www.renesas.com/software-tool/rz-mpu-security-package">RZ MPU Security Package</a>
+    </li>
   </ul>
 </div>
 <div class="note">
@@ -441,112 +460,3 @@ please add new issues to AI SDK GitHub issues.<br>
   </div>
 </div>
 <br><br>
-
-<h3 id="A1">Appendix 1: Prepare Graphics Library for Unrestricted Version</h3>
-This section explains how to prepare Graphics Library for unrestricted version, intead of evaluation version.<br>
-<div class="note">
-  <span class="note-title">Note</span>
-  Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-6">Step 3-6 in How to build RZ/V2H AI SDK Source Code</a>.
-</div>
-  <ol>
-    <li>Download zip files from the link below.
-      <br>
-      <div class="note">
-        <span class="note-title">Note</span>
-        It may take much time to obtain Graphics Library for unrestricted version due to necessary examinations on your business purpose. 
-      </div>
-      <br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/secure/rzv2-graphics-library-secure-content" role="button">Download Link</a>
-    </li>
-    <br>
-    <li>After you downloaded the zip files, please move the zip files to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
-    <br>
-    </li>
-    <br>
-    <li>Check that zip files are moved to appropriate location.
-{% highlight shell %}
-cd ${WORK}/src_setup
-ls -1 
-{% endhighlight %}
-      <ul>
-        <li>If the above command prints followings, the package is extracted correctly.
-{% highlight shell %}
-README.txt
-RTK0EF0*ZJ-v*_rzv_*.zip
-rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
-yocto
-{% endhighlight %}
-        </li>
-      </ul>
-    </li>
-    <li>Run the below command to delete evaluation version.<br>
-{% highlight shell %}
-rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-graphics
-{% endhighlight %}
-    </li>
-    <li>Run the below command to extract the unristricted version.<br>
-{% highlight shell %}
-unzip RTK0EF0045Z14001ZJ*.zip
-tar zxvf RTK0EF0045Z14001ZJ*/meta-rz-features_graphics_*.tar.gz -C ${YOCTO_WORK}
-{% endhighlight %}
-    </li>
-  </ol>
-After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
-<br><br>
-
-<h3 id="A2">Appendix 2: Change the size of the microSD card image in WIC format</h3>
-This section explains how to change the microSD card image size by changing the build settings of the WIC file.<br>
-<div class="note">
-  <span class="note-title">Note</span>
-  Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-10">Step 3-10 in How to build RZ/V2H AI SDK Source Code</a>.
-</div>
-  <ol>
-    <li>Open <b><code>${YOCTO_WORK}/build/conf/local.conf</code></b> file in a text editor.
-    </li>
-    <li>Find the following text in the file and edit the highlighted value to define the disk space of the image in Kbytes.
-<pre><code>...
-# Support WIC images with default wks from WKS_DEFAULT_FILE
-# Reupdate WKS_DEFAULT_FILE if want to support another wks file.
-WKS_SUPPORT ?= "1"
-WKS_DEFAULT_FILE_rzv2h-dev = "rz-image-bootpart-mmc.wks"
-WKS_DEFAULT_FILE_rzv2h-evk-alpha = "rz-image-bootpart-esd_rzv2h.wks"
-WKS_DEFAULT_FILE_rzv2h-evk-ver1 = "rz-image-bootpart-esd_rzv2h.wks"
-# Defines additional free disk space created in the image in Kbytes.
-IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
-...
-</code></pre>
-      The table below shows examples of setting values written in <b><code>local.conf</code></b> file.<br>
-      <div class="note">
-        <span class="note-title">Note</span>
-        If you have customized Linux, the disk image size may differ from the table.
-      </div>
-      <table class="mytable">
-        <tr>
-          <th>SD card image size<br>(Gbytes)</th>
-          <th>Setting values in the "local.conf" file<br>(Kbytes)</th>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>1048576</td>
-        </tr>
-        <tr>
-          <td>8</td>
-          <td>4194304</td>
-        </tr>
-        <tr>
-          <td>16</td>
-          <td>8388608 (default)</td>
-        </tr>
-      </table>
-    </li>
-  </ol>
-After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-11"> Step 3-11 in How to build RZ/V2H AI SDK Source Code</a> to build the Linux kernel files.
-<br><br>
-
-<div class="row">
-  <div class="col-12" align="right">
-    <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">
-      Back to Home >
-    </a>
-  </div>
-</div>

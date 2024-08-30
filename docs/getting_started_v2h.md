@@ -9,7 +9,7 @@ layout: default
 </script>
 <div class="container">
     <div class="row">
-        <div class="top col-12">
+        <div id="page-top" class="top col-12">
 RZ/V2H EVK Getting Started
         </div>
     </div>
@@ -157,7 +157,7 @@ RZ/V2H EVK Getting Started
       <div class="note">
         <span class="note-title">Note</span>
         The size of WIC format SD card image is 16GB.<br>
-        If you would like to expand the SD card image size, please build the RZ/V2H AI SDK Source Code according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#A2">Appendix 2 in How to Build RZ/V2H AI SDK</a>.
+        If you would like to expand the SD card image size, please build the RZ/V2H AI SDK Source Code according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}">How to Build RZ/V2H AI SDK</a>.
       </div>
       <ol>
         <h5 id="step7-1a">
@@ -529,7 +529,7 @@ sudo eject /dev/sdb
 <div class="container">
   <div class="row">
     <div class="col-12" align="right">
-      <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#page-top" role="button">
+      <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#page-top" role="button">
 Back to Top >
       </a>
     </div>

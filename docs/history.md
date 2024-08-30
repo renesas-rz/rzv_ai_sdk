@@ -17,6 +17,36 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ MPU Security Package for RZ/V2H AI SDK v5.00 and Developer's Guide
+                </h3>
+                <h6 align="right" >
+                    2024.8.30
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ MPU Security Package for RZ/V2H AI SDK v5.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
+                        </li>
+                    </ul>
+                </li>
+                <br>
+                <li>
+                    <h5 class="history-item">Developer's Guide is published for Linux developer.</h5>
+                    <ul>
+                        <li> 
+                            How to boot from xSPI on RZ/V2H EVK is added.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V2H AI SDK v5.00
                 </h3>
                 <h6 align="right" >

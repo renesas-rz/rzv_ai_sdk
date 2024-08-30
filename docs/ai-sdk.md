@@ -624,6 +624,10 @@ layout: default
                     If you would like to use unrestricted version, please build AI SDK with Graphics Library Unrestricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">How to Build RZ/V2H AI SDK</a>.
                     <br>
                 </span>
+                <span id="footnote_v2h_spi">
+                    *5: If you would like to know how to boot from xSPI, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" role="button">Developer's Guide</a>.
+                    <br>
+                </span>
             </h6>
         </div>
         <div class="col-12">
