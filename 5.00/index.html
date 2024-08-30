@@ -30,10 +30,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Renesas RZ/V AI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","dateModified":"2024-08-09T11:51:59+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","name":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.00/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","dateModified":"2024-08-26T13:02:56+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","name":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.00/"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=429c58153c9ac4ed995271d4498a71962b4a8d66">
+    <link rel="stylesheet" href="assets/css/style.css?v=">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -274,6 +274,7 @@
                  </details>
               </ul>
             </details>
+            <br class="br-nsp">
             <details>
               <summary>
                 <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html">How to Build RZ/V2L AI SDK</a>
@@ -313,14 +314,28 @@
                 <li>
                   <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#step3">3. Build AI SDK</a>
                 </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/dev_guide.html">Developer's Guide</a>
+              </summary>
+              <ul class="index">
                 <li>
-                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#A1">Appendix 1. Unrestricted Version</a>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/dev_guide.html#dev-contents">Contents</a>
                 </li>
                 <li>
-                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html#A2">Appendix 2. Resize microSD card image</a>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/dev_guide.html#D1">D1. Graphics Library Unrestricted Version</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/dev_guide.html#D2">D2. Resize microSD card image</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/dev_guide.html#D3">D3. How to boot from xSPI</a>
                 </li>
               </ul>
             </details>
+            <br class="br-nsp">
             <details>
               <summary>
                 <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html">How to Re-train AI model</a>
@@ -646,51 +661,32 @@
     <div class="row">
         <div class="col-12">
             <h6 align="right">
-                2024.8.9
+                2024.8.30
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V2H AI SDK v5.00 </b> is now available.<br />
+                    <b>RZ MPU Security Package for RZ/V2H AI SDK v5.00</b> is released.<br />
                     <ul>
                         <li> 
-                            Supported DRP-AI TVM v2.3.0.<br />
-                        </li>
-                        <li> 
-                            Updated RZ/V2H Linux BSP.<br />
-                        </li>
-                        <li> 
-                            Updated RZ/V2H Graphics Library to v1.2.2.<br />
-                        </li>
-                        <li> 
-                            Updated RZ/V2H Video Codec Library to v3.1.1.<br />
-                        </li>
-                        <li> 
-                            Updated RZ/V2H OpenCV Accelerator to v1.10.<br />
+                            This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br />
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see RZ/V2H AI SDK Specification in <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/ai-sdk.html#v2h-spec"><b>RZ/V AI SDK Overview page</b></a>.
+            For more details, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html"><b>How to Build RZ/V2H AI SDK</b></a>.
             <br />
-        </div>
-        <div class="col-12">
-            <h6 align="right">
-                2024.8.7
-            </h6>
+            <br />
             <ul>
                 <li>
-                    <b>RZ/V AI Transfer Learning Tool v4.00</b> is now available.<br />
+                    <b>Developer's Guide</b> is published for Linux developer.<br />
                     <ul>
-                        <li>
-                            Supported AI Applications v4.00 for RZ/V2H and RZ/V2L.
-                        </li>
-                        <li>
-                            Supported 42 AI Applications.
+                        <li> 
+                            How to boot from xSPI on RZ/V2H EVK is added.<br />
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_retrain.html"><b>How to Re-train AI model</b></a>.
+            For more details, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/dev_guide.html#D3"><b>Developer's Guide</b></a>.
             <br />
         </div>
         <div class="col-12" align="right">
@@ -1103,7 +1099,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="7">RZ/V2H</td>
+                    <td rowspan="8">RZ/V2H</td>
                     <td>
                             <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8">
                                 DRP-AI Translator i8
@@ -1188,6 +1184,19 @@
                     <td>
                         <small>
                         Package consisting of RZ/V Flexible Software Package (FSP) as software package for Renesas MCU with Arm&reg; Cortex-M, R Core and OpenAMP as standardization API of framework for interprocessor communication for developing multi OS solution.<br />
+                        This package can be applied to RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package">
+                            RZ MPU Security Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br />
                         This package can be applied to RZ/V2H AI SDK.
                         </small>
                     </td>
