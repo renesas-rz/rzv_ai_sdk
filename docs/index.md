@@ -36,32 +36,23 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.8.30
+                2024.10.11
             </h6>
             <ul>
                 <li>
-                    <b>RZ MPU Security Package for RZ/V2H AI SDK v5.00</b> is released.<br>
-                    <ul>
-                        <li> 
-                            This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
-                        </li>
-                    </ul>
+                    <b>AI Navigator v1.20 (e<sup>2</sup> studio for RZ/V2L & RZ/V2H) is released.</b>
                 </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}"><b>How to Build RZ/V2H AI SDK</b></a>.
-            <br>
-            <br>
-            <ul>
                 <li>
-                    <b>Developer's Guide</b> is published for Linux developer.<br>
+                    <b>AI Navigator Quick Start Guide is updated.</b>
                     <ul>
                         <li> 
-                            How to boot from xSPI on RZ/V2H EVK is added.<br>
+                            Users can develop more AI applications for RZ/V2H with the latest environment.<br>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3"><b>Developer's Guide</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            <br>
             <br>
         </div>
         <div class="col-12" align="right">

@@ -30,10 +30,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Renesas RZ/V AI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-08-21T11:03:21+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_appendix.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-04-25T15:35:29+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.00/ainavi_appendix.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=">
+    <link rel="stylesheet" href="assets/css/style.css?v=5c980fa75062cea8349fcf98b24c8264c0242c3f">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -648,7 +648,7 @@ AI Navigator Quick Start Guide Appendix
   <li><a href="#ainavi_appendix_a"><b>A. AI Navigator Uninstallation</b></a></li>
   <li><a href="#ainavi_appendix_b"><b>B. How to use Bring Your Own Model Project</b></a></li>
   <li><a href="#ainavi_appendix_c"><b>C. Settings required when using other IP addresses of target board</b></a></li>
-  <li><a href="#ainavi_appendix_d"><b>D. Build the Linux and Use your Custom PCB Board or 3rd Party Board</b></a></li>
+  <li><a href="#ainavi_appendix_d"><b>D. Build the Linux and Use your Custom Board or 3rd Party Board</b></a></li>
 </ul>
 
 <h3 id="ainavi_appendix_a">A. AI Navigator Uninstallation</h3>
@@ -658,7 +658,7 @@ AI Navigator Quick Start Guide Appendix
   <li>Launch e<sup>2</sup> studio.</li>
   <li>Click <b>[Help] &gt; [About e<sup>2</sup> studio]</b> and <b>"About e<sup>2</sup> studio"</b> will appear.</li>
   <li>Click <b>[Installation Details]</b>.</li>
-  <li>Click the <b>[Installed Software]</b> tab and select <b>"Renesas AI Framework"</b>/<b>"AI Transfer Learning Tool Plugin"</b>/<b>"AI Model Conversion Tool Plugin"</b>.
+  <li>Click the <b>[Installed Software]</b> tab and select <b>"Renesas AI Framework"</b>/<b>"RZ/V AI TLT"</b>/<b>"AI Model Conversion Tool"</b>.
     <div class="note">
     <span class="note-title">Note</span>
     You can select only one plugin at this time. Repeat this procedure for other plugins if you have finished uninstalling one.
@@ -701,17 +701,17 @@ docker rmi rzv2l_ai_sdk_image:latest
 
 <h3 id="ainavi_appendix_b">B. How to use Bring Your Own Model Project</h3>
 <p>Bring Your Own Model (hereafter, BYOM) project is an empty project to develop an AI application with own AI models on e<sup>2</sup> studio.<br />
-Please follow the steps if you develop your AI applications by using BYOM project.<br /></p>
+Please follow the steps if you develop your AI applications with BYOM project.<br /></p>
 <div class="note">
   <span class="note-title">Note</span>
   Bring Your Own Model project does not support RZ/V AI TLT.
 </div>
 <h5 id="appendix_b_1">1. Import an Bring Your Own Model project</h5>
-<p>Importing this project is the same as importing other AI application projects. For details, see <a href="ainavi_quick_start_guide.html#ainavi_step3">Step 3: Import an AI Application Project</a> in AI Navigator Quick Start Guide for the details.<br />
-In order to import an BYOM project, click <b>[Bring Your Own Model]</b> in the category selection view &gt; <b>[Bring Your Own Model]</b> in the AI application selection view &gt; <b>[Import]</b> in the AI application import view. Be sure to set the directory path of the downloaded and extracted zip file in the Project and AI information view.<br /> 
+<p>Importing this project is the same as importing other AI application projects. For details, see <a href="ainavi_quick_start_guide.html#ainavi_step3" target="_blank">Step 3: Import an AI Application Project</a> in AI Navigator Quick Start Guide for the details.<br />
+In order to import an BYOM project, click <b>[Bring Your Own Model]</b> on the category selection view &gt; <b>[Bring Your Own Model]</b> on the AI application selection view &gt; <b>[Import]</b> on the AI application import view. Be sure to set the directory path of the downloaded and extracted zip file in the Project and AI information view.<br /> 
 <br /></p>
 <h5 id="appendix_b_2">2. Convert AI model</h5>
-<p>This method is the same as for other AI applications. See <a href="ainavi_quick_start_guide.html#ainavi_option2">Option2: Convert AI Model</a> in AI Navigator Quick Start Guide for the details.<br />
+<p>This method is the same as for other AI applications. See <a href="ainavi_quick_start_guide.html#ainavi_option2" target="_blank">Option2: Convert AI Model</a> in AI Navigator Quick Start Guide for the details.<br />
 <br /></p>
 <h5 id="appendix_b_3">3. Edit AI application</h5>
 <p>To build your AI application source code, you should first import your code into your project as shown below.<br /></p>
@@ -726,8 +726,10 @@ In order to import an BYOM project, click <b>[Bring Your Own Model]</b> in the c
 <ul style="list-style: none;">
   <li>(1) Right click on the target project in Project Explorer and open <b>"Properties</b>.</li>
   <li>(2) Click <b> [C/C++ Build] -&gt; [Settings] -&gt; [Build Artifact]</b>.</li>
-  <li>(3) Enter a file name in <b>“Artifact name:”</b>.</li>
-  <li>(4) click <b>[Apply and Close]</b>.</li>
+  <li>(3) Enter a file name in <b>“Artifact name:”</b> and click [Apply].</li>
+  <li>(4) Click <b> [C/C++ Build] -&gt; [Settings] -&gt; [Toolchain]</b>.</li>
+  <li>(5) Check out the box <b>"Use integrated toolchai nverion"</b> and <b>select the appropriate toolchain version.</b></li>
+  <li>(6) Click <b>[Apply and Close]</b>.</li>
 </ul>
 <p>After that, you can build as in <a href="ainavi_quick_start_guide.html#ainavi_option3">Option3: Edit Application</a> in AI Navigator Quick Start Guide.<br />
 <br /></p>
@@ -736,7 +738,7 @@ In order to import an BYOM project, click <b>[Bring Your Own Model]</b> in the c
 <ul style="list-style: none;">
   <li>(1) Edit the copy AI model/application script file<br />
   You need to edit debugCopyFiles.sh in (the path of your project)/ai-navi, which is the script for copying your AI models and applications to the target board.<br />
-  Open debugCopyFiles.sh and edit the following definition in lines 50-55 .<br />
+  Open debugCopyFiles.sh and edit the following definition in lines around 50-55 .<br />
     <ul>
       <li><b>TVM_HOME</b>: The path to your application directory.</li>
       <li><b>MODEL_PATH[]</b>: The path to your model directory on e<sup>2</sup> studio.</li>
@@ -744,7 +746,7 @@ In order to import an BYOM project, click <b>[Bring Your Own Model]</b> in the c
       <li><b>EXE_FILE</b>: Your application file on the target board.</li>
     </ul>
   </li>
-  <br /><br />
+  <br />
   <li>(2) Change debug configurations<br />
   Select <b>[Debug] &gt; [Debug Configurations...] &gt; [Target Communication Framework] &gt; target project</b> and click <b>[Application]</b> tab. Change the file name specified in <b>“Local File Path:”</b> and <b>“Remote File Path:”</b>.</li>
 </ul>
@@ -768,13 +770,16 @@ If you are using other IP address, you will need to reconfigure some settings as
   At this point, check that the Target ID value includes the IP addresses of the target boards.</li>
 </ul>
 
-<h3 id="ainavi_appendix_d">D. Build the Linux and Use your Custom PCB Board or 3rd Party Board</h3>
-<p>The current AI Navigator supports the board and the usage described in the Quick Start Guide.<br />
-If you want to build the Linux (AI SDK) or develop with your custom PCB board or 3rd party board, please refer to the following pages.<br /></p>
+<h3 id="ainavi_appendix_d">D. Build the Linux and Use your Custom Board or 3rd Party Board</h3>
+<p>To set up your Linux environment on your target board using AI Navigator, click the <b>Information icon</b> next to the [Download…] button in the Project Information view. The <a href="https://Tool-support.renesas.com/tool-support/Zoo/guides/RZV/RZV_custom_framework_guide.html" target="_blank">implementation guide</a> will be displayed. Follow the steps provided in the guide.<br /></p>
+
+<p>In order to build the Linux (AI SDK) or develop with your custom board or 3rd party board, please refer to the following pages.<br /></p>
 <ul>
-  <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html">How to build AI SDK Source Code</a><br />
-  The build step of AI SDK environment.</li>
-  <li><a href="https://renesas.info/wiki/RZ-G/RZ-G2_BSP_Porting">RZ/G and RZ/V BSP Porting</a><br />
+  <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk.html">How to build RZ/V2L AI SDK Source Code</a><br />
+  The build step of RZ/V2L AI SDK environment.</li>
+  <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/howto_build_aisdk_v2h.html">How to build RZ/V2H AI SDK Source Code</a><br />
+  The build step of RZ/V2H AI SDK environment.</li>
+  <li><a href="https://jira-gasg.renesas.eu/confluence/display/REN/Renesas+Wiki" target="_blank">RZ/G and RZ/V BSP Porting</a><br />
   The information in order to port RZ/V Linux environment (includes kernel, u-boot, and so on) into your custom board.</li>
 </ul>
 

@@ -17,6 +17,29 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2H & RZ/V2L - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2024.10.11
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Navigator v1.20 (e<sup>2</sup> studio for RZ/V2L & RZ/V2H) is released.</h5>
+                </li>
+                <li><h5 class="history-item">AI Navigator Quick Start Guide is updated.</h5>
+                    <ul>
+                        <li> 
+                            Users can develop more AI applications for RZ/V2H with the latest environment.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ MPU Security Package for RZ/V2H AI SDK v5.00 and Developer's Guide
                 </h3>
                 <h6 align="right" >
