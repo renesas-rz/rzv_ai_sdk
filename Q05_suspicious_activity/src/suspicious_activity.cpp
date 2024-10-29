@@ -1,8 +1,8 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
  * Modified Code (C) Copyright Renesas Electronics Corporation 2023
- *　
- *  *1 DRP-AI TVM is powered by EdgeCortix MERA™ Compiler Framework.
+ * 
+ *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -22,11 +22,24 @@
  * under the License.
  *
  */
-/***********************************************************************************************************************
- * File Name    : fish_classification.cpp
- * Version      : 1.0
- * Description  : RZ/V2L SDK AI Application: Fish Classification
- ***********************************************************************************************************************/
+ /***********************************************************************************************************************
+* DISCLAIMER
+* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
+* other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
+* applicable laws, including copyright laws.
+* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
+* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
+* EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
+* SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
+* SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
+* this software. By using this software, you agree to the additional terms and conditions found by accessing the
+* following link:
+* http://www.renesas.com/disclaimer
+*
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
+***********************************************************************************************************************
 /*****************************************
  * includes
  *****************************************/
@@ -133,9 +146,17 @@ cv::Mat run_inference(cv::Mat frame);
 std::map<std::string, int> input_source_map =
 {
     {"VIDEO", 1},
-    {"MIPI", 2},
+    #ifdef V2L
+        {"MIPI", 2},
+    #endif
     {"USB", 3}
 };
+
+#ifdef V2H
+    #define DRPAI_FREQ                 (2)
+    /*DRP-AI Frequency setting*/
+    static int32_t drpai_freq;
+#endif
 
 /*****************************************
 * Function Name : get_drpai_start_addr
@@ -333,14 +354,13 @@ void start_runtime(bool flag,float *input)
     MeraDrpRuntimeWrapper model_runtime = (flag == true)?embedding_model:prediction_model;
     /*Set Pre-processing output to be inference input. */
     model_runtime.SetInput(0, input);
-    model_runtime.Run();
+    #ifdef V2H
+        model_runtime.Run(drpai_freq);
+    #elif V2L
+            model_runtime.Run();
+    #endif
     /* Get the number of output.  */
     auto output_num = model_runtime.GetNumOutput();
-    if (output_num != 1)
-    {
-        std::cout << "[ERROR] Output size : not 1." << std::endl;
-        abort();
-    }
     /* get output buffer */
     auto output_buffer = model_runtime.GetOutput(0);
     out_size_arr = std::get<2>(output_buffer);
@@ -372,7 +392,7 @@ void start_runtime(bool flag,float *input)
     else
     {
         std::cout << "[ERROR] Output data type : not floating point." << std::endl;
-        abort();
+        exit(0);
     }
 }
 
@@ -641,7 +661,16 @@ int input_source_select(void)
 }
 
 int main(int argc, char **argv)
-{   
+{
+    #ifdef V2H
+        /*Disable OpenCV Accelerator due to the use of multithreading */
+        unsigned long OCA_list[16];
+        for (int i = 0; i < 16; i++)
+            OCA_list[i] = 0;
+        OCA_Activate(&OCA_list[0]);
+    #endif
+
+
     if (argc < 2 || argc > 5) 
     {
         std::cout << "[ERROR] Please specify Input Source" << std::endl;
@@ -682,6 +711,30 @@ int main(int argc, char **argv)
     const uint8_t frame_interval_max    = 16;
     const uint8_t buffer_size_min       = 0;
     const uint8_t buffer_size_max       = 10;    
+
+    #ifdef V2H
+
+        std::map<std::string, std::string> args;
+        /* Parse input arguments */
+        for (int i = 1; i < argc; ++i) 
+        {
+            std::string arg = argv[i];
+            size_t pos = arg.find('=');
+            if (pos != std::string::npos) 
+            {
+                std::string key = arg.substr(0, pos);
+                std::string value = arg.substr(pos + 1);
+                args[key] = value;
+            }
+        }
+
+         /* DRP-AI Frequency Setting */
+        if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0)
+            drpai_freq = std::stoi(args["--drpai_freq"]);
+        else 
+            drpai_freq = DRPAI_FREQ;
+        std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+    #endif
 
     /* Fetching Frame interval & Buffer size from arguments */
     (!(argv[2+arg_index]) || (atoi(argv[2+arg_index]) <= frame_interval_min || atoi(argv[2+arg_index]) >= frame_interval_max)) ? std::cout << "[INFO] Default Frame interval: " : std::cout << "[INFO] Frame interval: ";
