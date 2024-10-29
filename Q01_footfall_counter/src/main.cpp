@@ -1,7 +1,7 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023
- *　
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2024
+ * 
  *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -38,12 +38,7 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
-***********************************************************************************************************************/
-/***********************************************************************************************************************
-* File Name    : main.cpp
-* Version      : v1.00
-* Description  : RZ/V2L AI SDK Sample Application for Object Detection
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /*****************************************
@@ -55,6 +50,10 @@
 #include "define.h"
 /*box drawing*/
 #include "box.h"
+/*Double click termination*/
+#include "utils.h"
+/*Wayland control*/
+#include "wayland.h"
 
 #include "sort.h"
 
@@ -63,14 +62,19 @@
 ******************************************/
 std::map<std::string, int> input_source_map =
 {
-    {"MIPI", 1},
-    {"USB", 2}
+    {"USB", 1},
+    #ifdef V2L
+        {"MIPI", 2}
+    #endif
 };
+
 
 /*Multithreading*/
 static sem_t terminate_req_sem;
 static pthread_t ai_inf_thread;
 static pthread_t capture_thread;
+static pthread_t exit_thread;
+static pthread_t kbhit_thread;
 static std::mutex mtx;
 
 /*Flags*/
@@ -79,32 +83,42 @@ static std::atomic<uint8_t> img_obj_ready   (0);
 
 /*Global Variables*/
 static float drpai_output_buf[INF_OUT_SIZE];
-static uint64_t udmabuf_address = 0;
 
 /*AI Inference for DRPAI*/
 /* DRP-AI TVM[*1] Runtime object */
 MeraDrpRuntimeWrapper runtime;
 
-static float pre_time = 0;
-static float post_time = 0;
-static float ai_time = 0;
+/* Sets a flag to indicate whether a double click has been detected. */
+bool doubleClick = false;
+
+#ifdef V2H
+/*DRP-AI Frequency setting*/
+static int32_t drpai_freq;
+#endif
+
+static float pre_time   = 0;
+static float post_time  = 0;
+static float ai_time    = 0;
 static float total_time = 0;
 static std::vector<detection> det;
+
 cv::Mat yuyv_image;
 cv::Mat input_image;
 std::unordered_map<std::string, std::unordered_map<std::string, std::string>> ini_values;
 std::vector<std::string> detection_object_vector;
-// std::vector<cv::Rect> bbox;
+
 static cv::Mat trackerbbox = cv::Mat(0, 6, CV_32F);
 static std::vector<bbox_t> bbox;
 int pointx1, pointy1, pointx2, pointy2, actual_count = 0;
 std::vector<cv::Point> polygon;
 static float conf = 0;
 
+/* Wayland object */
+static Wayland wayland;
 
 /*****************************************
 * Function Name     : float16_to_float32
-* Description       : Function by Edgecortex. Cast uint16_t a into float value.
+* Description       : Function by Edge cortex. Cast uint16_t a into float value.
 * Arguments         : a = uint16_t number
 * Return value      : float = float32 number
 ******************************************/
@@ -114,15 +128,30 @@ float float16_to_float32(uint16_t a)
 }
 
 /*****************************************
-* Function Name : timedifference_msec
+* Function Name : time_difference_msec
 * Description   : compute the time differences in ms between two moments
 * Arguments     : t0 = start time
 *                 t1 = stop time
 * Return value  : the time difference in ms
 ******************************************/
-static double timedifference_msec(struct timespec t0, struct timespec t1)
+static double time_difference_msec(struct timespec t0, struct timespec t1)
 {
     return (t1.tv_sec - t0.tv_sec) * 1000.0 + (t1.tv_nsec - t0.tv_nsec) / 1000000.0;
+}
+
+/*****************************************
+ * Function Name     : float_to_string
+ * Description       : Convert float to string with precision
+ * Arguments         : number = float number to be converted
+ *                     precision = int number to set precision
+ * Return value      : string = string number
+ ******************************************/
+std::string float_to_string(float number, int precision = 2)
+{
+    std::stringstream stream;  
+    stream.precision(precision);
+    stream << std::fixed << number;  
+    return stream.str();
 }
 
 /*****************************************
@@ -190,7 +219,7 @@ void config_read()
 * Description       : Load label list text file and return the label list that contains the label.
 * Arguments         : label_file_name = filename of label list. must be in txt format
 * Return value      : vector<string> list = list contains labels
-*                     empty if error occured
+*                     empty if error occurred
 ******************************************/
 std::vector<std::string> load_label_file(std::string label_file_name)
 {
@@ -514,8 +543,6 @@ void R_Post_Proc(float* floatarr)
     return ;
 }
 
-
-
 /*****************************************
 * Function Name : check_above_or_below
 * Description   : check the given point is above or below the line,
@@ -533,7 +560,6 @@ int check_above_or_below(int x, int y)
     else
         return 0;
 }
-
 
 /*****************************************
 * Function Name : check_inside_rectangle
@@ -576,7 +602,7 @@ void *R_Inf_Thread(void *threadid)
     static struct timespec post_start_time;
     static struct timespec post_end_time;
 
-    printf("Inference Thread Starting\n");
+    printf("\n[INFO] Inference Thread Starting\n");
 
     /*Inference Loop Start*/
     while(1)
@@ -584,7 +610,7 @@ void *R_Inf_Thread(void *threadid)
         while(1)
         {
             /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
-            /*Checks if sem_getvalue is executed wihtout issue*/
+            /*Checks if sem_getvalue is executed without issue*/
             errno = 0;
             ret = sem_getvalue(&terminate_req_sem, &inf_sem_check);
             if (0 != ret)
@@ -632,7 +658,7 @@ void *R_Inf_Thread(void *threadid)
         runtime.SetInput(0, input_image.ptr<float>());
         
         /*Pre-process Time Result*/
-        pre_time = (float)((timedifference_msec(pre_start_time, pre_end_time)));
+        pre_time = (float)((time_difference_msec(pre_start_time, pre_end_time)));
 
         /*Gets inference starting time*/
         ret = timespec_get(&start_time, TIME_UTC);
@@ -641,8 +667,12 @@ void *R_Inf_Thread(void *threadid)
             fprintf(stderr, "[ERROR] Failed to get Inference Start Time\n");
             goto err;
         }
-
-        runtime.Run();
+        
+        #ifdef V2H
+            runtime.Run(drpai_freq);
+        #elif V2L
+            runtime.Run();
+        #endif
 
         /*Gets AI Inference End Time*/
         ret = timespec_get(&inf_end_time, TIME_UTC);
@@ -652,7 +682,7 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
         /*Inference Time Result*/
-        ai_time = (float)((timedifference_msec(start_time, inf_end_time)));
+        ai_time = (float)((time_difference_msec(start_time, inf_end_time)));
 
         /*Gets Post-process starting time*/
         ret = timespec_get(&post_start_time, TIME_UTC);
@@ -679,7 +709,7 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
         /*Post-process Time Result*/
-        post_time = (float)((timedifference_msec(post_start_time, post_end_time)));
+        post_time = (float)((time_difference_msec(post_start_time, post_end_time)));
         total_time = pre_time + ai_time + post_time;
         inference_start.store(0);
     }
@@ -693,20 +723,151 @@ err:
 /*AI Thread Termination*/
 ai_inf_end:
     /*To terminate the loop in Capture Thread.*/
-    printf("AI Inference Thread Terminated\n");
+    printf("[INFO] AI Inference Thread Terminated\n");
+    pthread_exit(NULL);
+}
+
+/*****************************************
+* Function Name : R_Kbhit_Thread
+* Description   : Executes the Keyboard hit thread (checks if enter key is hit)
+* Arguments     : threadid = thread identification
+* Return value  : -
+******************************************/
+void *R_Kbhit_Thread(void *threadid)
+{
+    /*Semaphore Variable*/
+    int32_t kh_sem_check = 0;
+    /*Variable to store the getchar() value*/
+    int32_t c = 0;
+    /*Variable for checking return value*/
+    int8_t ret = 0;
+
+    devices dev;
+    printf("[INFO] Key Hit Thread Starting\n");
+
+    printf("\n\n************************************************\n");
+    printf("* Press ENTER key to quit. *\n");
+    printf("************************************************\n");
+
+    /*Set Standard Input to Non Blocking*/
+    errno = 0;
+    ret = fcntl(0, F_SETFL, O_NONBLOCK);
+    if (-1 == ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
+        goto err;
+    }
+
+    while(1)
+    {
+        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
+        /*Checks if sem_getvalue is executed without issue*/
+        errno = 0;
+        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
+            goto err;
+        }
+        /*Checks the semaphore value*/
+        if (1 != kh_sem_check)
+        {
+            goto key_hit_end;
+        }
+
+        c = getchar();
+        if (EOF != c)
+        {
+            /* When key is pressed. */
+            printf("[INFO] key Detected. !!!\n");
+            goto err;
+        }
+        else
+        {
+            /* When nothing is pressed. */
+            usleep(WAIT_TIME);
+        }
+    }
+
+/*Error Processing*/
+err:
+    /*Set Termination Request Semaphore to 0*/
+    sem_trywait(&terminate_req_sem);
+    goto key_hit_end;
+
+key_hit_end:
+    printf("[INFO] Key Hit Thread Terminated\n");
+    pthread_exit(NULL);
+}
+
+/*****************************************
+* Function Name : R_exit_Thread
+* Description   : Executes the double click exit thread
+* Arguments     : threadid = thread identification
+* Return value  : -
+******************************************/
+void *R_exit_Thread(void *threadid)
+{
+    /*Semaphore Variable*/
+    int32_t kh_sem_check = 0;
+
+    /*Variable for checking return value*/
+    int8_t ret = 0;
+    devices dev;
+
+    printf("[INFO] Exit Thread Starting\n");
+    /*Set Standard Input to Non Blocking*/
+    errno = 0;
+    ret = fcntl(0, F_SETFL, O_NONBLOCK);
+    if (-1 == ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
+        goto err;
+    }
+    
+    while(1)
+    {
+        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
+        /*Checks if sem_getvalue is executed without issue*/
+        errno = 0;
+        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
+            goto err;
+        }
+        /*Checks the semaphore value*/
+        if (1 != kh_sem_check)
+        {
+            goto exit_end;
+        }
+        dev.detect_mouse_click();
+        if (doubleClick)
+        {
+            goto err;
+        }
+    }
+
+/*Error Processing*/
+err:
+    /*Set Termination Request Semaphore to 0*/
+    sem_trywait(&terminate_req_sem);
+    goto exit_end;
+
+exit_end:
+    printf("[INFO] Exit Thread Terminated\n");
     pthread_exit(NULL);
 }
 
 /*****************************************
 * Function Name : R_Capture_Thread
 * Description   : Executes the V4L2 capture with Capture thread.
-* Arguments     : cap_pipeline = gstreamer pipeline
+* Arguments     : cap_pipeline = g-streamer pipeline
 * Return value  : -
 ******************************************/
 void *R_Capture_Thread(void *cap_pipeline)
 {
     std::string &gstream = *(static_cast<std::string*>(cap_pipeline));
-    std::cout << gstream << std::endl;
     /*Semaphore Variable*/
     int32_t capture_sem_check = 0;
     int8_t ret = 0;
@@ -714,7 +875,7 @@ void *R_Capture_Thread(void *cap_pipeline)
     cv::Mat raw_frame;
     cv::VideoCapture g_cap;
 
-    printf("Capture Thread Starting\n");
+    printf("[INFO] Capture Thread Starting\n");
 
     g_cap.open(gstream, cv::CAP_GSTREAMER);
     if (!g_cap.isOpened())
@@ -723,11 +884,15 @@ void *R_Capture_Thread(void *cap_pipeline)
                   << std::endl;
         goto err;
     }
-
+    /* Set camera resolution */
+    /* set width */
+    g_cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+    /* set height */
+    g_cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
     while(1)
     {
         /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
-        /*Checks if sem_getvalue is executed wihtout issue*/
+        /*Checks if sem_getvalue is executed without issue*/
         errno = 0;
         ret = sem_getvalue(&terminate_req_sem, &capture_sem_check);
         if (0 != ret)
@@ -750,7 +915,6 @@ void *R_Capture_Thread(void *cap_pipeline)
         }
         else
         {   
-            cv::resize(g_frame, g_frame, cv::Size(CAM_IMAGE_WIDTH, CAM_IMAGE_HEIGHT));
             if (!inference_start.load())
             {
 
@@ -775,16 +939,15 @@ capture_end:
     /*To terminate the loop in AI Inference Thread.*/
     inference_start.store(1);
 
-    printf("Capture Thread Terminated\n");
+    printf("[INFO] Capture Thread Terminated\n");
     pthread_exit(NULL);
 }
-
 
 /*****************************************
  * Function Name    : create_output_frame
  * Description      : create the output frame with space for displaying inference details
  * Arguments        : cv::Mat frame_g, input frame to be displayed in the background
- * Return value     : cv::Mat background, final display frame to be written to gstreamer pipeline
+ * Return value     : cv::Mat background, final display frame to be written to g-streamer pipeline
  *****************************************/
 cv::Mat create_output_frame(cv::Mat frame_g)
 {
@@ -798,22 +961,6 @@ cv::Mat create_output_frame(cv::Mat frame_g)
     resizedImage.copyTo(background(roi));
     return background;
 }
-
-/*****************************************
- * Function Name    : mouse_callback_button_click
- * Description      : Callback function to exit on mouse double click
- * Arguments        : Default opencv formats for callbacks 
- * Return value     : -
- *****************************************/
-void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
-{
-    if (event == cv::EVENT_LBUTTONDBLCLK)
-    {
-        std::cout << "[INFO] Double tap !!!" << std::endl;
-        sem_trywait(&terminate_req_sem);
-    }
-}
-
 
 /*****************************************
 * Function Name : R_Main_Process
@@ -830,6 +977,8 @@ int8_t R_Main_Process()
     int32_t sem_check = 0;
     /*Variable for checking return value*/
     int8_t ret = 0;
+    /* wayland Index = 0 */
+    uint32_t idx = 0;
     config_read();
     uint8_t img_buf_id;
     std::map<int, int> id_time;
@@ -867,28 +1016,40 @@ int8_t R_Main_Process()
         detection_object_vector.push_back(item);
     }
     std::cout << "*******************Tracking/Detection Parameters*******************" << std::endl;
-    std::cout << "Selected objects to track\n";
+    std::cout << "\n[INFO] Selected objects to track\n\n";
     for (const auto &item : detection_object_vector)
-        std::cout << item << std::endl;
+        std::cout<< item << std::endl;
 
     std::string DISPLAY_TEXT = ini_values["display"]["display_text"];
     std::string DISPLAY_REGION_TEXT = ini_values["display"]["region_display_text"];
     std::string g_pipeline = "appsrc ! videoconvert ! autovideosink sync=false ";
-    float font_size = 0.75;
-    float font_weight = 1;
-    float font_size_dt = 0.65;
+    #ifdef V2H
+        float font_size = .9;
+        float font_weight = 2;
+    #elif V2L
+        float font_size = .6;
+        float font_weight = 2;
+    #endif
+    float font_size_dt = 0.75;
     float font_size_bb = 0.5;
     float font_weight_bb = 1;
     if (DISPLAY_TEXT.size() > 20 || DISPLAY_REGION_TEXT.size() > 20)
     {
         font_size_dt = .45;
     }
+
     sort::Sort::Ptr mot = std::make_shared<sort::Sort>(1, 3, 0.3f);
     cv::namedWindow("Object Tracker", cv::WINDOW_NORMAL);
     cv::setWindowProperty("Object Tracker", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
-    cv::setMouseCallback("Object Tracker", mouse_callback_button_click);
 
-    printf("Main Loop Starts\n");
+    /* Initialize wayland */
+    ret = wayland.init(idx, IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    if(0 != ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
+        goto err;
+    }
+    printf("\n[INFO] Main Loop Starts\n");
     while(1)
     {
         /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
@@ -953,6 +1114,8 @@ int8_t R_Main_Process()
                         if (location_history[tracker_id])
                         {
                             actual_count--;
+                            if(actual_count < 0)
+                                actual_count = 0;
                         }
                         location_history[tracker_id] = s;
                     }
@@ -990,21 +1153,21 @@ int8_t R_Main_Process()
             cv::line(bgra_image, cv::Point(pointx1, pointy1), cv::Point(pointx2, pointy2), cv::Scalar(0, 0, 255), 4);
             cv::polylines(bgra_image, polygon, true, cv::Scalar(0, 255, 0), 2);
             bgra_image = create_output_frame(bgra_image);
-            cv::putText(bgra_image, "Preprocess Time: " + std::to_string(int(pre_time)), cv::Point(970, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "AI Inference Time: " + std::to_string(int(ai_time)), cv::Point(970, 90), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Postprocess Time: " + std::to_string(int(post_time)), cv::Point(970, 120), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, DISPLAY_TEXT + ": " + std::to_string(actual_count), cv::Point(970, 180), cv::FONT_HERSHEY_DUPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, DISPLAY_REGION_TEXT + ": " + std::to_string(region_count), cv::Point(970, 210), cv::FONT_HERSHEY_DUPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(970, 700), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
-            cv::putText(bgra_image, "Objects Detected: ", cv::Point(970, 270), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Preprocess Time   : " + float_to_string(pre_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 60), cv::FONT_HERSHEY_SIMPLEX, font_size, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
+            cv::putText(bgra_image, "AI Inference Time  : " + float_to_string(ai_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 95), cv::FONT_HERSHEY_SIMPLEX, font_size, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
+            cv::putText(bgra_image, "Postprocess Time  : " + float_to_string(post_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 127), cv::FONT_HERSHEY_SIMPLEX, font_size, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
+            cv::putText(bgra_image, DISPLAY_TEXT + " : " + std::to_string(actual_count), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 180), cv::FONT_HERSHEY_SIMPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
+            cv::putText(bgra_image, DISPLAY_REGION_TEXT + " : " + std::to_string(region_count), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 210), cv::FONT_HERSHEY_SIMPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
+            cv::putText(bgra_image, "Objects Detected : ", cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 270), cv::FONT_HERSHEY_SIMPLEX, font_size, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             mtx.lock();
             for (int i = 0; i < bbox.size(); i++)
             {
-                cv::putText(bgra_image, bbox[i].name, cv::Point(980, (300 + (i * 20))), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+                cv::putText(bgra_image, bbox[i].name, cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 30, (320 + (i * 30))), cv::FONT_HERSHEY_SIMPLEX, font_size, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             }
             mtx.unlock();
-            cv::imshow("Object Tracker", bgra_image);
-            cv::waitKey(1);
+            cv::cvtColor(bgra_image,bgra_image,cv::COLOR_BGR2BGRA);
+            /*Update Wayland*/
+            wayland.commit(bgra_image.data,NULL);
             img_obj_ready.store(0);
         }
         /*Wait for 1 TICK.*/
@@ -1020,37 +1183,30 @@ err:
 main_proc_end:
     /*To terminate the loop in Capture Thread.*/
     img_obj_ready.store(0);
-    printf("Main Process Terminated\n");
+    printf("[INFO] Main Process Terminated\n");
     return main_ret;
 }
-
 
 /*****************************************
 * Function Name : get_drpai_start_addr
 * Description   : Get DRP-AI Memory Area Address via DRP-AI Driver
-* Arguments     : -
+* Arguments     : int drpai_fd
 * Return value  : drpai start address 
 ******************************************/
-uint32_t get_drpai_start_addr()
+#ifdef V2H
+    uint64_t get_drpai_start_addr(int drpai_fd)
+#elif V2L
+    uint32_t get_drpai_start_addr(int drpai_fd)
+#endif
 {
-    int fd  = 0;
     int ret = 0;
     drpai_data_t drpai_data;
-
     errno = 0;
-
-    fd = open("/dev/drpai0", O_RDWR);
-    if (0 > fd )
-    {
-        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
-        return (uint32_t)NULL;
-    }
-
     /* Get DRP-AI Memory Area Address via DRP-AI Driver */
-    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    ret = ioctl(drpai_fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
     if (-1 == ret)
     {
-        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        std::cerr << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
         return (uint32_t)NULL;
     }
 
@@ -1086,6 +1242,7 @@ void mipi_cam_init(void)
         }
     }
 }
+
 
 /*****************************************
  * Function Name : query_device_status
@@ -1125,32 +1282,87 @@ std::string query_device_status(std::string device_type)
     return media_port;
 }
 
+/*****************************************
+* Function Name : init_drpai
+* Description   : Function to initialize DRP-AI.
+* Arguments     : drpai_fd: DRP-AI file descriptor
+* Return value  : If non-zero, DRP-AI memory start address.
+*                 0 is failure.
+******************************************/
+#ifdef V2H
+uint64_t init_drpai(int drpai_fd)
+#elif V2L
+uint32_t init_drpai(int drpai_fd)
+#endif
+{
+    int ret = 0;
+#ifdef V2H
+    uint64_t drpai_addr = 0;
+#elif V2L
+    uint32_t drpai_addr = 0;
+#endif  
+    /*Get DRP-AI memory start address*/
+    drpai_addr = get_drpai_start_addr(drpai_fd);
+
+    if (drpai_addr == 0)
+    {
+        return 0;
+    }
+
+    return drpai_addr;
+}
+
 int32_t main(int32_t argc, char * argv[])
 {
     int8_t main_proc = 0;
-    int8_t ret = 0;
     int8_t ret_main = 0;
+    int8_t ret = 0;
+
+    /*Disable OpenCV Accelerator due to the use of multithreading */
+    #ifdef V2H
+    unsigned long OCA_list[16];
+    for(int i = 0; i < 16; i++) OCA_list[i] = 0;
+    OCA_Activate(&OCA_list[0]);
+    #endif
+
     /*Multithreading Variables*/
     int32_t create_thread_ai = -1;
-    // int32_t create_thread_key = -1;
+    int32_t create_thread_key = -1;
+    int32_t create_thread_exit = -1;
     int32_t create_thread_capture = -1;
     int32_t sem_create = -1;
+
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
+
+    
     if (argc < 2) 
     {
         std::cout << "[ERROR] Please specify Input Source\n";
-        std::cout << "[INFO] usage: ./object_tracker MIPI|USB.\n";
+
+        #ifdef V2H
+            std::cout << "[INFO] usage: ./object_tracker USB.\n";
+        #elif V2L
+            std::cout << "[INFO] usage: ./object_tracker USB|MIPI.\n";
+        #endif
+        
         std::cout << "[INFO] End Application.\n";
         return -1;
-
     }
     std::string input_source = argv[1];
     switch (input_source_map[input_source])
-    {
-        /* Input Source : MIPI Camera */
+    {   
+        /* Input Source : USB Camera */
         case 1:
+        {
+            std::cout << "[INFO] USB CAMERA \n";
+            std::string media_port = query_device_status("usb");
+            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+        }
+        break;
+        /* Input Source : MIPI Camera */
+        case 2:
         {
             std::cout << "[INFO] MIPI CAMERA \n";
             mipi_cam_init();
@@ -1159,51 +1371,58 @@ int32_t main(int32_t argc, char * argv[])
 
         }
         break;
-        /* Input Source : USB Camera */
-        case 2:
-        {
-            std::cout << "[INFO] USB CAMERA \n";
-            std::string media_port = query_device_status("usb");
-            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
-
-        }
-        break;
         default:
         {
             std::cout << "[ERROR] Invalid Input source\n";
+            #ifdef V2H
+                std::cout << "[INFO] usage: ./object_tracker USB.\n";
+            #elif V2L
+                std::cout << "[INFO] usage: ./object_tracker USB|MIPI.\n";
+            #endif
+            std::cout << "[INFO] End Application.\n";
             return -1;
         }
     }
-
-    /* Obtain udmabuf memory area starting address */
-    int fd = 0;
-    char addr[1024];
-    int32_t read_ret = 0;
-    errno = 0;
-    fd = open("/sys/class/u-dma-buf/udmabuf0/phys_addr", O_RDONLY);
-    if (0 > fd)
+    std::map<std::string, std::string> args;
+    /* Parse input arguments */
+    for (int i = 1; i < argc; ++i) 
     {
-        fprintf(stderr, "[ERROR] Failed to open udmabuf0/phys_addr : errno=%d\n", errno);
-        return -1;
+        std::string arg = argv[i];
+        size_t pos = arg.find('=');
+        if (pos != std::string::npos) 
+        {
+            std::string key = arg.substr(0, pos);
+            std::string value = arg.substr(pos + 1);
+            args[key] = value;
+        }
     }
-    read_ret = read(fd, addr, 1024);
-    if (0 > read_ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to read udmabuf0/phys_addr : errno=%d\n", errno);
-        close(fd);
-        return -1;
-    }
-    sscanf(addr, "%lx", &udmabuf_address);
-    close(fd);
-    /* Filter the bit higher than 32 bit */
-    udmabuf_address &=0xFFFFFFFF;
-
-    printf("RZ/V2L AI SDK Sample Application\n");
-    printf("Model : Darknet YOLOv3 | %s\n", model_dir.c_str());
-    printf("Input : Coral Camera\n");
-
     
-    uint32_t drpaimem_addr_start = 0;
+    #ifdef V2H
+         /* DRP-AI Frequency Setting */
+        if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0)
+            drpai_freq = stoi(args["--drpai_freq"]);
+        else 
+            drpai_freq = DRPAI_FREQ;
+        std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+        /* AI Application for RZ/V2H */
+        printf("\nAI Application for RZ/V2H\n");
+        printf("Model : Darknet YOLOv3 | %s\n", model_dir.c_str());
+    #elif V2L
+        /* AI Application for RZ/V2L */
+        printf("\nAI Application for RZ/V2L\n");
+        printf("Model : Darknet TINY YOLOv3 | %s\n", model_dir.c_str());
+    #endif
+    
+
+    int drpai_fd = open("/dev/drpai0", O_RDWR);
+    if (0 > drpai_fd)
+    {
+        std::cerr << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno << std::endl;
+        std::cout << "[INFO] End Application.\n";
+        return -1;
+    }
+    /* Set drpai mem start address */
+    uint64_t drpaimem_addr_start = 0;
 
     /*Load Label from label_list file*/
     label_file_map = load_label_file(label_list);
@@ -1215,14 +1434,15 @@ int32_t main(int32_t argc, char * argv[])
     }
 
     /*Load model_dir structure and its weight to runtime object */
-    drpaimem_addr_start = get_drpai_start_addr();
+    drpaimem_addr_start = init_drpai(drpai_fd);
+   
     if ((uint32_t)NULL == drpaimem_addr_start) 
     {
         fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
         goto end_main;
     }
 
-    runtime_status = runtime.LoadModel(model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET);
+    runtime_status = runtime.LoadModel(model_dir, drpaimem_addr_start + DRPAI_MEM_OFFSET);
 
     if(!runtime_status)
     {
@@ -1268,7 +1488,7 @@ int32_t main(int32_t argc, char * argv[])
         goto end_threads;
     }
 
-    /*Create Capture Thread*/
+    /* Create Capture Thread */
     create_thread_capture = pthread_create(&capture_thread, NULL, R_Capture_Thread, (void *) &gstreamer_pipeline);
     if (0 != create_thread_capture)
     {
@@ -1278,7 +1498,27 @@ int32_t main(int32_t argc, char * argv[])
         goto end_threads;
     }
 
-    /*Main Processing*/
+    /* Create exit Thread */
+    create_thread_exit = pthread_create(&exit_thread, NULL, R_exit_Thread, NULL);
+    if (0 != create_thread_exit)
+    {
+        fprintf(stderr, "[ERROR] Failed to create exit Thread.\n");
+        ret_main = -1;
+        goto end_threads;
+    }
+    /* Detached exit thread */
+    pthread_detach(exit_thread);
+
+    /* Create Key Hit Thread */
+    create_thread_key = pthread_create(&kbhit_thread, NULL, R_Kbhit_Thread, NULL);
+    if (0 != create_thread_key)
+    {
+        fprintf(stderr, "[ERROR] Failed to create Key Hit Thread.\n");
+        ret_main = -1;
+        goto end_threads;
+    }
+
+    /* Main Processing */
     main_proc = R_Main_Process();
     if (0 != main_proc)
     {
@@ -1306,15 +1546,39 @@ end_threads:
             ret_main = -1;
         }
     }
+    if (0 == create_thread_key)
+    {
+        ret = wait_join(&kbhit_thread, EXIT_THREAD_TIMEOUT);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to exit Key Hit Thread on time.\n");
+            ret_main = -1;
+        }
+    }
 
-    /*Delete Terminate Request Semaphore.*/
+    /* Delete Terminate Request Semaphore */
     if (0 == sem_create)
     {
         sem_destroy(&terminate_req_sem);
     }
+    /* Exit wayland */
+    wayland.exit();
+    goto end_close_drpai;
+end_close_drpai:
+    /*Close DRP-AI Driver.*/
+    if (0 < drpai_fd)
+    {
+        errno = 0;
+        ret = close(drpai_fd);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to close DRP-AI Driver: errno=%d\n",errno);
+            ret_main = -1;
+        }
+    }
     goto end_main;
 
 end_main:
-    printf("Application End\n");
+    printf("[INFO] End Application.\n");
     return ret_main;
 }
