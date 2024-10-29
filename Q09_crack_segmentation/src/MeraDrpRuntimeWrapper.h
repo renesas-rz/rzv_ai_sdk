@@ -1,6 +1,6 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023　
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2023 
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -34,10 +34,13 @@ class MeraDrpRuntimeWrapper {
   ~MeraDrpRuntimeWrapper();
 
   bool LoadModel(const std::string& model_dir, uint32_t start_address);
+  bool LoadModel(const std::string& model_dir, uint64_t start_address);
   template <typename T>
   void SetInput(int input_index, const T* data_ptr);
   void Run();
+  void Run(int freq_index);
   void ProfileRun(const std::string& profile_table, const std::string& profile_csv);
+  void ProfileRun(const std::string& profile_table, const std::string& profile_csv, int freq_index);
   int GetNumInput(std::string model_dir);
   InOutDataType GetInputDataType(int index);
   int GetNumOutput();

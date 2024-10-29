@@ -65,7 +65,7 @@ Surface crack segmentation has a wide range of applications, including:
     </tr>
     <tr>
       <td>AC Adapter</td>
-      <td>USB Power Deliveryadapterfor the board power supply.<br>
+      <td>USB Power Delivery adapter for the board power supply.<br>
       100W is required.</td>
     </tr>
     <tr>
@@ -164,25 +164,27 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```sh
     export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
     ```
-3. Go to the application source code directory.  
+4. Go to the application source code directory.  
     ```sh
-    cd ${PROJECT_PATH}/Q09_crack_segmentation/<SRC_DIR>
+    cd ${PROJECT_PATH}/Q09_crack_segmentation/src
     ```
-    |Board | `SRC_DIR` |
-    |:---|:---|
-    |RZ/V2L EVK|`src`  |
-    |RZ/V2H EVK|`src_v2h`  |
 
-4. Create and move to the `build` directory.
+5. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
     ``````
-4. Build the application by following the commands below.  
+6. Build the application by following the commands below.  
+   **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-5. The following application file would be generated in the `${PROJECT_PATH}/Q09_crack_segmentation/<SRC_DIR>/build` directory
+    **For RZ/V2H**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+7. The following application file would be generated in the `${PROJECT_PATH}/Q09_crack_segmentation/src/build` directory
     - crack_segmentation
 
 ## Application: Deploy Stage
@@ -292,11 +294,11 @@ After completion of the guide, the user is expected of following things.
 - Output Shape: 1x1x224x224  
 
 ### AI inference time
+|Board | AI inference time|
+|:---|:---|
+|RZ/V2L EVK| Approximately  90 ms  |
+|RZ/V2H EVK | Approximately  10 ms  |
 
-  #### RZ/V2L EVK 
-  - Total AI inference time (Pre-processing + AI model inference) - 115ms (8 FPS)
-  #### RZ/V2H EVK 
-  - Total AI inference time (Pre-processing + AI model inference) - 24ms (41 FPS)
 ### Processing
 
 |Processing | Details |
@@ -310,13 +312,13 @@ After completion of the guide, the user is expected of following things.
 
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
-|RZ/V2L EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2L EVK | VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
 |RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
   
 
 ## Reference
 - For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.     
-To use FHD, please use MIPI camera.   
+FHD resolution is supported by e-CAM22_CURZH camera (MIPI).   
 Please refer to following URL for how to change camera input to MIPI camera.  
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  
 

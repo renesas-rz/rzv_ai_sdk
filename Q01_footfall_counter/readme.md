@@ -16,7 +16,10 @@ The AI model used for the sample application is [YOLOV3/Tiny YOLOv3](https://arx
 
 It has following mode of running.
 
-- Using USB Camera as input
+| Mode | RZ/V2L | RZ/V2H |
+|:---|:---|:---|
+| USB Camera| Supported | Supported |
+| MIPI Camera| Supported | - |
 
 ### Supported Product 
 - RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
@@ -162,51 +165,26 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```sh
     export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
     ```
-3. Go to the application source code directory.  
+4. Go to the application source code directory.  
     ```sh
-    cd ${PROJECT_PATH}/Q01_footfall_counter/<SRC_DIR>
+    cd ${PROJECT_PATH}/Q01_footfall_counter/src
     ```
-    |Board | `SRC_DIR` |
-    |:---|:---|
-    |RZ/V2L EVK|`src`  |
-    |RZ/V2H EVK|`src_v2h`  |
-
-4. **[For RZ/V2L only]** Prepare the `boost` library.  
-    1. Download the `boost` tar file
-      ```sh
-      wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
-      ```
-      >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the `src` folder present on the mounted `data` directory.
-
-    2. Extract tar file to the current location 
-
-      ```sh
-      tar -xvf boost_1_81_0.tar.bz2
-      ```
-
-    3. Copy the boost files to the `include` folder 
-      ```sh
-      mkdir -p include
-      cp -r boost_1_81_0/boost include/
-      ```
-
-    4. Remove boost files [Optional]
-
-      ```sh
-      rm boost_1_81_0.tar.bz2
-      rm -rf boost_1_81_0
-      ```
-
-4. Create and move to the `build` directory.
+5. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
     ``````
-5. Build the application by following the commands below.  
+6. Build the application by following the commands below.  
+   **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-6. The following application file would be generated in the `${PROJECT_PATH}/Q01_footfall_counter/<SRC_DIR>/build` directory
+    **For RZ/V2H**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+7. The following application file would be generated in the `${PROJECT_PATH}/Q01_footfall_counter/src/build` directory
     - object_tracker
 
 
@@ -239,8 +217,8 @@ Each folder contains following items.
 ### Instruction
 1. **[For RZ/V2H only]** Run following commands to download the necessary file.  
     ```sh
-      cd <path_to_data_folder_on_host>/data/Q01_footfall_counter/exe_v2h/d-yolov3
-      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/Q01_footfall_counter_deploy_tvm_v2h-v221.so
+      cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q01_footfall_counter/exe_v2h/d-yolov3
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q01_footfall_counter_deploy_tvm_v2h-v230.so
     ```
 2. **[For RZ/V2H only]** Rename the `Q01_footfall_counter_deploy_*.so` to `deploy.so`.
     ```sh
@@ -298,14 +276,19 @@ After completion of the guide, the user is expected of following things.
     vi config.ini
     ```
 3. Run the application.
+    - For USB Camera Mode
     ```sh
     ./object_tracker USB
+    ```
+    - For MIPI Camera Mode (RZ/V2L only)
+    ```sh
+    ./object_tracker MIPI
     ```
 4. Following window shows up on HDMI screen.  
 
     |RZ/V2L EVK | RZ/V2H EVK |
     |:---|:---|
-    |<img src=./images/obj_trk_out.JPG width=350>| <img src=./images/Q01_image_V2H.png width=420>  |
+    |<img src=./images/Q01_image_V2L.png width=420>| <img src=./images/Q01_image_V2H.png width=420>  |
 
     <!-- On application window, following information is displayed.  
     - Camera capture  
@@ -346,14 +329,14 @@ Output3 size: 1x52x52x255
 
 |Board | AI model | AI inference time|
 |:---|:---|:---|
-|RZ/V2L EVK|Tiny YOLOv3| Approximately 110ms  |
-|RZ/V2H EVK |YOLOv3 | Approximately 30ms  |
+|RZ/V2L EVK|Tiny YOLOv3| Approximately 68 ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 29 ms  |
 
 ### Processing
 
 |Processing | RZ/V2L EVK | RZ/V2H EVK |
 |:---|:---|:---|
-|Pre-processing | Processed by DRP-AI. <br> | Processed by CPU. <br> |
+|Pre-processing | Processed by CPU. | Processed by CPU. |
 |Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
 |Post-processing | Processed by CPU. |Processed by CPU. |
 
@@ -362,7 +345,7 @@ Output3 size: 1x52x52x255
 
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
-|RZ/V2L EVK| VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
 |RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
   
 

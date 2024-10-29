@@ -1,6 +1,6 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023　
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2023 
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -56,22 +56,37 @@ static std::vector<T> LoadBinary(const std::string& bin_file) {
 }
 
 MeraDrpRuntimeWrapper::MeraDrpRuntimeWrapper() {
-  device_type = kDLCPU;
+  //device_type = kDLCPU;
+  device_type = kDLDrpAi;
   device_id = 0;
 };
 
 MeraDrpRuntimeWrapper::~MeraDrpRuntimeWrapper() = default;
 
-bool MeraDrpRuntimeWrapper::LoadModel(const std::string& model_dir, uint32_t start_address = 0x00) {
+bool MeraDrpRuntimeWrapper::LoadModel(const std::string& model_dir, uint32_t start_address){
+    device_type = kDLCPU;
+
+    return LoadModel(model_dir, (uint64_t)start_address);
+}
+
+bool MeraDrpRuntimeWrapper::LoadModel(const std::string& model_dir, uint64_t start_address = 0x00) {
     LOG(INFO) << "Loading json data...";
     const std::string json_file(model_dir + "/deploy.json");
     std::ifstream json_in(json_file.c_str(), std::ios::in);
     std::string json_data((std::istreambuf_iterator<char>(json_in)), std::istreambuf_iterator<char>());
     json_in.close();
+
+    #if 0
     if(json_data.find("drp") == json_data.npos && device_type != kDLCPU){
         LOG(INFO) <<"Break! this model is Not for DRP-AI retry as CPU Only";
         return false;
     }
+    #else
+    if(json_data.find("drp") == json_data.npos && device_type != kDLCPU){
+        LOG(INFO) <<"try as CPU Only";
+        device_type = kDLCPU;
+    }
+    #endif
 
     LOG(INFO) << "Loading runtime module...";
     tvm::runtime::Module mod_syslib = tvm::runtime::Module::LoadFromFile(model_dir + "/deploy.so");
@@ -97,16 +112,16 @@ void MeraDrpRuntimeWrapper::SetInput(int input_index, const T* data_ptr) {
     LOG(INFO) << "Loading input...";
 
     tvm::runtime::PackedFunc get_input = mod.GetFunction("get_input");
-    tvm::runtime::NDArray xx = get_input(0);
+    tvm::runtime::NDArray xx = get_input(input_index);
     auto in_shape = xx.Shape();
     int64_t in_size = 1;
-    for (int i = 0; i < in_shape.size(); ++i) {
+    for (unsigned long i = 0; i < in_shape.size(); ++i) {
       in_size *= in_shape[i];
     }
 
     DLDevice ctx;
     ctx.device_id = device_id;
-    ctx.device_type = DLDeviceType(device_type);
+    ctx.device_type = DLDeviceType(kDLCPU);
 
     auto input_array = tvm::runtime::NDArray::Empty(in_shape, xx.DataType(), ctx);
     auto input_data = (T*)(input_array->data);
@@ -121,10 +136,30 @@ void MeraDrpRuntimeWrapper::Run() {
     mod.GetFunction("run")();
 }
 
+void MeraDrpRuntimeWrapper::Run(int freq_index) {
+    mod.GetFunction("run")(freq_index);
+}
+
 void MeraDrpRuntimeWrapper::ProfileRun(const std::string& profile_table, const std::string& profile_csv) {
     tvm::runtime::PackedFunc profile = mod.GetFunction("profile");
     tvm::runtime::Array<tvm::runtime::profiling::MetricCollector> collectors;
     tvm::runtime::profiling::Report report = profile(collectors);
+
+    std::string rep_table = report->AsTable();
+    std::ofstream ofs_table (profile_table, std::ofstream::out);
+    ofs_table << rep_table << std::endl;
+    ofs_table.close();
+
+    std::string rep_csv = report->AsCSV();
+    std::ofstream ofs_csv (profile_csv, std::ofstream::out);
+    ofs_csv << rep_csv << std::endl;
+    ofs_csv.close();
+}
+
+void MeraDrpRuntimeWrapper::ProfileRun(const std::string& profile_table, const std::string& profile_csv, int freq_index) {
+    tvm::runtime::PackedFunc profile = mod.GetFunction("profile");
+    tvm::runtime::Array<tvm::runtime::profiling::MetricCollector> collectors;
+    tvm::runtime::profiling::Report report = profile(collectors, freq_index);
 
     std::string rep_table = report->AsTable();
     std::ofstream ofs_table (profile_table, std::ofstream::out);
@@ -179,7 +214,7 @@ std::tuple<InOutDataType, void*, int64_t> MeraDrpRuntimeWrapper::GetOutput(int i
     tvm::runtime::PackedFunc get_output = mod.GetFunction("get_output");
     tvm::runtime::NDArray out = get_output(index);
     int64_t out_size = 1;
-    for (int i = 0; i < out.Shape().size(); ++i) {
+    for ( unsigned long i = 0; i < out.Shape().size(); ++i) {
       out_size *= out.Shape()[i];
     }
 
