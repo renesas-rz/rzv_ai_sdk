@@ -1,0 +1,7 @@
+Flask==2.0.3
+Flask-SocketIO==4.3.2
+numpy==1.24.2
+opencv-python==4.7.0.68
+python-socketio==4.6.1
+Werkzeug==2.0.3
+requests

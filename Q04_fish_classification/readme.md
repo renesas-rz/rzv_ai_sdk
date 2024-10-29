@@ -6,100 +6,203 @@ The fish classification application allows to classify between 31 different fish
 
 The application could be used to classify fishes during fish farming, or from certain areas on the sea/river through drones, etc.  
 
+
 It has 4 modes of running.
 
-1. Using MIPI Camera
-2. Using USB Camera
-3. Using Image as input
-4. Using Video as input
-5. Input from Websocket [Link to Readme](./etc/readme.md)
-
-#### Demo:
-
-<img src = "./images/FishClassification.gif" width="480" height="320">
+|Mode | RZ/V2L | RZ/V2H |
+|:---|:---|:---|
+|MIPI Camera|`Supported`|`-`|
+|USB Camera|`Supported`|`Supported`|
+|Image|`Supported`|`Supported`|
+|Video|`Supported`|`Supported`|
+|Web App|`Supported`</br>[(Link to readme)](./etc_v2l/readme.md)|`Supported`</br>[(Link to readme)](./etc_v2h/readme.md)|
 
 
+### Supported Product
+- RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
+- RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
+
+### Demo
+
+Following is the demo for RZ/V2H EVK.  
+<img src="./images/fish_classify.gif" width="480" height="320">
 
 ## Application: Requirements
 
-#### Hardware Requirements
-- RZ/V2L Evaluation Board Kit
-- MIPI Camera
-- USB Camera
-- USB Mouse
-- USB Keyboard
-- USB Hub
-- HDMI monitor & Micro HDMI Cable
+### Hardware Requirements
+<table class="gstable">
+    <tr>
+      <th>For</th>
+      <th>Equipment</th>
+      <th>Details</th>
+    </tr>
+    <tr>
+      <td rowspan="3">RZ/V2L</td>
+      <td>RZ/V2L EVK</td>
+      <td>Evaluation Board Kit for RZ/V2L.<br>Includes followings.
+        <ul class="mb-1">
+          <li>
+            MIPI Camera Module(Google Coral Camera)<br>
+            Used as a camera input source.
+          </li>
+          <li>MicroUSB to Serial Cable for serial communication.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.</td>
+    </tr>
+    <tr>
+      <td>MicroHDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2L EVK has microHDMI port.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">RZ/V2H</td>
+      <td>RZ/V2H EVK</td>
+      <td>Evaluation Board Kit for RZ/V2H.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2H EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
+      <td rowspan="8">Common</td>
+      <td>USB Cable Type-C</td>
+      <td>Connect AC adapter and the board.</td>
+    </tr>
+    <tr>
+      <td>HDMI Monitor</td>
+      <td>Used to display the graphics of the board.</td>
+    </tr>
+    <tr>
+      <td>microSD card</td>
+      <td>Used as the filesystem.<br>
+      Must have over 4GB capacity of blank space.<br>
+      Operating Environment: Transcend UHS-I microSD 300S 16GB</td>
+    </tr>
+    <tr>
+      <td>Linux PC</td>
+      <td>Used to build application and setup microSD card.<br>
+      Operating Environment: Ubuntu 20.04</td>
+    </tr>
+    <tr>
+      <td>SD card reader</td>
+      <td>Used for setting up microSD card.<br></td>
+    </tr>
+    <tr>
+      <td>USB Hub</td>
+      <td>Used to connect USB Keyboard and USB Mouse to the board.</td>
+    </tr>
+    <tr>
+      <td>USB Keyboard</td>
+      <td>Used to type strings on the terminal of board.</td>
+    </tr>
+    <tr>
+      <td>USB Mouse</td>
+      <td>Used to operate the mouse on the screen of board.</td>
+    </tr>
+  </table>
 
+>**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)   
 
-[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
+Connect the hardware as shown below.  
 
-#### Software Requirements for building the application
-- Ubuntu 20.04
-- OpenCV 4.x
-- C++11 or higher
+|RZ/V2L EVK | RZ/V2H EVK |
+|:---|:---|
+|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |
+
+>**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
+>**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
+USB camera needs to be connected to appropriate port based on its requirement.
 
 ## Application: Build Stage
 
->**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
+>**Note:** User can skip to the [next stage (deploy)](#application-deploy-stage) if they do not want to build the application.  
+All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
+### Prerequisites
+This section expects the user to have completed Step 5 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- The Board Set Up and booted. 
-- SD Card Prepared 
-- The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
+- AI SDK setup is done.
+- Following docker container is running on the host machine.
+    |Board | Docker container |
+    |:---|:---|
+    |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
 
->**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
+    >**Note:** Docker environment is required for building the sample application. 
 
-#### Application: File Generation
 
-1. Copy the repository from the GitHub to the desired location. 
-    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+### Application File Generation
+1. On your host machine, copy the repository from the GitHub to the desired location. 
+    1. It is recommended to copy/clone the repository on the `data` folder, which is mounted on the Docker container. 
     ```sh
-    cd <path_to_data_folder_on_host>
+    cd <path_to_data_folder_on_host>/data
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-   >Note 1: Please verify the git repository url if error occurs.
+    >Note: This command will download the whole repository, which include all other applications.  
+    If you have already downloaded the repository of the same version, you may not need to run this command.  
 
-   >Note 2: This command will download whole repository, which include all other applications. if you have already downloaded the repository of the same version, you may not need to run this command.
+2. Run (or start) the docker container and open the bash terminal on the container.  
+E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container created from  `rzv2l_ai_sdk_image` docker image.  
+    > Note that all the build steps/commands listed below are executed on the docker container bash terminal.  
 
-2. Run the docker container and open the bash terminal on the container.
+3. Set your clone directory to the environment variable.  
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
+    ```
+4. Go to the application source code directory.  
+    ```sh
+    cd ${PROJECT_PATH}/Q04_fish_classification/src
+    ```
 
-> Note: All the build steps/commands listed below are executed on the docker container terminal.
-
-3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
-
-```sh
-export PROJECT_PATH=/drp-ai_tvm/data/
-```
-
-4. Go to the `src` directory of the application
-
-```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q04_fish_classification/src/
-```
->**Note:**`rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
-5. Build the application on docker environment by following the steps below
-
-```sh
-mkdir -p build && cd build
-```
-```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-```
-```sh
-make -j$(nproc)
-```
-
-The following application file would be generated in the `src/build` directory
-- fish_classification
+5. Create and move to the `build` directory.
+    ```sh
+    mkdir -p build && cd build
+    ```
+6. Build the application by following the commands below.  
+   **For RZ/V2L**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    make -j$(nproc)
+    ```
+    **For RZ/V2H**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+7. The following application file would be generated in the `${PROJECT_PATH}/Q04_fish_classification/src/build` directory
+    - fish_classification
 
 
 ## Application: Deploy Stage
+### Prerequisites
+This section expects the user to have completed Step 7-1 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7) provided by Renesas. 
 
-For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
+After completion of the guide, the user is expected of following things.
+- microSD card setup is done.
 
+### File Configuration
+For the ease of deployment all the deployable file and folders are provided in following folders.  
+|Board | `EXE_DIR` |
+|:---|:---|
+|RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+
+Each folder contains following items.
 |File | Details |
 |:---|:---|
 |fish_classification_model | Model object files for deployment. |
@@ -108,80 +211,92 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |output.mp4 | sample video |
 |fish_classification | application file. |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
-1. Copy following files to the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
-   1. The files present in [exe](./exe) directory, which are listed in the table above.
-   2. The generated `fish_classification` application file if the application file is built at [build stage](#application-build-stage)
 
-2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
+### Instruction
+1. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+    |File | Details |
+    |:---|:---|
+    |All files in `EXE_DIR` directory | Including `deploy.so` file. |
+    |`fish_classification` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-##### Folder Structure in the board
-```sh
-/
-└── usr
-    └── lib64
-        └── libtvm_runtime.so
-└── home
-    └── root
-        └── tvm
-            ├── fish_classification_model
-            │   ├── deploy.json
-            │   ├── deploy.params
-            │   └── deploy.so
-            ├── fish_class_list.txt
-            ├── Bangus.jpg
-            ├── output.mp4
-            └── fish_classification
+2. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
-```
+3. Folder structure in the rootfs (SD Card) would look like:
+    ```
+    |-- usr
+    |   `-- lib64
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- root
+            `-- tvm
+                |-- fish_classification_model
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   `-- deploy.so
+                |-- Bangus.jpg
+                |-- fish_class_list.txt
+                |-- fish_classification
+                `-- output.mp4
+    ```
+>**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
->**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
+## Application: Run Stage
 
-## Application: Runtime Stage
+### Prerequisites
+This section expects the user to have completed Step 7-3 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7-3) provided by Renesas. 
 
-* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
-  * Go to the `/home/root/tvm` directory of the rootfs
-  ```sh
-  cd /home/root/tvm
-  ```
-##### Mode: MIPI Camera Input
-- The application takes input from MIPI Coral Camera.
+After completion of the guide, the user is expected of following things.  
+- The board setup is done.  
+- The board is booted with microSD card, which contains the application file.  
 
-```sh 
-./fish_classification MIPI 
-```
+### Instruction
+1. On Board terminal, go to the `tvm` directory of the rootfs.
+    ```sh
+    cd /home/root/tvm/
+    ```
+    
+2. Run the application.
+  
+      - For Image Mode
+      ```sh
+      ./fish_classification IMAGE Bangus.jpg
+      ```
+      > Note: Tested with image file format .png and .jpg
 
-##### Mode: USB Camera Input
-- The application takes input from USB Camera.
+      - For USB Camera Mode
+      ```sh
+      ./fish_classification USB
+      ```
+      - For MIPI Camera Mode [RZ/V2L only]
+      ```sh
+      ./fish_classification MIPI
+      ```
+      - For VIDEO Mode
+      ```sh
+      ./fish_classification VIDEO output.mp4
+      ```
+      > Note: Tested with video file format .mp4 and .avi
 
-```sh 
-./fish_classification USB 
-```
-##### Mode: Image Input
+3. Following window shows up on HDMI screen.  
 
-```sh
-./fish_classification IMAGE Bangus.jpg
-```
-> Note: Tested with image file format `.png` and `.jpg`.
+    |RZ/V2L EVK | RZ/V2H EVK |
+    |:---|:---|
+    |<img src=./images/v2l_result.png width=350>| <img src=./images/v2h_result.png width=350>  |
+
+    On application window, following information is displayed.  
+    - Camera capture  
+    - Classification result (class name and score.)
+    - Processing time taken for AI inference.  
+    - Frames per Second
+    - Top 5 Classification Results (Based on the score)
+        
+4. To terminate the application, follow the termination method below.
+   - For RZ/V2L, press Esc key to terminate the application.
+   - For RZ/V2H, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
 
-<img src=./images/img_sample.PNG width="480">
-
-
-##### Mode: Video Input
-
-```sh 
-./fish_classification VIDEO output.mp4
-```
-> Note: Tested with video file format `.mp4` and `.avi`.
-
-### Application: Termination
-- Use `Mouse Double Click` to terminate the application.
-- Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
-
-## Application: Specifications
-
-#### Model Details
+## Application: Configuration 
+### AI Model
 
 ```python
 ==========================================================================================
@@ -235,10 +350,7 @@ Forward/backward pass size (MB): 54.38
 Params size (MB): 83.27
 Estimated Total Size (MB): 138.21
 ```
-
 #### Dataset 
-
-
 'Bangus', 'Big Head Carp', 'Black Spotted Barb', 'Catfish', 'Climbing Perch', 'Fourfinger Threadfin', 'Freshwater Eel', 'Glass Perchlet', 'Goby', 'Gold Fish', 'Gourami', 'Grass Carp', 'Green Spotted Puffer', 'Indian Carp', 'Indo-Pacific Tarpon', 'Jaguar Gapote', 'Janitor Fish', 'Knifefish', 'Long-Snouted Pipefish', 'Mosquito Fish', 'Mudfish', 'Mullet', 'Pangasius', 'Perch', 'Scat Fish', 'Silver Barb', 'Silver Carp','Silver Perch', 'Snakehead', 'Tenpounder', 'Tilapia'
 
 Dataset properties:
@@ -249,10 +361,36 @@ The number of classes: 1760
 
 [Dataset-Link](https://www.kaggle.com/datasets/markdaniellampa/fish-dataset)
 
-#### AI Inference time
-Total AI inference time (Pre-processing + AI model inference) - 65ms (15 FPS)
+### AI inference time
+|Board | AI inference time|
+|:---|:---|
+|RZ/V2L EVK| Approximately 50 ms  |
+|RZ/V2H EVK | Approximately 4 ms  |
 
-| Training Accuracy   |Validation Accuracy   |  Testing Accuracy |
-|---|---|---|
-|  98.2 | 97.7  | 94.5  |
+### Processing
 
+|Processing | Details |
+|:---|:---|
+|Pre-processing | Processed by CPU. <br> |
+|Inference | Processed by DRP-AI and CPU. |
+|Post-processing | Processed by CPU. |
+
+
+### Image buffer size
+
+|Board | Camera capture buffer size|HDMI output buffer size|
+|:---|:---|:---|
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
+|RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+  
+  
+## Reference
+ 
+- For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.\
+To use FHD, please use MIPI camera.\
+Please refer to following URL for how to change camera input to MIPI camera.\
+[https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).
+
+## License
+Apache License 2.0   
+For third party OSS library, please see the source code file itself. 
