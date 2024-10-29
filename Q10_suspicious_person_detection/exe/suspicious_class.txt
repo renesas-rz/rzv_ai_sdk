@@ -1,2 +1,0 @@
-suspicious
-non_suspicious

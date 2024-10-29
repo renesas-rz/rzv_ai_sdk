@@ -1,7 +1,7 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023
- *　
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2024
+ * 
  *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -38,14 +38,8 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
-/***********************************************************************************************************************
-* File Name    : main.cpp
-* Version      : v1.00
-* Description  : RZ/V2L AI SDK Sample Application for Object Detection
-***********************************************************************************************************************/
-
 /*****************************************
 * Includes
 ******************************************/
@@ -55,32 +49,27 @@
 #include "define.h"
 /*box drawing*/
 #include "box.h"
+#include "utils.h"
+
+#define SUSPICIOUS  "suspicious"
 
 /*****************************************
 * Global Variables
 ******************************************/
 std::map<std::string, int> input_source_map =
 {
-    {"MIPI", 1},
-    {"USB", 2}
+    {"USB", 1},
+    #ifdef V2L
+        {"MIPI", 2}
+    #endif
 };
-
-/*Model data*/
-int32_t num_class;
-constexpr static float TH_PROB = 0.5f;
-constexpr static float TH_NMS = 0.5f;
-constexpr static int32_t NUM_BB = 3;
-constexpr static int32_t MODEL_IN_W = 416;
-constexpr static int32_t MODEL_IN_H = 416;
-constexpr static int32_t NUM_INF_OUT_LAYER = 2;
-constexpr static uint8_t num_grids[] = { 13, 26 };
-static uint32_t INF_OUT_SIZE;
-static std::vector<std::string> label_file_map = {};
 
 /*Multithreading*/
 static sem_t terminate_req_sem;
 static pthread_t ai_inf_thread;
 static pthread_t capture_thread;
+static pthread_t exit_thread;
+static pthread_t kbhit_thread;
 static std::mutex mtx;
 
 /*Flags*/
@@ -88,25 +77,32 @@ static std::atomic<uint8_t> inference_start (0);
 static std::atomic<uint8_t> img_obj_ready   (0);
 
 /*Global Variables*/
-// static float drpai_output_buf[INF_OUT_SIZE];
-std::shared_ptr<float> drpai_output_buf;
+float * drpai_output_buf;
 static uint64_t udmabuf_address = 0;
 
 /*AI Inference for DRPAI*/
 /* DRP-AI TVM[*1] Runtime object */
 MeraDrpRuntimeWrapper runtime;
 
-static float pre_time = 0;
-static float post_time = 0;
-static float ai_time = 0;
+static float pre_time   = 0;
+static float post_time  = 0;
+static float ai_time    = 0;
 static float total_time = 0;
+
 static std::vector<detection> det;
+
 cv::Mat yuyv_image;
 cv::Mat input_image;
+
 std::unordered_map<std::string, std::unordered_map<std::string, std::string>> ini_values;
 std::vector<double> anchors;
 
-#define SUSPICIOUS  "suspicious"
+bool doubleClick = false;
+#ifdef V2H
+    /*DRP-AI Frequency setting*/
+    static int32_t drpai_freq;
+#endif
+using INI_FORMAT = std::unordered_map<std::string, std::unordered_map<std::string, std::string>>;
 
 /*****************************************
 * Function Name     : float16_to_float32
@@ -153,6 +149,21 @@ static int8_t wait_join(pthread_t *p_join_thread, uint32_t join_time)
 }
 
 /*****************************************
+ * Function Name     : float_to_string
+ * Description       : Convert float to string with precision
+ * Arguments         : number = float number to be converted
+ *                     precision = int number to set precision
+ * Return value      : string = string number
+ ******************************************/
+std::string float_to_string(float number, int precision = 2)
+{
+    std::stringstream stream;  
+    stream.precision(precision);
+    stream << std::fixed << number;  
+    return stream.str();
+}
+
+/*****************************************
 * Function Name     : config_read
 * Description       : Read configuration from the config.ini file.
 ******************************************/
@@ -196,7 +207,7 @@ void config_read()
 * Description       : Load label list text file and return the label list that contains the label.
 * Arguments         : label_file_name = filename of label list. must be in txt format
 * Return value      : vector<string> list = list contains labels
-*                     empty if error occured
+*                     empty if error occurred
 ******************************************/
 std::vector<std::string> load_label_file(std::string label_file_name)
 {
@@ -235,6 +246,7 @@ int8_t get_result()
 {
     int8_t ret = 0;
     int32_t i = 0;
+
     int32_t output_num = 0;
     std::tuple<InOutDataType, void*, int64_t> output_buffer;
     int64_t output_size;
@@ -242,7 +254,6 @@ int8_t get_result()
 
     /* Get the number of output of the target model. */
     output_num = runtime.GetNumOutput();
-    drpai_output_buf.reset(new float[INF_OUT_SIZE], std::default_delete<float[]>());
     size_count = 0;
     /*GetOutput loop*/
     for (i = 0;i<output_num;i++)
@@ -260,7 +271,7 @@ int8_t get_result()
             for (int j = 0; j<output_size; j++)
             {
                 /*FP16 to FP32 conversion*/
-                drpai_output_buf.get()[j + size_count]=float16_to_float32(data_ptr[j]);
+                drpai_output_buf[j + size_count]=float16_to_float32(data_ptr[j]);
             }
         }
         else if (InOutDataType::FLOAT32 == std::get<0>(output_buffer))
@@ -269,7 +280,7 @@ int8_t get_result()
             float* data_ptr = reinterpret_cast<float*>(std::get<1>(output_buffer));
             for (int j = 0; j<output_size; j++)
             {
-                drpai_output_buf.get()[j + size_count]=data_ptr[j];
+                drpai_output_buf[j + size_count]=data_ptr[j];
             }
         }
         else
@@ -294,7 +305,6 @@ double sigmoid(double x)
     return 1.0/(1.0 + exp(-x));
 }
 
-
 /*****************************************
 * Function Name : yolo_index
 * Description   : Get the index of the bounding box attributes based on the input offset
@@ -311,7 +321,7 @@ int32_t yolo_index(uint8_t n, int32_t offs, int32_t channel)
 
 /*****************************************
 * Function Name : yolo_offset
-* Description   : Get the offset nuber to access the bounding box attributes
+* Description   : Get the offset number to access the bounding box attributes
 *                 To get the actual value of bounding box attributes, use yolo_index() after this function.
 * Arguments     : n = output layer number [0~2].
                   b = Number to indicate which bounding box in the region [0~4]
@@ -328,9 +338,9 @@ int32_t yolo_offset(uint8_t n, int32_t b, int32_t y, int32_t x)
 
     for (i = 0 ; i < n; i++)
     {
-        prev_layer_num += NUM_BB *(num_class + 5)* num_grids[i] * num_grids[i];
+        prev_layer_num += NUM_BB *(NUM_CLASS + 5)* num_grids[i] * num_grids[i];
     }
-    return prev_layer_num + b *(num_class + 5)* num * num + y * num + x;
+    return prev_layer_num + b *(NUM_CLASS + 5)* num * num + y * num + x;
 }
 
 
@@ -353,7 +363,6 @@ cv::Mat hwc2chw(const cv::Mat &image)
     cv::hconcat(matArray, 3, flat_image);
     return flat_image;
 }
-
 
 /*****************************************
 * Function Name : R_Post_Proc
@@ -398,7 +407,7 @@ void R_Post_Proc(float* floatarr)
     float objectness = 0;
     uint8_t num_grid = 0;
     uint8_t anchor_offset = 0;
-    float classes[num_class];
+    float classes[NUM_CLASS];
     float max_pred = 0;
     int32_t pred_class = -1;
     float probability = 0;
@@ -443,13 +452,13 @@ void R_Post_Proc(float* floatarr)
                     objectness = sigmoid(tc);
                     Box bb = {center_x, center_y, box_w, box_h};
                     /* Get the class prediction */
-                    for (i = 0; i < num_class; i++)
+                    for (i = 0; i < NUM_CLASS; i++)
                     {
                         classes[i] = sigmoid(floatarr[yolo_index(n, offs, 5+i)]);
                     }
                     max_pred = 0;
                     pred_class = -1;
-                    for (i = 0; i < num_class; i++)
+                    for (i = 0; i < NUM_CLASS; i++)
                     {
                         if (classes[i] > max_pred)
                         {
@@ -472,6 +481,65 @@ void R_Post_Proc(float* floatarr)
     filter_boxes_nms(det, det.size(), TH_NMS);
     mtx.unlock();
     return ;
+}
+
+/*****************************************
+ * Function Name : R_exit_Thread
+ * Description   : Executes the double click exit thread
+ * Arguments     : threadid = thread identification
+ * Return value  : -
+ ******************************************/
+void *R_exit_Thread(void *threadid)
+{
+    /*Semaphore Variable*/
+    int32_t kh_sem_check = 0;
+
+    /*Variable for checking return value*/
+    int8_t ret = 0;
+    devices dev;
+
+    /*Set Standard Input to Non Blocking*/
+    errno = 0;
+    ret = fcntl(0, F_SETFL, O_NONBLOCK);
+    if (-1 == ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
+        goto err;
+    }
+
+    while (1)
+    {
+        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
+        /*Checks if sem_getvalue is executed wihtout issue*/
+        errno = 0;
+        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
+            goto err;
+        }
+        /*Checks the semaphore value*/
+        if (1 != kh_sem_check)
+        {
+            goto exit_end;
+        }
+
+        dev.detect_mouse_click();
+        if (doubleClick)
+        {
+            goto err;
+        }
+    }
+
+/*Error Processing*/
+err:
+    /*Set Termination Request Semaphore to 0*/
+    sem_trywait(&terminate_req_sem);
+    goto exit_end;
+
+exit_end:
+    printf("Exit Thread Terminated\n");
+    pthread_exit(NULL);
 }
 
 /*****************************************
@@ -499,7 +567,7 @@ void *R_Inf_Thread(void *threadid)
     static struct timespec post_start_time;
     static struct timespec post_end_time;
 
-    printf("Inference Thread Starting\n");
+    std::cout << "[INFO] Inference Thread Starting\n";
 
     /*Inference Loop Start*/
     while(1)
@@ -565,7 +633,13 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
 
-        runtime.Run();
+        /*start inference using drp runtime*/
+        #ifdef V2H
+            runtime.Run(drpai_freq);
+        #elif V2L
+            runtime.Run();
+        #endif
+
 
         /*Gets AI Inference End Time*/
         ret = timespec_get(&inf_end_time, TIME_UTC);
@@ -593,7 +667,7 @@ void *R_Inf_Thread(void *threadid)
         }
         
         /*CPU Post-Processing For YOLOv3*/
-        R_Post_Proc(drpai_output_buf.get());
+        R_Post_Proc(drpai_output_buf);
         /*Gets Post-process End Time*/
         ret = timespec_get(&post_end_time, TIME_UTC);
         if ( 0 == ret)
@@ -637,7 +711,7 @@ void *R_Capture_Thread(void *cap_pipeline)
     cv::Mat raw_frame;
     cv::VideoCapture g_cap;
 
-    printf("Capture Thread Starting\n");
+    printf("[INFO] Capture Thread Starting\n");
 
     g_cap.open(gstream, cv::CAP_GSTREAMER);
     if (!g_cap.isOpened())
@@ -673,14 +747,13 @@ void *R_Capture_Thread(void *cap_pipeline)
         }
         else
         {   
-            cv::resize(g_frame, g_frame, cv::Size(CAM_IMAGE_WIDTH, CAM_IMAGE_HEIGHT));
+            cv::resize(g_frame, g_frame, cv::Size(DRPAI_IN_WIDTH, DRPAI_IN_HEIGHT));
             if (!inference_start.load())
             {
 
                 input_image = g_frame.clone();
                 inference_start.store(1); /* Flag for AI Inference Thread. */
             }
-
             if (!img_obj_ready.load())
             {
                 yuyv_image = g_frame.clone();
@@ -702,7 +775,6 @@ capture_end:
     pthread_exit(NULL);
 }
 
-
 /*****************************************
  * Function Name    : create_output_frame
  * Description      : create the output frame with space for displaying inference details
@@ -723,22 +795,6 @@ cv::Mat create_output_frame(cv::Mat frame_g)
 }
 
 /*****************************************
- * Function Name    : mouse_callback_button_click
- * Description      : Callback function to exit on mouse double click
- * Arguments        : Default opencv formats for callbacks 
- * Return value     : -
- *****************************************/
-void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
-{
-    if (event == cv::EVENT_LBUTTONDBLCLK)
-    {
-        std::cout << "[INFO] Double Tap !!\n";
-        sem_trywait(&terminate_req_sem);
-    }
-}
-
-
-/*****************************************
 * Function Name : R_Main_Process
 * Description   : Runs the main process loop
 * Arguments     : -
@@ -753,22 +809,31 @@ int8_t R_Main_Process()
     int32_t sem_check = 0;
     /*Variable for checking return value*/
     int8_t ret = 0;
+    /*Variable for image buffer id*/
     uint8_t img_buf_id;
+    /* wayland Index = 0 */
+    uint32_t idx = 0;
+    
+    /*Variable for detected object time ids*/
     std::map<int, int> id_time;
     std::set<int> unique_ids = {};
     std::map<int, int> location_history;
     long int infer_time_ms;
     cv::Mat bgra_image;
+    
     std::stringstream stream;
     std::string result_str;
     int8_t region_count;
+
     std::set<std::string> detection_object_set;
     std::string objects_available = "";
     std::string objects_not_available = "";
-
+    
+    /* detection count <key:object,value:count> */
     float conf = std::stof(ini_values["detect"]["conf"]);
     std::string get_anchor = ini_values["detect"]["anchors"];
     std::string detection_object_string = ini_values["detect"]["objects"];
+
     std::stringstream detection_anchor_ss(get_anchor);
     std::string anch_value;
     while (std::getline(detection_anchor_ss, anch_value, ','))
@@ -790,7 +855,7 @@ int8_t R_Main_Process()
             objects_not_available += item + "\n";
         }
     }
-     std::cout << "[INFO] *******************Detection Parameters*******************\n";
+    std::cout << "[INFO] *******************Detection Parameters*******************" << std::endl;
     if (!objects_not_available.empty())
     {
         std::cout << "[INFO] Selected objects in config.ini which is not found in the label list\n"
@@ -804,14 +869,19 @@ int8_t R_Main_Process()
     else
     {
         std::cerr << "[ERROR] No matching objects in label list from the config.ini file" << std::endl;
+        exit(0);
     }
 
-    std::string g_pipeline = "appsrc ! videoconvert ! autovideosink sync=false ";
-    float font_size = 0.70;
-    float font_size_small = 0.50;
-    float font_weight = 1;
-    float font_size_dt = 0.65;
-    float font_size_bb = 0.55;
+    /*Display font parameter values*/
+    #ifdef V2H
+        float font_size = 0.9;
+        float font_weight = 2;
+    #elif V2L
+        float font_size = 0.6;
+        float font_weight = 1;
+    #endif
+    float font_size_dt = 0.75;
+    float font_size_bb = 0.5;
     float font_weight_bb = 1;
 
     float pred_score = 0;
@@ -819,9 +889,13 @@ int8_t R_Main_Process()
     std::vector<std::string> results;
     int text_height;
 
-    cv::namedWindow("Object Tracker", cv::WINDOW_NORMAL);
-    cv::setWindowProperty("Object Tracker", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
-    cv::setMouseCallback("Object Tracker", mouse_callback_button_click);
+    /* Initialize waylad */
+    ret = wayland.init(idx, DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    if(0 != ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
+        return -1;
+    }
 
     printf("Main Loop Starts\n");
     while(1)
@@ -839,9 +913,10 @@ int8_t R_Main_Process()
         {
             goto main_proc_end;
         }
-        /* Check img_obj_ready flag which is set in Capture Thread. */
+            /* Check img_obj_ready flag which is set in Capture Thread. */
         if (img_obj_ready.load())
         {
+            /*key : object, value:count*/
             bgra_image = yuyv_image;
             infer_time_ms = total_time;
 
@@ -861,8 +936,9 @@ int8_t R_Main_Process()
 
                 /*check if the detected object is in the list of objects to be detected(from the config.ini file)*/
                 if (count(detection_object_set.begin(), detection_object_set.end(), dat.name) <= 0)
+                {
                     continue;
-
+                }
                 dat.X = (int32_t)(detect.bbox.x - (detect.bbox.w / 2));
                 dat.Y = (int32_t)(detect.bbox.y - (detect.bbox.h / 2));
                 dat.W = (int32_t)detect.bbox.w;
@@ -882,7 +958,7 @@ int8_t R_Main_Process()
                 results.push_back(dat.name + ": " + std::to_string(int(dat.pred)) + "%");
 
                 cv::Size text_size = cv::getTextSize(bbox_text, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, 2, 0);
-
+                
                 /*adjust the font size based on the detection text size*/
                 if (text_size.width > dat.W)
                 {
@@ -891,8 +967,8 @@ int8_t R_Main_Process()
                 } 
                 else 
                 {
-                    font_weight_bb  = 1;
-                    font_size_bb = 0.5;
+                    font_size_dt = 0.65;
+                    font_size_bb = 0.55;
                 }
 
                 cv::Rect rect(dat.X, dat.Y, dat.W, dat.H);
@@ -911,33 +987,30 @@ int8_t R_Main_Process()
                     /*draw text box for holding the class label*/
                     cv::rectangle(bgra_image, rect_text_box, cv::Scalar(0, 255, 0), cv::FILLED);
                 }
-                
                 /*writing class label to the display frame */
                 cv::putText(bgra_image, bbox_text, cv::Point(dat.X + 5, dat.Y - 8), 
-                            cv::FONT_HERSHEY_SIMPLEX, font_size_bb, cv::Scalar(0, 0, 0), font_weight_bb);
+                            cv::FONT_HERSHEY_SIMPLEX, font_size_bb, cv::Scalar(0, 0, 0), font_weight_bb, cv::LINE_AA);
             }
             mtx.unlock();
             bgra_image = create_output_frame(bgra_image);
-            cv::putText(bgra_image, "Total AI Time[ms] : " + std::to_string(int(total_time)), cv::Point(970, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Preprocess : " + std::to_string(int(pre_time)), cv::Point(1000, 90), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "AI Inference : " + std::to_string(int(ai_time)), cv::Point(1000, 120), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Postprocess : " + std::to_string(int(post_time)), cv::Point(1000, 150), cv::FONT_HERSHEY_DUPLEX, font_size_small, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(970, 700), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
-            text_height = 200;
+            cv::putText(bgra_image, "Total AI Time[ms] : " + float_to_string(total_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 60), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Preprocess : " + float_to_string(pre_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 96), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "AI Inference : " + float_to_string(ai_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 128), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+            cv::putText(bgra_image, "Postprocess : " + float_to_string(post_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 159), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);            
+            text_height = 250;
             for (std::string res : results)
             {
-                cv::putText(bgra_image, res, cv::Point(970, text_height), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
+                cv::putText(bgra_image, res, cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, text_height), cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
                 text_height += 30;
             }
-            cv::imshow("Object Tracker", bgra_image);
-            cv::waitKey(1);
+            cv::cvtColor(bgra_image, bgra_image, cv::COLOR_BGR2BGRA);
+            wayland.commit(bgra_image.data, NULL);
             results.clear();
             img_obj_ready.store(0);
         }
         /*Wait for 1 TICK.*/
         usleep(WAIT_TIME);
     }
-
 /*Error Processing*/
 err:
     sem_trywait(&terminate_req_sem);
@@ -951,14 +1024,17 @@ main_proc_end:
     return main_ret;
 }
 
-
 /*****************************************
 * Function Name : get_drpai_start_addr
 * Description   : Get DRP-AI Memory Area Address via DRP-AI Driver
 * Arguments     : -
 * Return value  : drpai start address 
 ******************************************/
-uint32_t get_drpai_start_addr()
+#ifdef V2H
+    uint64_t get_drpai_start_addr(int drpai_fd)
+#elif V2L
+    uint32_t get_drpai_start_addr(int drpai_fd)
+#endif
 {
     int fd  = 0;
     int ret = 0;
@@ -966,18 +1042,11 @@ uint32_t get_drpai_start_addr()
 
     errno = 0;
 
-    fd = open("/dev/drpai0", O_RDWR);
-    if (0 > fd )
-    {
-        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
-        return (uint32_t)NULL;
-    }
-
     /* Get DRP-AI Memory Area Address via DRP-AI Driver */
-    ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    ret = ioctl(drpai_fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
     if (-1 == ret)
     {
-        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        std::cerr << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
         return (uint32_t)NULL;
     }
 
@@ -985,38 +1054,8 @@ uint32_t get_drpai_start_addr()
 }
 
 /*****************************************
- * Function Name : mipi_cam_init
- * Description   : function to open camera or video source with respect to the source pipeline.
- ******************************************/
-void mipi_cam_init(void)
-{
-    int ret = 0;
-    std::cout << "[INFO] MIPI CAM Init \n";
-    const char *commands[4] =
-    {
-        "media-ctl -d /dev/media0 -r",
-        "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
-        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
-        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
-    };
-
-    /* media-ctl command */
-    for (int i = 0; i < 4; i++)
-    {
-        std::cout << commands[i] << "\n";
-        ret = system(commands[i]);
-        std::cout << "system ret = " << ret << "\n";
-        if (ret < 0)
-        {
-            std::cout << "[ERROR]" << __func__ << ": failed media-ctl commands. index = " << i << "\n";
-            return;
-        }
-    }
-}
-
-/*****************************************
  * Function Name : query_device_status
- * Description   : function to check USB/MIPI device is connectod.
+ * Description   : function to check USB device is connectod.
  * Return value  : media_port, media port that device is connectod. 
  ******************************************/
 std::string query_device_status(std::string device_type)
@@ -1052,30 +1091,188 @@ std::string query_device_status(std::string device_type)
     return media_port;
 }
 
+/*****************************************
+* Function Name : init_drpai
+* Description   : Function to initialize DRP-AI.
+* Arguments     : drpai_fd: DRP-AI file descriptor
+* Return value  : If non-zero, DRP-AI memory start address.
+*                 0 is failure.
+******************************************/
+#ifdef V2H
+    uint64_t init_drpai(int drpai_fd)
+#elif V2L
+    uint32_t init_drpai(int drpai_fd)
+#endif
+{
+    int ret = 0;
+    #ifdef V2H
+        uint64_t drpai_addr = 0;
+    #elif V2L
+        uint32_t drpai_addr = 0;
+    #endif
+
+    /*Get DRP-AI memory start address*/
+    drpai_addr = get_drpai_start_addr(drpai_fd);
+    if (drpai_addr == 0)
+    {
+        return 0;
+    }
+
+    return drpai_addr;
+}
+
+/*****************************************
+ * Function Name : R_Kbhit_Thread
+ * Description   : Executes the Keyboard hit thread (checks if enter key is hit)
+ * Arguments     : threadid = thread identification
+ * Return value  : -
+ ******************************************/
+void *R_Kbhit_Thread(void *threadid)
+{
+    /*Semaphore Variable*/
+    int32_t kh_sem_check = 0;
+    /*Variable to store the getchar() value*/
+    int32_t c = 0;
+    /*Variable for checking return value*/
+    int8_t ret = 0;
+
+    printf("[INFO] Key Hit Thread Starting\n");
+
+    printf("************************************************\n");
+    printf("* Press ENTER key to quit. *\n");
+    printf("************************************************\n");
+
+    /*Set Standard Input to Non Blocking*/
+    errno = 0;
+    ret = fcntl(0, F_SETFL, O_NONBLOCK);
+    if (-1 == ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
+        goto err;
+    }
+
+    while (1)
+    {
+        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
+        /*Checks if sem_getvalue is executed wihtout issue*/
+        errno = 0;
+        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
+            goto err;
+        }
+        /*Checks the semaphore value*/
+        if (1 != kh_sem_check)
+        {
+            goto key_hit_end;
+        }
+
+        c = getchar();
+        if (EOF != c)
+        {
+            /* When key is pressed. */
+            printf("key Detected.\n");
+            goto err;
+        }
+        else
+        {
+            /* When nothing is pressed. */
+            usleep(WAIT_TIME);
+        }
+    }
+
+/*Error Processing*/
+err:
+    /*Set Termination Request Semaphore to 0*/
+    sem_trywait(&terminate_req_sem);
+    goto key_hit_end;
+
+key_hit_end:
+    printf("Key Hit Thread Terminated\n");
+    pthread_exit(NULL);
+}
+
+/*****************************************
+ * Function Name : mipi_cam_init
+ * Description   : function to open camera or video source with respect to the source pipeline.
+ ******************************************/
+void mipi_cam_init(void)
+{
+    int ret = 0;
+    std::cout << "[INFO] MIPI CAM Init \n";
+    const char *commands[4] =
+    {
+        "media-ctl -d /dev/media0 -r",
+        "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
+        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
+    };
+
+    /* media-ctl command */
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << commands[i] << "\n";
+        ret = system(commands[i]);
+        std::cout << "system ret = " << ret << "\n";
+        if (ret < 0)
+        {
+            std::cout << "[ERROR]" << __func__ << ": failed media-ctl commands. index = " << i << "\n";
+            return;
+        }
+    }
+}
+
 int32_t main(int32_t argc, char * argv[])
 {
     int8_t main_proc = 0;
     int8_t ret = 0;
+    int8_t ret_w = 0;
     int8_t ret_main = 0;
+
+    #ifdef V2H
+        /*Disable OpenCV Accelerator due to the use of multithreading */
+        unsigned long OCA_list[16];
+        for(int i = 0; i < 16; i++) OCA_list[i] = 0;
+        OCA_Activate(&OCA_list[0]);
+    #endif
+    
     /*Multithreading Variables*/
-    int32_t create_thread_ai = -1;
+    int32_t create_thread_ai      = -1;
     int32_t create_thread_capture = -1;
-    int32_t sem_create = -1;
+    int32_t create_thread_exit    = -1;
+    int32_t create_thread_key     = -1;
+    int32_t sem_create            = -1;
+
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
-    if (argc < 2 || argc > 2)
+
+    if (argc < 2) 
     {
-        std::cout << "[ERROR] Please specify Input Source" << std::endl;
-        std::cout << "[INFO] Usage : ./suspicious_person_detector MIPI|USB" << std::endl;
-        std::cout << "\n[INFO] End Application\n";
+        std::cout << "[ERROR] Please specify Input Source\n";
+        #ifdef V2H
+            std::cout << "[INFO] usage: ./suspicious_person_detector USB\n";
+        #elif V2L
+            std::cout << "[INFO] usage: ./suspicious_person_detector USB|MIPI\n";
+        #endif
+        std::cout << "[INFO] End Application.\n";
         return -1;
     }
     std::string input_source = argv[1];
     switch (input_source_map[input_source])
     {
-        /* Input Source : MIPI Camera */
+        /* Input Source : USB Camera */
         case 1:
+        {
+            std::cout << "[INFO] USB CAMERA \n";
+            std::string media_port = query_device_status("usb");
+            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+
+        }
+        break;
+         /* Input Source : MIPI Camera */
+        case 2:
         {
             std::cout << "[INFO] MIPI CAMERA \n";
             mipi_cam_init();
@@ -1084,69 +1281,73 @@ int32_t main(int32_t argc, char * argv[])
 
         }
         break;
-        /* Input Source : USB Camera */
-        case 2:
-        {
-            std::cout << "[INFO] USB CAMERA \n";
-            std::string media_port = query_device_status("usb");
-            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
-
-        }
-        break;
         default:
         {
             std::cout << "[ERROR] Please specify Input Source" << std::endl;
-            std::cout << "[INFO] Usage : ./suspicious_person_detector MIPI|USB" << std::endl;
-            std::cout << "\n[INFO] End Application\n";
+            #ifdef V2H
+                std::cout << "[INFO] usage: ./suspicious_person_detector USB\n";
+            #elif V2L
+                std::cout << "[INFO] usage: ./suspicious_person_detector USB|MIPI\n";
+            #endif
+            std::cout << "[INFO] End Application\n";
             return -1;
         }
     }
-    /* Obtain udmabuf memory area starting address */
-    int fd = 0;
-    char addr[1024];
-    int32_t read_ret = 0;
-    errno = 0;
-    fd = open("/sys/class/u-dma-buf/udmabuf0/phys_addr", O_RDONLY);
-    if (0 > fd)
+    std::map<std::string, std::string> args;
+    /* Parse input arguments */
+    for (int i = 1; i < argc; ++i) 
     {
-        fprintf(stderr, "[ERROR] Failed to open udmabuf0/phys_addr : errno=%d\n", errno);
-        return -1;
+        std::string arg = argv[i];
+        size_t pos = arg.find('=');
+        if (pos != std::string::npos) 
+        {
+            std::string key = arg.substr(0, pos);
+            std::string value = arg.substr(pos + 1);
+            args[key] = value;
+        }
     }
-    read_ret = read(fd, addr, 1024);
-    if (0 > read_ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to read udmabuf0/phys_addr : errno=%d\n", errno);
-        close(fd);
-        return -1;
-    }
-    sscanf(addr, "%lx", &udmabuf_address);
-    close(fd);
-    /* Filter the bit higher than 32 bit */
-    udmabuf_address &=0xFFFFFFFF;
 
+    /* Read the configuration file */
     config_read();
 
-    printf("RZ/V2L AI SDK Sample Application\n");
-    printf("Model : Darknet YOLOv3 | %s\n", ini_values["path"]["model_path"].c_str());
-    printf("Input : Coral Camera\n");
+    #ifdef V2H
+         /* DRP-AI Frequency Setting */
+        if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0)
+            drpai_freq = stoi(args["--drpai_freq"]);
+        else 
+            drpai_freq = DRPAI_FREQ;
+        std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+        /* AI Application for RZ/V2H */
+        printf("\nAI Application for RZ/V2H\n");
+        printf("Model : Darknet YOLOv3 | %s\n", ini_values["path"]["model_path"].c_str());
+    #elif V2L
+        /* AI Application for RZ/V2L */
+        printf("\nAI Application for RZ/V2L\n");
+        printf("Model : Darknet Tiny YOLOv3 | %s\n", ini_values["path"]["model_path"].c_str());
+    #endif
 
-    
-    uint32_t drpaimem_addr_start = 0;
+
+    int drpai_fd = open("/dev/drpai0", O_RDWR);
+    if (0 > drpai_fd)
+    {
+        std::cerr << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno << std::endl;
+        std::cout << "[INFO] End Application.\n";
+        return -1;
+    }
+    /* Set drpai mem start address */
+    uint64_t drpaimem_addr_start = 1073741824;
 
     /*Load Label from label_list file*/
     label_file_map = load_label_file(ini_values["path"]["label_path"]);
     if (label_file_map.empty())
     {
-        fprintf(stderr,"[ERROR] Failed to load label file: %s\n", ini_values["path"]["label_path"].c_str());
+        fprintf(stderr,"[ERROR] Failed to load label file: %s\n", ini_values["path"]["label_path"].c_str());        
         ret = -1;
         goto end_main;
     }
-    num_class = label_file_map.size();
-    INF_OUT_SIZE = (num_class + 5) * NUM_BB * num_grids[0] * num_grids[0] 
-                    + (num_class + 5) * NUM_BB * num_grids[1] * num_grids[1];
 
     /*Load model_dir structure and its weight to runtime object */
-    drpaimem_addr_start = get_drpai_start_addr();
+    drpaimem_addr_start = init_drpai(drpai_fd);
     if ((uint32_t)NULL == drpaimem_addr_start) 
     {
         fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
@@ -1154,12 +1355,26 @@ int32_t main(int32_t argc, char * argv[])
     }
 
     runtime_status = runtime.LoadModel(ini_values["path"]["model_path"], drpaimem_addr_start+DRPAI_MEM_OFFSET);
-
     if(!runtime_status)
     {
         fprintf(stderr, "[ERROR] Failed to load model.\n");
         goto end_main;
     }
+
+    uint32_t INF_OUT_SIZE;
+    /*Load number of class from label_list file*/
+    NUM_CLASS = label_file_map.size();
+    #ifdef V2H
+        INF_OUT_SIZE = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * num_grids[0] 
+                    + (NUM_CLASS + 5) * NUM_BB * num_grids[1] * num_grids[1]
+                    + (NUM_CLASS + 5) * NUM_BB * num_grids[2] * num_grids[2];
+    #elif V2L
+        INF_OUT_SIZE = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * num_grids[0] 
+                    + (NUM_CLASS + 5) * NUM_BB * num_grids[1] * num_grids[1];
+    #endif
+
+
+    drpai_output_buf =new float[INF_OUT_SIZE];
 
     /*Get input data */
     input_data_type = runtime.GetInputDataType(0);
@@ -1188,7 +1403,7 @@ int32_t main(int32_t argc, char * argv[])
         ret_main = -1;
         goto end_threads;
     }
-
+    
     /*Create Inference Thread*/
     create_thread_ai = pthread_create(&ai_inf_thread, NULL, R_Inf_Thread, NULL);
     if (0 != create_thread_ai)
@@ -1205,6 +1420,26 @@ int32_t main(int32_t argc, char * argv[])
     {
         sem_trywait(&terminate_req_sem);
         fprintf(stderr, "[ERROR] Failed to create Capture Thread.\n");
+        ret_main = -1;
+        goto end_threads;
+    }
+
+    /*Create exit Thread*/
+    create_thread_exit = pthread_create(&exit_thread, NULL, R_exit_Thread, NULL);
+    if (0 != create_thread_exit)
+    {
+        fprintf(stderr, "[ERROR] Failed to create exit Thread.\n");
+        ret_main = -1;
+        goto end_threads;
+    }
+    /* Detached exit thread */
+    pthread_detach(exit_thread);
+
+    /*Create Key Hit Thread*/
+    create_thread_key = pthread_create(&kbhit_thread, NULL, R_Kbhit_Thread, NULL);
+    if (0 != create_thread_key)
+    {
+        fprintf(stderr, "[ERROR] Failed to create Key Hit Thread.\n");
         ret_main = -1;
         goto end_threads;
     }
@@ -1237,6 +1472,15 @@ end_threads:
             ret_main = -1;
         }
     }
+    if (0 == create_thread_key)
+    {
+        ret = wait_join(&kbhit_thread, EXIT_THREAD_TIMEOUT);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to exit Key Hit Thread on time.\n");
+            ret_main = -1;
+        }
+    }
 
     /*Delete Terminate Request Semaphore.*/
     if (0 == sem_create)
@@ -1246,6 +1490,18 @@ end_threads:
     goto end_main;
 
 end_main:
-    printf("\n[INFO] Application End\n");
+    /*Close DRP-AI Driver.*/
+    if (0 < drpai_fd)
+    {
+        errno = 0;
+        ret = close(drpai_fd);
+        if (0 != ret)
+        {
+            fprintf(stderr, "[ERROR] Failed to close DRP-AI Driver: errno=%d\n", errno);
+            ret_main = -1;
+        }
+    }
+    delete[] drpai_output_buf;
+    printf("Application End\n");
     return ret_main;
 }
