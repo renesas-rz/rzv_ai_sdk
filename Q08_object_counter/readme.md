@@ -1,8 +1,7 @@
-
 # Object Counter Application
 
 ## Application: Overview
-The Object Counter Application is a user-friendly and efficient generic software tool that can be used to create custom counting applications for any scenario. This application uses the advanced Tiny-YOLOv3 algorithm to identify and count objects in images or videos.
+The Object Counter Application is a user-friendly and efficient generic software tool that can be used to create custom counting applications for any scenario. This application uses the advanced YOLOV3/Tiny YOLOv3 algorithm to identify and count objects in images or videos.
 
 ### Use Cases
 The Generic Counter Application is a powerful tool that can be used to count objects in a variety of settings, including:
@@ -23,109 +22,211 @@ The other use cases could be:
 Here are some of the key features of the Generic Counter Application:
 
 - **Automatic Object Detection**: 
-    The application utilizes Tiny-yolov3 model for detection, identifying and localizing objects specified within the provided frame.
+    The application utilizes YOLOv3/Tiny YOLOv3 model for detection, identifying and localizing objects specified within the provided frame.
 - **Flexible**: 
     The application can be customized to meet the specific needs of any counting scenario.
 - **Customizable Settings**: 
     Users can adjust the detection and classification parameters by using the config file provided in the repository.
 
 It has following camera input modes.
-- Using MIPI Camera
-- Using USB Camera
+| Mode | RZ/V2L | RZ/V2H |
+|:---|:---|:---|
+| MIPI Camera| Supported | - |
+| USB Camera| Supported | Supported |
 
 Users can select detection target from following list
 - Animal
 - Vehicle
 - General (COCO dataset)
 
-### Demo 
-<img src = "./images/Q08_counter_demo.gif" width ="480" height= "320">
+### Supported Product
+- RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
+- RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
 
-## Applications: Requirements
+### Demo 
+
+<img src = "./images/Q08_object_counter.gif" width="480">
+
+## Application: Requirements
 
 ### Hardware Requirements
 
-- RZ/V2L Evaluation Board Kit
-    - MIPI Camera
-- USB camera 
-- USB Keyboard
-- USB Mouse
-- USB Hub
-- HDMI monitor with resolution 1280x720 
-- micro HDMI to HDMI cable 
-- SD Card (for file system)
+  <table>
+    <tr>
+      <th>For</th>
+      <th>Equipment</th>
+      <th>Details</th>
+    </tr>
+    <tr>
+      <td rowspan="3">RZ/V2L</td>
+      <td>RZ/V2L EVK</td>
+      <td>Evaluation Board Kit for RZ/V2L.<br>Includes followings.
+        <ul class="mb-1">
+          <li>
+            MIPI Camera Module(Google Coral Camera)
+          </li>
+          <li>MicroUSB to Serial Cable for serial communication.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.</td>
+    </tr>
+    <tr>
+      <td>MicroHDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2L EVK has microHDMI port.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">RZ/V2H</td>
+      <td>RZ/V2H EVK</td>
+      <td>Evaluation Board Kit for RZ/V2H.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2H EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
+      <td rowspan="8">Common</td>
+      <td>USB Cable Type-C</td>
+      <td>Connect AC adapter and the board.</td>
+    </tr>
+    <tr>
+      <td>HDMI Monitor</td>
+      <td>Used to display the graphics of the board.</td>
+    </tr>
+    <tr>
+      <td>microSD card</td>
+      <td>Used as the filesystem.<br>
+      Must have over 4GB capacity of blank space.<br>
+      Operating Environment: Transcend UHS-I microSD 300S 16GB</td>
+    </tr>
+    <tr>
+      <td>Linux PC</td>
+      <td>Used to build application and setup microSD card.<br>
+      Operating Environment: Ubuntu 20.04</td>
+    </tr>
+    <tr>
+      <td>SD card reader</td>
+      <td>Used for setting up microSD card.<br></td>
+    </tr>
+    <tr>
+      <td>USB Hub</td>
+      <td>Used to connect USB Keyboard and USB Mouse to the board.</td>
+    </tr>
+    <tr>
+      <td>USB Keyboard</td>
+      <td>Used to type strings on the terminal of board.</td>
+    </tr>
+    <tr>
+      <td>USB Mouse</td>
+      <td>Used to operate the mouse on the screen of board.</td>
+    </tr>
+  </table>
 
-[Hardware Setup Steps](https://github.com/renesas-rz/rzv_ai_sdk/#hardware-requirements-and-setup)
+>**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 
-### Software Requirements
+Connect the hardware as shown below.  
 
-- Ubuntu 20.04
-- OpenCV 4.x
-- C++11 or higher
+|RZ/V2L EVK | RZ/V2H EVK |
+|:---|:---|
+|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |
+
+>**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.  
+**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
+USB camera needs to be connected to appropriate port based on its requirement.
+
 
 ## Application: Build Stage
 
->**Note:** User can skip to the next stage [deploy](#application-deploy-stage) if they don't want to build the application. All pre-built binaries are provided.
+>**Note:** User can skip to the [next stage (deploy)](#application-deploy-stage) if they do not want to build the application.  
+All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas
+### Prerequisites
+This section expects the user to have completed Step 5 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- The Board Set Up and booted. 
-- SD Card Prepared 
-- The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
+- AI SDK setup is done.
+- Following docker container is running on the host machine.
+    |Board | Docker container |
+    |:---|:---|
+    |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
 
->**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
+    >**Note:** Docker environment is required for building the sample application. 
 
-### Application: File Generation
-1. Copy the repository from the GitHub to the desired location. 
 
-    i. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+### Application File Generation
+1. On your host machine, copy the repository from the GitHub to the desired location. 
+    1. It is recommended to copy/clone the repository on the `data` folder, which is mounted on the Docker container. 
     ```sh
-    cd <path_to_data_folder_on_host>
+    cd <path_to_data_folder_on_host>/data
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-    >Note: Please verify the git repository url if error occurs.
+    >Note: This command will download the whole repository, which include all other applications.  
+    If you have already downloaded the repository of the same version, you may not need to run this command.  
 
-    > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
+2. Run (or start) the docker container and open the bash terminal on the container.  
+E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container created from  `rzv2l_ai_sdk_image` docker image.  
+    > Note that all the build steps/commands listed below are executed on the docker container bash terminal.  
 
-2. Run(or start) the docker container and open the bash terminal on the container.
-
-    > Note: All the build steps/commands listed below are executed on the docker container bash terminal.
-
-3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container.
-
+3. Set your clone directory to the environment variable.  
     ```sh
-    export PROJECT_PATH=/drp-ai_tvm/data/
+    export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
     ```
-
-4. Go to the `src` directory of the application
-
+3. Go to the application source code directory.  
     ```sh
-    cd ${PROJECT_PATH}/rzv_ai_sdk/Q08_object_counter/src/
+    cd ${PROJECT_PATH}/Q08_object_counter/src
     ```
-
-5. Build the application on docker environment by following the steps below
-
+4. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
-    ```
+    ``````
+5. Build the application by following the commands below.  
+    **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-    ```
-    ```sh
     make -j$(nproc)
     ```
-    The following application file would be generated in the `src/build` directory
+    **For RZ/V2H**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+6. The following application file would be generated in the `${PROJECT_PATH}/Q08_object_counter/src/build` directory
     - object_counter
 
 
 ## Application: Deploy Stage
+### Prerequisites
+This section expects the user to have completed Step 7-1 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7) provided by Renesas. 
 
-For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
+After completion of the guide, the user is expected of following things.
+- microSD card setup is done.
 
+### File Configuration
+For the ease of deployment all the deployable files and folders are provided in following folders.  
+|Board | `EXE_DIR` |
+|:---|:---|
+|RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+
+Each folder contains following items.
 |File | Details |
 |:---|:---|
-|coco/tinyyolov3_onnx | Model object files for Coco Detection |
+|coco/tinyyolov3_onnx | **[RZ/V2L only]** Model object files for Coco Detection |
+|coco/yolov3_onnx | **[RZ/V2H only]** Model object files for Coco Detection |
 |coco/coco_class.txt | Label list for Coco Detection |
 |coco/config.ini | User input model config object | 
 |animal/animal_onnx | Model object files for Animal Detection |
@@ -137,70 +238,98 @@ For the ease of deployment all the deployable files and folders for RZ/V2L are p
 |app_conf.ini | User input application config object |
 |object_counter | Application file |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Evaluation Board Kit. 
-1. Copy following files to the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L Evaluation Board Kit.
-    1. The files present in [exe](./exe) directory, which are listed in the table above.
-    2. The generated `object_counter` application file if the application file is built at [build stage](#application-build-stage)
-2. Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L Evaluation Board Kit.
 
-Folder structure in the rootfs (SD Card) would look like:
-```sh
-├── usr/
-│   └── lib64/
-│       └── libtvm_runtime.so
-└── home/
-    └── root/
-        └── tvm/ 
-            ├── coco/
-            │   ├── tinyyolov3_onnx/
-            │   │   ├── deploy.json
-            │   │   ├── deploy.params
-            │   │   └── deploy.so
-            │   │   
-            │   ├── coco_class.txt
-            │   └── config.ini
-            ├── animal/
-            │   ├── animal_onnx/
-            │   │   ├── deploy.json
-            │   │   ├── deploy.params
-            │   │   └── deploy.so
-            │   │   
-            │   ├── animal_class.txt
-            │   └── config.ini
-            ├── vehicle/
-            │   ├── vehicle_onnx/
-            │   │   ├── deploy.json
-            │   │   ├── deploy.params
-            │   │   └── deploy.so
-            │   │   
-            │   ├── vehicle_class.txt
-            │   └── config.ini
-            │   
-            ├── app_conf.ini
-            └── object_counter
+### Instruction
+1. **[For RZ/V2H only]** Run following commands to download the necessary file.  
+Replace each variable according to your board.  
+    ```sh
+    cd <path_to_data_folder_on_host>/data/Q08_object_counter/<EXE_PATH> 
+    wget <URL>
+    ```
+    | Target | `EXE_PATH` |`URL` |`SO_FILE` |`File Location` |
+    |:---|:---|:---|:---|:---|
+    |Animal|[exe_v2h/animal/animal_onnx](./exe_v2h/animal/animal_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_animal_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_animal_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
+    |Vehicle|[exe_v2h/vehicle/vehicle_onnx](./exe_v2h/vehicle/vehicle_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_vehicle_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_vehicle_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
+    |COCO|[exe_v2h/coco/yolov3_onnx](./exe_v2h/coco/yolov3_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_coco_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_coco_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
 
-```
+    - E.g., for Animal counting, use following commands.
+        ```sh
+        cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q08_object_counter/exe_v2h/animal/animal_onnx
+        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_animal_deploy_tvm_v2h-v230.so
+        ```
+2. **[For RZ/V2H only]** Rename the `Q08_object_counter_*.so` to `deploy.so`.
+    ```sh
+    mv Q08_object_counter_*.so deploy.so
+    ```
+3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+    |File | Details |
+    |:---|:---|
+    |All files in `EXE_DIR` directory | Including `deploy.so` file. |
+    |`object_counter` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
+4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
->**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `exe` folder on the board. You are not required to rename it `tvm`.
+5. Folder structure in the rootfs (SD Card) would look like:
+    ```
+    |-- usr
+    |   `-- lib64
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- root
+            `-- tvm
+                |-- coco
+                |   |-- tinyyolov3_onnx       #RZ/V2L only
+                |   |   |-- deploy.json       #RZ/V2L only
+                |   |   |-- deploy.params     #RZ/V2L only
+                |   |   `-- deploy.so         #RZ/V2L only
+                |   |
+                |   |-- yolov3_onnx           #RZ/V2H only
+                |   |   |-- deploy.json       #RZ/V2H only
+                |   |   |-- deploy.params     #RZ/V2H only
+                |   |   `-- deploy.so         #RZ/V2H only
+                |   |-- coco_class.txt 
+                |   `-- config.ini
+                |-- animal
+                |   |-- animal_onnx
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- animal_class.txt
+                |   `-- config.ini
+                |-- vehicle
+                |   |-- vehicle_onnx
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- vehicle_class.txt
+                |   `-- config.ini
+                |-- app_conf.ini
+                `-- object_counter
+    ```
+>**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
 
-For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
+### Prerequisites
+This section expects the user to have completed Step 7-3 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7-3) provided by Renesas. 
 
-1. Go to the `/home/root/tvm` directory of the rootfs
+After completion of the guide, the user is expected of following things.  
+- The board setup is done.  
+- The board is booted with microSD card, which contains the application file.  
 
+### Instruction
+1. On Board terminal, go to the `tvm` directory of the rootfs.
     ```sh
-    cd /home/root/tvm
+    cd /home/root/tvm/
     ```
 
-2. Change the values in `app_conf.ini` as per the requirements. Detailed explanation of the `app_conf.ini` file is given at below section.
+2. Change the values in `app_conf.ini` as per the requirements. Detailed explanation of the `app_conf.ini` file is given at [below section](#explanation-of-the-app_confini-file).
     
     ```sh
     vi app_conf.ini
     ```
 
-3. Run the application in the terminal of the RZ/V2L Evaluation Board Kit using the command
+3. Run the application.
     ```sh
     ./object_counter <mode> <camera>
     ```    
@@ -212,48 +341,52 @@ For running the application, run the commands as shown below on the RZ/V2L Evalu
         |vehicle| Detects automobiles listed          |   
     
     >**Note:** The mode will be the section name in app_conf.ini file.
+
     - camera options      
-        |Value|Description                                 |
-        |-----|--------------------------------------------|
-        |MIPI | MIPI option takes is MIPI camera as input  |
-        |USB  | USB option takes USB camera as input       |    
+        |Value|Description                            |
+        |-----|---------------------------------------|
+        |MIPI | MIPI camera as input **[RZ/V2L only]**|
+        |USB  | USB camera as input                   |    
 
     For example, to run in "animal" mode with a USB camera, write the following command.    
     ```sh
     ./object_counter animal USB
     ```
-    The expected output will be the same as shown in the demo video
 
-4. Following window shows up on HDMI screen.
+3. Following window shows up on HDMI screen.  
 
-    - Coco Object counting 
+    |RZ/V2L EVK (Animal) | RZ/V2H EVK (Animal) |
+    |:---|:---|
+    |<img src=./images/Q08_animal.png width=350>| <img src=./images/animal_v2h.png width=350>  |
 
-        <img src="./images/Q08_coco.png" width="360">
-    >**Note:** In COCO mode, the default setting allows only limited types of detection. If you want to increase the number of detection targets, edit [exe/coco/config.ini](./exe/coco/config.ini). For details on how to write `config.ini` file, please refer to the [Explanation of the config.ini file](#explanation-of-the-configini-file) section.
+    On application window, following information is displayed.  
+    - Camera capture  
+    - AI result 
+    - Processing time  
+        <!-- - Total AI Time: Sum of all processing time below.  
+        - Inference: Processing time taken for AI inference.  
+        - PreProcess: Processing time taken for AI pre-processing.  
+        - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).   -->
+        
+4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
-    - Animal Counting
 
-        <img src="./images/Q08_animal.png" width="360">
-
-    - Vehicle Counting
-
-        <img src="./images/Q08_vehicle.png" width="360">
-
-    On application window, following information is displayed.
-    - The pre-processing time, inference time, and post-processing time are displayed in the top right corner, respectively.
-    - Total detected object counts are shown , alongside the counts for each user-defined classes
-
-5. Application Termination
-    - Application can be terminated by clicking the left mouse double click. 
-    - Alternatively, to force close the application, switch from the application window to the terminal by pressing Super(windows key)+Tab and press CTRL + C.
-
-## Application: Specifications
-
-### AI Model Details
-
-Tiny Yolov3 is used for better performance. Model weights are taken from [Darknet-Yolo](https://pjreddie.com/darknet/yolo/).
-
-Then the model is retrained with below mentioned dataset. 
+## Application: Configuration 
+### AI Model
+- RZ/V2L
+    - Tiny YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+    Dataset: [COCO](https://cocodataset.org/#home)
+    Input size: 1x3x416x416  
+    Output1 size: 1x13x13x255 (COCO) / 1x13x13x54 (Animal) / 1x13x13x45 (Vehicle)   
+    Output2 size: 1x26x26x255 (COCO) / 1x26x26x54 (Animal) / 1x26x26x45 (Vehicle)   
+  
+- RZ/V2H
+    - YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+    Dataset: [COCO](https://cocodataset.org/#home)  
+    Input size: 1x3x416x416   
+    Output1 size: 1x13x13x255 (COCO) / 1x13x13x54 (Animal) / 1x13x13x45 (Vehicle)    
+    Output2 size: 1x26x26x255 (COCO) / 1x26x26x54 (Animal) / 1x26x26x45 (Vehicle)    
+    Output2 size: 1x52x52x255 (COCO) / 1x52x52x54 (Animal) / 1x52x52x45 (Vehicle)    
 
 ### Dataset
 
@@ -263,61 +396,77 @@ Then the model is retrained with below mentioned dataset.
 | animal  | [Dataset Link](https://huggingface.co/datasets/myyyyw/NTLNP) | Dataset of wildlife in the mixed coniferous broad-leaved forest |
 | vehicle | [Site](https://universe.roboflow.com/) | Combined multiple sources for different classes from the given site. Sources used are listed in below table |
 
-| Class   | Dataset |
-|---|---|
-| motorcycle | [Dataset](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco) |
-| bus | [Dataset 1](https://universe.roboflow.com/titu/bus-jm7t3), [Dataset 2](https://universe.roboflow.com/final-year-project-shhpl/bus-detection-2wlyo), [Dataset 3](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bus) |
-| car | [Dataset 1](https://universe.roboflow.com/hungdk-t8jb0/nhandienxeoto-udgcp), [Dataset 2](https://universe.roboflow.com/project-fjp7n/car-detection-vwdhg) |
-| policecar | [Dataset 1](https://universe.roboflow.com/fyp-tc-idn2o/police-cars-sumfm), [Dataset 2](https://universe.roboflow.com/maryam-mahmood-6hoeq/pol-tslhg) |
-| ambulance | [Dataset 1](https://universe.roboflow.com/ambulance-k0z3x/ambulance-detection-azspv), [Dataset 2](https://universe.roboflow.com/school-87zwx/emegency-vehicle-detection) |
-| truck | [Dataset 1](https://universe.roboflow.com/project-school-ulsua/truck-detection-g88di), [Dataset 2](https://universe.roboflow.com/kmec/truck-detection-vka5s) |
-| bicycle | [Dataset 1](https://universe.roboflow.com/vtc-ywqwf/tt-aio6y), [Dataset 2](https://universe.roboflow.com/north-south-university-faox7/bicycle-bdti6) |
-| bike | [Dataset 1](https://universe.roboflow.com/subham-bhansali-fedah/bike-detection-tzvlj), [Dataset 2](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bike) |
-| Auto |  [Dataset 1](https://universe.roboflow.com/rutviknirma/smart-traffic-management-system), [Dataset 2](https://universe.roboflow.com/graduation-project-rtgrc/tuk-tuk-labelling) |
-| LCV |  [Dataset 1](https://universe.roboflow.com/project-final-ltl6m/vehicle-detection-inlat), [Dataset 2](https://universe.roboflow.com/pooja-shri-v/lcvs-zqmsu) |
-| Fire engine |  [Dataset 1](https://universe.roboflow.com/grad-project-tjt2u/fire-truck-xumw3), [Dataset 2](https://universe.roboflow.com/pouria-maleki/firetruck) |
+| Class   | Dataset for RZ/V2L EVK | Dataset for RZ/V2H EVK |
+|---|---|---|
+| motorcycle | [Dataset](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco) | [Dataset](https://universe.roboflow.com/vehicle-mscoco/vehicles-coco) |
+| bus | [Dataset 1](https://universe.roboflow.com/titu/bus-jm7t3), [Dataset 2](https://universe.roboflow.com/final-year-project-shhpl/bus-detection-2wlyo), [Dataset 3](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bus) |  [Dataset 1](https://universe.roboflow.com/titu/bus-jm7t3), [Dataset 2](https://universe.roboflow.com/final-year-project-shhpl/bus-detection-2wlyo), [Dataset 3](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bus)|
+| car | [Dataset 1](https://universe.roboflow.com/hungdk-t8jb0/nhandienxeoto-udgcp), [Dataset 2](https://universe.roboflow.com/project-fjp7n/car-detection-vwdhg) |  [Dataset 1](https://universe.roboflow.com/hungdk-t8jb0/nhandienxeoto-udgcp), [Dataset 2](https://universe.roboflow.com/project-fjp7n/car-detection-vwdhg) |
+| policecar | [Dataset 1](https://universe.roboflow.com/fyp-tc-idn2o/police-cars-sumfm), [Dataset 2](https://universe.roboflow.com/maryam-mahmood-6hoeq/pol-tslhg) |  [Dataset 1](https://universe.roboflow.com/fyp-tc-idn2o/police-cars-sumfm), [Dataset 2](https://universe.roboflow.com/maryam-mahmood-6hoeq/pol-tslhg)|
+| ambulance | [Dataset 1](https://universe.roboflow.com/ambulance-k0z3x/ambulance-detection-azspv), [Dataset 2](https://universe.roboflow.com/school-87zwx/emegency-vehicle-detection) | [Dataset 1](https://universe.roboflow.com/ambulance-k0z3x/ambulance-detection-azspv), [Dataset 2](https://universe.roboflow.com/school-87zwx/emegency-vehicle-detection)|
+| truck | [Dataset 1](https://universe.roboflow.com/project-school-ulsua/truck-detection-g88di), [Dataset 2](https://universe.roboflow.com/kmec/truck-detection-vka5s) |[Dataset 1](https://universe.roboflow.com/project-school-ulsua/truck-detection-g88di), [Dataset 2](https://universe.roboflow.com/kmec/truck-detection-vka5s) |
+| bicycle | [Dataset 1](https://universe.roboflow.com/vtc-ywqwf/tt-aio6y), [Dataset 2](https://universe.roboflow.com/north-south-university-faox7/bicycle-bdti6) |[Dataset 1](https://universe.roboflow.com/vtc-ywqwf/tt-aio6y), [Dataset 2](https://universe.roboflow.com/north-south-university-faox7/bicycle-bdti6), [Dataset 3](https://cocodataset.org/#download) |
+| bike | [Dataset 1](https://universe.roboflow.com/subham-bhansali-fedah/bike-detection-tzvlj), [Dataset 2](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bike) | [Dataset 1](https://universe.roboflow.com/subham-bhansali-fedah/bike-detection-tzvlj), [Dataset 2](https://universe.roboflow.com/fyp-object-detection-tc8af/sya-bike)|
+| Auto |  [Dataset 1](https://universe.roboflow.com/rutviknirma/smart-traffic-management-system), [Dataset 2](https://universe.roboflow.com/graduation-project-rtgrc/tuk-tuk-labelling) | [Dataset 1](https://universe.roboflow.com/rutviknirma/smart-traffic-management-system), [Dataset 2](https://universe.roboflow.com/graduation-project-rtgrc/tuk-tuk-labelling) |
+| LCV |  [Dataset 1](https://universe.roboflow.com/project-final-ltl6m/vehicle-detection-inlat), [Dataset 2](https://universe.roboflow.com/pooja-shri-v/lcvs-zqmsu) | [Dataset 1](https://universe.roboflow.com/project-final-ltl6m/vehicle-detection-inlat), [Dataset 2](https://universe.roboflow.com/pooja-shri-v/lcvs-zqmsu) |
+| Fire engine |  [Dataset 1](https://universe.roboflow.com/grad-project-tjt2u/fire-truck-xumw3), [Dataset 2](https://universe.roboflow.com/pouria-maleki/firetruck) | [Dataset 1](https://universe.roboflow.com/grad-project-tjt2u/fire-truck-xumw3), [Dataset 2](https://universe.roboflow.com/pouria-maleki/firetruck)  |
 
 >Note: Link for motorcycle dateset has additional classes bus, car and truck which is also used for training  
 
 
 ### AI inference time
+|Board | AI model | AI inference time|
+|:---|:---|:---|
+|RZ/V2L EVK|Tiny YOLOv3| Approximately 57 ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 26 ms  |
 
-The AI inference time is 150-190 msec.
+### Processing
 
-### AI Accuracy
+|Processing | RZ/V2L EVK | RZ/V2H EVK |
+|:---|:---|:---|
+|Pre-processing | Processed by CPU. | Processed by CPU. |
+|Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
+|Post-processing | Processed by CPU. |Processed by CPU. |
 
-Mean Average Precision (mAP) for each model given in below table
 
-| Model   | mAP  |
-|---------|------|
-| coco    | 33.1 |
-| animal  | 67   |
-| vehicle | 70.9 |
+### Image buffer size
 
-## Application: Configuration 
-
+|Board | Camera capture buffer size|HDMI output buffer size|
+|:---|:---|:---|
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
+|RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+  
 ### Explanation of the `app_conf.ini` file
 
 - The section name can be of your choice. And it will be the mode name.
 
 - The section should contains three variables - `model_path`, `label_path` & `config_path`.
 
-- The `model_path` value is the path to the folder containing compiled model. 
+  - The `model_path` value is the path to the folder containing compiled model. The folder should also contains also contain preprocess folder. 
 
-- The `label_path` value is the path to the label list the model supports.
+  - The `label_path` value is the path to the label list the model supports.
 
-- The `config_path` value is the path to the model configuration ini file. Detailed explanation of the `config.ini` file is given at below section.
+  - The `config_path` value is the path to the model configuration ini file. Detailed explanation of the `config.ini` file is given at below section.
 
 ### Explanation of the `config.ini` file
 
-- The [**detect**] section contains three variables - 'conf', 'anchors' & 'objects'.
+- The [**detect**] section contains three variables - `conf`, `anchors` & `objects`.
 
-- The `conf` value is the confidence threshold used for object detection,
-- The `anchors` are the yolo anchors for the object detection. 
-- The `objects` represents class to be identified and it can be changed to other classes present on the class label list.
+  - The `conf` value is the confidence threshold used for object detection,
+  - The `anchors` are the yolo anchors for the object detection. 
+  - The `objects` represents class to be identified and it can be changed to other classes present on the class label list.
 
-- To modify the configuration settings, edit the values in this file using VI Editor, from the RZ/V2L Evaluation Board Kit.
+- To modify the configuration settings, edit the values in this file using VI Editor.
 
 ```sh
 vi config.ini
 ```
+
+## Reference
+- For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.  
+FHD resolution is supported by e-CAM22_CURZH camera (MIPI).  
+Please refer to following URL for how to change camera input to MIPI camera.  
+[https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  
+
+## License 
+Apache License 2.0  
+For third party OSS library, please see the source code file itself. 
