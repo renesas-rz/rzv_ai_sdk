@@ -1,0 +1,168 @@
+{
+  "nodes": [
+    {
+      "op": "null", 
+      "name": "onnx::MatMul_0", 
+      "inputs": []
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_cast_reshape", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_cast_reshape", 
+        "hash": "8a8d92180139a550"
+      }, 
+      "inputs": [
+        [
+          0, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+      "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "hash": "d9180a1c18af034b", 
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "Compiler": "mera_drp"
+      }, 
+      "inputs": [
+        [
+          1, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "null", 
+      "name": "p2", 
+      "inputs": []
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_reshape_add_nn_relu_reshape", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "2", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_reshape_add_nn_relu_reshape", 
+        "hash": "340da27cfdc44731"
+      }, 
+      "inputs": [
+        [
+          2, 
+          0, 
+          0
+        ], 
+        [
+          3, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+      "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+        "hash": "9426013cf73dbc9c", 
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+        "Compiler": "mera_drp"
+      }, 
+      "inputs": [
+        [
+          4, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "null", 
+      "name": "p3", 
+      "inputs": []
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_reshape_add", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "2", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_reshape_add", 
+        "hash": "30d96a2ffbc10945"
+      }, 
+      "inputs": [
+        [
+          5, 
+          0, 
+          0
+        ], 
+        [
+          6, 
+          0, 
+          0
+        ]
+      ]
+    }
+  ], 
+  "arg_nodes": [0, 3, 6], 
+  "heads": [
+    [
+      7, 
+      0, 
+      0
+    ]
+  ], 
+  "attrs": {
+    "dltype": [
+      "list_str", 
+      [
+        "float32", 
+        "float16", 
+        "float16", 
+        "float16", 
+        "float16", 
+        "float16", 
+        "float16", 
+        "float16"
+      ]
+    ], 
+    "device_index": [
+      "list_int", 
+      [1, 1, 1, 1, 1, 1, 1, 1]
+    ], 
+    "storage_id": [
+      "list_int", 
+      [0, 1, 2, 3, 1, 4, 5, 6]
+    ], 
+    "shape": [
+      "list_shape", 
+      [
+        [1, 1, 24], 
+        [1, 24], 
+        [1, 256], 
+        [256], 
+        [1, 256], 
+        [1, 5], 
+        [5], 
+        [1, 1, 5]
+      ]
+    ]
+  }, 
+  "node_row_ptr": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
