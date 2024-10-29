@@ -1,8 +1,8 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
  * Modified Code (C) Copyright Renesas Electronics Corporation 2023
- *　
- *  *1 DRP-AI TVM is powered by EdgeCortix MERA™ Compiler Framework.
+ * 
+ *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -23,10 +23,23 @@
  *
  */
 /***********************************************************************************************************************
- * File Name    : parkinglot_detection.cpp
- * Version      : 1.0
- * Description  : DRP-AI TVM[*1] Application Example
- ***********************************************************************************************************************/
+* DISCLAIMER
+* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
+* other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
+* applicable laws, including copyright laws.
+* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
+* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
+* EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
+* SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
+* SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
+* this software. By using this software, you agree to the additional terms and conditions found by accessing the
+* following link:
+* http://www.renesas.com/disclaimer
+*
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
+***********************************************************************************************************************/
 /*****************************************
  * includes
  ******************************************/
@@ -53,7 +66,7 @@ using namespace std;
 
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
-#define DRPAI_MEM_OFFSET            (0X38E0000)
+#define DRPAI_MEM_OFFSET            (0)
 #define ASH                         Scalar(150, 150, 150)
 #define WHITE                       Scalar(255, 255, 255)
 #define BLUE                        Scalar(255, 0, 0)
@@ -412,11 +425,6 @@ int start_runtime(float *input)
     runtime.Run();
     /* Get the number of output.  */
     auto output_num = runtime.GetNumOutput();
-    if (output_num != 1)
-    {
-        std::cout << "[ERROR] Output size : not 1." << std::endl;
-        abort();
-    }
     /* get output buffer */
     auto output_buffer = runtime.GetOutput(0);
     float *data_ptr = reinterpret_cast<float *>(std::get<1>(output_buffer));
@@ -503,7 +511,7 @@ uint32_t get_drpai_start_addr()
     fd = open("/dev/drpai0", O_RDWR);
     if (0 > fd )
     {
-        LOG(FATAL) << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
+        std::cerr << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno;
         return (uint32_t)NULL;
     }
 
@@ -511,7 +519,7 @@ uint32_t get_drpai_start_addr()
     ret = ioctl(fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
     if (-1 == ret)
     {
-        LOG(FATAL) << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        std::cerr << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
         return (uint32_t)NULL;
     }
 

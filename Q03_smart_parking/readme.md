@@ -108,7 +108,7 @@ The following application file would be generated in the `src/build` directory
 
 ## Application: Deploy Stage
 
-For ease of deployment all the files required for deployment are provided on the [exe](./exe) folder.	
+For ease of deployment all the files required for deployment are provided on the [exe](./exe) folder.
 
 |File | Details |
 |:---|:---|
