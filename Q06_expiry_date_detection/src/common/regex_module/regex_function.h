@@ -14,19 +14,47 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
-* File Name    : regex_function.h
-* Version      : v1.00
-* Description  : RZ/V2L AI SDK Sample Application: Expiry Date Extraction
+* Copyright 2024 Renesas Electronics Corporation
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+* 
+* http://www.apache.org/licenses/LICENSE-2.0
+* 
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
 ***********************************************************************************************************************/
-
 #ifndef REGEX_FUNCTION_H
 #define REGEX_FUNCTION_H
 
 #include <boost/regex.hpp>
-#include "../comm_define.h"
+//#include "../comm_define.h"
+
+/****************************************
+ * Text Extraction Related variable
+ *****************************************/
+/* Structure to store the date variable*/
+struct date_struct
+{
+    std::string txt_extr;
+    std::string year;
+    std::string month;
+    std::string day;
+    int32_t remaining_days;
+};
+/*Image crop height to be fed to Tesseract OCR*/
+#define MIN_CROP_HEIGHT             (84) 
+#define TESS_IMG_RESOLUTION         (330)
+#define CROP_IMG_STRETCH            (5) // Pixel value Used to extended crop section from the image
+#define PREF_YR                     "20" // prefix for the 2 digit year; (23) -> (2023) 
+
 
 struct ymd_struct {
     bool matched;
