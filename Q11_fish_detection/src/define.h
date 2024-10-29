@@ -1,7 +1,7 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
- * Modified Code (C) Copyright Renesas Electronics Corporation 2023
- *　
+ * Modified Code (C) Copyright Renesas Electronics Corporation 2024
+ * 
  *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -38,12 +38,7 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
-***********************************************************************************************************************/
-/***********************************************************************************************************************
-* File Name    : define.h
-* Version      : v1.00
-* Description  : RZ/V2L AI SDK Sample Application for Object Detection
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 #ifndef DEFINE_MACRO_H
@@ -82,22 +77,32 @@
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
 
-
 /*****************************************
 * Macro for Application
 ******************************************/
 
+/*Model data*/
+int32_t num_class;
+constexpr static float TH_PROB = 0.5f;
+constexpr static float TH_NMS = 0.5f;
+constexpr static int32_t NUM_BB = 3;
+constexpr static int32_t MODEL_IN_W = 416;
+constexpr static int32_t MODEL_IN_H = 416;
+
+#ifdef V2H
+    constexpr static int32_t NUM_INF_OUT_LAYER = 3;
+    constexpr static uint8_t num_grids[] = { 13, 26, 52 };
+#elif V2L
+    constexpr static int32_t NUM_INF_OUT_LAYER = 2;
+    constexpr static uint8_t num_grids[] = { 13, 26 };
+#endif
+
 /*DRP-AI memory area offset for model objects*/
 /*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
-#define DRPAI_MEM_OFFSET            (0x38E0000)
+#define DRPAI_MEM_OFFSET            (0)
 
 /*Maximum DRP-AI Timeout threshold*/
 #define DRPAI_TIMEOUT               (5)
-
-/*Frame threshold to execute inference in every loop
- *This value must be determined by DRP-AI processing time and capture processing time.
- *For your information YOLOv3 takes around 50 msec and capture takes around 50 msec. */
-#define INF_FRAME_NUM               (2)
 
 /*Camera Capture Image Information*/
 #define CAM_IMAGE_WIDTH             (640)
@@ -112,19 +117,29 @@
 #define DRPAI_IN_CHANNEL_YUY2       (CAM_IMAGE_CHANNEL_YUY2)
 
 /*Wayland Display Image Information*/
-#define IMAGE_OUTPUT_WIDTH          (1280)
-#define IMAGE_OUTPUT_HEIGHT         (720)
+#ifdef V2H
+    #define IMAGE_OUTPUT_WIDTH          (1920)
+    #define IMAGE_OUTPUT_HEIGHT         (1080)
+#elif V2L
+    #define IMAGE_OUTPUT_WIDTH          (1280)
+    #define IMAGE_OUTPUT_HEIGHT         (720)
+#endif
+
 #define IMAGE_CHANNEL_BGRA          (4)
-#define WL_BUF_NUM                  (2)
 
-#define DISP_IMAGE_OUTPUT_WIDTH     (960)
-#define DISP_IMAGE_OUTPUT_HEIGHT    (720)
-#define DISP_OUTPUT_WIDTH           (1280)
-#define DISP_OUTPUT_HEIGHT          (720)
+#ifdef V2H
+    #define DISP_IMAGE_OUTPUT_WIDTH     (1480)
+    #define DISP_IMAGE_OUTPUT_HEIGHT    (1080)
+    #define DISP_OUTPUT_WIDTH           (1920)
+    #define DISP_OUTPUT_HEIGHT          (1080)
+#elif V2L
+    #define DISP_IMAGE_OUTPUT_WIDTH     (960)
+    #define DISP_IMAGE_OUTPUT_HEIGHT    (720)
+    #define DISP_OUTPUT_WIDTH           (1280)
+    #define DISP_OUTPUT_HEIGHT          (720)
+#endif
 
-/*udmabuf memory area Information*/
-#define UDMABUF_OFFSET              (CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2 * CAP_BUF_NUM)
-#define UDMABUF_INFIMAGE_OFFSET     (IMAGE_OUTPUT_WIDTH * IMAGE_OUTPUT_HEIGHT * IMAGE_CHANNEL_BGRA * WL_BUF_NUM + UDMABUF_OFFSET)
+
 
 /*Waiting Time*/
 #define WAIT_TIME                   (1000) /* microseconds */
@@ -133,5 +148,25 @@
 #define CAPTURE_TIMEOUT             (20)  /* seconds */
 #define AI_THREAD_TIMEOUT           (20)  /* seconds */
 #define EXIT_THREAD_TIMEOUT         (10)  /* seconds */
+
+#ifdef V2H
+    #define KEY_THREAD_TIMEOUT          (5)   /* seconds */
+    
+    /* DRPAI_FREQ is the frequency settings  */
+    /* for DRP-AI.                           */
+    /* Basically use the default values      */
+
+    #define DRPAI_FREQ                 (2)
+    /* DRPAI_FREQ can be set from 1 to 127   */
+    /* 1,2: 1GHz                             */
+    /* 3: 630MHz                             */
+    /* 4: 420MHz                             */
+    /* 5: 315MHz                             */
+    /* ...                                   */
+    /* 127: 10MHz                            */
+    /* Calculation Formula:                  */
+    /*     1260MHz /(DRPAI_FREQ - 1)         */
+    /*     (When DRPAI_FREQ = 3 or more.)    */
+#endif
 
 #endif
