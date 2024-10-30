@@ -244,7 +244,6 @@ Each folder contains following items.
                 |   |-- deploy.json
                 |   |-- deploy.params
                 |   |-- deploy.so
-                |   `-- preprocess            #RZ/V2L only
                 |-- config.ini
                 |-- fish_class.txt
                 `-- fish_detector
