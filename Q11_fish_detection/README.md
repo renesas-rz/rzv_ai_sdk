@@ -243,7 +243,7 @@ Each folder contains following items.
                 |-- fish_detection_model
                 |   |-- deploy.json
                 |   |-- deploy.params
-                |   |-- deploy.so
+                |   `-- deploy.so
                 |-- config.ini
                 |-- fish_class.txt
                 `-- fish_detector
