@@ -241,7 +241,6 @@ Each folder contains following items.
         `-- root
             `-- tvm
                 |-- tinyyolov3_onnx           #RZ/V2L only
-                |   |-- preprocess            #RZ/V2L only          
                 |   |-- deploy.json           #RZ/V2L only
                 |   |-- deploy.params         #RZ/V2L only
                 |   `-- deploy.so             #RZ/V2L only
