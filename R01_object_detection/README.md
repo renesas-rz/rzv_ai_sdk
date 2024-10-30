@@ -168,12 +168,8 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```
 3. Go to the application source code directory.  
     ```sh
-    cd ${PROJECT_PATH}/R01_object_detection/<SRC_DIR>
+    cd ${PROJECT_PATH}/R01_object_detection/src
     ```
-    |Board | `SRC_DIR` |
-    |:---|:---|
-    |RZ/V2L EVK|`src`  |
-    |RZ/V2H EVK|`src_v2h`  |
 
 4. Create and move to the `build` directory.
     ```sh
@@ -190,7 +186,7 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
       cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
       make -j$(nproc)
       ```
-5. The following application file would be generated in the `${PROJECT_PATH}/R01_object_detection/<SRC_DIR>/build` directory
+5. The following application file would be generated in the `${PROJECT_PATH}/R01_object_detection/src/build` directory
     - object_detection
 
 
@@ -226,13 +222,13 @@ Replace each variable according to your board.
     ```
     |Board | `EXE_DIR` |`URL` |`SO_FILE` |File Location |
     |:---|:---|:---|:---|:---|
-    |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v2.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm-v111.so`</span>  |[Release v2.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v2.00/)  |
-    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00pre/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v230.so`</span> |[Release v5.00pre](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00pre/)  |
+    |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2l-v230.so`</span>  |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
+    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
 
     - E.g., for RZ/V2L EVK, use following commands.
         ```sh
         cd ${PROJECT_PATH}/R01_object_detection/exe_v2l/yolov3_onnx
-        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v2.00/R01_object_detection_deploy_tvm-v111.so
+        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/R01_object_detection_deploy_tvm_v2l-v230.so
         ```
 2. Rename the `R01_object_detection_deploy_*.so` to `deploy.so`.
     ```sh
@@ -287,7 +283,7 @@ After completion of the guide, the user is expected of following things.
 
     |RZ/V2L EVK | RZ/V2H EVK |
     |:---|:---|
-    |<img src=./img/objectdetection.png width=350>| <img src=./img/objectdetection_v2h.jpg width=350>  |
+    |<img src=./img/objectdetection.png width=350>| <img src=./img/objectdetection_v2h.png width=350>  |
 
     On application window, following information is displayed.  
     - Camera capture  
@@ -313,7 +309,7 @@ Output3 size: 1x52x52x255
 ### AI inference time
 |Board | AI inference time|
 |:---|:---|
-|RZ/V2L EVK| Approximately 430ms  |
+|RZ/V2L EVK| Approximately 380ms  |
 |RZ/V2H EVK | Approximately 30ms  |
 
 ### Processing
@@ -329,12 +325,12 @@ Output3 size: 1x52x52x255
 
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
-|RZ/V2L EVK| VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
 |RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
   
-> **Note:** For RZ/V2H, this application allocates the DRP-AI input buffer with **640x640** resolution in order to maintain the same aspect ratio with **416x416** square size of YOLOv3 input shape after the resize pre-processing.  
+> **Note:** This application allocates the DRP-AI input buffer with **640x640** resolution in order to maintain the same aspect ratio with **416x416** square size of YOLOv3 input shape after the resize pre-processing.  
   
-Following is the buffer flow for RZ/V2H application.  
+Following is the buffer flow.  
 
 <img src=./img/buffer_flow.png width="800">
 

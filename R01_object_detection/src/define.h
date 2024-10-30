@@ -38,17 +38,19 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
 * File Name    : define.h
-* Version      : v1.00
-* Description  : RZ/V2L AI SDK Sample Application for Object Detection
+* Version      : v5.00
+* Description  : RZ/V AI SDK Sample Application for Object Detection
 ***********************************************************************************************************************/
 
 #ifndef DEFINE_MACRO_H
 #define DEFINE_MACRO_H
 
+/*Uncomment to display the camera framerate on application window. */
+// #define DISP_CAM_FRAME_RATE
 /*****************************************
 * includes
 ******************************************/
@@ -73,7 +75,12 @@
 #include <sys/time.h>
 #include <climits>
 #include <builtin_fp16.h>
-
+/*Camera control and GUI control*/
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui.hpp>
+#ifdef DISP_CAM_FRAME_RATE
+#include <numeric>
+#endif
 
 /*****************************************
 * Static Variables for YOLOv3
@@ -99,13 +106,44 @@ const static double anchors[] =
 
 };
 /* Class labels to be classified */
-const static std::string label_list     = "coco-labels-2014_2017.txt";
+const static std::string label_list = "coco-labels-2014_2017.txt";
 /* Empty since labels will be loaded from label_list file */
 static std::vector<std::string> label_file_map = {};
 
 /*****************************************
 * Macro for YOLOv3
 ******************************************/
+
+/*Camera Capture Information */
+#ifdef V2H
+#define INPUT_CAM_NAME              "USB Camera"
+
+/*Wayland Display Image Information*/
+#define IMAGE_OUTPUT_WIDTH          (1920)
+#define IMAGE_OUTPUT_HEIGHT         (1080)
+
+/*Image:: Information for drawing on image*/
+#define CHAR_SCALE_LARGE            (1.0)
+#define CHAR_SCALE_SMALL            (0.9)
+#define CHAR_SCALE_VERY_SMALL       (0.6)
+#else /* for V2L */
+/*DRP-AI memory area offset for model objects*/
+/*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
+#define DRPAI_MEM_OFFSET            (0x38E0000)
+#define INPUT_CAM_NAME              "MIPI Camera"
+
+/*Wayland Display Image Information*/
+#define IMAGE_OUTPUT_WIDTH          (1280)
+#define IMAGE_OUTPUT_HEIGHT         (720)
+
+/*Image:: Text information to be drawn on image*/
+#define CHAR_SCALE_LARGE            (0.7)
+#define CHAR_SCALE_SMALL            (0.6)
+#define CHAR_SCALE_VERY_SMALL       (0.43)
+#endif  /* V2H */
+/*RESIZE_SCALE=((OUTPUT_WIDTH/IMAGE_WIDTH > OUTPUT_HEIGHT/IMAGE_HEIGHT) ?
+        OUTPUT_HEIGHT/IMAGE_HEIGHT : OUTPUT_WIDTH/IMAGE_WIDTH)*/
+#define RESIZE_SCALE                (1.5)
 
 /* Number of class to be detected */
 #define NUM_CLASS                   (80)
@@ -129,82 +167,71 @@ const static uint32_t INF_OUT_SIZE  = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * 
 /*****************************************
 * Macro for Application
 ******************************************/
-/* Coral Camera support */
-#define INPUT_CORAL
-
-/*DRP-AI memory area offset for model objects*/
-/*Offset value depends on the size of memory area used by DRP-AI Pre-processing Runtime Object files*/
-#define DRPAI_MEM_OFFSET            (0x38E0000)
-
 /*Maximum DRP-AI Timeout threshold*/
 #define DRPAI_TIMEOUT               (5)
-
-/*Frame threshold to execute inference in every loop
- *This value must be determined by DRP-AI processing time and capture processing time.
- *For your information YOLOv3 takes around 50 msec and capture takes around 50 msec. */
-#define INF_FRAME_NUM               (2)
 
 /*Camera Capture Image Information*/
 #define CAM_IMAGE_WIDTH             (640)
 #define CAM_IMAGE_HEIGHT            (480)
-#define CAM_IMAGE_CHANNEL_YUY2      (2)
-
+#define CAM_IMAGE_CHANNEL_BGR       (3)
 /*Camera Capture Information */
-#ifdef INPUT_CORAL
-#define CAP_BUF_NUM                 (6)
-#else /* INPUT_CORAL */
-#define CAP_BUF_NUM                 (3)
-#endif /* INPUT_CORAL */
+#define CAPTURE_STABLE_COUNT        (8)
 
 /*DRP-AI Input image information*/
-#define DRPAI_IN_WIDTH              (CAM_IMAGE_WIDTH)
-#define DRPAI_IN_HEIGHT             (CAM_IMAGE_HEIGHT)
-#define DRPAI_IN_CHANNEL_YUY2       (CAM_IMAGE_CHANNEL_YUY2)
+/*** DRP-AI input is assigned to the buffer having the size of CAM_IMAGE_WIDTH^2 */
+#define DRPAI_IN_WIDTH              (CAM_IMAGE_WIDTH) 
+#define DRPAI_IN_HEIGHT             (CAM_IMAGE_WIDTH)
+#define IMAGE_OUTPUT_CHANNEL_BGRA   (4)
 
-/*Wayland Display Image Information*/
-#define IMAGE_OUTPUT_WIDTH          (1280)
-#define IMAGE_OUTPUT_HEIGHT         (720)
-#define IMAGE_CHANNEL_BGRA          (4)
-#define WL_BUF_NUM                  (2)
+/*DRP-AI Input image information*/
+#define DRPAI_OUT_WIDTH             (IMAGE_OUTPUT_WIDTH)
+#define DRPAI_OUT_HEIGHT            (IMAGE_OUTPUT_HEIGHT)
 
-/*udmabuf memory area Information*/
-#define UDMABUF_OFFSET              (CAM_IMAGE_WIDTH * CAM_IMAGE_HEIGHT * CAM_IMAGE_CHANNEL_YUY2 * CAP_BUF_NUM)
-#define UDMABUF_INFIMAGE_OFFSET     (IMAGE_OUTPUT_WIDTH * IMAGE_OUTPUT_HEIGHT * IMAGE_CHANNEL_BGRA * WL_BUF_NUM + UDMABUF_OFFSET)
-
-/*Image:: Text information to be drawn on image*/
-#define CHAR_SCALE_LARGE            (0.8)
-#define CHAR_SCALE_SMALL            (0.7)
+/*Image:: Information for drawing on image*/
 #define CHAR_THICKNESS              (2)
+#define CHAR_SCALE_BB               (0.4)
+#define CHAR_THICKNESS_BB           (1)
 #define LINE_HEIGHT                 (30) /*in pixel*/
 #define LINE_HEIGHT_OFFSET          (20) /*in pixel*/
 #define TEXT_WIDTH_OFFSET           (10) /*in pixel*/
-#define TIME_LINE_NUM               (4) /*Total, inference, preprocess, postprocess*/
-#define TIME_TOTAL_ID               (0)
-#define TIME_INF_ID                 (1)
-#define TIME_PRE_ID                 (2)
-#define TIME_POST_ID                (3)
 #define WHITE_DATA                  (0xFFFFFFu) /* in RGB */
-#define BLACK_DATA                  (0x000000u)
-#define WHITE_DATA_YUYV             (0xEB8080u) /* in YUYV */
-#define BLACK_DATA_YUYV             (0x108080u)
-/*RESIZE_SCALE=((OUTPUT_WIDTH/IMAGE_WIDTH > OUTPUT_HEIGHT/IMAGE_HEIGHT) ?
-        OUTPUT_HEIGHT/IMAGE_HEIGHT : OUTPUT_WIDTH/IMAGE_WIDTH)*/
-#define RESIZE_SCALE                (1.5)
+#define BLACK_DATA                  (0x000000u) /* in RGB */
+#define GREEN_DATA                  (0x00FF00u) /* in RGB */
+#define RGB_FILTER                  (0x0000FFu) /* in RGB */
+#define BOX_LINE_SIZE               (1)  /*in pixel*/
+#define BOX_DOUBLE_LINE_SIZE        (1)  /*in pixel*/
+#define ALIGHN_LEFT                 (1)
+#define ALIGHN_RIGHT                (2)
+/*For termination method display*/
+#define TEXT_START_X                (1440) 
 
+/* DRPAI_FREQ is the frequency settings  */
+/* for DRP-AI.                           */
+/* Basically use the default values      */
 
-/*Waiting Time*/
-#define WAIT_TIME                   (1000) /* microseconds */
+#define DRPAI_FREQ                  (2)
+/* DRPAI_FREQ can be set from 1 to 127   */
+/* 1,2: 1GHz                             */
+/* 3: 630MHz                             */
+/* 4: 420MHz                             */
+/* 5: 315MHz                             */
+/* ...                                   */
+/* 127: 10MHz                            */
+/* Calculation Formula:                  */
+/*     1260MHz /(DRPAI_FREQ - 1)         */
+/*     (When DRPAI_FREQ = 3 or more.)    */
 
 /*Timer Related*/
-#define CAPTURE_TIMEOUT             (20)  /* seconds */
-#define AI_THREAD_TIMEOUT           (20)  /* seconds */
-#define KEY_THREAD_TIMEOUT          (5)   /* seconds */
+#define CAPTURE_TIMEOUT         (20)  /* seconds */
+#define AI_THREAD_TIMEOUT       (20)  /* seconds */
+#define IMAGE_THREAD_TIMEOUT    (20)  /* seconds */
+#define DISPLAY_THREAD_TIMEOUT  (20)  /* seconds */
+#define KEY_THREAD_TIMEOUT      (5)   /* seconds */
+#define TIME_COEF               (1)
+/*Waiting Time*/
+#define WAIT_TIME               (1000) /* microseconds */
 
-/*****************************************
-* For image.cpp
-******************************************/
-/*For drawing the bounding box label on image*/
-#define FONTDATA_WIDTH              (6)
-#define FONTDATA_HEIGHT             (8)
+/*Array size*/
+#define SIZE_OF_ARRAY(array) (sizeof(array)/sizeof(array[0]))
 
 #endif
