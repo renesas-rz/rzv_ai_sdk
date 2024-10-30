@@ -244,7 +244,6 @@ Each folder contains following items.
                 |   |-- deploy.json
                 |   |-- deploy.params
                 |   |-- deploy.so
-                |   `-- preprocess            #RZ/V2L only
                 |-- config.ini
                 |-- fish_class.txt
                 `-- fish_detector
@@ -358,4 +357,8 @@ Please refer to following URL for how to change camera input to MIPI camera.
 
 ## License
 Apache License 2.0    
+<<<<<<< HEAD
 For third party OSS library, please see the source code file itself. 
+=======
+For third party OSS library, please see the source code file itself. 
+>>>>>>> origin/fish_detection
