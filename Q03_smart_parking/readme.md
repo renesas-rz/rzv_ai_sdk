@@ -112,7 +112,7 @@ For ease of deployment all the files required for deployment are provided on the
 
 |File | Details |
 |:---|:---|
-|parkingmodel_onnx | Model object files for deployment. |
+|parking_model | Model object files for deployment. |
 |parking_bg.jpg | Front image for the application. |
 |sample.mp4 | User sample input video. |
 |parkinglot_detection | Application file. |
@@ -137,7 +137,7 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 └── home/
     └── root/
         └── tvm/
-            ├── parkingmodel_onnx/
+            ├── parking_model/
             │   ├── deploy.json
             │   ├── deploy.params
             │   └── deploy.so
