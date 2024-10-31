@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.12)
-set(CMAKE_CXX_STANDARD 17)
 project(expiry_date_extraction)
+set(CMAKE_CXX_STANDARD 17)
+
+if(V2H STREQUAL "ON") 
+	add_definitions(-DV2H)
+	message("-- PRODUCT [V2H]")	
+else()
+	add_definitions(-DV2L)
+	message("-- PRODUCT [V2L]")
+endif()
 
 # Setting and including TVM Directory
 set(TVM_ROOT $ENV{TVM_HOME})
@@ -10,52 +18,41 @@ include_directories(${TVM_ROOT}/3rdparty/dmlc-core/include)
 include_directories(${TVM_ROOT}/3rdparty/compiler-rt)
 
 set(TVM_RUNTIME_LIB ${TVM_ROOT}/build_runtime/libtvm_runtime.so)
-
-
-set(IMG_EXE_NAME "date_extraction_img")
-set(CAM_EXE_NAME "date_extraction_cam")
-
+set(EXE_NAME date_extraction)
 # set common files sources
 file(GLOB COMM_SRC ./common/*.cpp ./common/*.h ./common/*/*.cpp ./common/*/*.h)
-
-# set image file source
-file(GLOB IMG_SRC image_mode/*.cpp image_mode/*.h image_mode/*/*.cpp image_mode/*/*.h)
-add_executable (${IMG_EXE_NAME}
-    ${IMG_SRC}
-    ${COMM_SRC}
+file(GLOB SOURCE *.cpp *.h)
+add_executable (${EXE_NAME}
+${SOURCE}
+${COMM_SRC}
 )
-
-# set camera files source
-file(GLOB CAM_SRC camera_mode/*.cpp camera_mode/*.h)
-add_executable (${CAM_EXE_NAME}
-    ${CAM_SRC}
-    ${COMM_SRC}
-)
-
 # find tesseract library and include dir 
 find_library(TESSERACT_LIBRARY NAMES tesseract HINTS "${CMAKE_SYSROOT}/usr/lib64/") # require toolchain for the variable
 find_path(TESSERACT_INCLUDE_DIR NAMES tesseract/baseapi.h HINTS "${CMAKE_SYSROOT}/usr/include/tesseract")
 include_directories(${TESSERACT_INCLUDE_DIR})
 
-
 # Add the Boost include directory & find Boost package
 include_directories(boost)
 include_directories(include) 
 
+TARGET_LINK_LIBRARIES(${EXE_NAME} pthread)
+TARGET_LINK_LIBRARIES(${EXE_NAME} jpeg)
+
+target_link_libraries(${EXE_NAME} 
+	pthread glib-2.0 mmngr gobject-2.0 gstreamer-1.0  gstbase-1.0 gstapp-1.0 
+	opencv_imgcodecs opencv_imgproc opencv_core opencv_highgui
+	jpeg webp tiff z tbb gtk-3 png16 gdk-3 cairo
+	lzma rt cairo-gobject
+	xkbcommon wayland-cursor wayland-egl wayland-client epoxy
+	fribidi harfbuzz fontconfig
+	glib-2.0 gobject-2.0 gdk_pixbuf-2.0 gmodule-2.0 pangocairo-1.0
+	atk-1.0 gio-2.0 pango-1.0 freetype pixman-1 uuid pcre
+	mount resolv expat pangoft2-1.0 blkid
+	EGL GLESv2 mmngrbuf)
 find_package(OpenCV REQUIRED)
 if(OpenCV_FOUND)
     include_directories(${OpenCV_INCLUDE_DIRS})
 endif()
 
-target_link_libraries(${IMG_EXE_NAME} ${OpenCV_LIBS} ${TESSERACT_LIBRARY})
-target_link_libraries(${CAM_EXE_NAME} ${OpenCV_LIBS} ${TESSERACT_LIBRARY})
-
-TARGET_LINK_LIBRARIES(${CAM_EXE_NAME} pthread)
-TARGET_LINK_LIBRARIES(${CAM_EXE_NAME} jpeg)
-TARGET_LINK_LIBRARIES(${CAM_EXE_NAME} wayland-client)
-
-target_link_libraries(${IMG_EXE_NAME} ${TVM_RUNTIME_LIB})
-target_link_libraries(${CAM_EXE_NAME} ${TVM_RUNTIME_LIB})
-
-target_compile_definitions(${IMG_EXE_NAME} PRIVATE -DIMAGE_MODE)
-target_compile_definitions(${CAM_EXE_NAME} PRIVATE -DCAMERA_MODE)
+target_link_libraries(${EXE_NAME} ${OpenCV_LIBS} ${TESSERACT_LIBRARY})
+target_link_libraries(${EXE_NAME} ${TVM_RUNTIME_LIB})

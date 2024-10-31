@@ -125,6 +125,9 @@ The [Suspicious Person Detection](./Q10_suspicious_person_detection) application
 ### 11. Fish Detection
 The [Fish Detection](./Q11_fish_detection) application is a software used to automatically detect fishes in real-time camera streams.
 
+### 12. Yoga Pose Estimation
+The [Yoga Pose Estimation](./Q12_yoga_pose_estimation) application is a software used to automatically identify and analyze the key points of a person's body while they are performing yoga poses.
+
 
 ## Operating the application
 - Each application folder have their respective `readme.md` file to modify and run the application.

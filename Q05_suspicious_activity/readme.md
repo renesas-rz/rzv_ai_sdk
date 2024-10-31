@@ -3,10 +3,11 @@
 ## Application: Overview
 The suspicious  activity classification application allows to classify between Violence and Non-Violence from video input using a custom AI model which has a CNN module for feature extraction and MLP for aggregating features.
 
-It has 2 modes of running.
+It has 3 modes of running.
 
 1. Using Video as input
 2. Using MIPI Camera as Input
+3. Using USB Camera as Input
 
 #### Demo:
 
@@ -18,7 +19,8 @@ It has 2 modes of running.
 
 #### Hardware Requirements
 - RZ/V2L Evaluation Board Kit
-    - Coral Camera
+- MIPI Camera
+- USB Camera
 - USB Mouse
 - USB Keyboard
 - USB Hub
@@ -54,9 +56,10 @@ After completion of the guide, the user is expected of following things.
     cd <path_to_data_folder_on_host>
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-    > Note 1: Please verify the git repository url if error occurs
+   >Note 1: Please verify the git repository url if error occurs.
 
-    > Note 2: This command will download whole repository, which include all other applications, if you have already downloaded the repository of the same version, you may not need to run this command.
+   >Note 2: This command will download the whole repository, which include all other applications. If you have already downloaded the repository of the same version, you may not need to run this command.
+   
 2. Run the docker container and open the bash terminal on the container.
 
 > Note: All the build steps/commands listed below are executed on the docker container terminal.
@@ -112,6 +115,9 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 ##### Folder Structure in the board
 ```sh
 /
+└── usr
+    └── lib64
+        └── libtvm_runtime.so
 └── home
     └── root
         └── tvm
@@ -133,18 +139,38 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 ## Application: Runtime Stage
 
-##### Mode: Camera Input
+* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
+  * Go to the `/home/root/tvm` directory of the rootfs
+  ```sh
+  cd /home/root/tvm
+  ```
+  
+##### Mode: MIPI Camera Input
 - The application takes input from MIPI Coral Camera.
 
 ```sh 
-./suspicious_activity CAMERA 
+./suspicious_activity MIPI 
 ```
 - User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
 
 >**Note: `FRAME_INTERVAL` and `BUFFER_SIZE` details are explained in [Application: Specifications](#application-specifications).** 
 
 ```sh
-./suspicious_activity CAMERA 5 5
+./suspicious_activity MIPI 5 5
+```
+
+##### Mode: USB Camera Input
+- The application takes input from MIPI Coral Camera.
+
+```sh 
+./suspicious_activity USB 
+```
+- User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
+
+>**Note: `FRAME_INTERVAL` and `BUFFER_SIZE` details are explained in [Application: Specifications](#application-specifications).** 
+
+```sh
+./suspicious_activity USB 5 5
 ```
 
 ##### Mode: Video Input
@@ -164,7 +190,8 @@ Follow the steps mentioned below to deploy the project on RZ/V2L Board.
 
 #### Application: termination
 
-- Press `Esc` key to terminate the application.
+- Double click on the window to terminate the application.
+- Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
 
 #### Application: Runtime Details
 

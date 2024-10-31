@@ -18,8 +18,10 @@ Here are some of the key features of the Fish Detection Application:
     Users can adjust the detection parameters by using the config file provided in the repository
 
 It has following camera input modes.
-1. Using MIPI camera (RZ/V2L EVK only)
-2. Using USB camera
+| Mode | RZ/V2L | RZ/V2H |
+|:---|:---|:---|
+| USB Camera| Supported | Supported |
+| MIPI Camera| Supported | - |
 
 ### Supported Product
 - RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
@@ -167,25 +169,26 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```sh
     export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
     ```
-3. Go to the application source code directory.  
+4. Go to the application source code directory.  
     ```sh
-    cd ${PROJECT_PATH}/Q11_fish_detection/<SRC_DIR>
+    cd ${PROJECT_PATH}/Q11_fish_detection/src
     ```
-    |Board | `SRC_DIR` |
-    |:---|:---|
-    |RZ/V2L EVK|`src`  |
-    |RZ/V2H EVK|`src_v2h`  |
-
-4. Create and move to the `build` directory.
+5. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
     ``````
-4. Build the application by following the commands below.  
+6. Build the application by following the commands below.  
+    **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-5. The following application file would be generated in the `${PROJECT_PATH}/Q11_fish_detection/<SRC_DIR>/build` directory
+    **For RZ/V2H**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+7. The following application file would be generated in the `${PROJECT_PATH}/Q11_fish_detection/src/build` directory
     - fish_detector
 
 
@@ -214,8 +217,8 @@ Each folder contains following items.
 ### Instruction
 1. [FOR RZ/V2H only] Run following commands to download the necessary file.  
     ```sh
-    cd <path_to_data_folder_on_host>/rzv_ai_sdk/Q11_fish_detection/exe_v2h/fish_detection_model
-    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/Q11_fish_detection_deploy_tvm_v2h-v221.so
+    cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q11_fish_detection/exe_v2h/fish_detection_model
+    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q11_fish_detection_deploy_tvm_v2h-v230.so
     ```
 2. [FOR RZ/V2H only] Rename the `Q11_fish_detection_deploy_*.so` to `deploy.so`.
     ```sh
@@ -240,8 +243,7 @@ Each folder contains following items.
                 |-- fish_detection_model
                 |   |-- deploy.json
                 |   |-- deploy.params
-                |   |-- deploy.so
-                |   `-- preprocess            #RZ/V2L only
+                |   `-- deploy.so
                 |-- config.ini
                 |-- fish_class.txt
                 `-- fish_detector
@@ -303,7 +305,7 @@ After completion of the guide, the user is expected of following things.
     Dataset: Custom labelled dataset with classes listed [here](./exe_v2l/fish_class.txt)   
     Input size: 1x3x416x416  
     Output1 size: 1x13x13x57  
-    Output2 size: 1x26x26x114  
+    Output2 size: 1x26x26x57  
   
 - RZ/V2H
     - YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
@@ -316,17 +318,16 @@ After completion of the guide, the user is expected of following things.
 ### AI inference time
 |Board | AI model | AI inference time|
 |:---|:---|:---|
-|RZ/V2L EVK|Tiny YOLOv3| Approximately 100ms  |
-|RZ/V2H EVK |YOLOv3 | Approximately 26ms  |
+|RZ/V2L EVK|Tiny YOLOv3| Approximately 58 ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 26 ms  |
 
 ### Processing
 
-|Processing | RZ/V2L EVK | RZ/V2H EVK |
-|:---|:---|:---|
-|Pre-processing | Processed by DRP-AI. | Processed by CPU. |
-|Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
-|Post-processing | Processed by CPU. | Processed by CPU. |
-
+|Processing | Details |
+|:---|:---|
+|Pre-processing | Processed by CPU. |
+|Inference | Processed by DRP-AI and CPU. |
+|Post-processing | Processed by CPU. |
 
 ### Explanation of the `config.ini` file
 - The config.ini file should contain two sections [**path**] & [**detect**].
@@ -344,7 +345,7 @@ After completion of the guide, the user is expected of following things.
 
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
-|RZ/V2L EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2L EVK | VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
 |RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
  
   
@@ -356,4 +357,8 @@ Please refer to following URL for how to change camera input to MIPI camera.
 
 ## License
 Apache License 2.0    
+<<<<<<< HEAD
 For third party OSS library, please see the source code file itself. 
+=======
+For third party OSS library, please see the source code file itself. 
+>>>>>>> origin/fish_detection

@@ -14,19 +14,34 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2023 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
+***********************************************************************************************************************/
+/***********************************************************************************************************************
+* Copyright 2024 Renesas Electronics Corporation
+* 
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+* 
+* http://www.apache.org/licenses/LICENSE-2.0
+* 
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
 * File Name    : image.h
-* Version      : v1.00
-* Description  : RZ/V2L AI SDK Sample Application for Object Detection
+* Version      : v5.00
+* Description  : RZ/V AI SDK Sample Application for Object Detection
 ***********************************************************************************************************************/
 
 #ifndef IMAGE_H
 #define IMAGE_H
 
 #include "define.h"
-#include "ascii.h"
+#include <opencv2/opencv.hpp>
 
 class Image
 {
@@ -34,26 +49,25 @@ class Image
         Image();
         ~Image();
 
-        uint8_t* img_buffer[WL_BUF_NUM];
-        uint8_t get_buf_id();
-        void write_string_rgb(std::string str, uint32_t x, uint32_t y, float size, uint32_t color);
+        cv::Mat img_mat;
 
-        uint8_t udmabuf_fd;
+        void write_string_rgb(std::string str, uint8_t align_type, uint32_t x, uint32_t y, float size, uint32_t color, cv::Mat& input_mat);
+        void write_string_rgb_boundingbox(std::string str, uint8_t align_type,  
+                uint32_t x_min, uint32_t y_min, uint32_t x_max, uint32_t y_max,
+                float scale, uint32_t color, uint32_t str_color);
+        void draw_rect(int32_t x, int32_t y, int32_t w, int32_t h, const char* str,uint32_t color, uint32_t label_color);
+
         uint32_t get_H();
         uint32_t get_W();
         uint32_t get_C();
-        uint8_t at(int32_t a);
-        void set(int32_t a, uint8_t val);
 
         uint8_t init(uint32_t w, uint32_t h, uint32_t c, uint32_t ow, uint32_t oh, uint32_t oc);
-        void draw_rect(int32_t x, int32_t y, int32_t w, int32_t h, const char* str);
-        void convert_format();
-        void convert_size();
-        void camera_to_image(const uint8_t* buffer, int32_t size);
-    private:
-        uint8_t buf_id = 0;
+        void convert_size(int in_w, int resize_w, bool is_padding);
+        void set_mat(const cv::Mat& input_mat);
+        cv::Mat get_mat();
 
-        /* Input Image (YUYV from V4L2) Information */
+    private:
+        /* Input Image (BGR from camera) Information */
         uint32_t img_h;
         uint32_t img_w;
         uint32_t img_c;
@@ -62,16 +76,8 @@ class Image
         uint32_t out_w;
         uint32_t out_c;
 
-        uint32_t front_color            = BLACK_DATA;
-        uint32_t back_color             = WHITE_DATA;
-        uint32_t front_color_yuyv       = BLACK_DATA_YUYV;
-        uint32_t back_color_yuyv        = WHITE_DATA_YUYV;
-        uint8_t font_w = FONTDATA_WIDTH;
-        uint8_t font_h = FONTDATA_HEIGHT;
-        void draw_point_yuyv(int32_t x, int32_t y, uint32_t color);
-        void draw_line(int32_t x0, int32_t y0, int32_t x1, int32_t y1, uint32_t color);
-        void write_char(char code,  uint32_t x,  uint32_t y, uint32_t color, uint32_t backcolor);
-        void write_string(const char * pcode, uint32_t x, uint32_t y, uint32_t color, uint32_t backcolor);
+        uint8_t align_l         = ALIGHN_LEFT;
+        uint8_t align_r         = ALIGHN_RIGHT;
 };
 
 #endif

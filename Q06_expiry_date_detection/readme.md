@@ -12,7 +12,7 @@ Extracted date formats from
 "YYYY-MMM-DD",
 "DD-MMM-YYYY",
 "DDst-MMM-YYYY",
-"MMM-DD-YYYY" 
+"MMM-DD-YYYY"
 
 >Note: The separator is not limited to "-", it could be any special character like [`@`,`,`,`-`,`.`,` `, `/`].  
 
@@ -25,9 +25,11 @@ There are 4 classes for object detection.
 - Due : Due date tag
 
 It has following mode of running.
-  - Using MIPI Camera as input (RZ/V2L EVK only)
-  - Using USB Camera as input
-  - Using Image as input
+| Mode | RZ/V2L | RZ/V2H |
+|:---|:---|:---|
+| MIPI Camera | Supported | - |
+| USB Camera | Supported | Supported |
+| Image | Supported | Supported |
 
 
 ### Supported Product
@@ -54,8 +56,7 @@ Following is the demo for RZ/V2H EVK.
       <td>Evaluation Board Kit for RZ/V2L.<br>Includes followings.
         <ul class="mb-1">
           <li>
-            MIPI Camera Module(Google Coral Camera)<br>
-            Used as a camera input source.
+            MIPI Camera Module(Google Coral Camera)
           </li>
           <li>MicroUSB to Serial Cable for serial communication.</li>
         </ul>
@@ -178,18 +179,13 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```
 4. Go to the application source code directory.  
     ```sh
-    cd ${PROJECT_PATH}/Q06_expiry_date_detection/<SRC_DIR>
+    cd ${PROJECT_PATH}/Q06_expiry_date_detection/src
     ```
-    |Board | `SRC_DIR` |
-    |:---|:---|
-    |RZ/V2L EVK|`src`  |
-    |RZ/V2H EVK|`src_v2h`  |
-
 5. Download the `boost` tar file
    ```sh
    wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
    ```
-   >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the <SRC_DIR> folder present on the mounted `data` directory.
+   >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the src folder present on the mounted `data` directory.
 
 6. Extract tar file to the current location 
    ```sh
@@ -208,35 +204,23 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     rm boost_1_81_0.tar.bz2
     rm -rf boost_1_81_0
     ```
-
-9. [For RZ/V2L only, Optional] For USB Camera Application, comment out [`#define INPUT_CORAL`](./src/camera_mode/define.h#L78) at `./src/camera_mode/define.h`
-    ```
-    // #define INPUT_CORAL
-    ```
-
-10. Create and move to the `build` directory.
+9. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
     ```
-11. Build the application by following the commands below.  
-    - For RZ/V2L
-      - camera input
-      ```sh
-      cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-      make -j$(nproc) data_extraction_cam
-      ```
-      - image input
-      ```sh
-      cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-      make -j$(nproc) data_extraction_img
-      ```
-    - For RZ/V2H
-      ```sh
-      cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-      make -j$(nproc)
-      ```
-12. The following application file would be generated in the `${PROJECT_PATH}/Q06_expiry_date_detection/<SRC_DIR>/build` directory
-    - date_extraction*
+10. Build the application by following the commands below.  
+    **For RZ/V2L**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    make -j$(nproc)
+    ```
+    **For RZ/V2H**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+11. The following application file would be generated in the `${PROJECT_PATH}/Q06_expiry_date_detection/src/build` directory
+    - date_extraction
 
 
 ## Application: Deploy Stage
@@ -259,18 +243,15 @@ Each folder contains following items.
 |date_detection_tinyyolov3 | [RZ/V2L only] Model object files for deployment |
 |expiry_yolov3_onnx | [RZ/V2H only] Model object files for deployment |
 |date_class_labels.txt | Label list for Object Detection |
-|date_extraction_cam | [RZ/V2L only] MIPI camera application file |
-|date_extraction_usb | [RZ/V2L only] USB camera application file |
-|date_extraction_img | [RZ/V2L only] Image mode application file |
-|date_extraction | [RZ/V2H only] Application file |
-|sample_img.jpg | Sample image for image mode |
+|date_detection | application file |
+|sample_img.jpg | sample image for image mode |
 
 
 ### Instruction
 1. [FOR RZ/V2H only] Run following commands to download the necessary file.  
     ```sh
-     cd <path_to_data_folder_on_host>/rzv_ai_sdk/Q06_expiry_date_detection/exe_v2h/expiry_yolov3_onnx/
-     wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/Q06_expiry_date_detection_deploy_tvm_v2h-v221.so
+     cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q06_expiry_date_detection/exe_v2h/expiry_yolov3_onnx/
+     wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q06_expiry_date_detection_deploy_tvm_v2h-v230.so
     ```
     
 2. [FOR RZ/V2H only] Rename the `Q06_expiry_date_detection_deploy_*.so` to `deploy.so`.
@@ -302,9 +283,6 @@ Each folder contains following items.
                 |   |-- deploy.params           #RZ/V2H only
                 |   `-- deploy.so               #RZ/V2H only
                 |-- date_class_labels.txt
-                |-- date_extraction_cam         #RZ/V2L only
-                |-- date_extraction_img         #RZ/V2L only
-                |-- date_extraction_usb         #RZ/V2L only
                 |-- date_extraction
                 `-- sample_img.jpg
     ```
@@ -336,31 +314,19 @@ After completion of the guide, the user is expected of following things.
     ```
     
 3. Run the application.
-    - For RZ/V2L
-        - For Image Mode
-        ```sh
-        ./date_extraction_img sample_img.jpg [-rem]
-        ```
-        - For USB Camera Mode
-        ```sh
-        ./date_extraction_usb [-rem]
-        ```
-        - For MIPI Camera Mode
-        ```sh
-        ./date_extraction_cam [-rem]
-        ```
-        > `-rem` is an optional argument to display the remaining days to expire
-    - For RZ/V2H
-        - For Image Mode
-        ```sh
-        ./date_extraction IMAGE sample_img.jpg [--rem=true]
-        ```
-        - For USB Camera Mode
-        ```sh
-        ./date_extraction USB [--rem=true]
-        ```    
-        > `-rem=true` is an optional argument to display the remaining days to expire.   
-        > Users write `–rem=true` only if they want to display the remaining days, otherwise do not write this option or write `-rem=false`.
+    - For Image Mode
+    ```sh
+    ./date_extraction IMAGE sample_img.jpg [--rem=true]
+    ```
+    - For USB Camera Mode
+    ```sh
+    ./date_extraction USB [--rem=true]
+    ```
+    - For MIPI Camera Mode (RZ/V2L only)
+    ```sh
+    ./date_extraction MIPI -[-rem=true]
+    ```
+    > -rem is an optional argument to display the remaining days to expire   
 4. Following window shows up on HDMI screen.  
 
     |RZ/V2L EVK | RZ/V2H EVK |
@@ -400,23 +366,23 @@ After completion of the guide, the user is expected of following things.
 ### AI inference time
 |Board | AI model | AI inference time|
 |:---|:---|:---|
-|RZ/V2L EVK |Tiny YOLOv3 | Approximately 100ms  |
-|RZ/V2H EVK |YOLOv3 | Approximately 25ms  |
+|RZ/V2L EVK|Tiny YOLOv3| Approximately 63 ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 26 ms  |
 
 ### Processing
 
-|Processing | RZ/V2L EVK | RZ/V2H EVK |
-|:---|:---|:---|
-|Pre-processing | Processed by DRP-AI. | Processed by CPU. |
-|Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
-|Post-processing | Processed by CPU. | Processed by CPU. |
+|Processing | Details |
+|:---|:---|
+|Pre-processing | Processed by CPU. <br> |
+|Inference | Processed by DRP-AI and CPU. |
+|Post-processing | Processed by CPU. |
 
 
 ### Image buffer size
 
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
-|RZ/V2L EVK| VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
 |RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
   
   
@@ -428,5 +394,5 @@ Please refer to following URL for how to change camera input to MIPI camera.\
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).
 
 ## License
-Apache License 2.0  
-For third party OSS library, please see the source code file itself.
+Apache License 2.0
+For third party OSS library, please see the source code file itself. 

@@ -29,8 +29,10 @@ Here are some of the key features of the Generic Counter Application:
     Users can adjust the detection and classification parameters by using the config file provided in the repository.
 
 It has following camera input modes.
-- Using MIPI Camera (**RZ/V2L only**)
-- Using USB Camera
+| Mode | RZ/V2L | RZ/V2H |
+|:---|:---|:---|
+| MIPI Camera| Supported | - |
+| USB Camera| Supported | Supported |
 
 Users can select detection target from following list
 - Animal
@@ -41,9 +43,9 @@ Users can select detection target from following list
 - RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
 - RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
 
-### Demo  
-Following is the demo for RZ/V2L EVK.  
-<img src = "./images/ObjectCounter.gif" width ="480" height= "320">
+### Demo 
+
+<img src = "./images/Q08_object_counter.gif" width="480">
 
 ## Application: Requirements
 
@@ -61,8 +63,7 @@ Following is the demo for RZ/V2L EVK.
       <td>Evaluation Board Kit for RZ/V2L.<br>Includes followings.
         <ul class="mb-1">
           <li>
-            MIPI Camera Module(Google Coral Camera)<br>
-            Used as a camera input source.
+            MIPI Camera Module(Google Coral Camera)
           </li>
           <li>MicroUSB to Serial Cable for serial communication.</li>
         </ul>
@@ -186,23 +187,24 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```
 3. Go to the application source code directory.  
     ```sh
-    cd ${PROJECT_PATH}/Q08_object_counter/<SRC_DIR>
+    cd ${PROJECT_PATH}/Q08_object_counter/src
     ```
-    |Board | `SRC_DIR` |
-    |:---|:---|
-    |RZ/V2L EVK|`src`  |
-    |RZ/V2H EVK|`src_v2h`  |
-
 4. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
     ``````
 5. Build the application by following the commands below.  
+    **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-6. The following application file would be generated in the `${PROJECT_PATH}/Q08_object_counter/<SRC_DIR>/build` directory
+    **For RZ/V2H**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+6. The following application file would be generated in the `${PROJECT_PATH}/Q08_object_counter/src/build` directory
     - object_counter
 
 
@@ -242,23 +244,22 @@ Each folder contains following items.
 Replace each variable according to your board.  
     ```sh
     cd <path_to_data_folder_on_host>/data/Q08_object_counter/<EXE_PATH> 
-    wget <URL>/<SO_FILE>
+    wget <URL>
     ```
     | Target | `EXE_PATH` |`URL` |`SO_FILE` |`File Location` |
     |:---|:---|:---|:---|:---|
-    |Animal|[exe_v2h/animal/animal_onnx](./exe_v2h/animal/animal_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/` |<span style="font-size: small">`Q08_object_counter_animal_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
-    |Vehicle|[exe_v2h/vehicle/vehicle_onnx](./exe_v2h/vehicle/vehicle_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/` |<span style="font-size: small">`Q08_object_counter_vehicle_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
-    |COCO|[exe_v2h/coco/yolov3_onnx](./exe_v2h/coco/yolov3_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/` |<span style="font-size: small">`Q08_object_counter_coco_deploy_tvm_v2h-v221.so`</span> |[Release v4.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v4.00/)  |
-
+    |Animal|[exe_v2h/animal/animal_onnx](./exe_v2h/animal/animal_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_animal_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_animal_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
+    |Vehicle|[exe_v2h/vehicle/vehicle_onnx](./exe_v2h/vehicle/vehicle_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_vehicle_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_vehicle_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
+    |COCO|[exe_v2h/coco/yolov3_onnx](./exe_v2h/coco/yolov3_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_coco_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_coco_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
 
     - E.g., for Animal counting, use following commands.
         ```sh
-        cd <path_to_data_folder_on_host>/data/Q08_object_counter/exe_v2h/animal/animal_onnx
-        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/Q08_object_counter_animal_deploy_tvm_v2h-v221.so
+        cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q08_object_counter/exe_v2h/animal/animal_onnx
+        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_animal_deploy_tvm_v2h-v230.so
         ```
 2. **[For RZ/V2H only]** Rename the `Q08_object_counter_*.so` to `deploy.so`.
     ```sh
-    mv <SO_FILE> deploy.so
+    mv Q08_object_counter_*.so deploy.so
     ```
 3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
@@ -356,7 +357,7 @@ After completion of the guide, the user is expected of following things.
 
     |RZ/V2L EVK (Animal) | RZ/V2H EVK (Animal) |
     |:---|:---|
-    |<img src=./images/animal1.png width=480>| <img src=./images/animal_v2h.png width=480>  |
+    |<img src=./images/Q08_animal.png width=350>| <img src=./images/animal_v2h.png width=350>  |
 
     On application window, following information is displayed.  
     - Camera capture  
@@ -415,14 +416,14 @@ After completion of the guide, the user is expected of following things.
 ### AI inference time
 |Board | AI model | AI inference time|
 |:---|:---|:---|
-|RZ/V2L EVK|Tiny YOLOv3| Approximately 170ms  |
-|RZ/V2H EVK |YOLOv3 | Approximately 40ms  |
+|RZ/V2L EVK|Tiny YOLOv3| Approximately 57 ms  |
+|RZ/V2H EVK |YOLOv3 | Approximately 26 ms  |
 
 ### Processing
 
 |Processing | RZ/V2L EVK | RZ/V2H EVK |
 |:---|:---|:---|
-|Pre-processing | Processed by DRP-AI. | Processed by CPU. |
+|Pre-processing | Processed by CPU. | Processed by CPU. |
 |Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
 |Post-processing | Processed by CPU. |Processed by CPU. |
 
@@ -431,7 +432,7 @@ After completion of the guide, the user is expected of following things.
 
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
-|RZ/V2L EVK| VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
 |RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
   
 ### Explanation of the `app_conf.ini` file
@@ -467,5 +468,5 @@ Please refer to following URL for how to change camera input to MIPI camera.
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  
 
 ## License 
-Apache License 2.0   
-For third party OSS library, please see the source code file itself.
+Apache License 2.0  
+For third party OSS library, please see the source code file itself. 
