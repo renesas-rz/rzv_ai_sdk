@@ -23,7 +23,7 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 2.10
+                    Target Version: 5.00
                 </b>
             </h5>
         </div>
@@ -40,6 +40,11 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 <li>
                     <a href="#v2l-component">
                         Linux Components
+                    </a>
+                </li>
+                <li>
+                    <a href="#v2l-limit">
+                        Limitation
                     </a>
                 </li>
             </ul>
@@ -69,9 +74,9 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         Yocto Linux
                     </td>
                     <td>                <!-- Version -->
-                        Yocto version: 3.1.21 (Dunfell)
+                        Yocto version: 3.1.31 (Dunfell)
                         <br>
-                        Kernel version: 5.10.175-cip29
+                        Kernel version: 5.10.201-cip41
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
@@ -144,6 +149,20 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <code>references/core-image-weston-smarc-rzv2l.manifest</code> in RZ/V2L AI SDK.
                 </li>
             </ul>
+        </div>
+        <div class="col-12">
+            <h3 id="v2l-limit">
+                Limitations
+            </h3>
+            RZ/V2L AI SDK Source Code v5.00 has the following limitation.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    eSD boot cannot be performed using the WIC image file generated in <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}">How to build RZ/V2L AI SDK source code</a>.
+                </li>
+            </ul>
+            <br>
         </div>
     </div>
 <!-- Footer -->

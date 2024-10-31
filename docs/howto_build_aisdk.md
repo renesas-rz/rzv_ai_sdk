@@ -12,7 +12,7 @@ layout: default
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2L AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2L AI SDK v2.10</b></h5>
+<h5>Supported version: <b>RZ/V2L AI SDK v5.00</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -149,8 +149,8 @@ ls -1 ${WORK}/src_setup
 If the above command prints followings, the package is extracted correctly.
 {% highlight shell %}
 README.txt
-oss_pkg_rzv_v2.10.7z 
-rzv2l_ai-sdk_yocto_recipe_v2.10.tar.gz
+oss_pkg_rzv_v*.7z 
+rzv2l_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
       </li>
     </ul>
@@ -208,22 +208,6 @@ poky
 {% endhighlight %}
       </li>
     </ul>
-    <div class="note">
-      <span class="note-title">Note 1</span>
-      These Yocto recipes are provided for eSD Bootloader as default.<br>
-      When using eMMC Bootloader, run the command to apply a patch file in addition.<br>
-      About the difference of these two types, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7">Step7: Deploy AI Application in RZ/V2L EVK Getting Started</a>.
-{% highlight shell%}
-cd ${YOCTO_WORK}/meta-renesas
-patch -R -p1 -i ./patch/0001-VLP-v3.0.4-based-smart-rzv2l-eSD-Boot-support.patch
-{% endhighlight %}
-    </div>
-    <div class="note">
-      <span class="note-title">Note 2</span>
-      Evaluation version of Graphics Library and Video Codec Library have restriction on their running time.<br>
-      If you would like to use unrestricted version of Graphics Library or Video Codec Library,
-	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}#A1">Appendix: Build Graphics and Video Codec Library for Unrestricted Version</a>.<br>
-    </div>
   </li>
   <li id="step3-6">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
 {% highlight shell%}
@@ -299,7 +283,7 @@ MACHINE=smarc-rzv2l bitbake core-image-weston
               bl2_bp-smarc-rzv2l_pmic.srec<br>
               fip-smarc-rzv2l_pmic.srec<br>
               Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</td>
-            <td>*1 Bootloader generated when using eMMC Bootloader</td>
+            <td>*1 Bootloader generated when using QSPI Bootloader</td>
           </tr>
          <tr>
            <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
@@ -431,7 +415,7 @@ You have prepared following files, which is same as the one provided in <a href=
     <td>bl2_bp-smarc-rzv2l_pmic.srec<br>
         fip-smarc-rzv2l_pmic.srec<br>
         Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</td>
-    <td>*1 Bootloader generated when using eMMC Bootloader</td>
+    <td>*1 Bootloader generated when using QSPI Bootloader</td>
   </tr>
   <tr>
     <td>${WORK}/src_setup</td>
@@ -451,107 +435,26 @@ You have prepared following files, which is same as the one provided in <a href=
 <div class="note">
   <span class="note-title">Note 2</span>
   For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/3.1.21/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.21/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
+  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 3</span>
   When customizing Linux development environment, following link may help.<br>
 	<a href="https://docs.yoctoproject.org/">https://docs.yoctoproject.org/</a>
 </div>
+<div class="note">
+  <span class="note-title">Note 4</span>
+    Regarding the eSD (Embedded SD) booting, please note the following:
+    <ul class="mb-1">
+      <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>
+      <li>If you use the eSD boot, please implement the eSD on your board according to the standard "SD Specification Part 1 eSD Addendum (version 2.10)".</li>
+    </ul>
+</div>
 <br>
 	If you have any questions about AI SDK Source Code,<br>
   please add new issues to AI SDK GitHub issues.<br>
   <br>
   <a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button">Go to GitHub issues</a>
-<div class="row">
-  <div class="col-12" align="right">
-    <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">
-      Back to Home >
-    </a>
-  </div>
-</div>
-<br><br>
-<h3 id="A1">Appendix: Prepare Graphics and Video Codec Library for Unrestricted Version</h3>
-This section explains how to prepare Graphics and Video Codec Library for unrestricted version, intead of evaluation version.<br>
-<div class="note">
-  <span class="note-title">Note</span>
-  Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}#step3-5">Step 3-5 in How to build AI SDK Source Code</a>.
-</div>
-  <ol>
-    <li>Download zip files from the link below.
-      <br>
-      <div class="note">
-        <span class="note-title">Note</span>
-        It may take much time to obtain Graphics or Video Codec Library for unrestricted version due to necessary examinations on your business purpose. 
-      </div>
-      <ul>
-        <li>Graphics Library Unrestricted Version<br>
-          <br>
-          <a class="btn btn-primary download-button" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-graphics-library-evaluation-version-rzv2l#Download" role="button">Download Link</a>
-        </li>
-        <br>
-        <li>Video Codec Library Unrestricted Version<br>
-          <br>
-          <a class="btn btn-primary download-button" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-video-codec-library-evaluation-version-rzv2l#Download" role="button">Download Link</a>
-        </li>
-      </ul>
-    </li>
-    <br>
-    <li>After you downloaded the zip files, please move the zip files to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
-    <br>
-    </li>
-    <br>
-    <li>Check that zip files are moved to appropriate location.
-{% highlight shell %}
-cd ${WORK}/src_setup
-ls -1 
-{% endhighlight %}
-      <ul>
-        <li>If the above command prints followings, the package is extracted correctly.
-{% highlight shell %}
-README.txt
-RTK0EF0045Z14001ZJ-v*_rzv_*.zip
-RTK0EF0045Z16001ZJ-v*_rzv_*.zip
-oss_pkg_rzv_v2.10.7z
-rzv2l_ai-sdk_yocto_recipe_v2.10.tar.gz
-yocto
-{% endhighlight %}
-        </li>
-      </ul>
-    </li>
-    <li>Run the below command to delete evaluation version.<br>
-      <ul>
-        <li>Graphics Library
-{% highlight shell %}
-rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-graphics
-{% endhighlight %}
-        </li>
-        <li>Video Codec Library
-{% highlight shell %}
-rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-codecs
-{% endhighlight %}
-        </li>
-      </ul>
-    </li>
-    <li>Run the below command to extract the unristricted version.<br>
-      <ul>
-        <li>Graphics Library
-{% highlight shell %}
-unzip RTK0EF0045Z14001ZJ*.zip
-tar zxvf RTK0EF0045Z14001ZJ*/meta-rz-features_graphics_*.tar.gz -C ${YOCTO_WORK}
-{% endhighlight %}
-        </li>
-        <li>Video Codec Library
-{% highlight shell %}
-unzip RTK0EF0045Z16001ZJ*.zip
-tar zxvf RTK0EF0045Z16001ZJ*/meta-rz-features_codec_*.tar.gz -C ${YOCTO_WORK}
-{% endhighlight %}
-        </li>
-      </ul>
-    </li>
-  </ol>
-After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}#step3-6"> Step 3-6 in How to build AI SDK Source Code</a> to start building Linux kernel files.
-<br>
 <div class="row">
   <div class="col-12" align="right">
     <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">

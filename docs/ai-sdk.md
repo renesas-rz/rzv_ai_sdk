@@ -52,7 +52,7 @@ layout: default
             <br>
             <br>
             <!-- Reference to GUI -->
-            AI SDK has a CUI enviroment and a GUI environment.
+            AI SDK has a CUI environment and a GUI environment.
             <br>
             Each has the following functions.
             <br>
@@ -179,7 +179,7 @@ layout: default
                         <td rowspan="3">    <!-- RZ/V2L -->
                             Provided as individual files.
                             <br>
-                            Supports eSD/eMMC Bootloader.
+                            Supports eSD/QSPI Bootloader.
                         </td>
                         <td rowspan="3">    <!-- RZ/V2H -->
                             Included in WIC format image.
@@ -317,7 +317,7 @@ layout: default
                             OSS Source Code
                         </td>
                         <td>                <!-- Details -->
-                            Source code of Open Source Software pakcages used to build AI SDK.
+                            Source code of Open Source Software packages used to build AI SDK.
                         </td>
                         <td>                <!-- RZ/V2L -->
                             Provided as a 7z file.
@@ -341,7 +341,7 @@ layout: default
             </h3>
             <h5>
                 <b>
-                    Target Version: 2.10
+                    Target Version: 5.00
                 </b>
             </h5>
         </div>
@@ -355,7 +355,7 @@ layout: default
                 <br>
                 <ul>
                     <li>
-                        DRP-AI TVM v1.1.1 
+                        DRP-AI TVM v2.3.0 
                         [
                             <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
                                 GitHub
@@ -363,7 +363,7 @@ layout: default
                         ]
                     </li>
                     <li>
-                        RZ/V2L Linux Package v3.0.4 
+                        RZ/V2L Verified Linux Package v3.0.6 
                         [
                             <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package">
                                 Renesas Web
@@ -376,17 +376,12 @@ layout: default
                             <li>
                                 Other device drivers
                                 <br>
-                                (See RZ/V2L Linux Package Release Note.)
+                                (See RZ/V2L Verified Linux Package Release Note.)
                             </li>
                         </ul>
                     </li>
                     <li>
-                        Graphics Library Evaluation Version v1.1.0 
-                        <a href="#footnote_v2l_ev">
-                            <sup>
-                                *2
-                            </sup>
-                        </a>
+                        Graphics Library Unrestricted Version v1.2.2 
                         [
                             <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-graphics-library-evaluation-version-rzv2l">
                                 Renesas Web
@@ -394,12 +389,7 @@ layout: default
                         ]
                     </li>
                     <li>
-                        Video Codec Library Evaluation Version v1.1.0 
-                        <a href="#footnote_v2l_ev">
-                            <sup>
-                                *2
-                            </sup>
-                        </a> 
+                        Video Codec Library Unrestricted Version v1.2.2 
                         (H.264)
                         [
                             <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-video-codec-library-evaluation-version-rzv2l">
@@ -408,7 +398,7 @@ layout: default
                         ]
                     </li>
                     <li>
-                        RZ/V2L DRP-AI Support Package v7.40 
+                        RZ/V2L DRP-AI Support Package v7.50 
                         [
                             <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package">
                                 Renesas Web
@@ -440,6 +430,7 @@ layout: default
                 <span class="banner-title">RZ/V2L AI SDK Configuration</span>
                 <span class="banner-line">
                     See Linux Components information.<br>
+                    See Limitations.<br>
                 </span>
             </a>
             <br>
@@ -460,16 +451,6 @@ layout: default
                 <img src="img/block.svg" alt="RZ/V2L Software Block Diagram">
             </a>
             <br>
-        </div>
-        <div class="col-12">
-            <h6>
-                <span id="footnote_v2l_ev">
-                    *2: Note that Graphics Library and Video Codecs Library Evaluation Version have a limitation that system stops running after around 10 hours.
-                    <br>
-                    If you would like to use unristricted version, please build AI SDK with Graphics Library Unristrictd Version and Video Codecs Library Unristricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button">How to Build RZ/V2L AI SDK</a>.
-                    <br>
-                </span>
-            </h6>
         </div>
         <div class="col-12">
             <h4 class="u_line" id="v2l-mem">
@@ -531,7 +512,7 @@ layout: default
                             e-CAM22_CURZH camera driver (MIPI) 
                             <a href="#footnote_v2h_ecam">
                                 <sup>
-                                    *3
+                                    *2
                                 </sup>
                             </a>
                         </li>
@@ -557,7 +538,7 @@ layout: default
                     Graphics Library Evaluation Version v1.2.2
                     <a href="#footnote_v2h_ev">
                         <sup>
-                            *4
+                            *3
                         </sup>
                     </a>
                 </li>
@@ -615,17 +596,17 @@ layout: default
         <div class="col-12">
             <h6>
                 <span id="footnote_v2h_ecam">
-                    *3: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.
+                    *2: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.
                     <br>
                 </span>
                 <span id="footnote_v2h_ev">
-                    *4: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.
+                    *3: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.
                     <br>
-                    If you would like to use unrestricted version, please build AI SDK with Graphics Library Unrestricted Version according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">How to Build RZ/V2H AI SDK</a>.
+                    If you would like to use unrestricted version, please build AI SDK according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">How to Build RZ/V2H AI SDK</a>.
                     <br>
                 </span>
                 <span id="footnote_v2h_spi">
-                    *5: If you would like to know how to boot from xSPI, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" role="button">Developer's Guide</a>.
+                    *4: If you would like to know how to boot from xSPI, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" role="button">Developer's Guide</a>.
                     <br>
                 </span>
             </h6>

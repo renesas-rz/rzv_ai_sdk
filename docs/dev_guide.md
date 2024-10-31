@@ -47,18 +47,12 @@ Developer's Guide
               </tr>
               <tr>
                 <td>D1</td>
-                <td><a href="#D1">Change the Graphics Library to the Unrestricted Version</a></td>
-                <td>RZ/V2H</td>
-                <td>AI SDK Source Code v5.00</td>
-              </tr>
-              <tr>
-                <td>D2</td>
                 <td><a href="#D2">Change the size of the microSD card image in WIC format</a></td>
                 <td>RZ/V2H</td>
                 <td>AI SDK Source Code v5.00</td>
               </tr>
               <tr>
-                <td>D3</td>
+                <td>D2</td>
                 <td><a href="#D3">How to boot from xSPI</a></td>
                 <td>RZ/V2H</td>
                 <td>AI SDK Source Code v5.00</td>
@@ -66,64 +60,10 @@ Developer's Guide
             </table>
         </div>
         <br>
-<!-- D1. Change the Graphics Library to the Unrestricted Version -->
+<!-- D1. Change the size of the microSD card image in WIC format -->
         <div class="col-12">
-          <h3 id="D1">D1. For RZ/V2H: Change the Graphics Library to the Unrestricted Version</h3>
-        This section explains how to prepare Graphics Library for unrestricted version, instead of evaluation version.<br>
-          <div class="note">
-            <span class="note-title">Note</span>
-            Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-6">Step 3-6 in How to build RZ/V2H AI SDK Source Code</a>.
-          </div>
-          <ol>
-            <li>Download zip files from the link below.
-              <br>
-              <div class="note">
-                <span class="note-title">Note</span>
-                It may take much time to obtain Graphics Library for unrestricted version due to necessary examinations on your business purpose. 
-              </div>
-              <br>
-              <a class="btn btn-primary download-button" href="https://www.renesas.com/secure/rzv2-graphics-library-secure-content" role="button">Download Link</a>
-            </li>
-            <br>
-            <li>After you downloaded the zip files, please move the zip files to "<b><code>${WORK}/src_setup</code></b>" on your Linux PC.
-            <br>
-            </li>
-            <br>
-            <li>Check that zip files are moved to appropriate location.
-{% highlight shell %}
-cd ${WORK}/src_setup
-ls -1 
-{% endhighlight %}
-              <ul>
-                <li>If the above command prints followings, the package is extracted correctly.
-{% highlight shell %}
-README.txt
-RTK0EF0*ZJ-v*_rzv_*.zip
-rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
-yocto
-{% endhighlight %}
-                </li>
-              </ul>
-            </li>
-            <li>Run the below command to delete evaluation version.<br>
-{% highlight shell %}
-rm -rf ${YOCTO_WORK}/meta-rz-features/meta-rz-graphics
-{% endhighlight %}
-            </li>
-            <li>Run the below command to extract the unristricted version.<br>
-{% highlight shell %}
-unzip RTK0EF0045Z14001ZJ*.zip
-tar zxvf RTK0EF0045Z14001ZJ*/meta-rz-features_graphics_*.tar.gz -C ${YOCTO_WORK}
-{% endhighlight %}
-            </li>
-          </ol>
-        After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-7"> Step 3-7 in How to build RZ/V2H AI SDK Source Code</a> to start building Linux kernel files.
-        <br>
-        <br>
-        </div>
-<!-- D2. Change the size of the microSD card image in WIC format -->
-        <div class="col-12">
-          <h3 id="D2">D2. For RZ/V2H: Change the size of the microSD card image in WIC format</h3>
+          <!-- Don’t change ID "D2" to prevent reference errors -->
+          <h3 id="D2">D1. For RZ/V2H: Change the size of the microSD card image in WIC format</h3>
           This section explains how to change the microSD card image size by changing the build settings of the WIC file.<br>
           <div class="note">
             <span class="note-title">Note</span>
@@ -173,9 +113,10 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
         <br>
         <br>
         </div>
-<!-- D3. How to boot from xSPI -->
+<!-- D2. How to boot from xSPI -->
         <div class="col-12">
-          <h3 id="D3">D3. For RZ/V2H: How to boot from xSPI</h3>
+          <!-- Don’t change ID "D3" to prevent reference errors -->
+          <h3 id="D3">D2. For RZ/V2H: How to boot from xSPI</h3>
           This section explains how to boot from xSPI on RZ/V2H EVK.
           <br>
           <div class="note">
@@ -196,6 +137,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
           <ul style="list-style:none;">
 <!-- D3-1. Install Terminal Emulator -->
             <li>
+              <!-- Don’t change ID "D3-1" to prevent reference errors -->
               <h5 id="D3-1">1. Install Terminal Emulator</h5>
               <div class="note">
                 <span class="note-title">Note</span>
@@ -220,6 +162,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
             </li>
 <!-- D3-2. Install the serial port driver -->
           <li>
+            <!-- Don’t change ID "D3-2" to prevent reference errors -->
             <h5 id="D3-2">2. Install the serial port driver</h5>
             <div class="note">
               <span class="note-title">Note</span>
@@ -240,6 +183,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
           </li>
 <!-- D3-3. Write bootloaders on the board -->
           <li>
+            <!-- Don’t change ID "D3-3" to prevent reference errors -->
             <h5 id="D3-3">3. Write bootloaders on the board</h5>
             <ol>
               <li>Copy following files in <code>${WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</code> to your Windows PC.
@@ -362,7 +306,7 @@ please send ! ('.' & CR stop load)
 SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% endhighlight %}
               </li><br>
-              <li>Following log will be displayed.
+              <li>Following log will be displayed. The end address is depending on the version of AI SDK.
 {% highlight console %}
 Write to SPI Flash memory.
 ======= Qspi Save Information =================
@@ -402,7 +346,7 @@ please send ! ('.' & CR stop load)
 SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% endhighlight %}
               </li><br>
-              <li>Following log will be displayed.
+              <li>Following log will be displayed. The end address is depending on the version of AI SDK.
 {% highlight console %}
 Write to SPI Flash memory.
 ======= Qspi Save Information =================
@@ -419,6 +363,7 @@ SpiFlashMemory End Address  : H'0011C2EE
           </li>
 <!-- D3-4. Setup U-boot setting -->
           <li>
+            <!-- Don’t change ID "D3-4" to prevent reference errors -->
             <h5 id="D3-4">4. Setup U-boot setting</h5>
             Follow the procedure below to set the booting configuration of the board.<br><br>
             <div class="container">

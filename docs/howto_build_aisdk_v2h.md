@@ -218,8 +218,44 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
         </ol>
       </li>
   -->
+  <!-- MEMO:: Bus setting patch file is non -support. -->
+  <!-- 
+      <li>Apply patch files for bus setting.<br>
+      When using a combination of camera, DRP-AI and display, applying this patch will improve stability.
+      Regarding cameras, the patch should be applied when using e-CAM22_CURZH, HD, 30fps, 2 cameras (total number of access bytes is 1843200 x 30 x 2) or more, or when encoding/decoding data input from outside the RZ/V2H.<br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below..
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0000-rzv2h-system_setting.patch">
+                    0000-rzv2h-system_setting.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for changing bus setting
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0000-rzv2h-system_setting.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < 0000-rzv2h-system_setting.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
+  -->
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
-        The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.
+        The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.<br>
         <ol type="A">
           <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2H Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">this link</a> to obtain the patch file below.
             <table class="mytable">
@@ -265,12 +301,6 @@ poky
 {% endhighlight %}
       </li>
     </ul>
-    <div class="note">
-      <span class="note-title">Note</span>
-      Evaluation version of Graphics Library has restriction on their running time.<br>
-      If you would like to use unrestricted version of Graphics Library,
-	    please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D1">D1. For RZ/V2H: Change the Graphics Library to the Unrestricted Version</a>.<br>
-    </div>
   </li>
   <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
 {% highlight shell%}
@@ -299,7 +329,7 @@ patch -p1 < ../0002-sd-image-size-16gb.patch
     <div class="note">
       <span class="note-title">Note</span>
       The default size of the microSD card image created in this guide is approximately 16 GB.<br>
-      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D2">D2. For RZ/V2H: Change the size of the microSD card image in WIC format</a>.<br>
+      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D2">D1. For RZ/V2H: Change the size of the microSD card image in WIC format</a>.<br>
     </div>
   </li>
   <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>

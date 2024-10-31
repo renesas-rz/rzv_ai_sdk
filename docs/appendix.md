@@ -20,19 +20,19 @@ Getting Started Appendix
 <br>
 <h5>This page explains the additional information of Getting Started.</h5>
 
-<h3 id="A1">A1. Setup for eMMC Bootloader</h3>
-This section explains how to setup the board for eMMC Bootloader.
+<h3 id="A1">A1. Setup for QSPI Bootloader</h3>
+This section explains how to setup the board for QSPI Bootloader.
 <br>
 <div class="note">
   <span class="note-title">Note</span>
   This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-  If you have already setup the microSD card and the bootloader written in eMMC on the board, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">the next step (Step7:2. Deploy Application to the Board in Getting Started)</a>.
+  If you have already setup the microSD card and the bootloader written in QSPI on the board, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">the next step (Step7:2. Deploy Application to the Board in Getting Started)</a>.
 </div>
 
 Follow the instruction below to setup the board.
 <div class="note">
   <span class="note-title">Note</span>
-  Explanation in this step is for eMMC Bootloader, which requires Windows PC as serial communication console.<br>
+  Explanation in this step is for QSPI Bootloader, which requires Windows PC as serial communication console.<br>
 </div>
 <ul style="list-style:none;">
   <li>
@@ -78,9 +78,9 @@ Follow the instruction below to setup the board.
     <br>
   </li>
   <li>
-    <h5 id="A1-3">3. Write bootloaders to eMMC on the board</h5>
+    <h5 id="A1-3">3. Write bootloaders to QSPI on the board</h5>
     <ol>
-      <li>Copy following files in <code>${WORK}/board_setup/eMMC/bootloader</code> to your Windows PC.
+      <li>Copy following files in <code>${WORK}/board_setup/QSPI/bootloader</code> to your Windows PC.
         <ul>
           <li><code>Flash_Writer_SCIF_RZV2L_SMARC<br clas="br-sp">_PMIC_DDR4_2GB_1PCS.mot</code></li>
           <li><code>bl2_bp-smarc-rzv2l_pmic.srec</code></li>
@@ -204,7 +204,7 @@ please send ! ('.' & CR stop load)
 SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% endhighlight %}
       </li><br>
-      <li>Following log will be displayed.
+      <li>Following log will be displayed. The end address is depending on the version of AI SDK.
 {% highlight console %}
 SAVE SPI-FLASH.......
 ======= Qspi Save Information =================
@@ -246,7 +246,7 @@ please send ! ('.' & CR stop load)
 SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% endhighlight %}
       </li><br>
-      <li>Following log will be displayed.
+      <li>Following log will be displayed. The end address is depending on the version of AI SDK.
 {% highlight console %}
 SAVE SPI-FLASH.......
 ======= Qspi Save Information =================
@@ -285,7 +285,7 @@ SpiFlashMemory End Address : H'000CC73F
             <li>Open the terminal emulator, i.e., Tera Term, and connect with COMS port.
               <div class="note">
                 <span class="note-title">Note</span>
-                When using Tera Term, change the configuration as explained in <a href="#A1-3">Write bootloaders to eMMC on the board</a>.
+                When using Tera Term, change the configuration as explained in <a href="#A1-3">Write bootloaders to QSPI on the board</a>.
               </div>
             </li><br>
             <li>On the terminal emulator, keep pressing ENTER key and on the board, press reset button.
@@ -305,8 +305,6 @@ SpiFlashMemory End Address : H'000CC73F
             <li>Run the following commands to set the booting configuration.
 {% highlight shell %}
 env default -a
-setenv bootargs 'root=/dev/mmcblk1p2 rootwait'
-setenv bootcmd 'mmc dev 1;fatload mmc 1:1 0x48080000 Image-smarc-rzv2l.bin; fatload mmc 1:1 0x48000000 Image-r9a07g054l2-smarc.dtb; booti 0x48080000 - 0x48000000'
 saveenv
 boot
 {% endhighlight %}
@@ -349,19 +347,19 @@ Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2
   <h5 id="A2prep">Preparation</h5>
   <div class="note">
     <span class="note-title">Click the button</span>
-    This section contains both eSD and eMMC Bootloader explanation.<br>
+    This section contains both eSD and QSPI Bootloader explanation.<br>
     Please click the button below to update the explanation according to your bootloader interface.<br>
     <div class="SelectButton">
       <span class="ButtoneSD">eSD Bootloader</span>
-      <span class="ButtoneMMC">eMMC Bootloader</span>
+      <span class="ButtoneMMC">QSPI Bootloader</span>
     </div>
     <div class="ContenteSD contenteSD-bg">
       <span class="ContenteSD-title">For eSD</span>
       eSD explanation will be shown in this style if you click "eSD Bootloader" button above.
     </div>
     <div class="ContenteMMC contenteMMC-bg">
-      <span class="ContenteMMC-title">For eMMC</span>
-      eMMC explanation will be shown in this style if you click "eMMC Bootloader" button above.
+      <span class="ContenteMMC-title">For QSPI</span>
+      QSPI explanation will be shown in this style if you click "QSPI Bootloader" button above.
     </div>
   </div>
   <br>
@@ -473,7 +471,7 @@ sudo umount /media/user/A8D3-393B
         </div>
       </div>
       <div class="ContenteMMC contenteMMC-bg">
-        <span class="ContenteMMC-title">For eMMC</span>
+        <span class="ContenteMMC-title">For QSPI</span>
         <table class="gstable">
           <tr>
             <th>Type/Number</th>
@@ -614,7 +612,7 @@ Command (m for help):
 {% endhighlight %}
         </li>
       <div class="ContenteMMC contenteMMC-bg">
-        <span class="ContenteMMC-title">For eMMC</span>
+        <span class="ContenteMMC-title">For QSPI</span>
         Additionally, run the following procedures to set the partition as FAT32.
         <ul>
           <li>Type "<code>t</code>" to console. The log continues.
@@ -667,7 +665,7 @@ Device Boot Start End Sectors Size Id Type
 {% endhighlight %}    
       </div>
       <div class="ContenteMMC contenteMMC-bg">
-        <span class="ContenteMMC-title">For eMMC</span>
+        <span class="ContenteMMC-title">For QSPI</span>
 {% highlight shell %}
 Disk /dev/sdb: 29.74 GiB, 31914983424 bytes, 62333952 sectors
 Disk model: Maker name etc.
@@ -708,7 +706,7 @@ Writing superblocks and filesystem accounting information: done
       </li></ul>
     </div>
     <div class="ContenteMMC contenteMMC-bg">
-      <span class="ContenteMMC-title">For eMMC</span>
+      <span class="ContenteMMC-title">For QSPI</span>
 {% highlight shell %}
 sudo mkfs.vfat -v -c -F 32 /dev/sdb1
 {% endhighlight %}

@@ -30,7 +30,7 @@ Its version varies depending on the supported board.
   </tr>
   <tr>
     <td>RZ/V2L Evaluation Board Kit</td>
-    <td>RZ/V2L AI SDK <b>v2.10</b></td>
+    <td>RZ/V2L AI SDK <b>v5.00</b></td>
   </tr>
   <tr>
     <td>RZ/V2H Evaluation Board Kit</td>
@@ -283,7 +283,7 @@ Its version varies depending on the supported board.
         Windows PC
       </td>
       <td>
-        <b>Optional.</b> Used as the serial communication console for eMMC Bootloader.<br>
+        <b>Optional.</b> Used as the serial communication console for QSPI Bootloader.<br>
         Operating Environment : Windows 10
       </td>
     </tr>
@@ -447,7 +447,7 @@ Its version varies depending on the supported board.
     </tr>
     <tr id="EQ_WindowsPC">
       <td>Windows PC</td>
-      <td><b>Optional.</b> Used as the serial communication console for eMMC Bootloader.<br>
+      <td><b>Optional.</b> Used as the serial communication console for QSPI Bootloader.<br>
       Operating Environment : Windows 10</td>
     </tr>
     <tr>
@@ -571,7 +571,7 @@ cd ${WORK}/ai_sdk_setup
     <ul>
       <li>For RZ/V2L
 {% highlight shell%}
-docker build -t rzv2l_ai_sdk_image --build-arg SDK="/opt/poky/3.1.21" --build-arg PRODUCT="V2L" .
+docker build -t rzv2l_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2L" .
 {% endhighlight %}
       </li>
       <li>For RZ/V2H
@@ -673,7 +673,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a>
+            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a>
           </h6>
         </td>
     </tr>
@@ -697,7 +697,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v2.10/01_Head_count">01_Head_count</a>
+            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.00/01_Head_count">01_Head_count</a>
           </h6>
         </td>
     </tr>
@@ -710,7 +710,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
         Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Build Stage"</b> (or similar) to build the application.<br><br>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection#application-build-stage">here</a> to generate the following application binary.
+          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-build-stage">here</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
@@ -747,7 +747,7 @@ docker start -i rzv2l_ai_sdk_container
       </li><br>
       <li>Change the environment variable to use the cross compiler.
 {% highlight shell%}
-source /opt/poky/3.1.21/environment-setup-aarch64-poky-linux
+source /opt/poky/3.1.31/environment-setup-aarch64-poky-linux
 {% endhighlight %}
         <div class="note">
           <span class="note-title">Note</span>
@@ -761,7 +761,7 @@ cd /drp-ai_tvm/data
 {% endhighlight %}
       </li><br>
       <li>Download the application source code.<br>
-        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v2.10/01_Head_count">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
+        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.00/01_Head_count">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
         <br>
 {% highlight shell%}
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
@@ -811,7 +811,7 @@ Please see each EVK Getting Started Step 7 for detailed instructions.<br>
 <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7" role="button">
   <span class="banner-title">RZ/V2L EVK Getting Started Step 7</span>
   <span class="banner-line">
-  How can I setup microSD card for eSD/eMMC Bootloader?<br>
+  How can I setup microSD card for eSD/QSPI Bootloader?<br>
   How can I deploy applications to the board?<br>
   How can I write eMMC Bootloader to the board?<br>
   How can I boot the board?<br>

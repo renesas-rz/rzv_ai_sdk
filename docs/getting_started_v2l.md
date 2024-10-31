@@ -18,7 +18,7 @@ RZ/V2L EVK Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2L Evaluation Board Kit</b>.</h5>
 
-<h5>Supported version: <b>RZ/V2L AI SDK v2.10</b></h5>
+<h5>Supported version: <b>RZ/V2L AI SDK v5.00</b></h5>
 
 <details class="boxdetails" open>
   <summary>Terminology</summary>
@@ -135,30 +135,39 @@ RZ/V2L EVK Getting Started
           <b>eSD Bootloader</b>: The board boots up using the bootloader written on microSD card.
         </li>
         <li>
-          <b>eMMC Bootloader</b>: The board boots up using the bootloader written in eMMC on the board.
+          <b>QSPI Bootloader</b>: The board boots up using the bootloader written in Flash ROM on the board.
         </li>
       </ul>
       Other necessary files, i.e. Linux kernel and root filesystem, are stored on microSD card.<br>
       You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br>
+      <br>
       <img class="procedure2" src="img/esd_emmc.svg" alt="docker" width="90%"/>
       <br>
+      <div class="note">
+        <span class="note-title">Note</span>
+        Regarding the eSD (Embedded SD) booting, please note the following:
+        <ul class="mb-1">
+          <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>
+          <li>If you use the eSD boot, please implement the eSD on your board according to the standard "SD Specification Part 1 eSD Addendum (version 2.10)".</li>
+        </ul>
+      </div>
       <br>
       <h4 id="step7prep" class="u_line" >Preparation</h4>
       <div class="note">
         <span class="note-title">Click the button</span>
-        This step contains both eSD and eMMC Bootloader explanation.<br>
+        This step contains both eSD and QSPI Bootloader explanation.<br>
         Please click the button below to update the explanation according to your bootloader interface.<br>
         <div class="SelectButton">
           <span class="ButtoneSD">eSD Bootloader</span>
-          <span class="ButtoneMMC">eMMC Bootloader</span>
+          <span class="ButtoneMMC">QSPI Bootloader</span>
         </div>
         <div class="ContenteSD contenteSD-bg">
           <span class="ContenteSD-title">For eSD</span>
           eSD explanation will be shown in this style if you click "eSD Bootloader" button above.
         </div>
         <div class="ContenteMMC contenteMMC-bg">
-          <span class="ContenteMMC-title">For eMMC</span>
-          eMMC explanation will be shown in this style if you click "eMMC Bootloader" button above.
+          <span class="ContenteMMC-title">For QSPI</span>
+          QSPI explanation will be shown in this style if you click "QSPI Bootloader" button above.
         </div>
       </div>
       <br>
@@ -177,16 +186,16 @@ RZ/V2L EVK Getting Started
       </div>
       <div class="ContenteMMC">
         <div class="contenteMMC-bg">
-          <span class="ContenteMMC-title">For eMMC</span>
+          <span class="ContenteMMC-title">For QSPI</span>
           microSD card needs to contain the Linux kernel and root filesystem to boot-up the board.<br>
           You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br>
-          Bootloaders must be written in eMMC on the board.
-          You can use Windows PC to write the bootloaders on eMMC.
+          Bootloaders must be written in Flash ROM on the board.
+          You can use Windows PC to write the bootloaders on Flash ROM.
         </div>
         <div class="note">
           <span class="note-title">Note</span>
           This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-          If you have already setup the microSD card and the bootloader written in eMMC on the board, <span class="skip">skip this step</span> and proceed to <a href="#step7-2">the next procedure (2. Deploy Application to the Board)</a>. 
+          If you have already setup the microSD card and the bootloader written in Flash ROM on the board, <span class="skip">skip this step</span> and proceed to <a href="#step7-2">the next procedure (2. Deploy Application to the Board)</a>. 
         </div>
       </div>
       <ol>
@@ -218,7 +227,7 @@ RZ/V2L EVK Getting Started
           </table>
         </div>
         <div class="ContenteMMC contenteMMC-bg">
-          <span class="ContenteMMC-title">For eMMC</span>
+          <span class="ContenteMMC-title">For QSPI</span>
           <table class="gstable">
             <tr>
               <th>Type/Number</th>
@@ -327,9 +336,9 @@ sudo umount /mnt/sd
           </ol>
         </div>
         <div class="ContenteMMC contenteMMC-bg">
-          <span class="ContenteMMC-title">For eMMC</span>
+          <span class="ContenteMMC-title">For QSPI</span>
           Following three files are necessary, which must be placed on each partitions on microSD card.<br>
-          They are in the <code>${WORK}/board_setup/eMMC</code> directory.
+          They are in the <code>${WORK}/board_setup/QSPI</code> directory.
           <br><br>
           <table class="gstable">
             <tr>
@@ -354,11 +363,11 @@ sudo umount /mnt/sd
             </tr>
           </table>
           <ol>
-            <li>Run the below command to decompress <code>${WORK}/board_setup/eMMC.zip</code>.<br>
+            <li>Run the below command to decompress <code>${WORK}/board_setup/QSPI.zip</code>.<br>
 
 {% highlight shell %}
 cd ${WORK}/board_setup
-unzip eMMC.zip
+unzip QSPI.zip
 {% endhighlight %}
             </li>
             <li>Insert the microSD card to Linux PC.
@@ -382,8 +391,8 @@ Filesystem 	Size		Used	Avail	Use %	Mounted on
 {% highlight shell %}
 sudo mkdir -p /mnt/sd
 sudo mount /dev/sdb1 /mnt/sd
-sudo cp $WORK/board_setup/eMMC/Image-smarc-rzv2l.bin /mnt/sd
-sudo cp $WORK/board_setup/eMMC/Image-r9a07g054l2-smarc.dtb /mnt/sd
+sudo cp $WORK/board_setup/QSPI/Image-smarc-rzv2l.bin /mnt/sd
+sudo cp $WORK/board_setup/QSPI/Image-r9a07g054l2-smarc.dtb /mnt/sd
 sync
 sudo umount /mnt/sd
 {% endhighlight %}
@@ -395,7 +404,7 @@ sudo umount /mnt/sd
             <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.
 {% highlight shell %}
 sudo mount /dev/sdb2 /mnt/sd
-sudo tar xfj $WORK/board_setup/eMMC/core-image-weston-smarc-rzv2l.tar.bz2 -C /mnt/sd
+sudo tar xfj $WORK/board_setup/QSPI/core-image-weston-smarc-rzv2l.tar.bz2 -C /mnt/sd
 sudo cp $WORK/ai_sdk_setup/data/libtvm_runtime.so /mnt/sd/usr/lib64
 sync
 sudo umount /mnt/sd
@@ -426,7 +435,7 @@ sudo eject /dev/sdb
           Write the bootloaders to SD card
           </span>
           <span class="ContenteMMC">
-          Write the bootloaders to eMMC
+          Write the bootloaders to Flash ROM
           </span>
         </li>
       </h5>
@@ -439,8 +448,8 @@ sudo eject /dev/sdb
             There are three files in <code>${WORK}/board_setup/eSD/bootloader</code> to boot up the board.<br>
             <ul>
               <li><code>bl2_bp_esd-smarc-rzv2l_pmic.bin</code></li>
-              <li><code>bl2_bp-smarc-rzv2l_pmic.srec</code></li>
-              <li><code>fip-smarc-rzv2l_pmic.srec</code></li>
+              <li><code>bl2-smarc-rzv2l_pmic.bin</code></li>
+              <li><code>fip-smarc-rzv2l_pmic.bin</code></li>
             </ul>
             <br>
             Run the following commands to write these files to the microSD card to boot for eSD.<br>
@@ -472,8 +481,8 @@ sudo eject /dev/sdb
         </div>
         <div class="ContenteMMC">
           <div class="contenteMMC-bg">
-            <span class="ContenteMMC-title">For eMMC</span>
-            Please write the bootloaders to eMMC on the board according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1">Appendix: A1.Setup for eMMC Bootloader</a>.
+            <span class="ContenteMMC-title">For QSPI</span>
+            Please write the bootloaders to Flash ROM on the board according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1">Appendix: A1.Setup for QSPI Bootloader</a>.
           </div>
         </div>
       </ol>
@@ -512,7 +521,7 @@ sudo mkdir /mnt/sd/home/root/tvm
             <br><br>
             <div class="box1">
               <u><b>Example:</b></u><br>
-              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
+              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
             </div>
             <br>
             Use the following command to copy the files to root filesystem.
@@ -555,7 +564,7 @@ sudo eject /dev/sdb
       This section explains how to boot the RZ/V2L EVK.<br>
       <div class="SelectButton">
         <span class="ButtoneSD">eSD Bootloader</span>
-        <span class="ButtoneMMC">eMMC Bootloader</span>
+        <span class="ButtoneMMC">QSPI Bootloader</span>
       </div>
       <br>
       Follow the instruction below to boot the board.
@@ -610,7 +619,7 @@ sudo eject /dev/sdb
         </reference3>
       </div>
       <div class="ContenteMMC contenteMMC-bg">
-        <span class="ContenteMMC-title">For eMMC</span>
+        <span class="ContenteMMC-title">For QSPI</span>
         <div class="note">
           <span class="note-title">Note</span>
           After bootloader is written and U-boot setting is changed, terminal emulator is no longer needed.<br>
@@ -677,9 +686,9 @@ sudo eject /dev/sdb
         <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="#step7" role="button">
           <span class="banner-title">RZ/V2L EVK Getting Started Step 7 </span>
           <span class="banner-line">
-          How can I setup microSD card for eSD/eMMC Bootloader?<br>
+          How can I setup microSD card for eSD/QSPI Bootloader?<br>
           How can I deploy applications to the board?<br>
-          How can I write eMMC Bootloader to the board?<br>
+          How can I write QSPI Bootloader to the board?<br>
           How can I boot the board?<br>
           </span>
         </a>
@@ -690,7 +699,7 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00pre/R01_object_detection#application-run-stage">here</a> to run the application.
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-run-stage">here</a> to run the application.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>

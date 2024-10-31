@@ -36,23 +36,63 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.10.11
+                2024.10.31
             </h6>
             <ul>
                 <li>
-                    <b>AI Navigator v1.20 (e<sup>2</sup> studio for RZ/V2L & RZ/V2H) is released.</b>
-                </li>
-                <li>
-                    <b>AI Navigator Quick Start Guide is updated.</b>
+                    <b>AI Applications v5.00</b> is released.
                     <ul>
                         <li> 
-                            Users can develop more AI applications for RZ/V2H with the latest environment.<br>
+                            Added RZ/V2H Evaluation Board Kit support for 9 applications.<br>
+                        </li>
+                        <li> 
+                            Added 6 new applications for RZ/V2H.<br>
+                        </li>
+                        <li> 
+                            Supported RZ/V2L AI SDK v5.00.<br>
+                        </li>
+                        <li> 
+                            Supported RZ/V2H AI SDK v5.00.<br>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
             <br>
+            <br>
+            <ul>
+                <li> 
+                    <b>RZ/V2L AI SDK v5.00</b> is released.<br>
+                    <ul>
+                    <li>
+                        Supported DRP-AI TVM v2.3.0.<br>
+                        </li>
+                        <li>
+                            Updated RZ/V2L Verified Linux Package to v3.0.6.<br>
+                        </li>
+                        <li>
+                            Updated RZ/V2L Graphics Library to v1.2.2.<br>
+                        </li>
+                        <li>
+                            Updated RZ/V2L Video Codec Library to v1.2.2.<br>
+                        </li>
+                        <li>
+                            Updated RZ/V2L DRP-AI Support Package to v7.50.<br>
+                        </li>
+                    </ul>
+               </li>
+            </ul>
+            <ul>
+                <li>
+                    <b>RZ/V2H AI SDK Source Code v5.00</b> is updated.<br>
+                    <ul>
+                        <li> 
+                            Graphics library in the AI SDK Source Code is changed to the unrestricted version to allow secondary distribution.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}"><b>How to Build RZ/V2H AI SDK</b></a>.
             <br>
         </div>
         <div class="col-12" align="right">
