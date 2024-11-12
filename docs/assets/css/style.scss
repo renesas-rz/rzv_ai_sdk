@@ -11,22 +11,38 @@ header, section, footer {
   font-size: 16px;
 }
 
+html, body {
+  padding: 0px;
+  height: 100%;
+  box-sizing: border-box;
+}
 .wrapper {
   width:100%;
   margin:0 auto;
 }
 
+.application-window
+{
+  padding-right: 150px;
+}
 header, footer {
+  padding: 50px 10px 50px 50px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  height: 100vh;
   float:left;
   position:relative;
-  width:20%;
+  width:22%;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
 section {
-  width:65%;
+  padding: 50px;
+  overflow-y: scroll;
+  height: 100vh;
+  width:78%;
+  margin-left: 0%;
   float:left;
-  margin-left: 5%;
   padding-bottom:50px;
 }
 .web-title {
@@ -347,6 +363,10 @@ strong {
   .br-nsp {
     display: block;
   }
+  
+  .ham-nodisplay {
+    display: none;
+  }
 }
 @media (max-width: 960px) {
   .br-sp {
@@ -390,6 +410,11 @@ strong {
 }
 @media print, screen and (max-width: 960px) {
 
+  .application-window
+  {
+    padding-right: 0px;
+  }
+
   div.wrapper {
     width:auto;
     margin:0;
@@ -399,17 +424,23 @@ strong {
     float:none;
     position:static;
     width:auto;
+    overflow-y: auto;
+    height: auto;
   }
 
   header {
     padding: 10px;
+    height: auto;
+    padding-right: 55px;
   }
   
   section {
     border:1px solid #e5e5e5;
     border-width:1px 0;
-    padding:20px 0;
+    padding:20px 10px;
     margin:0 0 20px;
+    width: auto;
+    padding-right: 55px;
   }
 
   header a small {
@@ -441,8 +472,14 @@ strong {
     word-wrap:break-word;
   }
 
-  header {
-    padding:0;
+  // .application-window
+  // {
+  //   padding-right: 0px;
+  // }
+
+  header, section {
+    padding: 10px;
+    height: auto;
   }
 
   header ul, header p.view {
@@ -1034,10 +1071,11 @@ dl {
 
 //Added by meistier for filtering function
 /****************************************************/
-    @media (max-width: 991px) { 
+    @media (max-width: 960px) { 
+    // @media (max-width: 991px) { 
         #application-filter { 
             position: fixed; 
-            top: 56px; 
+            top: 195px;//56px; 
             right: 0; 
             width: 50%; 
             max-height: 80vh; 
@@ -1096,10 +1134,16 @@ dl {
         } 
       }
 
-  @media (min-width: 992px) { 
+  @media (min-width: 961px) { 
+    // @media (min-width: 992px) { 
+
+    .application-window
+    {
+      margin-right: 0px;
+    }
     #application-filter { 
         position: fixed; 
-        top: 56px; 
+        top: 195px;//56px; 
         right: 0; 
         width: 200px; 
         max-height: 80vh; 

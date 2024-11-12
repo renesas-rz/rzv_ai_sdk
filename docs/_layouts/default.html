@@ -53,13 +53,13 @@
         {% if site.show_downloads %}
         <div class="container">
           <div class="row ham-nodisplay">
-            <div class="col-12">
-                <img src="img/board.svg" alt="board" style="width:48%;max-width: 90px;"/>
-                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%;max-width: 90px;"/>  
+            <div class="col-12 p-0">
+                <img src="img/board.svg" alt="board" style="width:48%; max-width: 90px;"/>
+                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%; max-width: 90px;"/>  
             </div>
           </div>
           <div class="row mt-2">
-            <div class="col-12">
+            <div class="col-12 p-0">
               <a class="btn btn-warning btn-lg rounded-pill product-button" href="{{ site.url }}{{ site.baseurl }}{% link download.md %}" role="button">
                 Get the Board<br class="ham-nodisplay br-nsp"> and Software
               </a>
@@ -68,18 +68,20 @@
         </div>
         <br>
         <br class="br-nsp">
-        <div class="row">
-          <div class="col-12 mb-1">
-            <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:190px;" href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">
-                AI Applications Overview
-            </a>
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <p class="mb-1">
+              <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:190px;" href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">
+                  AI Applications Overview
+              </a>
+            </p>
+            <p class="mb-0">
+              <a class="btn btn-secondary square-button square-button-link-small" style="width:190px;" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">
+                  AI SDK Overview
+              </a>
+            </p>
+          </div>
         </div>
-        <div class="col-12">
-            <a class="btn btn-secondary square-button square-button-link-small" style="width:190px;" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">
-                AI SDK Overview
-            </a>
-        </div>
-      </div>
       <br class="br-nsp">
         <!-- <div class="container">
           <div class="row">
@@ -598,7 +600,7 @@
         <br class="ham-nodisplay">
         <div style="line-height: 1.15em;">
           {% if site.github.is_project_page %}
-          <p class="mb-0 ham-small">This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+          <p class="mb-0 ham-very-small"><small>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></small></p>
           {% endif %}
           <p class="mb-1 ham-very-small"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
         </div>
@@ -608,8 +610,6 @@
         {{ content }}
 
       </section>
-      <footer>
-      </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
   </body>

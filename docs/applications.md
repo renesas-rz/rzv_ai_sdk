@@ -11,6 +11,8 @@ layout: default
     </div>
 </div>
 <br>
+
+<div class="application-window">
 <h5 align="left">
     AI Applications are provided with pre-trained AI models. <br><br>
     Select each application to access the source code.<br><br><br>
@@ -398,7 +400,7 @@ layout: default
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/no_image.jpg" alt="application">
+                    <img src="img/SmartBuilding8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Parking Lot Management</dt>
                     <h6 class="appstatus" align="right"><b>New!</b></h6>
                     <div class="griditem-add">
@@ -1091,7 +1093,7 @@ layout: default
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/no_image.jpg" alt="application">
+                    <img src="img/SmartCity20_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Vehicle Detector</dt>
                     <h6 class="appstatus" align="right"><b>New!</b></h6>
                     <div class="griditem-add">
@@ -1122,7 +1124,7 @@ layout: default
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/no_image.jpg" alt="application">
+                    <img src="img/SmartCity21_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Car Accident Prevention Alert</dt>
                     <h6 class="appstatus" align="right"><b>New!</b></h6>
                     <div class="griditem-add">
@@ -1153,7 +1155,7 @@ layout: default
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/no_image.jpg" alt="application">
+                    <img src="img/SmartCity22_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Driving Support with Road Lane Segmentation</dt>
                     <h6 class="appstatus" align="right"><b>New!</b></h6>
                     <div class="griditem-add">
@@ -1184,7 +1186,7 @@ layout: default
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/no_image.jpg" alt="application">
+                    <img src="img/SmartCity23_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Visual Walking Support</dt>
                     <h6 class="appstatus" align="right"><b>New!</b></h6>
                     <div class="griditem-add">
@@ -1259,7 +1261,7 @@ layout: default
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/no_image.jpg" alt="application">
+                    <img src="img/Healthcare2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Yoga Pose Monitor</dt>
                     <h6 class="appstatus" align="right"><b>New!</b></h6>
                     <div class="griditem-add">
@@ -1994,6 +1996,8 @@ Back to Top >
         </div>
     </div>
 </div>
+
+</div>
 <p>
     <br>
     <br>
@@ -2182,7 +2186,8 @@ Back to Top >
     document.addEventListener('DOMContentLoaded', function () {
 
         function toggleButtons() {
-            if (window.innerWidth < 992) {
+            if (window.innerWidth < 961) {
+            // if (window.innerWidth < 992) {
                 document.getElementById('application-filter').style.display = 'none';
                 document.getElementById('application-filter-visible-button').style.display = 'block';
                 document.getElementById('application-filter-erase-button').style.display = 'none';
