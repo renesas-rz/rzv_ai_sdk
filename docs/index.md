@@ -36,63 +36,71 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.10.31
+                2024.12.6
             </h6>
             <ul>
                 <li>
-                    <b>AI Applications v5.00</b> is released.
+                    <b>RZ/V2H AI Applications Demo v5.00</b> is released.
                     <ul>
                         <li> 
-                            Added RZ/V2H Evaluation Board Kit support for 9 applications.<br>
+                            Supported AI Applications v5.00.
+                            <ul>
+                                <li>
+                                    Added support for 15 applications.
+                                </li>
+                            </ul>
                         </li>
                         <li> 
-                            Added 6 new applications for RZ/V2H.<br>
+                            Graphics library included is changed to the unrestricted version.<br>
+                            <ul>
+                                <li>
+                                    Operation time limitation is removed.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <br>
+                <li>
+                    <b>RZ/V2L AI Applications Demo v5.00</b> is released.
+                    <ul>
+                        <li> 
+                            Supported GUI operation.
                         </li>
                         <li> 
-                            Supported RZ/V2L AI SDK v5.00.<br>
+                            Supported AI Applications v5.00.
+                            <ul>
+                                <li>
+                                    All applications support both MIPI camera and USB camera input.
+                                </li>
+                            </ul>
                         </li>
                         <li> 
-                            Supported RZ/V2H AI SDK v5.00.<br>
+                            Graphics library and Video Codec library included are changed to the unrestricted version.<br>
+                            <ul>
+                                <li>
+                                    Operation time limitation is removed.
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
+            For more details, see <a href="#demo"><b>Demo</b></a>.
             <br>
             <br>
-            <ul>
-                <li> 
-                    <b>RZ/V2L AI SDK v5.00</b> is released.<br>
-                    <ul>
-                    <li>
-                        Supported DRP-AI TVM v2.3.0.<br>
-                        </li>
-                        <li>
-                            Updated RZ/V2L Verified Linux Package to v3.0.6.<br>
-                        </li>
-                        <li>
-                            Updated RZ/V2L Graphics Library to v1.2.2.<br>
-                        </li>
-                        <li>
-                            Updated RZ/V2L Video Codec Library to v1.2.2.<br>
-                        </li>
-                        <li>
-                            Updated RZ/V2L DRP-AI Support Package to v7.50.<br>
-                        </li>
-                    </ul>
-               </li>
-            </ul>
             <ul>
                 <li>
-                    <b>RZ/V2H AI SDK Source Code v5.00</b> is updated.<br>
+                    <b>RZ/V2H ISP Support Package for AI SDK v5.00</b> is released.<br>
                     <ul>
                         <li> 
-                            Graphics library in the AI SDK Source Code is changed to the unrestricted version to allow secondary distribution.<br>
+                            Package that can be applied to RZ/V2H AI SDK to use Built-in ISP.<br>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}"><b>How to Build RZ/V2H AI SDK</b></a>.
+            For more details, see <a href="#reference"><b>Reference</b></a>.
+            <br>
             <br>
         </div>
         <div class="col-12" align="right">
@@ -203,98 +211,99 @@ layout: default
     <div class="row">
         <div class="col-12">
             With the demo binary, users can try the AI Applications without having AI SDK environment.<br>
-            Download the Demo for your Evaluation Board Kit (EVK) and see each how to use guide.
-            <h4 class="u_line">
-                For RZ/V2L EVK
-            </h4>
-            <p>
-                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-210" role="button">
-                    Download RZ/V2L AI Applications Demo
-                </a>
-            </p>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}" role="button">
-                <span class="banner-title" style="line-height:1.0;">
-                    <span style="font-size:70%;">
-                        RZ/V2L AI Applications Demo
-                    </span><br>
-                    How to Use Guide
-                </span><br>
-                <span class="banner-line">
-                    What is RZ/V2L AI Applications Demo?<br>
-                    How can I run the Demo?<br>
-                </span>
-            </a>
-            <br><br>
-            <ul>
-                <li>
-                    Environment:
-                    <ul>
-                        <li>
-                            AI Applications v2.10
-                        </li>
-                        <li>
-                            RZ/V2L AI SDK v2.10
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    Demo zip file size: 3.4GB
-                </li>
-                <li>
-                    Note:
-                    <ul>
-                        <li>
-                            Demo zip file is created using the evaluation version of RZ/V2L Graphics Library and Codecs Library, which has a limitation that system stops running after around 10 hours.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <br>
-            <h4 class="u_line">
-                For RZ/V2H EVK
-            </h4>
-            <p>
-                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-400" role="button">
-                    Download RZ/V2H AI Applications Demo
-                </a>
-            </p>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}" role="button">
-                <span class="banner-title" style="line-height:1.0;">
-                    <span style="font-size:70%;">
-                        RZ/V2H AI Applications Demo
-                    </span><br>
-                    How to Use Guide
-                </span><br>
-                <span class="banner-line">
-                    What is RZ/V2H AI Applications Demo?<br>
-                    How can I run the Demo?<br>
-                </span>
-            </a>
-            <br><br>
-            <ul>
-                <li>
-                    Environment:
-                    <ul>
-                        <li>
-                            AI Applications v4.00
-                        </li>
-                        <li>
-                            RZ/V2H AI SDK v4.00
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    Demo zip file size: 2.8GB
-                </li>
-                <li>
-                    Note:
-                    <ul>
-                        <li>
-                            Demo zip file is created using the evaluation version of RZ/V2H Graphics Library, which has a limitation that system stops running after around 10 hours.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            Download the Demo for your Evaluation Board Kit (EVK) and see each How to Use Guide.
+            <div class="row">
+                <div class="col-12 col-xl-6">
+                    <h4 class="u_line">
+                        For RZ/V2L EVK
+                    </h4>
+                    <div class="row">
+                        <div class="col-5">
+                            <p class="ms-3">
+                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-500" role="button">
+                                    Download RZ/V2L AI Applications Demo
+                                </a>
+                            </p>
+                            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}" role="button">
+                                <span class="banner-title" style="line-height:1.0;">
+                                    <span style="font-size:70%;">
+                                        RZ/V2L AI Applications Demo
+                                    </span><br>
+                                    How to Use Guide
+                                </span><br>
+                                <span class="banner-line">
+                                    What is RZ/V2L AI Applications Demo?<br>
+                                    How can I run the Demo?<br>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <ul>
+                                <li>
+                                    Environment:
+                                    <ul>
+                                        <li>
+                                            AI Applications v5.00
+                                        </li>
+                                        <li>
+                                            RZ/V2L AI SDK v5.00
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Demo zip file size: 2.8GB
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br><br>
+                 </div>
+                <div class="col-12 col-xl-6">
+                    <h4 class="u_line">
+                        For RZ/V2H EVK
+                    </h4>
+                    <div class="row">
+                        <div class="col-5">
+                            <p class="ms-3">
+                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-500" role="button">
+                                    Download RZ/V2H AI Applications Demo
+                                </a>
+                            </p>    
+                            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}" role="button">
+                                <span class="banner-title" style="line-height:1.0;">
+                                    <span style="font-size:70%;">
+                                        RZ/V2H AI Applications Demo
+                                    </span><br>
+                                    How to Use Guide
+                                </span><br>
+                                <span class="banner-line">
+                                    What is RZ/V2H AI Applications Demo?<br>
+                                    How can I run the Demo?<br>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <ul>
+                                <li>
+                                    Environment:
+                                    <ul>
+                                        <li>
+                                            AI Applications v5.00
+                                        </li>
+                                        <li>
+                                            RZ/V2H AI SDK v5.00
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Demo zip file size: 3.4GB
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -505,7 +514,7 @@ layout: default
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="8">RZ/V2H</td>
+                    <td rowspan="9">RZ/V2H</td>
                     <td>
                             <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8">
                                 DRP-AI Translator i8
@@ -604,6 +613,18 @@ layout: default
                         <small>
                         This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
                         This package can be applied to RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/en/software-tool/rzv2h-isp-support-package">
+                            RZ/V2H ISP Support Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package that can be applied to RZ/V2H AI SDK to use Built-in ISP.
                         </small>
                     </td>
                 </tr>

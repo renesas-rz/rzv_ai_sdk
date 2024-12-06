@@ -219,10 +219,13 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       </li>
   -->
   <!-- MEMO:: Bus setting patch file is non -support. -->
-  <!-- 
+  <!--
       <li>Apply patch files for bus setting.<br>
-      When using a combination of camera, DRP-AI and display, applying this patch will improve stability.
+      When using a combination of camera, DRP-AI and display, applying this patch will improve stability.<br>
       Regarding cameras, the patch should be applied when using e-CAM22_CURZH, HD, 30fps, 2 cameras (total number of access bytes is 1843200 x 30 x 2) or more, or when encoding/decoding data input from outside the RZ/V2H.<br>
+      This patch is a sample for checking operation.
+      When applying this patch to an actual product, please be sure to thoroughly check the ARM specifications regarding the register settings and their management used in this patch.<br>
+      We recommend accessing the registers from the secure world.<br><br>
         <ol type="A">
           <li>
             Obtain the patch file from the link below..
@@ -464,6 +467,9 @@ You have prepared following files, which is same as the one provided in <a href=
     </li>
     <li>
       <a href="https://www.renesas.com/software-tool/rz-mpu-security-package">RZ MPU Security Package</a>
+    </li>
+    <li>
+      <a href="https://www.renesas.com/en/software-tool/rzv2h-isp-support-package">RZ/V2H ISP Support Package</a>
     </li>
   </ul>
 </div>

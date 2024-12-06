@@ -1072,11 +1072,10 @@ dl {
 //Added by meistier for filtering function
 /****************************************************/
     @media (max-width: 960px) { 
-    // @media (max-width: 991px) { 
         #application-filter { 
             position: fixed; 
-            top: 195px;//56px; 
-            right: 0; 
+            top: 195px;
+            right: 0px; 
             width: 50%; 
             max-height: 80vh; 
             overflow-y: auto; 
@@ -1135,7 +1134,6 @@ dl {
       }
 
   @media (min-width: 961px) { 
-    // @media (min-width: 992px) { 
 
     .application-window
     {
@@ -1143,8 +1141,8 @@ dl {
     }
     #application-filter { 
         position: fixed; 
-        top: 195px;//56px; 
-        right: 0; 
+        top: 195px;
+        right: 15px; 
         width: 200px; 
         max-height: 80vh; 
         overflow-y: auto; 

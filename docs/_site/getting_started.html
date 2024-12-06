@@ -33,7 +33,7 @@
 {"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-10-31T18:18:23+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.00/getting_started.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=b2585560fd22f6ec51302854be09c93f002a2884">
+    <link rel="stylesheet" href="assets/css/style.css?v=42bc0a88c82157c3258abbb3685cc8bd7cf26d49">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -631,16 +631,6 @@
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-<style>
-  /**
-   * This <style> tag is used to hide some rows of the table in the "Hardware Preparation" section.
-   * This style applies only to this demo.md file, so do not put it in assets/css/style.scss file.
-   */
-  .forV2LDemo{
-    display:none;
-  }
-</style>
-
 <div class="container">
     <div class="row">
         <div id="page-top" class="top col-12">
@@ -807,47 +797,6 @@ Its version varies depending on the supported board.</p>
     </div>
   </div>
 </div>
-<reference1 class="forV2LDemo">
-  <div class="container">
-    <div class="row">
-      <div class="col-6">
-        The RZ/V2L Evaluation Board Kit (EVK) is the ideal board kit for RZ/V2L evaluation. 
-        <br /><br />
-        Since MIPI camera module is included, you can start evaluating RZ/V2L immediately by building an environment.  
-        <br /><br />
-        <a class="btn btn-primary download-button" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit" role="button">Get RZ/V2L EVK</a>
-      </div>
-      <div class="col-6">
-        <img src="img/board.png" alt="board" />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        Following items are included in the RZ/V2L Evaluation Board Kit.
-        <br /><br />
-        <table>
-          <tr>
-            <th>Equipment</th>
-            <th>Details</th>
-          </tr>
-          <tr>
-            <td>RZ/V2L Evaluation Board</td>
-            <td>Evaluation board itself.</td>
-          </tr>
-          <tr>
-            <td>MIPI Camera Module</td>
-            <td>Google Coral Camera.<br />
-            <h6>Note that the CMOS sensor (OV5645) in the camera is <b>no longer available</b>, and should not be used for mass production. <br />Any software support provided is for evaluation purposes only.</h6></td>
-          </tr>
-          <tr>
-            <td>MicroUSB to Serial Cable</td>
-            <td>For serial communication between PC and the board.</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-</reference1>
 <p><br /></p>
 
 <h3 id="step2">Step 2: Obtain necessary environment</h3>
@@ -909,7 +858,7 @@ Its version varies depending on the supported board.</p>
       </td>
     </tr>
     <tr>
-      <td id="EQ_WindowsPC">
+      <td>
         Windows PC
       </td>
       <td>
@@ -1035,65 +984,6 @@ Its version varies depending on the supported board.</p>
   USB camera has different supported resolution and format.<br />
   To check the specification of your USB camera, use <a href="https://www.mankier.com/1/v4l2-ctl"><code>v4l2-ctl</code></a> command.
 </div>
-<reference2 class="forV2LDemo">
-  In addition to the RZ/V2L Evaluation Board Kit, please prepare the following equipments.<br />
-  <div class="note">
-    <span class="note-title">Note</span>
-    <b>Serial to MicroUSB Cable</b> and <b>MIPI Camera Module (Google Coral camera)</b> is included in RZ/V2L Evaluation Board Kit.
-  </div>
-  <table>
-    <tr>
-      <th>Equipment</th>
-      <th>Details</th>
-    </tr>
-    <tr>
-      <td>HDMI Monitor</td>
-      <td>Used to display the graphics.</td>
-    </tr>
-    <tr>
-      <td>Micro HDMI Cable</td>
-      <td>Used to connect the HDMI Monitor and the board.</td>
-    </tr>
-    <tr>
-      <td>AC adapter</td>
-      <td>Power supply to the board.</td>
-    </tr>
-    <tr>
-      <td>USB Cable Type-C</td>
-      <td>Connect AC adapter and the board.</td>
-    </tr>
-    <tr>
-      <td>microSD card</td>
-      <td>Must have over 4GB capacity of blank space.<br />Operating Environment: Transcend UHS-I microSD 300S 16GB</td>
-    </tr>
-    <tr>
-      <td>Linux PC</td>
-      <td>Used for Setup microSD card and RZ/V2L AI SDK Setup.<br />
-      Operating Environment: Ubuntu 20.04</td>
-    </tr>
-    <tr>
-      <td>SD card reader</td>
-      <td>Used for setting up microSD card.<br /></td>
-    </tr>
-    <tr id="EQ_WindowsPC">
-      <td>Windows PC</td>
-      <td><b>Optional.</b> Used as the serial communication console for QSPI Bootloader.<br />
-      Operating Environment : Windows 10</td>
-    </tr>
-    <tr>
-      <td>USB Hub</td>
-      <td>Used to connect USB Keyboard and USB Mouse.</td>
-    </tr>
-    <tr>
-      <td>USB Keyboard</td>
-      <td>Used to type strings on the terminal of board.</td>
-    </tr>
-    <tr>
-      <td>USB Mouse</td>
-      <td>Used to operate the mouse on the screen of board.</td>
-    </tr>
-  </table>
-</reference2>
 <p><br /></p>
 <h4 class="u_line">2. Necessary Software</h4>
 <p class="mb-1">Please install following software <b>on Linux PC</b>.</p>

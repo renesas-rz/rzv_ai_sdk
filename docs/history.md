@@ -17,6 +17,85 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2H, RZ/V2L AI Applications Demo v5.00
+                </h3>
+                <h6 align="right" >
+                    2024.12.6
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI Applications Demo v5.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported AI Applications v5.00.
+                            <ul>
+                                <li>
+                                    Added support for 15 applications.
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Graphics library included is changed to the unrestricted version.<br>
+                            <ul>
+                                <li>
+                                    Operation time limitation is removed.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2L AI Applications Demo v5.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported GUI operation.
+                        </li>
+                        <li> 
+                            Supported AI Applications v5.00.
+                            <ul>
+                                <li>
+                                    All applications support both MIPI camera and USB camera input.
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Graphics library and Video Codec library included are changed to the unrestricted version.<br>
+                            <ul>
+                                <li>
+                                    Operation time limitation is removed.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V2H ISP Support Package
+                </h3>
+                <h6 align="right" >
+                    2024.12.6
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H ISP Support Package for AI SDK v5.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Package that can be applied to RZ/V2H AI SDK to use Built-in ISP.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     AI Applications v5.00
                 </h3>
                 <h6 align="right" >
