@@ -3470,7 +3470,7 @@ pre { border-radius: 5px; color: #444; background: #f0f0f0; border: solid 1px #d
 dl { display: flex; flex-wrap: wrap; margin: 0; }
 
 /****************************************************/
-@media (max-width: 960px) { #application-filter { position: fixed; top: 195px; right: 0; width: 50%; max-height: 80vh; overflow-y: auto; display: none; }
+@media (max-width: 960px) { #application-filter { position: fixed; top: 195px; right: 0px; width: 50%; max-height: 80vh; overflow-y: auto; display: none; }
   #filter-title { background-color: #706f6f; color: white; padding: 10px; position: sticky; top: 0; z-index: 1; width: 100%; }
   #application-filter-body { color: white; padding-top: 0; padding: 10px; padding-bottom: 10px; background-color: #706f6f; margin-top: -15px; }
   #application-filter-visible-button { display: none; position: fixed; top: 60px; right: 0px; z-index: 2; color: #000077; display: block; }
@@ -3479,7 +3479,7 @@ dl { display: flex; flex-wrap: wrap; margin: 0; }
   #category-filter-titlecolor { color: white; border-bottom-color: white; }
   #filter-titlecolor { color: white; margin-bottom: 0; } }
 @media (min-width: 961px) { .application-window { margin-right: 0px; }
-  #application-filter { position: fixed; top: 195px; right: 0; width: 200px; max-height: 80vh; overflow-y: auto; }
+  #application-filter { position: fixed; top: 195px; right: 15px; width: 200px; max-height: 80vh; overflow-y: auto; }
   #filter-title { background-color: #fff; padding: 10px; position: sticky; top: 0; z-index: 1; width: 100%; }
   #application-filter-body { padding-top: 0; padding: 10px; padding-bottom: 10px; margin-top: -10%; }
   #application-filter-visible-button { display: none; position: fixed; top: 60px; right: 0px; z-index: 2; color: #000077; display: block; }
