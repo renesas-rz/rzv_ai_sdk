@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-
+<div class="application-window">
 <div class="container" style="max-width:100%;">
     <div class="row">
         <div id="page-top" class="top col-12">
@@ -12,7 +12,6 @@ layout: default
 </div>
 <br>
 
-<div class="application-window">
 <h5 align="left">
     AI Applications are provided with pre-trained AI models. <br><br>
     Select each application to access the source code.<br><br><br>
@@ -38,10 +37,15 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Animal"
                 data-label=""
+                data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/Agriculture1_960x540.jpg" alt="application">
+                    <img src="img/Agriculture1_960x540.jpg" 
+                        alt="application" 
+                        width="100%" 
+                        onmouseover="this.src='img/GIF/Agriculture1_480x270.gif'" 
+                        onmouseout="this.src='img/Agriculture1_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Defense wild animals for crop</dt>
                     <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
@@ -64,6 +68,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/07_Animal_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
+                                <a class="videolinkbutton" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#agriculture1" >
+                                    VIDEO >
+                                </a>
                             </div>
                         </dd>
                     </dl>
@@ -73,6 +81,7 @@ layout: default
                 data-model="Custom"
                 data-targetobj="Other"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -108,6 +117,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Animal"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -152,6 +162,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -187,10 +198,15 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/SmartBuilding2_960x540.jpg" alt="application">
+                    <img src="img/SmartBuilding2_960x540.jpg" 
+                        alt="application" 
+                        width="100%" 
+                        onmouseover="this.src='img/GIF/SmartBuilding2_480x270.gif'" 
+                        onmouseout="this.src='img/SmartBuilding2_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Conference Room Usage Monitor</dt>
                     <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
@@ -213,6 +229,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
+                                <a class="videolinkbutton" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#building2" >
+                                    VIDEO >
+                                </a>
                             </div>
                         </dd>
                     </dl>
@@ -222,6 +242,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -257,6 +278,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -292,6 +314,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Other"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -327,6 +350,7 @@ layout: default
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -362,6 +386,7 @@ layout: default
                 data-model="FaceNet"
                 data-targetobj="Face"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -397,6 +422,7 @@ layout: default
                 data-model="Tiny YOLOv3"
                 data-targetobj="Vehicle"
                 data-label="New!"
+                data-feature=""
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -437,6 +463,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -472,6 +499,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -507,6 +535,7 @@ layout: default
                 data-model="ResNet-18+Tiny YOLOv2"
                 data-targetobj="Face"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -542,6 +571,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -577,6 +607,7 @@ layout: default
                 data-model="Custom"
                 data-targetobj="Vehicle"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -608,6 +639,7 @@ layout: default
                 data-model="Custom"
                 data-targetobj="Vehicle"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -639,6 +671,7 @@ layout: default
                 data-model="FaceNet"
                 data-targetobj="Face"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -674,6 +707,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -709,6 +743,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -744,6 +779,7 @@ layout: default
                 data-model="CNN+MLP"
                 data-targetobj="Other"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -775,6 +811,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Animal"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -810,6 +847,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -845,6 +883,7 @@ layout: default
                 data-model="Tiny YOLOv3"
                 data-targetobj="Vehicle"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -880,6 +919,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -915,6 +955,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -950,6 +991,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -985,6 +1027,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1020,6 +1063,7 @@ layout: default
                 data-model="Unet"
                 data-targetobj="Crack"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1055,6 +1099,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1090,6 +1135,7 @@ layout: default
                 data-model="Tiny YOLOv3"
                 data-targetobj="Vehicle"
                 data-label="New!"
+                data-feature=""
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1121,6 +1167,7 @@ layout: default
                 data-model="Tiny YOLOv3"
                 data-targetobj="Vehicle"
                 data-label="New!"
+                data-feature=""
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1152,6 +1199,7 @@ layout: default
                 data-model="Unet"
                 data-targetobj="Other"
                 data-label="New!"
+                data-feature=""
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1183,6 +1231,7 @@ layout: default
                 data-model="Unet"
                 data-targetobj="Other"
                 data-label="New!"
+                data-feature=""
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1223,6 +1272,7 @@ layout: default
                 data-model="Tiny YOLOv2+HRNet"
                 data-targetobj="Person"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1258,6 +1308,7 @@ layout: default
                 data-model="HRNet+Custom"
                 data-targetobj="Person"
                 data-label="New!"
+                data-feature=""
                 data-device="RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1298,6 +1349,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1333,6 +1385,7 @@ layout: default
                 data-model="ArcFace/ResNet-50"
                 data-targetobj="Face"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1364,6 +1417,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Animal"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1399,6 +1453,7 @@ layout: default
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1434,6 +1489,7 @@ layout: default
                 data-model="Tiny YOLOv3+Tesseract/YOLOv3+Tesseract"
                 data-targetobj="Other"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1478,6 +1534,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1513,10 +1570,15 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
-                    <img src="img/Industrial4_960x540.jpg" alt="application">
+                    <img src="img/Industrial4_960x540.jpg" 
+                        alt="application" 
+                        width="100%" 
+                        onmouseover="this.src='img/GIF/Industrial4_480x270.gif'" 
+                        onmouseout="this.src='img/Industrial4_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Access Control</dt>
                     <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
@@ -1539,6 +1601,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
+                                <a class="videolinkbutton" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#industrial2" >
+                                    VIDEO >
+                                </a>
                             </div>
                         </dd>
                     </dl>
@@ -1548,6 +1614,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Other"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1583,6 +1650,7 @@ layout: default
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1618,6 +1686,7 @@ layout: default
                 data-model="Tiny YOLOv2+DeepPose/YOLOv3+DeepPose"
                 data-targetobj="Face"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1653,6 +1722,7 @@ layout: default
                 data-model="Custom"
                 data-targetobj="Other"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1688,6 +1758,7 @@ layout: default
                 data-model="Unet"
                 data-targetobj="Crack"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1723,6 +1794,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Other"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1767,6 +1839,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1802,6 +1875,7 @@ layout: default
                 data-model="Tiny YOLOv2+FairFace"
                 data-targetobj="Face"
                 data-label="Updated!"
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1837,6 +1911,7 @@ layout: default
                 data-model="ResNet-18+Tiny YOLOv2"
                 data-targetobj="Face"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1872,6 +1947,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1907,6 +1983,7 @@ layout: default
                 data-model="YOLOv3"
                 data-targetobj="Head"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -1942,6 +2019,7 @@ layout: default
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
                 data-label=""
+                data-feature=""
                 data-device="RZ/V2L,RZ/V2H,"
                 >
                 <li class="griditem" style="list-style: none;">
@@ -2013,7 +2091,6 @@ Back to Top >
             </button>
         </div>
         <div id="application-filter-body">
-
             <div id="category-filter">
                 <h3 id="category-filter-titlecolor">Category</h3>
                 <div class="checkbox-group">
@@ -2165,9 +2242,16 @@ Back to Top >
                     <label for="Updated!">Updated!</label>
                 </div>
             </div>
+            <div id="feature-filter">
+                <h3 id="category-filter-titlecolor">Feature</h3>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="Video" class="filter_content" value="Video">
+                    <label for="Video">Video</label>
+                </div>
+            </div>
+            <br>
         </div>
     </div>
-
     <button id="application-filter-visible-button" class="btn btn-muted ">
         <svg width="16" height="16" font-size="30" fill="currentColor" class="bi bi-3x" viewBox="0 0 16 16" style="">
             <use xlink:href="assets/img/bootstrap-icons.svg#funnel"></use>
@@ -2187,7 +2271,6 @@ Back to Top >
 
         function toggleButtons() {
             if (window.innerWidth < 961) {
-            // if (window.innerWidth < 992) {
                 document.getElementById('application-filter').style.display = 'none';
                 document.getElementById('application-filter-visible-button').style.display = 'block';
                 document.getElementById('application-filter-erase-button').style.display = 'none';
@@ -2239,15 +2322,17 @@ Back to Top >
         let selectedDevices = getSelectedValues('device-filter');
         // let selectedInputSrcs = getSelectedValues('input_source-filter');
         let selectedLabels = getSelectedValues('label-filter');
+        let selectedFeatures = getSelectedValues('feature-filter');
 
         let cateDivs = document.querySelectorAll('.category_section');
-        let appsDivs = document.querySelectorAll('[data-model], [data-targetobj], [data-device], [data-label]');//, [data-inputsrc]');
+        let appsDivs = document.querySelectorAll('[data-model], [data-targetobj], [data-device], [data-label], [data-feature]');//, [data-inputsrc]');
         appsDivs.forEach(function (div) {
             let models      = div.getAttribute('data-model').split(/[+/]/).filter(Boolean);
             let targetobjs  = div.getAttribute('data-targetobj').split(',').filter(Boolean);
             let devices     = div.getAttribute('data-device').split(',').filter(Boolean);
             // let inputsrcs   = div.getAttribute('data-inputsrc').split(',').filter(Boolean);
             let labels     = div.getAttribute('data-label').split(',').filter(Boolean);
+            let features     = div.getAttribute('data-feature').split(',').filter(Boolean);
 
             let modelCondition = selectedModels.length === 0 || models.some(function(value) {
                 return selectedModels.includes(value.trim());
@@ -2264,8 +2349,11 @@ Back to Top >
             let labelCondition = selectedLabels.length === 0 || labels.some(function(value) {
                 return selectedLabels.includes(value.trim());
             }); 
+            let featureCondition = selectedFeatures.length === 0 || features.some(function(value) {
+                return selectedFeatures.includes(value.trim());
+            }); 
 
-                        toggleVisibility(div, modelCondition && targetObjCondition && deviceCondition && labelCondition );// && inputSrcCondition);
+                        toggleVisibility(div, modelCondition && targetObjCondition && deviceCondition && labelCondition && featureCondition );// && inputSrcCondition);
         });
 
         cateDivs.forEach(function (div) {

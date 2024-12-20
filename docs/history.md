@@ -17,6 +17,38 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Applications Video
+                </h3>
+                <h6 align="right" >
+                    2024.12.20
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications Video is released.</h5>
+                    <ul>
+                        <li> 
+                            Added sample use-case videos for following AI Applications.
+                            <ul>
+                                <li> 
+                                    Defense Wild Animals for Crop (Agriclture)
+                                </li>
+                                <li> 
+                                    Conference Room Usage Monitor (Smart Building)
+                                </li>
+                                <li> 
+                                    Access Control (Industrial)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V2H, RZ/V2L AI Applications Demo v5.00
                 </h3>
                 <h6 align="right" >

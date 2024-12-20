@@ -3193,7 +3193,7 @@ html, body { padding: 0px; height: 100%; box-sizing: border-box; }
 
 .wrapper { width: 100%; margin: 0 auto; }
 
-.application-window { padding-right: 150px; }
+.application-window { padding-right: 160px; }
 
 header, footer { padding: 50px 10px 50px 50px; box-sizing: border-box; overflow-y: scroll; height: 100vh; float: left; position: relative; width: 22%; -webkit-font-smoothing: subpixel-antialiased; }
 
@@ -3442,7 +3442,13 @@ pre { border-radius: 5px; color: #444; background: #f0f0f0; border: solid 1px #d
 .history-item { margin-top: 5px; margin-bottom: 0px; }
 
 /********** For Video **********/
-.videodetails { color: #675C5C; list-style: none; min-height: 140px; padding: 3% 5%; background: #ffffff; border-radius: 0px; border: 1px solid #e0e0e0; border-top: none; text-align: left; }
+.video-wrapper { position: relative; padding-top: 56.25%; }
+
+.video-iframe { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+
+.videolinkbutton { margin: 2px 6px 0px 0px; background-color: #7c909b; color: white; padding: 5px 8px; text-decoration: none; display: inline-block; font-size: 12px; font-family: Arial, sans-serif; cursor: pointer; border: none; border-radius: 2px; }
+
+.videolinkbutton:hover { background-color: #43abe2; transform: scale(1.1); transition-duration: 0.3s; color: white; }
 
 /** meistier **/
 .titlebox { background-color: #2a289d; color: #ffffff; font-size: 40px; font-weight: bold; font-style: italic; padding: 20px; border: 1px solid #2a289d; margin: 0px; }
@@ -3470,7 +3476,7 @@ pre { border-radius: 5px; color: #444; background: #f0f0f0; border: solid 1px #d
 dl { display: flex; flex-wrap: wrap; margin: 0; }
 
 /****************************************************/
-@media (max-width: 960px) { #application-filter { position: fixed; top: 195px; right: 0px; width: 50%; max-height: 80vh; overflow-y: auto; display: none; }
+@media (max-width: 960px) { #application-filter { position: fixed; top: 15vh; right: 0px; width: 50%; max-height: 85vh; overflow-y: auto; display: none; }
   #filter-title { background-color: #706f6f; color: white; padding: 10px; position: sticky; top: 0; z-index: 1; width: 100%; }
   #application-filter-body { color: white; padding-top: 0; padding: 10px; padding-bottom: 10px; background-color: #706f6f; margin-top: -15px; }
   #application-filter-visible-button { display: none; position: fixed; top: 60px; right: 0px; z-index: 2; color: #000077; display: block; }
@@ -3479,7 +3485,7 @@ dl { display: flex; flex-wrap: wrap; margin: 0; }
   #category-filter-titlecolor { color: white; border-bottom-color: white; }
   #filter-titlecolor { color: white; margin-bottom: 0; } }
 @media (min-width: 961px) { .application-window { margin-right: 0px; }
-  #application-filter { position: fixed; top: 195px; right: 15px; width: 200px; max-height: 80vh; overflow-y: auto; }
+  #application-filter { position: fixed; top: 5vh; right: 15px; width: 200px; max-height: 95vh; overflow-y: auto; }
   #filter-title { background-color: #fff; padding: 10px; position: sticky; top: 0; z-index: 1; width: 100%; }
   #application-filter-body { padding-top: 0; padding: 10px; padding-bottom: 10px; margin-top: -10%; }
   #application-filter-visible-button { display: none; position: fixed; top: 60px; right: 0px; z-index: 2; color: #000077; display: block; }
