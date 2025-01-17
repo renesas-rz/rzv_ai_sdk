@@ -219,8 +219,7 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       </li>
   -->
   <!-- MEMO:: Bus setting patch file is non -support. -->
-  <!--
-      <li>Apply patch files for bus setting.<br>
+      <li id="bus_patch">Apply patch file for bus setting.<br>
       When using a combination of camera, DRP-AI and display, applying this patch will improve stability.<br>
       Regarding cameras, the patch should be applied when using e-CAM22_CURZH, HD, 30fps, 2 cameras (total number of access bytes is 1843200 x 30 x 2) or more, or when encoding/decoding data input from outside the RZ/V2H.<br>
       This patch is a sample for checking operation.
@@ -256,7 +255,6 @@ patch -p1 < 0000-rzv2h-system_setting.patch
           </li>
         </ol>
       </li>
-  -->
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
         The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.<br>
         <ol type="A">
@@ -291,6 +289,7 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
+0000-rzv2h-system_setting.patch
 0001-tesseract.patch
 0002-sd-image-size-16gb.patch
 e-CAM22_CURZ*.patch
