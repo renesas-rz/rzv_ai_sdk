@@ -625,7 +625,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             RZ/V2H AI SDK v5.00 has the following limitations.
             <br>
             <br>
-            <ol>
+            <ul>
                 <li>
                     RZ/V2H Linux BSP supports CPU/CA55 operation at 1.1 GHz, 1.5 GHz, 1.6 GHz, and 1.7 GHz. It does not support CPU/CA55 operation at 1.8 GHz.
                 </li>
@@ -634,13 +634,9 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 </li>
                 <li>
                     Some AI models with frequent memory accesses may affect the performance of other LSI functions that access memory.
+                    We are considering to improve this issue in the next release version.
                 </li>
-                <div class="note">
-                <span class="note-title">Note</span>
-                A patch file to alleviate limitations 2 and 3 is provided on GitHub repository. (Patch file: <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0000-rzv2h-system_setting.patch" target="_blank" rel="noopener noreferrer">0000-rzv2h-system_setting.patch)</a><br>
-                For how to apply the patch, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#bus_patch" role="button" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
-                </div>
-            </ol>
+            </ul>
             <br>
         </div>
     </div>
