@@ -15,8 +15,21 @@ layout: default
 <h5 id="ainavi_top">This page explains how to develop and run RZ/V AI applications using a GUI environment.<br>
 For this GUI environment, Renesas provides <b>AI Navigator</b>, which is a set of plugins for the Renesas IDE e<sup>2</sup> studio and supports your application development.<br>
 <br>
-Please read the <a href="https://www.renesas.com/us/en/software-tool/e2studio-information-rz-family#documents" target="_blank">AI Navigator Release Note</a> first. This document describes the changes, restrictions, and some notes.<br>
+Please read the <a href="https://www.renesas.com/en/software-tool/ai-navigator-ide-ai-applications" target="_blank">AI Navigator Release Note</a> first. This document describes the changes, restrictions, and some notes.
+</h5>
+
+<h3 id="ainavi_guide_update">Updates</h3>
+<ul>
+  <li>Feb 07, 2025
+    <ul>
+      <li><b>The supported AI application in AI Navigator has been updated.</b></li>
+      AI Navigator now supports <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html" target="_blank">RZ/V AI Application v5.00</a>. *Only for RZ/V2H.
+    </ul>
+  </li>
+</ul>
 <br>
+
+<h3 id="ainavi_target_env">Target Environment</h3>
 <table>
   <tr>
     <th>Target version</th>
@@ -24,7 +37,7 @@ Please read the <a href="https://www.renesas.com/us/en/software-tool/e2studio-in
   </tr>
   <tr>
     <th>Supported environment</th>
-    <td>Ubuntu 20.04 LTS, Renesas e<sup>2</sup> studio 2024-07 (or later) for Linux</td>
+    <td>Ubuntu 20.04 LTS, Renesas e<sup>2</sup> studio 2024-07 for Linux (or later)</td>
   </tr>
   <tr>
     <th>Target Devices</th>
@@ -38,27 +51,28 @@ Please read the <a href="https://www.renesas.com/us/en/software-tool/e2studio-in
     </td>
   </tr>
   <tr>
-    <th>Available Functions of AI Applications</th>
+    <th>Available Functions of AI Applications <span style="color: red;"> Updated!</span></th>
     <td>
-        <li>Q01-Q11 in RZ/V2L AI Applications v2.10</li>
-        <li>Q01, Q06, Q08-Q11, 01, 02, 07, 09-12 in RZ/V2H AI Applications v4.00</li>
+        <li>Q01-Q11 in RZ/V AI Applications v4.00 for RZ/V2L</li>
+        <li>Q01, Q02, Q04, Q06-Q12, 01-05, 07, 09-15 in RZ/V AI Applications v5.00 for RZ/V2H</li>
     </td>
   </tr>
   <tr>
-    <th>Supported RZ/V AI SDK</th>
+    <th>Supported RZ/V AI SDK <span style="color: red;"> Updated!</span></th>
     <td>
         <li>RZ/V2L AI SDK v2.10</li>
-        <li>RZ/V2H AI SDK v4.00</li>
+        <li>RZ/V2H AI SDK v5.00</li>
     </td>
   </tr>
   <tr>
-    <th>Supported AI Tools</th>
+    <th>Supported AI Tools <span style="color: red;"> Updated!</span></th>
     <td>
       <li>RZ/V AI Transfer Learning Tool v4.00</li>
-      <li>AI Model Conversion Tool (supported up to DRP-AI TVM v2.2.1) </li>
+      <li>AI Model Conversion Tool (supported up to DRP-AI TVM v2.3.0) </li>
     </td>
   </tr>
 </table>
+<br>
 
 <div class="note">
   <span class="note-title">Recommended</span>
@@ -69,12 +83,12 @@ Please read the <a href="https://www.renesas.com/us/en/software-tool/e2studio-in
     <li><a href="https://www.renesas.com/video/ai-navigator-tutorial-2-customize-ai-model-transfer-learning-tool" target="_blank">AI Navigator Tutorial #2 (Customize AI model by Transfer Learning Tool)</a></li>
   </ul>
 </div>
-
+<br>
 <div class="note">
   <span class="note-title">Note</span>
-  For the users who want to use your own customized environment (Linux, target board, and so on), see <a href="ainavi_appendix.html#ainavi_appendix_d">"Build the Linux and Use your Custom Board or 3rd Party Board"</a>.<br>
+  For the users who want to use your own customized environment (Linux, target board, and so on), see <a href="ainavi_appendix.html#ainavi_appendix_d">"How to install customized RZ/V Linux into AI Navigator"</a>.<br>
 </div>
-</h5>
+<br>
 
 <h3 id="ainavi_intro">Introduction</h3>
 AI Navigator is a set of plugins for e<sup>2</sup> studio that makes it easy to run AI applications on Renesas devices. <br>
@@ -106,6 +120,7 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
   See "<b>Manage Docker as a non-root user</b>" in the following Docker web page to run as a non-root user.<br>
   <a href="https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user" target="_blank">Manage Docker as a non-root user in Docker docs</a>
 </div>
+<br>
 
 <h3 id="ainavi_step1" >Step 1: AI Navigator Installation</h3>
 <div class="note">
@@ -132,9 +147,9 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
     <li><b>Device Families</b>: Linux on Renesas RZ</li>
     <li><b>Additional Software</b>: Renesas AI Navigator, AI Transfer Learning Tool Plugin, AI Model Conversion Tool Plugin</li>
   </ul>
-  <br><br>
-  <li><h5><b>Users of e<sup>2</sup> studio</b></h5></li>
-  Add the necessary plugins by following the steps below.<br>
+  <br>
+  <li><h5><b>e<sup>2</sup> studio users</b></h5></li>
+  Run the e<sup>2</sup> studio installer in the same way as described above, or add the necessary plugins by following the steps below.<br>
   <ol>
     <li>Launch e<sup>2</sup> studio.</li>
     <li>Click <b>[Help] > [Install Renesas IDE Features...]</b>.</li>
@@ -150,12 +165,16 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
     <span class="note-title">Note</span>
     The device family "Linux on Renesas RZ" must be available on your e<sup>2</sup> studio environment. Otherwise, you may not be able to build your AI application.<br>
   </div>
-  <div class="note">
-    <span class="note-title">Note</span>
-    If you want to uninstall these plugins, see <a href="ainavi_appendix.html#ainavi_appendix_a" target="_blank">"AI Navigator Uninstallation"</a>.<br>
-  </div>
   <br>
+  <li><h5><b>AI Navigator users</b></h5></li>
+  Click <b>[Help]</b> > <b>[Check for Updates]</b> and select the newer version for each plugin to update.
 </ul>
+<br>
+<div class="note">
+  <span class="note-title">Note</span>
+  If you want to uninstall these plugins, see <a href="ainavi_appendix.html#ainavi_appendix_a" target="_blank">"AI Navigator Uninstallation"</a>.<br>
+</div>
+<br>
 
 <h3 id="ainavi_step2" >Step 2: Start AI Navigator</h3>
 <div class="container">
@@ -167,9 +186,16 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
         <span class="note-title">Note</span>
         For each view and button on the AI Navigator, see the help page for AI Navigator. You can access it by clicking the <b>[Learn more...]</b> on the start view (on the top page of AI Navigator) or by selecting <b>[Help] > [Help Contents] > [Renesas AI Navigator]</b>.
       </div>
+      <br>
       <div class="note">
         <span class="note-title">Note</span>
         If you want to restart the project, select it from the pull-down menu on the start view and click <b>[Continue]</b>.
+      </div>
+      <br>
+      <div class="note">
+        <span class="note-title">Note</span>
+        <b>For e<sup>2</sup> studio 2025-01 users:</b><br>
+        When Appearance Theme is set to <b>"Light(Preview)"</b>, some buttons on AI Navigator are not displayed correctly. Please change Theme to <b>"Light"</b> or <b>"Dark"</b> from <b>[Window] -> [General] -> [Appearance]</b>.
       </div>
     </div>
     <div class="col-6">
@@ -613,6 +639,15 @@ Please confirm the console log.
 <h3 id="ainavi_step4" >Step 4: Run on the Board</h3>
 It's time to run your AI application on the target board.<br>
 Click <b>[Run on the Board]</b> on the AI Navigator menu and follow the steps below. <br>
+<br>
+<div class="note">
+  <span class="note-title">Note</span>
+  <b>For e<sup>2</sup> studio 2024-10 & 2025-01 users:</b><br>
+  Keep <b>"Debug"</b> view closed before <b>[Run on the Board]</b>.<br>
+  <br>
+  <a href="img/ainavi/ainavi_debug.png" data-lightbox="ainavi_debug"><img src="img/ainavi/ainavi_debug.png" alt="AI Navi debug" width="50%" hegiht="50%"></a><br>
+</div>
+<br>
 <div class="container">
   <div class="row">
     <div class="col-2">

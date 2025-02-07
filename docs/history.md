@@ -17,6 +17,27 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2H & RZ/V2L - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2025.2.7
+                </h6>
+            </i>
+            <ul>
+                <li><h5 class="history-item">AI Navigator Quick Start Guide is updated.</h5>
+                    <ul>
+                        <li> 
+                            Users can develop more AI Applications for RZ/V2H with the latest environment.<br>
+                            The supported AI Applications are listed at the top of the guide.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications Video
                 </h3>
                 <h6 align="right" >

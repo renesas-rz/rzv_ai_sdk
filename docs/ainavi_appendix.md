@@ -16,14 +16,6 @@ AI Navigator Quick Start Guide Appendix
         </div>
     </div>
 </div>
-<br>
-<br>
-<ul>
-  <li><a href="#ainavi_appendix_a"><b>A. AI Navigator Uninstallation</b></a></li>
-  <li><a href="#ainavi_appendix_b"><b>B. How to use Bring Your Own Model Project</b></a></li>
-  <li><a href="#ainavi_appendix_c"><b>C. Settings required when using other IP addresses of target board</b></a></li>
-  <li><a href="#ainavi_appendix_d"><b>D. Build the Linux and Use your Custom Board or 3rd Party Board</b></a></li>
-</ul>
 
 <h3 id="ainavi_appendix_a">A. AI Navigator Uninstallation</h3>
 Follow the steps below to uninstall the plugins, AI Navigator, AI Transfer Learning Tool Plugin, and AI Model Conversion Tool Plugin.<br>
@@ -144,7 +136,7 @@ IP_ADDRESS="192.168.1.11"
   At this point, check that the Target ID value includes the IP addresses of the target boards.</li>
 </ul>
 
-<h3 id="ainavi_appendix_d">D. Build the Linux and Use your Custom Board or 3rd Party Board</h3>
+<h3 id="ainavi_appendix_d">D. How to install customized RZ/V Linux into AI Navigator</h3>
 To set up your Linux environment on your target board using AI Navigator, click the <b>Information icon</b> next to the [Download...] button in the Project Information view. The <a href="https://Tool-support.renesas.com/tool-support/Zoo/guides/RZV/RZV_custom_framework_guide.html" target="_blank">implementation guide</a> will be displayed. Follow the steps provided in the guide.<br>
 
 In order to build the Linux (AI SDK) or develop with your custom board or 3rd party board, please refer to the following pages.<br>

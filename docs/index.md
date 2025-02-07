@@ -36,30 +36,20 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2024.12.20
+                2025.2.7
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V AI Applications Video</b> is released.
+                    <b>AI Navigator Quick Start Guide</b> is updated.
                     <ul>
                         <li> 
-                            Added sample use-case videos for following AI Applications.
-                            <ul>
-                                <li> 
-                                    Defense Wild Animals for Crop (Agriclture)
-                                </li>
-                                <li> 
-                                    Conference Room Usage Monitor (Smart Building)
-                                </li>
-                                <li> 
-                                    Access Control (Industrial)
-                                </li>
-                            </ul>
+                            Users can develop more AI Applications for RZ/V2H with the latest environment.<br>
+                            The supported AI Applications are listed at the top of the guide.<br>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="#app-video"><b>AI Applications video</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
             <br>
             <br>
         </div>
