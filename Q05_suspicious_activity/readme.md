@@ -9,6 +9,18 @@ It has 3 modes of running.
 2. Using MIPI Camera as Input
 3. Using USB Camera as Input
 
+### Supported Product  
+<table>
+    <tr>
+      <th>Product</th>
+      <th>Supported AI SDK version</th>
+    </tr>
+    <tr>
+      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+      <td>RZ/V2L AI SDK v5.00</td>
+    </tr>
+</table>
+
 #### Demo:
 
 <img src = "./images/SuspiciousActivity.gif" width="480" height="320">
