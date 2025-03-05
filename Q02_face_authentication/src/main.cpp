@@ -585,6 +585,12 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
 
 int main(int argc, char **argv)
 {
+    /*Disable OpenCV Accelerator due to the use of multithreading */
+    #ifdef V2H
+    unsigned long OCA_list[16];
+    for(int i = 0; i < 16; i++) OCA_list[i] = 0;
+    OCA_Activate(&OCA_list[0]);
+    #endif
     /* check the input source is valid or not */
     if(argc < 2)
     {
