@@ -16,14 +16,30 @@ The AI model used for the sample application is [YOLOV3/Tiny YOLOv3](https://arx
 
 It has following mode of running.
 
-| Mode | RZ/V2L | RZ/V2H |
+| Mode | RZ/V2L | RZ/V2H and RZ/V2N |
 |:---|:---|:---|
 | USB Camera| Supported | Supported |
 | MIPI Camera| Supported | - |
 
-### Supported Product 
-- RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
-- RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
+### Supported Product  
+<table>
+    <tr>
+      <th>Product</th>
+      <th>Supported AI SDK version</th>
+    </tr>
+    <tr>
+      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+      <td>RZ/V2L AI SDK v5.00</td>
+    </tr>
+    <tr>
+      <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+      <td>RZ/V2H AI SDK v5.00</td>
+    </tr>
+    <tr>
+      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+      <td>RZ/V2N AI SDK v5.00</td>
+    </tr>
+</table>
 
 ### Demo 
 Following is the demo for RZ/V2L EVK.  
@@ -79,6 +95,25 @@ Following is the demo for RZ/V2L EVK.
       <td>Used as a camera input source.</td>
     </tr>
     <tr>
+      <td rowspan="4">RZ/V2N</td>
+      <td>RZ/V2N EVK</td>
+      <td>Evaluation Board Kit for RZ/V2N.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2N EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
       <td rowspan="8">Common</td>
       <td>USB Cable Type-C</td>
       <td>Connect AC adapter and the board.</td>
@@ -120,9 +155,9 @@ Following is the demo for RZ/V2L EVK.
 
 Connect the hardware as shown below.  
 
-|RZ/V2L EVK | RZ/V2H EVK |
-|:---|:---|
-|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |
+|RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
+|:---|:---|:---|
+|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600>  |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.  
 **Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
@@ -142,9 +177,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
 
-    >**Note:** Docker environment is required for building the sample application. 
+    >**Note 1:** Docker environment is required for building the sample application.  
+    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.  
 
 
 ### Application File Generation
@@ -179,11 +215,12 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H**
+    **For RZ/V2H and RZ/V2N**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
     make -j$(nproc)
     ```
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.  
 7. The following application file would be generated in the `${PROJECT_PATH}/Q01_footfall_counter/src/build` directory
     - object_tracker
 
@@ -200,14 +237,15 @@ For ease of deployment, all deployable files and folders are provided in the fol
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
 
 Each folder contains following items.
 
 |File | Details |
 |:---|:---|
 |tinyyolov3_onnx | **[RZ/V2L only]** Model object files for deployment. |
-|d-yolov3 | **[RZ/V2H only]** Model object files for deployment. |
+|d-yolov3 | **[RZ/V2H and RZ/V2N]** Model object files for deployment. |
 |coco-labels-2014_2017.txt | Label list for Object Detection. |
 |config.ini | user input config for line, region and object. |
 |object_tracker | application file. |
@@ -215,12 +253,13 @@ Each folder contains following items.
 <!-- |coco-labels-2014_2017.txt | Label list for Object Detection. | -->
 
 ### Instruction
-1. **[For RZ/V2H only]** Run following commands to download the necessary file.  
+1. **[For RZ/V2H and RZ/V2N]** Run following commands to download the necessary file.  
     ```sh
       cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q01_footfall_counter/exe_v2h/d-yolov3
       wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q01_footfall_counter_deploy_tvm_v2h-v230.so
     ```
-2. **[For RZ/V2H only]** Rename the `Q01_footfall_counter_deploy_*.so` to `deploy.so`.
+    > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+2. **[For RZ/V2H and RZ/V2N]** Rename the `Q01_footfall_counter_deploy_*.so` to `deploy.so`.
     ```sh
     mv Q01_footfall_counter_deploy_*.so deploy.so
     ```
@@ -245,10 +284,10 @@ Each folder contains following items.
                 |   |-- deploy.params         #RZ/V2L only
                 |   `-- deploy.so             #RZ/V2L only
                 |
-                |-- d-yolov3                  #RZ/V2H only
-                |   |-- deploy.json           #RZ/V2H only
-                |   |-- deploy.params         #RZ/V2H only
-                |   `-- deploy.so             #RZ/V2H only
+                |-- d-yolov3                  #RZ/V2H and RZ/V2N
+                |   |-- deploy.json           #RZ/V2H and RZ/V2N
+                |   |-- deploy.params         #RZ/V2H and RZ/V2N
+                |   `-- deploy.so             #RZ/V2H and RZ/V2N
                 |-- config.ini
                 |-- coco-labels-2014_2017.txt
                 `-- object_tracker
@@ -285,9 +324,11 @@ After completion of the guide, the user is expected of following things.
     ```
 4. Following window shows up on HDMI screen.  
 
-    |RZ/V2L EVK | RZ/V2H EVK |
+    |RZ/V2L EVK | RZ/V2H EVK and RZ/V2N EVK* |
     |:---|:---|
-    |<img src=./images/Q01_image_V2L.png width=420>| <img src=./images/Q01_image_V2H.png width=420>  |
+    |<img src=./images/Q01_image_V2L.png width=420>| <img src=./images/Q01_image_V2H.png width=420>  |  
+
+    > *Performance in the screenshot is for RZ/V2H EVK.
 
     <!-- On application window, following information is displayed.  
     - Camera capture  
@@ -307,6 +348,10 @@ After completion of the guide, the user is expected of following things.
 
 5. To terninate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+i.e., RZ/V2N application log contains "RZ/V2H".  
+This will be solved in the future version.
+
 ## Application: Configuration 
 ### AI Model
 #### RZ/V2L EVK
@@ -316,7 +361,7 @@ Input size: 1x3x416x416
 Output1 size: 1x13x13x255  
 Output2 size: 1x26x26x255  
 
-#### RZ/V2H EVK
+#### RZ/V2H EVK and RZ/V2N EVK
 - YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
 Dataset: [COCO](https://cocodataset.org/#home)  
 Input size: 1x3x416x416  
@@ -330,10 +375,11 @@ Output3 size: 1x52x52x255
 |:---|:---|:---|
 |RZ/V2L EVK|Tiny YOLOv3| Approximately 68 ms  |
 |RZ/V2H EVK |YOLOv3 | Approximately 29 ms  |
+|RZ/V2N EVK |YOLOv3 | Approximately 87 ms  |
 
 ### Processing
 
-|Processing | RZ/V2L EVK | RZ/V2H EVK |
+|Processing | RZ/V2L EVK | RZ/V2H EVK and RZ/V2N EVK |
 |:---|:---|:---|
 |Pre-processing | Processed by CPU. | Processed by CPU. |
 |Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
@@ -345,7 +391,7 @@ Output3 size: 1x52x52x255
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
 |RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
-|RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2H EVK and RZ/V2N EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
   
 
 ### Explanation of the `config.ini` file 
@@ -384,7 +430,7 @@ To modify the configuration settings, edit the values in this file using VI Edit
 - When the person goes out of the ROI, the application can call the API to remove the person data from the DB and cache.
 
 ## Reference
-- For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.  
+- For RZ/V2H EVK and RZ/V2N EVK, this application supports USB camera only with 640x480 resolution.  
 FHD resolution is supported by e-CAM22_CURZH camera (MIPI).  
 Please refer to following URL for how to change camera input to MIPI camera.  
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  
