@@ -1,4 +1,22 @@
 /***********************************************************************************************************************
+<<<<<<< HEAD
+=======
+* Copyright 2024 Renesas Electronics Corporation
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+***********************************************************************************************************************/
+/***********************************************************************************************************************
+>>>>>>> origin/object_counter
 * DISCLAIMER
 * This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
 * other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
@@ -15,6 +33,11 @@
 * http://www.renesas.com/disclaimer
 *
 * Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Q01_footfall_counter/src/box.h
+=======
+>>>>>>> origin/object_counter
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
 * Copyright 2024 Renesas Electronics Corporation
@@ -30,6 +53,10 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
+<<<<<<< HEAD
+=======
+>>>>>>> origin/object_counter:Q08_object_counter/src/box.h
+>>>>>>> origin/object_counter
 ***********************************************************************************************************************/
 #ifndef BOX_H
 #define BOX_H
@@ -59,7 +86,15 @@ typedef struct detection
 } detection;
 
 /*****************************************
+<<<<<<< HEAD
 * detection : Detected result
+=======
+<<<<<<< HEAD:Q01_footfall_counter/src/box.h
+* bbox_t : Detected result
+=======
+* detection : Detected result
+>>>>>>> origin/object_counter:Q08_object_counter/src/box.h
+>>>>>>> origin/object_counter
 ******************************************/
 struct bbox_t
 {
