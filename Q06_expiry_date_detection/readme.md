@@ -219,7 +219,7 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```
 5. Download the `boost` tar file
    ```sh
-   wget https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2
+   wget https://archives.boost.io/release/1.81.0/source/boost_1_81_0.tar.bz2 
    ```
    >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the src folder present on the mounted `data` directory.
 
