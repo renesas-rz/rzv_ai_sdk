@@ -9,7 +9,7 @@ In web application mode, User can use any host machine (Windows/Linux) which is 
 ## Application: Requirements
 
 #### Hardware Requirements
-- RZ/V2H Evaluation Board Kit
+- RZ/V2H Evaluation Board Kit or RZ/V2N Evaluation Board Kit
     - USB Serial Cable [Required to connect to board]
 - Ethernet Cable [Required to connect to the board network]
 - Ethernet Hub or Router [Internet connection is required for Host PC during the runtime of the web application] 
@@ -17,6 +17,7 @@ In web application mode, User can use any host machine (Windows/Linux) which is 
 
 <img src=./images/hardware_req.JPG width="240" >
 
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same hardware configuration can be applied.
 
 [Details](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started)
 
@@ -51,7 +52,7 @@ The following application file would be generated after this procedure.
 ## Application: Deploy Stage (on Host PC) 
 
 > Note: Below command are for linux host machine, User can also translate them to Windows PC commands
-1. Copy the fish web application [`fish_web_app_exe`](./fish_web_app_exe/) to the host machine (any host machine which is connected to the same network as the V2H board).
+1. Copy the fish web application [`fish_web_app_exe`](./fish_web_app_exe/) to the host machine (any host machine which is connected to the same network as the board).
 >Note: Within the same network means, the host and board should be able to communicate with each other through LAN. E.g. Host IP: 192.168.197.200 and Board IP: 192.168.197.161
 
 
@@ -109,7 +110,7 @@ chmod a+x init_app.sh
 
 * Please note that the Host PC require internet connection to run the web application. 
 
-* Get IP of the RZ/V2H Evaluation Board Kit, Run the command on the RZ/V2H Evaluation Board Kit terminal.
+* Get IP of the board, Run the command on the board terminal.
 
 ```sh
 ifconfig
@@ -146,6 +147,9 @@ chmod a+x start_app.sh
 
     <img src=./images/fish_web_app_step4.JPG width="480">
 
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+i.e., RZ/V2N application log contains "RZ/V2H".  
+This will be solved in the future version.
 
 ## Application: Specifications
 
