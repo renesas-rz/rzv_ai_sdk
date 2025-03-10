@@ -36,20 +36,13 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.2.7
+                2025.3.11
             </h6>
-            <ul>
-                <li>
-                    <b>AI Navigator Quick Start Guide</b> is updated.
-                    <ul>
-                        <li> 
-                            Users can develop more AI Applications for RZ/V2H with the latest environment.<br>
-                            The supported AI Applications are listed at the top of the guide.<br>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+                <b>Users are recommended to use the latest version in the following URL.</b><br>
+                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
             <br>
             <br>
         </div>

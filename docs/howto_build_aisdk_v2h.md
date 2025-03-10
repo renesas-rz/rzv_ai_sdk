@@ -20,7 +20,7 @@ layout: default
     <div class="col-12">
       AI SDK is a quick and easy AI Application development environment.<br>
       It is specifically made for RZ/V2H Evaluation Board Kit with fixed Linux components.<br>
-      (For more information, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK</a>.)<br>
+      (For more information, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}" target="_blank" rel="noopener noreferrer">AI SDK</a>.)<br>
       <br>
       To modify Linux component, you need to build AI SDK from source code.<br>
       AI SDK Source Code can generate the same Linux environment as AI SDK.<br>
@@ -37,12 +37,12 @@ layout: default
       <br>
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
-      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">RZ/V2H BSP Manual Set</a>.<br>
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">RZ/V2H BSP Manual Set</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
         <ol>
-          <li>Users have launched RZ/V2H Evaluation Board Kit according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>, which means they can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Application</a> on the board.<br>
+          <li>Users have launched RZ/V2H Evaluation Board Kit according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>, which means they can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Application</a> on the board.<br>
           </li>
           <li>To build Yocto Linux, the below equipment should be prepared.<br>
             <table class="gstable">
@@ -76,7 +76,7 @@ layout: default
   <div class="row">
     <div class="col-12">
       Download the RZ/V2H AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v500-source-code" role="button">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v500-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0180F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -114,7 +114,7 @@ printenv WORK
 {% highlight plaintext %}
 <path to the working directory>/ai_sdk_work
 {% endhighlight %}
-      If not, please register the working directory path to an environment variable according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step4">Step4: Extract RZ/V AI SDK package in Getting Started</a>.
+      If not, please register the working directory path to an environment variable according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step4" target="_blank" rel="noopener noreferrer">Step4: Extract RZ/V AI SDK package in Getting Started</a>.
       </li>
     </ul>
   </li>
@@ -219,14 +219,13 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       </li>
   -->
   <!-- MEMO:: Bus setting patch file is non -support. -->
-  <!--
       <li id="bus_patch">Apply patch file for bus setting.<br>
-      When using a combination of camera, DRP-AI and display, applying this patch will improve stability.<br>
-      Regarding cameras, the patch should be applied when using e-CAM22_CURZH, HD, 30fps, 2 cameras (total number of access bytes is 1843200 x 30 x 2) or more, or when encoding/decoding data input from outside the RZ/V2H.<br>
-      This patch is a sample for checking operation.<br><br>
+      If the system does not work properly, such as the stream stopping, when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
+      This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.<br>
+      Please apply this patch with caution after thorough verification.<br><br>
         <ol type="A">
           <li>
-            Obtain the patch file from the link below..
+            Obtain the two patch files from the links below.
             <table class="mytable">
               <tr>
                 <th>Patch file link</th>
@@ -234,8 +233,12 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0000-rzv2h-system_setting.patch">
-                    0000-rzv2h-system_setting.patch
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch">
+                    0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch
+                  </a>
+                  <br>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch">
+                    0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch
                   </a>
                 </td>
                 <td>
@@ -245,20 +248,21 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
             </table>
           </li>
           <li>
-            Copy and apply the patch file.
+            Copy and apply the patch files.
 {% highlight shell%}
-cp <Path to the file>/0000-rzv2h-system_setting.patch ${YOCTO_WORK}
+cp <Path to the file>/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch ${YOCTO_WORK}
+cp <Path to the file>/0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}
-patch -p1 < 0000-rzv2h-system_setting.patch
+patch -p1 < 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch
+patch -p1 < 0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch
 {% endhighlight %}
           </li>
         </ol>
       </li>
-  -->
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
         The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.<br>
         <ol type="A">
-          <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2H Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">this link</a> to obtain the patch file below.
+          <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2H Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">this link</a> to obtain the patch file below.
             <table class="mytable">
               <tr>
                 <th>File name</th>
@@ -289,7 +293,9 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
+0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch
 0001-tesseract.patch
+0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch
 0002-sd-image-size-16gb.patch
 e-CAM22_CURZ*.patch
 meta-econsys
@@ -330,7 +336,7 @@ patch -p1 < ../0002-sd-image-size-16gb.patch
     <div class="note">
       <span class="note-title">Note</span>
       The default size of the microSD card image created in this guide is approximately 16 GB.<br>
-      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D2">D1. For RZ/V2H: Change the size of the microSD card image in WIC format</a>.<br>
+      If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D1" target="_blank" rel="noopener noreferrer">D1. Change the size of the microSD card image in WIC format</a>.<br>
     </div>
   </li>
   <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>
@@ -406,7 +412,7 @@ MACHINE=rzv2h-evk-ver1 bitbake core-image-weston -c populate_sdk
 <h4>
 This is the end of how to build AI SDK Source Code.
 </h4>
-You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3">Step 3: Obtain RZ/V2H AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>.
+You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2H AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.
 <br>
 <table class="mytable">
   <tr>
@@ -439,17 +445,17 @@ You have prepared following files, which is same as the one provided in <a href=
 <div class="note">
   <span class="note-title">Note 1</span>
   For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
+  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 2</span>
   When customizing Linux development environment, following information may help.<br>
   <ul>
     <li>
-      <a href="https://docs.yoctoproject.org/">https://docs.yoctoproject.org/</a>
+      <a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">RZ/V2H BSP Manual Set</a>
+      <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">RZ/V2H BSP Manual Set</a>
     </li>
   </ul>
 </div>
@@ -458,16 +464,16 @@ You have prepared following files, which is same as the one provided in <a href=
   To add more functionality to AI SDK, please refer to following URL.
   <ul>
     <li>
-      <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package">RZ/V2H ROS2 Package</a>
+      <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package" target="_blank" rel="noopener noreferrer">RZ/V2H ROS2 Package</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package">RZ/V Multi-OS Package</a>
+      <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/software-tool/rz-mpu-security-package">RZ MPU Security Package</a>
+      <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">RZ MPU Security Package</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/en/software-tool/rzv2h-isp-support-package">RZ/V2H ISP Support Package</a>
+      <a href="https://www.renesas.com/en/software-tool/rzv2h-isp-support-package" target="_blank" rel="noopener noreferrer">RZ/V2H ISP Support Package</a>
     </li>
   </ul>
 </div>
@@ -484,7 +490,7 @@ You have prepared following files, which is same as the one provided in <a href=
 If you have any questions about AI SDK Source Code,<br>
 please add new issues to AI SDK GitHub issues.<br>
 <br>
-<a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button">Go to GitHub issues</a>
+<a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a>
 
 <div class="row">
   <div class="col-12" align="right">

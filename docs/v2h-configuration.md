@@ -152,7 +152,8 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <h3 id="v2h-driver">
                 Drivers
             </h3>
-            Following table shows the list of drivers. 
+            Following table shows the list of drivers.<br>
+            For more details, see <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
             <!-- UNCOMMENT following for v5.00 release. -->
             <div class="note">
                 <span class="note-title">Note</span>
@@ -188,10 +189,12 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             CPU/CA55
                         </td>
                         <td>                    <!-- Support -->
-                            &#10004;
+                            <span class="text-info">&#10004;</span>
                         </td>
                         <td>                    <!-- Remarks -->
-                            Supports 1.1GHz, 1.5GHz, 1.6GHz and 1.7GHz.
+                            Supports 1.1GHz, 1.5GHz, 1.6GHz and 1.7GHz.<br>
+                            If you use CA55 at 1.8GHz, you will need configuration at system startup.<br>
+                            For configuration instructions, see <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a>.
                         </td>
                     </tr>
                     <tr>
@@ -615,6 +618,15 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         </td>
                     </tr>
                 </table>
+                <div class="note">
+                <span class="note-title">Note</span>
+                If the system does not work properly, such as the stream stopping,
+                when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
+                This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.<br>
+                Please apply this patch with caution after thorough verification.<br>
+                (Patch file: 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch, 0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch)<br>
+                For how to apply the patch, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#bus_patch" role="button" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
+                </div>
             </h6>
             <br>
         </div>
@@ -626,12 +638,6 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <br>
             <br>
             <ul>
-                <li>
-                    RZ/V2H Linux BSP supports CPU/CA55 operation at 1.1 GHz, 1.5 GHz, 1.6 GHz, and 1.7 GHz. It does not support CPU/CA55 operation at 1.8 GHz.
-                </li>
-                <li>
-                    When using the ISP equipped camera e-CAM22_CURZH, supported transfer size is only combinations with HD (1280x720), 30 fps, 2 cameras (Total access bytes = 1843200 x 30 x 2) or less.
-                </li>
                 <li>
                     Some AI models with frequent memory accesses may affect the performance of other LSI functions that access memory.
                     We are considering to improve this issue in the next release version.
