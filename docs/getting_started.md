@@ -668,7 +668,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.10/01_Head_count" target="_blank" rel="noopener noreferrer">01_Head_count</a>
+            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/01_Head_count" target="_blank" rel="noopener noreferrer">01_Head_count</a>
           </h6>
         </td>
     </tr>
@@ -732,7 +732,7 @@ cd /drp-ai_tvm/data
 {% endhighlight %}
       </li><br>
       <li>Download the application source code.<br>
-        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.10/01_Head_count" target="_blank" rel="noopener noreferrer">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
+        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/main/01_Head_count" target="_blank" rel="noopener noreferrer">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
         <br>
 {% highlight shell%}
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
