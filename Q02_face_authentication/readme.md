@@ -13,14 +13,30 @@ This kind of application makes it easier to automate the authentication process,
 
 It has following camera input modes.
 
-|Mode        |RZ/V2L    |RZ/V2H    |
+|Mode        |RZ/V2L    |RZ/V2H and RZ/V2N  |
 |:---        |:---      |:---      |
 |USB Camera  |Supported |Supported |
 |MIPI Camera |Supported | -        |
 
 ### Supported Product
-- RZ/V2L Evaluation Board Kit (RZ/V2L EVK)
-- RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
+<table>
+    <tr>
+      <th>Product</th>
+      <th>Supported AI SDK version</th>
+    </tr>
+    <tr>
+      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+      <td>RZ/V2L AI SDK v5.00</td>
+    </tr>
+    <tr>
+      <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+      <td>RZ/V2H AI SDK v5.00</td>
+    </tr>
+    <tr>
+      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+      <td>RZ/V2N AI SDK v5.00</td>
+    </tr>
+</table>  
 
 ### Demo
 
@@ -78,6 +94,25 @@ Following is the demo for RZ/V2L EVK.
       <td>Used as a camera input source.</td>
     </tr>
     <tr>
+      <td rowspan="4">RZ/V2N</td>
+      <td>RZ/V2N EVK</td>
+      <td>Evaluation Board Kit for RZ/V2N.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2N EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
       <td rowspan="8">Common</td>
       <td>USB Cable Type-C</td>
       <td>Connect AC adapter and the board.</td>
@@ -119,9 +154,9 @@ Following is the demo for RZ/V2L EVK.
 
 Connect the hardware as shown below.  
 
-|RZ/V2L EVK | RZ/V2H EVK |
-|:---|:---|
-|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |
+|RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
+|:---|:---|:---|
+|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600> |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
 >**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
@@ -141,9 +176,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK and RZ/V2N EVK |`rzv2h_ai_sdk_container`  |
 
-    >**Note:** Docker environment is required for building the sample application. 
+    >**Note 1:** Docker environment is required for building the sample application.  
+    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.  
 
 
 ### Application File Generation
@@ -178,11 +214,12 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H**
+    **For RZ/V2H and RZ/V2N**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
     make -j$(nproc)
-    ```
+    ```  
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.  
 5. The following application file would be generated in the `${PROJECT_PATH}/Q02_face_authentication/src/build` directory
     - face_recognition
 
@@ -199,7 +236,8 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
 
 Each folder contains following items.
 |File | Details |
@@ -298,7 +336,10 @@ After completion of the guide, the user is expected of following things.
 4. Termination
     - Application can be terminated by clicking the left mouse double click.
     - Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
-
+  
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+i.e., RZ/V2N application log contains "RZ/V2H".  
+This will be solved in the future version.
 
 ## Application: Configuration
 ### AI Model  
@@ -313,10 +354,11 @@ The threshold kept for the match is `0.23`.
 |:---|:---|:---|
 |RZ/V2L EVK |FaceNet | Approximately 450ms  |
 |RZ/V2H EVK |FaceNet | Approximately 186ms  |
+|RZ/V2N EVK |FaceNet | Approximately 192ms  |
 
 ### Processing
 
-|Processing | RZ/V2L EVK | RZ/V2H EVK |
+|Processing | RZ/V2L EVK | RZ/V2H EVK and RZ/V2N EVK |
 |:---|:---|:---|
 |Pre-processing | Processed by CPU. | Processed by CPU. |
 |Inference | Processed by DRP-AI and CPU. | Processed by DRP-AI and CPU. |
@@ -327,11 +369,11 @@ The threshold kept for the match is `0.23`.
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
 |RZ/V2L EVK | VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
-|RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2H EVK and RZ/V2N EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
  
   
 ## Reference
-- For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.     
+- For RZ/V2H EVK and RZ/V2N EVK, this application supports USB camera only with 640x480 resolution.     
 To use FHD, please use MIPI camera.   
 Please refer to following URL for how to change camera input to MIPI camera.  
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  

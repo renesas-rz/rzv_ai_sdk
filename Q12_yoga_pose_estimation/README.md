@@ -17,7 +17,7 @@ Here are some of the key features of the Fish Detection Application:
 
 It has following modes of running.
 
-|Mode | RZ/V2H |
+|Mode | RZ/V2H and RZ/V2N |
 |:---|:---|
 |MIPI Camera|`-`|
 |USB Camera|`Supported`|
@@ -26,7 +26,20 @@ It has following modes of running.
 
 
 ### Supported Product
-- RZ/V2H Evaluation Board Kit (RZ/V2H EVK)
+<table>
+    <tr>
+      <th>Product</th>
+      <th>Supported AI SDK version</th>
+    </tr>
+    <tr>
+      <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+      <td>RZ/V2H AI SDK v5.00</td>
+    </tr>
+    <tr>
+      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+      <td>RZ/V2N AI SDK v5.00</td>
+    </tr>
+</table>
 
 ### Demo
 
@@ -56,6 +69,25 @@ Following is the demo for RZ/V2H EVK.
       <td>HDMI Cable</td>
       <td>Used to connect the HDMI Monitor and the board.<br>
       RZ/V2H EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">RZ/V2N</td>
+      <td>RZ/V2N EVK</td>
+      <td>Evaluation Board Kit for RZ/V2N.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2N EVK has HDMI port.</td>
     </tr>
     <tr>
       <td>USB Camera</td>
@@ -103,9 +135,9 @@ Following is the demo for RZ/V2H EVK.
 
 Connect the hardware as shown below.  
 
-| RZ/V2H EVK |
-|:---|
-|<img src=./images/hw_conf_v2h.png width=600>  |
+| RZ/V2H EVK | RZ/V2N EVK |
+|:---|:---|
+|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600>  |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
 >**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
@@ -125,8 +157,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
 
-    >**Note:** Docker environment is required for building the sample application. 
+    >**Note 1:** Docker environment is required for building the sample application.  
+    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.  
 
 
 ### Application File Generation
@@ -161,6 +195,7 @@ E.g.,use the `rzv2h_ai_sdk_container` as the name of container created from  `rz
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.  
 5. The following application file would be generated in the `${PROJECT_PATH}/Q12_yoga_pose_estimation/src/build` directory
     - pose_estimator
 
@@ -176,7 +211,8 @@ After completion of the guide, the user is expected of following things.
 For the ease of deployment all the deployable files and folders are provided in following folders.  
 |Board | `EXE_DIR` |
 |:---|:---|
-|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
 
 Each folder contains following items.
 |File | Details |
@@ -250,11 +286,16 @@ After completion of the guide, the user is expected of following things.
     ```sh
     ./pose_estimator VIDEO "path to the input video"
     ```
+    > Note : Due to the number of equipped IP on RZ/V2N, this application will show the error when using the hardware decoding (H.264/H.265) with VIDEO input for RZ/V2N.  CPU decoding, i.e., MJPEG, can be used.
+
+
 3. Following window shows up on HDMI screen.  
 
-    | RZ/V2H EVK |
+    | RZ/V2H EVK and RZ/V2N EVK* |
     |:---|
     |<img src=./images/yoga_pose_estimation_v2h.jpg width=350>  |
+
+    > *Performance in the screenshot is for RZ/V2H EVK.
 
     On application window, following information is displayed.  
     - Camera capture  
@@ -267,10 +308,14 @@ After completion of the guide, the user is expected of following things.
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+i.e., RZ/V2N application log contains "RZ/V2H".  
+This will be solved in the future version.
+
 ## Application: Configuration
 ### AI Model  
 
-- RZ/V2H
+- RZ/V2H and RZ/V2N
     - HR-Net: [Github](https://github.com/HRNet/HRNet-Human-Pose-Estimation) for keypoint detection  
     Dataset: [COCO dataset](https://cocodataset.org/#download)  
     Input size: 1x3x256x192  
@@ -294,6 +339,7 @@ After completion of the guide, the user is expected of following things.
 |Board |  AI inference time <br>for keypoint detection| AI inference time <br>for pose classification |
 |:---:|:---:| :---:|
 |RZ/V2H EVK | Approximately 18 ms  | Approximately 1 ms  |
+|RZ/V2N EVK | Approximately 35 ms  | Approximately 1 ms  |
 
 ### Processing
 
@@ -307,11 +353,11 @@ After completion of the guide, the user is expected of following things.
 
 |Board | Camera capture buffer size|HDMI output buffer size|
 |:---|:---|:---|
-|RZ/V2H EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+|RZ/V2H EVK and RZ/V2N EVK | VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
  
   
 ## Reference
-- For RZ/V2H EVK, this application supports USB camera only with 640x480 resolution.     
+- For RZ/V2H EVK and RZ/V2N EVK, this application supports USB camera only with 640x480 resolution.     
 To use FHD, please use MIPI camera.   
 Please refer to following URL for how to change camera input to MIPI camera.  
 [https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).  

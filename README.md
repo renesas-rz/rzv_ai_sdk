@@ -12,6 +12,7 @@ Each hardware requirements are specified in the respective `readme.md` of the ap
 ### Supported board
 - [RZ/V2L Evaluation Board Kit](#rzv2l-evaluation-board-kit)  
 - [RZ/V2H Evaluation Board Kit](#rzv2h-evaluation-board-kit)  
+- [RZ/V2N Evaluation Board Kit](#rzv2n-evaluation-board-kit)  
 
 ### RZ/V2L Evaluation Board Kit
 Here it is specified how to connect those hardware equipment to the RZ/V2L Evaluation Board Kit.
@@ -68,6 +69,8 @@ For building the applications
 ### RZ/V2H Evaluation Board Kit
 Please refer to [Getting Started](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) for the details of RZ/V2H Evaluation Board Kit.
 
+### RZ/V2N Evaluation Board Kit
+Please refer to [Getting Started](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) for the details of RZ/V2N Evaluation Board Kit.
 
 ## Startup Guide
 
