@@ -3,29 +3,70 @@ layout: default
 ---
 
 <div class="container">
-    <div class="row">
-        <div id="page-top" class="top col-12">
-            AI Applications and AI SDK<br>
-            on RZ/V series
+    <div id="page-top" class="row webtop ">
+        <div class="col-12 col-lg-5">
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-12">
+                    <span style="font-size: 38px">
+                        RZ/V AI Web
+                    </span>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-12">
+                    <p class="ms-3">
+                        <a class="btn btn-secondary chkout-btn mt-1" 
+                            style=" text-align:left;" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link ai-software.md %}" 
+                            role="button">
+                            <span class="banner-title" style="line-height:1.0;">
+                                <span style="font-size:80%;">
+                                    First, check out 
+                                </span><br>
+                                <span style="font-size:100%;">
+                                    RZ/V AI Software
+                                </span>
+                            </span><br>
+                        </a>
+                    </p>    
+                </div>
+            </div>
         </div>
+        <!-- <div class="col-7 top-message lg-no-display">
+            <i>
+                <span class="main-message">The best solution for starting your AI applications.</span>
+                <br>
+                <span class="sub-message">
+                    AI Applications and AI SDK are quick and easy solutions for starting AI.  
+                    <br>
+                    It provides various AI applications for free.
+                </span>
+            </i>
+        </div> -->
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <br>
+        <!-- <div class="col-12 text-center lg-display"> -->
+            <!-- <br> -->
             <br>
             <i>
-                <h1 class="sub">The best solution for starting your AI applications.</h1>
-                <h5 class="sub">AI Applications and AI SDK are quick and easy solutions for starting AI.  <br>
-                    It provides various AI applications for free.</h5>
+                <h4 class="mb-2">
+                    The best solution for starting your AI applications.
+                </h4>
+                <h5>
+                    AI Applications and AI SDK are quick and easy solutions for starting AI.  <br>
+                    It provides various AI applications for free.
+                </h5>
             </i>
         </div>
-        <br>
-        <div class="col-12 text-center">
+        <!-- <br> -->
+        <div class="col-12 text-center mb-5">
             <br>
             <a href="img/top_rzv.svg" data-lightbox="group"><img src="img/top_rzv.svg" alt="AI Application and AI SDK overview"></a><br>
         </div>
+        <br>
+        <br>
+        <br>
     </div>
 </div>
 <br>
@@ -38,11 +79,59 @@ layout: default
             <h6 align="right" >
                 2025.3.11
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>AI Applications v5.10</b> is released.
+                    <ul>
+                        <li> 
+                            Added RZ/V2N Evaluation Board Kit support for 51 applications.
+                        </li>
+                        <li> 
+                            Updated the AI model used in 3 applications.
+                            <ul>
+                                <li> 
+                                    Multi-Camera Parking Lot Management
+                                </li>
+                                <li> 
+                                    Multi-Camera Vehicle Detector
+                                </li>
+                                <li> 
+                                    Car Accident Prevention Alert
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Supported RZ/V2N AI SDK v5.00.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>RZ/V2N AI SDK v5.00</b> is released.
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.3.0.<br>
+                        </li>
+                        <li> 
+                            Supported RZ/V2N Linux BSP v1.0.0.<br>
+                        </li>
+                        <li>
+                            Supported Graphics Library Unrestricted Version v3.1.2.3.<br>
+                        </li>
+                        <li>
+                            Supported Video Codec Library v3.3.3.1.<br>
+                        </li>
+                        <li>
+                            Supported OpenCV Accelerator v1.10.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2n-spec"><b>RZ/V2N AI SDK Specification</b></a>.
             <br>
             <br>
         </div>
@@ -60,16 +149,32 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-8">
-            Renesas RZ/V AI Software Development Kit (AI SDK) is the most comprehensive solution for building end-to-end accelerated AI applications.  AI SDK includes Yocto Linux with bootloader, Linux Kernel, Cross Compiler and a complete set of libraries for DRP-AI, graphics and codec.  
+            Renesas RZ/V AI Software Development Kit (AI SDK) is the most comprehensive solution for building end-to-end accelerated AI applications.  
             <br>
             <br>
-            <i>Getting Started</i> is a complete guide to learn <b>how to run AI Applications</b>, which explains the procedure for setting up the development environment, compiling AI Applications, setting up the board and running AI Applications.
-            <br><br>
-            <h5>Get your target board now and <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">GET STARTED.</a></h5>
+            Getting Started is a complete guide to learn how to run RZ/V AI Applications with RZ/V AI SDK.
+            <br>
+            <!-- <h5>Get your target board now and <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">GET STARTED.</a></h5> -->
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left; width: 70%;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    <span style="font-size:70%;">
+                        Get the target board now and
+                    </span><br>
+                    Get Started!
+                </span><br>
+                <span class="banner-line">
+                    How to startup RZ/V board? How to run AI Applications?
+                </span>
+            </a>
+            <br>
+            <br>
             <a href="#video">Tutorial video</a> will help you understand better. <br>
         </div>
         <div class="start col-12 col-sm-4">
-            <img  src="img/get_started.svg" alt="Get Started"/>
+            <!-- <img  src="img/get_started.svg" alt="Get Started"/> -->
+            <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">
+                <img src="img/get_started.svg" alt="Get Started">
+            </a>
         </div>
     </div>
 </div>
@@ -78,71 +183,120 @@ layout: default
 <br>
 <br>
 
-<h3 id="ai-applications" align="center">AI Applications</h3>
-<p align="center">
+<h3 id="ai-applications">AI Applications</h3>
+<!-- <p align="center">
     AI Applications provides the source code, pre-build application binary and pre-trained AI model objects,<br>
     which allow you to select the application from various use cases, and run it on the board immediately.<br>
     To see the overview about AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">About AI Applications</a> page.<br>
 </p>
-<p align="center">Choose the category of applications.</p>
+<p align="center">Choose the category of applications.</p> -->
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 col-xxl-3">
-            <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#agriculture"><img width="100%" src="img/agriculture.jpg" alt="category"/></a> <br>
-            <ul class="category">
-                <li id="agriculture">
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#agriculture">Agriculture</a> 
-                </li>
-            </ul>
+        <div class="col-12">
+            AI Applications provides the source code, pre-build application binary and pre-trained AI model objects, which allow you to select the application from various use cases, and run it on the board immediately.<br>
         </div>
-        <div class="col-lg-6 col-xxl-3">
-            <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#healthcare"><img width="100%" src="img/healthcare.jpg" alt="category"/> </a> <br>
-            <ul class="category">
-                <li id="healthcare">       
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#healthcare">Healthcare</a>
-                </li>
-            </ul>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="u_line">
+                Find your AI Application
+            </h4>
         </div>
-        <div class="col-lg-6 col-xxl-3">
-            <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#industrial"><img width="100%" src="img/industry.jpg" alt="category"/></a> <br>
-            <ul class="category">
-                <li id="industrial">
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#industrial">Industrial</a>
-                </li>
-            </ul>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <a class="btn btn-secondary square-button ms-3 mt-1" 
+                style="text-align:left; width: 100%;" 
+                href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" 
+                role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    RZ/V AI Applications >
+                </span><br>
+                <span class="banner-line lg-no-display">
+                    List of AI Applications<br>
+                    Can be used AS IS.
+                </span>
+            </a>
         </div>
-        <div class="col-lg-6 col-xxl-3">
-            <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building"><img width="100%" src="img/building.jpg" alt="category"/></a> <br>
-            <ul class="category">
-                <li id="building">       
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building">Smart Building</a>
-                </li>
-            </ul>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" 
+                style="text-align:left; width: 100%; " 
+                href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" 
+                role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    About AI Applications >
+                </span><br>
+                <span class="banner-line lg-no-display">
+                    What is AI Applications?<br>
+                    How is directory/file structured?
+                </span>
+            </a>
         </div>
-        <div class="col-lg-6 col-xxl-3">
-            <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city"><img width="100%" src="img/city.jpg" alt="category"/></a> <br>
-            <ul class="category">
-                <li id="city">       
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city">Smart City</a>
-                </li>
-            </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12 mb-2">
+            <h4 class="u_line">
+                Category
+            </h4>
+            You can search the AI Application by its category.
+            <br>
         </div>
-        <div class="col-lg-6 col-xxl-3">
-            <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#home"><img width="100%" src="img/home.jpg" alt="category"/></a> <br>
-            <ul class="category">
-                <li id="home">
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#home">Smart Home</a>
-                </li>
-            </ul>
+        <div class="col-6 col-lg-4 col-xxl-3">
+            <div id="agriculture" class="category pb-2">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#agriculture">
+                        <img width="100%" src="img/agriculture.jpg" alt="category"/>
+                        <p class="mt-1 mb-0">Agriculture</p>
+                    </a> 
+            </div>
         </div>
-        <div class="col-lg-6 col-xxl-3">
-            <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#retail"><img width="100%" src="img/retail.jpg" alt="category"/> </a> <br>
-            <ul class="category">
-                <li id="retail">
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#retail">Retail</a>
-                </li>
-            </ul>
+        <div class="col-6 col-lg-4 col-xxl-3">
+            <div id="healthcare" class="category pb-2">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#healthcare">
+                        <img width="100%" src="img/healthcare.jpg" alt="category"/>
+                        <p class="mt-1 mb-0">Healthcare</p>
+                    </a> 
+            </div>
+        </div>
+        <div class="col-6 col-lg-4 col-xxl-3">
+            <div id="industrial" class="category pb-2">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#industrial">
+                        <img width="100%" src="img/industry.jpg" alt="category"/>
+                        <p class="mt-1 mb-0">Industrial</p>
+                    </a> 
+            </div>
+        </div>
+        <div class="col-6 col-lg-4 col-xxl-3">
+            <div id="building" class="category pb-2">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building">
+                        <img width="100%" src="img/building.jpg" alt="category"/>
+                        <p class="mt-1 mb-0">Smart Building</p>
+                    </a> 
+            </div>
+        </div>
+        <div class="col-6 col-lg-4 col-xxl-3">
+            <div id="city" class="category pb-2">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building">
+                        <img width="100%" src="img/city.jpg" alt="category"/>
+                        <p class="mt-1 mb-0">Smart City</p>
+                    </a> 
+            </div>
+        </div>
+        <div class="col-6 col-lg-4 col-xxl-3">
+            <div id="home" class="category pb-2">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#home">
+                        <img width="100%" src="img/home.jpg" alt="category"/>
+                        <p class="mt-1 mb-0">Smart Home</p>
+                    </a> 
+            </div>
+        </div>
+        <div class="col-6 col-lg-4 col-xxl-3">
+            <div id="retail" class="category pb-2">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#retail">
+                        <img width="100%" src="img/retail.jpg" alt="category"/>
+                        <p class="mt-1 mb-0">Retail</p>
+                    </a> 
+            </div>
         </div>
     </div>
 </div>
@@ -156,7 +310,7 @@ layout: default
             With the demo binary, users can try the AI Applications without having AI SDK environment.<br>
             Download the Demo for your Evaluation Board Kit (EVK) and see each How to Use Guide.
             <div class="row">
-                <div class="col-12 col-xl-6">
+                <div class="col-12 col-xxl-6">
                     <h4 class="u_line">
                         For RZ/V2L EVK
                     </h4>
@@ -201,7 +355,7 @@ layout: default
                     </div>
                     <br><br>
                  </div>
-                <div class="col-12 col-xl-6">
+                <div class="col-12 col-xxl-6">
                     <h4 class="u_line">
                         For RZ/V2H EVK
                     </h4>
@@ -278,7 +432,7 @@ layout: default
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
-                    </iframe>
+            </iframe>
                 </div>
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
@@ -298,23 +452,20 @@ layout: default
                             <b>Latest Tutorial Video for RZ/V2H</b>
                         </li>
                         <li>
-                            <b>Latest Tutorial Video for RZ/V2H</b>
-                        </li>
-                        <li>
                             For RZ/V2H Evaluation Board Kit.
                         </li>
                         <li>
                             For <b>RZ/V2H</b> AI SDK <b>v3.00</b>.
                             <h6>
                                 <ul>
-                                    <li>
+                <li>
                                         Only supports eSD bootloader.
                                     </li>
                                 </ul>
                             </h6>
-                        </li>
-                    </ul>
-                </div>
+                </li>
+            </ul>
+        </div>
             </div>
         </div>
         <!-- Video panel end -->
@@ -329,7 +480,7 @@ layout: default
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
-                    </iframe>
+            </iframe>
                 </div>
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
@@ -358,10 +509,10 @@ layout: default
                                     <li>
                                         Supports both eSD and eMMC bootloader.
                                     </li>
-                                    <li>
-                                        In this video, eSD bootloader is used.
-                                    </li>
-                                </ul>
+                <li>
+                    In this video, eSD bootloader is used.
+                </li>
+            </ul>
                             </h6>
                         </li>
                     </ul>
@@ -380,7 +531,7 @@ layout: default
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
-                    </iframe>
+            </iframe>
                 </div>
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
@@ -396,7 +547,7 @@ layout: default
                 </div>
                 <div class="griditem-add">
                     <ul>
-                        <li>
+                <li>
                             For RZ/V2L Evaluation Board Kit.
                         </li>
                         <li>
@@ -424,7 +575,7 @@ layout: default
         </div>
         <div class="col-12">
             Video to show sample use-cases of <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">RZ/V AI Applications</a>.
-            <br><br>
+                    <br><br>
         </div>
     </div>
     <div class="row">
@@ -589,8 +740,8 @@ layout: default
                                     </li>
                                     <li>
                                         Output: HDMI (1920x1080)
-                                    </li>
-                                </ul>
+                </li>
+            </ul>
                             </h6>
                         </li>
                     </ul>
@@ -601,8 +752,8 @@ layout: default
                             More Details >
                         </a>
                     </p>
-                </div>
-            </div>
+        </div>
+    </div>
         </div>
         <!-- Video panel end -->
     </div>
@@ -611,32 +762,11 @@ layout: default
 <br>
 <br>
 <br>
-<h3 id="blog">Blogs</h3>
-<div class="container">
+<!-- <h3 id="blog">Blogs</h3> -->
+<!-- <div class="container">
     <div class="row">
-        <div class="col-12">
-            <br>
-            <!-- Template Start -->
-            <!-- 
-            <div>
-                <h5 class="mb-2">
-                    <a href="★LINK★">★Title★</a>
-                </h5>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-8">
-                            ★Overview★（ブログ掲載時に指定している文章）
-                        </div>
-                        <div class="col-4" align="right">
-                            Published: <b>★掲載日：Mmm. dd, yyyy.</b>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <hr style="border-top: 1px solid grey;"> -->
-            <!-- Template End -->
-            <div>
+        <div class="col-12"> -->
+            <!-- <div>
                 <h5 class="mb-2">
                     <a href="https://www.renesas.com/blogs/check-out-latest-features-ai-applications-v210">Check Out the Latest Features in AI Applications v2.10!</a>
                 </h5>
@@ -650,8 +780,8 @@ layout: default
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
+            </div> -->
+            <!-- <br>
             <hr style="border-top: 1px solid grey;">
             <div>
                 <h5 class="mb-2">
@@ -667,8 +797,8 @@ layout: default
                         </div>
                     </div>
                 </div>
-            </div>
-            <br>
+            </div> -->
+            <!-- <br>
             <hr style="border-top: 1px solid grey;">
             <div>
                 <h5 class="mb-2">
@@ -686,15 +816,15 @@ layout: default
                 </div>
             </div>
             <br>
-            <hr style="border-top: 1px solid grey;">
-        </div>
+            <hr style="border-top: 1px solid grey;"> -->
+        <!-- </div>
     </div>
 </div>
 <br>
 <br>
+<br>
+<br> -->
 
-<br>
-<br>
 <h3 id="reference">Reference</h3>
 <div class="container">
     <div class="row">
@@ -709,7 +839,7 @@ layout: default
                 <tr>
                     <td rowspan="1">Common</td>
                     <td>
-                        <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
+                        <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             DRP-AI TVM
                         </a>
                     </td>
@@ -720,10 +850,11 @@ layout: default
                         </small>
                     </td>
                 </tr>
+                <!-- RZ/V2L Reference -->
                 <tr>
                     <td rowspan="3">RZ/V2L</td>
                     <td>
-                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/drp-ai-translator">
+                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/drp-ai-translator" target="_blank" rel="noopener noreferrer">
                             DRP-AI Translator
                         </a>
                     </td>
@@ -736,7 +867,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package">
+                        <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package" target="_blank" rel="noopener noreferrer">
                             RZ/V Verified Linux Package
                         </a>
                     </td>
@@ -749,7 +880,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package">
+                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package" target="_blank" rel="noopener noreferrer">
                             RZ/V2L DRP-AI Support Package
                         </a>
                     </td>
@@ -760,10 +891,11 @@ layout: default
                         </small>
                     </td>
                 </tr>
+                <!-- RZ/V2H Reference -->
                 <tr>
                     <td rowspan="9">RZ/V2H</td>
                     <td>
-                            <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8">
+                            <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8" target="_blank" rel="noopener noreferrer">
                                 DRP-AI Translator i8
                             </a>
                     </td>
@@ -776,7 +908,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">
+                        <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">
                             RZ/V2H BSP Manual Set
                         </a>
                     </td>
@@ -788,7 +920,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-group-linux-interface-specification-gstreamer-users-manual-software">
+                        <a href="https://www.renesas.com/document/mas/rzv2h-group-and-rzv2n-group-linux-interface-specification-gstreamer-users-manual-software" target="_blank" rel="noopener noreferrer">
                             RZ/V2H Video Codec Library  User's Manual
                         </a>
                     </td>
@@ -801,7 +933,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator">
+                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator" target="_blank" rel="noopener noreferrer">
                             RZ/V2H OpenCV Accelerator 
                         </a>
                     </td>
@@ -814,7 +946,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver">
+                        <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver" target="_blank" rel="noopener noreferrer">
                             RZ/V2H DRP-AI Driver
                         </a>
                     </td>
@@ -827,7 +959,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package">
+                        <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package" target="_blank" rel="noopener noreferrer">
                             RZ/V2H ROS2 Package 
                         </a>
                     </td>
@@ -839,7 +971,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package">
+                        <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">
                             RZ/V Multi-OS Package 
                         </a>
                     </td>
@@ -852,7 +984,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package">
+                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">
                             RZ MPU Security Package 
                         </a>
                     </td>
@@ -865,13 +997,129 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/en/software-tool/rzv2h-isp-support-package">
+                        <a href="https://www.renesas.com/software-tool/rzv2h-isp-support-package" target="_blank" rel="noopener noreferrer">
                             RZ/V2H ISP Support Package 
                         </a>
                     </td>
                     <td>
                         <small>
                         Package that can be applied to RZ/V2H AI SDK to use Built-in ISP.
+                        </small>
+                    </td>
+                </tr>
+                <!-- RZ/V2N Reference -->
+                <tr>
+                    <td rowspan="8">RZ/V2N</td>
+                    <td>
+                            <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8" target="_blank" rel="noopener noreferrer">
+                                DRP-AI Translator i8
+                            </a>
+                    </td>
+                    <td>
+                        <small>
+                        AI model conversion tool for DRP-AI embedded in RZ/V2N.<br>
+                        Included in RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip" target="_blank" rel="noopener noreferrer">
+                            RZ/V2N BSP Manual Set
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Document for Linux Drivers used in RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/document/mas/rzv2h-group-and-rzv2n-group-linux-interface-specification-gstreamer-users-manual-software" target="_blank" rel="noopener noreferrer">
+                            RZ/V2N Video Codec Library User's Manual
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        RZ/V2N Group Linux Interface Specification GStreamer User's Manual: Software.<br>
+                        Document for GStreamer in Video Codec Library used in RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator" target="_blank" rel="noopener noreferrer">
+                            RZ/V2N OpenCV Accelerator 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        OpenCV Accelerator which performs OpenCV function in high performance by using DRP.<br>
+                        Used in RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver" target="_blank" rel="noopener noreferrer">
+                            RZ/V2N DRP-AI Driver
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Linux driver to use DRP-AI on RZ/V2N.<br>
+                        Used in RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <!-- 6月release <tr>
+                    <td>
+                        <a href="https://www.renesas.com/us/en/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">
+                            RZ/V2N ROS2 Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package that can be applied to RZ/V2N AI SDK to use ROS2.
+                        </small>
+                    </td>
+                </tr> -->
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">
+                            RZ/V Multi-OS Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package consisting of RZ/V Flexible Software Package (FSP) as software package for Renesas MCU with Arm&reg; Cortex-M, R Core and OpenAMP as standardization API of framework for interprocessor communication for developing multi OS solution.<br>
+                        This package can be applied to RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">
+                            RZ MPU Security Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
+                        This package can be applied to RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" target="_blank" rel="noopener noreferrer">
+                            RZ/V2N ISP Support Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package that can be applied to RZ/V2N AI SDK to use Built-in ISP.
                         </small>
                     </td>
                 </tr>

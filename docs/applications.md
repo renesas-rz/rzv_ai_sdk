@@ -36,9 +36,9 @@ layout: default
             <div id="agriculture1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Animal"
-                data-label=""
+                data-label="Updated!"
                 data-feature="Video"
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Agriculture1_960x540.jpg" 
@@ -47,13 +47,14 @@ layout: default
                         onmouseover="this.src='img/GIF/Agriculture1_480x270.gif'" 
                         onmouseout="this.src='img/Agriculture1_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Defense wild animals for crop</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detect the types of animals that enter your farm or barn for pest control.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 07_Animal_detection<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Animals Detection Images Dataset+Images.cv+Coco Dataset<br>
@@ -73,6 +74,10 @@ layout: default
                                     VIDEO >
                                 </a>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/07_Animal_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -82,7 +87,7 @@ layout: default
                 data-targetobj="Other"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Agriculture2_960x540.jpg" alt="application">
@@ -94,6 +99,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q07_plant_disease_classification<br>
                         <b>Model:</b> Custom<br>
                         <b>Dataset:</b> New Plant Diseases Dataset<br>
@@ -109,6 +115,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q07_plant_disease_classification" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">500fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q07_plant_disease_classification" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">170fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -116,20 +126,21 @@ layout: default
             <div id="agriculture3" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Animal"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Agriculture3_RanchLivestockManagement.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Ranch Livestock Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Counts the number of livestock to help monitor the number of animals bred in a ranch.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q08_object_counter (Animal Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -144,6 +155,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -161,20 +176,21 @@ layout: default
             <div id="building1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Elevator passengers Counting</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues alerts if the elevator is overcrowded and exceeds its capacity.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 01_Head_count<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> HollywoodHeads<br>
@@ -190,6 +206,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/01_Head_count" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/01_Head_count" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -197,9 +217,9 @@ layout: default
             <div id="building2" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature="Video"
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding2_960x540.jpg" 
@@ -208,13 +228,14 @@ layout: default
                         onmouseover="this.src='img/GIF/SmartBuilding2_480x270.gif'" 
                         onmouseout="this.src='img/SmartBuilding2_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Conference Room Usage Monitor</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors if the meeting room is vacant by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -234,6 +255,10 @@ layout: default
                                     VIDEO >
                                 </a>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -241,20 +266,21 @@ layout: default
             <div id="building3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Lighting Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Automatically controls the lighting according to the situation by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -270,6 +296,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -277,20 +307,21 @@ layout: default
             <div id="building4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Security Area Intrusion Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects illegal intrusions to security area in the office.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> HollywoodHeads<br>
@@ -306,6 +337,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -315,7 +350,7 @@ layout: default
                 data-targetobj="Other"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding5_960x540.jpg" alt="application">
@@ -327,6 +362,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 04_Safety_helmet_vest_detection<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> helmet-safety-vest-detection+Kaggle dataset<br>
@@ -342,6 +378,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/04_Safety_helmet_vest_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/04_Safety_helmet_vest_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -349,20 +389,21 @@ layout: default
             <div id="building6" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding6_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for elevator</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         By using hand gestures, elevator operation can be done without touching the buttons.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
                         <b>Model:</b> Tiny YOLOv2+ResNet-18 | YOLOv3<br>
                         <b>Dataset:</b> YOLO-Hand-Detection/HaGRID | HaGRID<br>
@@ -378,6 +419,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/12_Hand_gesture_recognition_v2" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/12_Hand_gesture_recognition_v2" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -387,7 +432,7 @@ layout: default
                 data-targetobj="Face"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding7_960x540.jpg" alt="application">
@@ -399,6 +444,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q02_face_authentication<br>
                         <b>Model:</b> FaceNet<br>
                         <b>Dataset:</b> FaceNet<br>
@@ -414,37 +460,46 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">5fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">5fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
             </div>
             <div id="building8" class="application_card col-lg-6 col-xl-4"
-                data-model="Tiny YOLOv3"
+                data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label="New!"
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2H,"
+                data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Parking Lot Management</dt>
-                    <h6 class="appstatus" align="right"><b>New!</b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors cars or other vehicles going in and out of a parking lot.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
-                        <b>Model:</b> Tiny YOLOv3<br>
-                        <b>Dataset:</b> Custom<br>
+                        <b>Model:</b> YOLOX-L<br>
+                        <b>Dataset:</b> Megvii-BaseDetection<br>
                         <br>
                     </div>
                     <dl>
                         <dd style="display: flex">
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection" style="color:white">RZ/V2H ></a>
-                                <p class="Perf-Framerate">200fps</p>
+                                <p class="Perf-Framerate">67fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">20fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -462,20 +517,21 @@ layout: default
             <div id="city1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection in Railway Station</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the congestion level on trains and buses by detecting the number of passengers.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -491,6 +547,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -498,20 +558,21 @@ layout: default
             <div id="city2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Prohibited Area Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Prevents accidents and detects illegal intrusions in construction site by detecting the entry to prohibited areas.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> HollywoodHeads<br>
@@ -527,6 +588,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -534,20 +599,21 @@ layout: default
             <div id="city3" class="application_card col-lg-6 col-xl-4"
                 data-model="ResNet-18+Tiny YOLOv2"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Distracted driving detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues an alert when the driver is distracted by detecting the line of sight.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 09_Human_gaze_detection<br>
                         <b>Model:</b> ResNet-18+Tiny YOLOv2<br>
                         <b>Dataset:</b> ETH-XGaze/WIDERFACE<br>
@@ -563,6 +629,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/09_Human_gaze_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">182fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/09_Human_gaze_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">37fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -570,20 +640,21 @@ layout: default
             <div id="city4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity6_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Duration monitoring for surveillance camera</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Prevents the theft by monitoring whether there is a suspicious person wandering around the specified area.  Can be used in car dealer, housing, etc.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q01_footfall_counter<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> COCO<br>
@@ -598,6 +669,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">33fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -620,6 +695,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> -<br>
+                        <b>Supported RZ/V2N AI SDK:</b> -<br>
                         <b>Function:</b> Q03_smart_parking<br>
                         <b>Model:</b> Custom<br>
                         <b>Dataset:</b> Custom<br>
@@ -652,6 +728,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> -<br>
+                        <b>Supported RZ/V2N AI SDK:</b> -<br>
                         <b>Function:</b> Q03_smart_parking<br>
                         <b>Model:</b> Custom<br>
                         <b>Dataset:</b> Custom<br>
@@ -672,7 +749,7 @@ layout: default
                 data-targetobj="Face"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity5_960x540.jpg" alt="application">
@@ -684,6 +761,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q02_face_authentication<br>
                         <b>Model:</b> FaceNet<br>
                         <b>Dataset:</b> FaceNet<br>
@@ -699,6 +777,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">5fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">5fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -706,20 +788,21 @@ layout: default
             <div id="city8" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bus passenger counting</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Counts the number of passengers on public transportation. It is also effective in preventing children from being left behind on school buses.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -735,6 +818,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -742,20 +829,21 @@ layout: default
             <div id="city9" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCIty9_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Backtravel Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects people going backwards on one-way stairs, aisles, or escalators. Helps preventing congestion and accidents.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> HollywoodHeads<br>
@@ -770,6 +858,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -792,6 +884,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> -<br>
+                        <b>Supported RZ/V2N AI SDK:</b> -<br>
                         <b>Function:</b> Q05_suspicious_activity<br>
                         <b>Model:</b> CNN+MLP<br>
                         <b>Dataset:</b> Real Life Violence Situations Dataset<br>
@@ -810,20 +903,21 @@ layout: default
             <div id="city11" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Animal"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity11_BirdDamagePrevention.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bird Damage Prevention</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Counts birds captured by the camera and alerts the user. It can be used to prevent bird damage in parks, residential areas, or fields.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q08_object_counter (Animal Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -839,6 +933,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -846,20 +944,21 @@ layout: default
             <div id="city12" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity12_BlindSpotMonitor.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Blind Spot Monitor</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects vehicles that enter the driver's blind spot. It can detect motorcycles and bicycles to help prevent accidents when turning a corner.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -875,6 +974,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -884,7 +987,7 @@ layout: default
                 data-targetobj="Vehicle"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity13_PrecedingVehicleMovementAlert.jpg" alt="application">
@@ -896,6 +999,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 13_Car_ahead_departure_detection<br>
                         <b>Model:</b> Tiny YOLOv3<br>
                         <b>Dataset:</b> COCO<br>
@@ -911,6 +1015,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/13_Car_ahead_departure_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">167fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/13_Car_ahead_departure_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">75fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -918,20 +1026,21 @@ layout: default
             <div id="city14" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity14_EmergencyVehiclesDetector.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Emergency Vehicles Detector</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects an emergency vehicle approaching from behind and alerts the driver. The driver can notice the emergency vehicle at an early stage.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -946,6 +1055,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -954,20 +1067,21 @@ layout: default
             <div id="city15" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity15_IllegalBicycleApproachDetection.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Illegal Bicycle Approach Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects whether motorcycles are in pedestrian-only areas. It can prevent illegal parking or accidents.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -982,6 +1096,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -990,20 +1108,21 @@ layout: default
             <div id="city16" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity16_BicycleRentalStockManagement.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bicycle Rental Stock Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Counts the number of bicycles that are not being used in bicycle rental shops to support bicycle inventory management.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -1018,6 +1137,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1026,20 +1149,21 @@ layout: default
             <div id="city17" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity17_IllegalBicycleParkingMonitorSupport.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Illegal Bicycle Parking Monitor Support</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects illegally abandoned bicycles in front of train stations or other locations to reduce burdens on patrols.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -1055,6 +1179,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q08_object_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1062,20 +1190,21 @@ layout: default
             <div id="city18" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Crack"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity18_InfrastructureDefectPrevention.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Infrastructure Defect Prevention</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detect cracks in tunnels or road surfaces. It helps to find deterioration and damage to infrastructure.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q09_crack_segmentation<br>
                         <b>Model:</b> Unet<br>
                         <b>Dataset:</b> Crack Segmentation Dataset<br>
@@ -1091,6 +1220,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q09_crack_segmentation" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">100fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q09_crack_segmentation" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">36fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1098,20 +1231,21 @@ layout: default
             <div id="city19" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity19_CrimePreventionSupportforSchool.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Crime Prevention Support for School</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects suspiciously dressed persons at schools or cram schools to help prevent crimes in which dangerous individuals attempt to harm students.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q10_suspicious_person_detection<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -1127,69 +1261,83 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q10_suspicious_person_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q10_suspicious_person_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
             </div>
             <div id="city20" class="application_card col-lg-6 col-xl-4"
-                data-model="Tiny YOLOv3"
+                data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label="New!"
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2H,"
+                data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity20_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Vehicle Detector</dt>
-                    <h6 class="appstatus" align="right"><b>New!</b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Allows multi-directional detection of vehicle existence with multiple cameras.  It can prevent car accidents by noticing the cars outside of human sight.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
-                        <b>Model:</b> Tiny YOLOv3<br>
-                        <b>Dataset:</b> Custom<br>
+                        <b>Model:</b> YOLOX-L<br>
+                        <b>Dataset:</b> Megvii-BaseDetection<br>
                         <br>
                     </div>
                     <dl>
                         <dd style="display: flex">
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection" style="color:white">RZ/V2H ></a>
-                                <p class="Perf-Framerate">200fps</p>
+                                <p class="Perf-Framerate">67fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">20fps</p>
                             </div>
                         </dd>
                     </dl>
                 </li>
             </div>
             <div id="city21" class="application_card col-lg-6 col-xl-4"
-                data-model="Tiny YOLOv3"
+                data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label="New!"
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2H,"
+                data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity21_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Car Accident Prevention Alert</dt>
-                    <h6 class="appstatus" align="right"><b>New!</b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Alerts children or elderly individuals that there are vehicles nearby from wearable/portable devices attached to their backpacks by multi-directional vehicle detection.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
-                        <b>Model:</b> Tiny YOLOv3<br>
-                        <b>Dataset:</b> Custom<br>
+                        <b>Model:</b> YOLOX-L<br>
+                        <b>Dataset:</b> Megvii-BaseDetection<br>
                         <br>
                     </div>
                     <dl>
                         <dd style="display: flex">
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection" style="color:white">RZ/V2H ></a>
-                                <p class="Perf-Framerate">200fps</p>
+                                <p class="Perf-Framerate">67fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">20fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1198,20 +1346,21 @@ layout: default
             <div id="city22" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Other"
-                data-label="New!"
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2H,"
+                data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity22_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Driving Support with Road Lane Segmentation</dt>
-                    <h6 class="appstatus" align="right"><b>New!</b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Notifies drivers approaching the warning area by segmenting the road lane and crosswork.  It can prevent car accidents against people.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 15_Road_lane_segmentation<br>
                         <b>Model:</b> Unet<br>
                         <b>Dataset:</b> Road Lane Segmentation<br>
@@ -1223,6 +1372,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/15_Road_lane_segmentation" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">77fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/15_Road_lane_segmentation" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">31fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1230,20 +1383,21 @@ layout: default
             <div id="city23" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Other"
-                data-label="New!"
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2H,"
+                data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity23_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Visual Walking Support</dt>
-                    <h6 class="appstatus" align="right"><b>New!</b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Notifies the people who require visual support when crossing the side lane or using the crosswalk.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 15_Road_lane_segmentation<br>
                         <b>Model:</b> Unet<br>
                         <b>Dataset:</b> Road Lane Segmentation<br>
@@ -1254,6 +1408,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/15_Road_lane_segmentation" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">77fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/15_Road_lane_segmentation" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">31fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1273,7 +1431,7 @@ layout: default
                 data-targetobj="Person"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Healthcare1_960x540.jpg" alt="application">
@@ -1285,6 +1443,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 03_Elderly_fall_detection<br>
                         <b>Model:</b> Tiny YOLOv2+HRNet<br>
                         <b>Dataset:</b> E-FPDS,FPDS_v2 Dataset/COCO | E-FPDS,FPDS_v2 Dataset/MPII Human Pose Dataset<br>
@@ -1298,7 +1457,11 @@ layout: default
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/03_Elderly_fall_detection" style="color:white">RZ/V2H ></a>
-                                <p class="Perf-Framerate">175fps</p>
+                                <p class="Perf-Framerate">43fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/03_Elderly_fall_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">17fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1307,20 +1470,21 @@ layout: default
             <div id="healthcare2" class="application_card col-lg-6 col-xl-4"
                 data-model="HRNet+Custom"
                 data-targetobj="Person"
-                data-label="New!"
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2H,"
+                data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Healthcare2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Yoga Pose Monitor</dt>
-                    <h6 class="appstatus" align="right"><b>New!</b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects the human body and analyzes the pose of yoga to correct the posture.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q12_yoga_pose_estimation<br>
                         <b>Model:</b> HRNet+Custom<br>
                         <b>Dataset:</b> COCO+Yoga Pose Classification<br>
@@ -1331,6 +1495,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q12_yoga_pose_estimation" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">53fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q12_yoga_pose_estimation" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">28fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1348,20 +1516,21 @@ layout: default
             <div id="home1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Air Conditioner Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Automatically controls the air conditioning according to the situation by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -1376,6 +1545,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1398,6 +1571,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> -<br>
+                        <b>Supported RZ/V2N AI SDK:</b> -<br>
                         <b>Function:</b> 06_Face_recognition_spoof_detection<br>
                         <b>Model:</b> ArcFace/ResNet-50<br>
                         <b>Dataset:</b> VGGFace2<br>
@@ -1416,20 +1590,21 @@ layout: default
             <div id="home3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Animal"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Pet Detection in Kitchen and Child's Room</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues an alert when your pets have entered dangerous areas such as kitchen or children room.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 07_Animal_detection<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Animals Detection Images Dataset+Images.cv+Coco Dataset<br>
@@ -1445,6 +1620,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/07_Animal_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/07_Animal_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1452,20 +1631,21 @@ layout: default
             <div id="home4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for Kitchen Appliance</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Allows you to control electrical appliances by the hand gestures without touching them.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
                         <b>Model:</b> Tiny YOLOv2+ResNet-18 | YOLOv3<br>
                         <b>Dataset:</b> YOLO-Hand-Detection/HaGRID | HaGRID<br>
@@ -1481,6 +1661,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/12_Hand_gesture_recognition_v2" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/12_Hand_gesture_recognition_v2" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1488,20 +1672,21 @@ layout: default
             <div id="home5" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3+Tesseract/YOLOv3+Tesseract"
                 data-targetobj="Other"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Food Package Expiry Date Check</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the expiry date of food placed in the refrigerator.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q06_expiry_date_detection<br>
                         <b>Model:</b> Tiny YOLOv3+Tesseract | YOLOv3+Tesseract<br>
                         <b>Dataset:</b> Custom<br>
@@ -1516,6 +1701,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q06_expiry_date_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps for<br>YOLOv3</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q06_expiry_date_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps for<br>YOLOv3</p>
                             </div>
                         </dd>
                     </dl>
@@ -1533,20 +1722,21 @@ layout: default
             <div id="industrial1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Work Area Personnel Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors attendance of workers by counting their number entered in the work area.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 01_Head_count<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> HollywoodHeads<br>
@@ -1562,6 +1752,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/01_Head_count" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/01_Head_count" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1569,9 +1763,9 @@ layout: default
             <div id="industrial2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature="Video"
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial4_960x540.jpg" 
@@ -1580,13 +1774,14 @@ layout: default
                         onmouseover="this.src='img/GIF/Industrial4_480x270.gif'" 
                         onmouseout="this.src='img/Industrial4_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Access Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the total number of visitors by counting the number of people who have passed through the entrance/exit.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> HollywoodHeads<br>
@@ -1606,6 +1801,10 @@ layout: default
                                     VIDEO >
                                 </a>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1615,7 +1814,7 @@ layout: default
                 data-targetobj="Other"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial2_960x540.jpg" alt="application">
@@ -1627,6 +1826,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 04_Safety_helmet_vest_detection<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> helmet-safety-vest-detection+Kaggle dataset<br>
@@ -1642,6 +1842,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/04_Safety_helmet_vest_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/04_Safety_helmet_vest_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1649,20 +1853,21 @@ layout: default
             <div id="industrial4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for Industrial machine</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Machine button operation can be done without contact using gestures in factory.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
                         <b>Model:</b> Tiny YOLOv2+ResNet-18 | YOLOv3<br>
                         <b>Dataset:</b> YOLO-Hand-Detection/HaGRID | HaGRID<br>
@@ -1678,6 +1883,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/12_Hand_gesture_recognition_v2" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/12_Hand_gesture_recognition_v2" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1685,20 +1894,21 @@ layout: default
             <div id="industrial5" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+DeepPose/YOLOv3+DeepPose"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Driver Monitoring System</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects whether the driver is looking aside, yawning or closing his eyes. Prevents car accidents by detecting when the driver is getting sleepy while driving.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 10_Driver_monitoring_system<br>
                         <b>Model:</b> Tiny YOLOv2+DeepPose | YOLOv3+DeepPose<br>
                         <b>Dataset:</b> WIDERFACE/WFLW | Custom/WFLW<br>
@@ -1714,6 +1924,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/10_Driver_monitoring_system" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/10_Driver_monitoring_system" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">9fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1723,7 +1937,7 @@ layout: default
                 data-targetobj="Other"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial6_960x540.jpg" alt="application">
@@ -1735,6 +1949,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q04_fish_classification<br>
                         <b>Model:</b> Custom<br>
                         <b>Dataset:</b> Fish Dataset<br>
@@ -1750,6 +1965,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q04_fish_classification" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">250fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q04_fish_classification" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">59fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1757,20 +1976,21 @@ layout: default
             <div id="industrial7" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Crack"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial7_DefectInspectionSupport.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Defect Inspection Support</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the factory production line to detect cracks in the manufactured products. It supports the product inspection process.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q09_crack_segmentation<br>
                         <b>Model:</b> Unet<br>
                         <b>Dataset:</b> Crack Segmentation Dataset<br>
@@ -1786,6 +2006,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q09_crack_segmentation" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">100fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q09_crack_segmentation" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">36fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1793,20 +2017,21 @@ layout: default
             <div id="industrial8" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Other"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial8_Aquaculture_Industrial_Support.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Aquaculture Industrial Support</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors fish to help aquaculture operators to manage their resources.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q11_fish_detection<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -1821,6 +2046,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q11_fish_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q11_fish_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1838,20 +2067,21 @@ layout: default
             <div id="retail1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues an alert when the store is overcrowded with more customers.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -1867,6 +2097,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1876,7 +2110,7 @@ layout: default
                 data-targetobj="Face"
                 data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail3_960x540.jpg" alt="application">
@@ -1888,6 +2122,7 @@ layout: default
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 05_Age_gender_detection<br>
                         <b>Model:</b> Tiny YOLOv2+FairFace<br>
                         <b>Dataset:</b> WIDERFACE/FairFace<br>
@@ -1901,7 +2136,11 @@ layout: default
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/05_Age_gender_detection" style="color:white">RZ/V2H ></a>
-                                <p class="Perf-Framerate">182fps</p>
+                                <p class="Perf-Framerate">111fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/05_Age_gender_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">29fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1910,20 +2149,21 @@ layout: default
             <div id="retail3" class="application_card col-lg-6 col-xl-4"
                 data-model="ResNet-18+Tiny YOLOv2"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Marketing Interest Analysis</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the gaze direction of customer in the retail store, which can be used to collect marketing information.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 09_Human_gaze_detection<br>
                         <b>Model:</b> ResNet-18+Tiny YOLOv2<br>
                         <b>Dataset:</b> ETH-XGaze/WIDERFACE<br>
@@ -1939,6 +2179,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/09_Human_gaze_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">182fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/09_Human_gaze_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">37fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1946,20 +2190,21 @@ layout: default
             <div id="retail4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Staying and flow line monitoring</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Collects marketing data by monitoring the number of people and duration of their stay in a certain place.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q01_footfall_counter<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> COCO<br>
@@ -1975,6 +2220,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">33fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -1982,20 +2231,21 @@ layout: default
             <div id="retail5" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Exhibition Participants Monitoring</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitor the number of visitors to an exhibition or other open space. Changes in the number of participants can also be detected since it counts the number of participants in real time.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -2011,6 +2261,10 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                             </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">13fps</p>
+                            </div>
                         </dd>
                     </dl>
                 </li>
@@ -2018,20 +2272,21 @@ layout: default
             <div id="retail6" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
-                data-device="RZ/V2L,RZ/V2H,"
+                data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail6_Store_Crime_Prevention.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Store Crime Prevention</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects suspiciously dressed persons in convenience stores or unmanned stores to prevent theft.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v5.00<br>
                         <b>Function:</b> Q10_suspicious_person_detection<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
                         <b>Dataset:</b> Custom<br>
@@ -2046,6 +2301,10 @@ layout: default
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q10_suspicious_person_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q10_suspicious_person_detection" style="color:white">RZ/V2N ></a>
+                                <p class="Perf-Framerate">12fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -2127,6 +2386,10 @@ Back to Top >
                 <div class="checkbox-group">
                     <input type="checkbox" id="YOLOv3" class="filter_content" value="YOLOv3">
                     <label for="YOLOv3">YOLOv3</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="YOLOX-L" class="filter_content" value="YOLOX-L">
+                    <label for="YOLOX-L">YOLOX-L</label>
                 </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="Unet" class="filter_content" value="Unet">
@@ -2229,6 +2492,10 @@ Back to Top >
                 <div class="checkbox-group">
                     <input type="checkbox" id="RZ/V2H" class="filter_content" value="RZ/V2H">
                     <label for="RZ/V2H">RZ/V2H</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="RZ/V2N" class="filter_content" value="RZ/V2N">
+                    <label for="RZ/V2N">RZ/V2N</label>
                 </div>
             </div>
             <div id="label-filter">

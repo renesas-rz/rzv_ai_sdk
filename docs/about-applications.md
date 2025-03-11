@@ -154,7 +154,7 @@ git clone -b v1.00 <GitHub repository url>
                     <br>
                 </li>
             </ul>
-            <h5 class="mt-3 ms-3 mb-2">RZ/V2H EVK</h5>
+            <h5 class="mt-3 ms-3 mb-2">RZ/V2H EVK and RZ/V2N EVK</h5>
             <ul>
                 <li>
                     Use the e-CAM22_CURZH camera, which supports FHD (1920x1080) resolution, provided by <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.<br>
@@ -223,7 +223,7 @@ const static std::string model_dir = "yolov3_onnx_fhd";
                 </li>
             </ul>
             <h4 class="u_line" align="left" tag="usb">USB camera</h4>
-            For both RZ/V2L EVK and RZ/V2H EVK, AI Applications support USB camera with VGA (640x480) resolution in 'YUYV' (YUYV 4:2:2) format.<br>
+            For RZ/V2L EVK, RZ/V2H EVK and RZ/V2N, AI Applications support USB camera with VGA (640x480) resolution in 'YUYV' (YUYV 4:2:2) format.<br>
         </div>
     </div>
 </div>

@@ -31,8 +31,8 @@ RZ/V2L EVK Getting Started
   <div class="row">
     <div class="col-12">
         This page explains RZ/V2L EVK dependent instructions.<br>
-        Common instructions are explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}"> Getting Started</a> page.<br>
-        <img src="img/getting_started_flow_v2l.svg" alt="flow" height="400px"/>
+        Common instructions are explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer"> Getting Started</a> page.<br>
+        <img src="img/getting_started_flow_v2l.svg" alt="flow" height="580px"/>
         <br>
     </div>
   </div>
@@ -46,8 +46,8 @@ RZ/V2L EVK Getting Started
       <div class="container">
         <div class="row">
           <div class="col-12">
-            Before reading this document, users are required to read <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>.<br>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button">
+            Before reading this document, users are required to read <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button" target="_blank" rel="noopener noreferrer">
               <span class="banner-title">Getting Started </span>
               <span class="banner-line">
               What kind of equipment is necessary?<br>
@@ -116,8 +116,8 @@ RZ/V2L EVK Getting Started
       <br>
       <div class="note">
         <span class="note-title">Before reading this step</span>
-        Users are required to read Step 1~6 of <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>.<br>
-        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button">
+        Users are required to read Step 1~6 of <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br>
+        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">Getting Started Step 1~6 </span>
           <span class="banner-line">
           What kind of equipment is necessary?<br>
@@ -141,7 +141,7 @@ RZ/V2L EVK Getting Started
       Other necessary files, i.e. Linux kernel and root filesystem, are stored on microSD card.<br>
       You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br>
       <br>
-      <img class="procedure2" src="img/esd_emmc.svg" alt="docker" width="90%"/>
+      <img class="procedure2" src="img/esd_spi.svg" alt="docker" width="90%"/>
       <br>
       <div class="note">
         <span class="note-title">Note</span>
@@ -181,7 +181,7 @@ RZ/V2L EVK Getting Started
         <div class="note">
           <span class="note-title">Note</span>
           This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-          If you have already setup the microSD card with the latest bootloader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step7-2">the next procedure (2. Deploy Application to the Board)</a>.
+          If you have already setup the microSD card with the latest bootloader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>.
         </div>
       </div>
       <div class="ContenteMMC">
@@ -195,14 +195,14 @@ RZ/V2L EVK Getting Started
         <div class="note">
           <span class="note-title">Note</span>
           This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-          If you have already setup the microSD card and the bootloader written in Flash ROM on the board, <span class="skip">skip this step</span> and proceed to <a href="#step7-2">the next procedure (2. Deploy Application to the Board)</a>. 
+          If you have already setup the microSD card and the bootloader written in Flash ROM on the board, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>. 
         </div>
       </div>
       <ol>
         <h5 id="step7-1a">
           <li type="A">Format SD card<br></li>
         </h5>
-        Create the following partitions on microSD card according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A2">Appendix: A2. Format SD card</a>.<br>
+        Create the following partitions on microSD card according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A2" target="_blank" rel="noopener noreferrer">Appendix: A1. Format SD card</a>.<br>
         <div class="ContenteSD contenteSD-bg">
           <span class="ContenteSD-title">For eSD</span>
           <table class="gstable">
@@ -482,14 +482,14 @@ sudo eject /dev/sdb
         <div class="ContenteMMC">
           <div class="contenteMMC-bg">
             <span class="ContenteMMC-title">For QSPI</span>
-            Please write the bootloaders to Flash ROM on the board according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1">Appendix: A1.Setup for QSPI Bootloader</a>.
+            Please write the bootloaders to Flash ROM on the board according to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D2" target="_blank" rel="noopener noreferrer">D2.How to boot from QSPI</a>.
           </div>
         </div>
       </ol>
       <br>
       <h4 id="step7-2" class="u_line">2. Deploy Application to the Board</h4>
-        This section explains how to copy the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6">application binary created in Getting Started Step 6</a> to the board.<br>
-        Users are expected to have finished the instructions in <a href="#step7"> Setup RZ/V2L EVK in Step 7-1</a>.
+        This section explains how to copy the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6" target="_blank" rel="noopener noreferrer">application binary created in Getting Started Step 6</a> to the board.<br>
+        Users are expected to have finished the instructions in <a href="#step7" target="_blank" rel="noopener noreferrer"> Setup RZ/V2L EVK in Step 7-1</a>.
         <br>
         <br>
         <ol>
@@ -514,14 +514,14 @@ sudo mkdir /mnt/sd/home/root/tvm
             </div>
           </li>
           <li>Copy the necessary files in execution environment.<br>
-            Select the appropriate option below based on the application type explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#build-instruction"> Getting Started Step 6</a>.
+            Select the appropriate option below based on the application type explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#build-instruction" target="_blank" rel="noopener noreferrer"> Getting Started Step 6</a>.
             <br><br>
             <p id="deploy-option1"><b>Option 1: &lt;Application 1&gt;</b></p>
             Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Deploy Stage"</b> (or similar) to deploy the application.
             <br><br>
             <div class="box1">
               <u><b>Example:</b></u><br>
-              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
+              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
             </div>
             <br>
             Use the following command to copy the files to root filesystem.
@@ -670,7 +670,7 @@ sudo eject /dev/sdb
           </div>
         </div>
       </div>
-      After the boot up, please go back to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8">Getting Started Step 8</a> or proceed directly to <a href="#step8">RZ/V2L EVK Getting Started Step 8</a>.
+      After the boot up, please go back to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8" target="_blank" rel="noopener noreferrer">Getting Started Step 8</a> or proceed directly to <a href="#step8" target="_blank" rel="noopener noreferrer">RZ/V2L EVK Getting Started Step 8</a>.
       <br><br>
       </div>
     </div>
@@ -682,8 +682,8 @@ sudo eject /dev/sdb
       <h3 id="step8" >Step 8: Run AI Application</h3>
       <div class="note">
         <span class="note-title">Before reading this step</span>
-        Users are required to read Step 7 of <a href="#step7">RZ/V2L EVK Getting Started</a>.<br>
-        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="#step7" role="button">
+        Users are required to read Step 7 of <a href="#step7" target="_blank" rel="noopener noreferrer">RZ/V2L EVK Getting Started</a>.<br>
+        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="#step7" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">RZ/V2L EVK Getting Started Step 7 </span>
           <span class="banner-line">
           How can I setup microSD card for eSD/QSPI Bootloader?<br>
@@ -699,7 +699,7 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-run-stage">here</a> to run the application.
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>
@@ -710,7 +710,7 @@ sudo eject /dev/sdb
       </ol>
       <div class="note">
         <span class="note-title">Note</span>
-        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A3">A3. Shutdown RZ/V2L EVK</a>
+        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A3" target="_blank" rel="noopener noreferrer">A2. Shutdown RZ/V2L EVK</a>
       </div>
     </div>
   </div>
@@ -722,7 +722,7 @@ sudo eject /dev/sdb
     <div class="col-12">
       <h4 class="u_line">This is the end of RZ/V2L EVK Getting Started.</h4>
       To see what comes next, please refer to the Getting Started Ending.<br>
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#ending" role="button">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#ending" role="button" target="_blank" rel="noopener noreferrer">
         <span class="banner-title">Getting Started Ending </span>
         <span class="banner-line">
         What is the next step of Getting Started?<br>

@@ -20,7 +20,7 @@ layout: default
     <div class="col-12">
       AI SDK is a quick and easy AI Application development environment.<br>
       It is specifically made for RZ/V2L Evaluation Board Kit with fixed Linux components.<br>
-      (For more information, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK</a>.)<br>
+      (For more information, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}" target="_blank" rel="noopener noreferrer">AI SDK</a>.)<br>
       <br>
       To modify Linux component, you need to build AI SDK from source code.<br>
       AI SDK Source Code can generate the same Linux environment as AI SDK.<br>
@@ -41,7 +41,7 @@ layout: default
       <div class="note">
         <span class="note-title">Requirement</span>
         <ol>
-          <li>Users have launched RZ/V2L Evaluation Board Kit according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>, which means they can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Application</a> on the board.<br>
+          <li>Users have launched RZ/V2L Evaluation Board Kit according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>, which means they can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Application</a> on the board.<br>
           </li>
           <li>To build Yocto Linux, the below equipment should be prepared.<br>
             <table class="gstable">
@@ -75,7 +75,7 @@ layout: default
   <div class="row">
     <div class="col-12">
       Download the RZ/V2L AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit" role="button">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v500-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0160F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -120,7 +120,7 @@ printenv WORK
 {% highlight plaintext %}
 <path to the working directory>/ai_sdk_work
 {% endhighlight %}
-      If not, please register the working directory path to an environment variable according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step4">Step4: Extract RZ/V AI SDK package in Getting Started</a>.
+      If not, please register the working directory path to an environment variable according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step4" target="_blank" rel="noopener noreferrer">Step4: Extract RZ/V AI SDK package in Getting Started</a>.
       </li>
     </ul>
   </li>
@@ -388,7 +388,7 @@ sudo tar cvfj ${WORK}/src_setup/core-image-weston-smarc-rzv2l.tar.bz2 *
 <h4>
 This is the end of how to build AI SDK Source Code.
 </h4>
-You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3">Step 3: Obtain RZ/V2L AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>.
+You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2L AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.
 <br>
 <table class="mytable">
   <tr>
@@ -435,12 +435,12 @@ You have prepared following files, which is same as the one provided in <a href=
 <div class="note">
   <span class="note-title">Note 2</span>
   For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
+  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 3</span>
   When customizing Linux development environment, following link may help.<br>
-	<a href="https://docs.yoctoproject.org/">https://docs.yoctoproject.org/</a>
+	<a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
 </div>
 <div class="note">
   <span class="note-title">Note 4</span>
@@ -454,7 +454,7 @@ You have prepared following files, which is same as the one provided in <a href=
 	If you have any questions about AI SDK Source Code,<br>
   please add new issues to AI SDK GitHub issues.<br>
   <br>
-  <a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button">Go to GitHub issues</a>
+  <a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a>
 <div class="row">
   <div class="col-12" align="right">
     <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">

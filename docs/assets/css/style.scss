@@ -45,6 +45,12 @@ section {
   float:left;
   padding-bottom:50px;
 }
+
+.web_index a:hover, .web_index a:focus {
+  font-weight: normal;
+  color: #2a289d;
+}
+
 .web-title {
   margin-bottom: 3px;
 }
@@ -73,16 +79,71 @@ h3 {
   font-style: italic;
   padding: 20px 10px;
 }
-.product-button 
-{
-  //For default.html
-  // width:200px;
+.webtop {
+  background-image: url("../../img/webtop_v2h.png");
+  background-repeat: no-repeat; /* 背景画像を繰り返し表示させない */
+  background-size: cover; /* 背景画像を全画面表示 */
+  background-position: right; 
   font-weight: bold;
-  color:#676767;
-  padding-left: 30px;
-  padding-right: 30px;
-  min-width: 187px;
+  background-color: #04083C;
+  color: white;
+  display:flex;
+  align-items: center;
+  font-family: "Arial";
+  font-style: italic;
+  padding: 20px 10px;
+  height: 250px;
 }
+.top-message
+{
+  padding: 0px;
+  font-weight: normal;
+  color: white;
+  text-align: right;
+}
+.main-message
+{
+  font-size: 23px;
+}
+.sub-message
+{
+  font-size: 15px;
+}
+.chkout-btn
+{
+  color: white;
+  // color: rgb(24, 26, 52);
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 8px;
+  // background-color:  #dfb118;
+  background-color: #2a289d;
+  border: 3px solid white;
+  font-style: normal;
+}
+
+.chkout-btn-menu
+{
+  color: rgb(24, 26, 52);
+  background-color:  #dfb118;
+  min-width: 184px;
+  text-align: center ;
+}
+.chkout-btn-blue
+{
+  background-color: #2a289d;
+  color: white;
+}
+// .product-button 
+// {
+//   //For default.html
+//   // width:200px;
+//   font-weight: bold;
+//   color:#676767;
+//   padding-left: 30px;
+//   padding-right: 30px;
+//   min-width: 187px;
+// }
 
 .download-button-yellow
 {
@@ -129,6 +190,26 @@ a.square-button-link-small::before{
   top: 12px;
   margin: auto;
 }
+
+/* For ai-software.md */
+.square-button-toggle-down{
+  position: relative;
+  padding-right:25px; /*Allocate empty space for arrow*/
+  text-align: left;
+  font-size: 12px;
+}
+.square-button-toggle-down::before{
+  content: "";
+  width: 7px;   /*Arrow left length*/
+  height: 7px;  /*Arrow right lentgh*/
+  border-top: solid 2px #ffffff;  /*Arrow left weight and color*/
+  border-right: solid 2px #ffffff;/*Arrow right weight and color*/
+  transform: rotate(135deg);         /*Arrow direction::down*/
+  position: absolute;
+  right: 11px;
+  top: 10px;
+  margin: auto;
+}
 .banner-title
 {
   font-weight: bold;
@@ -167,13 +248,13 @@ img.procedure {
 img.procedure2 {
   max-width: 500px;
 }
-ul.category {
-  list-style:none;
-  height:38px;
-  padding:0;
-  background: #ffffff;
-  border-radius:0px;
-  border:1px solid #e0e0e0;
+
+.category {
+  background-color: #f5f5f5;
+  font-size: 18px;
+  padding: 20px;
+  border: 2px solid #ffffff;
+  margin: 0px;
   text-align: center;
 }
 
@@ -186,16 +267,15 @@ ul.category {
   font-size:18px;
   color:#675C5C;
   display:block;
-  text-align:center;
-  padding-top:5px;
 }
 
-.category a:hover, .category a:focus {
+.category:hover, .category:focus {
   color:#675C5C;
   font-weight:bold;
+  border: 2px solid #706f6f;
 }
 
-.category ul a:active {
+.category :active {
   background-color:#f0f0f0;
 }
 
@@ -270,6 +350,7 @@ a.applications:hover ul.applabel>li, a.applications:focus ul.applabel>li {
 ul.index {
   list-style:none;
   margin: 0 0 0 0;
+  font-size: 14.4px; //same as h6
 }
 .index-string {
   color: #267CB9;
@@ -367,6 +448,26 @@ strong {
   .ham-nodisplay {
     display: none;
   }
+  .main-message
+  {
+    font-size: 19px;
+  }
+  .sub-message
+  {
+    font-size: 13px;
+  }
+}
+//Boostrap lg
+.lg-display{
+  display:none;
+}
+@media (max-width: 1091px) {
+  .lg-no-display{
+    display:none;
+  }
+  .lg-display{
+    display:block;
+  }
 }
 @media (max-width: 960px) {
   .br-sp {
@@ -380,6 +481,12 @@ strong {
   }
   .lg-table {
     font-size: 12px;
+  }
+  
+  .chkout-btn-menu
+  {
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 @media (max-width: 560px) {
@@ -398,6 +505,9 @@ strong {
 }
 
 @media print {
+  body {
+    -webkit-print-color-adjust: exact;
+  }
   header, footer{
     display:none;
   }
@@ -451,6 +561,7 @@ strong {
     position:static;
   }
   
+
   /*.web_index {
     display: none;
   }*/
@@ -465,6 +576,7 @@ strong {
     vertical-align: middle;
     width: 100%;
   }
+
 }
 
 @media print, screen and (max-width: 720px) {
@@ -492,6 +604,22 @@ strong {
   .top {
     font-size: 24px;
   }
+
+  /* For ai-software.md */
+  .square-button-toggle-down{
+    position: relative;
+    padding: 3px;
+    text-align: center;
+    font-size: 9px;
+  }
+  .square-button-toggle-down::before{
+   /*Delete Arrow*/
+    content: "";
+    width: 0px;
+    height: 0px;
+    border: none;
+    margin: auto;
+  }
 }
 
 @media print, screen and (max-width: 480px) {
@@ -507,6 +635,7 @@ strong {
   .downloads li, .downloads li + li + li {
     width:100%;
   }
+
 }
 
 /********** Additional Styles **********/
@@ -526,6 +655,12 @@ h3 {
 h4.u_line {
   margin: 15px 5px;
   padding: 5px 0px;
+  border-bottom: 1.5px solid #afafaf;
+}
+
+.u_line {
+  // margin: 15px 5px;
+  // padding: 5px 0px;
   border-bottom: 1.5px solid #afafaf;
 }
 .container{
@@ -885,6 +1020,29 @@ pre {
   color: #ffffff;
   font-weight: bold;
 }
+.contentSPI-bg {
+  display: block;
+  position: relative;
+  margin: 1em 0;
+  padding: 23px 10px 7px;
+  max-width: fit-content;
+  color: #000000;
+  background: #E4E3ED;
+  border:1px solid #635D89;
+}
+.contentSPI-bg .ContentSPI-title {
+  position: absolute;
+  max-width: fit-content;
+  top: -2px;
+  left: -2px;
+  padding: 0 6px;
+  height: 23px;
+  line-height: 23px;
+  font-size: 15px;
+  background: #635D89;
+  color: #ffffff;
+  font-weight: bold;
+}
 .SelectButton{
   max-width: fit-content;
   vertical-align: middle;
@@ -912,12 +1070,25 @@ pre {
   border-radius: 30px;
   padding: 5px 20px 3px;
 }
+.ButtonSPI{
+  display: table-cell;
+  vertical-align: middle;
+  min-width: max-content;
+  color: #635D89;
+  border-radius: 30px;
+  padding: 5px 20px 3px;
+}
 .ButtoneSD-Active{
   background: #4BA3D3;
   color: #fff !important;
   transition: all 0.3s;
 }
 .ButtoneMMC-Active{
+  background: #635D89;
+  color: #fff !important;
+  transition: all 0.3s;
+}
+.ButtonSPI-Active{
   background: #635D89;
   color: #fff !important;
   transition: all 0.3s;

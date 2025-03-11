@@ -17,6 +17,64 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    AI Applications v5.10 & RZ/V2N AI SDK v5.00
+                </h3>
+                <h6 align="right" >
+                    2025.3.11
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Applications v5.10 is released.</h5>
+                    <ul>
+                        <li> 
+                            Added RZ/V2N Evaluation Board Kit support for 51 applications.<br>
+                        </li>
+                        <li> 
+                            Updated the AI model used in 3 applications.
+                            <ul>
+                                <li> 
+                                    Multi-Camera Parking Lot Management
+                                </li>
+                                <li> 
+                                    Multi-Camera Vehicle Detector
+                                </li>
+                                <li> 
+                                    Car Accident Prevention Alert
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Supported RZ/V2N AI SDK v5.00.<br>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI SDK v5.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.3.0.<br>
+                        </li>
+                        <li> 
+                            Supported RZ/V2N Linux BSP v1.0.0.<br>
+                        </li>
+                        <li> 
+                            Supported Graphics Library Unrestricted Version v3.1.2.3.<br>
+                        </li>
+                        <li> 
+                            Supported Video Codec Library v3.3.3.1.<br>
+                        </li>
+                        <li> 
+                            Supported OpenCV Accelerator v1.10.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     e<sup>2</sup> studio for RZ/V2H & RZ/V2L - AI Navigator Quick Start Guide
                 </h3>
                 <h6 align="right" >

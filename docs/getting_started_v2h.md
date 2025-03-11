@@ -31,8 +31,8 @@ RZ/V2H EVK Getting Started
   <div class="row">
     <div class="col-12">
       This page explains RZ/V2H EVK dependent instructions.<br>
-      Common instructions are explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}"> Getting Started</a> page.<br>
-      <img src="img/getting_started_flow_v2h.svg" alt="flow" height="400px"/>
+      Common instructions are explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer"> Getting Started</a> page.<br>
+      <img src="img/getting_started_flow_v2h.svg" alt="flow" height="580px"/>
       <br>
     </div>
   </div>
@@ -45,8 +45,8 @@ RZ/V2H EVK Getting Started
       <div class="container">
         <div class="row">
           <div class="col-12">
-            Before reading this document, users are required to read <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>.<br>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button">
+            Before reading this document, users are required to read <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button" target="_blank" rel="noopener noreferrer">
               <span class="banner-title">Getting Started </span>
               <span class="banner-line">
               What kind of equipment is necessary?<br>
@@ -70,7 +70,7 @@ RZ/V2H EVK Getting Started
             <br>
             As an input device, AI Applications support USB camera with VGA (640x480) resolution.
             <br>
-            To use MIPI camera, please refer to e-CAM22_CURZH camera provided by <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>. 
+            To use MIPI camera, please refer to e-CAM22_CURZH camera provided by <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>. 
             <br>
             e-CAM22_CURZH camera supports FHD (1920x1080) resolution.
             <br><br>
@@ -112,8 +112,8 @@ RZ/V2H EVK Getting Started
       <br>
       <div class="note">
         <span class="note-title">Before reading this step</span>
-        Users are required to read Step 1~6 of <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>.<br>
-        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button">
+        Users are required to read Step 1~6 of <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br>
+        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">Getting Started Step 1~6 </span>
           <span class="banner-line">
             What kind of equipment is necessary?<br>
@@ -152,18 +152,18 @@ RZ/V2H EVK Getting Started
       <div class="note">
         <span class="note-title">Note</span>
         This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-        If you have already setup the microSD card with the latest bootloader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step7-2">the next procedure (2. Deploy Application to the Board)</a>.
+        If you have already setup the microSD card with the latest bootloader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>.
       </div>
       <div class="note">
         <span class="note-title">Note</span>
         The size of WIC format SD card image is 16GB.<br>
-        If you would like to expand the SD card image size, please build the RZ/V2H AI SDK Source Code according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}">How to Build RZ/V2H AI SDK</a>.
+        If you would like to expand the SD card image size, please build the RZ/V2H AI SDK Source Code according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
       </div>
       <ol>
         <h5 id="step7-1a">
           <li type="A">Install Necessary Software<br></li>
         </h5>
-        As explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step2">Necessary Software of Getting Started Step 2</a>, make sure that <code>bmap-tools</code> is installed on Linux PC.<br>
+        As explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step2" target="_blank" rel="noopener noreferrer">Necessary Software of Getting Started Step 2</a>, make sure that <code>bmap-tools</code> is installed on Linux PC.<br>
         If you have not installed the <code>bmap-tools</code>, install it using following command on Host PC (Not in the docker container).<br>
 {% highlight shell %}
 sudo apt install bmap-tools
@@ -195,7 +195,7 @@ unzip eSD.zip
         </table>
         Follow the instruction below to prepare the microSD card.<br>
         <ol>
-          <li>Before inserting the microSD card to your Linux PC, open the terinal on Linux PC and run the following command to check the devices without microSD card.<br>
+          <li>Before inserting the microSD card to your Linux PC, open the terminal on Linux PC and run the following command to check the devices without microSD card.<br>
 {% highlight shell %}
 lsblk
 {% endhighlight %}
@@ -232,7 +232,7 @@ sr0 11:0 1 1024M 0 rom
                 <ul>
                   <li><b><code>/dev/sdb</code></b>: The device name for the entire microSD card.
                   </li>
-                  <li><b><code>/dev/sdb1</code></b>: The paritition name in microSD card.  There may be multiple <code>sdb*</code> depending on the microSD card.
+                  <li><b><code>/dev/sdb1</code></b>: The partition name in microSD card.  There may be multiple <code>sdb*</code> depending on the microSD card.
                   </li>
                 </ul>
                 <div class="warning">
@@ -337,8 +337,8 @@ sudo eject /dev/sdb
       </ol>
       <br>
       <h4 id="step7-2" class="u_line">2. Deploy Application to the Board</h4>
-      This section explains how to copy the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6">application binary created in Getting Started Step 6</a> to the board.<br>
-      Users are expected to have finished the instructions in <a href="#step7"> Setup RZ/V2H EVK in Step 7-1</a>.
+      This section explains how to copy the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6" target="_blank" rel="noopener noreferrer">application binary created in Getting Started Step 6</a> to the board.<br>
+      Users are expected to have finished the instructions in <a href="#step7" target="_blank" rel="noopener noreferrer"> Setup RZ/V2H EVK in Step 7-1</a>.
       <br>
       <br>
       <ol>
@@ -371,7 +371,7 @@ sudo mkdir /mnt/sd/home/root/tvm
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-deploy-stage">here</a> to find files to be copied.
+            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
           </div>
           <br>
           Use the following command to copy the files to root filesystem.
@@ -464,7 +464,7 @@ sudo eject /dev/sdb
           </div>
         </div>
         <br>
-        After the boot up, please go back to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8">Getting Started Step 8</a> or proceed directly to <a href="#step8">RZ/V2H EVK Getting Started Step 8</a>.
+        After the boot up, please go back to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8" target="_blank" rel="noopener noreferrer">Getting Started Step 8</a> or proceed directly to <a href="#step8" target="_blank" rel="noopener noreferrer">RZ/V2H EVK Getting Started Step 8</a>.
         <br><br>
       </div>
     </div>
@@ -477,8 +477,8 @@ sudo eject /dev/sdb
       <h3 id="step8" >Step 8: Run AI Application</h3>
       <div class="note">
         <span class="note-title">Before reading this step</span>
-        Users are required to read Step 7 of <a href="#step7">RZ/V2H EVK Getting Started</a>.<br>
-        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="#step7" role="button">
+        Users are required to read Step 7 of <a href="#step7" target="_blank" rel="noopener noreferrer">RZ/V2H EVK Getting Started</a>.<br>
+        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="#step7" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">RZ/V2H EVK Getting Started Step 7 </span>
           <span class="banner-line">
           How can I setup microSD card for eSD Bootloader?<br>
@@ -493,7 +493,7 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-run-stage">here</a> to run the application.
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>
@@ -504,7 +504,7 @@ sudo eject /dev/sdb
       </ol>
       <div class="note">
         <span class="note-title">Note</span>
-        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4">A4. Shutdown RZ/V2H EVK</a>
+        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK</a>
       </div>
     </div>
   </div>

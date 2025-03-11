@@ -27,15 +27,19 @@ Its version varies depending on the supported board.
     <td>RZ/V2H Evaluation Board Kit</td>
     <td>RZ/V2H AI SDK <b>v5.00</b></td>
   </tr>
+  <tr>
+    <td>RZ/V2N Evaluation Board Kit</td>
+    <td>RZ/V2N AI SDK <b>v5.00</b></td>
+  </tr>
 </table>
-<a class="ms-4" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus">Learn more about the RZ/V series.</a>
+<a class="ms-4" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus" target="_blank" rel="noopener noreferrer">Learn more about the RZ/V series.</a>
 
 <reference_terminology>
 <div class="note">
   <span class="note-title">Note</span>
   Hereafter, we use following terminology.<br>
   <ul class="mb-1">
-    <li><b>RZ/V AI SDK</b>: Refers both RZ/V2L AI SDK and RZ/V2H AI SDK.</li>
+    <li><b>RZ/V AI SDK</b>: Refers RZ/V2L AI SDK, RZ/V2H AI SDK and RZ/V2N AI SDK.</li>
     <li><b>EVK</b>: Refers "Evaluation Board Kit".</li>
   </ul>
 </div>
@@ -43,7 +47,7 @@ Its version varies depending on the supported board.
 
 <div class="note">
   <span class="note-title">Tutorial video</span>
-  Tutorial video is available <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">here.</a><br>
+  Tutorial video is available <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video" target="_blank" rel="noopener noreferrer">here.</a><br>
   <ul class="mb-1">
     <li>For RZ/V2L EVK: RZ/V2L AI SDK v2.10</li>
     <li>For RZ/V2H EVK: RZ/V2H AI SDK v3.00</li>
@@ -53,7 +57,7 @@ Its version varies depending on the supported board.
 <div class="note">
   <span class="note-title">GUI environment</span>
   AI SDK has a CUI environment and a GUI environment.<br>
-  For the GUI environment, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a>.<br>
+  For the GUI environment, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}" target="_blank" rel="noopener noreferrer">AI Navigator Quick Start Guide</a>.<br>
 </div>
 
 <h3>Introduction</h3>
@@ -64,7 +68,7 @@ Its version varies depending on the supported board.
       Getting Started explains the instruction to run AI Applications.<br>
       Common instructions are explained in this document.<br>
       Board dependent instructions are explained in each EVK Getting Started page.<br>
-        <img src="img/getting_started_flow_base.svg" alt="flow" height="400px"/>
+        <img src="img/getting_started_flow_base.svg" alt="flow" height="600px"/>
     </div>
   </div>
   <div class="row">
@@ -130,6 +134,13 @@ Its version varies depending on the supported board.
               How can I build RZ/V2H AI SDK Source Code?<br>
               </span>
             </a>
+            <br>
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" role="button">
+              <span class="banner-title">How to Build RZ/V2N AI SDK</span>
+              <span class="banner-line">
+              How can I build RZ/V2N AI SDK Source Code?<br>
+              </span>
+            </a>
           </td>
         </tr>
       </table>
@@ -152,15 +163,22 @@ Its version varies depending on the supported board.
       <br>
       <br>
       To see the details of the board, please see EVK Getting Started.<br>
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}" role="button">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}" role="button" target="_blank" rel="noopener noreferrer">
         <span class="banner-title">RZ/V2L EVK Getting Started </span>
         <span class="banner-line">
         What is included in EVK?
         </span>
       </a>
       <br>
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}" role="button">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}" role="button" target="_blank" rel="noopener noreferrer">
         <span class="banner-title">RZ/V2H EVK Getting Started</span>
+        <span class="banner-line">
+        What is included in EVK?
+        </span>
+      </a>
+      <br>
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}" role="button" target="_blank" rel="noopener noreferrer">
+        <span class="banner-title">RZ/V2N EVK Getting Started</span>
         <span class="banner-line">
         What is included in EVK?
         </span>
@@ -275,7 +293,50 @@ Its version varies depending on the supported board.
         Supported resolution: 640x480<br>
         Supported format: 'YUYV' (YUYV 4:2:2)<br>
         <h6 class="mt-3 mb-1">
-          To use MIPI camera, please refer to e-CAM22_CURZH provided by <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.<br>
+          To use MIPI camera, please refer to e-CAM22_CURZH provided by <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.<br>
+          e-CAM22_CURZH camera supports FHD(1920x1080) resolution.
+        </h6>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        RZ/V2N
+      </td>
+      <td>
+        RZ/V2N EVK
+      </td>
+      <td>
+        Evaluation Board Kit for RZ/V2N.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AC Adapter
+      </td>
+      <td>
+        USB Power Delivery adapter for the board power supply.<br>
+        100W is required.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        HDMI Cable
+      </td>
+      <td>
+        Used to connect the HDMI Monitor and the board.<br>
+        RZ/V2N EVK has HDMI port.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        USB Camera
+      </td>
+      <td>
+        Since RZ/V2N EVK does not include camera module, this will be the standard camera input source.<br>
+        Supported resolution: 640x480<br>
+        Supported format: 'YUYV' (YUYV 4:2:2)<br>
+        <h6 class="mt-3 mb-1">
+          To use MIPI camera, please refer to e-CAM22_CURZH provided by <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.<br>
           e-CAM22_CURZH camera supports FHD(1920x1080) resolution.
         </h6>
       </td>
@@ -353,15 +414,15 @@ Its version varies depending on the supported board.
 <div class="note">
   <span class="note-title">Note</span>
   USB camera has different supported resolution and format.<br>
-  To check the specification of your USB camera, use <a href="https://www.mankier.com/1/v4l2-ctl"><code>v4l2-ctl</code></a> command.
+  To check the specification of your USB camera, use <a href="https://www.mankier.com/1/v4l2-ctl" target="_blank" rel="noopener noreferrer"><code>v4l2-ctl</code></a> command.
 </div>
 <br>
 <h4 class="u_line">2. Necessary Software</h4>
 <p class="mb-1">Please install following software <b>on Linux PC</b>.</p>
 <ul class="mt-1 mb-1">
-  <li><a href="https://docs.docker.com/">Docker</a></li>
+  <li><a href="https://docs.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a></li>  <!-- Open in new tab -->
   <li>git</li>
-  <li>bmap-tools (For RZ/V2H only)</li>
+  <li>bmap-tools (For RZ/V2H and RZ/V2N)</li>
 </ul>
 <br>
 
@@ -376,7 +437,26 @@ RZ/V AI SDK provides following packages for each supported board.
   <tr>
     <td><font color="red"><b>RZ/V AI SDK</b></font></td>
     <td><font color="red"><b>RTK0EF0*SJ.zip</b></font></td>
-    <td><font color="red"><b>Package used for AI development.</b></font></td>
+    <td><font color="red"><b>Package used for AI development.</b></font><br>
+      For this Getting Started, please download <font color="red"><b>"RZ/V AI SDK"</b></font> for your preferred device from the link below.<br>
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v500" role="button" target="_blank" rel="noopener noreferrer">
+          <span class="banner-title">RZ/V2L AI SDK</span>
+          <span class="banner-line">Get the RZ/V2L AI Software Development Kit</span>
+      </a>
+      <br>
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v500" role="button" target="_blank" rel="noopener noreferrer">
+          <span class="banner-title">RZ/V2H AI SDK</span>
+          <span class="banner-line">Get the RZ/V2H AI Software Development Kit</span>
+      </a>
+      <br>
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v500" role="button" target="_blank" rel="noopener noreferrer">
+          <span class="banner-title">RZ/V2N AI SDK</span>
+          <span class="banner-line">Get the RZ/V2N AI Software Development Kit</span>
+      </a>    
+      <br><br>
+      Once downloaded, please check the Release Note included in the package.
+      <br><br>    
+    </td>
   </tr>
   <tr>
     <td>RZ/V AI SDK<br>Source Code</td>
@@ -396,18 +476,16 @@ RZ/V AI SDK provides following packages for each supported board.
         How can I build RZ/V2H AI SDK Source Code?<br>
         </span>
       </a>
+      <br>
+      <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" role="button">
+        <span class="banner-title">How to Build RZ/V2N AI SDK</span>
+        <span class="banner-line">
+        How can I build RZ/V2N AI SDK Source Code?<br>
+        </span>
+      </a>
     </td>
   </tr>
 </table>
-For this Getting Started, please download <font color="red"><b>"RZ/V AI SDK"</b></font> for your preferred device from the link below.<br>
-<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link download.md %}" role="button">
-    <span class="banner-title">Board and Software</span>
-    <span class="banner-line">Get the board and software for RZ/V series</span>
-</a>
-<br><br>
-Once downloaded, please check the Release Note included in the package.
-<br><br>
-
 <h3 id="step4" >Step 4: Extract RZ/V AI SDK package</h3>
 This step explains how to extract the RZ/V AI SDK zip file.
 <ol>
@@ -450,7 +528,7 @@ ai_sdk_setup  board_setup  documents  references r11an0*.pdf
 This step explains how to setup the RZ/V AI SDK environment.
 <div class="note">
   <span class="note-title">Note</span>
-  Make sure that you have <a href="https://docs.docker.com/">installed Docker</a> on your Linux PC.
+  Make sure that you have <a href="https://docs.docker.com/" target="_blank" rel="noopener noreferrer">installed Docker</a> on your Linux PC.
 </div>
 <ol>
   <li>On your Linux PC, move to the working directory.
@@ -462,12 +540,13 @@ cd ${WORK}/ai_sdk_setup
     <ul>
       <li>For RZ/V2L
 {% highlight shell%}
-docker build -t rzv2l_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2L" .
+sudo docker build -t rzv2l_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2L" .
 {% endhighlight %}
       </li>
-      <li>For RZ/V2H
+      <li>For RZ/V2H, RZ/V2N<br>
+          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used.
 {% highlight shell%}
-docker build -t rzv2h_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2H" .
+sudo docker build -t rzv2h_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2H" .
 {% endhighlight %}
       </li>
     </ul>
@@ -481,12 +560,13 @@ mkdir ${WORK}/ai_sdk_setup/data
     <ul>
       <li>For RZ/V2L
 {% highlight shell%}
-docker run -it --name rzv2l_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/data rzv2l_ai_sdk_image
+sudo docker run -it --name rzv2l_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/data rzv2l_ai_sdk_image
 {% endhighlight %}
       </li>
-      <li>For RZ/V2H
+      <li>For RZ/V2H, RZ/V2N<br>
+          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used.
 {% highlight shell%}
-docker run -it --name rzv2h_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/data rzv2h_ai_sdk_image
+sudo docker run -it --name rzv2h_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/data rzv2h_ai_sdk_image
 {% endhighlight %}
       </li>
     </ul>
@@ -518,8 +598,8 @@ You are ready to build the AI applications!
 <h3 id="step6" >Step 6: Build RZ/V AI Application</h3>
 This step explains how to build AI application.
 <br>
-To see the overview about AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">About AI Applications</a> page.<br>
-<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" role="button">
+To see the overview about AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" target="_blank" rel="noopener noreferrer">About AI Applications</a> page.<br>
+<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" role="button" target="_blank" rel="noopener noreferrer">
     <span class="banner-title">About AI Applications</span><br>
     <span class="banner-line">
     What is AI Applications?<br>
@@ -535,7 +615,7 @@ To see the overview about AI Applications, please refer to <a href="{{ site.url 
 </div>
 <br>
 <h4 id="build-instruction" class="u_line">Building instructions.</h4>
-In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Applications</a>, there are two types of applications.
+In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a>, there are two types of applications.
   <table class="gstable ms-3">
     <tr>
         <th>Application</th>
@@ -549,10 +629,10 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
           <h6 class="mb-0 table-small-text">
             <ul class="mb-1 ps-3">
               <li>
-                <a href="https://github.com/renesas-rz/rzv_ai_sdk">https://github.com/renesas-rz/rzv_ai_sdk</a><br>
+                <a href="https://github.com/renesas-rz/rzv_ai_sdk" target="_blank" rel="noopener noreferrer">https://github.com/renesas-rz/rzv_ai_sdk</a><br>
               </li>
               <li>
-                <a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps">https://github.com/Ignitarium-Renesas/rzv_ai_apps</a>
+                <a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps" target="_blank" rel="noopener noreferrer">https://github.com/Ignitarium-Renesas/rzv_ai_apps</a>
               </li>
             </ul>
           </h6>
@@ -564,7 +644,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a>
+            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
           </h6>
         </td>
     </tr>
@@ -574,7 +654,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
           <h6 class="mb-0 table-small-text">
             <ul class="mb-1 ps-3">
               <li>
-                <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary">https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary</a>
+                <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary" target="_blank" rel="noopener noreferrer">https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary</a>
               </li>
             </ul>
           </h6>
@@ -588,7 +668,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.00/01_Head_count">01_Head_count</a>
+            <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.10/01_Head_count" target="_blank" rel="noopener noreferrer">01_Head_count</a>
           </h6>
         </td>
     </tr>
@@ -601,12 +681,13 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
         Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Build Stage"</b> (or similar) to build the application.<br><br>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.00/R01_object_detection#application-build-stage">here</a> to generate the following application binary.
+          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
         </div>
           <!-- From here: Delete when making latest version -->
+          <!--
         <div class="note">
           <span class="note-title">Note</span>
           The <code>git clone</code> command shown in the <code>README.md</code> will download the <b style="color: red;">latest</b> source code and related files. <br><br>
@@ -615,6 +696,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Appli
 git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
 {% endhighlight %}
         </div>
+          -->
           <!-- Until here: Delete when making latest version -->
       </li>
     </ol>
@@ -650,20 +732,20 @@ cd /drp-ai_tvm/data
 {% endhighlight %}
       </li><br>
       <li>Download the application source code.<br>
-        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.00/01_Head_count">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
+        Here, we use <a href="https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary/tree/v5.10/01_Head_count" target="_blank" rel="noopener noreferrer">RZV2L_AiLibrary repository 01_Head_count application</a> as an example.
         <br>
 {% highlight shell%}
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
         <!-- From here: Delete when making latest version -->
-        <div class="note">
+        <!-- <div class="note">
           <span class="note-title">Note</span>
           The command above will download the <b style="color: red;">latest</b> source code and related files. <br><br>
           To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code> when you running the <code>git clone</code> command as shown below.
 {% highlight shell%}
 git clone -b v{{ site.version }} https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
-        </div>
+        </div> -->
         <!-- Until here: Delete when making latest version -->
       </li><br>
       <li>Move to the application directory.
@@ -697,21 +779,31 @@ make
 
 <h3 id="step7" >Step 7: Deploy AI Application</h3>
 Please see each EVK Getting Started Step 7 for detailed instructions.<br>
-<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7" role="button">
+<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7" role="button" target="_blank" rel="noopener noreferrer">
   <span class="banner-title">RZ/V2L EVK Getting Started Step 7</span>
   <span class="banner-line">
   How can I setup microSD card for eSD/QSPI Bootloader?<br>
   How can I deploy applications to the board?<br>
-  How can I write eMMC Bootloader to the board?<br>
+  How can I write QSPI Bootloader to the board?<br>
   How can I boot the board?<br>
   </span>
 </a>
 <br>
-<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7" role="button">
+<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7" role="button" target="_blank" rel="noopener noreferrer">
   <span class="banner-title">RZ/V2H EVK Getting Started Step 7</span>
   <span class="banner-line">
   How can I setup microSD card for eSD Bootloader?<br>
   How can I deploy applications to the board?<br>
+  How can I boot the board?<br>
+  </span>
+</a>
+<br>
+<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7" role="button" target="_blank" rel="noopener noreferrer">
+  <span class="banner-title">RZ/V2N EVK Getting Started Step 7</span>
+  <span class="banner-line">
+  How can I setup microSD card for eSD/xSPI Bootloader?<br>
+  How can I deploy applications to the board?<br>
+  How can I write xSPI Bootloader to the board?<br>
   How can I boot the board?<br>
   </span>
 </a>
@@ -729,7 +821,7 @@ Please see each EVK Getting Started Step 7 for detailed instructions.<br>
 <h3 id="step8" >Step 8: Run AI Application</h3>
 
 Please see each EVK Getting Started Step 8 for detailed instructions.<br>
-<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step8" role="button">
+<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step8" role="button" target="_blank" rel="noopener noreferrer">
   <span class="banner-title">RZ/V2L EVK Getting Started Step 8</span>
   <span class="banner-line">
   How can I run applications?<br>
@@ -737,8 +829,16 @@ Please see each EVK Getting Started Step 8 for detailed instructions.<br>
   </span>
 </a>
 <br>
-<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step8" role="button">
+<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step8" role="button" target="_blank" rel="noopener noreferrer">
   <span class="banner-title">RZ/V2H EVK Getting Started Step 8</span>
+  <span class="banner-line">
+  How can I run applications?<br>
+  How does application look on HDMI screen?<br>
+  </span>
+</a>
+<br>
+<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step8" role="button" target="_blank" rel="noopener noreferrer">
+  <span class="banner-title">RZ/V2N EVK Getting Started Step 8</span>
   <span class="banner-line">
   How can I run applications?<br>
   How does application look on HDMI screen?<br>
@@ -756,10 +856,10 @@ Please see each EVK Getting Started Step 8 for detailed instructions.<br>
   To shutdown the board safely, please refer to followings.<br>
   <ul>
     <li>
-      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A3">A3. Shutdown RZ/V2L EVK</a>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A3" target="_blank" rel="noopener noreferrer">A2. Shutdown RZ/V2L EVK</a>
     </li>
     <li>
-      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4">A4. Shutdown RZ/V2H EVK</a>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</a>
     </li>
   </ul>
 </div>
@@ -770,23 +870,30 @@ Please see each EVK Getting Started Step 8 for detailed instructions.<br>
 </h4>
 You have experienced the AI Application development procedures.<br>
 Next step is to change the application to create your own AI Application.<br>
-You can use the applications listed in <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">AI Applications</a> to expand your ideas!
+You can use the applications listed in <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> to expand your ideas!
 <br><br>
 
 If you would like to customize Yocto Linux or develop your own board, please change and build the AI SDK Source Code based on your environment.
 <br>
 Please refer to How to Build AI SDK page shown below for more details.<br>
-<a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button">
+<a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button" target="_blank" rel="noopener noreferrer">
   <span class="banner-title">How to Build RZ/V2L AI SDK</span>
   <span class="banner-line">
   How can I build RZ/V2L AI SDK Source Code?<br>
   </span>
 </a>
 <br>
-<a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">
+<a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button" target="_blank" rel="noopener noreferrer">
   <span class="banner-title">How to Build RZ/V2H AI SDK</span>
   <span class="banner-line">
   How can I build RZ/V2H AI SDK Source Code?<br>
+  </span>
+</a>
+<br>
+<a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" role="button" target="_blank" rel="noopener noreferrer">
+  <span class="banner-title">How to Build RZ/V2N AI SDK</span>
+  <span class="banner-line">
+  How can I build RZ/V2N AI SDK Source Code?<br>
   </span>
 </a>
 <br>

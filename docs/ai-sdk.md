@@ -36,17 +36,24 @@ layout: default
             <br>
             Please refer to How to Build AI SDK page shown below for more details.
             <br>
-            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button">
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title">How to Build RZ/V2L AI SDK</span>
                 <span class="banner-line">
                     How can I build RZ/V2L AI SDK Source Code?<br>
                 </span>
             </a>
             <br>
-            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title">How to Build RZ/V2H AI SDK</span>
                 <span class="banner-line">
                     How can I build RZ/V2H AI SDK Source Code?<br>
+                </span>
+            </a>
+            <br>
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" role="button" target="_blank" rel="noopener noreferrer">
+                <span class="banner-title">How to Build RZ/V2N AI SDK</span>
+                <span class="banner-line">
+                    How can I build RZ/V2N AI SDK Source Code?<br>
                 </span>
             </a>
             <br>
@@ -117,15 +124,18 @@ layout: default
             </h4>
             <ul>
                 <li>
-                    RZ/V2L Evaluation Board Kit : 
-                    <a href="#v2l-spec">
-                        RZ/V2L AI SDK Specification
+                    <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-smarc-som-evaluation-kit-rzv2l-mpu-ai-accelerator" target="_blank" rel="noopener noreferrer">
+                        RZ/V2L Evaluation Board Kit
                     </a>
                 </li>
                 <li>
-                    RZ/V2H Evaluation Board Kit : 
-                    <a href="#v2h-spec">
-                        RZ/V2H AI SDK Specification
+                    <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">
+                        RZ/V2H Evaluation Board Kit
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">
+                        RZ/V2N Evaluation Board Kit
                     </a>
                 </li>
             </ul>
@@ -149,6 +159,7 @@ layout: default
                         <th>Details</th>
                         <th>RZ/V2L AI SDK</th>
                         <th>RZ/V2H AI SDK</th>
+                        <th>RZ/V2N AI SDK</th>
                     </tr>
                     <tr>
                         <td rowspan="9">    <!-- Package -->
@@ -160,7 +171,7 @@ layout: default
                         <td>                <!-- Details -->
                             PDF documentation that contains RZ/V AI SDK release information.
                         </td>
-                        <td colspan="2">    <!-- RZ/V2L & RZ/V2H -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Contains list of files provided in RZ/V AI SDK.
                         </td>
                     </tr>
@@ -185,6 +196,11 @@ layout: default
                             Included in WIC format image.
                             <br>
                             Supports eSD Bootloader.
+                        </td>
+                        <td rowspan="3">    <!-- RZ/V2N -->
+                            Provided as individual files.
+                            <br>
+                            Supports eSD/xSPI Bootloader.
                         </td>
                     </tr>
                     <tr>
@@ -215,7 +231,7 @@ layout: default
                         <td>                <!-- Details -->
                             Installer for AI application development environment on Docker.
                         </td>
-                        <td colspan="2">    <!-- RZ/V2L & RZ/V2H -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Provided as a Dockerfile that clones 
                             <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
                                 DRP-AI TVM
@@ -229,7 +245,7 @@ layout: default
                         <td>                <!-- Details -->
                             Compiler for Linux application on RZ/V Linux, which is used by AI SDK Installer.
                         </td>
-                        <td colspan="2">    <!-- RZ/V2L & RZ/V2H -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Provided as cross compiler installer.
                         </td>
                     </tr>
@@ -247,7 +263,7 @@ layout: default
                             </a>
                             .
                         </td>
-                        <td>                <!-- RZ/V2H -->
+                        <td colspan="2">    <!-- RZ/V2H & RZ/V2N -->
                             Provided as an installer taken from 
                             <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8">
                                 DRP-AI Translator i8
@@ -267,7 +283,7 @@ layout: default
                         <td>                <!-- Details -->
                             PDF documentation that contains RZ/V AI SDK related information.
                         </td>
-                        <td colspan="2">    <!-- RZ/V2L & RZ/V2H -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Includes DRP-AI Translator User's Manual and list of Linux license information.
                         </td>
                     </tr>
@@ -283,7 +299,7 @@ layout: default
                         <td>                <!-- Details -->
                             Files that is refered by Linux license information documentation.
                         </td>
-                        <td colspan="2">    <!-- RZ/V2L & RZ/V2H -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Includes linux manifest file, etc..
                         </td>
                     </tr>
@@ -297,7 +313,7 @@ layout: default
                         <td>                <!-- Details -->
                             Release information of AI SDK Source Code
                         </td>
-                        <td colspan="2">    <!-- RZ/V2L & RZ/V2H -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Provided as a txt file.
                         </td>
                     </tr>
@@ -308,7 +324,7 @@ layout: default
                         <td>                <!-- Details -->
                             Linux source code of AI SDK.
                         </td>
-                        <td colspan="2">    <!-- RZ/V2L & RZ/V2H -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Provided as a tar file.
                         </td>
                     </tr>
@@ -325,6 +341,9 @@ layout: default
                         <td>                <!-- RZ/V2H -->
                             Not provided in v5.00.
                         </td>
+                        <td>                <!-- RZ/V2N -->
+                            Provided as a 7z file.
+                        </td>
                     </tr>
                 </table>
             </h6>
@@ -336,6 +355,27 @@ layout: default
     <br>
     <div class="row">
         <div class="col-12">
+            <h3 id="Specification">
+                AI SDK Specification
+            </h3>
+            <ul>
+                <li>
+                    <a href="#v2l-spec">
+                        RZ/V2L AI SDK Specification
+                    </a>
+                </li>
+                <li>
+                    <a href="#v2h-spec">
+                        RZ/V2H AI SDK Specification
+                    </a>
+                </li>
+                <li>
+                    <a href="#v2n-spec">
+                        RZ/V2N AI SDK Specification
+                    </a>
+                </li>
+            </ul>
+            <br>
             <h3 id="v2l-spec">
                 RZ/V2L AI SDK Specification
             </h3>
@@ -357,7 +397,7 @@ layout: default
                     <li>
                         DRP-AI TVM v2.3.0 
                         [
-                            <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
+                            <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                                 GitHub
                             </a>
                         ]
@@ -365,7 +405,7 @@ layout: default
                     <li>
                         RZ/V2L Verified Linux Package v3.0.6 
                         [
-                            <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package">
+                            <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
@@ -383,7 +423,7 @@ layout: default
                     <li>
                         Graphics Library Unrestricted Version v1.2.2 
                         [
-                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-graphics-library-evaluation-version-rzv2l">
+                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-graphics-library-evaluation-version-rzv2l" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
@@ -392,7 +432,7 @@ layout: default
                         Video Codec Library Unrestricted Version v1.2.2 
                         (H.264)
                         [
-                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-video-codec-library-evaluation-version-rzv2l">
+                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-video-codec-library-evaluation-version-rzv2l" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
@@ -400,7 +440,7 @@ layout: default
                     <li>
                         RZ/V2L DRP-AI Support Package v7.50 
                         [
-                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package">
+                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
@@ -426,7 +466,7 @@ layout: default
             <!-- Reference to V2L configuration page -->
             For more information on RZ/V2L AI SDK, see the page below.
             <br>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link v2l-configuration.md %}" role="button">
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link v2l-configuration.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title">RZ/V2L AI SDK Configuration</span>
                 <span class="banner-line">
                     See Linux Components information.<br>
@@ -437,7 +477,7 @@ layout: default
             <br>
             <!-- Reference to V2L How to Build page -->
             For more information on AI SDK Source Code, see How to Build AI SDK page.<br>
-            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button">
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title">How to Build RZ/V2L AI SDK</span>
                 <span class="banner-line">
                     How can I build RZ/V2L AI SDK Source Code?<br>
@@ -487,15 +527,20 @@ layout: default
                 <li>
                     DRP-AI TVM v2.3.0 
                     [
-                        <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
+                        <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
                     ]
+                    <a href="#footnote_v2h_drp_ai">
+                        <sup>
+                            *4
+                        </sup>
+                    </a>
                 </li>
                 <li>
                     RZ/V2H Linux BSP 
                     [
-                        <a href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}">
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}" target="_blank" rel="noopener noreferrer">
                             Configuration
                         </a>
                     ]
@@ -503,7 +548,7 @@ layout: default
                         <li>
                             DRP-AI Driver v1.01 
                             [
-                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver">
+                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver" target="_blank" rel="noopener noreferrer">
                                     GitHub
                                 </a>
                             ]
@@ -512,7 +557,7 @@ layout: default
                             e-CAM22_CURZH camera driver (MIPI) 
                             <a href="#footnote_v2h_ecam">
                                 <sup>
-                                    *2
+                                    *1
                                 </sup>
                             </a>
                         </li>
@@ -522,12 +567,12 @@ layout: default
                         <li>
                             Other device drivers 
                             [
-                                <a href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}#v2h-driver">
+                                <a href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}#v2h-driver" target="_blank" rel="noopener noreferrer">
                                     List
                                 </a>
                             ]
                             [
-                                <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip">
+                                <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">
                                     Manual
                                 </a>
                             ]
@@ -538,20 +583,30 @@ layout: default
                     Graphics Library Evaluation Version v1.2.2
                     <a href="#footnote_v2h_ev">
                         <sup>
-                            *3
+                            *2
                         </sup>
                     </a>
                 </li>
                 <li>
                     Video Codec Library v3.1.1
+                    <a href="#footnote_v2h_drp_ai">
+                        <sup>
+                            *4
+                        </sup>
+                    </a>
                 </li>
                 <li>
                     OpenCV Accelerator v1.10 (supporting OpenCV 4.1.0) 
                     [
-                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator">
+                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
                     ]
+                    <a href="#footnote_v2h_drp_ai">
+                        <sup>
+                            *4
+                        </sup>
+                    </a>
                 </li>
                 <li>
                     Other OSS packages
@@ -566,7 +621,7 @@ layout: default
             <!-- Reference to V2H configuration page -->
             For more information on RZ/V2H AI SDK, see the page below.
             <br>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}" role="button">
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title">RZ/V2H AI SDK Configuration</span>
                 <span class="banner-line">
                     See Linux Components information.<br>
@@ -578,7 +633,7 @@ layout: default
             <br>
             <!-- Reference to V2H How to Build page -->
             For more information on AI SDK Source Code, see How to Build AI SDK page.<br>
-            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title">How to Build RZ/V2H AI SDK</span>
                 <span class="banner-line">
                     How can I build RZ/V2H AI SDK Source Code?<br>
@@ -596,18 +651,23 @@ layout: default
         <div class="col-12">
             <h6>
                 <span id="footnote_v2h_ecam">
-                    *2: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.
+                    *1: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.
                     <br>
                 </span>
                 <span id="footnote_v2h_ev">
-                    *3: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.
+                    *2: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.
                     <br>
-                    If you would like to use unrestricted version, please build AI SDK according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">How to Build RZ/V2H AI SDK</a>.
+                    If you would like to use unrestricted version, please build AI SDK according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
                     <br>
                 </span>
                 <span id="footnote_v2h_spi">
-                    *4: If you would like to know how to boot from xSPI, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" role="button">Developer's Guide</a>.
+                    *3: If you would like to know how to boot from xSPI, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" role="button" target="_blank" rel="noopener noreferrer">Developer's Guide</a>.
                     <br>
+                </span>
+                <span id="footnote_v2h_drp_ai">
+                    *4: RZ/V2H is equipped with 2 IPs, DRP-AI and DRP. Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-quad-core-vision-ai-mpu-drp-ai3-accelerator-and-high-performance-real-time-processor" target="_blank" rel="noopener noreferrer">RZ/V2H block diagram</a>.<br>
+                    DRP-AI is used by DRP-AI TVM. DRP use is shared by OpenCV Accelerator and Video Codec Library (decoding function).<br>
+                    Therefore, OpenCV Accelerator and Video Codec Library (decoding function) cannot be used at the same time.<br>
                 </span>
             </h6>
         </div>
@@ -620,6 +680,174 @@ layout: default
             <br>
             <a href="img/v2h_mem.png" data-lightbox="group">
                 <img src="img/v2h_mem.png" alt="V2H memory map" width="30%">
+            </a>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h3 id="v2n-spec">
+                RZ/V2N AI SDK Specification
+            </h3>
+            <h5>
+                <b>
+                    Target Version: 5.00
+                </b>
+            </h5>
+        </div>
+        <div class="col-12 mb-1">
+            <h4 class="u_line" id="v2n-overview">
+                Overview
+            </h4>
+        </div>
+        <div class="col-8">
+            RZ/V2N AI SDK configuration is as follows.
+            <ul>
+                <li>
+                    DRP-AI TVM v2.3.0 
+                    [
+                        <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                        </a>
+                    ]
+                    <a href="#footnote_v2n_drp_ai">
+                        <sup>
+                            *6
+                        </sup>
+                    </a>
+                </li>
+                <li>
+                    RZ/V2N Linux BSP v1.0.0
+                    [
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link v2n-configuration.md %}" target="_blank" rel="noopener noreferrer">
+                            Configuration
+                        </a>
+                    ]
+                    <ul>
+                        <li>
+                            DRP-AI Driver v1.20 
+                            [
+                                <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver" target="_blank" rel="noopener noreferrer">
+                                    GitHub
+                                </a>
+                            ]
+                        </li>
+                        <li>
+                            e-CAM22_CURZH camera driver (MIPI) v1.00
+                            <a href="#footnote_v2n_ecam">
+                                <sup>
+                                    *5
+                                </sup>
+                            </a>
+                        </li>
+                        <li>
+                            Video for Linux 2 (V4L2) including the support for USB camera
+                        </li>
+                        <li>
+                            Other device drivers 
+                            [
+                                <a href="{{ site.url }}{{ site.baseurl }}{% link v2n-configuration.md %}#v2n-driver" target="_blank" rel="noopener noreferrer">
+                                    List
+                                </a>
+                            ]
+                            [
+                                <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip" target="_blank" rel="noopener noreferrer">
+                                    Manual
+                                </a>
+                            ]
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Graphics Library Unrestricted Version v3.1.2.3
+                </li>
+                <li>
+                    Video Codec Library v3.3.3.1
+                    <a href="#footnote_v2n_drp_ai">
+                        <sup>
+                            *6
+                        </sup>
+                    </a>
+                </li>
+                <li>
+                    OpenCV Accelerator v1.10 (supporting OpenCV 4.1.0) 
+                    [
+                        <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                        </a>
+                    ]
+                    <a href="#footnote_v2n_drp_ai">
+                        <sup>
+                            *6
+                        </sup>
+                    </a>
+                </li>
+                <li>
+                    Other OSS packages
+                    <ul>
+                        <li>
+                            Tesseract v3.05.01 (tesseract, tesseract-lang)
+                        </li>
+                        <li>
+                            OpenMP v8.3.0
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Reference to V2N configuration page -->
+            For more information on RZ/V2N AI SDK, see the page below.
+            <br>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link v2n-configuration.md %}" role="button" target="_blank" rel="noopener noreferrer">
+                <span class="banner-title">RZ/V2N AI SDK Configuration</span>
+                <span class="banner-line">
+                    See Linux Components information.<br>
+                    See Drivers list.<br>
+                    See Limitations.<br>
+                </span>
+            </a>
+            <br>
+            <br>
+            <!-- Reference to V2N How to Build page -->
+            For more information on AI SDK Source Code, see How to Build AI SDK page.<br>
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" role="button" target="_blank" rel="noopener noreferrer">
+                <span class="banner-title">How to Build RZ/V2N AI SDK</span>
+                <span class="banner-line">
+                    How can I build RZ/V2N AI SDK Source Code?<br>
+                </span>
+            </a>
+            <br>
+            <br>
+        </div>
+        <div class="col-4 text-center">
+            <a href="img/block_v2n.svg" data-lightbox="group">
+                <img src="img/block_v2n.svg" alt="RZ/V2N Software Block Diagram">
+            </a>
+            <br>
+        </div>
+        <div class="col-12">
+            <h6>
+                <span id="footnote_v2n_ecam">
+                    *5: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2n.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.
+                    <br>
+                </span>
+                <span id="footnote_v2n_drp_ai">
+                    *6: RZ/V2N is equipped with single IP, DRP-AI. (DRP is not equipped.) Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2n-quad-core-vision-ai-mpu-drp-ai3-accelerator-and-high-performance-real-time-processor" target="_blank" rel="noopener noreferrer">RZ/V2N block diagram</a>.<br>
+                    DRP-AI use is shared by DRP-AI TVM, OpenCV Accelerator and Video Codec Library (decoding function).<br>
+                    Therefore, these software cannot be used at the same time.<br>
+                </span>
+            </h6>
+        </div>
+        <div class="col-12">
+            <h4 class="u_line" id="v2n-mem">
+                Memory Map
+            </h4>
+            The memory map of RZ/V2N AI SDK is as follows.
+            <br>
+            <br>
+            <a href="img/v2n_mem.png" data-lightbox="group">
+                <img src="img/v2n_mem.png" alt="V2N memory map" width="35%">
             </a>
             <br>
             <br>

@@ -20,6 +20,7 @@ Getting Started Appendix
 <br>
 <h5>This page explains the additional information of Getting Started.</h5>
 
+<!---
 <h3 id="A1">A1. Setup for QSPI Bootloader</h3>
 This section explains how to setup the board for QSPI Bootloader.
 <br>
@@ -338,8 +339,8 @@ smarc-rzv2l login:
 After this procedure, you can copy the AI Application and boot the board.<br>
 Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">Step 7: 2. Deploy Application to the Board in RZ/V2L EVK Getting Started</a>.
 <br><br>
-
-<h3 id="A2">A2. Format SD card</h3>
+-->
+<h3 id="A2">A1. Format SD card</h3>
   When writing the necessary files for the board, microSD card needs to have appropriate format.<br>
   Note that you need to run this procedure only once as long as you use the same microSD card.
   <br><br>
@@ -758,7 +759,7 @@ Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2
 
 <br><br>
 
-<h3 id="A3">A3. Shutdown RZ/V2L EVK</h3>
+<h3 id="A3">A2. Shutdown RZ/V2L EVK</h3>
 To power-off the RZ/V2L EVK, follow the procedures below.
 <br><br>
 <a3reference>
@@ -782,8 +783,8 @@ shutdown -h now
   </ol>
 </a3reference>
 <br><br>
-<h3 id="A4">A4. Shutdown RZ/V2H EVK</h3>
-To power-off the RZ/V2H EVK, follow the procedures below.
+<h3 id="A4">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</h3>
+To power-off the RZ/V2H EVK and RZ/V2N EVK, follow the procedures below.
 <br><br>
 <a4reference>
 <ol>
@@ -804,7 +805,7 @@ shutdown -h now
   <li>
     Turn SW3 to OFF.
     <br><br>
-    <img src="img/v2h_evk_shutdown.png" alt="board" width="350px" /><br>
+    <img src="img/v2h_v2n_evk_shutdown.png" alt="board" width="800px" /><br>
   </li>
 </ol>
 </a4reference>
