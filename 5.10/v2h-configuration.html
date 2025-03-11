@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/v2h-configuration.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/5.10/v2h-configuration.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-03-10T18:35:08+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.10/v2h-configuration.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=b5bea9282c8a25e9e4242261c0a3d98cc94dd9bc">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/5.10/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/">Renesas RZ/V AI</a></h1> -->
+
+        <h1 class="web-title"><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/">Renesas <br class="br-sp-web-title">RZ/V AI</a></h1>
+        <p class="version"><u><a class="version" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/version.html">5.10</a></u></p>
+        
+
+        <!-- <p>The best solution for starting your AI applications.</p> -->
+        <p class="ham-small">The best solution for <br class="br-sp">starting your AI applications.</p>
+        <p class="ham-very-small small">Provided by Renesas Electronics Corporation</p>
+        <!-- <br> -->
+
+        
+
+        
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <div class="col-12">
+                <img src="img/board.svg" alt="board" style="width:48%; max-width: 90px;"/>
+                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%; max-width: 90px;"/>  
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <a class="btn btn-secondary chkout-btn chkout-btn-menu" 
+                  href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/download.html" 
+                  role="button">
+                  <span class="banner-title" style="line-height:1.0; padding: 0px; ">
+                      <span style="font-size:85%;">
+                        Get the 
+                      </span>
+                      <span style="font-size:90%;">
+                        Board<br class="ham-nodisplay br-nsp"> and Software
+                      </span>
+                  </span>
+              </a>
+              <br>
+              <a class="btn btn-secondary chkout-btn chkout-btn-menu chkout-btn-blue mt-1" 
+                  href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-software.html" 
+                  role="button">
+                  <span class="banner-title" style="line-height:1.0; padding: 0px; ">
+                      <span style="font-size:85%;">
+                        Check out 
+                      </span>
+                      <br class="ham-nodisplay br-nsp"> 
+                      <span style="font-size:90%;">
+                        RZ/V AI Software
+                      </span>
+                  </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <br class="br-nsp">
+        <!-- 
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <p class="mb-1">
+              <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:210px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/about-applications.html">
+                  AI Applications Overview
+              </a>
+            </p>
+            <p class="mb-0">
+              <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:210px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html">
+                  AI SDK Overview
+              </a>
+            </p> 
+          </div>
+        </div>
+      <br class="br-nsp">-->
+        <!-- <div class="container">
+          <div class="row">
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/board.png" alt="board" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
+              </ul>
+            </div>
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/ai_sdk.svg" alt="ai_sdk" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        
+        
+
+        <p class="mb-0 view">
+          <h5 class="ham-nodisplay mt-3" style="margin-bottom: 5px;">
+            To keep you updated, <br class="br-nsp"><b>Watch</b> our <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a><br> 
+          </h5>
+          <span class="ham-nodisplay">
+            <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a>
+          </span>
+        </p>
+        
+
+        <div class="web_index">
+          <input type="checkbox" id="menu-btn-check">
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <div class="menu-content">
+            <p class="ham-display">
+              <span class="ham-string">
+                <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a><br> 
+                <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a>
+              </span>
+            </p>
+            <div class="u_line">
+              AI SDK
+            </div>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html">AI SDK Overview</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#features">Key Features</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#devices">Supported Devices</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#files">File Contents</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2l-spec">RZ/V2L AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2l-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2l-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2h-spec">RZ/V2H AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2h-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2h-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2n-spec">RZ/V2N AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2n-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2n-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html">Getting Started</a>
+              </summary>
+              <ul class="index">
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step1">1. Obtain a Board</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step2">2. Obtain Necessary Environment</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step3">3. Obtain AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step4">4. Extract AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step5">5. Setup AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step6">6. Build AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step7">7. Deploy AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step8">8. Run AI Application</a></li>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html">RZ/V2L EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7prep">Preparation</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html">RZ/V2H EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                 </details>
+                 <details>
+                   <summary>
+                     <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html">RZ/V2N EVK Getting Started</a>
+                   </summary>
+                   <ul class="index">
+                     <li>
+                       <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#intro">Introduction</a>
+                     </li>
+                     <li>
+                       <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7">7. Deploy AI Applications</a>
+                       <ul class="index">
+                         <li>
+                           <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7-1">1. Setup the Board</a>
+                         </li>
+                         <li>
+                           <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7-2">2. Deploy Application to the Board</a>
+                         </li>
+                         <li>
+                           <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7-3">3. Boot the Board</a>
+                         </li>
+                       </ul>
+                     </li>
+                     <li>
+                       <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step8">8. Run AI Application</a>
+                     </li>
+                   </ul>
+                  </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html">Appendix</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A2">A1. Format SD card</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A3">A2. Shutdown the RZ/V2L EVK</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A4">A3. Shutdown the RZ/V2H and RZ/V2N EVK</a>
+                    </li>
+                  </ul>
+                 </details>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            
+            <div class="u_line">
+              AI SDK Source Code
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html">How to Build RZ/V2L AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#step3">3. Build AI SDK</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html">How to Build RZ/V2H AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#step3">3. Build AI SDK</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html">How to Build RZ/V2N AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#step3">3. Build AI SDK</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html">Developer's Guide</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#dev-contents">Contents</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D1">D1. Resize microSD card image</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D2">D2. How to boot from QSPI</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D3">D3. How to boot from xSPI</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D4">D4. How to boot from eMMC</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            
+            <div class="u_line">
+              Transfer Learning Tool
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html">How to Re-train AI model</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#install">Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#retrain">Re-train the AI model</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#tips">Tips</a>
+                </li>
+              </ul>
+            </details>
+            
+            <div class="u_line">
+              AI Navigator (e<sup>2</sup> studio)
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html">How to use GUI env.</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_preparation">Preparation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step1">1. AI Navigator Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step2">2. Start AI Navigator</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step3">3. Import AI Applications</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step4">4. Run on the Board</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_appendix.html">Appendix</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <div class="u_line">
+              AI Applications
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/about-applications.html">About AI Applications</a>
+              </summary>
+            </details>
+
+            <!-- Copy index_list.html start -->
+
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html">AI Applications</a>
+              </summary>
+              <ul class="index">
+                <h6 class="mb-0">
+                  <span class="index-string">
+                    &#10004;: Newly added
+                    <br>
+                    *: Updated
+                  </span>
+                </h6>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture">*Agriculture</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture1">*Defense wild animals for crop</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture2">*Fruit and Vegetable Plant Disease Check</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture3">*Ranch Livestock Management</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building">*Smart Building</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building1">*Elevator passengers Counting</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building2">*Conference Room Usage Monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building3">*Lighting Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building4">*Security Area Intrusion Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building5">*Wear management at construction sites</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building6">*Touchless Controller for elevator</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building7">*Employee ID check for Restricted Area</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building8">*Multi-Camera Parking Lot Management</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city">*Smart City</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city1">*Congestion Detection in Railway Station</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city2">*Prohibited Area Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city3">*Distracted driving detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city4">*Duration monitoring for surveillance camera</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city5">Parking Spot Reservation</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city6">Illegal Parking Check</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city7">*Passport check support</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city8">*Bus passenger counting</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city9">*Backtravel Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city10">Violence Activity Check in Surveillance Camera</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city11">*Bird Damage Prevention</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city12">*Blind Spot Monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city13">*Preceding Vehicle Movement Alert</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city14">*Emergency Vehicles Detector</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city15">*Illegal Bicycle Approach Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city16">*Bicycle Rental Stock Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city17">*Illegal Bicycle Parking Monitor Support</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city18">*Infrastructure Defect Prevention</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city19">*Crime Prevention Support for School</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city20">*Multi-Camera Vehicle Detector</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city21">*Car Accident Prevention Alert</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city22">*Driving Support with Road Lane Segmentation</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city23">*Visual Walking Support</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#healthcare">*Healthcare</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#healthcare1">*Physical Condition Monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#healthcare2">*Yoga Pose Monitor</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home">*Smart Home</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home1">*Air Conditioner Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home2">Smart TV</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home3">*Pet Detection in Kitchen and Child's Room</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home4">*Touchless Controller for Kitchen Appliance</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home5">*Food Package Expiry Date Check</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial">*Industrial</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial1">*Work Area Personnel Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial2">*Access Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial3">*Helmet and safety vest wearing monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial4">*Touchless Controller for Industrial machine</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial5">*Driver Monitoring System</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial6">*Species check support in Fish Factory</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial7">*Defect Inspection Support</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial8">*Aquaculture Industrial Support</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail">*Retail</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail1">*Congestion Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail2">*Smart POS</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail3">*Marketing Interest Analysis</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail4">*Staying and flow line monitoring</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail5">*Exhibition Participants Monitoring</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail6">*Store Crime Prevention</a></li>
+                    </ul>
+                </details>
+              </ul>
+            </details>
+
+            <!-- Copy index_list.html end -->
+            
+            <br class="br-nsp">
+
+            <div class="u_line">
+              AI Applications Demo
+            </div>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#demo">Demo</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html">RZ/V2L How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#shutdown">3. Shutdown process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#tips">Tips</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html">RZ/V2H How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#shutdown">3. Shutdown process</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#video">Video</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#training-video">Training video</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#app-video">AI Applications video</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <!-- <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#blog">Blogs</a>
+              </summary>
+            </details>
+            <br class="br-nsp"> -->
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#reference">Reference</a>
+              </summary>
+            </details>
+          </div>
+        </div>
+        <br class="ham-nodisplay">
+        <br class="ham-nodisplay">
+        <div style="line-height: 1.15em;">
+          
+          <p class="mb-0 ham-very-small"><small>This project is maintained by <a href="https://github.com/renesas-rz">renesas-rz</a></small></p>
+          
+          <p class="mb-1 ham-very-small"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </div>
+      </header>
+      <section>
+
+        <!-- Title -->
+<div class="container">
+    <div class="row">
+        <div class="top col-12">
+            RZ/V2H AI SDK Configuration
+        </div>
+    </div>
+</div>
+
+<p><br />
+<br />
+<!-- Brief Explanation -->
+This page explains the details of RZ/V2H AI SDK configurations.
+<br />
+To see the overview of RZ/V2H AI SDK, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html">RZ/V AI SDK Overview page</a>.</p>
+
+<!-- Contents -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h5>
+                <b>
+                    Target Version: 5.00
+                </b>
+            </h5>
+        </div>
+        <div class="col-12">
+            <h3 id="v2h-index">
+                Index
+            </h3>
+            <ul>
+                <li>
+                    <a href="#v2h-component">
+                        Linux Components
+                    </a>
+                </li>
+                <li>
+                    <a href="#v2h-driver">
+                        Drivers
+                    </a>
+                </li>
+                <li>
+                    <a href="#v2h-limit">
+                        Limitation
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <br />
+        <div class="col-12">
+            <h3 id="v2h-component">
+                Linux Components
+            </h3>
+            The Linux components which are commonly used in RZ/V2H AI SDK is shown below.
+            <br />
+            <br />
+            <table class="gstable mt-1">
+                <tr>
+                    <th>
+                        Component
+                    </th>
+                    <th>
+                        Version
+                    </th>
+                    <th>
+                        Explanation
+                    </th>
+                </tr>
+                <tr>
+                    <td>                <!-- Component -->
+                        Yocto Linux
+                    </td>
+                    <td>                <!-- Version -->
+                        Yocto version: 3.1.31 (Dunfell)
+                        <br />
+                        Kernel version: 5.10.145-cip17
+                    </td>
+                    <td>                <!-- Explanation -->
+                        <!-- Empty -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>                <!-- Component -->
+                        OpenCV
+                    </td>
+                    <td>                <!-- Version -->
+                        4.1.0
+                    </td>
+                    <td>                <!-- Explanation -->
+                        <!-- Empty -->
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">    <!-- Component -->
+                        OpenCL
+                    </td>
+                    <td>                <!-- Version -->
+                        1.1, 1.2, 2.0 Full Profile.
+                    </td>
+                    <td>                <!-- Explanation -->
+                        <!-- Empty -->
+                    </td>
+                </tr>
+                <tr>
+                                        <!-- Component : OpenCL -->
+                    <td>                <!-- Version -->
+                        3.0 Full Profile
+                    </td>
+                    <td>                <!-- Explanation -->
+                        <h6 class="mb-1">
+                            This is not guaranteed to be backwards compatible with the previous versions of OpenCL.
+                        </h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>                <!-- Component -->
+                        OpenGLES
+                    </td>
+                    <td>                <!-- Version -->
+                        1.1, 2.0, 3.0, 3.1 and 3.2
+                    </td>
+                    <td>                <!-- Explanation -->
+                        <!-- Empty -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>                <!-- Component -->
+                        OpenMAX IL
+                    </td>
+                    <td>                <!-- Version -->
+                        1.1
+                    </td>
+                    <td>                <!-- Explanation -->
+                        <h6 class="mb-1">
+                            This is used for H.264 encoding/decoding and H.265 encoding/decoding.
+                        </h6>
+                    </td>
+                </tr>
+            </table>
+            Other linux components installed to the root filesystem are listed in the below manifest file.
+            <br />
+            <ul>
+                <li>
+                    <code>"references/core-image-weston-rzv2h-evk-ver1.manifest"</code> in RZ/V2H AI SDK.
+                </li>
+            </ul>
+        </div>
+        <div class="col-12">
+            <h3 id="v2h-driver">
+                Drivers
+            </h3>
+            Following table shows the list of drivers.<br />
+            For more details, see <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
+            <!-- UNCOMMENT following for v5.00 release. -->
+            <div class="note">
+                <span class="note-title">Note</span>
+                <span class="text-info">&#10004;</span> shows newly supported drivers.
+                <br />
+            </div>
+            <!-- MEMO: For maintenance
+                    When updating the version, follow the rules below
+                    - For existing support      &#10004;
+                    - For newly support         <span class="text-info">&#10004;</span>
+             -->
+            <h6>
+                <table class="gstable mt-1">
+                    <tr>
+                        <th>
+                            Items
+                        </th>
+                        <th>
+                            IP
+                        </th>
+                        <th>
+                            Support
+                        </th>
+                        <th>
+                            Remarks
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>                    <!-- Item -->
+                            CPU
+                        </td>
+                        <td>                    <!-- IP -->
+                            CPU/CA55
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            Supports 1.1GHz, 1.5GHz, 1.6GHz and 1.7GHz.<br />
+                            If you use CA55 at 1.8GHz, you will need configuration at system startup.<br />
+                            For configuration instructions, see <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>                    <!-- Item -->
+                            External memory
+                        </td>
+                        <td>                    <!-- IP -->
+                            LPDDR4
+                        </td>
+                        <td>                    <!-- IP -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">
+                            Graphics
+                        </td>
+                        <td>                    <!-- IP -->
+                            3D GPU
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>                    <!-- Item -->
+                            LCD Controller
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>                    <!-- Item -->
+                            Image Scaling Unit
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>                        <td>
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>                    <!-- Item -->
+                            Camera Input
+                        </td>
+                        <td>                    <!-- IP -->
+                            MIPI-CSI/4lane x4
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                            <!-- 
+                                Memo: Do NOT write following statement since this only applies for Linux, which does not consider e-CAM camera.
+                                "Operation verified with CoralCamera"
+                             -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>                    <!-- Item -->
+                            Display Out
+                        </td>
+                        <td>                    <!-- IP -->
+                            MIPI-DSI/4lane x1
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">         <!-- Item -->
+                            Video Codec
+                        </td>
+                        <td>                    <!-- IP -->
+                            H.264
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>
+                            AI SDK v5.00 newly supports Decoder in addition to Encoder.
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Video Codec -->
+                        <td>                    <!-- IP -->
+                            H.265
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3">         <!-- Item -->
+                            Audio
+                        </td>
+                        <td>                    <!-- IP -->
+                            SSIF-2 TDM x8
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Audio -->
+                        <td>                    <!-- IP -->
+                            SPDIF x3
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Audio -->
+                        <td>                    <!-- IP -->
+                            ASRC(Asynchronous sample rate conversion)
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">         <!-- Item -->
+                            Timers
+                        </td>
+                        <td>                    <!-- IP -->
+                            OSTM/6ch
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Timers-->
+                        <td>                    <!-- IP -->
+                            SYC (SystemCounter)
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Timers-->
+                        <td>                    <!-- IP -->
+                            WDT/4ch
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Timers-->
+                        <td>                    <!-- IP -->
+                            RTC
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">         <!-- Item -->
+                            Analog
+                        </td>
+                        <td>                    <!-- IP -->
+                            ADC 12bitx8
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Analog-->
+                        <td>                    <!-- IP -->
+                            TSU
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="15">         <!-- Item -->
+                            Connectivity
+                        </td>
+                        <td>                    <!-- IP -->
+                            USB3(Gen2x1) hostx2
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            USB2.0 host/func x1 host x1
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            SDHI(UHS-I)
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            eMMC
+                        </td>
+                        <td>N/A</td>
+                        <td>The board does not support eMMC.</td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            Gb Ether x2
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            PCIe Gen.3 4Lane x1 or 2Lane x2 RC
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            PCIe Gen.3 4Lane x1 or 2Lane x2 EP
+                        </td>
+                        <td>N/A</td>
+                        <td>The board does not support PCIe EP.</td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            CANFD
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            RSCI-2 x10
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            SCIF x1
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            I2C x9
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            I3C x1
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            IRQ
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            NMI
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            GPIO
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">         <!-- Item -->
+                            System
+                        </td>
+                        <td>                    <!-- IP -->
+                            CPG
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : System -->
+                        <td>                    <!-- IP -->
+                            DMAC/80ch (16ch/unit * 5unit)
+                        </td>
+                        <td>                    <!-- Support -->
+                            <span class="text-info">&#10004;</span>
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                </table>
+                <div class="note">
+                <span class="note-title">Note</span>
+                If the system does not work properly, such as the stream stopping,
+                when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br />
+                This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.<br />
+                Please apply this patch with caution after thorough verification.<br />
+                (Patch file: 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch, 0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch)<br />
+                For how to apply the patch, please refer the <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#bus_patch" role="button" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
+                </div>
+            </h6>
+            <br />
+        </div>
+        <div class="col-12">
+            <h3 id="v2h-limit">
+                Limitations
+            </h3>
+            RZ/V2H AI SDK v5.00 has the following limitations.
+            <br />
+            <br />
+            <ul>
+                <li>
+                    Some AI models with frequent memory accesses may affect the performance of other LSI functions that access memory.
+                    We are considering to improve this issue in the next release version.
+                </li>
+            </ul>
+            <br />
+        </div>
+    </div>
+<!-- Footer -->
+    <div class="row">
+        <div class="col-12" align="right">
+            <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/" role="button">
+                Back to Home &gt;
+            </a>
+        </div>
+    </div>
+</div>
+
+
+      </section>
+    </div>
+    <script src="/rzv_ai_sdk/5.10/assets/js/scale.fix.js"></script>
+  </body>
+</html>

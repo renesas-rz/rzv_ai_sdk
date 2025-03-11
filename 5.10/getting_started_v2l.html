@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2024-10-31T18:18:23+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=b5bea9282c8a25e9e4242261c0a3d98cc94dd9bc">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/5.10/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/">Renesas RZ/V AI</a></h1> -->
+
+        <h1 class="web-title"><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/">Renesas <br class="br-sp-web-title">RZ/V AI</a></h1>
+        <p class="version"><u><a class="version" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/version.html">5.10</a></u></p>
+        
+
+        <!-- <p>The best solution for starting your AI applications.</p> -->
+        <p class="ham-small">The best solution for <br class="br-sp">starting your AI applications.</p>
+        <p class="ham-very-small small">Provided by Renesas Electronics Corporation</p>
+        <!-- <br> -->
+
+        
+
+        
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <div class="col-12">
+                <img src="img/board.svg" alt="board" style="width:48%; max-width: 90px;"/>
+                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%; max-width: 90px;"/>  
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <a class="btn btn-secondary chkout-btn chkout-btn-menu" 
+                  href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/download.html" 
+                  role="button">
+                  <span class="banner-title" style="line-height:1.0; padding: 0px; ">
+                      <span style="font-size:85%;">
+                        Get the 
+                      </span>
+                      <span style="font-size:90%;">
+                        Board<br class="ham-nodisplay br-nsp"> and Software
+                      </span>
+                  </span>
+              </a>
+              <br>
+              <a class="btn btn-secondary chkout-btn chkout-btn-menu chkout-btn-blue mt-1" 
+                  href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-software.html" 
+                  role="button">
+                  <span class="banner-title" style="line-height:1.0; padding: 0px; ">
+                      <span style="font-size:85%;">
+                        Check out 
+                      </span>
+                      <br class="ham-nodisplay br-nsp"> 
+                      <span style="font-size:90%;">
+                        RZ/V AI Software
+                      </span>
+                  </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <br class="br-nsp">
+        <!-- 
+        <div class="container">
+          <div class="row ham-nodisplay">
+            <p class="mb-1">
+              <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:210px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/about-applications.html">
+                  AI Applications Overview
+              </a>
+            </p>
+            <p class="mb-0">
+              <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:210px;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html">
+                  AI SDK Overview
+              </a>
+            </p> 
+          </div>
+        </div>
+      <br class="br-nsp">-->
+        <!-- <div class="container">
+          <div class="row">
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/board.png" alt="board" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
+              </ul>
+            </div>
+            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
+              <img src="img/ai_sdk.svg" alt="ai_sdk" height="90px" />
+              <ul class="downloads">
+                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+        
+        
+
+        <p class="mb-0 view">
+          <h5 class="ham-nodisplay mt-3" style="margin-bottom: 5px;">
+            To keep you updated, <br class="br-nsp"><b>Watch</b> our <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a><br> 
+          </h5>
+          <span class="ham-nodisplay">
+            <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a>
+          </span>
+        </p>
+        
+
+        <div class="web_index">
+          <input type="checkbox" id="menu-btn-check">
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <label for="menu-btn-check" class="menu-btn"><span></span></label>
+          <div class="menu-content">
+            <p class="ham-display">
+              <span class="ham-string">
+                <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a><br> 
+                <a href="https://github.com/renesas-rz/rzv_ai_sdk">GitHub repository</a>
+              </span>
+            </p>
+            <div class="u_line">
+              AI SDK
+            </div>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html">AI SDK Overview</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#features">Key Features</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#devices">Supported Devices</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#files">File Contents</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2l-spec">RZ/V2L AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2l-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2l-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2h-spec">RZ/V2H AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2h-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2h-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2n-spec">RZ/V2N AI SDK Specification</a>
+                    </summary>
+                    <ul class="index">
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2n-overview">Overview</a></li>
+                      <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ai-sdk.html#v2n-mem">Memory Map</a></li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html">Getting Started</a>
+              </summary>
+              <ul class="index">
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step1">1. Obtain a Board</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step2">2. Obtain Necessary Environment</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step3">3. Obtain AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step4">4. Extract AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step5">5. Setup AI SDK</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step6">6. Build AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step7">7. Deploy AI Application</a></li>
+                <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step8">8. Run AI Application</a></li>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html">RZ/V2L EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7prep">Preparation</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html">RZ/V2H EVK Getting Started</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#intro">Introduction</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7">7. Deploy AI Applications</a>
+                      <ul class="index">
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7-1">1. Setup the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7-2">2. Deploy Application to the Board</a>
+                        </li>
+                        <li>
+                          <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step7-3">3. Boot the Board</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2h.html#step8">8. Run AI Application</a>
+                    </li>
+                  </ul>
+                 </details>
+                 <details>
+                   <summary>
+                     <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html">RZ/V2N EVK Getting Started</a>
+                   </summary>
+                   <ul class="index">
+                     <li>
+                       <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#intro">Introduction</a>
+                     </li>
+                     <li>
+                       <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7">7. Deploy AI Applications</a>
+                       <ul class="index">
+                         <li>
+                           <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7-1">1. Setup the Board</a>
+                         </li>
+                         <li>
+                           <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7-2">2. Deploy Application to the Board</a>
+                         </li>
+                         <li>
+                           <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step7-3">3. Boot the Board</a>
+                         </li>
+                       </ul>
+                     </li>
+                     <li>
+                       <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2n.html#step8">8. Run AI Application</a>
+                     </li>
+                   </ul>
+                  </details>
+                <details>
+                  <summary>
+                    <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html">Appendix</a>
+                  </summary>
+                  <ul class="index">
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A2">A1. Format SD card</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A3">A2. Shutdown the RZ/V2L EVK</a>
+                    </li>
+                    <li>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A4">A3. Shutdown the RZ/V2H and RZ/V2N EVK</a>
+                    </li>
+                  </ul>
+                 </details>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            
+            <div class="u_line">
+              AI SDK Source Code
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html">How to Build RZ/V2L AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk.html#step3">3. Build AI SDK</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html">How to Build RZ/V2H AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2h.html#step3">3. Build AI SDK</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html">How to Build RZ/V2N AI SDK</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#step1">1. Get AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#step2">2. Extract AI SDK Source Code</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_build_aisdk_v2n.html#step3">3. Build AI SDK</a>
+                </li>
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html">Developer's Guide</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#dev-contents">Contents</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D1">D1. Resize microSD card image</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D2">D2. How to boot from QSPI</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D3">D3. How to boot from xSPI</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D4">D4. How to boot from eMMC</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            
+            <div class="u_line">
+              Transfer Learning Tool
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html">How to Re-train AI model</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#install">Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#retrain">Re-train the AI model</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/howto_retrain.html#tips">Tips</a>
+                </li>
+              </ul>
+            </details>
+            
+            <div class="u_line">
+              AI Navigator (e<sup>2</sup> studio)
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html">How to use GUI env.</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_intro">Introduction</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_preparation">Preparation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step1">1. AI Navigator Installation</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step2">2. Start AI Navigator</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step3">3. Import AI Applications</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_quick_start_guide.html#ainavi_step4">4. Run on the Board</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/ainavi_appendix.html">Appendix</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <div class="u_line">
+              AI Applications
+            </div>
+            <details>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/about-applications.html">About AI Applications</a>
+              </summary>
+            </details>
+
+            <!-- Copy index_list.html start -->
+
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html">AI Applications</a>
+              </summary>
+              <ul class="index">
+                <h6 class="mb-0">
+                  <span class="index-string">
+                    &#10004;: Newly added
+                    <br>
+                    *: Updated
+                  </span>
+                </h6>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture">*Agriculture</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture1">*Defense wild animals for crop</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture2">*Fruit and Vegetable Plant Disease Check</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#agriculture3">*Ranch Livestock Management</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building">*Smart Building</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building1">*Elevator passengers Counting</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building2">*Conference Room Usage Monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building3">*Lighting Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building4">*Security Area Intrusion Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building5">*Wear management at construction sites</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building6">*Touchless Controller for elevator</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building7">*Employee ID check for Restricted Area</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#building8">*Multi-Camera Parking Lot Management</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city">*Smart City</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city1">*Congestion Detection in Railway Station</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city2">*Prohibited Area Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city3">*Distracted driving detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city4">*Duration monitoring for surveillance camera</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city5">Parking Spot Reservation</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city6">Illegal Parking Check</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city7">*Passport check support</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city8">*Bus passenger counting</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city9">*Backtravel Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city10">Violence Activity Check in Surveillance Camera</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city11">*Bird Damage Prevention</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city12">*Blind Spot Monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city13">*Preceding Vehicle Movement Alert</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city14">*Emergency Vehicles Detector</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city15">*Illegal Bicycle Approach Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city16">*Bicycle Rental Stock Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city17">*Illegal Bicycle Parking Monitor Support</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city18">*Infrastructure Defect Prevention</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city19">*Crime Prevention Support for School</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city20">*Multi-Camera Vehicle Detector</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city21">*Car Accident Prevention Alert</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city22">*Driving Support with Road Lane Segmentation</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#city23">*Visual Walking Support</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#healthcare">*Healthcare</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#healthcare1">*Physical Condition Monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#healthcare2">*Yoga Pose Monitor</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home">*Smart Home</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home1">*Air Conditioner Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home2">Smart TV</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home3">*Pet Detection in Kitchen and Child's Room</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home4">*Touchless Controller for Kitchen Appliance</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#home5">*Food Package Expiry Date Check</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial">*Industrial</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial1">*Work Area Personnel Management</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial2">*Access Control</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial3">*Helmet and safety vest wearing monitor</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial4">*Touchless Controller for Industrial machine</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial5">*Driver Monitoring System</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial6">*Species check support in Fish Factory</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial7">*Defect Inspection Support</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#industrial8">*Aquaculture Industrial Support</a></li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>
+                        <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail">*Retail</a>
+                    </summary>
+                    <ul class="index">
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail1">*Congestion Detection</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail2">*Smart POS</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail3">*Marketing Interest Analysis</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail4">*Staying and flow line monitoring</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail5">*Exhibition Participants Monitoring</a></li>
+                        <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/applications.html#retail6">*Store Crime Prevention</a></li>
+                    </ul>
+                </details>
+              </ul>
+            </details>
+
+            <!-- Copy index_list.html end -->
+            
+            <br class="br-nsp">
+
+            <div class="u_line">
+              AI Applications Demo
+            </div>
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#demo">Demo</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html">RZ/V2L How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#shutdown">3. Shutdown process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo.html#tips">Tips</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details open>
+                    <summary>
+                      <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html">RZ/V2H How to Use Guide</a>
+                    </summary>
+                    <ul class="index">
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#overview">Overview</a>
+                          </summary>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#preparation">Preparation</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#step1">1. Hardware Preparation</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#step2">2. Demo file extraction to SD card</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#runapp">Running Applications</a>
+                          </summary>
+                          <ul class="index">
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#linuxboot">1. Boot process</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#executedemo">2. Demo execution</a></li>
+                            <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/demo_v2h.html#shutdown">3. Shutdown process</a></li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#video">Video</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#training-video">Training video</a>
+                </li>
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#app-video">AI Applications video</a>
+                </li>
+              </ul>
+            </details>
+            <br class="br-nsp">
+            <!-- <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#blog">Blogs</a>
+              </summary>
+            </details>
+            <br class="br-nsp"> -->
+            <details open>
+              <summary>
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/#reference">Reference</a>
+              </summary>
+            </details>
+          </div>
+        </div>
+        <br class="ham-nodisplay">
+        <br class="ham-nodisplay">
+        <div style="line-height: 1.15em;">
+          
+          <p class="mb-0 ham-very-small"><small>This project is maintained by <a href="https://github.com/renesas-rz">renesas-rz</a></small></p>
+          
+          <p class="mb-1 ham-very-small"><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        </div>
+      </header>
+      <section>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<script>
+  $(function(){
+    $("#reference_terminology").load("https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html reference_terminology");
+  });
+</script>
+
+<div class="container">
+    <div class="row">
+        <div id="page-top" class="top col-12">
+RZ/V2L EVK Getting Started
+        </div>
+    </div>
+</div>
+<p><br />
+<br /></p>
+<h5>This page explains how to start-up the AI SDK on the <b>RZ/V2L Evaluation Board Kit</b>.</h5>
+
+<h5>Supported version: <b>RZ/V2L AI SDK v5.00</b></h5>
+
+<details class="boxdetails" open="">
+  <summary>Terminology</summary>
+<quotedoc id="reference_terminology"></quotedoc>
+</details>
+<p><br /></p>
+
+<h3>Getting Started Flow</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        This page explains RZ/V2L EVK dependent instructions.<br />
+        Common instructions are explained in <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html" target="_blank" rel="noopener noreferrer"> Getting Started</a> page.<br />
+        <img src="img/getting_started_flow_v2l.svg" alt="flow" height="580px" />
+        <br />
+    </div>
+  </div>
+</div>
+
+<h3 id="intro">Introduction</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="u_line">Prerequisites</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            Before reading this document, users are required to read <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br />
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html" role="button" target="_blank" rel="noopener noreferrer">
+              <span class="banner-title">Getting Started </span>
+              <span class="banner-line">
+              What kind of equipment is necessary?<br />
+              How can I get RZ/V AI SDK?<br />
+              How can I setup RZ/V AI SDK?<br />
+              How can I build AI Applications source code?<br />
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <h4 class="u_line">RZ/V2L EVK</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col-9">
+            The RZ/V2L EVK is the ideal board kit for RZ/V2L evaluation. 
+            <br /><br />
+            Since MIPI camera module is included, you can start evaluating RZ/V2L immediately by building an environment.  
+            <br /><br />
+          </div>
+          <div class="col-3">
+            <img src="img/board.png" alt="board" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            Following items are included in the RZ/V2L EVK.
+            <br />
+            <br />
+            <table class="gstable">
+              <tr>
+                <th>Equipment</th>
+                <th>Details</th>
+              </tr>
+              <tr>
+                <td>RZ/V2L Evaluation Board</td>
+                <td>Evaluation board itself.</td>
+              </tr>
+              <tr>
+                <td>MIPI Camera Module</td>
+                <td>Google Coral Camera.<br />
+                <h6 class="mb-1">Note that the CMOS sensor (OV5645) in the camera is <b>no longer available</b>, and should not be used for mass production. <br />Any software support provided is for evaluation purposes only.</h6></td>
+              </tr>
+              <tr>
+                <td>MicroUSB to Serial Cable</td>
+                <td>For serial communication between PC and the board.</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p><br />
+<br /></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 id="step7">Step 7: Deploy AI Application</h3>
+      This section explains how to deploy the AI Application to the RZ/V2L EVK.
+      <br />
+      <br />
+      <div class="note">
+        <span class="note-title">Before reading this step</span>
+        Users are required to read Step 1~6 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br />
+        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html" role="button" target="_blank" rel="noopener noreferrer">
+          <span class="banner-title">Getting Started Step 1~6 </span>
+          <span class="banner-line">
+          What kind of equipment is necessary?<br />
+          Where to get RZ/V AI SDK?<br />
+          How can I setup RZ/V AI SDK?<br />
+          How can I build AI Applications source code?<br />
+          </span>
+        </a>
+      </div>
+      <br />
+      To boot the board, bootloader and other Linux necessary files are required.<br />
+      There are two types of bootloader available on RZ/V2L AI SDK.<br />
+      <ul>
+        <li>
+          <b>eSD Bootloader</b>: The board boots up using the bootloader written on microSD card.
+        </li>
+        <li>
+          <b>QSPI Bootloader</b>: The board boots up using the bootloader written in Flash ROM on the board.
+        </li>
+      </ul>
+      Other necessary files, i.e. Linux kernel and root filesystem, are stored on microSD card.<br />
+      You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br />
+      <br />
+      <img class="procedure2" src="img/esd_spi.svg" alt="docker" width="90%" />
+      <br />
+      <div class="note">
+        <span class="note-title">Note</span>
+        Regarding the eSD (Embedded SD) booting, please note the following:
+        <ul class="mb-1">
+          <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>
+          <li>If you use the eSD boot, please implement the eSD on your board according to the standard "SD Specification Part 1 eSD Addendum (version 2.10)".</li>
+        </ul>
+      </div>
+      <br />
+      <h4 id="step7prep" class="u_line">Preparation</h4>
+      <div class="note">
+        <span class="note-title">Click the button</span>
+        This step contains both eSD and QSPI Bootloader explanation.<br />
+        Please click the button below to update the explanation according to your bootloader interface.<br />
+        <div class="SelectButton">
+          <span class="ButtoneSD">eSD Bootloader</span>
+          <span class="ButtoneMMC">QSPI Bootloader</span>
+        </div>
+        <div class="ContenteSD contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+          eSD explanation will be shown in this style if you click "eSD Bootloader" button above.
+        </div>
+        <div class="ContenteMMC contenteMMC-bg">
+          <span class="ContenteMMC-title">For QSPI</span>
+          QSPI explanation will be shown in this style if you click "QSPI Bootloader" button above.
+        </div>
+      </div>
+      <br />
+      <h4 id="step7-1" class="u_line">1. Setup RZ/V2L EVK </h4>
+      <div class="ContenteSD">
+        <div class="contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+          microSD card needs to contain bootloaders, the Linux kernel and root filesystem to boot-up the board.<br />
+          You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br />
+        </div>
+        <div class="note">
+          <span class="note-title">Note</span>
+          This step is required only when starting the AI SDK or when using the new version of AI SDK.<br />
+          If you have already setup the microSD card with the latest bootloader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>.
+        </div>
+      </div>
+      <div class="ContenteMMC">
+        <div class="contenteMMC-bg">
+          <span class="ContenteMMC-title">For QSPI</span>
+          microSD card needs to contain the Linux kernel and root filesystem to boot-up the board.<br />
+          You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br />
+          Bootloaders must be written in Flash ROM on the board.
+          You can use Windows PC to write the bootloaders on Flash ROM.
+        </div>
+        <div class="note">
+          <span class="note-title">Note</span>
+          This step is required only when starting the AI SDK or when using the new version of AI SDK.<br />
+          If you have already setup the microSD card and the bootloader written in Flash ROM on the board, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>. 
+        </div>
+      </div>
+      <ol>
+        <h5 id="step7-1a">
+          <li type="A">Format SD card<br /></li>
+        </h5>
+        Create the following partitions on microSD card according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A2" target="_blank" rel="noopener noreferrer">Appendix: A1. Format SD card</a>.<br />
+        <div class="ContenteSD contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+          <table class="gstable">
+            <tr>
+              <th>Type/Number</th>
+              <th>Size</th>
+              <th>Type of Filesystem</th>
+              <th>Contents</th>
+            </tr>
+            <tr>
+              <td>Primary #1</td>
+              <td>500MB (minimum 128MB)</td>
+              <td>Ext4</td>
+              <td>Linux kernel<br />Device tree</td>
+            </tr>
+            <tr>
+              <td>Primary #2</td>
+              <td>All remaining</td>
+              <td>Ext4</td>
+              <td>Root filesystem</td>
+            </tr>
+          </table>
+        </div>
+        <div class="ContenteMMC contenteMMC-bg">
+          <span class="ContenteMMC-title">For QSPI</span>
+          <table class="gstable">
+            <tr>
+              <th>Type/Number</th>
+              <th>Size</th>
+              <th>Type of Filesystem</th>
+              <th>Contents</th>
+            </tr>
+            <tr>
+              <td>Primary #1</td>
+              <td>500MB (minimum 128MB)</td>
+              <td>FAT32</td>
+              <td>Linux kernel<br />Device tree</td>
+            </tr>
+            <tr>
+              <td>Primary #2</td>
+              <td>All remaining</td>
+              <td>Ext4</td>
+              <td>Root filesystem</td>
+            </tr>
+          </table>
+        </div>
+        <br />
+        <h5 id="step7-1b">
+          <li type="A">Write the Linux files to SD card</li>
+        </h5>
+        <div class="ContenteSD contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+          At first, run the below command to decompress <code>${WORK}/board_setup/eSD.zip</code>.<br />
+
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/board_setup
+unzip eSD.zip</code></pre></figure>
+
+          Following three files are necessary, which must be placed on each partitions on microSD card.<br />
+          They are in the <code>${WORK}/board_setup/eSD</code> directory.
+          <br /><br />
+          <table class="gstable">
+            <tr>
+              <th>File</th>
+              <th>Description</th>
+              <th>microSD card partition</th>
+            </tr>
+            <tr>
+              <td>Image-smarc-rzv2l.bin</td>
+              <td>Linux kernel image<br />(The boot program) </td>
+              <td>Partition 1</td>
+            </tr>
+            <tr>
+              <td>Image-r9a07g054l2-smarc.dtb </td>
+              <td>Linux device tree file<br />(The configuration file for booting) </td>
+              <td>Partition 1</td>
+            </tr>
+            <tr>
+              <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
+              <td>Linux Root filesystem</td>
+              <td>Partition 2</td>
+            </tr>
+          </table>
+          Follow the instruction below to prepare the microSD card.<br />
+          <div class="warning">
+            <span class="warning-title">Warning</span>
+              Here, we use "<b><code>/dev/sdb</code></b>" as microSD card device name.
+          </div>
+          <ol>
+            <li>Check if the two partitions are created successfully by running <code>df</code> command.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">df</span> <span class="nt">-h</span>
+Filesystem 	Size		Used	Avail	Use %	Mounted on	
+…		…		…	…	…	…
+/dev/sdb1		…		…	…	…	…	
+/dev/sdb2		…		…	…	…	…	</code></pre></figure>
+
+              <div class="warning">
+                  <span class="warning-title">Warning</span>
+                  Device name of microSD card, <code>/dev/sdb</code> may differ depending on your environment.<br />
+              </div>
+            </li>
+            <br />
+            <li>Run the following commands to setup the partition 1.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /mnt/sd
+<span class="nb">sudo </span>mount /dev/sdb1 /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/board_setup/eSD/Image-smarc-rzv2l.bin /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/board_setup/eSD/Image-r9a07g054l2-smarc.dtb /mnt/sd
+<span class="nb">sync
+sudo </span>umount /mnt/sd</code></pre></figure>
+
+              <div class="warning">
+                <span class="warning-title">Warning</span>
+                Change <code>/dev/sdb</code> to your microSD card device name.<br />
+              </div>
+            </li>
+            <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>mount /dev/sdb2 /mnt/sd
+<span class="nb">sudo tar </span>xfj <span class="nv">$WORK</span>/board_setup/eSD/core-image-weston-smarc-rzv2l.tar.bz2 <span class="nt">-C</span> /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/libtvm_runtime.so /mnt/sd/usr/lib64
+<span class="nb">sync
+sudo </span>umount /mnt/sd</code></pre></figure>
+
+              <div class="warning">
+                <span class="warning-title">Warning</span>
+                Change <code>/dev/sdb</code> to your microSD card device name.<br />
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="ContenteMMC contenteMMC-bg">
+          <span class="ContenteMMC-title">For QSPI</span>
+          Following three files are necessary, which must be placed on each partitions on microSD card.<br />
+          They are in the <code>${WORK}/board_setup/QSPI</code> directory.
+          <br /><br />
+          <table class="gstable">
+            <tr>
+              <th>File</th>
+              <th>Description</th>
+              <th>microSD card partition</th>
+            </tr>
+            <tr>
+              <td>Image-smarc-rzv2l.bin</td>
+              <td>Linux kernel image<br />(The boot program) </td>
+              <td>Partition 1</td>
+            </tr>
+            <tr>
+              <td>Image-r9a07g054l2-smarc.dtb </td>
+              <td>Linux device tree file<br />(The configuration file for booting) </td>
+              <td>Partition 1</td>
+            </tr>
+            <tr>
+              <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
+              <td>Linux Root filesystem</td>
+              <td>Partition 2</td>
+            </tr>
+          </table>
+          <ol>
+            <li>Run the below command to decompress <code>${WORK}/board_setup/QSPI.zip</code>.<br />
+
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/board_setup
+unzip QSPI.zip</code></pre></figure>
+
+            </li>
+            <li>Insert the microSD card to Linux PC.
+            </li><br />
+            <li>
+              Check if the two partitions are created successfully by running <code>df</code> command.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">df</span> <span class="nt">-h</span>
+Filesystem 	Size		Used	Avail	Use %	Mounted on	
+…		…		…	…	…	…
+/dev/sdb1		…		…	…	…	…	
+/dev/sdb2		…		…	…	…	…	</code></pre></figure>
+
+              <div class="warning">
+                <span class="warning-title">Warning</span>
+                Device name of microSD card, <code>/dev/sdb</code>, may differ depending on your environment.
+              </div>
+            </li><br />
+            <li>
+              Run the following commands to setup the partition 1.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /mnt/sd
+<span class="nb">sudo </span>mount /dev/sdb1 /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/board_setup/QSPI/Image-smarc-rzv2l.bin /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/board_setup/QSPI/Image-r9a07g054l2-smarc.dtb /mnt/sd
+<span class="nb">sync
+sudo </span>umount /mnt/sd</code></pre></figure>
+
+              <div class="warning">
+                <span class="warning-title">Warning</span>
+                Change <code>/dev/sdb</code>, to your microSD card device name.
+              </div>
+            </li><br />
+            <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>mount /dev/sdb2 /mnt/sd
+<span class="nb">sudo tar </span>xfj <span class="nv">$WORK</span>/board_setup/QSPI/core-image-weston-smarc-rzv2l.tar.bz2 <span class="nt">-C</span> /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/libtvm_runtime.so /mnt/sd/usr/lib64
+<span class="nb">sync
+sudo </span>umount /mnt/sd</code></pre></figure>
+
+              <div class="warning">
+                <span class="warning-title">Warning</span>
+                Change <code>/dev/sdb</code>, to your microSD card device name.
+              </div>
+              <br />
+              <div class="note">
+                <span class="note-title">Note</span>
+                If you would like to eject the microSD card, please run following command and remove the microSD card from Linux PC.
+                <br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>eject /dev/sdb</code></pre></figure>
+
+                <div class="warning">
+                  <span class="warning-title">Warning</span>
+                  Change <code>/dev/sdb</code> to your microSD card device name.<br />
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      <h5 id="step7-1c">
+        <li type="A">
+          <span class="ContenteSD">
+          Write the bootloaders to SD card
+          </span>
+          <span class="ContenteMMC">
+          Write the bootloaders to Flash ROM
+          </span>
+        </li>
+      </h5>
+      <div class="ContenteSD">
+        <div class="contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+            Before booting up the board, you must write the latest bootloaders to microSD card.<br />
+            This procedures needs to be done only once as long as you use the same version of AI SDK.<br />
+            <br />
+            There are three files in <code>${WORK}/board_setup/eSD/bootloader</code> to boot up the board.<br />
+            <ul>
+              <li><code>bl2_bp_esd-smarc-rzv2l_pmic.bin</code></li>
+              <li><code>bl2-smarc-rzv2l_pmic.bin</code></li>
+              <li><code>fip-smarc-rzv2l_pmic.bin</code></li>
+            </ul>
+            <br />
+            Run the following commands to write these files to the microSD card to boot for eSD.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/board_setup/eSD/bootloader
+<span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>bl2_bp_esd-smarc-rzv2l_pmic.bin <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">seek</span><span class="o">=</span>1 <span class="nv">count</span><span class="o">=</span>1
+<span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>bl2-smarc-rzv2l_pmic.bin <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">seek</span><span class="o">=</span>8
+<span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>fip-smarc-rzv2l_pmic.bin <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">seek</span><span class="o">=</span>128
+<span class="nb">sync</span></code></pre></figure>
+
+            <div class="warning">
+              <span class="warning-title">Warning</span>
+              Change <code>/dev/sdb</code>, to your microSD card device name.<br />
+            </div>
+            <br />
+            <div class="note">
+              <span class="note-title">Note</span>
+              If you would like to eject the microSD card, please run following command and remove the microSD card from Linux PC.
+              <br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>eject /dev/sdb</code></pre></figure>
+
+              <div class="warning">
+                <span class="warning-title">Warning</span>
+                Change <code>/dev/sdb</code> to your microSD card device name.<br />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ContenteMMC">
+          <div class="contenteMMC-bg">
+            <span class="ContenteMMC-title">For QSPI</span>
+            Please write the bootloaders to Flash ROM on the board according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/dev_guide.html#D2" target="_blank" rel="noopener noreferrer">D2.How to boot from QSPI</a>.
+          </div>
+        </div>
+      </ol>
+      <br />
+      <h4 id="step7-2" class="u_line">2. Deploy Application to the Board</h4>
+        This section explains how to copy the <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step6" target="_blank" rel="noopener noreferrer">application binary created in Getting Started Step 6</a> to the board.<br />
+        Users are expected to have finished the instructions in <a href="#step7" target="_blank" rel="noopener noreferrer"> Setup RZ/V2L EVK in Step 7-1</a>.
+        <br />
+        <br />
+        <ol>
+          <li>Insert the microSD card to Linux PC.
+          </li><br />
+          <li>Run the following command to mount the partition 2, which contains the root filesystem.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>mount /dev/sdb2 /mnt/sd</code></pre></figure>
+
+            <div class="warning">
+              <span class="warning-title">Warning</span>
+              Change <code>/dev/sdb</code> to your microSD card device name.<br />
+            </div>
+          </li>
+          <li>Create the application directory on root filesystem.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> /mnt/sd/home/root/tvm</code></pre></figure>
+
+            <div class="note">
+              <span class="note-title">Note</span>
+              Directory name <code>tvm</code> can be determined by user.<br />
+            </div>
+          </li>
+          <li>Copy the necessary files in execution environment.<br />
+            Select the appropriate option below based on the application type explained in <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#build-instruction" target="_blank" rel="noopener noreferrer"> Getting Started Step 6</a>.
+            <br /><br />
+            <p id="deploy-option1"><b>Option 1: &lt;Application 1&gt;</b></p>
+            Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Deploy Stage"</b> (or similar) to deploy the application.
+            <br /><br />
+            <div class="box1">
+              <u><b>Example:</b></u><br />
+              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
+            </div>
+            <br />
+            Use the following command to copy the files to root filesystem.
+            <br /><br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/&lt;Path to target file&gt;/&lt;filename&gt; /mnt/sd/home/root/tvm </code></pre></figure>
+
+            <br />
+            <p id="deploy-option2"><b>Option 2: &lt;Application 2&gt;</b></p>
+            Run the following command to copy the whole repository to the root filesystem.
+            <br /><br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/&lt;Path to repository&gt;/RZV2L_AiLibrary /mnt/sd/home/root/tvm <span class="nt">-r</span></code></pre></figure>
+
+          </li>
+          <li>Run the following command to sync the data with memory.
+            <br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sync</span> </code></pre></figure>
+
+          </li>
+          <li>Run the following command to unmount the partition 2.
+            <br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>umount /mnt/sd</code></pre></figure>
+
+          </li>
+          <li>Eject the microSD card by running the following command and remove the microSD card from Linux PC.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>eject /dev/sdb</code></pre></figure>
+
+            <div class="warning">
+              <span class="warning-title">Warning</span>
+              Change <code>/dev/sdb</code> to your microSD card device name.<br />
+            </div>
+          </li>
+        </ol>
+        <br />
+      <h4 id="step7-3" class="u_line">3. Boot RZ/V2L EVK</h4>
+      This section explains how to boot the RZ/V2L EVK.<br />
+      <div class="SelectButton">
+        <span class="ButtoneSD">eSD Bootloader</span>
+        <span class="ButtoneMMC">QSPI Bootloader</span>
+      </div>
+      <br />
+      Follow the instruction below to boot the board.
+      <br />
+      <div class="ContenteSD contenteSD-bg">
+        <span class="ContenteSD-title">For eSD</span>
+        <reference3>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <ol>
+                  <li>
+                    Insert the microSD card to the <b>Board</b>.
+                    <div class="note">
+                      <span class="note-title">Note</span>
+                      Use the microSD card slot <b>CN3</b> as shown in the figure.
+                    </div>
+                  </li><br />
+                  <li>Change SW1 and SW11 setting as shown in the figure.</li><br />
+                  <li>Connect the USB mouse and USB keyboard via USB hub.</li><br />
+                  <li>Connect the <b>Google Coral camera</b> to the <b>Board</b>.</li><br />
+                  <li>Connect the HDMI monitor to the <b>Board</b>.</li><br />
+                  <li>Connect the power cable to the <b>Board</b>.</li><br />
+                  <li>Press power button for 1 second to turn on the board.</li>
+                </ol>
+              </div>
+              <div class="col-12 col-md-6">
+                <img class="procedure" src="img/board_esd.png" alt="boot" width="90%" />
+              </div>
+            </div>  
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <ol>
+                  <li value="8">After the boot-up, following screen will be displayed on HDMI monitor.</li>
+                </ol>
+              </div>
+              <div class="col-12 col-md-6">
+                <img class="procedure" src="img/wayland.jpg" alt="wayland" width="90%" />
+              </div>
+            </div>
+            <div class="row">
+              <div class=" col-12 col-md-6">
+                <ol>
+                  <li value="9">Click the icon at the top-left corner to open the terminal.</li>
+                </ol>
+              </div>
+              <div class=" col-12 col-md-6">
+                <img class="procedure" src="img/wayland_terminal.jpg" alt="wayland" width="90%" />
+              </div>
+            </div>
+          </div>
+        </reference3>
+      </div>
+      <div class="ContenteMMC contenteMMC-bg">
+        <span class="ContenteMMC-title">For QSPI</span>
+        <div class="note">
+          <span class="note-title">Note</span>
+          After bootloader is written and U-boot setting is changed, terminal emulator is no longer needed.<br />
+          Users can detach the serial port connection.<br />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <ol>
+                <li>
+                  Insert the microSD card to the <b>Board</b>.
+                  <div class="note">
+                    <span class="note-title">Note</span>
+                    Use the microSD card slot <b>CN10</b> as shown in the figure.
+                  </div>
+                </li><br />
+                <li>Change SW1 and SW11 setting as shown in the figure.</li><br />
+                <li>Connect the USB mouse and USB keyboard via USB hub.</li><br />
+                <li>Connect the <b>Google Coral camera</b> to the <b>Board</b>.</li><br />
+                <li>Connect the HDMI monitor to the <b>Board</b>.</li><br />
+                <li>Connect the power cable to the <b>Board</b>.</li><br />
+                <li>Press power button for 1 second to turn on the board.</li>
+              </ol>
+            </div>
+            <div class="col-12 col-md-6">
+              <img class="procedure" src="img/board_boot_emmc.png" alt="boot" width="90%" />
+            </div>
+          </div>  
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <ol>
+                <li value="8">After the boot-up, following screen will be displayed on HDMI monitor.</li>
+              </ol>
+            </div>
+            <div class="col-12 col-md-6">
+              <img class="procedure" src="img/wayland.jpg" alt="wayland" width="90%" />
+            </div>
+          </div>
+          <div class="row">
+            <div class=" col-12 col-md-6">
+              <ol>
+                <li value="9">Click the icon at the top-left corner to open the terminal.</li>
+              </ol>
+            </div>
+            <div class=" col-12 col-md-6">
+              <img class="procedure" src="img/wayland_terminal.jpg" alt="wayland" width="90%" />
+            </div>
+          </div>
+        </div>
+      </div>
+      After the boot up, please go back to <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#step8" target="_blank" rel="noopener noreferrer">Getting Started Step 8</a> or proceed directly to <a href="#step8" target="_blank" rel="noopener noreferrer">RZ/V2L EVK Getting Started Step 8</a>.
+      <br /><br />
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 id="step8">Step 8: Run AI Application</h3>
+      <div class="note">
+        <span class="note-title">Before reading this step</span>
+        Users are required to read Step 7 of <a href="#step7" target="_blank" rel="noopener noreferrer">RZ/V2L EVK Getting Started</a>.<br />
+        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="#step7" role="button" target="_blank" rel="noopener noreferrer">
+          <span class="banner-title">RZ/V2L EVK Getting Started Step 7 </span>
+          <span class="banner-line">
+          How can I setup microSD card for eSD/QSPI Bootloader?<br />
+          How can I deploy applications to the board?<br />
+          How can I write QSPI Bootloader to the board?<br />
+          How can I boot the board?<br />
+          </span>
+        </a>
+      </div>
+      <ol>
+        <li>
+          Follow the instructions explained in the document (<code>README.md</code>) of applications on GitHub.
+          <br /><br />
+          <div class="box1">
+            <u><b>Example:</b></u><br />
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
+            <br />
+            If you have successfully run the application, you will see following window on HDMI screen.
+            <br /><br />
+            <img src="img/objectdetection.png" alt="object_detection" width="90%" />
+          </div>
+          <br />
+        </li>
+      </ol>
+      <div class="note">
+        <span class="note-title">Note</span>
+        To shutdown the board safely, please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/appendix.html#A3" target="_blank" rel="noopener noreferrer">A2. Shutdown RZ/V2L EVK</a>
+      </div>
+    </div>
+  </div>
+</div>
+<p><br /><br /></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="u_line">This is the end of RZ/V2L EVK Getting Started.</h4>
+      To see what comes next, please refer to the Getting Started Ending.<br />
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started.html#ending" role="button" target="_blank" rel="noopener noreferrer">
+        <span class="banner-title">Getting Started Ending </span>
+        <span class="banner-line">
+        What is the next step of Getting Started?<br />
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+<p><br /></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12" align="right">
+      <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/5.10/getting_started_v2l.html#page-top" role="button">
+Back to Top &gt;
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+/************ Read Cookie **************/
+/************ Disabled since Cookie support will be considered after Jan, 2024. **************/
+/*function GetCookie(key) {
+    let value = document.cookie.match(new RegExp(key+'\=([^\;]*)\;*'));
+    return value ? value[1] : null;
+  }
+  let BootType = GetCookie("BootType") || "eSD";
+  console.log()*/
+let BootType = "eSD";
+
+/************ Select BootType **************/
+function dispBootType() {
+  if(BootType === "eSD") {
+    document.querySelectorAll(".ContenteSD").forEach(elm => elm.style.display="block");
+    document.querySelectorAll(".ContenteMMC").forEach(elm => elm.style.display="none");
+    document.querySelectorAll(".ButtoneSD").forEach(elm => elm.classList.add("ButtoneSD-Active"));
+    document.querySelectorAll(".ButtoneMMC").forEach(elm => elm.classList.remove("ButtoneMMC-Active"));
+  } else {
+    document.querySelectorAll(".ContenteSD").forEach(elm => elm.style.display="none");
+    document.querySelectorAll(".ContenteMMC").forEach(elm => elm.style.display="block");
+    document.querySelectorAll(".ButtoneSD").forEach(elm => elm.classList.remove("ButtoneSD-Active"));
+    document.querySelectorAll(".ButtoneMMC").forEach(elm => elm.classList.add("ButtoneMMC-Active"));
+  }
+}
+document.querySelectorAll(".SelectButton").forEach(elm => {
+  elm.addEventListener("click", ()=>{
+    BootType = (BootType === "eSD") ? "eMMC": "eSD";
+    // document.cookie = `BootType=${BootType};max-age=86400;path=/`;
+    dispBootType();
+  });
+})
+dispBootType();
+</script>
+
+
+
+      </section>
+    </div>
+    <script src="/rzv_ai_sdk/5.10/assets/js/scale.fix.js"></script>
+  </body>
+</html>
