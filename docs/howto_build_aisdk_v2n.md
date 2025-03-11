@@ -229,7 +229,7 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
         The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code. The required driver needs to be obtained through the following procedure.
         <ol type="A">
-          <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2N Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2n.asp" target="_blank" rel="noopener noreferrer">this link</a> to obtain the patch file below.
+          <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2N Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">this link</a> to obtain the patch file below.
             <table class="mytable">
               <tr>
                 <th>File name</th>

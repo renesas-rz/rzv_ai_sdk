@@ -829,7 +829,7 @@ layout: default
         <div class="col-12">
             <h6>
                 <span id="footnote_v2n_ecam">
-                    *5: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2n.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.
+                    *5: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.
                     <br>
                 </span>
                 <span id="footnote_v2n_drp_ai">
