@@ -37,7 +37,7 @@ layout: default
       <br>
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
-      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a>.<br>
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">RZ/V2N BSP Manual Set</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
@@ -433,13 +433,15 @@ MACHINE=rzv2n-evk bitbake core-image-weston -c populate_sdk
 <h4>
 This is the end of how to build AI SDK Source Code.
 </h4>
-You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2N AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.
+You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2N AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br>
+For more information on how to use each files, see the link in the How to use column.
 <br>
 <table class="mytable">
   <tr>
     <th>Path</th>
     <th>File name</th>
     <th>Description</th>
+    <th>How to use</th>
   </tr>
   <tr>
     <td rowspan="3">${YOCTO_WORK}/build/tmp/deploy/images/rzv2n-evk</td>
@@ -448,6 +450,9 @@ You have prepared following files, which is same as the one provided in <a href=
       core-image-weston-rzv2n-evk.wic.gz
     </td>
     <td>WIC format SD card image</td>
+    <td>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup RZ/V2N EVK in RZ/V2N EVK Getting Started</a>
+    </td>
   </tr>
   <tr>
     <td>
@@ -456,6 +461,9 @@ You have prepared following files, which is same as the one provided in <a href=
       fip-rzv2n-evk.srec
     </td>
     <td>Boot loader used when booting from xSPI</td>
+    <td>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" target="_blank" rel="noopener noreferrer">D3.How to boot from xSPI in Developer's Guide</a>
+    </td>
   </tr>
   <tr>
     <td>
@@ -466,11 +474,18 @@ You have prepared following files, which is same as the one provided in <a href=
       core-image-weston-rzv2n-evk.tar.bz2
     </td>
     <td>Boot loader and Root filesystem used when booting from eMMC</td>
+    <td>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D4" target="_blank" rel="noopener noreferrer">D4.How to boot from eMMC in Developer's Guide</a>
+    </td>
   </tr>
   <tr>
     <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
     <td>poky-glibc-x86_64-core-image-weston-aarch64-rzv2n-evk-toolchain-*.sh</td>
     <td>Cross compiler installer</td>
+    <td>
+      After replacing the file in <b><code>${WORK}/ai_sdk_setup</code></b> directory with this file, follow the steps below to setup RZ/V AI SDK.<br>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step5" target="_blank" rel="noopener noreferrer">Step 5: Setup RZ/V AI SDK in Getting Started</a>
+    </td>
   </tr>
 </table>
 <div class="note">

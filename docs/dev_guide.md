@@ -68,8 +68,8 @@ Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  AI SDK Source Code v5.00<br>
-                  AI SDK Source Code v5.00
+                  <!-- V2H -->AI SDK Source Code v5.20<br>
+                  <!-- V2N -->AI SDK Source Code v5.00
                 </td>
               </tr>
               <tr>
@@ -86,8 +86,8 @@ Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  AI SDK Source Code v5.00<br>
-                  AI SDK Source Code v5.00
+                  <!-- V2H -->AI SDK Source Code v5.20<br>
+                  <!-- V2N -->AI SDK Source Code v5.00
                 </td>
               </tr>
               <tr>
@@ -224,12 +224,32 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
             <li>
               <h5 id="D2-3">3. Write bootloaders to QSPI on the board</h5>
               <ol>
-                <li>Copy following files in <code>${WORK}/board_setup/QSPI/bootloader</code> to your Windows PC.
-                  <ul>
-                    <li><code>Flash_Writer_SCIF_RZV2L_SMARC<br clas="br-sp">_PMIC_DDR4_2GB_1PCS.mot</code></li>
-                    <li><code>bl2_bp-smarc-rzv2l_pmic.srec</code></li>
-                    <li><code>fip-smarc-rzv2l_pmic.srec</code></li>
-                  </ul>
+                <li>Copy following files to your Windows PC.
+                  <br><br>
+                  <table class="mytable">
+                    <tr>
+                      <th>Path</th>
+                      <th>File name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td>${WORK}/board_setup/QSPI/bootloader</td>
+                      <td rowspan="2">
+                        Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot<br>
+                        bl2_bp-smarc-rzv2l_pmic.srec<br>
+                        fip-smarc-rzv2l_pmic.srec
+                      </td>
+                      <td>
+                        Directory path and files when using files included with RZ/V2L AI SDK
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</td>
+                      <td>
+                        Directory path and files when using files generated with How to build RZ/V2L AI SDK Source Code
+                      </td>
+                    </tr>
+                  </table>
                 </li><br>
                 <li>Connect Windows PC and Board via Serial to MicroUSB Cable.
                 </li><br>
@@ -493,6 +513,8 @@ smarc-rzv2l login:
           <div class="note">
             <span class="note-title">Note</span>
             This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> and <b><span style="color: #2a289d;">RZ/V EVK Getting Started</span></b>.<br>
+            However, if you would like to use the files for xSPI boot included in RZ/V AI SDK, <br>
+            <span class="skip">skip Step 3 of How to build RZ/V AI SDK Source code</span> and use the files in <b><code>${WORK}/board_setup/xSPI</code></b> directory.<br>
             <table class="gstable ms-4">
               <tr>
                 <th>Device</th>
@@ -553,146 +575,165 @@ smarc-rzv2l login:
               <br>
             </li>
 <!-- D3-2. Install the serial port driver -->
-            <li>
-              <!-- Don’t change ID "D3-2" to prevent reference errors -->
-              <h5 id="D3-2">2. Install the serial port driver</h5>
-              <div class="note">
-                <span class="note-title">Note</span>
-                If you have already installed the serial port driver, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3-3">next procedure</a>.
-              </div>
+          <li>
+            <!-- Don’t change ID "D3-2" to prevent reference errors -->
+            <h5 id="D3-2">2. Install the serial port driver</h5>
+            <div class="note">
+              <span class="note-title">Note</span>
+              If you have already installed the serial port driver, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3-3">next procedure</a>.
+            </div>
               The serial communication between Windows PC and RZ/V EVK requires following driver.<br>
             <a href="https://ftdichip.com/drivers/vcp-drivers/" target="_blank" rel="noopener noreferrer">https://ftdichip.com/drivers/vcp-drivers/</a>
-              <br><br>
-              <ol>
-                <li>
-                  Download the software "Virtual COM port (VCP) driver" from the windows version "setup executable" on the download page and extract it.
-                </li><br>
-                <li>
-                  Run the <code>*.exe</code> file extracted to install the serial port driver.
-                </li><br>
-              </ol>
+            <br><br>
+            <ol>
+              <li>
+                Download the software "Virtual COM port (VCP) driver" from the windows version "setup executable" on the download page and extract it.
+              </li><br>
+              <li>
+                Run the <code>*.exe</code> file extracted to install the serial port driver.
+              </li><br>
+            </ol>
               <!-- <details class="boxdetails" open>
                 <summary>Install Procedures</summary>
                 <quotedoc id="d2-2reference"></quotedoc>
               </details> -->
-              <br>
-            </li>
+            <br>
+          </li>
 <!-- D3-3. Write bootloaders on the board -->
-            <li>
-              <!-- Don’t change ID "D3-3" to prevent reference errors -->
-              <h5 id="D3-3">3. Write bootloaders on the board</h5>
-              <ol>
-                <li>Copy following files to your Windows PC.
-                  <br><br>
-                  <table class="mytable">
-                    <tr>
-                      <th>Device</th>
-                      <th>Path</th>
-                      <th>File name</th>
-                    </tr>
-                    <tr>
-                      <td>RZ/V2H</td>
-                      <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</td>
-                      <td>
-                        Flash_Writer_SCIF_RZV2H_DEV_INTERNAL_MEMORY.mot<br>
-                        bl2_bp_spi-rzv2h-evk-ver1.srec<br>
-                        fip-rzv2h-evk-ver1.srec
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>RZ/V2N</td>
-                      <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2n-evk</td>
-                      <td>
-                        Flash_Writer_SCIF_RZV2N_DEV_LPDDR4X.mot<br>
-                        bl2_bp_spi-rzv2n-evk.srec<br>
-                        fip-rzv2n-evk.srec
-                      </td>
-                    </tr>
-                  </table>
-                </li><br>
-                <li>Connect Windows PC and Board via Serial to MicroUSB Cable.
-                </li><br>
-                <li id="D3-SCIF">Change DSW1 setting to Boot mode 3 (SCIF download). See the figure below.
-                  <br><br>
+          <li>
+            <!-- Don’t change ID "D3-3" to prevent reference errors -->
+            <h5 id="D3-3">3. Write bootloaders on the board</h5>
+            <ol>
+              <li>Copy following files to your Windows PC.
+                <br><br>
+                <table class="mytable">
+                  <tr>
+                    <th>Device</th>
+                    <th>Path</th>
+                    <th>File name</th>
+                    <th>Description</th>
+                  </tr>
+                  <tr>
+                    <td rowspan="2">RZ/V2H</td>
+                    <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</td>
+                    <td rowspan="2">
+                      Flash_Writer_SCIF_RZV2H_DEV_INTERNAL_MEMORY.mot<br>
+                      bl2_bp_spi-rzv2h-evk-ver1.srec<br>
+                      fip-rzv2h-evk-ver1.srec
+                    </td>
+                    <td>
+                      Directory path and files when using files generated with How to build RZ/V AI SDK Source Code
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>${WORK}/board_setup/xSPI/bootloader</td>
+                    <td>
+                      Directory path and files when using files included with RZ/V AI SDK
+                    </td>
+                  </tr>
+                  <tr>
+                    <td rowspan="2">RZ/V2N</td>
+                    <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2n-evk</td>
+                    <td rowspan="2">
+                      Flash_Writer_SCIF_RZV2N_DEV_LPDDR4X.mot<br>
+                      bl2_bp_spi-rzv2n-evk.srec<br>
+                      fip-rzv2n-evk.srec
+                    </td>
+                    <td>
+                      Directory path and files when using files generated with How to build RZ/V AI SDK Source Code
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>${WORK}/board_setup/xSPI/bootloader</td>
+                    <td>
+                      Directory path and files when using files included with RZ/V AI SDK
+                    </td>
+                  </tr>
+                </table>
+              </li><br>
+              <li>Connect Windows PC and Board via Serial to MicroUSB Cable.
+              </li><br>
+              <li id="D3-SCIF">Change DSW1 setting to Boot mode 3 (SCIF download). See the figure below.
+                <br><br>
                   <img class="procedure"  src="img/board_bootloader_v2h_v2n.png" alt="board" style="max-width: 60%; height: auto;" />
-                </li><br>
-                <li>Connect the power cable to CN13 on the Board.
-                </li><br>
-                <li> Turn the SW3 to ON.
-                </li><br>
-                <li>On Windows PC, open the terminal emulator.
-                  Here, we use Tera Term as an example.
-                </li><br>
-                <li>Select "File" > "New Connection" and select "Serial" port as shown below.
-                  <br><br>
-                  <img class="procedure"  src="img/new_connection.png" alt="board" width="90%"/>
-                </li><br>
-                <li>Open the configuration window from the "Setup">"Terminal" and change the setting as follows.
-                  <br><br>
-                  <table>
-                    <tr>
-                      <th>Item</th>
-                      <th>Value</th>
-                    </tr>
-                    <tr>
-                      <td>New-line</td>
-                      <td>Receive: Auto</td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td>Transmit: CR</td>
-                    </tr>
-                  </table>
-                </li><br>
-                <li>Open the configuration window from the "Setup">"Serial port" and change the setting as follows.
-                  <br><br>
-                  <table>
-                    <tr>
-                      <th>Item</th>
-                      <th>Value</th>
-                    </tr>
-                    <tr>
-                      <td>Baud rate</td>
-                      <td>115200</td>
-                    </tr>
-                    <tr>
-                      <td>Data</td>
-                      <td>8bit</td>
-                    </tr>
-                    <tr>
-                      <td>Parity</td>
-                      <td>none</td>
-                    </tr>
-                    <tr>
-                      <td>Stop</td>
-                      <td>1bit</td>
-                    </tr>
-                    <tr>
-                      <td>Flow control</td>
-                      <td>none</td>
-                    </tr>
-                    <tr>
-                      <td>Transmit delay</td>
-                      <td>0msec/char</td>
-                    </tr>
-                  </table>
-                </li><br>
-                <li>Turn the SW2 to ON to power on the Board and following message will be displayed on the terminal.
+              </li><br>
+              <li>Connect the power cable to CN13 on the Board.
+              </li><br>
+              <li> Turn the SW3 to ON.
+              </li><br>
+              <li>On Windows PC, open the terminal emulator.
+                Here, we use Tera Term as an example.
+              </li><br>
+              <li>Select "File" > "New Connection" and select "Serial" port as shown below.
+                <br><br>
+                <img class="procedure"  src="img/new_connection.png" alt="board" width="90%"/>
+              </li><br>
+              <li>Open the configuration window from the "Setup">"Terminal" and change the setting as follows.
+                <br><br>
+                <table>
+                  <tr>
+                    <th>Item</th>
+                    <th>Value</th>
+                  </tr>
+                  <tr>
+                    <td>New-line</td>
+                    <td>Receive: Auto</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>Transmit: CR</td>
+                  </tr>
+                </table>
+              </li><br>
+              <li>Open the configuration window from the "Setup">"Serial port" and change the setting as follows.
+                <br><br>
+                <table>
+                  <tr>
+                    <th>Item</th>
+                    <th>Value</th>
+                  </tr>
+                  <tr>
+                    <td>Baud rate</td>
+                    <td>115200</td>
+                  </tr>
+                  <tr>
+                    <td>Data</td>
+                    <td>8bit</td>
+                  </tr>
+                  <tr>
+                    <td>Parity</td>
+                    <td>none</td>
+                  </tr>
+                  <tr>
+                    <td>Stop</td>
+                    <td>1bit</td>
+                  </tr>
+                  <tr>
+                    <td>Flow control</td>
+                    <td>none</td>
+                  </tr>
+                  <tr>
+                    <td>Transmit delay</td>
+                    <td>0msec/char</td>
+                  </tr>
+                </table>
+              </li><br>
+              <li>Turn the SW2 to ON to power on the Board and following message will be displayed on the terminal.
 {% highlight console %}
 SCI Download mode (Normal SCI boot)
 -- Load Program to SRAM ---------------
 {% endhighlight %}
-                </li><br>
-                <li>
-                  Open "File" > "Send file..." and send the Flash Writer file (<code>*.mot</code>) as a text.<br>
-                  If following message is displayed, the file transfer succeeded.
+              </li><br>
+              <li>
+                Open "File" > "Send file..." and send the Flash Writer file (<code>*.mot</code>) as a text.<br>
+                If following message is displayed, the file transfer succeeded.
 {% highlight console %}
 Flash writer for RZ/V2x Series Vx.xx xxx.xx,20xx
  Product Code : RZ/V2x
 >
 {% endhighlight %}
-                </li><br>
-                <li>Enter "<code>XLS2</code>" on the terminal to get following messages.
+              </li><br>
+              <li>Enter "<code>XLS2</code>" on the terminal to get following messages.
 {% highlight console %}
 > XLS2
 ===== Qspi writing of RZ/V2x Board Command =============
@@ -702,28 +743,28 @@ Program size & Qspi Save Address
 ===== Please Input Program Top Address ============
   Please Input : H'
 {% endhighlight %}
-                </li><br>
-                <li>Enter "<code>8101e00</code>". The log continues.
+              </li><br>
+              <li>Enter "<code>8101e00</code>". The log continues.
 {% highlight console %}
   Please Input : H'8101e00
 ===== Please Input Qspi Save Address ===
   Please Input : H'
 {% endhighlight %}
-                </li><br>
-                <li>Enter "<code>00000</code>". The log continues.
+              </li><br>
+              <li>Enter "<code>00000</code>". The log continues.
 {% highlight console %}
   Please Input : H'00000
 please send ! ('.' & CR stop load)
 {% endhighlight %}
-                </li><br>
+              </li><br>
                 <li>After the "please send!" message, open "File" > "Send file..." and <b>send the <code>bl2_bp_spi-rzv2*.srec</code> file</b> as a text from the terminal software.
-                </li><br>
-                <li>In case a message to prompt to clear data like below, please enter "<code>y</code>".
+              </li><br>
+              <li>In case a message to prompt to clear data like below, please enter "<code>y</code>".
 {% highlight console %}
 SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% endhighlight %}
-                </li><br>
-                <li>Following log will be displayed. The end address is depending on the version of AI SDK.
+              </li><br>
+              <li>Following log will be displayed. The end address is depending on the version of AI SDK.
 {% highlight console %}
 Write to SPI Flash memory.
 ======= Qspi Save Information =================
@@ -731,8 +772,8 @@ SpiFlashMemory Stat Address : H'00000000
 SpiFlashMemory End Address  : H'00036D17
 ===========================================================
 {% endhighlight %}
-                </li><br>
-                <li>Enter "<code>XLS2</code>" on the terminal to get following messages.
+              </li><br>
+              <li>Enter "<code>XLS2</code>" on the terminal to get following messages.
 {% highlight console %}
 > XLS2
 ===== Qspi writing of RZ/V2x Board Command =============
@@ -742,28 +783,28 @@ Program size & Qspi Save Address
 ===== Please Input Program Top Address ============
   Please Input : H'
 {% endhighlight %}
-                </li><br>
-                <li>Enter "<code>00000</code>". The log continues.
+              </li><br>
+              <li>Enter "<code>00000</code>". The log continues.
 {% highlight console %}
   Please Input : H'00000
 ===== Please Input Qspi Save Address ===
   Please Input : H'
 {% endhighlight %}
-                </li><br>
-                <li>Enter "<code>60000</code>". The log continues.
+              </li><br>
+              <li>Enter "<code>60000</code>". The log continues.
 {% highlight console %}
   Please Input : H'60000
 please send ! ('.' & CR stop load)
 {% endhighlight %}
-                </li><br>
+              </li><br>
                 <li>After the "please send!" message, open "File" > "Send file..." and <b>send the <code>fip-rzv2*.srec</code> file</b> as a text from the terminal software.
-                </li><br>
-                <li>In case a message to prompt to clear data like below, please enter "<code>y</code>".
+              </li><br>
+              <li>In case a message to prompt to clear data like below, please enter "<code>y</code>".
 {% highlight console %}
 SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% endhighlight %}
-                </li><br>
-                <li>Following log will be displayed. The end address is depending on the version of AI SDK.
+              </li><br>
+              <li>Following log will be displayed. The end address is depending on the version of AI SDK.
 {% highlight console %}
 Write to SPI Flash memory.
 ======= Qspi Save Information =================
@@ -771,95 +812,94 @@ SpiFlashMemory Stat Address : H'00060000
 SpiFlashMemory End Address  : H'0011C2EE
 ===========================================================
 {% endhighlight %}
-                </li><br>
-                <li>Power-off the board to change DSW1 for booting the board.
-                </li>
-              </ol>
-              <br><br>
-            </li>
+              </li><br>
+              <li>Power-off the board to change DSW1 for booting the board.
+              </li>
+            </ol>
+            <br><br>
+          </li>
 <!-- D3-4. Setup U-boot setting -->
-            <li>
-              <!-- Don’t change ID "D3-4" to prevent reference errors -->
-              <h5 id="D3-4">4. Setup U-boot setting</h5>
-              Follow the procedure below to set the booting configuration of the board.<br><br>
-              <div class="container">
-                <div class="row">
-                  <div class="col-12 col-md-6">
-                    <ol>
-                      <li>Insert the microSD card to the <b>Board</b>.
-                        <div class="note">
-                          <span class="note-title">Note</span>
-                          RZ/V2H: Use the microSD card slot <b>SD1</b> as shown in the figure.<br>
-                          RZ/V2N: Use the microSD card slot <b>SD2</b> as shown in the figure.
-                        </div>
-                      </li><br>
-                      <li id="D3-xSPI">Change DSW1 setting to Boot mode 2 (xSPI boot) as shown in the right figure.
-                      </li><br>
-                      <li>Connect the <b>Board</b> and <b>Windows PC</b> by the USB Serial to Micro USB cable.
-                      </li><br>
-                      <li>Connect the power cable to the <b>Board</b>.
-                      </li><br>
-                      <li>Turn the SW3 to ON.
-                      </li><br>
-                      <li>Open the terminal emulator, i.e., Tera Term, and connect with COMS port.
-                        <div class="note">
-                          <span class="note-title">Note</span>
+          <li>
+            <!-- Don’t change ID "D3-4" to prevent reference errors -->
+            <h5 id="D3-4">4. Setup U-boot setting</h5>
+            Follow the procedure below to set the booting configuration of the board.<br><br>
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <ol>
+                    <li>Insert the microSD card to the <b>Board</b>.
+                      <div class="note">
+                        <span class="note-title">Note</span>
+                          Use the microSD card slot <b>SD2</b> as shown in the figure.
+                      </div>
+                    </li><br>
+                    <li id="D3-xSPI">Change DSW1 setting to Boot mode 2 (xSPI boot) as shown in the right figure.
+                    </li><br>
+                    <li>Connect the <b>Board</b> and <b>Windows PC</b> by the USB Serial to Micro USB cable.
+                    </li><br>
+                    <li>Connect the power cable to the <b>Board</b>.
+                    </li><br>
+                    <li>Turn the SW3 to ON.
+                    </li><br>
+                    <li>Open the terminal emulator, i.e., Tera Term, and connect with COMS port.
+                      <div class="note">
+                        <span class="note-title">Note</span>
                         When using Tera Term, change the configuration as explained in <a href="#D3-3" target="_blank" rel="noopener noreferrer">Write bootloaders on the board</a>.
-                        </div>
-                      </li><br>
-                      <li>Turn the SW2 to ON to power on the Board.
-                      </li><br>
-                      <li>On the terminal emulator, keep pressing ENTER key.
-                      </li><br>
-                    </ol>
-                  </div>
-                  <div class="col-12 col-md-6">
+                      </div>
+                    </li><br>
+                    <li>Turn the SW2 to ON to power on the Board.
+                    </li><br>
+                    <li>On the terminal emulator, keep pressing ENTER key.
+                    </li><br>
+                  </ol>
+                </div>
+                <div class="col-12 col-md-6">
                     <img class="procedure" src="img/uboot-setting_v2h.png" alt="boot" width="80%"/>
                     <br>
                     <img class="procedure" src="img/uboot-setting_v2n_spi.png" alt="boot" width="80%"/>
-                    <br>
-                  </div>
+                  <br>
                 </div>
-                <div class="row">
-                  <div class="col-12">
-                    <ol start="9">
-                      <li>U-boot console will be activated.
-                      </li><br>
-                      <li>Run the following commands to set the booting configuration.
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <ol start="9">
+                    <li>U-boot console will be activated.
+                    </li><br>
+                    <li>Run the following commands to set the booting configuration.
 {% highlight shell %}
 env default -a
 saveenv
 boot
 {% endhighlight %}
-                      </li><br>
-                      <li>After the boot-up, the login message will be shown on the console.
+                    </li><br>
+                    <li>After the boot-up, the login message will be shown on the console.
 {% highlight shell %}
 rzv2h-evk1 login:
 {% endhighlight %}
-                      </li><br>
-                      <li>Log-in to the system using the information below.
-                        <ul>
-                          <li>user: <code>root</code>
-                          </li>
-                          <li>password: none
-                          </li>
-                        </ul>
-                      </li><br>
-                      <li>Shutdown the board to finish the U-boot setting.
-                        <details class="boxdetails" open>
-                          <summary>Shutdown Procedures</summary>
-                          <quotedoc id="a4reference"></quotedoc>
-                        </details>
-                      </li><br>
-                    </ol>
-                  </div>
+                    </li><br>
+                    <li>Log-in to the system using the information below.
+                      <ul>
+                        <li>user: <code>root</code>
+                        </li>
+                        <li>password: none
+                        </li>
+                      </ul>
+                    </li><br>
+                    <li>Shutdown the board to finish the U-boot setting.
+                      <details class="boxdetails" open>
+                        <summary>Shutdown Procedures</summary>
+                        <quotedoc id="a4reference"></quotedoc>
+                      </details>
+                    </li><br>
+                  </ol>
                 </div>
               </div>
-            </li>
-          </ul>
-          <br>
+            </div>
+          </li>
+        </ul>
+        <br>
           This is the end of How to boot from xSPI on RZ/V2H EVK and RZ/V2N EVK.<br>
-        </div>
+    </div>
 <!-- D4. How to boot from eMMC -->
         <div class="col-12">
           <!-- Don’t change ID "D4" to prevent reference errors -->
@@ -886,7 +926,7 @@ rzv2h-evk1 login:
                 <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
               </tr>
             </table>
-          </div>
+        </div>
           <div class="note">
             <span class="note-title">Note</span>
             To perform this procedure, please prepare the following equipment in addition to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step2" target="_blank" rel="noopener noreferrer">1.Necessary Equipments</a>.
@@ -1219,7 +1259,7 @@ sudo umount /mnt/sd
               <h5 id="D4-5">5. Setup U-boot setting and writing rootfs to eMMC</h5>
               Follow the procedure below to set the booting configuration of the board.<br><br>
               <div class="container">
-                <div class="row">
+    <div class="row">
                   <div class="col-12 col-md-6">
                     <ol>
                       <li>Insert the microSD card to the <b>Board</b>.
@@ -1443,9 +1483,9 @@ rzv2n-evk login:
 </div>
 <!-- Footer -->
 <div class="row">
-    <div class="col-12" align="right">
-        <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">
+        <div class="col-12" align="right">
+            <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">
                 Back to Home >
-        </a>
-    </div>
+            </a>
+        </div>
 </div>

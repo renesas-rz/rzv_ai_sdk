@@ -521,7 +521,7 @@ sudo mkdir /mnt/sd/home/root/tvm
             <br><br>
             <div class="box1">
               <u><b>Example:</b></u><br>
-              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
+              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
             </div>
             <br>
             Use the following command to copy the files to root filesystem.
@@ -699,7 +699,7 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>

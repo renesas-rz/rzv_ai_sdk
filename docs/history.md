@@ -17,6 +17,69 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2H AI SDK v5.20
+                </h3>
+                <h6 align="right" >
+                    2025.3.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI SDK v5.20 is released.</h5>
+                    <ul>
+                        <li> 
+                            Updated RZ/V2H Linux BSP to v1.0.2.<br>
+                        </li>
+                        <li> 
+                            Updated Graphics Library to v3.1.2.3.<br>
+                        </li>
+                        <li> 
+                            Updated Video Codec Library to v3.3.3.2.<br>
+                        </li>
+                        <li> 
+                            Updated OpenCV Accelerator to v1.20.<br>
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v1.20.<br>
+                        </li>
+                        <li> 
+                            Supported OpenMP v8.3.0.<br>
+                        </li>
+                        <li> 
+                            Supported offline build of RZ/V2H AI SDK Source Code.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V2N AI Applications Demo v5.10
+                </h3>
+                <h6 align="right" >
+                    2025.3.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI Applications Demo v5.10 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported AI Applications v5.10.<br>
+                        </li>
+                        <li> 
+                            Supported log display functionality.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     AI Applications v5.10 & RZ/V2N AI SDK v5.00
                 </h3>
                 <h6 align="right" >

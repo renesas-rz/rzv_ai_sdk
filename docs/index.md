@@ -77,61 +77,53 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.3.11
+                2025.3.31
             </h6>
             <ul>
                 <li>
-                    <b>AI Applications v5.10</b> is released.
+                    <b>RZ/V2H AI SDK v5.20</b> is released.
                     <ul>
                         <li> 
-                            Added RZ/V2N Evaluation Board Kit support for 51 applications.
+                            Updated RZ/V2H Linux BSP to v1.0.2.
                         </li>
                         <li> 
-                            Updated the AI model used in 3 applications.
-                            <ul>
-                                <li> 
-                                    Multi-Camera Parking Lot Management
-                                </li>
-                                <li> 
-                                    Multi-Camera Vehicle Detector
-                                </li>
-                                <li> 
-                                    Car Accident Prevention Alert
-                                </li>
-                            </ul>
+                            Updated Graphics Library to v3.1.2.3.
                         </li>
                         <li> 
-                            Supported RZ/V2N AI SDK v5.00.
+                            Updated Video Codec Library to v3.3.3.2.
+                        </li>
+                        <li> 
+                            Updated OpenCV Accelerator to v1.20.
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v1.20.
+                        </li>
+                        <li> 
+                            Supported OpenMP v8.3.0.
+                        </li>
+                        <li> 
+                            Supported offline build of RZ/V2H AI SDK Source Code.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V2H AI SDK Specification</b></a>.
             <br>
             <br>
             <ul>
                 <li>
-                    <b>RZ/V2N AI SDK v5.00</b> is released.
+                    <b>RZ/V2N AI Applications Demo v5.10</b> is released.
                     <ul>
                         <li> 
-                            Supported DRP-AI TVM v2.3.0.<br>
+                            Supported AI Applications v5.10.
                         </li>
                         <li> 
-                            Supported RZ/V2N Linux BSP v1.0.0.<br>
-                        </li>
-                        <li>
-                            Supported Graphics Library Unrestricted Version v3.1.2.3.<br>
-                        </li>
-                        <li>
-                            Supported Video Codec Library v3.3.3.1.<br>
-                        </li>
-                        <li>
-                            Supported OpenCV Accelerator v1.10.<br>
+                            Supported log display funtionality.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2n-spec"><b>RZ/V2N AI SDK Specification</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}"><b>How to Use Guide</b></a>.
             <br>
             <br>
         </div>
@@ -394,6 +386,51 @@ layout: default
                                 </li>
                                 <li>
                                     Demo zip file size: 3.4GB
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+                <div class="col-12 col-xxl-6">
+                    <h4 class="u_line">
+                        For RZ/V2N EVK
+                    </h4>
+                    <div class="row">
+                        <div class="col-5">
+                            <p class="ms-3">
+                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-applications-demo-sd-image-version-510" role="button">
+                                    Download RZ/V2N AI Applications Demo
+                                </a>
+                            </p>    
+                            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}" role="button">
+                                <span class="banner-title" style="line-height:1.0;">
+                                    <span style="font-size:70%;">
+                                        RZ/V2N AI Applications Demo
+                                    </span><br>
+                                    How to Use Guide
+                                </span><br>
+                                <span class="banner-line">
+                                    What is RZ/V2N AI Applications Demo?<br>
+                                    How can I run the Demo?<br>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-7">
+                            <ul>
+                                <li>
+                                    Environment:
+                                    <ul>
+                                        <li>
+                                            AI Applications v5.10
+                                        </li>
+                                        <li>
+                                            RZ/V2N AI SDK v5.00
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    Demo zip file size: 3.5GB
                                 </li>
                             </ul>
                         </div>
@@ -908,7 +945,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
                             RZ/V2H BSP Manual Set
                         </a>
                     </td>
@@ -1024,7 +1061,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
                             RZ/V2N BSP Manual Set
                         </a>
                     </td>
@@ -1073,7 +1110,7 @@ layout: default
                         </small>
                     </td>
                 </tr>
-                <!-- 6月release <tr>
+                <!-- June Release <tr>
                     <td>
                         <a href="https://www.renesas.com/us/en/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">
                             RZ/V2N ROS2 Package 

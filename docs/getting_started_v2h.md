@@ -18,7 +18,7 @@ RZ/V2H EVK Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2H Evaluation Board Kit</b>.</h5>
 
-<h5>Supported version: <b>RZ/V2H AI SDK v5.00</b></h5>
+<h5>Supported version: <b>RZ/V2H AI SDK v5.20</b></h5>
 
 <details class="boxdetails" open>
   <summary>Terminology</summary>
@@ -125,15 +125,18 @@ RZ/V2H EVK Getting Started
       </div>
       <br>
       To boot the board, bootloader and other Linux necessary files are required.<br>
-      Following bootloader is available on RZ/V2H AI SDK.<br>
+      There are two types of bootloader available on RZ/V2H AI SDK.<br>
       <ul>
         <li>
           <b>eSD Bootloader</b>: The board boots up using the bootloader written on microSD card.
         </li>
+        <li>
+          <b>xSPI Bootloader</b>: The board boots up using the bootloader written in Flash ROM on the board.
+        </li>
       </ul>
       Other necessary files, i.e. Linux kernel and root filesystem, are stored on microSD card.<br>
       You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br>
-      <img class="procedure2" src="img/esd.svg" alt="docker" style="max-height: 200px" />
+      <img class="procedure2" src="img/esd_spi.svg" alt="docker" style="max-height: 200px" />
       <br>
       <div class="note">
         <span class="note-title">Note</span>
@@ -145,14 +148,53 @@ RZ/V2H EVK Getting Started
         </ul>
       </div>
       <br>
-      <h4 id="step7-1" class="u_line">1. Setup RZ/V2H EVK </h4>
-      microSD card needs to contain bootloaders, the Linux kernel and root filesystem to boot-up the board.<br>
-      RZ/V2H AI SDK supports the WIC format for SD card image.<br>
-      You can use Linux PC to write the SD card image into microSD card with SD card reader.<br>
+      <h4 id="step7prep" class="u_line" >Preparation</h4>
       <div class="note">
-        <span class="note-title">Note</span>
-        This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-        If you have already setup the microSD card with the latest bootloader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>.
+        <span class="note-title">Click the button</span>
+        This step contains both eSD and xSPI Bootloader explanation.<br>
+        Please click the button below to update the explanation according to your bootloader interface.<br>
+        <div class="SelectButton">
+          <span class="ButtoneSD">eSD Bootloader</span>
+          <span class="ButtonSPI">xSPI Bootloader</span>
+        </div>
+        <div class="ContenteSD contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+          eSD explanation will be shown in this style if you click "eSD Bootloader" button above.
+        </div>
+        <div class="ContentSPI contentSPI-bg">
+          <span class="ContentSPI-title">For xSPI</span>
+          xSPI explanation will be shown in this style if you click "SPI Bootloader" button above.
+        </div>
+      </div>
+      <br>
+      <h4 id="step7-1" class="u_line">1. Setup RZ/V2H EVK </h4>
+      <div class="ContenteSD">
+        <div class="contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+          microSD card needs to contain bootloaders, the Linux kernel and root filesystem to boot-up the board.<br>
+          RZ/V2H AI SDK supports the WIC format for SD card image.<br>
+          You can use Linux PC to write the SD card image into microSD card with SD card reader.<br>
+        </div>
+        <div class="note">
+          <span class="note-title">Note</span>
+          This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
+          If you have already setup the microSD card with the latest bootloader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>.
+        </div>
+      </div>
+      <div class="ContentSPI">
+        <div class="contentSPI-bg">
+          <span class="ContentSPI-title">For xSPI</span>
+          microSD card needs to contain the Linux kernel and root filesystem to boot-up the board.<br>
+          RZ/V2H AI SDK supports the WIC format for SD card image.<br>
+          You can use Linux PC to write the SD card image into microSD card with SD card reader.<br>
+          Bootloaders must be written in Flash ROM on the board.
+          You can use Windows PC to write the bootloaders on Flash ROM.
+        </div>
+        <div class="note">
+          <span class="note-title">Note</span>
+          This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
+          If you have already setup the microSD card and the bootloader written in Flash ROM on the board, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>. 
+        </div>
       </div>
       <div class="note">
         <span class="note-title">Note</span>
@@ -172,7 +214,9 @@ sudo apt install bmap-tools
         <h5 id="step7-1b">
           <li type="A">Write the Linux files to SD card</li>
         </h5>
-        Run the below command to decompress <code>${WORK}/board_setup/eSD.zip</code>.<br>
+        <div class="ContenteSD contenteSD-bg">
+          <span class="ContenteSD-title">For eSD</span>
+          Run the below command to decompress <code>${WORK}/board_setup/eSD.zip</code>.<br>
 {% highlight shell %}
 cd ${WORK}/board_setup
 unzip eSD.zip
@@ -180,6 +224,18 @@ unzip eSD.zip
         Following files are necessary.<br>
         They are in the <code>${WORK}/board_setup/eSD</code> directory.
         <br><br>
+        </div>
+        <div class="ContentSPI contentSPI-bg">
+          <span class="ContentSPI-title">For xSPI</span>
+          Run the below command to decompress <code>${WORK}/board_setup/xSPI.zip</code>.<br>
+{% highlight shell %}
+cd ${WORK}/board_setup
+unzip xSPI.zip
+{% endhighlight %}
+        Following files are necessary.<br>
+        They are in the <code>${WORK}/board_setup/xSPI</code> directory.
+        <br><br>
+        </div>
         <table class="gstable">
           <tr>
             <th>File</th>
@@ -273,10 +329,20 @@ sudo umount /media/user/9016-4EF8
             </div>
           </li>
           <li>Run the following command to write SD card image.<br>
+            <div class="ContenteSD contenteSD-bg">
+              <span class="ContenteSD-title">For eSD</span>
 {% highlight shell %}
 cd ${WORK}/board_setup/eSD
 sudo bmaptool copy --bmap core-image-weston-rzv2h-evk-ver1.wic.bmap core-image-weston-rzv2h-evk-ver1.wic.gz /dev/sdb
 {% endhighlight %}
+            </div>
+            <div class="ContentSPI contentSPI-bg">
+              <span class="ContentSPI-title">For xSPI</span>
+{% highlight shell %}
+cd ${WORK}/board_setup/xSPI
+sudo bmaptool copy --bmap core-image-weston-rzv2h-evk-ver1.wic.bmap core-image-weston-rzv2h-evk-ver1.wic.gz /dev/sdb
+{% endhighlight %}
+            </div>
             <div class="warning">
               <span class="warning-title">Warning</span>
               Change <code>/dev/sdb</code> to your microSD card device name.<br>
@@ -334,6 +400,19 @@ sudo eject /dev/sdb
           </div>
           </li>
         </ol>
+        <h5 id="step7-1c">
+          <span class="ContentSPI">
+          <li type="A">
+            Write the bootloaders to Flash ROM
+          </li>
+          </span>
+        </h5>
+        <div class="ContentSPI">
+          <div class="contentSPI-bg">
+            <span class="ContentSPI-title">For xSPI</span>
+            Please write the bootloaders to Flash ROM on the board according to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" target="_blank" rel="noopener noreferrer">D3.How to boot from xSPI</a>.
+          </div>
+        </div>
       </ol>
       <br>
       <h4 id="step7-2" class="u_line">2. Deploy Application to the Board</h4>
@@ -371,7 +450,7 @@ sudo mkdir /mnt/sd/home/root/tvm
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
+            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
           </div>
           <br>
           Use the following command to copy the files to root filesystem.
@@ -410,63 +489,134 @@ sudo eject /dev/sdb
       <h4 id="step7-3" class="u_line">3. Boot RZ/V2H EVK</h4>
       This section explains how to boot the RZ/V2H EVK.<br>
       <br>
+      <div class="SelectButton">
+        <span class="ButtoneSD">eSD Bootloader</span>
+        <span class="ButtonSPI">xSPI Bootloader</span>
+      </div>
+      <br>
       Follow the instruction below to boot the board.
       <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <ol>
-              <li>
-                Insert the microSD card to the <b>Board</b>.
-                <div class="note">
-                  <span class="note-title">Note</span>
-                  Use the microSD card slot <b>SD1</b> on the <b>Board</b> as shown in the figure.
-                </div>
-              </li><br>
-              <li>Change DSW1 and DSW2 setting as shown in the figure.</li><br>
-              <li>Connect the USB mouse and USB keyboard and USB camera via USB hub.<br>
-                <div class="note">
-                  <span class="note-title">Note</span>
-                  There are USB 2.0 port and USB 3.0 port on RZ/V2H EVK.<br>
-                  Please connect your USB camera to appropriate port according to its requirement.<br>
-                  Here, USB camera is connected to USB 2.0 via USB hub.<br>
-                </div>
-              </li><br>
-              <li>Connect the HDMI monitor to the <b>Board</b>.</li><br>
-              <li>Connect the power cable to the <b>Board</b>.</li><br>
-              <li>Turn the SW3 to ON.</li><br>
-              <li>Turn the SW2 to ON to power on the <b>Board</b></li>
-            </ol>
+      <div class="ContenteSD contenteSD-bg">
+        <span class="ContenteSD-title">For eSD</span>
+        <reference3>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <ol>
+                  <li>
+                    Insert the microSD card to the <b>Board</b>.
+                    <div class="note">
+                      <span class="note-title">Note</span>
+                      Use the microSD card slot <b>SD1</b> on the <b>Board</b> as shown in the figure.
+                    </div>
+                  </li><br>
+                  <li>Change DSW1 and DSW2 setting as shown in the figure.</li><br>
+                  <li>Connect the USB mouse and USB keyboard and USB camera via USB hub.<br>
+                    <div class="note">
+                      <span class="note-title">Note</span>
+                      There are USB 2.0 port and USB 3.0 port on RZ/V2H EVK.<br>
+                      Please connect your USB camera to appropriate port according to its requirement.<br>
+                      Here, USB camera is connected to USB 2.0 via USB hub.<br>
+                    </div>
+                  </li><br>
+                  <li>Connect the HDMI monitor to the <b>Board</b>.</li><br>
+                  <li>Connect the power cable to the <b>Board</b>.</li><br>
+                  <li>Turn the SW3 to ON.</li><br>
+                  <li>Turn the SW2 to ON to power on the <b>Board</b></li>
+                </ol>
+              </div>
+              <div class="col-12 col-md-6">
+                <a href="img/v2h_evk_boot.png" data-lightbox="group"><img class="procedure" src="img/v2h_evk_boot.png" alt="boot" width="90%"/></a>
+              </div>
+            </div>  
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <ol>
+                  <li value = "8">After the boot-up, following screen will be displayed on HDMI monitor.</li>
+                </ol>
+              </div>
+              <div class="col-12 col-md-6">
+                <img class="procedure"  src="img/wayland.jpg" alt="wayland" width="90%" />
+              </div>
+            </div>
+            <div class="row">
+              <div class=" col-12 col-md-6">
+                <ol>
+                  <li value = "9">Click the icon at the top-left corner to open the terminal.</li>
+                </ol>
+              </div>
+              <div class=" col-12 col-md-6">
+                <img class="procedure"  src="img/v2h_evk_wayland.png" alt="wayland" width="90%" />
+              </div>
+            </div>
+            <br><br>
           </div>
-          <div class="col-12 col-md-6">
-            <a href="img/v2h_evk_boot.png" data-lightbox="group"><img class="procedure" src="img/v2h_evk_boot.png" alt="boot" width="90%"/></a>
-          </div>
-        </div>  
-        <br>
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <ol>
-              <li value = "8">After the boot-up, following screen will be displayed on HDMI monitor.</li>
-            </ol>
-          </div>
-          <div class="col-12 col-md-6">
-            <img class="procedure"  src="img/wayland.jpg" alt="wayland" width="90%" />
-          </div>
-        </div>
-        <div class="row">
-          <div class=" col-12 col-md-6">
-            <ol>
-              <li value = "9">Click the icon at the top-left corner to open the terminal.</li>
-            </ol>
-          </div>
-          <div class=" col-12 col-md-6">
-            <img class="procedure"  src="img/v2h_evk_wayland.png" alt="wayland" width="90%" />
-          </div>
-        </div>
-        <br>
-        After the boot up, please go back to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8" target="_blank" rel="noopener noreferrer">Getting Started Step 8</a> or proceed directly to <a href="#step8" target="_blank" rel="noopener noreferrer">RZ/V2H EVK Getting Started Step 8</a>.
-        <br><br>
+        </reference3>
       </div>
+      <div class="ContentSPI contentSPI-bg">
+        <span class="ContentSPI-title">For xSPI</span>
+        <div class="note">
+          <span class="note-title">Note</span>
+          After bootloader is written and U-boot setting is changed, terminal emulator is no longer needed.<br>
+          Users can detach the serial port connection.<br>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <ol>
+                <li>
+                  Insert the microSD card to the <b>Board</b>.
+                  <div class="note">
+                    <span class="note-title">Note</span>
+                    Use the microSD card slot <b>SD2</b> on the <b>Board</b> as shown in the figure.
+                  </div>
+                </li><br>
+                <li>Change DSW1 and DSW2 setting as shown in the figure.</li><br>
+                <li>Connect the USB mouse and USB keyboard and USB camera via USB hub.<br>
+                  <div class="note">
+                    <span class="note-title">Note</span>
+                    There are USB 2.0 port and USB 3.0 port on RZ/V2H EVK.<br>
+                    Please connect your USB camera to appropriate port according to its requirement.<br>
+                    Here, USB camera is connected to USB 2.0 via USB hub.<br>
+                  </div>
+                </li><br>
+                <li>Connect the HDMI monitor to the <b>Board</b>.</li><br>
+                <li>Connect the power cable to the <b>Board</b>.</li><br>
+                <li>Turn the SW3 to ON.</li><br>
+                <li>Turn the SW2 to ON to power on the <b>Board</b></li>
+              </ol>
+            </div>
+            <div class="col-12 col-md-6">
+              <a href="img/v2h_evk_boot_spi.png" data-lightbox="group"><img class="procedure" src="img/v2h_evk_boot_spi.png" alt="boot" width="90%"/></a>
+            </div>
+          </div>  
+          <br>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <ol>
+                <li value = "8">After the boot-up, following screen will be displayed on HDMI monitor.</li>
+              </ol>
+            </div>
+            <div class="col-12 col-md-6">
+              <img class="procedure"  src="img/wayland.jpg" alt="wayland" width="90%" />
+            </div>
+          </div>
+          <div class="row">
+            <div class=" col-12 col-md-6">
+              <ol>
+                <li value = "9">Click the icon at the top-left corner to open the terminal.</li>
+              </ol>
+            </div>
+            <div class=" col-12 col-md-6">
+              <img class="procedure"  src="img/v2h_evk_wayland.png" alt="wayland" width="90%" />
+            </div>
+          </div>
+          <br><br>
+        </div>
+      </div>
+      <br>
+      After the boot up, please go back to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8" target="_blank" rel="noopener noreferrer">Getting Started Step 8</a> or proceed directly to <a href="#step8" target="_blank" rel="noopener noreferrer">RZ/V2H EVK Getting Started Step 8</a>.
+      <br><br>
     </div>
   </div>
 </div>
@@ -493,7 +643,7 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>
@@ -504,7 +654,7 @@ sudo eject /dev/sdb
       </ol>
       <div class="note">
         <span class="note-title">Note</span>
-        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK</a>
+        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</a>
       </div>
     </div>
   </div>
@@ -535,3 +685,37 @@ Back to Top >
     </div>
   </div>
 </div>
+<script>
+/************ Read Cookie **************/
+/************ Disabled since Cookie support will be considered after Jan, 2024. **************/
+/*function GetCookie(key) {
+    let value = document.cookie.match(new RegExp(key+'\=([^\;]*)\;*'));
+    return value ? value[1] : null;
+  }
+  let BootType = GetCookie("BootType") || "eSD";
+  console.log()*/
+let BootType = "eSD";
+
+/************ Select BootType **************/
+function dispBootType() {
+  if(BootType === "eSD") {
+    document.querySelectorAll(".ContenteSD").forEach(elm => elm.style.display="block");
+    document.querySelectorAll(".ContentSPI").forEach(elm => elm.style.display="none");
+    document.querySelectorAll(".ButtoneSD").forEach(elm => elm.classList.add("ButtoneSD-Active"));
+    document.querySelectorAll(".ButtonSPI").forEach(elm => elm.classList.remove("ButtonSPI-Active"));
+  } else {
+    document.querySelectorAll(".ContenteSD").forEach(elm => elm.style.display="none");
+    document.querySelectorAll(".ContentSPI").forEach(elm => elm.style.display="block");
+    document.querySelectorAll(".ButtoneSD").forEach(elm => elm.classList.remove("ButtoneSD-Active"));
+    document.querySelectorAll(".ButtonSPI").forEach(elm => elm.classList.add("ButtonSPI-Active"));
+  }
+}
+document.querySelectorAll(".SelectButton").forEach(elm => {
+  elm.addEventListener("click", ()=>{
+    BootType = (BootType === "eSD") ? "SPI": "eSD";
+    // document.cookie = `BootType=${BootType};max-age=86400;path=/`;
+    dispBootType();
+  });
+})
+dispBootType();
+</script>

@@ -452,11 +452,11 @@ sudo mkdir /mnt/sd/home/root/tvm
           <div class="note">
             <span class="note-title">Note</span>
             Since RZ/V2N is a brother chip of RZ/V2H, users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
-            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
           </div>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
+            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
           </div>
           Use the following command to copy the files to root filesystem.
           <br><br>
@@ -654,9 +654,9 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.<br>
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.<br>
             Users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
-            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>

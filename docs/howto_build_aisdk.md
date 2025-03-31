@@ -388,22 +388,31 @@ sudo tar cvfj ${WORK}/src_setup/core-image-weston-smarc-rzv2l.tar.bz2 *
 <h4>
 This is the end of how to build AI SDK Source Code.
 </h4>
-You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2L AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.
+You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2L AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br>
+For more information on how to use each files, see the link in the How to use column.
 <br>
 <table class="mytable">
   <tr>
     <th>Path</th>
     <th>File name</th>
     <th>Description</th>
+    <th>How to use</th>
   </tr>
   <tr>
-    <td rowspan="4">${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</td>
+    <td rowspan="5">${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</td>
     <td>Image-smarc-rzv2l.bin</td>
     <td>Linux kernel</td>
+    <td rowspan="4">
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup RZ/V2L EVK in RZ/V2L EVK Getting Started</a>
+    </td>
   </tr>
   <tr>
     <td>Image-r9a07g054l2-smarc.dtb</td>
     <td>Device tree file</td>
+  </tr>
+  <tr>
+    <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
+    <td>Root filesystem</td>
   </tr>
   <tr>
     <td>bl2_bp_esd-smarc-rzv2l_pmic.bin<br>
@@ -416,16 +425,18 @@ You have prepared following files, which is same as the one provided in <a href=
         fip-smarc-rzv2l_pmic.srec<br>
         Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</td>
     <td>*1 Bootloader generated when using QSPI Bootloader</td>
-  </tr>
-  <tr>
-    <td>${WORK}/src_setup</td>
-    <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
-    <td>Root filesystem</td>
+    <td>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D2" target="_blank" rel="noopener noreferrer">D2.How to boot from QSPI in Developer's Guide</a>
+    </td>
   </tr>
   <tr>
     <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
     <td>poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</td>
     <td>Cross compiler installer</td>
+    <td>
+      After replacing the file in <b><code>${WORK}/ai_sdk_setup</code></b> directory with this file, follow the steps below to setup RZ/V AI SDK.<br>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step5" target="_blank" rel="noopener noreferrer">Step 5: Setup RZ/V AI SDK in Getting Started</a>
+    </td>
   </tr>
 </table>
 <div class="note">

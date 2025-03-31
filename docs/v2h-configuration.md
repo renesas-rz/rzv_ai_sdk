@@ -23,7 +23,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 5.00
+                    Target Version: 5.20
                 </b>
             </h5>
         </div>
@@ -153,13 +153,13 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 Drivers
             </h3>
             Following table shows the list of drivers.<br>
-            For more details, see <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
+            For more details, see <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
             <!-- UNCOMMENT following for v5.00 release. -->
-            <div class="note">
+            <!-- <div class="note">
                 <span class="note-title">Note</span>
                 <span class="text-info">&#10004;</span> shows newly supported drivers.
                 <br>
-            </div>
+            </div> -->
             <!-- MEMO: For maintenance
                     When updating the version, follow the rules below
                     - For existing support      &#10004;
@@ -189,7 +189,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             CPU/CA55
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             Supports 1.1GHz, 1.5GHz, 1.6GHz and 1.7GHz.<br>
@@ -241,7 +241,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             Image Scaling Unit
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>                        <td>
                             <!-- Empty -->
                         </td>
@@ -251,7 +251,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             Camera Input
                         </td>
                         <td>                    <!-- IP -->
-                            MIPI-CSI/4lane x4
+                            MIPI-CSI
                         </td>
                         <td>                    <!-- Support -->
                             &#10004;
@@ -269,7 +269,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             Display Out
                         </td>
                         <td>                    <!-- IP -->
-                            MIPI-DSI/4lane x1
+                            MIPI-DSI
                         </td>
                         <td>                    <!-- Support -->
                             &#10004;
@@ -285,10 +285,10 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             H.264
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>
-                            AI SDK v5.00 newly supports Decoder in addition to Encoder.
+                            <!-- Empty -->
                         </td>
                     </tr>
                     <tr>
@@ -297,7 +297,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             H.265
                         </td>
                         <td>                    <!-- Remarks -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>
                             <!-- Empty -->
@@ -308,10 +308,10 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             Audio
                         </td>
                         <td>                    <!-- IP -->
-                            SSIF-2 TDM x8
+                            SSIF-2 TDM
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -320,10 +320,10 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : Audio -->
                         <td>                    <!-- IP -->
-                            SPDIF x3
+                            SPDIF
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -335,20 +335,6 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             ASRC(Asynchronous sample rate conversion)
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
-                        </td>
-                        <td>                    <!-- Remarks -->
-                            <!-- Empty -->
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="4">         <!-- Item -->
-                            Timers
-                        </td>
-                        <td>                    <!-- IP -->
-                            OSTM/6ch
-                        </td>
-                        <td>                    <!-- Support -->
                             &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
@@ -356,7 +342,9 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         </td>
                     </tr>
                     <tr>
-                                                <!-- Item : Timers-->
+                        <td rowspan="6">         <!-- Item -->
+                            Timers
+                        </td>
                         <td>                    <!-- IP -->
                             SYC (SystemCounter)
                         </td>
@@ -370,10 +358,10 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : Timers-->
                         <td>                    <!-- IP -->
-                            WDT/4ch
+                            GPT
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -385,7 +373,43 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             RTC
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Timers-->
+                        <td>                    <!-- IP -->
+                            GTM
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Timers-->
+                        <td>                    <!-- IP -->
+                            CMTW
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Timers-->
+                        <td>                    <!-- IP -->
+                            WDT
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -396,10 +420,10 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             Analog
                         </td>
                         <td>                    <!-- IP -->
-                            ADC 12bitx8
+                            ADC
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -411,18 +435,18 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             TSU
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
                         </td>
                     </tr>
                     <tr>
-                        <td rowspan="15">         <!-- Item -->
+                        <td rowspan="17">         <!-- Item -->
                             Connectivity
                         </td>
                         <td>                    <!-- IP -->
-                            USB3(Gen2x1) hostx2
+                            xSPI
                         </td>
                         <td>                    <!-- Support -->
                             &#10004;
@@ -434,19 +458,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : Connectivity-->
                         <td>                    <!-- IP -->
-                            USB2.0 host/func x1 host x1
-                        </td>
-                        <td>                    <!-- Support -->
-                            &#10004;
-                        </td>
-                        <td>                    <!-- Remarks -->
-                            <!-- Empty -->
-                        </td>
-                    </tr>
-                    <tr>
-                                                <!-- Item : Connectivity-->
-                        <td>                    <!-- IP -->
-                            SDHI(UHS-I)
+                            SDIO
                         </td>
                         <td>                    <!-- Support -->
                             &#10004;
@@ -466,7 +478,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : Connectivity-->
                         <td>                    <!-- IP -->
-                            Gb Ether x2
+                            USB3(Gen2x1)
                         </td>
                         <td>                    <!-- Support -->
                             &#10004;
@@ -478,7 +490,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : Connectivity-->
                         <td>                    <!-- IP -->
-                            PCIe Gen.3 4Lane x1 or 2Lane x2 RC
+                            USB2.0
                         </td>
                         <td>                    <!-- Support -->
                             &#10004;
@@ -490,7 +502,31 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : Connectivity-->
                         <td>                    <!-- IP -->
-                            PCIe Gen.3 4Lane x1 or 2Lane x2 EP
+                            Gb Ether
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            PCIe Gen.3 RC
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            PCIe Gen.3 EP
                         </td>
                         <td>N/A</td>
                         <td>The board does not support PCIe EP.</td>
@@ -498,70 +534,10 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : Connectivity-->
                         <td>                    <!-- IP -->
-                            CANFD
-                        </td>
-                        <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
-                        </td>
-                        <td>                    <!-- Remarks -->
-                            <!-- Empty -->
-                        </td>
-                    </tr>
-                    <tr>
-                                                <!-- Item : Connectivity-->
-                        <td>                    <!-- IP -->
-                            RSCI-2 x10
-                        </td>
-                        <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
-                        </td>
-                        <td>                    <!-- Remarks -->
-                            <!-- Empty -->
-                        </td>
-                    </tr>
-                    <tr>
-                                                <!-- Item : Connectivity-->
-                        <td>                    <!-- IP -->
-                            SCIF x1
-                        </td>
-                        <td>                    <!-- Support -->
-                            &#10004;
-                        </td>
-                        <td>                    <!-- Remarks -->
-                            <!-- Empty -->
-                        </td>
-                    </tr>
-                    <tr>
-                                                <!-- Item : Connectivity-->
-                        <td>                    <!-- IP -->
-                            I2C x9
-                        </td>
-                        <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
-                        </td>
-                        <td>                    <!-- Remarks -->
-                            <!-- Empty -->
-                        </td>
-                    </tr>
-                    <tr>
-                                                <!-- Item : Connectivity-->
-                        <td>                    <!-- IP -->
-                            I3C x1
-                        </td>
-                        <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
-                        </td>
-                        <td>                    <!-- Remarks -->
-                            <!-- Empty -->
-                        </td>
-                    </tr>
-                    <tr>
-                                                <!-- Item : Connectivity-->
-                        <td>                    <!-- IP -->
                             IRQ
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -573,7 +549,79 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             NMI
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            I3C
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            I2C
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            SCIF
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            RSCI-2
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            RSPI
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
+                        </td>
+                        <td>                    <!-- Remarks -->
+                            <!-- Empty -->
+                        </td>
+                    </tr>
+                    <tr>
+                                                <!-- Item : Connectivity-->
+                        <td>                    <!-- IP -->
+                            CAN-FD
+                        </td>
+                        <td>                    <!-- Support -->
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -585,7 +633,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             GPIO
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -599,7 +647,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                             CPG
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -608,10 +656,10 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <tr>
                                                 <!-- Item : System -->
                         <td>                    <!-- IP -->
-                            DMAC/80ch (16ch/unit * 5unit)
+                            DMAC
                         </td>
                         <td>                    <!-- Support -->
-                            <span class="text-info">&#10004;</span>
+                            &#10004;
                         </td>
                         <td>                    <!-- Remarks -->
                             <!-- Empty -->
@@ -624,7 +672,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
                 This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.<br>
                 Please apply this patch with caution after thorough verification.<br>
-                (Patch file: 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch, 0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch)<br>
+                (Patch file: 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch)<br>
                 For how to apply the patch, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#bus_patch" role="button" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
                 </div>
             </h6>
@@ -634,7 +682,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <h3 id="v2h-limit">
                 Limitations
             </h3>
-            RZ/V2H AI SDK v5.00 has the following limitations.
+            RZ/V2H AI SDK v5.20 has the following limitations.
             <br>
             <br>
             <ul>

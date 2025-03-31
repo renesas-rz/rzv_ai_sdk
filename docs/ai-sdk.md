@@ -335,13 +335,7 @@ layout: default
                         <td>                <!-- Details -->
                             Source code of Open Source Software packages used to build AI SDK.
                         </td>
-                        <td>                <!-- RZ/V2L -->
-                            Provided as a 7z file.
-                        </td>
-                        <td>                <!-- RZ/V2H -->
-                            Not provided in v5.00.
-                        </td>
-                        <td>                <!-- RZ/V2N -->
+                        <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Provided as a 7z file.
                         </td>
                     </tr>
@@ -512,7 +506,7 @@ layout: default
             </h3>
             <h5>
                 <b>
-                    Target Version: 5.00
+                    Target Version: 5.20
                 </b>
             </h5>
         </div>
@@ -533,12 +527,12 @@ layout: default
                     ]
                     <a href="#footnote_v2h_drp_ai">
                         <sup>
-                            *4
+                            *2
                         </sup>
                     </a>
                 </li>
                 <li>
-                    RZ/V2H Linux BSP 
+                    RZ/V2H Linux BSP v1.0.2
                     [
                         <a href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}" target="_blank" rel="noopener noreferrer">
                             Configuration
@@ -546,7 +540,7 @@ layout: default
                     ]
                     <ul>
                         <li>
-                            DRP-AI Driver v1.01 
+                            DRP-AI Driver v1.20 
                             [
                                 <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver" target="_blank" rel="noopener noreferrer">
                                     GitHub
@@ -572,7 +566,7 @@ layout: default
                                 </a>
                             ]
                             [
-                                <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
                                     Manual
                                 </a>
                             ]
@@ -580,23 +574,18 @@ layout: default
                     </ul>
                 </li>
                 <li>
-                    Graphics Library Evaluation Version v1.2.2
-                    <a href="#footnote_v2h_ev">
+                    Graphics Library Unrestricted Version v3.1.2.3
+                </li>
+                <li>
+                    Video Codec Library v3.3.3.2
+                    <a href="#footnote_v2h_drp_ai">
                         <sup>
                             *2
                         </sup>
                     </a>
                 </li>
                 <li>
-                    Video Codec Library v3.1.1
-                    <a href="#footnote_v2h_drp_ai">
-                        <sup>
-                            *4
-                        </sup>
-                    </a>
-                </li>
-                <li>
-                    OpenCV Accelerator v1.10 (supporting OpenCV 4.1.0) 
+                    OpenCV Accelerator v1.20 (supporting OpenCV 4.1.0) 
                     [
                         <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator" target="_blank" rel="noopener noreferrer">
                             GitHub
@@ -604,7 +593,7 @@ layout: default
                     ]
                     <a href="#footnote_v2h_drp_ai">
                         <sup>
-                            *4
+                            *2
                         </sup>
                     </a>
                 </li>
@@ -613,6 +602,9 @@ layout: default
                     <ul>
                         <li>
                             Tesseract v3.05.01 (tesseract, tesseract-lang)
+                        </li>
+                        <li>
+                            OpenMP v8.3.0
                         </li>
                     </ul>
                 </li>
@@ -654,18 +646,8 @@ layout: default
                     *1: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.
                     <br>
                 </span>
-                <span id="footnote_v2h_ev">
-                    *2: Note that Graphics Library Evaluation Version has a limitation that system stops running after around 10 hours.
-                    <br>
-                    If you would like to use unrestricted version, please build AI SDK according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
-                    <br>
-                </span>
-                <span id="footnote_v2h_spi">
-                    *3: If you would like to know how to boot from xSPI, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" role="button" target="_blank" rel="noopener noreferrer">Developer's Guide</a>.
-                    <br>
-                </span>
                 <span id="footnote_v2h_drp_ai">
-                    *4: RZ/V2H is equipped with 2 IPs, DRP-AI and DRP. Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-quad-core-vision-ai-mpu-drp-ai3-accelerator-and-high-performance-real-time-processor" target="_blank" rel="noopener noreferrer">RZ/V2H block diagram</a>.<br>
+                    *2: RZ/V2H is equipped with 2 IPs, DRP-AI and DRP. Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-quad-core-vision-ai-mpu-drp-ai3-accelerator-and-high-performance-real-time-processor" target="_blank" rel="noopener noreferrer">RZ/V2H block diagram</a>.<br>
                     DRP-AI is used by DRP-AI TVM. DRP use is shared by OpenCV Accelerator and Video Codec Library (decoding function).<br>
                     Therefore, OpenCV Accelerator and Video Codec Library (decoding function) cannot be used at the same time.<br>
                 </span>
@@ -679,7 +661,7 @@ layout: default
             <br>
             <br>
             <a href="img/v2h_mem.png" data-lightbox="group">
-                <img src="img/v2h_mem.png" alt="V2H memory map" width="30%">
+                <img src="img/v2h_mem.png" alt="V2H memory map" width="35%">
             </a>
             <br>
             <br>
@@ -713,7 +695,7 @@ layout: default
                     ]
                     <a href="#footnote_v2n_drp_ai">
                         <sup>
-                            *6
+                            *4
                         </sup>
                     </a>
                 </li>
@@ -737,7 +719,7 @@ layout: default
                             e-CAM22_CURZH camera driver (MIPI) v1.00
                             <a href="#footnote_v2n_ecam">
                                 <sup>
-                                    *5
+                                    *3
                                 </sup>
                             </a>
                         </li>
@@ -752,7 +734,7 @@ layout: default
                                 </a>
                             ]
                             [
-                                <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
                                     Manual
                                 </a>
                             ]
@@ -766,7 +748,7 @@ layout: default
                     Video Codec Library v3.3.3.1
                     <a href="#footnote_v2n_drp_ai">
                         <sup>
-                            *6
+                            *4
                         </sup>
                     </a>
                 </li>
@@ -779,7 +761,7 @@ layout: default
                     ]
                     <a href="#footnote_v2n_drp_ai">
                         <sup>
-                            *6
+                            *4
                         </sup>
                     </a>
                 </li>
@@ -829,11 +811,11 @@ layout: default
         <div class="col-12">
             <h6>
                 <span id="footnote_v2n_ecam">
-                    *5: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.
+                    *3: To use e-CAM22_CURZH camera, see <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">e-con Systems</a>.
                     <br>
                 </span>
                 <span id="footnote_v2n_drp_ai">
-                    *6: RZ/V2N is equipped with single IP, DRP-AI. (DRP is not equipped.) Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2n-15tops-quad-core-vision-ai-mpu-2-camera-connection-and-excellent-power-efficiency" target="_blank" rel="noopener noreferrer">RZ/V2N block diagram</a>.<br>
+                    *4: RZ/V2N is equipped with single IP, DRP-AI. (DRP is not equipped.) Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2n-15tops-quad-core-vision-ai-mpu-2-camera-connection-and-excellent-power-efficiency" target="_blank" rel="noopener noreferrer">RZ/V2N block diagram</a>.<br>
                     DRP-AI use is shared by DRP-AI TVM, OpenCV Accelerator and Video Codec Library (decoding function).<br>
                     Therefore, these software cannot be used at the same time.<br>
                 </span>

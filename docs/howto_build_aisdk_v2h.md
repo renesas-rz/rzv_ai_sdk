@@ -12,7 +12,7 @@ layout: default
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2H AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2H AI SDK v5.00</b></h5>
+<h5>Supported version: <b>RZ/V2H AI SDK v5.20</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -37,7 +37,7 @@ layout: default
       <br>
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
-      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">RZ/V2H BSP Manual Set</a>.<br>
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">RZ/V2H BSP Manual Set</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
@@ -76,7 +76,7 @@ layout: default
   <div class="row">
     <div class="col-12">
       Download the RZ/V2H AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v500-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v520-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0180F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -92,6 +92,13 @@ layout: default
           <td>rzv2h_ai-sdk_yocto_recipe_v*.tar.gz</td>
           <td>Yocto recipe.<br>
           Yocto recipes are text files that contains necessary information to build Yocto Linux.</td>
+        </tr>
+        <tr>
+          <td>oss_pkg_rzv_v*.7z</td>
+          <td>OSS package.<br>
+            OSS package is a set of Open Source Software source code used when building the Yocto Linux.<br>
+            AI SDK Source Code provides this file to reproduce the same Linux environment provided in RZ/V2H AI SDK.
+          </td>
         </tr>
       </table>
     </div>
@@ -142,6 +149,7 @@ ls -1 ${WORK}/src_setup
       <li>If the above command prints followings, the package is extracted correctly.
 {% highlight shell %}
 README.txt
+oss_pkg_rzv_v*.7z 
 rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
       </li>
@@ -225,7 +233,7 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       Please apply this patch with caution after thorough verification.<br><br>
         <ol type="A">
           <li>
-            Obtain the two patch files from the links below.
+            Obtain the patch file from the link below.
             <table class="mytable">
               <tr>
                 <th>Patch file link</th>
@@ -233,12 +241,8 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch">
-                    0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch
-                  </a>
-                  <br>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch">
-                    0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20pre/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch">
+                    0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch
                   </a>
                 </td>
                 <td>
@@ -248,13 +252,11 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
             </table>
           </li>
           <li>
-            Copy and apply the patch files.
+            Copy and apply the patch file.
 {% highlight shell%}
-cp <Path to the file>/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch ${YOCTO_WORK}
-cp <Path to the file>/0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch ${YOCTO_WORK}
+cp <Path to the file>/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}
-patch -p1 < 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch
-patch -p1 < 0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch
+patch -p1 < 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch
 {% endhighlight %}
           </li>
         </ol>
@@ -293,10 +295,10 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
-0001-pre-system-setting-for-RZV2H-AI_SDK-v5.00.patch
+0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch
 0001-tesseract.patch
-0002-CRU-setting-for-RZV2H-AI_SDK-v5.00.patch
 0002-sd-image-size-16gb.patch
+0003-openmp.patch
 e-CAM22_CURZ*.patch
 meta-econsys
 meta-gplv2
@@ -339,7 +341,44 @@ patch -p1 < ../0002-sd-image-size-16gb.patch
       If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D1" target="_blank" rel="noopener noreferrer">D1. Change the size of the microSD card image in WIC format</a>.<br>
     </div>
   </li>
-  <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>
+  <li id="step3-11">Apply a patch file to add OpenMP for AI applications.
+{% highlight shell%}
+patch -p1 < ../0003-openmp.patch
+{% endhighlight %}
+  </li>
+  <li id="step3-12">Run the following procedures to extract the OSS package.
+    <ol>
+      <li>Run the following commands to extract the OSS package to the <b><code>${YOCTO_WORK}/build</code></b> directory. 
+{% highlight shell%}
+cp ${WORK}/src_setup/oss_pkg_rzv_*.7z ${YOCTO_WORK}
+7z x ${YOCTO_WORK}/oss_pkg_rzv_*.7z -o${YOCTO_WORK}/build
+{% endhighlight %}
+      </li>
+      <li>Check the working directory to confirm the package contents.
+{% highlight shell%}
+ls -1 ${YOCTO_WORK}/build
+{% endhighlight %} 
+        <ul>
+          <li>If the above command prints followings, the package is extracted correctly.
+{% highlight shell%}
+conf
+downloads
+{% endhighlight %}
+          </li>
+        </ul>
+      </li>
+      <li>Open <b><code>${YOCTO_WORK}/build/conf/local.conf</code></b> file in a text editor.
+      </li><br>
+      <li>Add the following text in red to the end of <b><code>local.conf</code></b> file.
+<pre><code>...
+CORE_IMAGE_EXTRA_INSTALL += "libgomp libgomp-dev libgomp-staticdev"
+
+<span style="color:red;">BB_NO_NETWORK = "1"</span>
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li id="step3-13">Run the following command to build the <b>Linux kernel files.</b><br>
     (It takes a few hours to finish building depending on the user's host PC performance)
 {% highlight shell%}
 MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
@@ -348,10 +387,12 @@ MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
 	  they will be located in <b><code>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</code></b> directory.<br>
     <table class="mytable">
       <tr>
+        <th>Boot mode</th>
         <th>File name</th>
         <th>Description</th>
       </tr>
       <tr>
+        <td>eSD</td>
         <td>
           core-image-weston-rzv2h-evk-ver1.wic.bmap<br>
           core-image-weston-rzv2h-evk-ver1.wic.gz
@@ -359,12 +400,15 @@ MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
         <td>WIC format SD card image</td>
       </tr>
       <tr>
+        <td>xSPI</td>
         <td>
+          core-image-weston-rzv2h-evk-ver1.wic.bmap<br>
+          core-image-weston-rzv2h-evk-ver1.wic.gz<br>
           Flash_Writer_SCIF_RZV2H_DEV_INTERNAL_MEMORY.mot<br>
           bl2_bp_spi-rzv2h-evk-ver1.srec<br>
           fip-rzv2h-evk-ver1.srec
         </td>
-        <td>Boot loader used when booting from xSPI</td>
+        <td>Boot loader and WIC format SD card image</td>
       </tr>
     </table>
   </li>
@@ -412,13 +456,15 @@ MACHINE=rzv2h-evk-ver1 bitbake core-image-weston -c populate_sdk
 <h4>
 This is the end of how to build AI SDK Source Code.
 </h4>
-You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2H AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.
+You have prepared following files, which is same as the one provided in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2H AI SDK in Getting Started</a>, and you can run <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br>
+For more information on how to use each files, see the link in the How to use column.
 <br>
 <table class="mytable">
   <tr>
     <th>Path</th>
     <th>File name</th>
     <th>Description</th>
+    <th>How to use</th>
   </tr>
   <tr>
     <td rowspan="2">${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</td>
@@ -427,6 +473,9 @@ You have prepared following files, which is same as the one provided in <a href=
       core-image-weston-rzv2h-evk-ver1.wic.gz
     </td>
     <td>WIC format SD card image</td>
+    <td>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup RZ/V2H EVK in RZ/V2H EVK Getting Started</a>
+    </td>
   </tr>
   <tr>
     <td>
@@ -435,11 +484,18 @@ You have prepared following files, which is same as the one provided in <a href=
       fip-rzv2h-evk-ver1.srec
     </td>
     <td>Boot loader used when booting from xSPI</td>
+    <td>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D3" target="_blank" rel="noopener noreferrer">D3.How to boot from xSPI in Developer's Guide</a>
+    </td>
   </tr>
   <tr>
     <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
     <td>poky-glibc-x86_64-core-image-weston-aarch64-rzv2h-evk-ver1-toolchain-*.sh</td>
     <td>Cross compiler installer</td>
+    <td>
+      After replacing the file in <b><code>${WORK}/ai_sdk_setup</code></b> directory with this file, follow the steps below to setup RZ/V AI SDK.<br>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step5" target="_blank" rel="noopener noreferrer">Step 5: Setup RZ/V AI SDK in Getting Started</a>
+    </td>
   </tr>
 </table>
 <div class="note">
@@ -455,7 +511,7 @@ You have prepared following files, which is same as the one provided in <a href=
       <a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/document/mas/rzv2h-bsp-manual-set-rtk0ef0045z94001azj-v100zip" target="_blank" rel="noopener noreferrer">RZ/V2H BSP Manual Set</a>
+      <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">RZ/V2H BSP Manual Set</a>
     </li>
   </ul>
 </div>

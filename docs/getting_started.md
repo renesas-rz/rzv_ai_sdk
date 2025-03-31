@@ -25,7 +25,7 @@ Its version varies depending on the supported board.
   </tr>
   <tr>
     <td>RZ/V2H Evaluation Board Kit</td>
-    <td>RZ/V2H AI SDK <b>v5.00</b></td>
+    <td>RZ/V2H AI SDK <b>v5.20</b></td>
   </tr>
   <tr>
     <td>RZ/V2N Evaluation Board Kit</td>
@@ -444,7 +444,7 @@ RZ/V AI SDK provides following packages for each supported board.
           <span class="banner-line">Get the RZ/V2L AI Software Development Kit</span>
       </a>
       <br>
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v500" role="button" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2h-ai-sdk-v520" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">RZ/V2H AI SDK</span>
           <span class="banner-line">Get the RZ/V2H AI Software Development Kit</span>
       </a>
@@ -644,7 +644,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
+            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
           </h6>
         </td>
     </tr>
@@ -681,7 +681,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Build Stage"</b> (or similar) to build the application.<br><br>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
+          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
