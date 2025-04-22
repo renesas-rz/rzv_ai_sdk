@@ -50,12 +50,10 @@
 #include "define.h"
 /*box drawing*/
 #include "box.h"
-/*Double click termination*/
-#include "utils.h"
-/*Wayland control*/
-#include "wayland.h"
 
 #include "sort.h"
+
+#include "draw.h"
 
 /*****************************************
 * Global Variables
@@ -73,7 +71,6 @@ std::map<std::string, int> input_source_map =
 static sem_t terminate_req_sem;
 static pthread_t ai_inf_thread;
 static pthread_t capture_thread;
-static pthread_t exit_thread;
 static pthread_t kbhit_thread;
 static std::mutex mtx;
 
@@ -87,9 +84,6 @@ static float drpai_output_buf[INF_OUT_SIZE];
 /*AI Inference for DRPAI*/
 /* DRP-AI TVM[*1] Runtime object */
 MeraDrpRuntimeWrapper runtime;
-
-/* Sets a flag to indicate whether a double click has been detected. */
-bool doubleClick = false;
 
 #ifdef V2H
 /*DRP-AI Frequency setting*/
@@ -113,8 +107,6 @@ int pointx1, pointy1, pointx2, pointy2, actual_count = 0;
 std::vector<cv::Point> polygon;
 static float conf = 0;
 
-/* Wayland object */
-static Wayland wayland;
 
 /*****************************************
 * Function Name     : float16_to_float32
@@ -173,6 +165,70 @@ static int8_t wait_join(pthread_t *p_join_thread, uint32_t join_time)
         ret_err = pthread_timedjoin_np(*p_join_thread, NULL, &join_timeout);
     }
     return ret_err;
+}
+
+/*****************************************
+* Function Name : data_present
+* Description   : Checks presence of data.txt file
+* Return value  : 1 if file exists
+*                 0 otherwise
+******************************************/
+int data_present()
+{
+    std::ifstream file("data.txt");
+    if (file.good()) 
+    {
+        return 1;
+    }
+    return 0;
+}
+
+/*****************************************
+* Function Name : data_read
+* Description   : Retrive Line and polygon data
+******************************************/
+void data_read()
+{
+    std::ifstream myfile ("data.txt");
+    std::string line, num;
+    cv::Point P;
+
+    if (!myfile.is_open())
+    {
+        std::cout << "Unable to open file";
+    }
+    while (getline(myfile, line)) {
+        if (line.empty())
+        {
+            continue;
+        }
+        else
+        {
+            auto delimiter_pos = line.find(":");
+            std::string key = line.substr(0, delimiter_pos);
+            std::string value = line.substr(delimiter_pos + 1);
+            if(key == "Point 1")
+            {
+                auto delimiter_pos = value.find(" ");
+                pointx1 = std::stoi(value.substr(0, delimiter_pos));
+                pointy1 = std::stoi(value.substr(delimiter_pos + 1));
+            }
+            else if(key == "Point 2")
+            {
+                auto delimiter_pos = value.find(" ");
+                pointx2 = std::stoi(value.substr(0, delimiter_pos));
+                pointy2 = std::stoi(value.substr(delimiter_pos + 1));
+            }
+            else
+            {
+                auto delimiter_pos = value.find(" ");
+                P.x = std::stoi(value.substr(0, delimiter_pos));
+                P.y = std::stoi(value.substr(delimiter_pos + 1));
+                polygon.push_back(P);
+            }
+        }
+    }
+    myfile.close();
 }
 
 /*****************************************
@@ -555,10 +611,20 @@ int check_above_or_below(int x, int y)
 {
     double m = (pointy2 - pointy1) / ((pointx2 - pointx1) + 0.00000006);
     double yline = m * (x - pointx1) + pointy1;
-    if (y > yline)
-        return 1;
+    if(std::all_of(polygon.begin(), polygon.end(), [m](cv::Point p){ return p.y > (m * (p.x - pointx1) + pointy1); }))
+    {
+        if (y > yline)
+            return 1;
+        else
+            return 0;
+    }
     else
-        return 0;
+    {
+        if (y < yline)
+            return 1;
+        else
+            return 0;
+    }
 }
 
 /*****************************************
@@ -742,7 +808,6 @@ void *R_Kbhit_Thread(void *threadid)
     /*Variable for checking return value*/
     int8_t ret = 0;
 
-    devices dev;
     printf("[INFO] Key Hit Thread Starting\n");
 
     printf("\n\n************************************************\n");
@@ -797,65 +862,6 @@ err:
 
 key_hit_end:
     printf("[INFO] Key Hit Thread Terminated\n");
-    pthread_exit(NULL);
-}
-
-/*****************************************
-* Function Name : R_exit_Thread
-* Description   : Executes the double click exit thread
-* Arguments     : threadid = thread identification
-* Return value  : -
-******************************************/
-void *R_exit_Thread(void *threadid)
-{
-    /*Semaphore Variable*/
-    int32_t kh_sem_check = 0;
-
-    /*Variable for checking return value*/
-    int8_t ret = 0;
-    devices dev;
-
-    printf("[INFO] Exit Thread Starting\n");
-    /*Set Standard Input to Non Blocking*/
-    errno = 0;
-    ret = fcntl(0, F_SETFL, O_NONBLOCK);
-    if (-1 == ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
-        goto err;
-    }
-    
-    while(1)
-    {
-        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
-        /*Checks if sem_getvalue is executed without issue*/
-        errno = 0;
-        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
-        if (0 != ret)
-        {
-            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
-            goto err;
-        }
-        /*Checks the semaphore value*/
-        if (1 != kh_sem_check)
-        {
-            goto exit_end;
-        }
-        dev.detect_mouse_click();
-        if (doubleClick)
-        {
-            goto err;
-        }
-    }
-
-/*Error Processing*/
-err:
-    /*Set Termination Request Semaphore to 0*/
-    sem_trywait(&terminate_req_sem);
-    goto exit_end;
-
-exit_end:
-    printf("[INFO] Exit Thread Terminated\n");
     pthread_exit(NULL);
 }
 
@@ -963,6 +969,21 @@ cv::Mat create_output_frame(cv::Mat frame_g)
 }
 
 /*****************************************
+ * Function Name    : mouse_callback_button_click
+ * Description      : Callback function to exit on mouse double click
+ * Arguments        : Default opencv formats for callbacks 
+ * Return value     : -
+ *****************************************/
+void mouse_callback_button_click(int event, int x, int y, int flags, void *userdata)
+{
+    if (event == cv::EVENT_LBUTTONDBLCLK)
+    {
+        std::cout << "[INFO] Double tap !!!" << std::endl;
+        sem_trywait(&terminate_req_sem);
+    }
+}
+
+/*****************************************
 * Function Name : R_Main_Process
 * Description   : Runs the main process loop
 * Arguments     : -
@@ -977,7 +998,6 @@ int8_t R_Main_Process()
     int32_t sem_check = 0;
     /*Variable for checking return value*/
     int8_t ret = 0;
-    /* wayland Index = 0 */
     uint32_t idx = 0;
     config_read();
     uint8_t img_buf_id;
@@ -994,19 +1014,6 @@ int8_t R_Main_Process()
     std::string class_name;
     int8_t kmin = stoi(ini_values["tracking"]["kmin"]);
     conf = stof(ini_values["tracking"]["conf"]);
-    /*set point 1*/
-    pointx1 = stoi(ini_values["line"]["x1"]);
-    pointy1 = stoi(ini_values["line"]["y1"]);
-    /*set point 2*/
-    pointx2 = stoi(ini_values["line"]["x2"]);
-    pointy2 = stoi(ini_values["line"]["y2"]);
-
-    polygon = {
-        cv::Point(stoi(ini_values["region"]["x1"]), stoi(ini_values["region"]["y1"])),
-        cv::Point(stoi(ini_values["region"]["x2"]), stoi(ini_values["region"]["y2"])),
-        cv::Point(stoi(ini_values["region"]["x3"]), stoi(ini_values["region"]["y3"])),
-        cv::Point(stoi(ini_values["region"]["x4"]), stoi(ini_values["region"]["y4"]))
-    };
 
     std::string detection_object_string = ini_values["tracking"]["objects"];
     std::stringstream detection_object_ss(detection_object_string);
@@ -1025,9 +1032,11 @@ int8_t R_Main_Process()
     std::string g_pipeline = "appsrc ! videoconvert ! autovideosink sync=false ";
     #ifdef V2H
         float font_size = .9;
+        float font_size_double_click = .7;
         float font_weight = 2;
     #elif V2L
         float font_size = .6;
+        float font_size_double_click = .5;
         float font_weight = 2;
     #endif
     float font_size_dt = 0.75;
@@ -1042,13 +1051,10 @@ int8_t R_Main_Process()
     cv::namedWindow("Object Tracker", cv::WINDOW_NORMAL);
     cv::setWindowProperty("Object Tracker", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
 
-    /* Initialize wayland */
-    ret = wayland.init(idx, IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
-    if(0 != ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
-        goto err;
-    }
+    cv::namedWindow("Object Tracker", cv::WINDOW_NORMAL);
+    cv::setWindowProperty("Object Tracker", cv::WND_PROP_FULLSCREEN, cv::WINDOW_FULLSCREEN);
+    cv::setMouseCallback("Object Tracker", mouse_callback_button_click);
+
     printf("\n[INFO] Main Loop Starts\n");
     while(1)
     {
@@ -1158,6 +1164,7 @@ int8_t R_Main_Process()
             cv::putText(bgra_image, "Postprocess Time  : " + float_to_string(post_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 127), cv::FONT_HERSHEY_SIMPLEX, font_size, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             cv::putText(bgra_image, DISPLAY_TEXT + " : " + std::to_string(actual_count), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 180), cv::FONT_HERSHEY_SIMPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             cv::putText(bgra_image, DISPLAY_REGION_TEXT + " : " + std::to_string(region_count), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 210), cv::FONT_HERSHEY_SIMPLEX, font_size_dt, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
+            cv::putText(bgra_image, "Double Click to exit the Application.", cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 10, DISP_IMAGE_OUTPUT_HEIGHT - 40), cv::FONT_HERSHEY_SIMPLEX, font_size_double_click, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             cv::putText(bgra_image, "Objects Detected : ", cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 270), cv::FONT_HERSHEY_SIMPLEX, font_size, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
             mtx.lock();
             for (int i = 0; i < bbox.size(); i++)
@@ -1166,8 +1173,8 @@ int8_t R_Main_Process()
             }
             mtx.unlock();
             cv::cvtColor(bgra_image,bgra_image,cv::COLOR_BGR2BGRA);
-            /*Update Wayland*/
-            wayland.commit(bgra_image.data,NULL);
+            cv::imshow("Object Tracker", bgra_image);
+            cv::waitKey(1);
             img_obj_ready.store(0);
         }
         /*Wait for 1 TICK.*/
@@ -1335,7 +1342,6 @@ int32_t main(int32_t argc, char * argv[])
     InOutDataType input_data_type;
     bool runtime_status = false;
     std::string gstreamer_pipeline;
-
     
     if (argc < 2) 
     {
@@ -1412,7 +1418,16 @@ int32_t main(int32_t argc, char * argv[])
         printf("\nAI Application for RZ/V2L\n");
         printf("Model : Darknet TINY YOLOv3 | %s\n", model_dir.c_str());
     #endif
-    
+    if (args.find("--setup") != args.end() && args["--setup"] == "true" || !data_present())
+    {
+        Draw d(640, 480, gstreamer_pipeline);
+        if(input_source == "MIPI")
+        {
+            d.set_skip_frames();
+        }
+        d.drawDisplay();
+    }
+    data_read();
 
     int drpai_fd = open("/dev/drpai0", O_RDWR);
     if (0 > drpai_fd)
@@ -1498,17 +1513,6 @@ int32_t main(int32_t argc, char * argv[])
         goto end_threads;
     }
 
-    /* Create exit Thread */
-    create_thread_exit = pthread_create(&exit_thread, NULL, R_exit_Thread, NULL);
-    if (0 != create_thread_exit)
-    {
-        fprintf(stderr, "[ERROR] Failed to create exit Thread.\n");
-        ret_main = -1;
-        goto end_threads;
-    }
-    /* Detached exit thread */
-    pthread_detach(exit_thread);
-
     /* Create Key Hit Thread */
     create_thread_key = pthread_create(&kbhit_thread, NULL, R_Kbhit_Thread, NULL);
     if (0 != create_thread_key)
@@ -1561,8 +1565,6 @@ end_threads:
     {
         sem_destroy(&terminate_req_sem);
     }
-    /* Exit wayland */
-    wayland.exit();
     goto end_close_drpai;
 end_close_drpai:
     /*Close DRP-AI Driver.*/

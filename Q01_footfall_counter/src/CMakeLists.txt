@@ -24,9 +24,6 @@ file(GLOB SOURCE *.cpp *.h)
 add_executable (${EXE_NAME}
 ${SOURCE}
 )
-TARGET_LINK_LIBRARIES(${EXE_NAME} pthread)
-TARGET_LINK_LIBRARIES(${EXE_NAME} jpeg)
-TARGET_LINK_LIBRARIES(${EXE_NAME} wayland-client)
 TARGET_LINK_LIBRARIES(${EXE_NAME} 
 	pthread glib-2.0 mmngr gobject-2.0 gstreamer-1.0  gstbase-1.0 gstapp-1.0 
 	opencv_imgcodecs opencv_imgproc opencv_core opencv_highgui

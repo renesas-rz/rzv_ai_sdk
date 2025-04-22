@@ -1,0 +1,6 @@
+Point 1:149 355
+Point 2:327 353
+Polygon Point 0:134 371
+Polygon Point 1:325 369
+Polygon Point 2:316 447
+Polygon Point 3:64 447
