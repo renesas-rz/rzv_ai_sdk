@@ -16,17 +16,17 @@ It has 3 modes of running.
 2. Using USB Camera
 3. Using Video as input
 
-### Supported Product  
+### Supported Product
 <table>
-    <tr>
-      <th>Product</th>
-      <th>Supported AI SDK version</th>
-    </tr>
-    <tr>
-      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-      <td>RZ/V2L AI SDK v5.00</td>
-    </tr>
-</table>
+     <tr>
+       <th>Product</th>
+       <th>Supported AI SDK version</th>
+     </tr>
+     <tr>
+       <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+       <td>RZ/V2L AI SDK v5.00</td>
+     </tr>
+ </table>
 
 #### Demo 
 
