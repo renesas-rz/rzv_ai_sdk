@@ -27,19 +27,19 @@ It has following modes of running.
 
 ### Supported Product
 <table>
-    <tr>
-      <th>Product</th>
-      <th>Supported AI SDK version</th>
-    </tr>
-    <tr>
-      <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-      <td>RZ/V2H AI SDK v5.00</td>
-    </tr>
-    <tr>
-      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-      <td>RZ/V2N AI SDK v5.00</td>
-    </tr>
-</table>
+     <tr>
+       <th>Product</th>
+       <th>Supported AI SDK version</th>
+     </tr>
+     <tr>
+       <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+       <td>RZ/V2H AI SDK v5.20</td>
+     </tr>
+     <tr>
+       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+       <td>RZ/V2N AI SDK v5.00</td>
+     </tr>
+ </table>  
 
 ### Demo
 
@@ -135,9 +135,9 @@ Following is the demo for RZ/V2H EVK.
 
 Connect the hardware as shown below.  
 
-| RZ/V2H EVK | RZ/V2N EVK |
-|:---|:---|
-|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600>  |
+ | RZ/V2H EVK | RZ/V2N EVK |
+ |:---|:---|
+ |<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600>  |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
 >**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
@@ -156,11 +156,10 @@ After completion of the guide, the user is expected of following things.
 - Following docker container is running on the host machine.
     |Board | Docker container |
     |:---|:---|
-    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
     |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.  
+    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -195,7 +194,7 @@ E.g.,use the `rzv2h_ai_sdk_container` as the name of container created from  `rz
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.  
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 5. The following application file would be generated in the `${PROJECT_PATH}/Q12_yoga_pose_estimation/src/build` directory
     - pose_estimator
 
@@ -212,7 +211,7 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.
 
 Each folder contains following items.
 |File | Details |
@@ -288,7 +287,6 @@ After completion of the guide, the user is expected of following things.
     ```
     > Note : Due to the number of equipped IP on RZ/V2N, this application will show the error when using the hardware decoding (H.264/H.265) with VIDEO input for RZ/V2N.  CPU decoding, i.e., MJPEG, can be used.
 
-
 3. Following window shows up on HDMI screen.  
 
     | RZ/V2H EVK and RZ/V2N EVK* |
@@ -308,9 +306,9 @@ After completion of the guide, the user is expected of following things.
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
-i.e., RZ/V2N application log contains "RZ/V2H".  
-This will be solved in the future version.
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+ i.e., RZ/V2N application log contains "RZ/V2H".  
+ This will be solved in the future version.
 
 ## Application: Configuration
 ### AI Model  
