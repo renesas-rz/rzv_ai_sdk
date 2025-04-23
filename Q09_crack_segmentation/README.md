@@ -20,23 +20,23 @@ Surface crack segmentation has a wide range of applications, including:
 
 ### Supported Product
 <table>
-    <tr>
-      <th>Product</th>
-      <th>Supported AI SDK version</th>
-    </tr>
-    <tr>
-      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-      <td>RZ/V2L AI SDK v5.00</td>
-    </tr>
-    <tr>
-      <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-      <td>RZ/V2H AI SDK v5.00</td>
-    </tr>
-    <tr>
-      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-      <td>RZ/V2N AI SDK v5.00</td>
-    </tr>
-</table>
+     <tr>
+       <th>Product</th>
+       <th>Supported AI SDK version</th>
+     </tr>
+     <tr>
+       <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+       <td>RZ/V2L AI SDK v5.00</td>
+     </tr>
+     <tr>
+       <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+       <td>RZ/V2H AI SDK v5.20</td>
+     </tr>
+     <tr>
+       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+       <td>RZ/V2N AI SDK v5.00</td>
+     </tr>
+ </table>  
 
 ### Demo 
 
@@ -92,7 +92,8 @@ Surface crack segmentation has a wide range of applications, including:
     <tr>
       <td>USB Camera</td>
       <td>Used as a camera input source.</td>
-    </tr><tr>
+    </tr>
+    <tr>
       <td rowspan="4">RZ/V2N</td>
       <td>RZ/V2N EVK</td>
       <td>Evaluation Board Kit for RZ/V2N.</td>
@@ -156,8 +157,8 @@ USB camera needs to be connected to appropriate port based on its requirement.
 Connect the hardware as shown below.  
 
 |RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
-|:---|:---|:---|
-|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600>  |
+ |:---|:---|:---|
+ |<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600> |
 
 >**Note:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.
 
@@ -175,10 +176,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK and RZ/V2N EVK |`rzv2h_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.  
+    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -219,7 +220,7 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
     make -j$(nproc)
     ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.  
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 7. The following application file would be generated in the `${PROJECT_PATH}/Q09_crack_segmentation/src/build` directory
     - crack_segmentation
 
@@ -235,8 +236,8 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
 
 Each folder contains following items.
 |File | Details |
@@ -317,7 +318,7 @@ After completion of the guide, the user is expected of following things.
     |:---|:---|
     |<img src=./images/Q09_crack_pic_v2l.png width=350>| <img src=./images/Q09_crack_pic_v2h.png width=350>  |
 
-    > *Performance in the screenshot is for RZ/V2H EVK.
+> *Performance in the screenshot is for RZ/V2H EVK.
 
     - AI inferece time and Frames Per Sec (FPS) is shown on top right corner.
     - For RZ/V2L: The cracks detected are shown in green mask/region.
@@ -325,9 +326,9 @@ After completion of the guide, the user is expected of following things.
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
-i.e., RZ/V2N application log contains "RZ/V2H".  
-This will be solved in the future version.
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+ i.e., RZ/V2N application log contains "RZ/V2H".  
+ This will be solved in the future version.
 
 ## Application: Configuration 
 ### AI Model
