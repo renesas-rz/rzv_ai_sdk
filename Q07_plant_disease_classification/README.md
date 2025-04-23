@@ -17,23 +17,23 @@ It has 4 modes of running.
 
 ### Supported Product
 <table>
-    <tr>
-      <th>Product</th>
-      <th>Supported AI SDK version</th>
-    </tr>
-    <tr>
-      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-      <td>RZ/V2L AI SDK v5.00</td>
-    </tr>
-    <tr>
-      <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-      <td>RZ/V2H AI SDK v5.00</td>
-    </tr>
-    <tr>
-      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-      <td>RZ/V2N AI SDK v5.00</td>
-    </tr>
-</table>
+     <tr>
+       <th>Product</th>
+       <th>Supported AI SDK version</th>
+     </tr>
+     <tr>
+       <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+       <td>RZ/V2L AI SDK v5.00</td>
+     </tr>
+     <tr>
+       <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+       <td>RZ/V2H AI SDK v5.20</td>
+     </tr>
+     <tr>
+       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+       <td>RZ/V2N AI SDK v5.00</td>
+     </tr>
+ </table>  
 
 ### Demo
 
@@ -152,8 +152,8 @@ Following is the demo for RZ/V2L EVK.
 Connect the hardware as shown below.  
 
 |RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
-|:---|:---|:---|
-|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600>  |
+ |:---|:---|:---|
+ |<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600> |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
 >**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
@@ -173,10 +173,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK and RZ/V2N EVK |`rzv2h_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.  
+    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -217,7 +217,7 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
     make -j$(nproc)
     ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.  
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 7. The following application file would be generated in the `${PROJECT_PATH}//Q07_plant_disease_classification/src/build` directory
     - plant_leaf_disease_classify
 
@@ -234,8 +234,8 @@ For the ease of deployment all the deployable file and folders are provided in f
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
 
 Each folder contains following items.
 |File | Details |
@@ -336,9 +336,10 @@ After completion of the guide, the user is expected of following things.
    close the application using CTRL+c on the board console.
    - For RZ/V2H and RZ/V2N, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
-i.e., RZ/V2N application log contains "RZ/V2H".  
-This will be solved in the future version.
+
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+ i.e., RZ/V2N application log contains "RZ/V2H".  
+ This will be solved in the future version.
 
 ## Application: Configuration 
 ### AI Model
