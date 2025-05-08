@@ -77,53 +77,13 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.3.31
+                2025.05.09
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V2H AI SDK v5.20</b> is released.
-                    <ul>
-                        <li> 
-                            Updated RZ/V2H Linux BSP to v1.0.2.
-                        </li>
-                        <li> 
-                            Updated Graphics Library to v3.1.2.3.
-                        </li>
-                        <li> 
-                            Updated Video Codec Library to v3.3.3.2.
-                        </li>
-                        <li> 
-                            Updated OpenCV Accelerator to v1.20.
-                        </li>
-                        <li> 
-                            Updated DRP-AI Driver to v1.20.
-                        </li>
-                        <li> 
-                            Supported OpenMP v8.3.0.
-                        </li>
-                        <li> 
-                            Supported offline build of RZ/V2H AI SDK Source Code.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V2H AI SDK Specification</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>RZ/V2N AI Applications Demo v5.10</b> is released.
-                    <ul>
-                        <li> 
-                            Supported AI Applications v5.10.
-                        </li>
-                        <li> 
-                            Supported log display funtionality.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}"><b>How to Use Guide</b></a>.
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+                <b>Users are recommended to use the latest version in the following URL.</b><br>
+                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
             <br>
             <br>
         </div>
@@ -945,7 +905,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
+                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
                             RZ/V2H BSP Manual Set
                         </a>
                     </td>
@@ -1061,7 +1021,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
+                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
                             RZ/V2N BSP Manual Set
                         </a>
                     </td>

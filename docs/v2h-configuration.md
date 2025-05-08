@@ -75,6 +75,11 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     </td>
                     <td>                <!-- Version -->
                         Yocto version: 3.1.31 (Dunfell)
+                        <a href="#footnote_v2h_linux_components">
+                            <sup>
+                                *1
+                            </sup>
+                        </a>
                         <br>
                         Kernel version: 5.10.145-cip17
                     </td>
@@ -147,13 +152,18 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <code>"references/core-image-weston-rzv2h-evk-ver1.manifest"</code> in RZ/V2H AI SDK.
                 </li>
             </ul>
+            <div class="note">
+                <span class="note-title" id="footnote_v2h_linux_components">Note1</span>
+                RZ/V2H AI SDK will transition to Yocto version 5.0 (Scarthgap) and Kernel 6.1 in December 2025.<br>
+                After December 2025, RZ/V2H AI SDK Dunfell version will not be updated.<br>
+            </div>
         </div>
         <div class="col-12">
             <h3 id="v2h-driver">
                 Drivers
             </h3>
             Following table shows the list of drivers.<br>
-            For more details, see <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
+            For more details, see <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
             <!-- UNCOMMENT following for v5.00 release. -->
             <!-- <div class="note">
                 <span class="note-title">Note</span>
