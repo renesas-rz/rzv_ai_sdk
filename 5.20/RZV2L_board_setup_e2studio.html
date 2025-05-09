@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="Renesas RZ/V AI | The best solution for starting your AI applications." name="title">
+    <meta name="keywords" content="rzv,ai application,ai app,edge ai,vision ai, aritificial intelligence">
+    <meta name="description" content="Renesas Electronics provides AI Applications for Pre-trained AI model on RZ/V and AI SDK for application development.">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JRL1VWTZC1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JRL1VWTZC1');
+    </script>
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Renesas RZ/V AI | The best solution for starting your AI applications.</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Renesas RZ/V AI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The best solution for starting your AI applications." />
+<meta property="og:description" content="The best solution for starting your AI applications." />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/5.20/RZV2L_board_setup_e2studio.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/5.20/RZV2L_board_setup_e2studio.html" />
+<meta property="og:site_name" content="Renesas RZ/V AI" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Renesas RZ/V AI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2023-12-11T19:09:38+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/5.20/RZV2L_board_setup_e2studio.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="assets/css/style.css?v=4c52794028861bf1e94c290ea31300c51a578b7f">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/rzv_ai_sdk/5.20/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+
+      <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<script>
+  $(function(){
+    $("#reference3").load("https://renesas-rz.github.io/rzv_ai_sdk/5.20/getting_started.html reference3");
+  });
+</script>
+
+<h3>Set up RZ/V2L Evaluation Board Kit</h3>
+<p>To boot the RZ/V2L Evaluation Board, follow the two steps below.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  This guide uses the following environment:
+  <ul>
+      <li><b>Target board</b>: <br />RZ/V2L Evaluation Board Kit</li>
+      <li><b>Boot loader</b>: <br />eSD Boot loader, the board boots up using the bootloader written on microSD card.</li>
+      <li><b>Working directory(${WORK})</b>: <br />The directory where the downloaded RZ/V2L AI SDK zip file is expanded. Assume that you have already unzipped to /home/{user}/ai_sdk_work and that you have run "$export WORK=/home/{user}/ai_sdk_work".</li>
+  </ul>
+</div>
+<p><br /></p>
+
+<h4 id="step1_setup_V2Lboard">Step 1: Setup RZ/V2L Evaluation Board Kit</h4>
+<p>You need to prepare a microSD card containing the boot loaders, the Linux kernel, and the root filesystem to boot the board.<br />
+You can use a Linux PC to format the microSD card and expand the kernel and the root filesystem using an SD card reader.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+  This step is required only when starting the AI SDK or when using the new version of AI SDK.<br />
+  If you have already setup the microSD card with the latest boot loader, Linux kernel, Linux device tree file and root filesystem, <span class="skip">skip this step</span> and proceed to <a href="#step2_boot_V2Lboard">the next procedure (2. Boot RZ/V2L Evaluation Board Kit)</a>.
+</div>
+<ol>
+  <h5 id="stepa">
+    <li type="A">Format SD card<br /></li>
+  </h5>
+  Create the following partitions on microSD card according to "<a href="https://renesas-rz.github.io/rzv_ai_sdk/5.20/eSD_format_sd.html">Format SD card for eSD Boot</a>".<br />
+  <br />
+  <table class="gstable">
+    <tr>
+      <th width="120">Type/Number</th>
+      <th>Size</th>
+      <th width="120">Filesystem</th>
+      <th width="120">Contents</th>
+    </tr>
+    <tr>
+      <td>Primary #1</td>
+      <td>500MB (minimum 128MB)</td>
+      <td>Ext4</td>
+      <td>Linux kernel<br />Device tree</td>
+    </tr>
+    <tr>
+      <td>Primary #2</td>
+      <td>All remaining</td>
+      <td>Ext4</td>
+      <td>Root filesystem</td>
+    </tr>
+  </table>
+
+  <h5 id="stepb">
+    <li type="A">Write the Linux files to SD card</li>
+  </h5>
+  At first, run the below command to decompress <code>${WORK}/board_setup/eSD.zip</code>.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/board_setup
+unzip eSD.zip</code></pre></figure>
+
+  Following three files are necessary, which must be placed on each partitions on microSD card.<br />
+  They are in the <code>${WORK}/board_setup/eSD</code> directory.<br />
+  <br />
+  <table class="gstable">
+    <tr>
+      <th>File</th>
+      <th>Description</th>
+      <th>microSD card partition</th>
+    </tr>
+    <tr>
+      <td>Image-smarc-rzv2l.bin</td>
+      <td>Linux kernel image<br />(The boot program) </td>
+      <td>Partition 1</td>
+    </tr>
+    <tr>
+      <td>Image-r9a07g054l2-smarc.dtb </td>
+      <td>Linux device tree file<br />(The configuration file for booting) </td>
+      <td>Partition 1</td>
+    </tr>
+    <tr>
+      <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
+      <td>Linux Root filesystem</td>
+      <td>Partition 2</td>
+    </tr>
+  </table>
+  Follow the instruction below to prepare the microSD card.<br />
+  <div class="warning">
+    <span class="warning-title">Warning</span>
+      Here, we use "<b><code>/dev/sdb</code></b>" as microSD card device name.
+  </div>
+  <ol>
+    <li>Check if the two partitions are created successfully by running <code>df</code> command.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">df</span> <span class="nt">-h</span>
+Filesystem 	Size		Used	Avail	Use %	Mounted on	
+...		…		…	…	…	…
+/dev/sdb1		…		…	…	…	…	
+/dev/sdb2		…		…	…	…	…	</code></pre></figure>
+
+      <div class="warning">
+          <span class="warning-title">Warning</span>
+          Device name of microSD card, <code>/dev/sdb</code> may differ depending on your environment.<br />
+      </div>
+    </li>
+    <li>Run the following commands to setup the partition 1.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /mnt/sd
+<span class="nb">sudo </span>mount /dev/sdb1 /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/board_setup/eSD/Image-smarc-rzv2l.bin /mnt/sd
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/board_setup/eSD/Image-r9a07g054l2-smarc.dtb /mnt/sd
+<span class="nb">sync
+sudo </span>umount /mnt/sd</code></pre></figure>
+
+    <div class="warning">
+      <span class="warning-title">Warning</span>
+      Change <code>/dev/sdb</code> to your microSD card device name.<br />
+    </div>
+    </li>
+    <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>mount /dev/sdb2 /mnt/sd
+<span class="nb">sudo tar </span>xfj <span class="nv">$WORK</span>/board_setup/eSD/core-image-weston-smarc-rzv2l.tar.bz2 <span class="nt">-C</span> /mnt/sd
+<span class="nb">sync
+sudo </span>umount /mnt/sd</code></pre></figure>
+
+      <div class="warning">
+        <span class="warning-title">Warning</span>
+        Change <code>/dev/sdb</code> to your microSD card device name.<br />
+      </div>
+    </li>
+  </ol>
+  
+  <h5 id="stepc">
+    <li type="A">Write the bootloaders to SD card
+    </li>
+  </h5>
+  Before booting up the board, you must write the latest bootloaders to microSD card.<br />
+  This procedures needs to be done only once as long as you use the same version of AI SDK.<br />
+  <br />
+  There are three files in <code>${WORK}/board_setup/eSD/bootloader</code> to boot up the board.<br />
+  <ul>
+    <li><code>bl2_bp_esd-smarc-rzv2l_pmic.bin</code></li>
+    <li><code>bl2_bp-smarc-rzv2l_pmic.srec</code></li>
+    <li><code>fip-smarc-rzv2l_pmic.srec</code></li>
+  </ul>
+  <br />
+  Run the following commands to write these files to the microSD card to boot for eSD.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/board_setup/eSD/bootloader
+<span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>bl2_bp_esd-smarc-rzv2l_pmic.bin <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">seek</span><span class="o">=</span>1 <span class="nv">count</span><span class="o">=</span>1
+<span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>bl2-smarc-rzv2l_pmic.bin <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">seek</span><span class="o">=</span>8
+<span class="nb">sudo dd </span><span class="k">if</span><span class="o">=</span>fip-smarc-rzv2l_pmic.bin <span class="nv">of</span><span class="o">=</span>/dev/sdb <span class="nv">seek</span><span class="o">=</span>128
+<span class="nb">sync</span></code></pre></figure>
+
+  <div class="warning">
+    <span class="warning-title">Warning</span>
+    Change <code>/dev/sdb</code>, to your microSD card device name.<br />
+  </div>
+  <div class="note">
+    <span class="note-title">Note</span>
+    If you would like to eject the microSD card, please run following command and remove the microSD card from Linux PC.
+    <br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>eject /dev/sdb</code></pre></figure>
+
+    <div class="warning">
+      <span class="warning-title">Warning</span>
+      Change <code>/dev/sdb</code> to your microSD card device name.<br />
+    </div>
+  </div>
+</ol>
+<p><br /></p>
+<h4 id="step2_boot_V2Lboard">Step 2: Boot RZ/V2L Evaluation Board Kit</h4>
+<p>Once the <a href="#step1_setup_V2Lboard"><b>Setup RZ/V2L Evaluation Board Kit</b></a> chapter has been completed, you can boot the board in the following way.</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <ol>
+        <li>
+          Insert the microSD card to the Board.
+          <div class="note">
+            <span class="note-title">Note</span>
+            Use the microSD card slot <b>CN3</b> as shown in the figure.
+          </div>
+        </li><br />
+        <li>Change SW1 and SW11 setting as shown in the figure.</li><br />
+        <li>Connect an Ethernet cable between the board and Linux PC.
+          <div class="note">
+            <span class="note-title">Note</span>
+            Use the Ethernet connector <b>Ethernet 0</b> as shown in the figure.
+          </div>
+        </li>
+        <li>Connect the USB mouse and USB keyboard via USB hub.</li><br />
+        <li>Connect the Google Coral camera to the Board.</li><br />
+        <li>Connect the HDMI monitor to the Board.</li><br />
+        <li>Connect the power cable to the Board.</li><br />
+        <li>Press power button for 1 second to turn on the board.</li>
+      </ol>
+    </div>
+    <div class="col-12 col-md-6">
+      <img class="procedure" src="img/aitool_howto_v2l_boot.png" alt="boot" width="90%" />
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <ol>
+        <li value="9">After the boot-up, following screen will be displayed on HDMI monitor.</li>
+      </ol>
+    </div>
+    <div class="col-12 col-md-6">
+      <img class="procedure" src="img/wayland.jpg" alt="wayland" width="90%" />
+    </div>
+  </div>
+  <div class="row">
+    <div class=" col-12 col-md-6">
+      <ol>
+        <li value="10">Click the icon at the top-left corner to open the terminal.</li>
+      </ol>
+    </div>
+    <div class=" col-12 col-md-6">
+      <img class="procedure" src="img/aitool_wayland_terminal.jpg" alt="wayland" width="90%" />
+    </div>
+  </div>
+  <div class="row">
+    <div class=" col-12 col-md-6">
+      <ol>
+        <li value="11">To communicate between your Linux PC and the target board via Ethernet, configure their respective IP addresses.<br />
+        <ul>
+          <li><b>Linux PC</b>:<br />
+          This uses the device name of the Ethernet interface "enp2s1" as an example and sets its IP address to <b>192.168.1.10.</b>.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">ifconfig enp2s1 192.168.1.10</code></pre></figure>
+
+          </li>
+          <li><b>Target board</b>:<br />
+          Use <b>eth0</b> and set its IP address to <b>192.168.1.11</b>.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">ifconfig eth0 192.168.1.11</code></pre></figure>
+
+          </li><br />
+        </ul>
+        </li>
+      </ol>
+    </div>
+    <div class=" col-12 col-md-6">       
+    </div>
+  </div>
+</div>
+
+
+      </section>
+    </div>
+  </body>
+</html>
