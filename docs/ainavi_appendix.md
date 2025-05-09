@@ -24,7 +24,7 @@ Follow the steps below to uninstall the plugins, AI Navigator, AI Transfer Learn
   <li>Launch e<sup>2</sup> studio.</li>
   <li>Click <b>[Help] > [About e<sup>2</sup> studio]</b> and <b>"About e<sup>2</sup> studio"</b> will appear.</li>
   <li>Click <b>[Installation Details]</b>.</li>
-  <li>Click the <b>[Installed Software]</b> tab and select <b>"Renesas AI Framework"</b>/<b>"RZ/V AI TLT"</b>/<b>"AI Model Conversion Tool"</b>.
+  <li>Click the <b>[Installed Software]</b> tab and select <b>"Renesas AI Navigator plugin"</b>/<b>"AI Transfer Learning Tool"</b>/<b>"AI Model Conversion Tool"</b>.
     <div class="note">
     <span class="note-title">Note</span>
     You can select only one plugin at this time. Repeat this procedure for other plugins if you have finished uninstalling one.
@@ -141,10 +141,12 @@ To set up your Linux environment on your target board using AI Navigator, click 
 
 In order to build the Linux (AI SDK) or develop with your custom board or 3rd party board, please refer to the following pages.<br>
 <ul>
+   <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}">How to build RZ/V2H AI SDK Source Code</a><br>
+  The build step of RZ/V2H AI SDK environment.</li>
+  <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}">How to build RZ/V2N AI SDK Source Code</a><br>
+  The build step of RZ/V2N AI SDK environment.</li>
   <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}">How to build RZ/V2L AI SDK Source Code</a><br>
   The build step of RZ/V2L AI SDK environment.</li>
-  <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}">How to build RZ/V2H AI SDK Source Code</a><br>
-  The build step of RZ/V2H AI SDK environment.</li>
   <li><a href="https://jira-gasg.renesas.eu/confluence/display/REN/Renesas+Wiki" target="_blank">RZ/G and RZ/V BSP Porting</a><br>
   The information in order to port RZ/V Linux environment (includes kernel, u-boot, and so on) into your custom board.</li>
 </ul>

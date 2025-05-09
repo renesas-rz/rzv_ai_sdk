@@ -3512,6 +3512,12 @@ pre { border-radius: 5px; color: #444; background: #f0f0f0; border: solid 1px #d
 
 .devicelinkbutton:hover { background-color: #43abe2; transform: scale(1.1); transition-duration: 0.3s; color: white; }
 
+.partnerlinkbutton_parent { text-align: center; }
+
+.partnerlinkbutton { margin: 2px 6px 0px 0px; background-color: #2a289d; color: white; padding: 5px 8px; text-decoration: none; display: inline-block; font-size: 14px; font-family: Arial, sans-serif; cursor: pointer; border: none; border-radius: 2px; }
+
+.partnerlinkbutton:hover { background-color: #43abe2; transform: scale(1.1); transition-duration: 0.2s; color: white; }
+
 .Perf-Framerate { margin: 5px 6px 0px 0px; font-size: 14px; text-align: center; }
 
 dl { display: flex; flex-wrap: wrap; margin: 0; }

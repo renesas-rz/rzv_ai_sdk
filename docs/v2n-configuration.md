@@ -75,6 +75,11 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     </td>
                     <td>                <!-- Version -->
                         Yocto version: 3.1.31 (Dunfell)
+                        <a href="#footnote_v2n_linux_components">
+                            <sup>
+                                *1
+                            </sup>
+                        </a>
                         <br>
                         Kernel version: 5.10.145-cip17
                     </td>
@@ -147,13 +152,18 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     <code>"references/core-image-weston-rzv2n-evk.manifest"</code> in RZ/V2N AI SDK.
                 </li>
             </ul>
+            <div class="note">
+                <span class="note-title" id="footnote_v2n_linux_components">Note1</span>
+                RZ/V2N AI SDK will transition to Yocto version 5.0 (Scarthgap) and Kernel 6.1 in June 2025.<br>
+                After June 2025, RZ/V2N AI SDK Dunfell version will not be updated.<br>
+            </div>
         </div>
         <div class="col-12">
             <h3 id="v2n-driver">
                 Drivers
             </h3>
             Following table shows the list of drivers.<br>
-            For more details, see <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a> and <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>. 
+            For more details, see <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a> and <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>. 
             <!-- 
             <div class="note">
                 <span class="note-title">Note</span>

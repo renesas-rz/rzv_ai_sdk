@@ -1239,6 +1239,31 @@ pre {
   color: white;
 }
 
+.partnerlinkbutton_parent { 
+  text-align: center;
+}
+
+.partnerlinkbutton {
+  margin:2px 6px 0px 0px;
+  background-color: #2a289d;
+  color: white;
+  padding: 5px 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px; 
+}
+
+.partnerlinkbutton:hover {
+  background-color:rgb(67, 171, 226); 
+  transform: scale(1.1);
+  // transition-duration: 1s;
+  transition-duration: 0.2s; //Edited by Renesas
+  color: white;
+}
 //Added by meistier for no reason, but affects the Getting Started.
 // tabel tr,th,td{
 //   border-style: 1;

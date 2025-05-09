@@ -181,7 +181,18 @@ layout: default
                 <li>AI model experts (performance/accuracy optimization, etc.)</li>
                 <li>System integrators</li>
             </ul>
-            Our partners and their solutions are isted in <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rz-partner-solutions?partners-mcu-filter=rz-v">Renesas RZ Partner Ecosystem Solutions</a>  page.
+            Community page shows our partner applications that you can actually run on the target board.<br>
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link community.md %}" role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    Community page
+                </span><br>
+                <span class="banner-line">
+                    List of partner applications and other sample applications.<br>
+                </span>
+            </a>
+            <br>
+            <br>
+            We also have the list of our partners in <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rz-partner-solutions?partners-mcu-filter=rz-v">Renesas RZ Partner Ecosystem Solutions</a> page.
             <br>
             <br>
             To make an enquiry regarding AI partner, please use <b>"Support Tickets"</b> > <b>"Submit a Ticket"</b> from following page.<br>

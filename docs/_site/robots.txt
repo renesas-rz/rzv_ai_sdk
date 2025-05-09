@@ -1,1 +1,1 @@
-Sitemap: https://renesas-rz.github.io/rzv_ai_sdk/5.10/sitemap.xml
+Sitemap: https://renesas-rz.github.io/rzv_ai_sdk/5.20/sitemap.xml

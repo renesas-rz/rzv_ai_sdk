@@ -17,6 +17,80 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Applications v5.20
+                </h3>
+                <h6 align="right" >
+                    2025.5.9
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v5.20 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported RZ/V2H AI SDK v5.20.
+                        </li>
+                        <li> 
+                            Added RZ/V2H and RZ/V2N support for 1 application.
+                        </li>
+                        <li> 
+                            Added 3 new applications.
+                        </li>
+                        <li> 
+                            Improved UX of 2 applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2H, RZ/V2N & RZ/V2L - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2025.5.9
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Navigator v1.3.0 is released.</h5>
+                    <ul>
+                        <li> 
+                            Users can develop more AI Applications for RZ/V2N with the latest environment.
+                            <br>
+                            The supported AI Applications are listed at the top of the guide.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.5.9
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Community page is published.</h5>
+                    <ul>
+                        <li> 
+                            Users can check Partner Applications and other sample applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V2H AI SDK v5.20
                 </h3>
                 <h6 align="right" >

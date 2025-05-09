@@ -19,7 +19,7 @@ layout: default
                             role="button">
                             <span class="banner-title" style="line-height:1.0;">
                                 <span style="font-size:80%;">
-                                    First, check out 
+                                    Click here to check out 
                                 </span><br>
                                 <span style="font-size:100%;">
                                     RZ/V AI Software
@@ -77,53 +77,56 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.3.31
+                2025.5.9
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V2H AI SDK v5.20</b> is released.
+                    <b>RZ/V AI Applications v5.20</b> is released.
                     <ul>
                         <li> 
-                            Updated RZ/V2H Linux BSP to v1.0.2.
+                            Supported RZ/V2H AI SDK v5.20.
                         </li>
                         <li> 
-                            Updated Graphics Library to v3.1.2.3.
+                            Added RZ/V2H and RZ/V2N support for 1 application.
                         </li>
                         <li> 
-                            Updated Video Codec Library to v3.3.3.2.
+                            Added 3 new applications.
                         </li>
                         <li> 
-                            Updated OpenCV Accelerator to v1.20.
-                        </li>
-                        <li> 
-                            Updated DRP-AI Driver to v1.20.
-                        </li>
-                        <li> 
-                            Supported OpenMP v8.3.0.
-                        </li>
-                        <li> 
-                            Supported offline build of RZ/V2H AI SDK Source Code.
+                            Improved UX of 2 applications.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V2H AI SDK Specification</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Application</b></a>.
             <br>
             <br>
             <ul>
                 <li>
-                    <b>RZ/V2N AI Applications Demo v5.10</b> is released.
+                    <b>AI Navigator v1.3.0</b> is released.
                     <ul>
                         <li> 
-                            Supported AI Applications v5.10.
-                        </li>
-                        <li> 
-                            Supported log display funtionality.
+                            Users can develop more AI Applications for RZ/V2N with the latest environment.
+                            <br>
+                            The supported AI Applications are listed at the top of the guide.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}"><b>How to Use Guide</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>Community page</b> is published.
+                    <ul>
+                        <li> 
+                            Users can check Partner Applications and other sample applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community page</b></a>.
             <br>
             <br>
         </div>
@@ -192,7 +195,7 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h4 class="u_line">
-                Find your AI Application
+                Find Your AI Application
             </h4>
         </div>
         <div class="col-12 col-lg-6 col-xl-4">
@@ -292,7 +295,34 @@ layout: default
         </div>
     </div>
 </div>
-
+<br>
+<br>
+<h3 id="com-applications">Community Applications</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            In addition to RZ/V AI Applications, there are Community Applications provided by the partner companies and Renesas.<br>
+            Community Applications are sets of sample applications for RZ/V series and listed in the Community page.<br>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6 col-xl-4">
+            <a class="btn btn-secondary square-button ms-3 mt-1" 
+                style="text-align:left; width: 100%;" 
+                href="{{ site.url }}{{ site.baseurl }}{% link community.md %}" 
+                role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    Community Page >
+                    <br>
+                    <span style="font-size:70%;font-weight: normal;">
+                        List of Partner Applications and other sample applications.<br>
+                    </span>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
 <br>
 <br>
 <h3 id="demo">Demo</h3>
@@ -945,7 +975,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
+                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
                             RZ/V2H BSP Manual Set
                         </a>
                     </td>
@@ -1061,7 +1091,7 @@ layout: default
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
+                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
                             RZ/V2N BSP Manual Set
                         </a>
                     </td>

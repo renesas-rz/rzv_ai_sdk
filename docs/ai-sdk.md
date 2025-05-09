@@ -566,7 +566,7 @@ layout: default
                                 </a>
                             ]
                             [
-                                <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
+                                <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
                                     Manual
                                 </a>
                             ]
@@ -734,7 +734,7 @@ layout: default
                                 </a>
                             ]
                             [
-                                <a href="https://www.renesas.com/document/swo/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v102zip">
+                                <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
                                     Manual
                                 </a>
                             ]

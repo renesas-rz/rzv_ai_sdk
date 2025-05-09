@@ -20,52 +20,54 @@ Please read the <a href="https://www.renesas.com/en/software-tool/ai-navigator-i
 
 <h3 id="ainavi_guide_update">Updates</h3>
 <ul>
-  <li>Feb 07, 2025
+  <li>May 09, 2025
     <ul>
-      <li><b>The supported AI application in AI Navigator has been updated.</b></li>
-      AI Navigator now supports <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.00/applications.html" target="_blank">RZ/V AI Application v5.00</a>. *Only for RZ/V2H.
+      <li><b>Support for RZ/V2N.</b></li>
+      AI Navigator now supports RZ/V2N and its AI applications from RZ/V AI Application v5.10.
     </ul>
   </li>
 </ul>
-<br>
 
 <h3 id="ainavi_target_env">Target Environment</h3>
 <table>
   <tr>
-    <th>Target version</th>
-    <td>AI Navigator v1.2.0</td>
+    <th>Target version <span style="color: red;"> Updated!</span></th>
+    <td>AI Navigator v1.3.0</td>
   </tr>
   <tr>
-    <th>Supported environment</th>
-    <td>Ubuntu 20.04 LTS, Renesas e<sup>2</sup> studio 2024-07 for Linux (or later)</td>
+    <th>Supported environment <span style="color: red;"> Updated!</span></th>
+    <td>Ubuntu 20.04 LTS, Renesas e<sup>2</sup> studio 2025-01 for Linux<br>
+    Please download from <a href="https://www.renesas.com/document/uid/e-studio-2025-01-installer-linux" target="_blank">here</a>.</td>
   </tr>
   <tr>
-    <th>Target Devices</th>
-    <td>RZ/V2L, RZ/V2H</td>
+    <th>Target Devices <span style="color: red;"> Updated!</span></th>
+    <td>RZ/V2N, RZ/V2H, RZ/V2L</td>
   </tr>
   <tr>
-    <th>Target Board</th>
+    <th>Target Board <span style="color: red;"> Updated!</span></th>
     <td>
-        <li>RZ/V2L Evaluation Board Kit</li>
-        <li>RZ/V2H Evaluation Board Kit</li>
+      <li>RZ/V2N Evaluation Board Kit</li>
+      <li>RZ/V2H Evaluation Board Kit</li>
+      <li>RZ/V2L Evaluation Board Kit</li>
     </td>
   </tr>
   <tr>
     <th>Available Functions of AI Applications <span style="color: red;"> Updated!</span></th>
     <td>
-        <li>Q01-Q11 in RZ/V AI Applications v4.00 for RZ/V2L</li>
-        <li>Q01, Q02, Q04, Q06-Q12, 01-05, 07, 09-15 in RZ/V AI Applications v5.00 for RZ/V2H</li>
+        <li>RZ/V2N, RZ/V2H: Q01-Q12, 01, 03-12, 14-15 in RZ/V AI Applications v5.10</li>
+        <li>RZ/V2L: Q01-Q11 in RZ/V AI Applications v5.10</li>
     </td>
   </tr>
   <tr>
     <th>Supported RZ/V AI SDK <span style="color: red;"> Updated!</span></th>
     <td>
-        <li>RZ/V2L AI SDK v2.10</li>
+        <li>RZ/V2N AI SDK v5.00</li>
         <li>RZ/V2H AI SDK v5.00</li>
+        <li>RZ/V2L AI SDK v5.00</li>
     </td>
   </tr>
   <tr>
-    <th>Supported AI Tools <span style="color: red;"> Updated!</span></th>
+    <th>Supported AI Tools</th>
     <td>
       <li>RZ/V AI Transfer Learning Tool v4.00</li>
       <li>AI Model Conversion Tool (supported up to DRP-AI TVM v2.3.0) </li>
@@ -125,17 +127,13 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
 <h3 id="ainavi_step1" >Step 1: AI Navigator Installation</h3>
 <div class="note">
   <span class="note-title">Note</span>
-  AI Navigator V1.2.0 works on e<sup>2</sup> studio <b>Linux Host</b> only.<br>
-</div>
-<div class="note">
-  <span class="note-title">Note</span>
-  If you want to update AI Navigator from the previous version, please delete the docker container and image for RZ/V AI TLT as described in <a href="ainavi_appendix.html#ainavi_appendix_a" target="_blank">A. AI Navigator Uninstallation</a>. Then follow the procedure below.
+  AI Navigator v1.3.0 works on e<sup>2</sup> studio <b>Linux Host</b> only.<br>
 </div>
 <ul>
   <li><h5><b>Non-users of e<sup>2</sup> studio</b></h5></li>
-  Download <b>e<sup>2</sup> studio <u>Linux Host</u></b> from the Renesas website.
+  Download <b>e<sup>2</sup> studio <u>Linux Host</u></b> from the Renesas website. *The version of e<sup>2</sup> studio is <b>2025-01</b>.
   <br><br>
-  <a class="btn btn-primary download-button" href="https://www.renesas.com/us/en/software-tool/e2studio-information-rz-family#downloads" target="_blank" role="button">Get e<sup>2</sup> studio</a>
+  <a class="btn btn-primary download-button" href="https://www.renesas.com/document/uid/e-studio-2025-01-installer-linux" target="_blank" role="button">Get e<sup>2</sup> studio</a>
   <br><br>
   <div class="note">
     <span class="note-title">Note</span>
@@ -163,11 +161,33 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
   </ol>
   <div class="note">
     <span class="note-title">Note</span>
-    The device family "Linux on Renesas RZ" must be available on your e<sup>2</sup> studio environment. Otherwise, you may not be able to build your AI application.<br>
+    <div class="row">
+      <div class="col-6">
+        The device family <b>"Linux on Renesas RZ"</b> must be available in your e<sup>2</sup> studio environment. Otherwise, you may not be able to build your AI application.<br>
+        <br>
+        Be sure to select <b>"Linux on Renesas RZ"</b> when installing e2 studio and updating it using the e2 studio installer.<br>
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_e2studio_device_select.png" data-lightbox="ainavi_device_select"><img src="img/ainavi/ainavi_e2studio_device_select.png" alt="AI Navigator device selection on e2 studio" width="90%" /></a>
+        <br>
+      </div>
+    </div>
   </div>
   <br>
   <li><h5><b>AI Navigator users</b></h5></li>
   Click <b>[Help]</b> > <b>[Check for Updates]</b> and select the newer version for each plugin to update.
+
+  <div class="note">
+    <span class="note-title">Note</span>
+    If you cannot find the AI Navigator in [Check for Update], please follow the steps below.
+    <ol>
+      <li>Open [Window] -> [Preferences] and select [Install/Update] -> [Available Software Sites].</li>
+      <li>Click [Add...] and register the information for AI Navigator Plugin as below.<br>
+          - Name: AI Navi<br>
+          - Location: https://tool-support.renesas.com/e2studio/ai/ai-navi</li>
+      <li>Retry to update via [Check for Updates].</li>
+    </ol>
+  </div>
 </ul>
 <br>
 <div class="note">
@@ -180,12 +200,9 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
 <div class="container">
   <div class="row">
     <div class="col-6">
-      Click <b>[Renesas Views] > [Renesas AI] > [AI Navi]</b> and the AI Navigator will launch.  
+      Click <b>[Renesas Views] > [Renesas AI] > [AI Navi]</b> and the AI Navigator will launch.<br>
       <br>
-      <div class="note">
-        <span class="note-title">Note</span>
-        For each view and button on the AI Navigator, see the help page for AI Navigator. You can access it by clicking the <b>[Learn more...]</b> on the start view (on the top page of AI Navigator) or by selecting <b>[Help] > [Help Contents] > [Renesas AI Navigator]</b>.
-      </div>
+      For each view and button on the AI Navigator, see the help page for AI Navigator. You can access it by clicking the <b>[Learn more...]</b> on the start view (on the top page of AI Navigator).
       <br>
       <div class="note">
         <span class="note-title">Note</span>
@@ -193,8 +210,7 @@ Before you start using the AI Navigator, prepare the necessary equipment and sof
       </div>
       <br>
       <div class="note">
-        <span class="note-title">Note</span>
-        <b>For e<sup>2</sup> studio 2025-01 users:</b><br>
+        <span class="note-title">Note for e<sup>2</sup> studio 2025-01 users</span>
         When Appearance Theme is set to <b>"Light(Preview)"</b>, some buttons on AI Navigator are not displayed correctly. Please change Theme to <b>"Light"</b> or <b>"Dark"</b> from <b>[Window] -> [General] -> [Appearance]</b>.
       </div>
     </div>
@@ -249,6 +265,11 @@ Import an AI application project from Renesas AI server by the following steps.
   <div class="row">
     <div class="col-6">
       <p id="ainavi_step1-4">4. Click <b>[Import]</b> and import an AI application.</p><br>
+      <div class="note for RZ/V2N users">
+        <span class="note-title">Note for RZ/V2N users</span>
+        When selecting an AI Application for RZ/V2N, the same e<sup>2</sup> studio project used for RZ/V2H will be imported, since RZ/V2N is a sibling device. Please use it as is with the RZ/V2N AI SDK and EVK.
+      </div>
+      <br>
       <div class="note">
         <span class="note-title">Note</span>
         Once you import an AI application, you cannot import an AI application which has the same function (same number like "Qxx") in the same work space.
@@ -502,7 +523,7 @@ Please confirm the console log.
     Click the button below that corresponds to your target device and the appropriate conversion procedure will appear.<br>
     <br>
     <div class="ButtonTVM_V2L">RZ/V2L</div>
-    <div class="ButtonTVM_V2H">RZ/V2H</div>
+    <div class="ButtonTVM_V2H">RZ/V2H & RZ/V2N</div>
     <br>
   </div>
   <div class="ContentsTVM_V2L">
@@ -547,7 +568,7 @@ Please confirm the console log.
     <div class="container">
       <div class="row">
         <div class="col-6">
-          Start the AI model conversion to generate its runtime for <b>RZ/V2H</b> by following the steps below.<br>
+          Start the AI model conversion to generate its runtime for <b>RZ/V2H or RZ/V2N</b> by following the steps below.<br>
           <br>
           (1) Configure the option setting.Select "Optimization level".<br>
           If you want to check edit a conversion script here uses this conversion, click <b>[Check conversion script]</b>.<br>
@@ -641,8 +662,7 @@ It's time to run your AI application on the target board.<br>
 Click <b>[Run on the Board]</b> on the AI Navigator menu and follow the steps below. <br>
 <br>
 <div class="note">
-  <span class="note-title">Note</span>
-  <b>For e<sup>2</sup> studio 2024-10 & 2025-01 users:</b><br>
+  <span class="note-title">Note for e<sup>2</sup> studio 2024-10 & 2025-01 users</span>
   Keep <b>"Debug"</b> view closed before <b>[Run on the Board]</b>.<br>
   <br>
   <a href="img/ainavi/ainavi_debug.png" data-lightbox="ainavi_debug"><img src="img/ainavi/ainavi_debug.png" alt="AI Navi debug" width="50%" hegiht="50%"></a><br>
@@ -666,18 +686,24 @@ Click on <b>[Create a bootable disk...]</b> and you can automatically format you
 
 <div class="note">
   <span class="note-title">Note</span>
-  For formatting procedure on Linux console, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A2" target="_blank">A2. Format SD card</a>, <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1" target="_blank">1. Setup RZ/V2L EVK</a> or <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7-1" target="_blank">1. Setup RZ/V2H EVK</a>, and click on <b>eSD Bootloader</b>.
+  For formatting procedure on Linux console, please refer to the following pages. *Click on <b>eSD Bootloader</b> for each page.
+  <ul>
+    <li><a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1" target="_blank">A1. Format SD card</a></li>
+    <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7-1" target="_blank">1. Setup RZ/V2H EVK</a></li>
+    <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7-1" target="_blank">1. Setup RZ/V2N EVK</a></li>
+    <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1" target="_blank">1. Setup RZ/V2L EVK</a></li>
+  </ul>
 </div>
 <div class="note">
-  <span class="note-title">Note for RZ/V2H users</span>
-  <b>bmap-tools</b> is used to set up the RZ/V2H EVK. If you do not have it installed, the following message will appear when creating a bootable disk.<br>
+  <span class="note-title">Note for RZ/V2H & RZ/V2N users</span>
+  <b>bmap-tools</b> is used to set up each EVK. If you do not have it installed, the following message will appear when creating a bootable disk.<br>
   <i>"bmaptool is required for this setup program. Do you want to install it now?"</i><br>
   If you accept it, type "yes" and the creation process will continue.
 </div>
 <br>
 <h5 id=ainavi_boot_board>2. Boot the board</h5>
 Start booting the board with the formatted SD card. 
-If you are not sure how to boot the target board, click on <b>[Boot instruction...]</b> and the instructions for <a href="https://Tool-support.renesas.com/tool-support/Zoo/boot_boad_guide/RZV2L_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2L Evaluation Board Kit</a> or <a href="https://Tool-support.renesas.com/tool-support/Zoo/boot_boad_guide/RZV2H_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2H Evaluation Board Kit</a> will appear.<br>
+If you are not sure how to boot the target board, click on <b>[Boot instruction...]</b> and the instructions for <a href="https://Tool-support.renesas.com/tool-support/Zoo/boot_boad_guide/RZV2L_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2L Evaluation Board Kit</a>, <a href="https://Tool-support.renesas.com/tool-support/Zoo/boot_boad_guide/RZV2H_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2H Evaluation Board Kit</a>, or <a href="https://Tool-support.renesas.com/tool-support/Zoo/boot_boad_guide/RZV2N_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2N Evaluation Board Kit</a> will appear.<br>
 <div class="note">
   <span class="note-title">Note</span>
   At this point, be sure to configure each IP address for the connection between your Linux host PC and the target board.<br>
