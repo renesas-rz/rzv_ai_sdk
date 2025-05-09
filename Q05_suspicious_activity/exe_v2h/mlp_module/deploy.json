@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "op": "null", 
+      "name": "flattened_output", 
+      "inputs": []
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+      "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "hash": "84e24aab087ff24c", 
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
+        "Compiler": "mera_drp"
+      }, 
+      "inputs": [
+        [
+          0, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_fused_nn_relu_mean", 
+      "attrs": {
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_fused_nn_relu_mean", 
+        "hash": "acd679a86a19726d"
+      }, 
+      "inputs": [
+        [
+          1, 
+          0, 
+          0
+        ]
+      ]
+    }, 
+    {
+      "op": "tvm_op", 
+      "name": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+      "attrs": {
+        "flatten_data": "0", 
+        "func_name": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+        "hash": "28d1c58613974d2e", 
+        "num_outputs": "1", 
+        "num_inputs": "1", 
+        "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_1", 
+        "Compiler": "mera_drp"
+      }, 
+      "inputs": [
+        [
+          2, 
+          0, 
+          0
+        ]
+      ]
+    }
+  ], 
+  "arg_nodes": [0], 
+  "heads": [
+    [
+      3, 
+      0, 
+      0
+    ]
+  ], 
+  "attrs": {
+    "dltype": [
+      "list_str", 
+      [
+        "float32", 
+        "float16", 
+        "float16", 
+        "float16"
+      ]
+    ], 
+    "device_index": [
+      "list_int", 
+      [1, 1, 1, 1]
+    ], 
+    "storage_id": [
+      "list_int", 
+      [0, 1, 2, 3]
+    ], 
+    "shape": [
+      "list_shape", 
+      [
+        [1, 1152], 
+        [1, 256], 
+        [1, 256], 
+        [1, 2]
+      ]
+    ]
+  }, 
+  "node_row_ptr": [0, 1, 2, 3, 4]
+}

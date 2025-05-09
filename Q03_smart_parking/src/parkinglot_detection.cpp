@@ -621,6 +621,8 @@ void capture_frame(std::string cap_pipeline, std::string input_mode, queue<Mat> 
         if (frame.empty())
         {
             std::cout << "[INFO] Video ended or corrupted frame !\n";
+            stop = true;
+            exit_all = true;
             return;
         }
         if(frame_count == 2)

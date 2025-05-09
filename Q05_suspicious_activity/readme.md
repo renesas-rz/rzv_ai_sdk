@@ -3,325 +3,436 @@
 ## Application: Overview
 The suspicious  activity classification application allows to classify between Violence and Non-Violence from video input using a custom AI model which has a CNN module for feature extraction and MLP for aggregating features.
 
-It has 3 modes of running.
 
-1. Using Video as input
-2. Using MIPI Camera as Input
-3. Using USB Camera as Input
+It has following mode of running.
+| Mode | RZ/V2L | RZ/V2H and RZ/V2N |
+|:---|:---|:---|
+| MIPI Camera | Supported | - |
+| USB Camera | Supported | Supported |
+| Video | Supported | Supported |
 
-### Supported Product  
+
+### Supported Product
 <table>
-    <tr>
-      <th>Product</th>
-      <th>Supported AI SDK version</th>
-    </tr>
-    <tr>
-      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-      <td>RZ/V2L AI SDK v5.00</td>
-    </tr>
-</table>
+     <tr>
+       <th>Product</th>
+       <th>Supported AI SDK version</th>
+     </tr>
+     <tr>
+       <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+       <td>RZ/V2L AI SDK v5.00</td>
+     </tr>
+     <tr>
+       <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+       <td>RZ/V2H AI SDK v5.20</td>
+     </tr>
+     <tr>
+       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+       <td>RZ/V2N AI SDK v5.00</td>
+     </tr>
+ </table>
 
-#### Demo:
 
-<img src = "./images/SuspiciousActivity.gif" width="480" height="320">
+### Demo
 
-
+Following is the demo for RZ/V2H EVK.  
+<img src="./images/SuspiciousActivity.gif" width="480" height="320">
 
 ## Application: Requirements
 
-#### Hardware Requirements
-- RZ/V2L Evaluation Board Kit
-- MIPI Camera
-- USB Camera
-- USB Mouse
-- USB Keyboard
-- USB Hub
-- HDMI monitor & Micro HDMI Cable
-- SD Card (for file system)
+### Hardware Requirements
+<table class="gstable">
+    <tr>
+      <th>For</th>
+      <th>Equipment</th>
+      <th>Details</th>
+    </tr>
+    <tr>
+      <td rowspan="3">RZ/V2L</td>
+      <td>RZ/V2L EVK</td>
+      <td>Evaluation Board Kit for RZ/V2L.<br>Includes followings.
+        <ul class="mb-1">
+          <li>
+            MIPI Camera Module(Google Coral Camera)
+          </li>
+          <li>MicroUSB to Serial Cable for serial communication.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.</td>
+    </tr>
+    <tr>
+      <td>MicroHDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2L EVK has microHDMI port.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">RZ/V2H</td>
+      <td>RZ/V2H EVK</td>
+      <td>Evaluation Board Kit for RZ/V2H.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2H EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
+      <td rowspan="4">RZ/V2N</td>
+      <td>RZ/V2N EVK</td>
+      <td>Evaluation Board Kit for RZ/V2N.</td>
+    </tr>
+    <tr>
+      <td>AC Adapter</td>
+      <td>USB Power Delivery adapter for the board power supply.<br>
+      100W is required.</td>
+    </tr>
+    <tr>
+      <td>HDMI Cable</td>
+      <td>Used to connect the HDMI Monitor and the board.<br>
+      RZ/V2N EVK has HDMI port.</td>
+    </tr>
+    <tr>
+      <td>USB Camera</td>
+      <td>Used as a camera input source.</td>
+    </tr>
+    <tr>
+      <td rowspan="8">Common</td>
+      <td>USB Cable Type-C</td>
+      <td>Connect AC adapter and the board.</td>
+    </tr>
+    <tr>
+      <td>HDMI Monitor</td>
+      <td>Used to display the graphics of the board.</td>
+    </tr>
+    <tr>
+      <td>microSD card</td>
+      <td>Used as the filesystem.<br>
+      Must have over 4GB capacity of blank space.<br>
+      Operating Environment: Transcend UHS-I microSD 300S 16GB</td>
+    </tr>
+    <tr>
+      <td>Linux PC</td>
+      <td>Used to build application and setup microSD card.<br>
+      Operating Environment: Ubuntu 20.04</td>
+    </tr>
+    <tr>
+      <td>SD card reader</td>
+      <td>Used for setting up microSD card.<br></td>
+    </tr>
+    <tr>
+      <td>USB Hub</td>
+      <td>Used to connect USB Keyboard and USB Mouse to the board.</td>
+    </tr>
+    <tr>
+      <td>USB Keyboard</td>
+      <td>Used to type strings on the terminal of board.</td>
+    </tr>
+    <tr>
+      <td>USB Mouse</td>
+      <td>Used to operate the mouse on the screen of board.</td>
+    </tr>
+  </table>
 
-[Details](https://github.com/renesas-rz/rzv_ai_sdk/blob/main/README.md)
+>**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)   
 
-#### Software Requirements for building the application
-- Ubuntu 20.04
-- OpenCV 4.x
-- C++11 or higher
+Connect the hardware as shown below.  
 
-	
+|RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
+ |:---|:---|:---|
+ |<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600> |
+
+>**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
+>**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
+USB camera needs to be connected to appropriate port based on its requirement.
+
 ## Application: Build Stage
 
->**Note:** User can skip to the next stage (deploy) if they don't want to build the application. All pre-built binaries are provided.
+>**Note:** User can skip to the [next stage (deploy)](#application-deploy-stage) if they do not want to build the application.  
+All pre-built binaries are provided.
 
-**Note:** This project expects the user to have completed [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started) provided by Renesas. 
+### Prerequisites
+This section expects the user to have completed Step 5 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html) provided by Renesas. 
 
 After completion of the guide, the user is expected of following things.
-- The Board Set Up and booted. 
-- SD Card Prepared 
-- The docker image amd container for `rzv2l_ai_sdk_image` running on host machine.
+- AI SDK setup is done.
+- Following docker container is running on the host machine.
+    |Board | Docker container |
+    |:---|:---|
+    |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
+    |RZ/V2H EVK and RZ/V2N EVK |`rzv2h_ai_sdk_container`  |
 
->**Note:** Docker container is required for building the sample application. By default the Renesas will provide the container named as `rzv2l_ai_sdk_container`. Please use the docker container name as assigned by the user when building the container.
+    >**Note 1:** Docker environment is required for building the sample application.  
+    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
-#### Application: File Generation
 
-1. Copy the repository from the GitHub to the desired location. 
-    1. It is recommended to copy/clone the repository on the `data` folder which is mounted on the `rzv2l_ai_sdk_container` docker container. 
+
+### Application File Generation
+1. On your host machine, copy the repository from the GitHub to the desired location. 
+    1. It is recommended to copy/clone the repository on the `data` folder, which is mounted on the Docker container. 
     ```sh
-    cd <path_to_data_folder_on_host>
+    cd <path_to_data_folder_on_host>/data
     git clone https://github.com/renesas-rz/rzv_ai_sdk.git
     ```
-   >Note 1: Please verify the git repository url if error occurs.
+    >Note: This command will download the whole repository, which include all other applications.  
+    If you have already downloaded the repository of the same version, you may not need to run this command.  
 
-   >Note 2: This command will download the whole repository, which include all other applications. If you have already downloaded the repository of the same version, you may not need to run this command.
-   
-2. Run the docker container and open the bash terminal on the container.
+2. Run (or start) the docker container and open the bash terminal on the container.  
+E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container created from  `rzv2l_ai_sdk_image` docker image.  
+    > Note that all the build steps/commands listed below are executed on the docker container bash terminal.  
 
-> Note: All the build steps/commands listed below are executed on the docker container terminal.
-
-3. Assign path to the `data` directory mounted on the `rzv2l_ai_sdk_container` docker container
-
-```sh
-export PROJECT_PATH=/drp-ai_tvm/data/
-```
-
-4. Go to the `src` directory of the application
-
-```sh
-cd ${PROJECT_PATH}/rzv_ai_sdk/Q05_suspicious_activity/src/
-```
->**Note:**`rzv_ai_sdk` is the repository name corresponding to the cloned repository. Please verify the repository name if error occurs.
-5. Build the application on docker environment by following the steps below
-
-```sh
-mkdir -p build && cd build
-```
-```sh
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
-```
-```sh
-make -j$(nproc)
-```
-
-The following application file would be generated in the `src/build` directory
-- suspicious_activity
+3. Set your clone directory to the environment variable.  
+    ```sh
+    export PROJECT_PATH=/drp-ai_tvm/data/rzv_ai_sdk
+    ```
+4. Go to the application source code directory.  
+    ```sh
+    cd ${PROJECT_PATH}/Q05_suspicious_activity/src
+    ```
+5. Create and move to the `build` directory.
+    ```sh
+    mkdir -p build && cd build
+    ```
+6. Build the application by following the commands below.  
+    **For RZ/V2L**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
+    make -j$(nproc)
+    ```
+    **For RZ/V2H and RZ/V2N**
+    ```sh
+    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
+    make -j$(nproc)
+    ```
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
+7. The following application file would be generated in the `${PROJECT_PATH}/Q05_suspicious_activity/src/build` directory
+    - suspicious_activity
 
 
 ## Application: Deploy Stage
+### Prerequisites
+This section expects the user to have completed Step 7-1 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7) provided by Renesas. 
 
-For the ease of deployment all the deployable files and folders for RZ/V2L are provided on the [exe](./exe) folder.
+After completion of the guide, the user is expected of following things.
+- microSD card setup is done.
 
+### File Configuration
+For the ease of deployment all the deployable file and folders are provided in following folders.  
+|Board | `EXE_DIR` |
+|:---|:---|
+|RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
+|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+
+Each folder contains following items.
 |File | Details |
 |:---|:---|
-|mlp_module | Model object files of MLP for deployment.|
-|cnn_module | Model object files of CNN for deployment.|
-|suspicious_activity | application file. |
-|violence.mp4 | Sample Output video |
-|non_violence.mp4 | Sample Output video |
+|cnn_module | CNN Model object files for deployment |
+|mlp_module | MLP Model object files for deployment |
+|suspicious_activity | application file |
+|violence.mp4 | sample video for VIDEO mode |
+|non_violence.mp4 | sample video for VIDEO mode  |
 
-Follow the steps mentioned below to deploy the project on RZ/V2L Board. 
-* At the `/home/root/tvm` directory of the rootfs (on SD Card) for RZ/V2L board.
-   * Copy the files present in [exe](./exe) directory, which are listed in the table above.
-   * Copy the generated `suspicious_activity` application file if the application file is built at [build stage](#application-build-stage)
+>**Note:** For **V2L** the CNN and MLP part are combined into a single model and have a combined_module directory which contains object files for deployment.
+### Instruction
 
-* Check if libtvm_runtime.so is there on `/usr/lib64` directory of the rootfs (SD card) RZ/V2L board.
+1. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+    |File | Details |
+    |:---|:---|
+    |All files in `EXE_DIR` directory | Including `deploy.so` file. |
+    |`suspicious_activity` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
+2. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
 
-##### Folder Structure in the board
-```sh
-/
-└── usr
-    └── lib64
-        └── libtvm_runtime.so
-└── home
-    └── root
-        └── tvm
-            ├── cnn_module
-            │   ├── deploy.json
-            │   ├── deploy.params
-            │   └── deploy.so
-            │   
-            ├── mlp_module
-            │   ├── deploy.json
-            │   ├── deploy.params
-            │   └── deploy.so
-            ├── violence.mp4
-            ├── non_violence.mp4
-            └── suspicious_activity
+3. Folder structure in the rootfs (SD Card) would look like:
+    
+    For **V2H and V2N**:
+    ```
+    |-- usr
+    |   `-- lib64
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- root
+            `-- tvm
+                |-- cnn_module  
+                |   |-- deploy.json             
+                |   |-- deploy.params           
+                |   `-- deploy.so               
+                |-- mlp_module          
+                |   |-- deploy.json             
+                |   |-- deploy.params           
+                |   `-- deploy.so               
+                |-- suspicious_activity
+                |-- violence.mp4 
+                `-- non_violence.mp4 
+    ```
+    For **V2L**:
+    ```
+    |-- usr
+    |   `-- lib64
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- root
+            `-- tvm
+                |-- combined_module  
+                |   |-- deploy.json             
+                |   |-- deploy.params           
+                |   `-- deploy.so               
+                |-- suspicious_activity
+                |-- violence.mp4 
+                `-- non_violence.mp4 
+    ```
+>**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`. For **V2L** the `CNN` and `MLP` part are combined into a single model as shown above.
 
-```
+## Application: Run Stage
 
+### Prerequisites
+This section expects the user to have completed Step 7-3 of [Getting Started Guide](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7-3) provided by Renesas. 
 
-## Application: Runtime Stage
+After completion of the guide, the user is expected of following things.  
+- The board setup is done.  
+- The board is booted with microSD card, which contains the application file.  
 
-* For running the application, run the commands as shown below on the RZ/V2L Evaluation Board console.
-  * Go to the `/home/root/tvm` directory of the rootfs
-  ```sh
-  cd /home/root/tvm
-  ```
-  
-##### Mode: MIPI Camera Input
-- The application takes input from MIPI Coral Camera.
+### Instruction
 
-```sh 
-./suspicious_activity MIPI 
-```
-- User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
+1. On Board terminal, go to the `tvm` directory of the rootfs.
+    ```sh
+    cd /home/root/tvm/
+    ```
+    
+2. Run the application.
+    - For video Mode
+    ```sh
+   ./suspicious_activity VIDEO violence.mp4
+    ```
+    - For USB Camera Mode
+    ```sh
+    ./suspicious_activity USB
+    ```
+    - For MIPI Camera Mode (RZ/V2L only)
+    ```sh
+    ./suspicious_activity MIPI
+    ```
 
->**Note: `FRAME_INTERVAL` and `BUFFER_SIZE` details are explained in [Application: Specifications](#application-specifications).** 
+3. Following window shows up on HDMI screen.  
 
-```sh
-./suspicious_activity MIPI 5 5
-```
+    |RZ/V2L EVK | RZ/V2H EVK and RZ/V2N EVK* |
+    |:---|:---|
+    |<img src=./images/v2l_result.jpg width=350>| <img src=./images/v2h_result.jpg width=350>  |
 
-##### Mode: USB Camera Input
-- The application takes input from MIPI Coral Camera.
+    > *Performance in the screenshot is for RZ/V2H EVK.
 
-```sh 
-./suspicious_activity USB 
-```
-- User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
+    On application window, following information is displayed.  
+    - Camera capture  
+    - Video classification result (Graph plot, video classification result and score.)
+    - Processing time  
+        - Total AI Time: Sum of all processing time below.  
+        - Inference: Processing time taken for AI inference.  
+        - PreProcess: Processing time taken for AI pre-processing.  
+        - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
+        
+4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
->**Note: `FRAME_INTERVAL` and `BUFFER_SIZE` details are explained in [Application: Specifications](#application-specifications).** 
+> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+ i.e., RZ/V2N application log contains "RZ/V2H".  
+ This will be solved in the future version.
 
-```sh
-./suspicious_activity USB 5 5
-```
-
-##### Mode: Video Input
-
-```sh 
-./suspicious_activity VIDEO violence.mp4
-```
-> Note: Tested with video file format `.mp4` and `.avi`.
-
-- User can pass the config for `FRAME_INTERVAL` and `BUFFER_SIZE` like this
-
->**Note: `FRAME_INTERVAL` and `BUFFER_SIZE` details are explained in [Application: Specifications](#application-specifications).** 
-
-```sh 
-./suspicious_activity VIDEO non_violence.mp4 5 5
-```
-
-#### Application: termination
-
-- Double click on the window to terminate the application.
-- Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
-
-#### Application: Runtime Details
-
-- The application when running will look something like below
-
-<img src = "./images/suspicious_act_img.JPG" width="480" height="320">
-
-- The graph shown here will store the value of the previous 20 thresholds. 
-- The threshold represent whether the suspicious activity is being done or not.
-- With `0` being the suspicious activity being done and `1` for non-suspicious. The cut-off threshold is `0.5`.
-- On the display out, FPS(Frame Per Sec) and classification of activity is also shown. 
-
-## Application: Specifications
-
-The application uses 2 model, 1 CNN and 1 MLP model. 
-- For each frame from the video/camera, CNN will produce `128` linear output. 
-- For every `FRAME_INTERVAL`, default 10, each frame will be processed to the CNN. The output vector is stored in the vector. 
-    - `FRAME_INTERVAL` can also mean, skipping `FRAME_INTERVAL` frames and then selecting 1 frame.
-    - This parameter is user configurable
-    - User can pass int value ranging from [`2 - 15`]
-    - For optimal result, user are recommended to use the default values
- 
-- The `BUFFER_SIZE` (default 2) will determine, the consecutive frames to be added or removed for the vector. 
-    - The `BUFFER_SIZE` is User configurable with range [`1 - 9`]. 
-    - For optimal result, user are recommended to use the default values
-
-- For a `BATCH_SIZE` (fixed to 10), there will be `1280` vector size, which will be fed to the MLP for the classification. This variable is fixed and related to the AI model. 
-
-
-#### Model Details
+## Application: Configuration 
+### AI Model
 
 ##### CNN Module
 
 ```python
-==========================================================================================
-Layer (type:depth-idx)                   Output Shape              Param #
-==========================================================================================
-├─Sequential: 1-1                        [-1, 512, 7, 7]           --
-|    └─Conv2d: 2-1                       [-1, 64, 112, 112]        9,408
-|    └─BatchNorm2d: 2-2                  [-1, 64, 112, 112]        128
-|    └─ReLU: 2-3                         [-1, 64, 112, 112]        --
-|    └─MaxPool2d: 2-4                    [-1, 64, 56, 56]          --
-|    └─Sequential: 2-5                   [-1, 64, 56, 56]          --
-|    |    └─BasicBlock: 3-1              [-1, 64, 56, 56]          73,984
-|    |    └─BasicBlock: 3-2              [-1, 64, 56, 56]          73,984
-|    |    └─BasicBlock: 3-3              [-1, 64, 56, 56]          73,984
-|    └─Sequential: 2-6                   [-1, 128, 28, 28]         --
-|    |    └─BasicBlock: 3-4              [-1, 128, 28, 28]         230,144
-|    |    └─BasicBlock: 3-5              [-1, 128, 28, 28]         295,424
-|    |    └─BasicBlock: 3-6              [-1, 128, 28, 28]         295,424
-|    |    └─BasicBlock: 3-7              [-1, 128, 28, 28]         295,424
-|    └─Sequential: 2-7                   [-1, 256, 14, 14]         --
-|    |    └─BasicBlock: 3-8              [-1, 256, 14, 14]         919,040
-|    |    └─BasicBlock: 3-9              [-1, 256, 14, 14]         1,180,672
-|    |    └─BasicBlock: 3-10             [-1, 256, 14, 14]         1,180,672
-|    |    └─BasicBlock: 3-11             [-1, 256, 14, 14]         1,180,672
-|    |    └─BasicBlock: 3-12             [-1, 256, 14, 14]         1,180,672
-|    |    └─BasicBlock: 3-13             [-1, 256, 14, 14]         1,180,672
-|    └─Sequential: 2-8                   [-1, 512, 7, 7]           --
-|    |    └─BasicBlock: 3-14             [-1, 512, 7, 7]           3,673,088
-|    |    └─BasicBlock: 3-15             [-1, 512, 7, 7]           4,720,640
-|    |    └─BasicBlock: 3-16             [-1, 512, 7, 7]           4,720,640
-├─Sequential: 1-2                        [-1, 31]                  --
-|    └─AdaptiveConcatPool2d: 2-9         [-1, 1024, 1, 1]          --
-|    |    └─AdaptiveMaxPool2d: 3-17      [-1, 512, 1, 1]           --
-|    |    └─AdaptiveAvgPool2d: 3-18      [-1, 512, 1, 1]           --
-|    └─Flatten: 2-10                     [-1, 1024]                --
-|    └─BatchNorm1d: 2-11                 [-1, 1024]                2,048
-|    └─Dropout: 2-12                     [-1, 1024]                --
-|    └─Linear: 2-13                      [-1, 512]                 524,288
-|    └─ReLU: 2-14                        [-1, 512]                 --
-|    └─BatchNorm1d: 2-15                 [-1, 512]                 1,024
-|    └─Dropout: 2-16                     [-1, 512]                 --
-|    └─Linear: 2-17                      [-1, 31]                  15,872
-==========================================================================================
-Total params: 21,827,904
-Trainable params: 21,827,904
+================================================================
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1         [-1, 32, 112, 112]             896
+            Conv2d-2           [-1, 64, 28, 28]          18,496
+            Conv2d-3            [-1, 128, 7, 7]          73,856
+================================================================
+Total params: 93,248
+Trainable params: 93,248
 Non-trainable params: 0
-Total mult-adds (G): 3.71
-==========================================================================================
-Input size (MB): 0.57
-Forward/backward pass size (MB): 54.38
-Params size (MB): 83.27
-Estimated Total Size (MB): 138.21
+----------------------------------------------------------------
+Input size (MB): 5.74
+Forward/backward pass size (MB): 3.49
+Params size (MB): 0.36
+Estimated Total Size (MB): 9.59
+----------------------------------------------------------------
 ```
 
 ##### MLP Module
 
 ```python
-==========================================================================================
-Layer (type:depth-idx)                   Output Shape              Param #
-==========================================================================================
-├─Linear: 1-1                            [-1, 1, 128]              1,280,128
-├─ReLU: 1-2                              [-1, 1, 128]              --
-├─Linear: 1-3                            [-1, 1, 1]                129
-├─Sigmoid: 1-4                           [-1, 1, 1]                --
-==========================================================================================
-Total params: 1,280,257
-Trainable params: 1,280,257
+================================================================
+        Layer (type)               Output Shape         Param #
+================================================================
+            Linear-1              [-1, 10, 256]         295,168
+            Linear-2                    [-1, 2]           1,026
+================================================================
+Total params: 296,194
+Trainable params: 296,194
 Non-trainable params: 0
-Total mult-adds (M): 1.28
-==========================================================================================
+----------------------------------------------------------------
 Input size (MB): 0.04
-Forward/backward pass size (MB): 0.00
-Params size (MB): 4.88
-Estimated Total Size (MB): 4.92
+Forward/backward pass size (MB): 0.02
+Params size (MB): 1.13
+Estimated Total Size (MB): 1.19
+----------------------------------------------------------------
 
 ```
+>**Note:** For **V2L** the CNN and MLP part are combined into a single model.
 
 #### Dataset 
 Dataset Contains 1000 Violence and 1000 non-violence videos collected from youtube videos.
-[Dataset-Link](https://www.kaggle.com/datasets/mohamedmustafa/real-life-violence-situations-dataset)
+[Dataset-Link](https://www.kaggle.com/datasets/karandeep98/real-life-violence-and-nonviolence-data)
 
-#### AI Inference time
-
-Total AI inference time (Pre-processing + AI model inference) - 350 ms
-AI Inference timing include both CNN and MLP model inference. 
-
-| Training Accuracy | Validation Accuracy |
-|---|---|
+### Accuracy
+|Training Accuracy | Validation Accuracy |
+|:---|:---|
 |94.2% | 90.7% |
+
+### AI inference time
+|Board | Inference time |
+|:---|:---|
+|RZ/V2L EVK | Approximately 30 ms |
+|RZ/V2H EVK | Approximately 1~27msec|
+|RZ/V2N EVK | Approximately 1~26msec|
+
+### Processing
+
+|Processing | Details |
+|:---|:---|
+|Pre-processing | Processed by CPU. <br> |
+|Inference | Processed by DRP-AI and CPU. |
+|Post-processing | Processed by CPU. |
+
+
+### Image buffer size
+
+|Board | Camera capture buffer size|HDMI output buffer size|
+|:---|:---|:---|
+|RZ/V2L EVK| VGA (640x480) in YUYV format  | HD (1280x720) in BGRA format  |
+|RZ/V2H EVK and RZ/V2N EVK| VGA (640x480) in YUYV format  | FHD (1920x1080) in BGRA format  |
+  
+  
+## Reference
+ 
+- For RZ/V2H EVK and RZ/V2N EVK, this application supports USB camera only with 640x480 resolution.\
+To use FHD, please use MIPI camera.\
+Please refer to following URL for how to change camera input to MIPI camera.\
+[https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications](https://renesas-rz.github.io/rzv_ai_sdk/latest/about-applications#mipi).
+
+## License
+Apache License 2.0
+For third party OSS library, please see the source code file itself. 

@@ -25,23 +25,23 @@ It has following camera input modes.
 
 ### Supported Product
 <table>
-    <tr>
-      <th>Product</th>
-      <th>Supported AI SDK version</th>
-    </tr>
-    <tr>
-      <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-      <td>RZ/V2L AI SDK v5.00</td>
-    </tr>
-    <tr>
-      <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-      <td>RZ/V2H AI SDK v5.00</td>
-    </tr>
-    <tr>
-      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-      <td>RZ/V2N AI SDK v5.00</td>
-    </tr>
-</table>
+     <tr>
+       <th>Product</th>
+       <th>Supported AI SDK version</th>
+     </tr>
+     <tr>
+       <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
+       <td>RZ/V2L AI SDK v5.00</td>
+     </tr>
+     <tr>
+       <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
+       <td>RZ/V2H AI SDK v5.20</td>
+     </tr>
+     <tr>
+       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+       <td>RZ/V2N AI SDK v5.00</td>
+     </tr>
+ </table>
 
 ### Demo
 
@@ -160,8 +160,8 @@ Following is the demo for RZ/V2H EVK.
 Connect the hardware as shown below.  
 
 |RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
-|:---|:---|:---|
-|<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600>  |
+ |:---|:---|:---|
+ |<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600> |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.   
 >**Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
@@ -224,7 +224,7 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
     make -j$(nproc)
     ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.  
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 7. The following application file would be generated in the `${PROJECT_PATH}/Q11_fish_detection/src/build` directory
     - fish_detector
 
@@ -241,8 +241,8 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
 
 Each folder contains following items.
 |File | Details |
@@ -258,7 +258,8 @@ Each folder contains following items.
     cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q11_fish_detection/exe_v2h/fish_detection_model
     wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q11_fish_detection_deploy_tvm_v2h-v230.so
     ```
-    > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.
+    
 2. [FOR RZ/V2H and RZ/V2N] Rename the `Q11_fish_detection_deploy_*.so` to `deploy.so`.
     ```sh
     mv Q11_fish_detection_deploy_*.so deploy.so
@@ -338,10 +339,9 @@ After completion of the guide, the user is expected of following things.
         
 5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
 
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
-i.e., RZ/V2N application log contains "RZ/V2H".  
-This will be solved in the future version.
-
+ > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
+ i.e., RZ/V2N application log contains "RZ/V2H".  
+ This will be solved in the future version.
 
 ## Application: Configuration
 ### AI Model  
@@ -352,7 +352,7 @@ This will be solved in the future version.
     Output1 size: 1x13x13x57  
     Output2 size: 1x26x26x57  
   
-- RZ/V2H and RZ/V2N  
+- RZ/V2H and RZ/V2N
     - YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
     Dataset: Custom labelled dataset with classes listed [here](./exe_v2h/fish_class.txt)  
     Input size: 1x3x416x416  
