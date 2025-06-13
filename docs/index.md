@@ -77,56 +77,41 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.5.9
+                2025.6.16
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V AI Applications v5.20</b> is released.
+                    <b>RZ/V2H AI Applications Demo v5.20</b> is released.
                     <ul>
                         <li> 
-                            Supported RZ/V2H AI SDK v5.20.
+                            Supported RZ/V AI Applications v5.20.
+                            <ul>
+                                <li> 
+                                    Updated AI models used in following applications.
+                                    <ul>
+                                        <li> 
+                                            Multi-Camera Parking Lot Management
+                                        </li>
+                                        <li> 
+                                            Multi-Camera Vehicle Detector
+                                        </li>
+                                        <li> 
+                                            Car Accident Prevention Alert
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li> 
+                                    Added 4 applications.
+                                </li>
+                            </ul>
                         </li>
                         <li> 
-                            Added RZ/V2H and RZ/V2N support for 1 application.
-                        </li>
-                        <li> 
-                            Added 3 new applications.
-                        </li>
-                        <li> 
-                            Improved UX of 2 applications.
+                            Supported log display functionality.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Application</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>AI Navigator v1.3.0</b> is released.
-                    <ul>
-                        <li> 
-                            Users can develop more AI Applications for RZ/V2N with the latest environment.
-                            <br>
-                            The supported AI Applications are listed at the top of the guide.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>Community page</b> is published.
-                    <ul>
-                        <li> 
-                            Users can check Partner Applications and other sample applications.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community page</b></a>.
+            For more details, see <a href="#demo"><b>Demo</b></a>.
             <br>
             <br>
         </div>
@@ -271,7 +256,7 @@ layout: default
         </div>
         <div class="col-6 col-lg-4 col-xxl-3">
             <div id="city" class="category pb-2">
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building">
+                    <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#city">
                         <img width="100%" src="img/city.jpg" alt="category"/>
                         <p class="mt-1 mb-0">Smart City</p>
                     </a> 
@@ -330,7 +315,14 @@ layout: default
     <div class="row">
         <div class="col-12">
             With the demo binary, users can try the AI Applications without having AI SDK environment.<br>
-            Download the Demo for your Evaluation Board Kit (EVK) and see each How to Use Guide.
+            Download the Demo for your Evaluation Board Kit (EVK) and see each How to Use Guide.<br>
+            <div class="note">
+                <span class="note-title">Note</span>
+                If the download link is not available, please refer to link in the latest documentation.<br>
+                <a  href="https://renesas-rz.github.io/rzv_ai_sdk/latest/#demo">
+                    https://renesas-rz.github.io/rzv_ai_sdk/latest/
+                </a>
+            </div>
             <div class="row">
                 <div class="col-12 col-xxl-6">
                     <h4 class="u_line">
@@ -384,7 +376,7 @@ layout: default
                     <div class="row">
                         <div class="col-5">
                             <p class="ms-3">
-                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-500" role="button">
+                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-520" role="button">
                                     Download RZ/V2H AI Applications Demo
                                 </a>
                             </p>    
@@ -407,15 +399,15 @@ layout: default
                                     Environment:
                                     <ul>
                                         <li>
-                                            AI Applications v5.00
+                                            AI Applications v5.20
                                         </li>
                                         <li>
-                                            RZ/V2H AI SDK v5.00
+                                            RZ/V2H AI SDK v5.20
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    Demo zip file size: 3.4GB
+                                    Demo zip file size: 3.7GB
                                 </li>
                             </ul>
                         </div>

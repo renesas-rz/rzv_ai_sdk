@@ -17,6 +17,49 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2H AI Applications Demo v5.20
+                </h3>
+                <h6 align="right" >
+                    2025.6.16
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI Applications Demo v5.20 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported RZ/V AI Applications v5.20.
+                            <ul>
+                                <li> 
+                                    Updated AI models used in following applications.
+                                    <ul>
+                                        <li> 
+                                            Multi-Camera Parking Lot Management
+                                        </li>
+                                        <li> 
+                                            Multi-Camera Vehicle Detector
+                                        </li>
+                                        <li> 
+                                            Car Accident Prevention Alert
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li> 
+                                    Added 4 applications.
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Supported log display functionality.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications v5.20
                 </h3>
                 <h6 align="right" >
