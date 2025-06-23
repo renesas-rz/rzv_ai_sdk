@@ -77,6 +77,46 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2025.6.23
+            </h6>
+            <ul>
+                <li>
+                    <b>RZ/V2N AI Applications Tutorial Video - Getting Started v5.20</b> is released.
+                    <ul>
+                        <li> 
+                            Users can learn the content of Getting Started in the video.
+                        </li>
+                        <li> 
+                            Based on RZ/V2N AI SDK v5.00.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>RZ/V AI Applications Video</b> is updated.
+                    <ul>
+                        <li> 
+                            Added sample use-case videos for following AI Applications.
+                            <ul>
+                                <li>
+                                    RZ/V2N: Conference Room Usage Monitor (Smart Building)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>How to Use RZ/V AI Application Demo Video</b> is released.
+                    <ul>
+                        <li> 
+                            Users can learn how to write the Demo SD card image using balenaEtcher.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="#video"><b>Video</b></a>.
+            <br>
+            <br>
+                        <h6 align="right" >
                 2025.6.16
             </h6>
             <ul>
@@ -467,10 +507,12 @@ layout: default
 <br>
 <br>
 <h3 id="video">Video</h3>
+To check RZ/V AI related videos, please see <a href="https://youtube.com/playlist?list=PLgUXqPkOStPvWajJsT4TdyKRAAfVgwtCR&si=Kes5lw6eXnznTgz9">RZ/V AI Playlist (YouTube)</a>.
+<br>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h4 class="u_line" id="training-video">
+            <h4 class="ms-0 u_line" id="training-video">
                 Training video
             </h4>
         </div>
@@ -480,8 +522,59 @@ layout: default
         </div>
     </div>
     <div class="row">
-<!-- Video panel start -->
-        <div class="col-12 col-md-6 col-xl-4 mb-5">
+        <!-- Video panel start -->
+        <div class="col-12 col-md-6 col-xl-4 mb-3">
+            <div class="griditem" style="list-style: none;">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="video-iframe"
+                        src="https://www.youtube.com/embed/3uJwmpNCwik" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+            </iframe>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-11 pe-0">
+                        <b>
+                            <a href="https://youtu.be/3uJwmpNCwik">
+                                RZ/V2N AI Applications Tutorial - Getting Started v5.20 (Youtube) 
+                            </a>
+                        </b>
+                    </div>
+                    <div class="col-1 ps-0">
+                        <h6 class="mb-0" style="color: gray;" align="right">23:59</h6>
+                    </div>
+                </div>
+                <div class="griditem-add">
+                    <ul>
+                        <li>
+                            <b>Latest Tutorial Video for RZ/V2N</b>
+                        </li>
+                        <li>
+                            For RZ/V2N Evaluation Board Kit.
+                        </li>
+                        <li>
+                            For <b>RZ/V2N</b> AI SDK <b>v5.00</b>.
+                            <h6>
+                                <ul>
+                                    <li>
+                                        Supports both eSD and xSPI bootloader.
+                                    </li>
+                                    <li>
+                                        In this video, eSD bootloader is used.
+                                    </li>
+                                </ul>
+                            </h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Video panel end -->
+        <!-- Video panel start -->
+        <div class="col-12 col-md-6 col-xl-4 mb-3">
             <div class="griditem" style="list-style: none;">
                 <div class="video-wrapper">
                     <iframe 
@@ -491,7 +584,7 @@ layout: default
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
-            </iframe>
+                    </iframe>
                 </div>
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
@@ -517,19 +610,19 @@ layout: default
                             For <b>RZ/V2H</b> AI SDK <b>v3.00</b>.
                             <h6>
                                 <ul>
-                <li>
+                                    <li>
                                         Only supports eSD bootloader.
                                     </li>
                                 </ul>
                             </h6>
-                </li>
-            </ul>
-        </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <!-- Video panel end -->
         <!-- Video panel start -->
-        <div class="col-12 col-md-6 col-xl-4 mb-5">
+        <div class="col-12 col-md-6 col-xl-4 mb-3">
             <div class="griditem" style="list-style: none;">
                 <div class="video-wrapper">
                     <iframe 
@@ -539,7 +632,7 @@ layout: default
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
-            </iframe>
+                    </iframe>
                 </div>
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
@@ -563,58 +656,26 @@ layout: default
                         </li>
                         <li>
                             For <b>RZ/V2L</b> AI SDK <b>v2.10</b>.
-                            <h6>
+                            <h6 class="mb-0">
                                 <ul>
                                     <li>
                                         Supports both eSD and eMMC bootloader.
                                     </li>
-                <li>
-                    In this video, eSD bootloader is used.
-                </li>
-            </ul>
+                                    <li>
+                                        In this video, eSD bootloader is used.
+                                    </li>
+                                </ul>
                             </h6>
                         </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Video panel end -->
-        <!-- Video panel start -->
-        <div class="col-12 col-md-6 col-xl-4 mb-5">
-            <div class="griditem" style="list-style: none;">
-                <div class="video-wrapper">
-                    <iframe 
-                        class="video-iframe"
-                        src="https://www.youtube.com/embed/wFbTomH8oPs" 
-                        title="YouTube video player" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
-            </iframe>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-11 pe-0">
-                        <b>
-                            <a href="https://youtu.be/wFbTomH8oPs">
-                                RZ/V2L AI Applications Tutorial - Getting Started v1.00 (Youtube)
-                            </a>
-                        </b>
-                    </div>
-                    <div class="col-1 ps-0">
-                        <h6 class="mb-0" style="color: gray;" align="right">33:56</h6>
-                    </div>
-                </div>
-                <div class="griditem-add">
-                    <ul>
-                <li>
-                            For RZ/V2L Evaluation Board Kit.
-                        </li>
                         <li>
-                            For <b>RZ/V2L</b> AI SDK <b>v1.10</b>.
+                            Previous version
                             <h6>
                                 <ul>
                                     <li>
-                                        Only supports eMMC bootloader.
+                                        <a href="https://youtu.be/wFbTomH8oPs">
+                                            v1.00
+                                        </a>
+                                         : Only supports eMMC bootloader
                                     </li>
                                 </ul>
                             </h6>
@@ -628,18 +689,21 @@ layout: default
     <br>
     <div class="row">
         <div class="col-12">
-            <h4 class="u_line" id="app-video">
+            <h4 class="ms-0 u_line" id="app-video">
                 AI Applications video
             </h4>
         </div>
         <div class="col-12">
             Video to show sample use-cases of <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">RZ/V AI Applications</a>.
-                    <br><br>
+            <br><br>
         </div>
     </div>
     <div class="row">
+        <h4 class="mt-1 ms-3 mb-1 u_line">
+            RZ/V2H
+        </h4>
         <!-- Video panel start -->
-        <div class="col-12 col-md-6 col-xl-4 mb-5" id="agriculture1">
+        <div class="col-12 col-md-6 col-xl-4 mb-3" id="agriculture1_v2h">
             <div class="griditem" style="list-style: none;">
                 <div class="video-wrapper">
                     <iframe 
@@ -698,7 +762,7 @@ layout: default
         </div>
         <!-- Video panel end -->
         <!-- Video panel start -->
-        <div class="col-12 col-md-6 col-xl-4 mb-5" id="building2">
+        <div class="col-12 col-md-6 col-xl-4 mb-3" id="building2_v2h">
             <div class="griditem" style="list-style: none;">
                 <div class="video-wrapper">
                     <iframe 
@@ -757,7 +821,7 @@ layout: default
         </div>
         <!-- Video panel end -->
         <!-- Video panel start -->
-        <div class="col-12 col-md-6 col-xl-4 mb-5" id="industrial2">
+        <div class="col-12 col-md-6 col-xl-4 mb-3" id="industrial2_v2h">
             <div class="griditem" style="list-style: none;">
                 <div class="video-wrapper">
                     <iframe 
@@ -799,8 +863,8 @@ layout: default
                                     </li>
                                     <li>
                                         Output: HDMI (1920x1080)
-                </li>
-            </ul>
+                                    </li>
+                                </ul>
                             </h6>
                         </li>
                     </ul>
@@ -811,8 +875,196 @@ layout: default
                             More Details >
                         </a>
                     </p>
+                </div>
+            </div>
+        </div>
+        <!-- Video panel end -->
+    </div>
+    <div class="row">
+        <h4 class="mt-1 ms-3 mb-1 u_line">
+            RZ/V2N
+        </h4>
+        <!-- Video panel start -->
+        <div class="col-12 col-md-6 col-xl-4 mb-3" id="building2_v2n">
+            <div class="griditem" style="list-style: none;">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="video-iframe"
+                        src="https://www.youtube.com/embed/0z6jLEodaHk" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-11 pe-0">
+                        <b>
+                            <a href="https://youtu.be/0z6jLEodaHk">
+                                Smart Building :<br>
+                                Conference Room Usage Monitor (YouTube)
+                            </a>
+                        </b>
+                    </div>
+                    <div class="col-1 ps-0">
+                        <h6 class="mb-0" style="color: gray;" align="right">2:09</h6>
+                    </div>
+                </div>
+                <div class="griditem-add">
+                    <ul class="mb-2">
+                        <li>
+                            Environment
+                            <h6 class="mb-1">
+                                <ul>
+                                    <li>
+                                        RZ/V2N Evaluation Board Kit
+                                    </li>
+                                    <li>
+                                        AI Applications v5.10
+                                    </li>
+                                    <li>
+                                        Input: USB Camera (640x480)
+                                    </li>
+                                    <li>
+                                        Output: HDMI (1920x1080)
+                                    </li>
+                                </ul>
+                            </h6>
+                        </li>
+                    </ul>
+                    <p align="right" class="m-0">
+                        <a class="devicelinkbutton" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}#building2" 
+                            style="color:white">
+                            More Details >
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Video panel end -->
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="ms-0 u_line" id="other-video">
+                Other video
+            </h4>
+        </div>
+        <div class="col-12">
+            Other related videos.
+            <br><br>
         </div>
     </div>
+    <div class="row">
+        <!-- Video panel start -->
+        <div class="col-12 col-md-6 col-xl-4 mb-3" id="use_demo">
+            <div class="griditem" style="list-style: none;">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="video-iframe"
+                        src="https://www.youtube.com/embed/gNKu1stxuFE" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-11 pe-0">
+                        <b>
+                            <a href="https://youtu.be/gNKu1stxuFE">
+                                How to Use the RZ/V2H AI Applications Demo
+                            </a>
+                        </b>
+                    </div>
+                    <div class="col-1 ps-0">
+                        <h6 class="mb-0" style="color: gray;" align="right">5:15</h6>
+                    </div>
+                </div>
+                <div class="griditem-add">
+                    <ul class="mb-2">
+                        <li>
+                            Video to write SD card image by using third party GUI tool, balenaEtcher.
+                        </li>
+                        <li>
+                            In addition to RZ/V2H, other options are also available.
+                            <h6 class="mb-0">
+                                <table class="gstable mt-1 ms-1">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Video</th>
+                                        <th>Document</th>
+                                    </tr>
+                                    <tr>
+                                        <td>RZ/V2H</td>
+                                        <td>
+                                            <a href="https://youtu.be/gNKu1stxuFE">
+                                                YouTube
+                                            </a>
+                                            <br>
+                                            (Video above)
+                                        </td>
+                                        <td>
+                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}">
+                                                Link
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>RZ/V2N</td>
+                                        <td>
+                                            <a href="https://youtu.be/979irXertDs">
+                                                YouTube
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}">
+                                                Link
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>RZ/V2L</td>
+                                        <td>
+                                            <a href="https://youtu.be/4kz9k0h_j64">
+                                                YouTube
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}">
+                                                Link
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h6>
+                            <!-- <ul>
+                                <li>
+                                    For <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}">RZ/V2N</a>, 
+                                    <br>
+                                    <a href="https://youtu.be/979irXertDs">
+                                        How to Use the RZ/V2N AI Applications Demo (YouTube)
+                                    </a>
+                                </li>
+                                <li>
+                                    For <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}">RZ/V2L</a>, 
+                                    <br>
+                                    <a href="https://youtu.be/4kz9k0h_j64">
+                                        How to Use the RZ/V2L AI Applications Demo (YouTube)
+                                    </a>
+                                </li>
+                            </ul> -->
+                        </li>
+                    </ul>
+                    <!-- <p align="right" class="m-0">
+                        <a class="devicelinkbutton" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}" 
+                            style="color:white">
+                            More Details >
+                        </a>
+                    </p> -->
+                </div>
+            </div>
         </div>
         <!-- Video panel end -->
     </div>

@@ -261,19 +261,9 @@ This chapter describes the procedures up to the first startup of the RZ/V2H Eval
     <div class="note">
       <span class="note-title">Note 2</span>
       In this section, we use a Linux PC to prepare the microSD card. <br>
-      If you want to use a Windows PC, we have experience in writing disk images by following steps.
-      <ol>
-        <li>
-          Extract the <code>*.wic.gz</code> compressed file using software such as <a href="https://www.7-zip.org/"><b>7-Zip</b></a>.
-        </li>
-        <li>
-          Write the extracted disk image file to the microSD card using the applications such as:
-          <ul>
-            <li><a href="https://sourceforge.net/projects/win32diskimager/"><b>Win32 Disk Imager download | SourceForge.net</b></a></li>
-            <li><a href="https://www.raspberrypi.com/software/"><b>Raspberry Pi OS - Raspberry Pi</b></a></li>
-          </ul>
-        </li>
-      </ol>
+      If you want to use a Windows PC, we have experience in writing disk images by <a href="https://etcher.balena.io/">balenaEthcher</a>.
+      <br>
+      For more details, please see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#use_demo">How to Use RZ/V2H AI Applications Demo Video</a>
     </div>
   </li><br>
   <li>Place the downloaded Zip file into a Linux PC and unzip it using the following command in a terminal.

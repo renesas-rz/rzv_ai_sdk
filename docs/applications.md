@@ -70,7 +70,7 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/07_Animal_detection" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">39fps</p>
                                 <a class="videolinkbutton" 
-                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#agriculture1" >
+                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#agriculture1_v2h" >
                                     VIDEO >
                                 </a>
                             </div>
@@ -251,13 +251,17 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                                 <a class="videolinkbutton" 
-                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#building2" >
+                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#building2_v2h" >
                                     VIDEO >
                                 </a>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview" style="color:white">RZ/V2N ></a>
                                 <p class="Perf-Framerate">13fps</p>
+                                <a class="videolinkbutton" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#building2_v2n" >
+                                    VIDEO >
+                                </a>
                             </div>
                         </dd>
                     </dl>
@@ -1879,7 +1883,7 @@ layout: default
                                 <a class="devicelinkbutton" href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting" style="color:white">RZ/V2H ></a>
                                 <p class="Perf-Framerate">40fps</p>
                                 <a class="videolinkbutton" 
-                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#industrial2" >
+                                    href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#industrial2_v2h" >
                                     VIDEO >
                                 </a>
                             </div>

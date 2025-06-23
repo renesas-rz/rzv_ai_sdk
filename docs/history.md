@@ -17,6 +17,51 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    Videos
+                </h3>
+                <h6 align="right" >
+                    2025.6.23
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI Applications Tutorial Video - Getting Started v5.20 is released.</h5>
+                    <ul>
+                        <li> 
+                            Users can learn the content of Getting Started in the video.
+                        </li>
+                        <li> 
+                            Based on RZ/V2N AI SDK v5.00.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications Video is updated.</h5>
+                    <ul>
+                        <li> 
+                            Added sample use-case videos for following AI Applications.
+                            <ul>
+                                <li>
+                                    RZ/V2N: Conference Room Usage Monitor (Smart Building)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">How to Use RZ/V AI Application Demo Video is released.</h5>
+                    <ul>
+                        <li> 
+                            Users can learn how to write the Demo SD card image using balenaEtcher.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V2H AI Applications Demo v5.20
                 </h3>
                 <h6 align="right" >

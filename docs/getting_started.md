@@ -51,6 +51,7 @@ Its version varies depending on the supported board.
   <ul class="mb-1">
     <li>For RZ/V2L EVK: RZ/V2L AI SDK v2.10</li>
     <li>For RZ/V2H EVK: RZ/V2H AI SDK v3.00</li>
+    <li>For RZ/V2N EVK: RZ/V2N AI SDK v5.00</li>
   </ul>
 </div>
 
