@@ -340,7 +340,7 @@ After completion of the guide, the user is expected of following things.
     ```sh
     vi config.ini
     ```
-3. Run the application.
+3. Run the application.  
    For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
