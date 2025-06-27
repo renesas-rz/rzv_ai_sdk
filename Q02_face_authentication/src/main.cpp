@@ -571,7 +571,7 @@ void mouse_callback_button_click(int event, int x, int y, int flags, void *userd
         }
         else if (recognize_x0 < x && x < recognize_x1 && recognize_y0 < y && y < recognize_y1) 
         {
-            std::cout << "[INFO] Cliked compare face \n";
+            std::cout << "[INFO] Clicked compare face \n";
             recognize_face_clicked = true;
         }
     }
@@ -590,6 +590,13 @@ int main(int argc, char **argv)
     unsigned long OCA_list[16];
     for(int i = 0; i < 16; i++) OCA_list[i] = 0;
     OCA_Activate(&OCA_list[0]);
+    #endif
+    #ifdef V2N
+        printf("AI Application for RZ/V2N\n");
+    #elif V2H
+        printf("AI Application for RZ/V2H\n");
+    #elif V2L
+        printf("AI Application for RZ/V2L\n");
     #endif
     /* check the input source is valid or not */
     if(argc < 2)

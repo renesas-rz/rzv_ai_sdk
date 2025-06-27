@@ -13,10 +13,10 @@ This kind of application makes it easier to automate the authentication process,
 
 It has following camera input modes.
 
-|Mode        |RZ/V2L    |RZ/V2H and RZ/V2N  |
-|:---        |:---      |:---      |
-|USB Camera  |Supported |Supported |
-|MIPI Camera |Supported | -        |
+|Mode        |RZ/V2L    |RZ/V2H    |RZ/V2N    |
+|:---        |:---      |:---      |:---      |
+|USB Camera  |Supported |Supported |Supported |
+|MIPI Camera |Supported | -        | -        |
 
 ### Supported Product
 <table>
@@ -34,7 +34,7 @@ It has following camera input modes.
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v5.00</td>
+       <td>RZ/V2N AI SDK v6.00</td>
      </tr>
  </table>  
 
@@ -176,10 +176,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK |`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2N EVK|`rzv2n_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -209,17 +209,10 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     mkdir -p build && cd build
     ``````
 4. Build the application by following the commands below.  
-    **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H and RZ/V2N**
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
-    make -j$(nproc)
-    ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 5. The following application file would be generated in the `${PROJECT_PATH}/Q02_face_authentication/src/build` directory
     - face_recognition
 
@@ -236,8 +229,8 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+|RZ/V2N EVK|[exe_v2n](./exe_v2n)  |  
 
 Each folder contains following items.
 |File | Details |
@@ -253,9 +246,11 @@ Each folder contains following items.
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`face_recognition ` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
+4. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
+
+   For RZ/V2L and RZ/V2H
     ```
     |-- usr
     |   `-- lib64
@@ -270,6 +265,21 @@ Each folder contains following items.
                 |-- face_rec_bg.jpg
                 `-- face_recognition
     ```
+   For RZ/V2N
+    ```
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- facenet_model
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   `-- deploy.so
+                |-- face_rec_bg.jpg
+                `-- face_recognition
+    ```   
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
@@ -283,11 +293,19 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
+
+   - For RZ/V2L and RZ/V2H
     ```sh
     cd /home/root/tvm
     ```
+   - For RZ/V2N
+    ```sh
+    cd /home/weston/tvm
+    ```
 
 2. Run the application.
+
+   For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
     ./face_recognition USB
@@ -295,6 +313,13 @@ After completion of the guide, the user is expected of following things.
     - For MIPI Camera Mode (RZ/V2L only)
     ```sh
     ./face_recognitionr MIPI
+    ```
+   For RZ/V2N
+    - For USB Camera Mode
+    ```sh
+    su 
+    ./face_recognition USB
+    exit # After terminated the application.
     ```
     > Note: MIPI Camera Mode is only supported by RZ/V2L EVK.
 
@@ -341,9 +366,6 @@ After completion of the guide, the user is expected of following things.
     - Application can be terminated by clicking the left mouse double click.
     - Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
    
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
- i.e., RZ/V2N application log contains "RZ/V2H".  
- This will be solved in the future version.
 
 ## Application: Configuration
 ### AI Model  
@@ -358,7 +380,7 @@ The threshold kept for the match is `0.23`.
 |:---|:---|:---|
 |RZ/V2L EVK |FaceNet | Approximately 465ms  |
 |RZ/V2H EVK |FaceNet | Approximately 195ms  |
-|RZ/V2N EVK |FaceNet | Approximately 200ms  |
+|RZ/V2N EVK |FaceNet | Approximately 192ms  |
 
 ### Processing
 
