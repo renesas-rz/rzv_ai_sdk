@@ -189,7 +189,7 @@ void Draw::buttonMouseCallback(int event, int x, int y, int f, void * data)
             && anInstance->polygon_button_lt.y < y 
             && y < anInstance->polygon_button_rb.y) 
         {
-            std::cout << "[INFO] Cliked Draw Polygon \n";
+            std::cout << "[INFO] Clicked Draw Polygon \n";
             anInstance->select_polygon = true;
             anInstance->done_polygon = false;
         }
@@ -198,7 +198,7 @@ void Draw::buttonMouseCallback(int event, int x, int y, int f, void * data)
             && anInstance->line_button_lt.y < y 
             && y < anInstance->line_button_rb.y)
         {
-            std::cout << "[INFO] Cliked Draw Line \n";
+            std::cout << "[INFO] Clicked Draw Line \n";
             anInstance->select_line = true;
             anInstance->done_line = false;
         }

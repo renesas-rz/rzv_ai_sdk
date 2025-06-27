@@ -16,10 +16,10 @@ The AI model used for the sample application is [YOLOV3/Tiny YOLOv3](https://arx
 
 It has following mode of running.
 
-| Mode | RZ/V2L | RZ/V2H and RZ/V2N |
-|:---|:---|:---|
-| USB Camera| Supported | Supported |
-| MIPI Camera| Supported | - |
+| Mode | RZ/V2L | RZ/V2H | RZ/V2N |
+|:---|:---|:---|:---|
+| USB Camera| Supported | Supported | Supported |
+| MIPI Camera| Supported | - | - |
 
 ### Supported Product  
  <table>
@@ -37,7 +37,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v5.00</td>
+       <td>RZ/V2N AI SDK v6.00</td>
      </tr>
  </table>
 
@@ -177,10 +177,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2N EVK|`rzv2n_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -210,17 +210,11 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     mkdir -p build && cd build
     ``````
 6. Build the application by following the commands below.  
-   **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H and RZ/V2N**
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
-    make -j$(nproc)
-    ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
+   
 7. The following application file would be generated in the `${PROJECT_PATH}/Q01_footfall_counter/src/build` directory
     - object_tracker
 
@@ -237,8 +231,8 @@ For ease of deployment, all deployable files and folders are provided in the fol
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+|RZ/V2N EVK|[exe_v2n](./exe_v2n)  |
 
 Each folder contains following items.
 
@@ -253,12 +247,16 @@ Each folder contains following items.
 |object_tracker | application file. |
 
 ### Instruction
-1. **[For RZ/V2H and RZ/V2N]** Run following commands to download the necessary file.  
+1. **[For RZ/V2H]** Run following commands to download the necessary file.  
     ```sh
       cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q01_footfall_counter/exe_v2h/d-yolov3
-      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q01_footfall_counter_deploy_tvm_v2h-v230.so
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/Q01_footfall_counter_deploy_tvm_v2h-v230.so
     ```
-    > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+    **[For RZ/V2N]** Run following commands to download the necessary file.  
+    ```sh
+      cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q01_footfall_counter/exe_v2n/d-yolov3
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/Q01_footfall_counter_deploy_tvm_v2n-v251.so
+    ```
 2. **[For RZ/V2H and RZ/V2N]** Rename the `Q01_footfall_counter_deploy_*.so` to `deploy.so`.
     ```sh
     mv Q01_footfall_counter_deploy_*.so deploy.so
@@ -269,9 +267,11 @@ Each folder contains following items.
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`object_tracker` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
+4. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
+
+   For RZ/V2L and RZ/V2H
     ```
     |-- usr
     |   `-- lib64
@@ -284,10 +284,10 @@ Each folder contains following items.
                 |   |-- deploy.params         #RZ/V2L only
                 |   `-- deploy.so             #RZ/V2L only
                 |
-                |-- d-yolov3                  #RZ/V2H and RZ/V2N
-                |   |-- deploy.json           #RZ/V2H and RZ/V2N
-                |   |-- deploy.params         #RZ/V2H and RZ/V2N
-                |   `-- deploy.so             #RZ/V2H and RZ/V2N
+                |-- d-yolov3                  #RZ/V2H only
+                |   |-- deploy.json           #RZ/V2H only
+                |   |-- deploy.params         #RZ/V2H only
+                |   `-- deploy.so             #RZ/V2H only
                 |-- config.ini
                 |-- coco-labels-2014_2017.txt
                 |-- data.txt
@@ -295,6 +295,25 @@ Each folder contains following items.
                 `-- object_tracker
     ```
 
+   For For RZ/V2N
+    ```
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- d-yolov3                  
+                |   |-- deploy.json           
+                |   |-- deploy.params        
+                |   `-- deploy.so             
+                |-- config.ini
+                |-- coco-labels-2014_2017.txt
+                |-- data.txt
+                |-- background_image.jpg
+                `-- object_tracker
+    ```
+   
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
@@ -308,14 +327,21 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
+
+   - For RZ/V2L and RZ/V2H
     ```sh
     cd /home/root/tvm/
+    ```
+   - For RZ/V2N
+   ```sh
+    cd /home/weston/tvm
     ```
 2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at [below section](#explanation-of-the-configini-file).
     ```sh
     vi config.ini
     ```
 3. Run the application.
+   For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
     ./object_tracker USB [--setup=true]
@@ -323,6 +349,12 @@ After completion of the guide, the user is expected of following things.
     - For MIPI Camera Mode (RZ/V2L only)
     ```sh
     ./object_tracker MIPI [--setup=true]
+    ```
+   For RZ/V2N
+   ```sh
+    su 
+    ./object_tracker USB [--setup=true]
+    exit # After terminated the application.
     ```
     >**Note:** Enabling --setup=true option allows user's to draw line and polygon. 
 4. If setup option is enabled, a window to configure line and polygon will appear.
@@ -370,11 +402,8 @@ After completion of the guide, the user is expected of following things.
       - Each person tracked is given a unique `id`.
           - The `time` parameter of the tracked person indicates the time spent on the desired location. This incremented at regular interval.
 
-5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+5. To terminate the application, double click the application window.
 
-> Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
- i.e., RZ/V2N application log contains "RZ/V2H".  
- This will be solved in the future version.
 
 ## Application: Configuration 
 ### AI Model
@@ -399,7 +428,7 @@ Output3 size: 1x52x52x255
 |:---|:---|:---|
 |RZ/V2L EVK|Tiny YOLOv3| Approximately 68 ms  |
 |RZ/V2H EVK |YOLOv3 | Approximately 29 ms  |
-|RZ/V2N EVK |YOLOv3 | Approximately 87 ms  |
+|RZ/V2N EVK |YOLOv3 | Approximately 75 ms  |
 
 ### Processing
 
