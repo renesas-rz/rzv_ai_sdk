@@ -1410,9 +1410,14 @@ int32_t main(int32_t argc, char * argv[])
         else 
             drpai_freq = DRPAI_FREQ;
         std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+        /* AI Application for RZ/V2N */
+        #ifdef V2N
+            printf("AI Application for RZ/V2N\n");
         /* AI Application for RZ/V2H */
-        printf("\nAI Application for RZ/V2H\n");
-        printf("Model : Darknet YOLOv3 | %s\n", model_dir.c_str());
+        #else
+            printf("AI Application for RZ/V2H\n");
+        #endif
+            printf("Model : Darknet YOLOv3 | %s\n", model_dir.c_str());
     #elif V2L
         /* AI Application for RZ/V2L */
         printf("\nAI Application for RZ/V2L\n");
