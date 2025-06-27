@@ -77,81 +77,13 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.6.23
+                2025.6.30
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V2N AI Applications Tutorial Video - Getting Started v5.20</b> is released.
-                    <ul>
-                        <li> 
-                            Users can learn the content of Getting Started in the video.
-                        </li>
-                        <li> 
-                            Based on RZ/V2N AI SDK v5.00.
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>RZ/V AI Applications Video</b> is updated.
-                    <ul>
-                        <li> 
-                            Added sample use-case videos for following AI Applications.
-                            <ul>
-                                <li>
-                                    RZ/V2N: Conference Room Usage Monitor (Smart Building)
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <b>How to Use RZ/V AI Application Demo Video</b> is released.
-                    <ul>
-                        <li> 
-                            Users can learn how to write the Demo SD card image using balenaEtcher.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="#video"><b>Video</b></a>.
-            <br>
-            <br>
-                        <h6 align="right" >
-                2025.6.16
-            </h6>
-            <ul>
-                <li>
-                    <b>RZ/V2H AI Applications Demo v5.20</b> is released.
-                    <ul>
-                        <li> 
-                            Supported RZ/V AI Applications v5.20.
-                            <ul>
-                                <li> 
-                                    Updated AI models used in following applications.
-                                    <ul>
-                                        <li> 
-                                            Multi-Camera Parking Lot Management
-                                        </li>
-                                        <li> 
-                                            Multi-Camera Vehicle Detector
-                                        </li>
-                                        <li> 
-                                            Car Accident Prevention Alert
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li> 
-                                    Added 4 applications.
-                                </li>
-                            </ul>
-                        </li>
-                        <li> 
-                            Supported log display functionality.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="#demo"><b>Demo</b></a>.
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+                <b>Users are recommended to use the latest version in the following URL.</b><br>
+                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
             <br>
             <br>
         </div>
