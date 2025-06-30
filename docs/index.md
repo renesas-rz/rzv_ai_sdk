@@ -89,7 +89,7 @@ layout: default
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#application"><b>AI Applications</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#ai-applications"><b>AI Applications</b></a>.
             <br>
             <br>
             <ul>
