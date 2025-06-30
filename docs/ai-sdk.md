@@ -192,16 +192,16 @@ layout: default
                             <br>
                             Supports eSD/QSPI Bootloader.
                         </td>
-                        <td rowspan="3">    <!-- RZ/V2H -->
-                            Included in WIC format image.
-                            <br>
-                            Supports eSD Bootloader.
-                        </td>
-                        <td rowspan="3">    <!-- RZ/V2N -->
+                        <td colspan="2" rowspan="3">    <!-- RZ/V2H & RZ/V2N -->
                             Provided as individual files.
                             <br>
                             Supports eSD/xSPI Bootloader.
                         </td>
+<!--                        <td rowspan="3">
+                            Provided as individual files.
+                            <br>
+                            Supports eSD/xSPI Bootloader.
+                        </td> -->
                     </tr>
                     <tr>
                         <td>                <!-- board_setup : Item -->
@@ -542,7 +542,7 @@ layout: default
                         <li>
                             DRP-AI Driver v1.20 
                             [
-                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver/tree/V1.20" target="_blank" rel="noopener noreferrer">
                                     GitHub
                                 </a>
                             ]
@@ -587,7 +587,7 @@ layout: default
                 <li>
                     OpenCV Accelerator v1.20 (supporting OpenCV 4.1.0) 
                     [
-                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator/tree/V1.20" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
                     ]
@@ -674,7 +674,7 @@ layout: default
             </h3>
             <h5>
                 <b>
-                    Target Version: 5.00
+                    Target Version: 6.00
                 </b>
             </h5>
         </div>
@@ -687,7 +687,7 @@ layout: default
             RZ/V2N AI SDK configuration is as follows.
             <ul>
                 <li>
-                    DRP-AI TVM v2.3.0 
+                    DRP-AI TVM v2.5.1 
                     [
                         <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             GitHub
@@ -700,7 +700,7 @@ layout: default
                     </a>
                 </li>
                 <li>
-                    RZ/V2N Linux BSP v1.0.0
+                    RZ/V2N Linux BSP v2.0.0
                     [
                         <a href="{{ site.url }}{{ site.baseurl }}{% link v2n-configuration.md %}" target="_blank" rel="noopener noreferrer">
                             Configuration
@@ -708,9 +708,9 @@ layout: default
                     ]
                     <ul>
                         <li>
-                            DRP-AI Driver v1.20 
+                            DRP-AI Driver v1.30 
                             [
-                                <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver/tree/V1.30" target="_blank" rel="noopener noreferrer">
                                     GitHub
                                 </a>
                             ]
@@ -734,7 +734,7 @@ layout: default
                                 </a>
                             ]
                             [
-                                <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
+                                <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip">
                                     Manual
                                 </a>
                             ]
@@ -742,10 +742,10 @@ layout: default
                     </ul>
                 </li>
                 <li>
-                    Graphics Library Unrestricted Version v3.1.2.3
+                    Graphics Library Unrestricted Version v4.1.2.4
                 </li>
                 <li>
-                    Video Codec Library v3.3.3.1
+                    Video Codec Library v4.3.3.0
                     <a href="#footnote_v2n_drp_ai">
                         <sup>
                             *4
@@ -753,9 +753,9 @@ layout: default
                     </a>
                 </li>
                 <li>
-                    OpenCV Accelerator v1.10 (supporting OpenCV 4.1.0) 
+                    OpenCV Accelerator v1.30 (supporting OpenCV 4.9.0) 
                     [
-                        <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator/tree/V1.30" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
                     ]
@@ -769,10 +769,10 @@ layout: default
                     Other OSS packages
                     <ul>
                         <li>
-                            Tesseract v3.05.01 (tesseract, tesseract-lang)
+                            Tesseract v5.3.4 (tesseract, tesseract-lang)
                         </li>
                         <li>
-                            OpenMP v8.3.0
+                            OpenMP v13.3.0
                         </li>
                     </ul>
                 </li>

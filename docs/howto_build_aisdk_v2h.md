@@ -161,7 +161,7 @@ rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 <h3 id="step3" >Step 3: Build RZ/V2H AI SDK Source Code</h3>
 This step explains how to build Linux environment with RZ/V2H AI SDK Source Code
 <ol>
-  <li> To install necessary sofware, run the following commands on your Linux PC.
+  <li id="step3-1"> To install necessary sofware, run the following commands on your Linux PC.
 {% highlight shell%}
 sudo apt-get update
 sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
@@ -170,26 +170,26 @@ xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev \
 libssl-dev 
 {% endhighlight %}
   </li>
-  <li>Run the following commands and set the user name and email address before starting the build procedure.<br>
+  <li id="step3-2">Run the following commands and set the user name and email address before starting the build procedure.<br>
     It is needed to avoid errors when using git command to apply patches.
 {% highlight shell%}
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 {% endhighlight %}
   </li>
-  <li>Register the working directory path to an environment variable.
+  <li id="step3-3">Register the working directory path to an environment variable.
 {% highlight shell%}
 export YOCTO_WORK=${WORK}/src_setup/yocto
 mkdir -p ${YOCTO_WORK}
 {% endhighlight %}
   </li>
-  <li>Extract Yocto recipe package.
+  <li id="step3-4">Extract Yocto recipe package.
 {% highlight shell%}
 cd ${YOCTO_WORK}
 tar zxvf ${WORK}/src_setup/rzv2h_ai-sdk_yocto_recipe_v*.tar.gz
 {% endhighlight %}
   </li>
-  <li>Run the following procedures to apply the patch file.<br>
+  <li id="step3-5">Run the following procedures to apply the patch file.<br>
     <ol>
   <!-- MEMO:: Uncomment when patch file is necessary. -->
   <!-- 
@@ -241,8 +241,8 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20pre/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch">
-                    0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/0001-system-setting-for-RZV2H-AI_SDK-v5.20.patch">
+                    0001-system-setting-for-RZV2H-AI_SDK-v5.20.patch
                   </a>
                 </td>
                 <td>
@@ -254,9 +254,9 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
           <li>
             Copy and apply the patch file.
 {% highlight shell%}
-cp <Path to the file>/0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch ${YOCTO_WORK}
+cp <Path to the file>/0001-system-setting-for-RZV2H-AI_SDK-v5.20.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}
-patch -p1 < 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch
+patch -p1 < 0001-system-setting-for-RZV2H-AI_SDK-v5.20.patch
 {% endhighlight %}
           </li>
         </ol>
@@ -295,7 +295,7 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
-0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch
+0001-system-setting-for-RZV2H-AI_SDK-v5.20.patch
 0001-tesseract.patch
 0002-sd-image-size-16gb.patch
 0003-openmp.patch
@@ -520,7 +520,7 @@ For more information on how to use each files, see the link in the How to use co
   To add more functionality to AI SDK, please refer to following URL.
   <ul>
     <li>
-      <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package" target="_blank" rel="noopener noreferrer">RZ/V2H ROS2 Package</a>
+      <a href="https://www.renesas.com/us/software-tool/rzv2h-ros2-package" target="_blank" rel="noopener noreferrer">RZ/V2H ROS2 Package</a>
     </li>
     <li>
       <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a>
@@ -529,7 +529,7 @@ For more information on how to use each files, see the link in the How to use co
       <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">RZ MPU Security Package</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/en/software-tool/rzv2h-isp-support-package" target="_blank" rel="noopener noreferrer">RZ/V2H ISP Support Package</a>
+      <a href="https://www.renesas.com/software-tool/rzv2h-isp-support-package" target="_blank" rel="noopener noreferrer">RZ/V2H ISP Support Package</a>
     </li>
   </ul>
 </div>

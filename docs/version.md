@@ -4,7 +4,10 @@ layout: version
 <h3>Version List</h3>
 <ul>
     <li>
-        <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">v5.20 (latest)</a>
+        <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">v6.00 (latest)</a>
+    </li>
+    <li>
+        <a href="{{ site.url }}/rzv_ai_sdk/5.20{% link index.md %}">v5.20</a>
     </li>
     <li>
         <a href="{{ site.url }}/rzv_ai_sdk/5.10{% link index.md %}">v5.10</a>

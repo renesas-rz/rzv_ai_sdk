@@ -17,6 +17,76 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Applications v6.00 & RZ/V2N AI SDK v6.00
+                </h3>
+                <h6 align="right" >
+                    2025.6.30
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v6.00 is released.</h5>
+                    <ul>
+                        <li>
+                            18 applications supported RZ/V2N AI SDK v6.00.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI SDK v6.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.5.1.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2N Linux BSP to v2.0.0.<br>
+                        </li>
+                        <li> 
+                            Updated Graphics Library to v4.1.2.4.<br>
+                        </li>
+                        <li> 
+                            Updated Video Codec Library to v4.3.3.0.<br>
+                        </li>
+                        <li> 
+                            Updated OpenCV Accelerator to v1.30.<br>
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v1.30.<br>
+                        </li>
+                        <li> 
+                            Supported OpenMP v13.3.0.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2H, RZ/V2N & RZ/V2L - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2025.6.30
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Navigator v2.0.0 is released.</h5>
+                    <ul>
+                        <li> 
+                            Users can develop more AI Applications using RZ/V AI Applications v5.20 and the corresponding environment.
+                            <br>
+                            The supported AI Applications are listed at the top of the guide.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     Videos
                 </h3>
                 <h6 align="right" >

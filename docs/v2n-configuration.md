@@ -23,7 +23,7 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 5.00
+                    Target Version: 6.00
                 </b>
             </h5>
         </div>
@@ -74,14 +74,14 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         Yocto Linux
                     </td>
                     <td>                <!-- Version -->
-                        Yocto version: 3.1.31 (Dunfell)
+                        Yocto version: 5.0.6 (Scarthgap)
                         <a href="#footnote_v2n_linux_components">
                             <sup>
                                 *1
                             </sup>
                         </a>
                         <br>
-                        Kernel version: 5.10.145-cip17
+                        Kernel version: 6.1.107-cip28
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
@@ -92,7 +92,7 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         OpenCV
                     </td>
                     <td>                <!-- Version -->
-                        4.1.0
+                        4.9.0
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
@@ -149,21 +149,16 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <br>
             <ul>
                 <li>
-                    <code>"references/core-image-weston-rzv2n-evk.manifest"</code> in RZ/V2N AI SDK.
+                    <code>"references/core-image-weston-rzv2n-evk.rootfs.manifest"</code> in RZ/V2N AI SDK.
                 </li>
             </ul>
-            <div class="note">
-                <span class="note-title" id="footnote_v2n_linux_components">Note1</span>
-                RZ/V2N AI SDK will transition to Yocto version 5.0 (Scarthgap) and Kernel 6.1 in June 2025.<br>
-                After June 2025, RZ/V2N AI SDK Dunfell version will not be updated.<br>
-            </div>
         </div>
         <div class="col-12">
             <h3 id="v2n-driver">
                 Drivers
             </h3>
             Following table shows the list of drivers.<br>
-            For more details, see <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a> and <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>. 
+            For more details, see <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a> and <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>. 
             <!-- 
             <div class="note">
                 <span class="note-title">Note</span>
@@ -689,13 +684,13 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <h3 id="v2n-limit">
                 Limitations
             </h3>
-            RZ/V2N AI SDK v5.00 has the following limitations.
+            RZ/V2N AI SDK v6.00 has the following limitations.
             <br>
             <br>
             <ul>
                 <li>
-                    When using DRP-AI, H.264/H.265 Decode, or OpenCV Accelerator, rebooting by command is not supported.<br>
-                    To reboot, power off the board and then power on again.
+                    qtmux element in GStreamer cannot be used in combination with omxh265enc to pack the H.265 encoded stream to Media Container file.<br>
+                    Please store the H.265 encoded stream as raw h265 extension file only.
                 </li>
             </ul>
             <br>

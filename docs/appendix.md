@@ -20,326 +20,6 @@ Getting Started Appendix
 <br>
 <h5>This page explains the additional information of Getting Started.</h5>
 
-<!---
-<h3 id="A1">A1. Setup for QSPI Bootloader</h3>
-This section explains how to setup the board for QSPI Bootloader.
-<br>
-<div class="note">
-  <span class="note-title">Note</span>
-  This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-  If you have already setup the microSD card and the bootloader written in QSPI on the board, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">the next step (Step7:2. Deploy Application to the Board in Getting Started)</a>.
-</div>
-
-Follow the instruction below to setup the board.
-<div class="note">
-  <span class="note-title">Note</span>
-  Explanation in this step is for QSPI Bootloader, which requires Windows PC as serial communication console.<br>
-</div>
-<ul style="list-style:none;">
-  <li>
-    <h5 id="A1-1">1. Install Terminal Emulator</h5>
-    <div class="note">
-      <span class="note-title">Note</span>
-      If you have already installed terminal emulator, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1-2">next procedure</a>.
-    </div>
-    <ol>
-      <li>
-        Install following software <b>on Windows PC</b> to be used as serial communication console.
-        <ul>
-          <li>
-            Terminal emulator
-            <ul>
-              <li>
-                Operating Environment: Tera Term
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ol>
-    <br>
-  </li>
-  <li>
-    <h5 id="A1-2">2. Install the serial port driver</h5>
-    <div class="note">
-      <span class="note-title">Note</span>
-      If you have already installed the serial port driver, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1-3">next procedure</a>.
-    </div>
-    The serial communication between Windows PC and RZ/V2L EVK requires following driver.<br>
-    <a href="https://ftdichip.com/drivers/vcp-drivers/">https://ftdichip.com/drivers/vcp-drivers/</a>
-    <br><br>
-    <ol>
-      <li>
-        Download the software "Virtual COM port (VCP) driver" from the windows version "setup executable" on the download page and extract it.
-      </li><br>
-      <li>
-        Run the <code>*.exe</code> file extracted to install the serial port driver.
-      </li><br>
-    </ol>
-    <br>
-  </li>
-  <li>
-    <h5 id="A1-3">3. Write bootloaders to QSPI on the board</h5>
-    <ol>
-      <li>Copy following files in <code>${WORK}/board_setup/QSPI/bootloader</code> to your Windows PC.
-        <ul>
-          <li><code>Flash_Writer_SCIF_RZV2L_SMARC<br clas="br-sp">_PMIC_DDR4_2GB_1PCS.mot</code></li>
-          <li><code>bl2_bp-smarc-rzv2l_pmic.srec</code></li>
-          <li><code>fip-smarc-rzv2l_pmic.srec</code></li>
-        </ul>
-      </li><br>
-      <li>Connect Windows PC and Board via Serial to MicroUSB Cable.
-      </li><br>
-      <li>Change SW1 and SW11 setting (see the figure below).
-        <br><br>
-        <img class="procedure"  src="img/board_bootloader.png" alt="board" width="90%" />
-      </li><br>
-      <li>Connect the power cable to CN6 on the Board.
-      </li><br>
-      <li> Press and hold the power button (SW9) for 1 second to turn on the power.
-      </li><br>
-      <li>On Windows PC, open the terminal emulator.
-        Here, we use Tera Term as an example.
-      </li><br>
-      <li>Select "File" > "New Connection" and select "Serial" port as shown below.
-        <br><br>
-        <img class="procedure"  src="img/new_connection.png" alt="board" width="90%"/>
-      </li><br>
-      <li>Open the configuration window from the "Setup">"Terminal" and change the setting as follows.
-        <br><br>
-        <table>
-          <tr>
-            <th>Item</th>
-            <th>Value</th>
-          </tr>
-          <tr>
-            <td>New-line</td>
-            <td>Receive: Auto</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>Transmit: CR</td>
-          </tr>
-        </table>
-      </li><br>
-      <li>Open the configuration window from the "Setup">"Serial port" and change the setting as follows.
-        <br><br>
-        <table>
-          <tr>
-            <th>Item</th>
-            <th>Value</th>
-          </tr>
-          <tr>
-            <td>Baud rate</td>
-            <td>115200</td>
-          </tr>
-          <tr>
-            <td>Data</td>
-            <td>8bit</td>
-          </tr>
-          <tr>
-            <td>Parity</td>
-            <td>none</td>
-          </tr>
-          <tr>
-            <td>Stop</td>
-            <td>1bit</td>
-          </tr>
-          <tr>
-            <td>Flow control</td>
-            <td>none</td>
-          </tr>
-          <tr>
-            <td>Transmit delay</td>
-            <td>0msec/char</td>
-          </tr>
-        </table>
-      </li><br>
-      <li>Press the reset button (SW10) and following message will be displayed on the terminal.
-{% highlight console %}
-  SCIF Download mode
-(C) Renesas Electronics Corp.
--- Load Program to System RAM ---------------
-please send !
-{% endhighlight %}
-      </li><br>
-      <li>
-        Open "File" > "Send file..." and send the Flash Writer file (<code>*.mot</code>) as a text.<br>
-        If following message is displayed, the file transfer suceeded.
-{% highlight console %}
-Flash writer for RZ/V2 Series Vx.xx xxx.xx,20xx
-Product Code : RZ/V2L
->
-{% endhighlight %}
-      </li><br>
-      <li>Enter "<code>XLS2</code>" on the terminal to get following messages.
-{% highlight console %}
-> XLS2
-===== Qspi writing of RZ/G2 Board Command =============
-Load Program to Spiflash
-Writes to any of SPI address.
-Micron : MT25QU512
-Program Top Address & Qspi Save Address
-===== Please Input Program Top Address ============
-  Please Input : H'
-{% endhighlight %}
-      </li><br>
-      <li>Enter "<code>11E00</code>". The log continues.
-{% highlight console %}
-  Please Input : H'11E00
-===== Please Input Qspi Save Address ===
-  Please Input : H'
-{% endhighlight %}
-      </li><br>
-      <li>Enter "<code>00000</code>". The log continues.
-{% highlight console %}
-  Please Input : H'00000
-Work RAM(H'50000000-H'53FFFFFF) Clear....
-please send ! ('.' & CR stop load)
-{% endhighlight %}
-      </li><br>
-      <li>After the "please send!" message, open "File" > "Send file..." and <b>send the <code>bl2_bp-smarc-rzv2l_pmic.srec</code> file</b> as a text from the terminal software.
-      </li><br>
-      <li>In case a message to prompt to clear data like below, please enter "<code>y</code>".
-{% highlight console %}
-SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
-{% endhighlight %}
-      </li><br>
-      <li>Following log will be displayed. The end address is depending on the version of AI SDK.
-{% highlight console %}
-SAVE SPI-FLASH.......
-======= Qspi Save Information =================
-SpiFlashMemory Stat Address : H'00000000
-SpiFlashMemory End Address : H'00009A80
-===========================================================
-{% endhighlight %}
-      </li><br>
-      <li>Enter "<code>XLS2</code>" on the terminal to get following messages.
-{% highlight console %}
-> XLS2
-===== Qspi writing of RZ/G2 Board Command =============
-Load Program to Spiflash
-Writes to any of SPI address.
-Micron : MT25QU512
-Program Top Address & Qspi Save Address
-===== Please Input Program Top Address ============
-  Please Input : H'
-{% endhighlight %}
-      </li><br>
-      <li>Enter "<code>00000</code>". The log continues.
-{% highlight console %}
-  Please Input : H'00000
-===== Please Input Qspi Save Address ===
-  Please Input : H'
-{% endhighlight %}
-      </li><br>
-      <li>Enter "<code>1D200</code>". The log continues.
-{% highlight console %}
-  Please Input : H'1D200
-Work RAM(H'50000000-H'53FFFFFF) Clear....
-please send ! ('.' & CR stop load)
-{% endhighlight %}
-      </li><br>
-      <li>After the "please send!" message, open "File" > "Send file..." and <b>send the <code>fip-smarc-rzv2l_pmic.srec</code> file</b> as a text from the terminal software.
-      </li><br>
-      <li>In case a message to prompt to clear data like below, please enter "<code>y</code>".
-{% highlight console %}
-SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
-{% endhighlight %}
-      </li><br>
-      <li>Following log will be displayed. The end address is depending on the version of AI SDK.
-{% highlight console %}
-SAVE SPI-FLASH.......
-======= Qspi Save Information =================
-SpiFlashMemory Stat Address : H'0001D200
-SpiFlashMemory End Address : H'000CC73F
-===========================================================
-{% endhighlight %}
-      </li><br>
-      <li>Power-off the board by pressing the power button (SW9) for 2 seconds to change SW11 for booting the board.
-      <br>
-      </li>
-    </ol>
-    <br><br>
-  </li>
-  <li>
-    <h5 id="A1-4">4. Setup U-boot setting</h5>
-    Follow the procedure below to set the booting configuration of the board.<br><br>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-md-6">
-          <ol>
-            <li>Insert the microSD card to the <b>Board</b>.
-              <div class="note">
-                <span class="note-title">Note</span>
-                Use the microSD card slot <b>CN10</b> as shown in the figure.
-              </div>
-            </li><br>
-            <li>Change SW1 and SW11 setting as shown in the right figure.
-            </li><br>
-            <li>Connect the <b>Board</b> and <b>Windows PC</b> by the USB Serial to Micro USB cable.
-            </li><br>
-            <li>Connect the power cable to the <b>Board</b>.
-            </li><br>
-            <li>Press power button for 1 second to turn on the board.
-            </li><br>
-            <li>Open the terminal emulator, i.e., Tera Term, and connect with COMS port.
-              <div class="note">
-                <span class="note-title">Note</span>
-                When using Tera Term, change the configuration as explained in <a href="#A1-3">Write bootloaders to QSPI on the board</a>.
-              </div>
-            </li><br>
-            <li>On the terminal emulator, keep pressing ENTER key and on the board, press reset button.
-            </li><br>
-          </ol>
-        </div>
-        <div class="col-12 col-md-6">
-          <img class="procedure" src="img/uboot-setting.png" alt="boot" width="90%"/>
-          <br>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <ol start="8">
-            <li>U-boot console will be activated.
-            </li><br>
-            <li>Run the following commands to set the booting configuration.
-{% highlight shell %}
-env default -a
-saveenv
-boot
-{% endhighlight %}
-            </li><br>
-            <li>After the boot-up, the login message will be shown on the console.
-{% highlight shell %}
-smarc-rzv2l login:
-{% endhighlight %}
-            </li><br>
-            <li>Log-in to the system using the information below.
-              <ul>
-                <li>user: <code>root</code>
-                </li>
-                <li>password: none
-                </li>
-              </ul>
-            </li><br>
-            <li>Shutdown the board to finish the U-boot setting.
-              <details class="boxdetails" open>
-                <summary>Shutdown Procedures</summary>
-                <quotedoc id="a3reference"></quotedoc>
-              </details>
-            </li><br>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </li>
-</ul>
-<br>
-After this procedure, you can copy the AI Application and boot the board.<br>
-Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">Step 7: 2. Deploy Application to the Board in RZ/V2L EVK Getting Started</a>.
-<br><br>
--->
 <h3 id="A2">A1. Format SD card</h3>
   When writing the necessary files for the board, microSD card needs to have appropriate format.<br>
   Note that you need to run this procedure only once as long as you use the same microSD card.
@@ -783,8 +463,8 @@ shutdown -h now
   </ol>
 </a3reference>
 <br><br>
-<h3 id="A4">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</h3>
-To power-off the RZ/V2H EVK and RZ/V2N EVK, follow the procedures below.
+<h3 id="A4">A3. Shutdown RZ/V2H EVK</h3>
+To power-off the RZ/V2H EVK, follow the procedures below.
 <br><br>
 <a4reference>
 <ol>
@@ -805,10 +485,37 @@ shutdown -h now
   <li>
     Turn SW3 to OFF.
     <br><br>
-    <img src="img/v2h_v2n_evk_shutdown.png" alt="board" width="800px" /><br>
+    <img src="img/v2h_evk_shutdown.png" alt="board" width="350px" /><br>
   </li>
 </ol>
 </a4reference>
+<br><br>
+<h3 id="A5">A4. Shutdown RZ/V2N EVK</h3>
+To power-off the RZ/V2N EVK, follow the procedures below.
+<br><br>
+<a5reference>
+<ol>
+  <li>Run the <code>shutdown</code> command on board console.
+    <br>
+{% highlight shell %}
+sudo -i shutdown -h now
+{% endhighlight %}
+  </li>
+  <li>
+    On the screen, check that shutdown procedure runs and the HDMI display is blacked out.
+    <br><br>
+  </li>
+  <li>
+    Turn SW2 to OFF.
+    <br><br>
+  </li>
+  <li>
+    Turn SW3 to OFF.
+    <br><br>
+    <img src="img/v2n_evk_shutdown.png" alt="board" width="350px" /><br>
+  </li>
+</ol>
+</a5reference>
 <br><br>
 
 <script>

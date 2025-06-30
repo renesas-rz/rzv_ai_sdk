@@ -29,7 +29,7 @@ Its version varies depending on the supported board.
   </tr>
   <tr>
     <td>RZ/V2N Evaluation Board Kit</td>
-    <td>RZ/V2N AI SDK <b>v5.00</b></td>
+    <td>RZ/V2N AI SDK <b>v6.00</b></td>
   </tr>
 </table>
 <a class="ms-4" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus" target="_blank" rel="noopener noreferrer">Learn more about the RZ/V series.</a>
@@ -376,7 +376,11 @@ Its version varies depending on the supported board.
       </td>
       <td>
         Used for Setup microSD card and RZ/V AI SDK Setup.<br>
-        Operating Environment: Ubuntu 20.04
+        Operating Environment: <br>
+        <ul class="mb-1">
+          <li>RZ/V2L and RZ/V2H: Ubuntu 20.04</li>
+          <li>RZ/V2N: Ubuntu 22.04</li>
+        </ul>
       </td>
     </tr>
     <tr>
@@ -450,7 +454,7 @@ RZ/V AI SDK provides following packages for each supported board.
           <span class="banner-line">Get the RZ/V2H AI Software Development Kit</span>
       </a>
       <br>
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v500" role="button" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v600" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">RZ/V2N AI SDK</span>
           <span class="banner-line">Get the RZ/V2N AI Software Development Kit</span>
       </a>    
@@ -544,10 +548,16 @@ cd ${WORK}/ai_sdk_setup
 sudo docker build -t rzv2l_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2L" .
 {% endhighlight %}
       </li>
-      <li>For RZ/V2H, RZ/V2N<br>
-          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used.
+      <li>For RZ/V2H<br>
+<!--          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used. -->
 {% highlight shell%}
 sudo docker build -t rzv2h_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2H" .
+{% endhighlight %}
+      </li>
+      <li>For RZ/V2N<br>
+<!--          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used. -->
+{% highlight shell%}
+sudo docker build -t rzv2n_ai_sdk_image --build-arg PRODUCT="V2N" .
 {% endhighlight %}
       </li>
     </ul>
@@ -557,17 +567,23 @@ sudo docker build -t rzv2h_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --bui
 mkdir ${WORK}/ai_sdk_setup/data
 {% endhighlight %}
   </li>
-  <li>Create docker container. <br>Here, <code><rzv2l/rzv2h>_ai_sdk_container</code> is a name of docker container, which can be changed by user.
+  <li>Create docker container. <br>Here, <code><rzv2l/rzv2h/rzv2n>_ai_sdk_container</code> is a name of docker container, which can be changed by user.
     <ul>
       <li>For RZ/V2L
 {% highlight shell%}
 sudo docker run -it --name rzv2l_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/data rzv2l_ai_sdk_image
 {% endhighlight %}
       </li>
-      <li>For RZ/V2H, RZ/V2N<br>
-          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used.
+      <li>For RZ/V2H<br>
+<!--          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used. -->
 {% highlight shell%}
 sudo docker run -it --name rzv2h_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/data rzv2h_ai_sdk_image
+{% endhighlight %}
+      </li>
+      <li>For RZ/V2N<br>
+<!--          Since RZ/V2N is a brother chip of RZ/V2H, the same commands can be used. -->
+{% highlight shell%}
+sudo docker run -it --name rzv2n_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/data rzv2n_ai_sdk_image
 {% endhighlight %}
       </li>
     </ul>
@@ -645,7 +661,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
+            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
           </h6>
         </td>
     </tr>
@@ -682,12 +698,13 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Build Stage"</b> (or similar) to build the application.<br><br>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
+          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
         </div>
           <!-- From here: Delete when making latest version -->
+          <!--
         <div class="note">
           <span class="note-title">Note</span>
           The <code>git clone</code> command shown in the <code>README.md</code> will download the <b style="color: red;">latest</b> source code and related files. <br><br>
@@ -696,6 +713,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
 git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
 {% endhighlight %}
         </div>
+          -->
           <!-- Until here: Delete when making latest version -->
       </li>
     </ol>
@@ -737,14 +755,14 @@ cd /drp-ai_tvm/data
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
         <!-- From here: Delete when making latest version -->
-        <div class="note">
+        <!-- <div class="note">
           <span class="note-title">Note</span>
           The command above will download the <b style="color: red;">latest</b> source code and related files. <br><br>
           To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code> when you running the <code>git clone</code> command as shown below.
 {% highlight shell%}
 git clone -b v{{ site.version }} https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
-        </div>
+        </div> -->
         <!-- Until here: Delete when making latest version -->
       </li><br>
       <li>Move to the application directory.
@@ -858,7 +876,10 @@ Please see each EVK Getting Started Step 8 for detailed instructions.<br>
       <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A3" target="_blank" rel="noopener noreferrer">A2. Shutdown RZ/V2L EVK</a>
     </li>
     <li>
-      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</a>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK</a>
+    </li>
+    <li>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a>
     </li>
   </ul>
 </div>

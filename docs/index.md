@@ -79,11 +79,63 @@ layout: default
             <h6 align="right" >
                 2025.6.30
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>RZ/V AI Applications v6.00</b> is released.
+                    <ul>
+                        <li> 
+                            18 applications supported RZ/V2N AI SDK v6.00.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#application"><b>AI Applications</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>RZ/V2N AI SDK v6.00</b> is released.
+                    <ul>
+                        <li>
+                            Supported DRP-AI TVM v2.5.1.<br>
+                        </li>
+                        <li>
+                            Updated RZ/V2N Linux BSP to v2.0.0.
+                        </li>
+                        <li> 
+                            Updated Graphics Library to v4.1.2.4.
+                        </li>
+                        <li> 
+                            Updated Video Codec Library to v4.3.3.0.
+                        </li>
+                        <li> 
+                            Updated OpenCV Accelerator to v1.30.
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v1.30.
+                        </li>
+                        <li>
+                            Supported OpenMP v13.3.0.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2n-spec"><b>RZ/V2N AI SDK Specification</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>AI Navigator v2.0.0</b> is released.
+                    <ul>
+                        <li> 
+                            Users can develop more AI Applications using RZ/V AI Applications v5.20 and the corresponding environment.
+                            <br>
+                            The supported AI Applications are listed at the top of the guide.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
             <br>
             <br>
         </div>
@@ -1080,7 +1132,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                     <th>Details</th>
                 </tr>
                 <tr>
-                    <td rowspan="1">Common</td>
+                    <td rowspan="1">RZ/V2L<br>RZ/V2H<br>RZ/V2N<br>Common</td>
                     <td>
                         <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             DRP-AI TVM
@@ -1134,9 +1186,9 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                         </small>
                     </td>
                 </tr>
-                <!-- RZ/V2H Reference -->
+                <!-- RZ/V2H,RZ/V2N Common -->
                 <tr>
-                    <td rowspan="9">RZ/V2H</td>
+                    <td rowspan="4">RZ/V2H<br>RZ/V2N<br>Common</td>
                     <td>
                             <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8" target="_blank" rel="noopener noreferrer">
                                 DRP-AI Translator i8
@@ -1144,8 +1196,111 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                     </td>
                     <td>
                         <small>
-                        AI model conversion tool for DRP-AI embedded in RZ/V2H.<br>
-                        Included in RZ/V2H AI SDK.
+                        AI model conversion tool for DRP-AI embedded in RZ/V2H and RZ/V2N.<br>
+                        Included in RZ/V2H AI SDK and RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+<!--                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
+                            RZ/V2H and RZ/V2N BSP Manual Set
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Document for Linux Drivers used in RZ/V2H AI SDK and RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr> -->
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/document/mas/rzv2h-group-and-rzv2n-group-linux-interface-specification-gstreamer-users-manual-software" target="_blank" rel="noopener noreferrer">
+                            RZ/V2H and RZ/V2N Video Codec Library User's Manual
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        RZ/V2H Group and RZ/V2N Group Linux Interface Specification GStreamer User's Manual: Software.<br>
+                        Document for GStreamer in Video Codec Library used in RZ/V2H AI SDK and RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">
+                            RZ/V Multi-OS Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package consisting of RZ/V Flexible Software Package (FSP) as software package for Renesas MCU with Arm&reg; Cortex-M, R Core and OpenAMP as standardization API of framework for interprocessor communication for developing multi OS solution.<br>
+                        This package can be applied to RZ/V2H AI SDK and RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">
+                            RZ MPU Security Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
+                        This package can be applied to RZ/V2H AI SDK and RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <!-- RZ/V2H Reference -->
+                <tr>
+                    <td rowspan="6">RZ/V2H</td>
+                    <td>
+                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator" target="_blank" rel="noopener noreferrer">
+                            RZ/V2H OpenCV Accelerator 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        OpenCV Accelerator which performs OpenCV function in high performance by using DRP.<br>
+                        Used in RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver" target="_blank" rel="noopener noreferrer">
+                            RZ/V2H DRP-AI Driver
+                            </a>
+                    </td>
+                    <td>
+                        <small>
+                        Linux driver to use DRP-AI on RZ/V2H.<br>
+                        Used in RZ/V2H AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/us/software-tool/rzv2h-ros2-package" target="_blank" rel="noopener noreferrer">
+                            RZ/V2H ROS2 Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package that can be applied to RZ/V2H AI SDK to use ROS2.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/software-tool/rzv2h-isp-support-package" target="_blank" rel="noopener noreferrer">
+                            RZ/V2H ISP Support Package 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Package that can be applied to RZ/V2H AI SDK to use Built-in ISP.
                         </small>
                     </td>
                 </tr>
@@ -1163,134 +1318,19 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-group-and-rzv2n-group-linux-interface-specification-gstreamer-users-manual-software" target="_blank" rel="noopener noreferrer">
-                            RZ/V2H Video Codec Library  User's Manual
+                        <a href="https://www.renesas.com/us/en/document/apn/nda-required-rzv2h-group-ddrtop-application-note" target="_blank" rel="noopener noreferrer">
+                            RZ/V2H DDRTOP Application Note 
                         </a>
                     </td>
                     <td>
                         <small>
-                        RZ/V2H Group Linux Interface Specification GStreamer User's Manual: Software.<br>
-                        Document for GStreamer in Video Codec Library used in RZ/V2H AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator" target="_blank" rel="noopener noreferrer">
-                            RZ/V2H OpenCV Accelerator 
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        OpenCV Accelerator which performs OpenCV function in high performance by using DRP.<br>
-                        Used in RZ/V2H AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver" target="_blank" rel="noopener noreferrer">
-                            RZ/V2H DRP-AI Driver
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        Linux driver to use DRP-AI on RZ/V2H.<br>
-                        Used in RZ/V2H AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://www.renesas.com/us/en/software-tool/rzv2h-ros2-package" target="_blank" rel="noopener noreferrer">
-                            RZ/V2H ROS2 Package 
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        Package that can be applied to RZ/V2H AI SDK to use ROS2.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">
-                            RZ/V Multi-OS Package 
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        Package consisting of RZ/V Flexible Software Package (FSP) as software package for Renesas MCU with Arm&reg; Cortex-M, R Core and OpenAMP as standardization API of framework for interprocessor communication for developing multi OS solution.<br>
-                        This package can be applied to RZ/V2H AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">
-                            RZ MPU Security Package 
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
-                        This package can be applied to RZ/V2H AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://www.renesas.com/software-tool/rzv2h-isp-support-package" target="_blank" rel="noopener noreferrer">
-                            RZ/V2H ISP Support Package 
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        Package that can be applied to RZ/V2H AI SDK to use Built-in ISP.
+                        This document is the Application Note, which shows the procedure required for RZ/V2H DDR control unit (hereafter, DDRTOP) to access DRAM.
                         </small>
                     </td>
                 </tr>
                 <!-- RZ/V2N Reference -->
                 <tr>
-                    <td rowspan="8">RZ/V2N</td>
-                    <td>
-                            <a href="https://www.renesas.com/software-tool/drp-ai-translator-i8" target="_blank" rel="noopener noreferrer">
-                                DRP-AI Translator i8
-                            </a>
-                    </td>
-                    <td>
-                        <small>
-                        AI model conversion tool for DRP-AI embedded in RZ/V2N.<br>
-                        Included in RZ/V2N AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
-                            RZ/V2N BSP Manual Set
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        Document for Linux Drivers used in RZ/V2N AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-group-and-rzv2n-group-linux-interface-specification-gstreamer-users-manual-software" target="_blank" rel="noopener noreferrer">
-                            RZ/V2N Video Codec Library User's Manual
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        RZ/V2N Group Linux Interface Specification GStreamer User's Manual: Software.<br>
-                        Document for GStreamer in Video Codec Library used in RZ/V2N AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
+                    <td rowspan="5">RZ/V2N</td>
                     <td>
                         <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator" target="_blank" rel="noopener noreferrer">
                             RZ/V2N OpenCV Accelerator 
@@ -1316,9 +1356,9 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                         </small>
                     </td>
                 </tr>
-                <!-- June Release <tr>
+<!--                <tr>
                     <td>
-                        <a href="https://www.renesas.com/us/en/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.renesas.com/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">
                             RZ/V2N ROS2 Package 
                         </a>
                     </td>
@@ -1330,32 +1370,6 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr> -->
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">
-                            RZ/V Multi-OS Package 
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        Package consisting of RZ/V Flexible Software Package (FSP) as software package for Renesas MCU with Arm&reg; Cortex-M, R Core and OpenAMP as standardization API of framework for interprocessor communication for developing multi OS solution.<br>
-                        This package can be applied to RZ/V2N AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">
-                            RZ MPU Security Package 
-                        </a>
-                    </td>
-                    <td>
-                        <small>
-                        This package is to add Security functions (Secure Boot, Trusted Execution Environment, Hardware Cryptographic IP, Secure Debug, Security Configurator) to RZ MPU.<br>
-                        This package can be applied to RZ/V2N AI SDK.
-                        </small>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <a href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" target="_blank" rel="noopener noreferrer">
                             RZ/V2N ISP Support Package 
                         </a>
@@ -1363,6 +1377,30 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                     <td>
                         <small>
                         Package that can be applied to RZ/V2N AI SDK to use Built-in ISP.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip">
+                            RZ/V2N BSP Manual Set
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Document for Linux Drivers used in RZ/V2N AI SDK.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/us/en/document/apn/nda-required-rzv2n-group-ddrtop-application-note" target="_blank" rel="noopener noreferrer">
+                            RZ/V2N DDRTOP Application Note 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        This document is the Application Note, which shows the procedure required for RZ/V2N DDR control unit (hereafter, DDRTOP) to access DRAM.
                         </small>
                     </td>
                 </tr>

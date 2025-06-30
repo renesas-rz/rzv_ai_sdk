@@ -18,7 +18,7 @@ RZ/V2N EVK Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2N Evaluation Board Kit</b>.</h5>
 
-<h5>Supported version: <b>RZ/V2N AI SDK v5.00</b></h5>
+<h5>Supported version: <b>RZ/V2N AI SDK v6.00</b></h5>
 
 <details class="boxdetails" open>
   <summary>Terminology</summary>
@@ -243,11 +243,11 @@ unzip xSPI.zip
             <th>Description</th>
           </tr>
           <tr>
-            <td>core-image-weston-rzv2n-evk.wic.bmap</td>
+            <td>core-image-weston-rzv2n-evk.rootfs.wic.bmap</td>
             <td rowspan="2">SD card image</td>
           </tr>
           <tr>
-            <td>core-image-weston-rzv2n-evk.wic.gz</td>
+            <td>core-image-weston-rzv2n-evk.rootfs.wic.gz</td>
           </tr>
         </table>
         Follow the instruction below to prepare the microSD card.<br>
@@ -334,14 +334,14 @@ sudo umount /media/user/9016-4EF8
               <span class="ContenteSD-title">For eSD</span>
 {% highlight shell %}
 cd ${WORK}/board_setup/eSD
-sudo bmaptool copy --bmap core-image-weston-rzv2n-evk.wic.bmap core-image-weston-rzv2n-evk.wic.gz /dev/sdb
+sudo bmaptool copy --bmap core-image-weston-rzv2n-evk.rootfs.wic.bmap core-image-weston-rzv2n-evk.rootfs.wic.gz /dev/sdb
 {% endhighlight %}
             </div>
             <div class="ContentSPI contentSPI-bg">
               <span class="ContentSPI-title">For xSPI</span>
 {% highlight shell %}
 cd ${WORK}/board_setup/xSPI
-sudo bmaptool copy --bmap core-image-weston-rzv2n-evk.wic.bmap core-image-weston-rzv2n-evk.wic.gz /dev/sdb
+sudo bmaptool copy --bmap core-image-weston-rzv2n-evk.rootfs.wic.bmap core-image-weston-rzv2n-evk.rootfs.wic.gz /dev/sdb
 {% endhighlight %}
             </div>
             <div class="warning">
@@ -365,8 +365,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 :
 snip
 :
-/dev/sdb1        17M  3.0M   14M  18% /media/user/bootloaderf
-/dev/sdb2        13G  1.6G   11G  14% /media/user/root
+/dev/sdb1        18M  3.9M   15M   22% /media/user/bootloader
+/dev/sdb2        12G  2.4G   8.9G  22% /media/user/root
 {% endhighlight %}
                 <div class="warning">
                   <span class="warning-title">Warning</span>
@@ -374,8 +374,20 @@ snip
                 </div>
               </li>
             </ul>
+            <div class="note">
+              <span class="note-title">Note</span>
+              If you would like to eject the microSD card, please run following command and remove the microSD card from Linux PC.
+              <br>
+{% highlight shell %}
+sudo eject /dev/sdb
+{% endhighlight %}
+              <div class="warning">
+                <span class="warning-title">Warning</span>
+                Change <code>/dev/sdb</code> to your microSD card device name.<br>
+              </div>
+            </div>
           </li>
-          <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.<br>
+<!--          <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.<br>
 {% highlight shell %}
 sudo mkdir /mnt/sd -p
 sudo mount /dev/sdb2 /mnt/sd
@@ -399,7 +411,7 @@ sudo eject /dev/sdb
               Change <code>/dev/sdb</code> to your microSD card device name.<br>
             </div>
           </div>
-          </li>
+          </li> -->
         </ol>
         <h5 id="step7-1c">
           <span class="ContentSPI">
@@ -426,8 +438,9 @@ sudo eject /dev/sdb
           Insert the microSD card to Linux PC.
         </li><br>
         <li>
-          Run the following command to mount the partition 2, which contains the root filesystem.<br>
+          Run the following commands to mount the partition 2, which contains the root filesystem.<br>
 {% highlight shell %}
+sudo mkdir /mnt/sd -p
 sudo mount /dev/sdb2 /mnt/sd
 {% endhighlight %}
           <div class="warning">
@@ -438,7 +451,7 @@ sudo mount /dev/sdb2 /mnt/sd
         <li>
           Create the application directory on root filesystem.
 {% highlight shell %}
-sudo mkdir /mnt/sd/home/root/tvm
+sudo mkdir /mnt/sd/home/weston/tvm
 {% endhighlight %}
           <div class="note">
             <span class="note-title">Note</span>
@@ -447,21 +460,21 @@ sudo mkdir /mnt/sd/home/root/tvm
         </li>
         <li>
           Copy the necessary files in execution environment.<br>
-          Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Deploy Stage"</b> (or similar) to deploy the application.
+          Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Deploy Stage"</b> (or similar) to deploy the application.<br>
           <br>
-          <div class="note">
+<!--          <div class="note">
             <span class="note-title">Note</span>
             Since RZ/V2N is a brother chip of RZ/V2H, users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
-            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
-          </div>
+            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+          </div> -->
           <div class="box1">
             <u><b>Example:</b></u><br>
-            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
+            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
           </div>
           Use the following command to copy the files to root filesystem.
           <br><br>
 {% highlight shell %}
-sudo cp $WORK/ai_sdk_setup/data/<Path to target file>/<filename> /mnt/sd/home/root/tvm 
+sudo cp $WORK/ai_sdk_setup/data/<Path to target file>/<filename> /mnt/sd/home/weston/tvm 
 {% endhighlight %}
           <br>
         </li>
@@ -654,10 +667,10 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.<br>
-            Users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
-            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v5.20pre/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
-            <br>
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.<br>
+            <!-- Users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
+            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+            <br> -->
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>
             <img src="img/objectdetection_v2n.png" alt="object_detection" width="90%"/>
@@ -666,8 +679,17 @@ sudo eject /dev/sdb
         </li>
       </ol>
       <div class="note">
-        <span class="note-title">Note</span>
-        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</a>.
+        <span class="note-title">Note1</span>
+        To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a>.
+      </div>
+      <div class="note">
+        <span class="note-title">Note2</span>
+        When running an AI Application, the following warning may be shown. It does not affect the operation.<br>
+        <h6 class="mb-1">
+{% highlight shell %}
+[ WARN:0@xx.xxx] global cap_gstreamer.cpp:1777 open OpenCV | GStreamer warning: Cannot query video position: status=0, value=-1, duration=-1
+{% endhighlight %}
+        </h6>
       </div>
     </div>
   </div>

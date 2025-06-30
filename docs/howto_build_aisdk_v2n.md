@@ -12,7 +12,7 @@ layout: default
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2N AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2N AI SDK v5.00</b></h5>
+<h5>Supported version: <b>RZ/V2N AI SDK v6.00</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -37,7 +37,7 @@ layout: default
       <br>
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
-      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">RZ/V2N BSP Manual Set</a>.<br>
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip">RZ/V2N BSP Manual Set</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
@@ -52,11 +52,11 @@ layout: default
               </tr>
               <tr>
                 <td rowspan="2">Linux PC</td>
-                <td colspan="2">Approximately <b>120GB free space</b> is necessary.</td>
+                <td colspan="2">Approximately <b>200GB free space</b> is necessary.</td>
               </tr>
               <tr>
                 <td>OS</td>
-                <td><b>Ubuntu 20.04 LTS</b><br>
+                <td><b>Ubuntu 22.04 LTS</b><br>
                     64bit OS must be used.</td>      
               </tr>
             </table>
@@ -76,7 +76,7 @@ layout: default
   <div class="row">
     <div class="col-12">
       Download the RZ/V2N AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v500-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v600-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0189F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -164,10 +164,10 @@ This step explains how to build Linux environment with RZ/V2N AI SDK Source Code
   <li id="step3-1"> To install necessary sofware, run the following commands on your Linux PC.
 {% highlight shell%}
 sudo apt-get update
-sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
-build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
-xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev \
-libssl-dev 
+sudo apt-get install gawk wget git diffstat unzip texinfo gcc build-essential \
+chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \
+iputils-ping python3-git python3-jinja2 python3-subunit zstd liblz4-tool file \
+locales libacl1 bmap-tools
 {% endhighlight %}
   </li>
   <li id="step3-2">Run the following commands and set the user name and email address before starting the build procedure.<br>
@@ -226,8 +226,50 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
         </ol>
       </li>
   -->
+      <!-- Release patch file for bus setting -->
+      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting release.<br>
+        If you want to maximize the performance of DRP-AI, please apply the bus setting release patch.<br>
+        This patch disables the control that minimizes the impact on operation when each RZ/V2N unit accesses DDR.<br>
+        Applying this patch will improve the performance of single functions such as DRP-AI and Codec.<br>
+        However, when combining various functions for compound control, the compound operation may not be executed correctly.<br>
+        (Streaming stops, problems with the HDMI output screen, etc.)<br>
+        such as the stream stopping. Please apply this patch at your own risk.<br>
+        <br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch">
+                    0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for bus setting release
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 -R < 0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
+      <!-- e-CAM22 patch file -->
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
-        The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code. The required driver needs to be obtained through the following procedure.
+        The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code.<br>
+        The required driver needs to be obtained through the following procedure.<br>
+        <br>
         <ol type="A">
           <li>To build the e-CAM22_CURZH camera driver (MIPI) for RZ/V2N Evaluation Board Kit, contact <i>e-con Systems</i> at <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer">this link</a> to obtain the patch file below.
             <table class="mytable">
@@ -260,16 +302,14 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
-0001-tesseract.patch
-0002-sd-image-size-16gb.patch
-0003-openmp.patch
+0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch  # optional
 e-CAM22_CURZ*.patch
+meta-arm
 meta-econsys
-meta-gplv2
 meta-openembedded
 meta-renesas
 meta-rz-features
-meta-virtualization
+patch
 poky
 {% endhighlight %}
       </li>
@@ -278,7 +318,7 @@ poky
   <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
 {% highlight shell%}
 cd ${YOCTO_WORK}
-TEMPLATECONF=${PWD}/meta-renesas/meta-rzv2n/docs/template/conf/ source poky/oe-init-build-env
+TEMPLATECONF=$PWD/meta-renesas/meta-rz-boards/conf/templates/rz-conf/ source poky/oe-init-build-env build
 {% endhighlight %}
   </li>
   <li id="step3-8">Run the following commands to add necessary layers for AI application to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
@@ -290,14 +330,13 @@ bitbake-layers add-layer ../meta-rz-features/meta-rz-codecs
 bitbake-layers add-layer ../meta-econsys
 {% endhighlight %}
   </li>
-  <li id="step3-9">Apply a patch file to add Tesseract Open Source OCR Engine for AI applications.
+  <li id="step3-9">Run the following procedures to apply the patch files.<br>
+    <ol>
+      <!-- Settings for AI SDK (offline build settings, 16GB SD card, settings for eSD boot, Cross Compiler settings, startup screen settings) -->
+      <li>Apply a patch file for AI SDK settings.<br>
+        This patch file applies offline build setting, SD card image size setting, eSD boot setting, Cross Compiler setting, and startup screen setting.
 {% highlight shell%}
-patch -p1 < ../0001-tesseract.patch
-{% endhighlight %}
-  </li>
-  <li id="step3-10">Apply a patch file to change SD card image size.
-{% highlight shell%}
-patch -p1 < ../0002-sd-image-size-16gb.patch
+patch -p1 < ../patch/0000-AI_SDK-settings.patch
 {% endhighlight %}
     <div class="note">
       <span class="note-title">Note</span>
@@ -305,12 +344,21 @@ patch -p1 < ../0002-sd-image-size-16gb.patch
       If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D1" target="_blank" rel="noopener noreferrer">D1: Change the size of the microSD card image in WIC format</a>.<br>
     </div>
   </li>
-  <li id="step3-11">Apply a patch file to add OpenMP for AI applications.
+      <!-- Add Tesseract -->
+      <li>Apply a patch file to add Tesseract Open Source OCR Engine for AI applications.
 {% highlight shell%}
-patch -p1 < ../0003-openmp.patch
+patch -p1 < ../patch/0001-tesseract.patch
 {% endhighlight %}
   </li>
-  <li id="step3-12">Run the following procedures to extract the OSS package.
+      <!-- Add OpenMP -->
+      <li>Apply a patch file to add OpenMP for AI applications.
+{% highlight shell%}
+patch -p1 < ../patch/0002-openmp.patch
+{% endhighlight %}
+      </li>
+    </ol>
+  </li>
+  <li id="step3-10">Run the following procedures to extract the OSS package.
     <ol>
       <li>Run the following commands to extract the OSS package to the <b><code>${YOCTO_WORK}/build</code></b> directory. 
 {% highlight shell%}
@@ -330,19 +378,10 @@ downloads
 {% endhighlight %}
           </li>
         </ul>
-      </li>
-      <li>Open <b><code>${YOCTO_WORK}/build/conf/local.conf</code></b> file in a text editor.
       </li><br>
-      <li>Add the following text in red to the end of <b><code>local.conf</code></b> file.
-<pre><code>...
-CORE_IMAGE_EXTRA_INSTALL += "libgomp libgomp-dev libgomp-staticdev"
-
-<span style="color:red;">BB_NO_NETWORK = "1"</span>
-</code></pre>
-      </li>
     </ol>
   </li>
-  <li id="step3-13">Run the following command to build the <b>Linux kernel files.</b><br>
+  <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>
     (It takes a few hours to finish building depending on the user's host PC performance)
 {% highlight shell%}
 MACHINE=rzv2n-evk bitbake core-image-weston
@@ -358,16 +397,16 @@ MACHINE=rzv2n-evk bitbake core-image-weston
       <tr>
         <td>eSD</td>
         <td>
-          core-image-weston-rzv2n-evk.wic.bmap<br>
-          core-image-weston-rzv2n-evk.wic.gz
+          core-image-weston-rzv2n-evk.rootfs.wic.bmap<br>
+          core-image-weston-rzv2n-evk.rootfs.wic.gz
         </td>
         <td>WIC format SD card image</td>
       </tr>
       <tr>
         <td>xSPI</td>
         <td>
-          core-image-weston-rzv2n-evk.wic.bmap<br>
-          core-image-weston-rzv2n-evk.wic.gz<br>
+          core-image-weston-rzv2n-evk.rootfs.wic.bmap<br>
+          core-image-weston-rzv2n-evk.rootfs.wic.gz<br>
           Flash_Writer_SCIF_RZV2N_DEV_LPDDR4X.mot<br>
           bl2_bp_spi-rzv2n-evk.srec<br>
           fip-rzv2n-evk.srec
@@ -377,30 +416,30 @@ MACHINE=rzv2n-evk bitbake core-image-weston
       <tr>
         <td>eMMC</td>
         <td>
-          core-image-weston-rzv2n-evk.wic.bmap<br>
-          core-image-weston-rzv2n-evk.wic.gz<br>
+          core-image-weston-rzv2n-evk.rootfs.wic.bmap<br>
+          core-image-weston-rzv2n-evk.rootfs.wic.gz<br>
           Flash_Writer_SCIF_RZV2N_DEV_LPDDR4X.mot<br>
           bl2_bp_mmc-rzv2n-evk.srec<br>
           bl2_bp_spi-rzv2n-evk.srec<br>
           fip-rzv2n-evk.srec<br>
-          core-image-weston-rzv2n-evk.tar.bz2
+          core-image-weston-rzv2n-evk.rootfs.tar.bz2
         </td>
         <td>Boot loader, Root filesystem and WIC format SD card image</td>
       </tr>
     </table>
   </li>
-  <li id="step3-14">Run the following command to build <b>cross compiler installer</b>.<br>
+  <li id="step3-12">Run the following command to build <b>cross compiler installer</b>.<br>
 {% highlight shell%}
 MACHINE=rzv2n-evk bitbake core-image-weston -c populate_sdk
 {% endhighlight %}
-    A necessary file listed below will be generated by the build command and the cross compiler installer will be located in <b><code>${YOCTO_WORK}/build/tmp/deploy/sdk/poky-glibc-x86_64-core-image-weston-aarch64-rzv2n-evk-toolchain-*.sh</code></b>.<br>
+    A necessary file listed below will be generated by the build command and the cross compiler installer will be located in <b><code>${YOCTO_WORK}/build/tmp/deploy/sdk/rz-vlp-glibc-x86_64-core-image-weston-cortexa55-rzv2n-evk-toolchain-*.sh</code></b>.<br>
     <table class="mytable">
       <tr>
         <th>File name</th>
         <th>Description</th>
       </tr>
       <tr>
-        <td>poky-glibc-x86_64-core-image-weston-aarch64-rzv2n-evk-toolchain-*.sh</td>
+        <td>rz-vlp-glibc-x86_64-core-image-weston-cortexa55-rzv2n-evk-toolchain-*.sh</td>
         <td>Cross compiler installer</td>
       </tr>
     </table>
@@ -446,8 +485,8 @@ For more information on how to use each files, see the link in the How to use co
   <tr>
     <td rowspan="3">${YOCTO_WORK}/build/tmp/deploy/images/rzv2n-evk</td>
     <td>
-      core-image-weston-rzv2n-evk.wic.bmap<br>
-      core-image-weston-rzv2n-evk.wic.gz
+      core-image-weston-rzv2n-evk.rootfs.wic.bmap<br>
+      core-image-weston-rzv2n-evk.rootfs.wic.gz
     </td>
     <td>WIC format SD card image</td>
     <td>
@@ -471,7 +510,7 @@ For more information on how to use each files, see the link in the How to use co
       bl2_bp_mmc-rzv2n-evk.srec<br>
       bl2_bp_spi-rzv2n-evk.srec<br>
       fip-rzv2n-evk.srec<br>
-      core-image-weston-rzv2n-evk.tar.bz2
+      core-image-weston-rzv2n-evk.rootfs.tar.bz2
     </td>
     <td>Boot loader and Root filesystem used when booting from eMMC</td>
     <td>
@@ -480,7 +519,7 @@ For more information on how to use each files, see the link in the How to use co
   </tr>
   <tr>
     <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
-    <td>poky-glibc-x86_64-core-image-weston-aarch64-rzv2n-evk-toolchain-*.sh</td>
+    <td>rz-vlp-glibc-x86_64-core-image-weston-cortexa55-rzv2n-evk-toolchain-*.sh</td>
     <td>Cross compiler installer</td>
     <td>
       After replacing the file in <b><code>${WORK}/ai_sdk_setup</code></b> directory with this file, follow the steps below to setup RZ/V AI SDK.<br>
@@ -491,7 +530,7 @@ For more information on how to use each files, see the link in the How to use co
 <div class="note">
   <span class="note-title">Note 1</span>
   For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
+  <a href="https://docs.yoctoproject.org/5.0.6/brief-yoctoprojectqs/index.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/5.0.6/brief-yoctoprojectqs/index.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 2</span>
@@ -501,7 +540,7 @@ For more information on how to use each files, see the link in the How to use co
       <a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a>
+      <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a>
     </li>
   </ul>
 </div>
@@ -509,8 +548,8 @@ For more information on how to use each files, see the link in the How to use co
   <span class="note-title">Note 3</span>
   To add more functionality to AI SDK, please refer to following URL.
   <ul>
-    <!-- 6月release <li>
-      <a href="https://www.renesas.com/us/en/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">RZ/V2N ROS2 Package</a>
+<!--    <li>
+      <a href="https://www.renesas.com/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">RZ/V2N ROS2 Package</a>
     </li> -->
     <li>
       <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a>

@@ -682,7 +682,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
                 This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.<br>
                 Please apply this patch with caution after thorough verification.<br>
-                (Patch file: 0001-pre-system-setting-for-RZV2H-AI_SDK-v5.20.patch)<br>
+                (Patch file: 0001-system-setting-for-RZV2H-AI_SDK-v5.20.patch)<br>
                 For how to apply the patch, please refer the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#bus_patch" role="button" target="_blank" rel="noopener noreferrer">How to Build RZ/V2H AI SDK</a>.
                 </div>
             </h6>

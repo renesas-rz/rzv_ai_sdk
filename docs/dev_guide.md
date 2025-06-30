@@ -69,7 +69,7 @@ Developer's Guide
                 </td>
                 <td>
                   <!-- V2H -->AI SDK Source Code v5.20<br>
-                  <!-- V2N -->AI SDK Source Code v5.00
+                  <!-- V2N -->AI SDK Source Code v6.00
                 </td>
               </tr>
               <tr>
@@ -87,15 +87,39 @@ Developer's Guide
                 </td>
                 <td>
                   <!-- V2H -->AI SDK Source Code v5.20<br>
-                  <!-- V2N -->AI SDK Source Code v5.00
+                  <!-- V2N -->AI SDK Source Code v6.00
                 </td>
               </tr>
               <tr>
                 <td>D4</td>
                 <td><a href="#D4">How to boot from eMMC</a></td>
                 <td>RZ/V2N</td>
-                <td>AI SDK Source Code v5.00</td>
+                <td>AI SDK Source Code v6.00</td>
               </tr>
+<!--              <tr>
+                <td>D5</td>
+                <td><a href="#D5">How to modify the memory map</a></td>
+                <td>
+                  RZ/V2H<br>
+                  RZ/V2N
+                </td>
+                <td>
+                  <!-- V2H AI SDK Source Code v5.20<br>
+                  <!-- V2N AI SDK Source Code v6.00
+                </td>
+              </tr>
+              <tr>
+                <td>D6</td>
+                <td><a href="#D6">How to change the DDR size</a></td>
+                <td>
+                  RZ/V2H<br>
+                  RZ/V2N
+                </td>
+                <td>
+                  <!-- V2H AI SDK Source Code v5.20<br>
+                  <!-- V2N AI SDK Source Code v6.00
+                </td>
+              </tr> -->
             </table>
         </div>
         <br>
@@ -108,7 +132,7 @@ Developer's Guide
             <span class="note-title">Note</span>
             This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> below.<br>
             <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-10" target="_blank" rel="noopener noreferrer">Step 3-10</a></li>
-            <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-10" target="_blank" rel="noopener noreferrer">Step 3-10</a></li>
+            <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-9" target="_blank" rel="noopener noreferrer">Step 3-9</a></li>
           </div>
           <ol>
             <li>Open <b><code>${YOCTO_WORK}/build/conf/local.conf</code></b> file in a text editor.
@@ -132,10 +156,13 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
               </div>
               <table class="mytable">
                 <tr>
+                  <th>Device</th>
                   <th>SD card image size<br>(Gbytes)</th>
                   <th>Setting values in the "local.conf" file<br>(Kbytes)</th>
                 </tr>
+                <!-- for RZ/V2H -->
                 <tr>
+                  <td rowspan="3">RZ/V2H</td>
                   <td>4</td>
                   <td>1048576</td>
                 </tr>
@@ -147,13 +174,27 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
                   <td>16</td>
                   <td>8388608 (default)</td>
                 </tr>
+                <!-- for RZ/V2N -->
+                <tr>
+                  <td rowspan="3">RZ/V2N</td>
+                  <td>8</td>
+                  <td>1048576</td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td>6291456 (default)</td>
+                </tr>
+                <tr>
+                  <td>32</td>
+                  <td>16777216</td>
+                </tr>
               </table>
             </li>
           </ol>
         After this procedure, please proceed to <b><span style="color: #2a289d;">the step in How to build RZ/V AI SDK Source Code</span></b> below to build the Linux kernel files.
         <br>
         <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-11">Step 3-11</a></li>
-        <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-11">Step 3-11</a></li>
+        <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-10">Step 3-10</a></li>
         <br>
         </div>
 <!-- D2. For RZ/V2L: How to boot from QSPI -->
@@ -886,10 +927,18 @@ rzv2h-evk1 login:
                       </ul>
                     </li><br>
                     <li>Shutdown the board to finish the U-boot setting.
-                      <details class="boxdetails" open>
+                      <div class="note">
+                        <span class="note-title">Note</span>
+                        To shutdown the board safely, please refer to following steps.
+                        <ul class="mb-1">
+                          <li>RZ/V2H: <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK</a></li>
+                          <li>RZ/V2N: <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a></li>
+                        </ul>
+                      </div>
+<!--                      <details class="boxdetails" open>
                         <summary>Shutdown Procedures</summary>
                         <quotedoc id="a4reference"></quotedoc>
-                      </details>
+                      </details> -->
                     </li><br>
                   </ol>
                 </div>
@@ -1157,12 +1206,12 @@ EM_W Complete!
                   <li>Enter "<code>em_secsd</code>" command and the following parameters in red.
 <pre><code>> <span style="color:red;">em_secsd</span>
 Please Input EXT_CSD Index(H'00 -H'1FF) :<span style="color:red;">b1</span>
-EXT_CSD[B1] = 0x00
+EXT_CSD[B1] = 0x02
 Please Input Value(H'00 -H'FF) :<span style="color:red;">2</span>
 EXT_CSD[B1] = 0x02
 > <span style="color:red;">em_secsd</span>
 Please Input EXT_CSD Index(H'00 -H'1FF) :<span style="color:red;">b3</span>
-EXT_CSD[B3] = 0x01
+EXT_CSD[B3] = 0x09
 Please Input Value(H'00 -H'FF) :<span style="color:red;">8</span>
 EXT_CSD[B3] = 0x08
 </code></pre>
@@ -1194,7 +1243,7 @@ Erase Completed
 Write to SPI Flash memory.
 ======= Qspi Save Information =================
 SpiFlashMemory Stat Address : H'00000000
-SpiFlashMemory End Address : H'00032BFF
+SpiFlashMemory End Address  : H'0001E81F
 ===========================================================
 </code></pre>
                   </li><br>
@@ -1220,7 +1269,7 @@ Erase Completed
 Write to SPI Flash memory.
 ======= Qspi Save Information =================
 SpiFlashMemory Stat Address : H'00060000
-SpiFlashMemory End Address : H'0011B44E
+SpiFlashMemory End Address  : H'0011AD3E
 ===========================================================
 </code></pre>
                   </li><br>
@@ -1238,11 +1287,11 @@ SpiFlashMemory End Address : H'0011B44E
               <ol>
                 <li>Use the SD card created in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1:Setup RZ/V2N EVK in RZ/V2N EVK Getting Started</a>.<br>
                 </li><br>
-                <li>Insert the microSD card to your Linux PC and copy "core-image-weston-rzv2n-evk.tar.bz2" file on partition 2.<br>
+                <li>Insert the microSD card to your Linux PC and copy "core-image-weston-rzv2n-evk.rootfs.tar.bz2" file on partition 2.<br>
 {% highlight shell %}
 sudo mkdir /mnt/sd -p
 sudo mount /dev/sdb2 /mnt/sd
-sudo cp ${YOCTO_WORK}/build/tmp/deploy/images/rzv2n-evk/core-image-weston-rzv2n-evk.tar.bz2 /mnt/sd/home/root/
+sudo cp ${YOCTO_WORK}/build/tmp/deploy/images/rzv2n-evk/core-image-weston-rzv2n-evk.rootfs.tar.bz2 /mnt/sd/root/
 sync
 sudo umount /mnt/sd
 {% endhighlight %}
@@ -1259,7 +1308,7 @@ sudo umount /mnt/sd
               <h5 id="D4-5">5. Setup U-boot setting and writing rootfs to eMMC</h5>
               Follow the procedure below to set the booting configuration of the board.<br><br>
               <div class="container">
-    <div class="row">
+                <div class="row">
                   <div class="col-12 col-md-6">
                     <ol>
                       <li>Insert the microSD card to the <b>Board</b>.
@@ -1297,7 +1346,7 @@ sudo umount /mnt/sd
                       <li>Log in as root and create partition the eMMC using the "<code>fdisk</code>" command as shown below.
 <pre><code>root@rzv2n-evk:~# <span style="color:red;">fdisk /dev/mmcblk0</span>
 
-Welcome to fdisk (util-linux 2.35.1).
+Welcome to fdisk (util-linux 2.39.3).
 Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
 Device does not contain a recognized partition table.
@@ -1336,7 +1385,7 @@ Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disklabel type: dos
-Disk identifier: 0x5ff48dd9
+Disk identifier: 0x1363dee0
 
 Device Boot Start End Sectors Size Id Type
 /dev/mmcblk0p1 2048 1026047 1024000 500M 83 Linux
@@ -1344,17 +1393,16 @@ Device Boot Start End Sectors Size Id Type
 
 Command (m for help): <span style="color:red;">w</span>
 The partition table has been altered.
-Calling ioctl() to re-read parti[ 189.289424] mmcblk0: p1 p2
-tion table.
+Calling ioctl() to re-read partition table.[ 189.289424] mmcblk0: p1 p2
 Syncing disks.
 </code></pre>
                       </li><br>
                       <li>Format the eMMC with "<code>mkfs.ext4</code>" command as shown below.
 <pre><code>root@rzv2n-evk:~# <span style="color:red;">mkfs.ext4 /dev/mmcblk0p1</span>
-mke2fs 1.45.7 (28-Jan-2021)
+mke2fs 1.47.0 (5-Feb-2023)
 Discarding device blocks: done
 Creating filesystem with 512000 1k blocks and 128016 inodes
-Filesystem UUID: 96fc4476-dd9f-49cc-8adf-78fefcd758ac
+Filesystem UUID: b27e380a-d095-4482-ad91-b1ffe4493c59
 Superblock backups stored on blocks:
 8193, 24577, 40961, 57345, 73729, 204801, 221185, 401409
 
@@ -1364,10 +1412,10 @@ Creating journal (8192 blocks): done
 Writing superblocks and filesystem accounting information: done
 
 root@rzv2n-evk:~# <span style="color:red;">mkfs.ext4 /dev/mmcblk0p2</span>
-mke2fs 1.45.7 (28-Jan-2021)
+mke2fs 1.47.0 (5-Feb-2023)
 Discarding device blocks: done
 Creating filesystem with 15411968 4k blocks and 3858432 inodes
-Filesystem UUID: 913c536d-da51-47a8-8baa-393f68ddc6aa
+Filesystem UUID: c790440c-9550-4f09-9d7e-4ab3b05077e5
 Superblock backups stored on blocks:
 32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
 4096000, 7962624, 11239424
@@ -1385,7 +1433,7 @@ Writing superblocks and filesystem accounting information: done
                         </div>                        
 <pre><code>root@rzv2n-evk:~# <span style="color:red;">mount /dev/mmcblk0p2 /mnt/</span>
 [ 357.263306] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
-root@rzv2n-evk:~# <span style="color:red;">tar xf /home/root/core-image-weston-rzv2n-evk.tar.bz2 -C /mnt/</span>
+root@rzv2n-evk:~# <span style="color:red;">tar xf /root/core-image-weston-rzv2n-evk.rootfs.tar.bz2 -C /mnt/</span>
 root@rzv2n-evk:~# <span style="color:red;">sync</span>
 root@rzv2n-evk:~# <span style="color:red;">umount /dev/mmcblk0p2</span>
 </code></pre>
@@ -1393,7 +1441,7 @@ root@rzv2n-evk:~# <span style="color:red;">umount /dev/mmcblk0p2</span>
                       <li>Shutdown the board and remove the microSD card.
                         <div class="note">
                           <span class="note-title">Note</span>
-                          To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</a>.
+                          To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a>.
                         </div>
                       </li><br>
                     </ol>
@@ -1463,7 +1511,7 @@ rzv2n-evk login:
                       <li>Shutdown the board to finish the U-boot setting.
                         <div class="note">
                           <span class="note-title">Note</span>
-                          To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK and RZ/V2N EVK</a>.
+                          To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a>.
                         </div>
                         <!-- <details class="boxdetails" open>
                           <summary>Shutdown Procedures</summary>
@@ -1479,6 +1527,491 @@ rzv2n-evk login:
           <br>
           This is the end of How to boot from eMMC on RZ/V2N EVK.<br>
         </div>
+<!-- D5. How to modify the memory map -->
+<!--        <div class="col-12">
+          <h3 id="D5">D5. For RZ/V2H, RZ/V2N: How to modify the memory map</h3>
+            This section explains how to modify the device tree file to change the memory map.<br>
+            If you also want to change the DDR size, <br>
+            performe <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D6">D6.How to change the DDR size</a> after performing the steps in this section.
+            <div class="note">
+              <span class="note-title">Note</span>
+              Modifications to the memory map are to be performed at the your own risk and should be thoroughly validated.
+            </div>
+            <div class="note">
+              <span class="note-title">Note</span>
+              This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b>.<br>
+              <b><span style="color: #2a289d;">However, do not apply the patch file for BUS settings in Step 3-5-1</span></b>.
+              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2H AI SDK Source Code</a></li>
+              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2N AI SDK Source Code</a></li>
+            </div>
+            <br>
+            <ol>
+              <li>Check the device tree file.<br>
+                If you build AI ​​SDK Source Code following the instructions in How to build, device tree file will be generated as shown below.
+                <!-- Device tree file table start -->
+<!--                <table class="mytable">
+                  <tr>
+                    <th>Device</th>
+                    <th>Path</th>
+                    <th>Device tree file</th>
+                  </tr>
+                  <tr>
+                    <td>RZ/V2H</td>
+                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2h-evk-ver1/kernel-source/arch/arm64/boot/dts/renesas</td>
+                    <td>r9a09g057h4-evk-ver1.dts</td>
+                  </tr>
+                  <tr>
+                    <td>RZ/V2N</td>
+                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2n-evk/kernel-source/arch/arm64/boot/dts/renesas</td>
+                    <td>r9a09g056n44-evk.dts</td>
+                  </tr>
+                </table>
+                <!-- Device tree file table end -->
+<!--                <br>
+                AI ​​SDK memory map is set as follows by default:<br>
+                <img src="img/v2h_v2n_memory_map.png" alt="V2H V2N memory map" width="80%" /><br>
+                <br>
+              </li>
+              <li>Modify the device tree file.<br>
+                You can define new memory regions in the reserved-memory area of the device tree,
+                and the default memory regions can be moved or reduced.<br>
+                We recommend you do not change the area up to address 0x80000000, which includes Linux CMA(global_cma) memory region,<br>
+                and each memory regions don't span DDR channels. (ch0: 0x40000000-0x23FFFFFFF, ch1: 0x240000000-0x43FFFFFFF)<br>
+                If you wish to reduce the default memory regions, follow the table below.<br>
+                <div class="note">
+                  <span class="note-title">Note</span>
+                  When modifying the device tree, please note the following:
+                  <ul>
+                    <li>Be careful not to overlap the memory regions.</li>
+                    <li>Be careful to stay within the DDR size.<br>
+                      AI ​​SDK assumes the following DDR configuration by default.<br>
+                      (The area 0x40000000-0x48000000 is Security Area and cannot be used.)
+                      <table class="mytable">
+                        <tr>
+                          <th>Device</th>
+                          <th>DDR Configuration</th>
+                        </tr>
+                        <tr>
+                          <td>RZ/V2H</td>
+                          <td>
+                            ch0: 0x40000000-0x23FFFFFFF<br>
+                            ch1: 0x240000000-0x43FFFFFFF
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>RZ/V2N</td>
+                          <td>
+                            ch0: 0x40000000-0x23FFFFFFF
+                          </td>
+                        </tr>
+                      </table>
+                    </li>
+                  </ul>
+                </div>
+                <br>
+                <!-- Memory map table start -->
+<!--                <table class="mytable">
+                  <tr>
+                    <th>Memory region name on memory map</th>
+                    <th>Memory region name on device tree</th>
+                    <th>Description</th>
+                  </tr>
+                  <tr>
+                    <td>Linux CMA</td>
+                    <td>global_cma</td>
+                    <td>We recommend that you do not change it. If you make it smaller, be sure to test it thoroughly.</td>
+                  </tr>
+                  <tr>
+                    <td>CMA for Codec</td>
+                    <td>mmp_reserved</td>
+                    <td>
+                      It depends on the resolution and number of channels used by the Codec.<br>
+                      On the condition that mmp_reserved is not used for anything other than Codec Library and that responsibility is taken by the party making the changes, mmp_reserved can be reduced to 256MB.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CMA for ISP(1)</td>
+                    <td>isp_reserved</td>
+                    <td>
+                      It depends on the resolution and number of channels used by the ISP. <br>
+                      isp_reserved assumes 4K, 30fps, and 2 channels. Reducing isp_reserved will allow for proportional reduction.<br>
+                      For example, if you only use 4K, 30fps, and 1 channel, you can reduce half.
+                    </td>
+                  </tr>
+                  <tr>                  
+                    <td>CMA for ISP(2)</td>
+                    <td>cru_func</td>
+                    <td>Cannot be changed when using ISP.</td>
+                  </tr>
+                  <tr>
+                    <td>OpenCVA</td>
+                    <td>opencva_reserved</td>
+                    <td>Cannot be changed when using OpenCVA.</td>
+                  </tr>
+                  <tr>
+                    <td>DRP-AI/DRP</td>
+                    <td>shared_drp_reserved</td>
+                    <td>Cannot be changed when using OpenCVA, Codec and DRP-AI.</td>
+                  </tr>
+                  <tr>
+                    <td>DRP for Codec</td>
+                    <td>drp_codec</td>
+                    <td>drp_codec cannot be changed when using Codec.</td>
+                  </tr>
+                  <tr>
+                    <td>udmabuf</td>
+                    <td>image_buf0</td>
+                    <td>image_buf0 is for backwards compatibility, you can remove it.</td>
+                  </tr>
+                  <tr>
+                    <td>DRP-AI</td>
+                    <td>drp_reserved</td>
+                    <td>A quantity that can be loaded into the AI ​​model is required.</td>
+                  </tr>
+                </table>
+                <!-- Memory map table end -->
+<!--                <br>
+                <!-- Example of changes start -->
+<!--                <div class="box1">
+                  <u><b>Example:</b></u><br>
+                  <ul>
+                    <li>Move the DRP-AI (drp_reserved) memory region from 0x240000000 to 0xD0000000 and reduce the size from 512MB to 256MB on RZ/V2H.</li>
+<pre><code>drp_reserved: DRP-AI@<span style="color:red;">D0000000</span> {
+  reusable;
+  reg = <<span style="color:red;">0x0 0xD0000000</span> 0x0 <span style="color:red;">0x10000000</span>>;
+};
+</code></pre>
+                    <li>The patch file and bbappend file to make the above changes is below.<br>
+                        Obtain the patch file and bbappend file from the link below, Copy the them to the specified folder listed in the Path column.<br>
+                        These files are for RZ/V2H AI SDK v5.20 only. Patch files need to be modified to suit your environment.</li>
+                      <table class="mytable">
+                        <tr>
+                          <th>File</th>
+                          <th>Path</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d005-device-tree-for-RZV2H-AI_SDK-v5.20.patch">d005-device-tree-for-RZV2H-AI_SDK-v5.20.patch</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/linux-renesas/</code>
+                          </td>
+                          <td>
+                            Patch file for modifying device tree
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d005-linux-renesas_5.10.bbappend">d005-linux-renesas_5.10.bbappend</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/</code>
+                          </td>
+                          <td>
+                            bbappend file for modifying device tree
+                          </td>
+                        </tr>
+                      </table>
+                    <li>Copy the patch file and bb file.</li>
+{% highlight shell%}
+cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/linux-renesas/
+sudo cp <Path to the file>/d005-device-tree-for-RZV2H-AI_SDK-v5.20.patch ./
+cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/
+sudo mv linux-renesas_5.10.bbappend linux-renesas_5.10.bbappend_backup
+sudo cp <Path to the file>/d005-linux-renesas_5.10.bbappend ./
+{% endhighlight %}
+                  </ul>  
+                </div>
+                <!-- Example of changes end -->
+<!--                <br>
+              </li>
+              <li>Build the Linux kernel files.<br>
+                After you create a patch to modify the device tree, run the following command to build the Linux kernel files.<br>
+                <br>
+                <ul>
+                  <li>For RZ/V2H<br>
+{% highlight shell%}
+cd ${YOCTO_WORK}/build
+MACHINE=rzv2h-evk-ver1 bitbake core-image-weston -c cleanall
+MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c compile -f
+MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c deploy
+MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
+{% endhighlight %}  
+                  </li>
+                  <li>For RZ/V2N<br>
+{% highlight shell%}
+cd ${YOCTO_WORK}/build
+MACHINE=rzv2n-evk bitbake core-image-weston -c cleanall
+MACHINE=rzv2n-evk bitbake linux-renesas -c compile -f
+MACHINE=rzv2n-evk bitbake linux-renesas -c deploy
+MACHINE=rzv2n-evk bitbake core-image-weston
+{% endhighlight %}
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <br>
+          This is the end of How to modify the memory map.<br>
+          <br>
+          <br>
+        </div>
+<!-- D6. How to change the DDR size -->
+<!--        <div class="col-12">
+          <h3 id="D6">D6. For RZ/V2H, RZ/V2N: How to change the DDR size</h3>
+            This section explains how to change the DDR size.<br>
+            If you also want to change the memory map to match the changed DDR size, <br>
+            perform <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D5" target="_blank" rel="noopener noreferrer">D5.How to modify the memory map</a> first, and then perform this section.
+            <div class="note">
+              <span class="note-title">Note</span>
+              Any changes to the DDR size must be made at the customer's own risk and should be thoroughly validated.
+            </div>
+            <div class="note">
+              <span class="note-title">Note</span>
+              This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b>.<br>
+              <b><span style="color: #2a289d;">However, do not apply the patch file for BUS settings in Step 3-5-1</span></b>.
+              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2H AI SDK Source Code</a></li>
+              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2N AI SDK Source Code</a></li>
+            </div>
+            <ol>
+              <li>Change the DDR settings.<br>
+                For DDR settings, please refer to DDRTOP Application Note to determine the setting values and modify Trusted Firmware-A settings.<br>
+                Apply the values ​​generated by the <b><code>DDR parameter generation tool</code></b> included in the Application Note to the file listed in the table below.<br>
+                <!-- DDRTOP Parametar table start -->
+<!--                <table class="mytable">
+                  <tr>
+                    <th>Device</th>
+                    <th>Path</th>
+                    <th>file</th>
+                    <th>Application Note</th>
+                  </tr>
+                  <tr>
+                    <td>RZ/V2H</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk_ver1-poky-linux/trusted-firmware-a/<br>v2.7+git-r0/git/plat/renesas/rz/soc/v2h/drivers/ddr</td>
+                    <td>ddr_param_def_lpddr4.c</td>
+                    <td><a href="https://www.renesas.com/us/en/document/apn/nda-required-rzv2h-group-ddrtop-application-note" target="_blank" rel="noopener noreferrer">RZ/V2H DDRTOP Application Note</a></td>
+                  </tr>
+                  <tr>
+                    <td>RZ/V2N</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2n_evk-poky-linux/trusted-firmware-a/<br>2.10+git/git/plat/renesas/rz/soc/v2n/drivers/ddr</td>
+                    <td>ddr_param_def_lpddr4.c</td>
+                    <td><a href="https://www.renesas.com/us/en/document/apn/nda-required-rzv2n-group-ddrtop-application-note" target="_blank" rel="noopener noreferrer">RZ/V2N DDRTOP Application Note</a></td>
+                  </tr>
+                </table>
+                <!-- DDRTOP Parametar table end -->
+<!--                <br>
+              </li>
+              <li>Change the DDR size<br>
+                If you want to change the DDR size, you need to change the definitions in the following file:
+                <!-- DDR Size table start -->
+<!--                <table class="mytable">
+                  <tr>
+                    <th>Device</th>
+                    <th>Path</th>
+                    <th>file</th>
+                  </tr>
+                  <tr>
+                    <td rowspan="2">RZ/V2H</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk_ver1-poky-linux/u-boot/1_v2021.10+gitAUTOINC+31d53b8f6f-r0/git/include/configs</td>
+                    <td>rzv2h-dev.h</td>
+                  </tr>
+                  <tr>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk_ver1-poky-linux/trusted-firmware-a/v2.7+git-r0/git/plat/renesas/rz/soc/v2h/include</td>
+                    <td>rz_soc_def.h</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="2">RZ/V2N</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2n_evk-poky-linux/u-boot/v2021.10+git/git/include/configs</td>
+                    <td>rzv2n-evk.h</td>
+                  </tr>
+                  <tr>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2n_evk-poky-linux/trusted-firmware-a/2.10+git/git/plat/renesas/rz/soc/v2n/include</td>
+                    <td>rz_soc_def.h</td>
+                  </tr>
+                </table>
+                <!-- DDR Size table end -->
+<!--                <br>
+              </li>
+              <li>Modify the device tree file.<br>
+                If you change the DDR size, you must change the definition of the device tree.
+                <!-- Device tree file table start -->
+<!--                <table class="mytable">
+                  <tr>
+                    <th>Device</th>
+                    <th>Path</th>
+                    <th>Device tree file</th>
+                  </tr>
+                  <tr>
+                    <td>RZ/V2H</td>
+                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2h-evk-ver1/kernel-source/arch/arm64/boot/dts/renesas</td>
+                    <td>r9a09g057h4-evk-ver1.dts</td>
+                  </tr>
+                  <tr>
+                    <td>RZ/V2N</td>
+                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2n-evk/kernel-source/arch/arm64/boot/dts/renesas</td>
+                    <td>r9a09g056n44-evk.dts</td>
+                  </tr>
+                </table>
+                <!-- Device tree file table end -->
+<!--                <br>
+                <!-- Example of changes start -->
+<!--                <div class="box1">
+                  <u><b>Example:</b></u><br>
+                  <ul>
+                    <li>If you use 4GB x 2 pieces totaling 8GB of DDR on RZ/V2H, change it as follows.</li><br>
+                    <b>rzv2h-dev.h</b><br>
+<pre><code>#define CONFIG_SYS_SDRAM_SIZE  (<span style="color:red;">0x100000000u</span> - DRAM_RSV_SIZE) //total 4GB
+</code></pre>
+                    <b>rz_soc_def.h</b><br>
+<pre><code>#define RZV2H_DDR0_SIZE   <span style="color:red;">ULL(0x100000000)</span>
+#define RZV2H_DDR1_SIZE   <span style="color:red;">ULL(0x100000000)</span>
+</code></pre>
+                    <b>r9a09g057h4-evk-ver1.dts</b><br>
+<pre><code>memory@48000000 {
+  device_type = "memory";
+  /* first 128MB is reserved for secure area. */
+  reg = <0x0 0x48000000 <span style="color:red;">0x0</span> 0xF8000000>;
+};
+memory@240000000 {
+  device_type = "memory";
+  reg = <0x2 0x40000000 <span style="color:red;">0x1</span> 0x00000000>;
+};
+</code></pre>
+                    <br>
+                    <li>The patch file and bb file to make the above changes is below.<br>
+                        Obtain the patch file and bbappend file from the link below, Copy the them to the specified folder listed in the Path column.<br>
+                        These files are for RZ/V2H AI SDK v5.20 only. Patch files need to be modified to suit your environment.</li>
+                      <table class="mytable">
+                        <tr>
+                          <th>File</th>
+                          <th>Path</th>
+                          <th>Description</th>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-u-boot-for-RZV2H-AI_SDK-v5.20.patch">d006-u-boot-for-RZV2H-AI_SDK-v5.20.patch</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/u-boot/files/</code>
+                          </td>
+                          <td>
+                            Patch file for modifying u-boot
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-u-boot_2021.10.bbappend">d006-u-boot_2021.10.bbappend</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/u-boot/</code>
+                          </td>
+                          <td>
+                            bbappend file for modifying u-boot
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-tfa-for-RZV2H-AI_SDK-v5.20.patch">d006-tfa-for-RZV2H-AI_SDK-v5.20.patch</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/trusted-firmware-a/files/</code>
+                          </td>
+                          <td>
+                            Patch file file for modifying TF-A
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-trusted-firmware-a.inc">d006-trusted-firmware-a.inc</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/trusted-firmware-a/</code>
+                          </td>
+                          <td>
+                            inc file for modifying TF-A
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-device-tree-for-RZV2H-AI_SDK-v5.20.patch">d006-device-tree-for-RZV2H-AI_SDK-v5.20.patch</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/linux-renesas/</code>
+                          </td>
+                          <td>
+                            Patch file for modifying device tree
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-linux-renesas_5.10.bbappend">d006-linux-renesas_5.10.bbappend</a>
+                          </td>
+                          <td>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/</code>
+                          </td>
+                          <td>
+                            bbappend file for modifying device tree
+                          </td>
+                        </tr>
+                      </table>
+                      <br>
+                    <li>Copy the patch file and bbappend file.</li>
+{% highlight shell%}
+# Copy patch file and bbappend file for u-boot
+cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/u-boot/
+sudo mkdir ./files
+sudo cp <Path to the file>/d006-u-boot-for-RZV2H-AI_SDK-v5.20.patch ./files/
+sudo mv u-boot_2021.10.bbappend u-boot_2021.10.bbappend_backup
+sudo cp <Path to the file>/d006-u-boot_2021.10.bbappend ./u-boot_2021.10.bbappend
+# Copy patch file and inc file for TF-A
+cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/trusted-firmware-a/
+sudo mkdir ./files
+sudo cp <Path to the file>/d006-tfa-for-RZV2H-AI_SDK-v5.20.patch ./files/
+sudo mv trusted-firmware-a.inc trusted-firmware-a.inc_backup
+sudo cp <Path to the file>/d006-trusted-firmware-a.inc ./trusted-firmware-a.inc
+# Copy patch file and bbappend file for device tree
+cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/
+sudo cp <Path to the file>/d006-device-tree-for-RZV2H-AI_SDK-v5.20.patch ./linux-renesas/
+sudo mv linux-renesas_5.10.bbappend linux-renesas_5.10.bbappend_backup
+sudo cp <Path to the file>/d006-linux-renesas_5.10.bbappend ./linux-renesas_5.10.bbappend
+{% endhighlight %}
+                  </ul>
+                </div>
+                <!-- Example of changes end -->
+<!--                <br>
+              </li>
+              <li>Build the trusted-firmware-a and u-boot.<br>
+                After change the number and size of DDR, run the following command to build the trusted-firmware-a and u-boot.<br>
+                <br>
+                <ul>
+                  <li>For RZ/V2H<br>
+{% highlight shell%}
+cd ${YOCTO_WORK}/build
+MACHINE=rzv2h-evk-ver1 bitbake core-image-weston -c cleanall
+MACHINE=rzv2h-evk-ver1 bitbake trusted-firmware-a -c compile -f
+MACHINE=rzv2h-evk-ver1 bitbake u-boot -c compile -f
+MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c compile -f
+MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c deploy
+MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
+{% endhighlight %}  
+                  </li>
+                  <li>For RZ/V2N<br>
+{% highlight shell%}
+cd ${YOCTO_WORK}/build
+MACHINE=rzv2n-evk bitbake core-image-weston -c cleanall
+MACHINE=rzv2n-evk bitbake trusted-firmware-a -c compile -f
+MACHINE=rzv2n-evk bitbake u-boot -c compile -f
+MACHINE=rzv2n-evk bitbake linux-renesas -c compile -f
+MACHINE=rzv2n-evk bitbake linux-renesas -c deploy
+MACHINE=rzv2n-evk bitbake core-image-weston
+{% endhighlight %}
+                  </li>
+                </ul>
+              </li>
+            </ol>
+            <br>
+          This is the end of How to change the DDR size.<br>
+        </div> -->
     </div>
 </div>
 <!-- Footer -->
