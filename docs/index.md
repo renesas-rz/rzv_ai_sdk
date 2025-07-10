@@ -77,6 +77,27 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2025.7.11
+            </h6>
+            <ul>
+                <li>
+                    <b>Developer's Guide</b> is updated.
+                    <ul>
+                        <li>
+                            Added how to modify the memory map for RZ/V2H and RZ/V2N.<br>
+                        </li>
+                        <li>
+                            Added how to change the DDR size for RZ/V2H and RZ/V2N.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}"><b>Developer's Guide</b></a>.
+            <br>
+            <br>
+        </div>
+        <div class="col-12">
+            <h6 align="right" >
                 2025.6.30
             </h6>
             <ul>

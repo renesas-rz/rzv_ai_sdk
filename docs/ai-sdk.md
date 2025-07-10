@@ -657,7 +657,8 @@ layout: default
             <h4 class="u_line" id="v2h-mem">
                 Memory Map
             </h4>
-            The memory map of RZ/V2H AI SDK is as follows.
+            The memory map of RZ/V2H AI SDK is as follows.<br>
+            If you want to modify the memory map, please refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D5" target="_blank" rel="noopener noreferrer">Developer's Guide</a>.
             <br>
             <br>
             <a href="img/v2h_mem.png" data-lightbox="group">
@@ -825,7 +826,8 @@ layout: default
             <h4 class="u_line" id="v2n-mem">
                 Memory Map
             </h4>
-            The memory map of RZ/V2N AI SDK is as follows.
+            The memory map of RZ/V2N AI SDK is as follows.<br>
+            If you want to modify the memory map, please refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D5" target="_blank" rel="noopener noreferrer">Developer's Guide</a>.
             <br>
             <br>
             <a href="img/v2n_mem.png" data-lightbox="group">

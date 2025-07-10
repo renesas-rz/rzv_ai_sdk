@@ -17,6 +17,30 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.7.11
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Developer's Guide is updated.</h5>
+                    <ul>
+                        <li> 
+                            Added how to modify the memory map for RZ/V2H and RZ/V2N.
+                        </li>
+                        <li> 
+                            Added how to change the DDR size for RZ/V2H and RZ/V2N.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications v6.00 & RZ/V2N AI SDK v6.00
                 </h3>
                 <h6 align="right" >
