@@ -23,7 +23,7 @@ How to Re-train AI model
 <h5>
   This page explains how to re-train the AI model of AI Applications using <b>RZ/V AI Transfer Learning Tool</b>.
   <br><br>
-  Supported version: <b>RZ/V AI Applications v4.00</b><br>
+  Supported version: <b>RZ/V AI Applications v6.00</b><br>
 </h5>
 
 <br>
@@ -98,14 +98,14 @@ How to Re-train AI model
         </tr>
         <tr>
           <th>RZ/V2L</th>
-          <th>RZ/V2H</th>
+          <th>RZ/V2H and RZ/V2N</th>
         </tr>
         <tr>
           <td>01_Head_count</td>
           <td>01_Head_count_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Head Count(140MB)</td>
+          <td>01 Head Count(141MB)</td>
           <td>&#10004;</td>
           <td>&#10004;</td>
         </tr>
@@ -114,7 +114,7 @@ How to Re-train AI model
           <td>02_Line_crossing_object_counting_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Line Cross Object Counting(141MB)</td>
+          <td>02 Line Cross Object Counting(141MB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -122,8 +122,25 @@ How to Re-train AI model
           <td>02_Line_crossing_object_counting_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Line Cross Object Counting(141MB)</td>
+          <td>02 Line Cross Object Counting(141MB)</td>
           <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="2">03_Elderly_fall_detection</td>
+          <td>03_Elderly_fall_detection_tinyyolov2</td>
+          <td>TinyYOLOv2</td>
+          <td>Object detection</td>
+          <td>03 Elderly Fall Detection TinyYolov2(18.6GB)</td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>03_Elderly_fall_detection_HRNet</td>
+          <td>HRNet</td>
+          <td>Keypoint detection</td>
+          <td>03 COCO 16 Keyopoint</td>
+          <td>&#10004;</td>
           <td>&#10004;</td>
         </tr>
         <tr>
@@ -131,16 +148,16 @@ How to Re-train AI model
           <td>04_Safety_helmet_vest_detection_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Safety Helmet Vest Detection(3.4GB)</td>
+          <td>04 Safety Helmet Vest Detection(3.42GB)</td>
           <td>&#10004;</td>
-          <td>-</td>
+          <td>&#10004;</td>
         </tr>
         <tr>
           <td>07_Animal_detection</td>
           <td>07_Animal_detection_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Animal Detection(1.83GB)</td>
+          <td>07 Animal Detection(1.83GB)</td>
           <td>&#10004;</td>
           <td>&#10004;</td>
         </tr>
@@ -149,7 +166,7 @@ How to Re-train AI model
           <td>09_Human_gaze_detection_resnet18</td>
           <td>ResNet18</td>
           <td>Classification</td>
-          <td>Human gaze detection resnet18(17GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
+          <td>09 Human gaze detection resnet18(17GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
           <td>&#10004;</td>
           <td>&#10004;</td>
         </tr>
@@ -157,7 +174,32 @@ How to Re-train AI model
           <td>09_Human_gaze_detection_tinyyolov2</td>
           <td>TinyYOLOv2</td>
           <td>Object detection</td>
-          <td>Human gaze detection(4.43GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
+          <td>09 Human gaze detection(4.43GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
+          <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="3">10_Driver_monitoring_system</td>
+          <td>10_Driver_monitoring_system_tinyyolov2</td>
+          <td>TinyYOLOv2</td>
+          <td>Object detection</td>
+          <td>10 Driver Monitoring System TinyYolov2(4.43GB)</td>
+          <td>&#10004;</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>10_Driver_monitoring_system_yolov3</td>
+          <td>HRNet</td>
+          <td>Object detection</td>
+          <td>10 Driver Monitoring System Yolov3(1.80GB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>10_Driver_monitoring_system_Deeppose</td>
+          <td>DeepPose</td>
+          <td>Keypoint detection</td>
+          <td>10 Driver monitoring system Deeppose(723MB)</td>
           <td>&#10004;</td>
           <td>&#10004;</td>
         </tr>
@@ -166,7 +208,7 @@ How to Re-train AI model
           <td>11_Head_count_topview_yolov3</td>
           <td>YOLOV3</td>
           <td>Object detection</td>
-          <td>Head Count Topview(1.8GB)</td>
+          <td>11 Head Count Topview(1.8GB)</td>
           <td>&#10004;</td>
           <td>&#10004;</td>
         </tr>
@@ -175,7 +217,7 @@ How to Re-train AI model
           <td>12_Hand_gesture_recognition_v2_resnet_18</td>
           <td>ResNet18</td>
           <td>Classification</td>
-          <td>Hand Gesture Recognition Resnet(21.9GB)</td>
+          <td>12 Hand Gesture Recognition Resnet(21.9GB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -183,7 +225,7 @@ How to Re-train AI model
           <td>12_Hand_gesture_recognition_v2_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Hand Gesture Recognition Tiny Yolo(21.9GB)</td>
+          <td>12 Hand Gesture Recognition Tiny Yolo(1.2GB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -191,7 +233,7 @@ How to Re-train AI model
           <td>12_Hand_gesture_recognition_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Hand gesture recognitionyolov3(160MB)</td>
+          <td>12 Hand gesture recognitionyolov3(161MB)</td>
           <td>-</td>
           <td>&#10004;</td>
         </tr>
@@ -200,16 +242,34 @@ How to Re-train AI model
           <td>13_Car_ahead_departure_detection_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Coco</td>
+          <td>COCO</td>
           <td>&#10004;</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>14_Multi_camera_vehicle_detection</td>
+          <td>14_Multi_camera_vehicle_detection_yoloxl</td>
+          <td>YOLOX-l</td>
+          <td>Object detection</td>
+          <td>14 Multi Camera Vehicle Detection(249MB)</td>
           <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>15_Road_lane_segmentation</td>
+          <td>15_Road_lane_segmentation_unet</td>
+          <td>Unet</td>
+          <td>Segmentation</td>
+          <td>15 Road Lane Segmentation(68MB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
         </tr>
         <tr>
           <td rowspan="2">Q01_footfall_counter</td>
           <td>Q01_footfall_counter_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Coco</td>
+          <td>COCO</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -217,7 +277,7 @@ How to Re-train AI model
           <td>Q01_footfall_counter_yolov3</td>
           <td>YOLOV3</td>
           <td>Object detection</td>
-          <td>Coco</td>
+          <td>COCO</td>
           <td>-</td>
           <td>&#10004;</td>
         </tr>
@@ -226,7 +286,7 @@ How to Re-train AI model
           <td>Q03_smart_parking</td>
           <td>Custom model</td>
           <td>Classification</td>
-          <td>Smart Parking(414MB)</td>
+          <td>Q03 Smart Parking(421MB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -235,16 +295,16 @@ How to Re-train AI model
           <td>Q04_fish_classification_resnet34</td>
           <td>ResNet34</td>
           <td>Classification</td>
-          <td>Fish Classification(1.57GB)</td>
+          <td>Q04 Fish Classification(1.58GB)</td>
           <td>&#10004;</td>
-          <td>-</td>
+          <td>&#10004;</td>
         </tr>
         <tr>
           <td rowspan="2">Q06_expiry_date_detection</td>
           <td>Q06_expiry_date_detection_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Expiry Date Detection(1.32GB)</td>
+          <td>Q06 Expiry Date Detection(1.32GB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -261,16 +321,16 @@ How to Re-train AI model
           <td>Q07_plant_disease_classification_resnet34</td>
           <td>ResNet34</td>
           <td>Classification</td>
-          <td>Plant Disease(1.34GB)</td>
+          <td>Q07 Plant Disease(1.34GB)</td>
           <td>&#10004;</td>
-          <td>-</td>
+          <td>&#10004;</td>
         </tr>
         <tr>
           <td rowspan="6">Q08_object_counter</td>
           <td>Q08_object_counter_animal_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Object Counter Animal(6.97GB)</td>
+          <td>Q08 Object Counter Animal(6.97GB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -278,7 +338,7 @@ How to Re-train AI model
           <td>Q08_object_counter_animal_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Object Counter Animal(6.97GB)</td>
+          <td>Q08 Object Counter Animal(6.97GB)</td>
           <td>-</td>
           <td>&#10004;</td>
         </tr>
@@ -286,7 +346,7 @@ How to Re-train AI model
           <td>Q08_object_counter_coco_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Coco</td>
+          <td>COCO</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -294,7 +354,7 @@ How to Re-train AI model
           <td>Q08_object_counter_coco_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Coco</td>
+          <td>COCO</td>
           <td>-</td>
           <td>&#10004;</td>
         </tr>
@@ -302,7 +362,7 @@ How to Re-train AI model
           <td>Q08_object_counter_vehicle_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Object Counter Vehicle(1.5GB)</td>
+          <td>Q08 Object Counter Vehicle(1.51GB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -310,16 +370,16 @@ How to Re-train AI model
           <td>Q08_object_counter_vehicle_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Object Counter Vehicle(1.5GB)</td>
+          <td>Q08 Object Counter Vehicle(1.51GB)</td>
           <td>-</td>
           <td>&#10004;</td>
         </tr>
         <tr>
           <td>Q09_crack_segmentation</td>
           <td>Q09_crack_segmentation_unet</td>
-          <td>UNet</td>
+          <td>Unet</td>
           <td>Segmentation</td>
-          <td>Crack Segmentation(0.99GB)</td>
+          <td>Q09 Crack Segmentation(0.99GB)</td>
           <td>&#10004;</td>
           <td>&#10004;</td>
         </tr>
@@ -328,7 +388,7 @@ How to Re-train AI model
           <td>Q10_suspicious_person_detection_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Suspicious Person Detection(1.57GB)</td>
+          <td>Q10 Suspicious Person Detection(1.57GB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -336,7 +396,7 @@ How to Re-train AI model
           <td>Q10_suspicious_person_detection_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Suspicious Person Detection(1.57GB)</td>
+          <td>Q10 Suspicious Person Detection(1.57GB)</td>
           <td>-</td>
           <td>&#10004;</td>
         </tr>
@@ -345,7 +405,7 @@ How to Re-train AI model
           <td>Q11_fish_detection_tinyyolov3</td>
           <td>TinyYOLOv3</td>
           <td>Object detection</td>
-          <td>Fish Detection(700MB)</td>
+          <td>Q11 Fish Detection(708MB)</td>
           <td>&#10004;</td>
           <td>-</td>
         </tr>
@@ -353,7 +413,24 @@ How to Re-train AI model
           <td>Q11_fish_detection_yolov3</td>
           <td>YOLOv3</td>
           <td>Object detection</td>
-          <td>Fish Detection(700MB)</td>
+          <td>Q11 Fish Detection(708MB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Q12_yoga_pose_estimation</td>
+          <td>Q12_yoga_pose_estimation_custom_classifier</td>
+          <td>Custom model</td>
+          <td>Classification</td>
+          <td>Q12 Yoga Pose Estimation Dataset(15MB)</td>
+          <td>-</td>
+          <td>&#10004;</td>
+        </tr>
+        <tr>
+          <td>Q12_yoga_pose_estimation_HRNet</td>
+          <td>HRNet</td>
+          <td>Keypoint detection</td>
+          <td>Q12 COCO 17 Keypoint</td>
           <td>-</td>
           <td>&#10004;</td>
         </tr>
@@ -373,13 +450,14 @@ How to Re-train AI model
       <h4 id="unsupport">Unsupported Functions of AI Applications</h4>
       The following Functions of AI Applications are NOT supported.<br>
       <ul>
-        <li>03_Elderly_fall_detection</li>
         <li>05_Age_gender_detection</li>
         <li>06_Face_recognition_spoof_detection</li>
         <li>08_Hand_gesture_recognition</li>
-        <li>10_Driver_monitoring_system</li>
         <li>Q02_face_authentication</li>
         <li>Q05_suspicious_activity</li>
+        <li>C01_river_area_monitoring</li>
+        <li>C02_depth_cam_human_body_estimation</li>
+        <li>C03_surface_anomaly_detection</li>
       </ul>
     </div>
   </div>
@@ -435,7 +513,7 @@ To start using RZ/V AI Transfer Learning Tool, PC that can display the desktop w
         </tr>
         <tr>
           <td>Docker</td>
-          <td>27.0.3</td>
+          <td>28.1.1</td>
         </tr>
       </table>
       Other software not listed above will be installed automatically when you install the tool.
@@ -450,6 +528,7 @@ This chapter describes the installation procedure when using <b>RZ/V AI Transfer
   <div class="note">
     <span class="note-title">Note</span>
     If you use <b>AI Navigator of e<sup>2</sup> studio</b>, the installation procedure is different, so please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}">AI Navigator Quick Start Guide</a>.
+    In AI Navigator v2.0.0 (latest), RZ/V AI Transfer Learning Tool v4.00 will be automatically installed, so please see the documentation for <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.20/howto_retrain.html">previous version</a>.
   </div>
 
 <div class="container">
@@ -457,38 +536,69 @@ This chapter describes the installation procedure when using <b>RZ/V AI Transfer
     <div class="col-12">
       <ol>
         <li>
-          If you have not yet obtained <b>RZ/V AI Transfer Learning Tool v4.00</b>, click on the link below to download it.
+          If you have not yet obtained <b>RZ/V AI Transfer Learning Tool v6.00</b>, click on the link below to download it.
           <br><br>
-          <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv-ai-transfer-learning-tool-v400" role="button">Download Link</a>
+          <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv-ai-transfer-learning-tool-v600" role="button">Download Link</a>
           <br><br>
         </li>
         <li>
           Put the downloaded tar file into a Linux PC and extract it using the following command in a terminal.<br>
 {% highlight shell %}
-tar -xzvf RTK0EF0178Z04000SJ_rzv-ai-tlt.tar.gz
+tar -xzvf RTK0EF0178Z06000SJ_rzv-ai-tlt.tar.gz
 {% endhighlight %}
           <br>
           Make sure the following folders and files are generated after extracting the tar file.
           <table id="demodirs" class="mytable">
             <caption>Tool File Structure</caption>
             <tr>
-              <th>Folder or File Name</th>
+              <th colspan="3">Folder or File Name</th>
               <th>Description</th>
             </tr>
             <tr>
-              <td rowspan="1">rzv_ai_tlt_v4.00/</td>
-              <td>Working directory.</td>
+              <td colspan="2">docs/</td>
+              <td>r21ut0254ej0600-rzv-ai-tlt.pdf</td>
+              <td>User's Manual.</td>
             </tr>
             <tr>
-              <td rowspan="1">docs/</td>
-              <td>User's Manual.</td>
+              <td rowspan="7">rzv_ai_tlt_v6.00/</td>
+              <td rowspan="6">tlt_backend/</td>
+              <td>install_docker.sh</td>
+              <td>Script to install TLT.</td>
+            </tr>
+            <tr>
+              <td>launch_tlt_service.sh</td>
+              <td>Script to setup the TLT docker container.</td>
+            </tr>
+            <tr>
+              <td>requirements.txt</td>
+              <td>Package list for installing TLT.</td>
+            </tr>
+            <tr>
+              <td>uninstall_tlt.sh</td>
+              <td>Script to uninstall TLT.</td>
+            </tr>
+            <tr>
+              <td>assets/</td>
+              <td>TLT projects directory.<br>
+                  Note: This directory is created by installation procedure.<br>
+              </td>
+            </tr>
+            <tr>
+              <td>datasets/</td>
+              <td>Datasets directory<br>
+                  Note: This directory is created by installation procedure.<br>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">start_rzv_ai_tlt_gui.sh</td>
+              <td>Launch the TLT GUI.</td>
             </tr>
           </table>
         </li>
         <li>
           Change to <code>tlt_backend</code> directory and install the tool.<br>
 {% highlight shell %}
-cd RTK0EF0178Z04000SJ_rzv-ai-tlt/rzv_ai_tlt_v4.00/tlt_backend
+cd RTK0EF0178Z06000SJ_rzv-ai-tlt/rzv_ai_tlt_v6.00/tlt_backend
 ./install_docker.sh
 {% endhighlight %}
           <br>
@@ -501,7 +611,7 @@ cd RTK0EF0178Z04000SJ_rzv-ai-tlt/rzv_ai_tlt_v4.00/tlt_backend
           <br>
         </li>
         <li>
-          Change to <code>rzv_ai_tlt_v4.00</code> directory and launch the tool.<br>
+          Change to <code>rzv_ai_tlt_v6.00</code> directory and launch the tool.<br>
 {% highlight shell %}
 cd ../
 ./start_rzv_ai_tlt_gui.sh
@@ -515,11 +625,11 @@ cd ../
           If the popup is "Docker container is up and running", click "OK" to start.<br>
           <div class="note">
             <span class="note-title">Note</span>
-            If the docker container is not running, close the GUI and start the docker container with the following command.<br>
-{% highlight shell %}
-sudo docker restart tltdoc
-{% endhighlight %}
-            Once the container is started, please start again from step 4.
+            If the docker container is not running, you can restart it by clicking the RESTART button in the upper right corner of the GUI.<br>
+            <a href="img/tlt_restart.png" data-lightbox="group">
+              <img src="img/tlt_restart.png" alt="RZ/V TLT Project Details" style="max-width: 900px">
+            </a>
+            <br>
           </div>
         </li>
       </ol>
@@ -546,8 +656,8 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
           <br>
         </li>
         <li>After selecting <b>UPLOAD</b>, upload the YAML file in <b>UPLAOD YAML</b>.<br>
-          The YAML files for existing projects are located at <code>rzv_ai_tlt_v4.00/tlt_backend/assets/(any YAML file of TLT project)/config.yaml</code>.<br>
-          This time, we uploaded <code>rzv_ai_tlt_v4.00/tlt_backend/assets/Q03_smart_parking/config.yaml</code>.<br>
+          The YAML files for existing projects are located at <code>rzv_ai_tlt_v6.00/tlt_backend/assets/(any YAML file of TLT project)/config.yaml</code>.<br>
+          This time, we uploaded <code>rzv_ai_tlt_v6.00/tlt_backend/assets/Q03_smart_parking/config.yaml</code>.<br>
           <br>
           <a href="img/tlt_project_uplaod.png" data-lightbox="group">
             <img src="img/tlt_project_uplaod.png" alt="RZ/V TLT Project Upload" style="max-width: 600px">
@@ -606,7 +716,8 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
           <br>
         </li>
         <li>Click <b>Download Dataset</b> and Select a dataset from the list.<br>
-          This time, we use <code>Smart Parking</code>.<br>
+          The list of downloadable datasets changes depending on the loaded project.<br>
+          This time, we use <code>Q03 Smart Parking</code>.<br>
           <br>
           <a href="img/tlt_dataset_list.png" data-lightbox="group">
             <img src="img/tlt_dataset_list.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px">
@@ -614,7 +725,7 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
           <br>
           <br>
         </li>
-        <li>Click <b>the Download button</b> to download the dataset.<br>
+        <li>Click <b>Download button</b> to download the dataset.<br>
           (After it reaches 100%, it will take some time to unpack the downloaded file, depending on the size of the dataset.)<br>
           <br>
           <a href="img/tlt_dataset_download.png" data-lightbox="group">
@@ -624,8 +735,8 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
           <br>
         </li>
         <li>Click <b>SELECT DIRECTORY</b> to select the dataset directory, and click <b>NEXT</b>.<br>
-          The downloaded dataset is located at <code>rzv_ai_tlt_v4.00/tlt_backend/datasets/</code>.<br>
-          This time, we use <code>rzv_ai_tlt_v4.00/tlt_backend/datasets/Q03_smart_parking/</code>.<br>
+          The downloaded dataset is located at <code>rzv_ai_tlt_v6.00/tlt_backend/datasets/</code>.<br>
+          This time, we use <code>rzv_ai_tlt_v6.00/tlt_backend/datasets/Q03_smart_parking/</code>.<br>
           <br>
           <a href="img/tlt_dataset_set.pngg" data-lightbox="group">
             <img src="img/tlt_dataset_set.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px">
@@ -653,6 +764,7 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
         </li>
         <li>After confirming the settings, click <b>SUBMIT SELECTION</b>.<br>
           If the load is successful, the dataset configuration will be displayed.<br>
+          You can save the data set settings by clicking the SAVE CONFIGURATION button.<br>
           <br>
           <a href="img/tlt_dataset_finish.png" data-lightbox="group">
             <img src="img/tlt_dataset_finish.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px">
@@ -698,7 +810,7 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
           <br>
           <br>
           The trained model is stored in the following directory.<br>
-          <code>rzv_ai_tlt_v4.00/tlt_backend/assets/(Your TLT prject name)</code>.<br>
+          <code>rzv_ai_tlt_v6.00/tlt_backend/assets/(Your TLT prject name)</code>.<br>
         </li>
       </ol>
     </div>
@@ -720,8 +832,8 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
           <br>
           <br>
         </li>
-        <li>Click <b>UPLOAD IMAGE</b> to select a test image.<br>
-          This time, we use <code>rzv_ai_tlt_v4.00/tlt_backend/datasets/Q03_smart_parking/valid/occupied/0.jpg</code>.<br>
+        <li>Click <b>Choose Upload Type</b> and <b>UPLOAD</b> to select a test image.<br>
+          This time, we select Image Upload and use <code>rzv_ai_tlt_v6.00/tlt_backend/datasets/Q03_smart_parking/valid/occupied/0.jpg</code>.<br>
           <br>
           <a href="img/tlt_inference_upload.png" data-lightbox="group">
             <img src="img/tlt_inference_upload.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px">
@@ -734,6 +846,16 @@ Once the <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}#in
           <br>
           <a href="img/tlt_inference_predict.png" data-lightbox="group">
             <img src="img/tlt_inference_predict.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px">
+          </a>
+          <br>
+          <br>
+        </li>
+        <li>TLT usage procedure is complete.<br>
+          The trained model and logs are saved in the project folder.<br>
+          This time, the files are saved in <code>rzv_ai_tlt_v6.00/tlt_backend/assets/Q03_smart_parking_new/</code>.
+          <br>
+          <a href="img/tlt_files.png" data-lightbox="group">
+            <img src="img/tlt_files.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px">
           </a>
           <br>
           <br>

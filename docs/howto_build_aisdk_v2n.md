@@ -548,9 +548,9 @@ For more information on how to use each files, see the link in the How to use co
   <span class="note-title">Note 3</span>
   To add more functionality to AI SDK, please refer to following URL.
   <ul>
-<!--    <li>
+    <li>
       <a href="https://www.renesas.com/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">RZ/V2N ROS2 Package</a>
-    </li> -->
+    </li>
     <li>
       <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a>
     </li>

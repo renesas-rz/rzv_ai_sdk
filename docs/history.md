@@ -17,6 +17,51 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Transfer Learning Tool v6.00
+                </h3>
+                <h6 align="right" >
+                    2025.7.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Transfer Learning Tool v6.00 is released.</h5>
+                    <ul>
+                        <li>
+                            Supported AI Applications v6.00 for RZ/V2H, RZ/V2N and RZ/V2L.
+                        </li>
+                        <li>
+                            Supported 50 AI Applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.7.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Reference is updated.</h5> 
+                    <ul>
+                        <li> 
+                            RZ/V2N ROS2 Package is released.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >

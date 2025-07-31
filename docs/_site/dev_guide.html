@@ -30,10 +30,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Renesas RZ/V AI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-07-09T15:56:04+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-07-10T15:09:50+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=">
+    <link rel="stylesheet" href="assets/css/style.css?v=4f5f999aee887def13f1a4f149b1582b281d124a">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -426,7 +426,7 @@
                   <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html#D5">D5. How to modify the memory map</a>
                 </li>
                 <li>
-                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html#D6">D6. How to change the DDR</a>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html#D6">D6. How to change the DRAM</a>
                 </li>
               </ul>
             </details>
@@ -939,7 +939,7 @@ Developer's Guide
               </tr>
               <tr>
                 <td>D6</td>
-                <td><a href="#D6">How to change the DDR size</a></td>
+                <td><a href="#D6">How to change the DRAM size</a></td>
                 <td>
                   RZ/V2H<br />
                   RZ/V2N
@@ -2360,8 +2360,8 @@ boot</code></pre></figure>
         <div class="col-12">
           <h3 id="D5">D5. For RZ/V2H, RZ/V2N: How to modify the memory map</h3>
             This section explains how to modify the device tree file to change the memory map.<br />
-            If you also want to change the DDR size, <br />
-            performe <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html#D6">D6.How to change the DDR size</a> after performing the steps in this section.
+            If you also want to change the DRAM size, <br />
+            performe <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html#D6">D6.How to change the DRAM size</a> after performing the steps in this section.
             <div class="note">
               <span class="note-title">Note</span>
               Modifications to the memory map are to be performed at the your own risk and should be thoroughly validated.
@@ -2405,20 +2405,20 @@ boot</code></pre></figure>
                 You can define new memory regions in the reserved-memory area of the device tree,
                 and the default memory regions can be moved or reduced.<br />
                 We recommend you do not change the area up to address 0x80000000, which includes Linux CMA(global_cma) memory region,<br />
-                and each memory regions don't span DDR channels. (ch0: 0x40000000-0x23FFFFFFF, ch1: 0x240000000-0x43FFFFFFF)<br />
+                and each memory regions don't span DRAM channels. (ch0: 0x40000000-0x23FFFFFFF, ch1: 0x240000000-0x43FFFFFFF)<br />
                 If you wish to reduce the default memory regions, follow the table below.<br />
                 <div class="note">
                   <span class="note-title">Note</span>
                   When modifying the device tree, please note the following:
                   <ul>
                     <li>Be careful not to overlap the memory regions.</li>
-                    <li>Be careful to stay within the DDR size.<br />
-                      AI ​​SDK assumes the following DDR configuration by default.<br />
+                    <li>Be careful to stay within the DRAM size.<br />
+                      AI ​​SDK assumes the following DRAM configuration by default.<br />
                       (The area 0x40000000-0x48000000 is Security Area and cannot be used.)
                       <table class="mytable">
                         <tr>
                           <th>Device</th>
-                          <th>DDR Configuration</th>
+                          <th>DRAM Configuration</th>
                         </tr>
                         <tr>
                           <td>RZ/V2H</td>
@@ -2498,7 +2498,10 @@ boot</code></pre></figure>
                   <tr>
                     <td>DRP-AI</td>
                     <td>drp_reserved</td>
-                    <td>A quantity that can be loaded into the AI ​​model is required.</td>
+                    <td>
+                      A quantity that can be loaded into the AI ​​model is required.<br />
+                      It is recommended that the address be aligned to 16MB boundaries, and the size be specified in 16MB increments. 
+                    </td>
                   </tr>
                 </table>
                 <!-- Memory map table end -->
@@ -2594,15 +2597,14 @@ boot</code></pre></figure>
           <br />
           <br />
         </div>
-<!-- D6. How to change the DDR size -->
+<!-- D6. How to change the DRAM size -->
         <div class="col-12">
-          <h3 id="D6">D6. For RZ/V2H, RZ/V2N: How to change the DDR size</h3>
-            This section explains how to change the DDR size.<br />
-            If you also want to change the memory map to match the changed DDR size, <br />
-            perform <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html#D5" target="_blank" rel="noopener noreferrer">D5.How to modify the memory map</a> first, and then perform this section.
+          <h3 id="D6">D6. For RZ/V2H, RZ/V2N: How to change the DRAM size</h3>
+            RZ/V2H and RZ/V2N are equipped with DDR memory as DRAM. This section explains how to change the DRAM size.<br />
+            If you also want to change the memory map to match the changed DRAM size, perform <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.00/dev_guide.html#D5" target="_blank" rel="noopener noreferrer">D5.How to modify the memory map</a> first, and then perform this section.
             <div class="note">
               <span class="note-title">Note</span>
-              Any changes to the DDR size must be made at the customer's own risk and should be thoroughly validated.
+              Any changes to the DRAM size must be made at the customer's own risk and should be thoroughly validated.
             </div>
             <div class="note">
               <span class="note-title">Note</span>
@@ -2637,11 +2639,15 @@ boot</code></pre></figure>
                   </tr>
                 </table>
                 <!-- DDRTOP Parametar table end -->
+                <div class="note">
+                  <span class="note-title">Note</span>
+                  To obtain the RZ/V DDRTOP Application Note, it is necessary to enter into a Non-Disclosure Agreement (NDA).
+                </div>
                 <br />
               </li>
-              <li>Change the DDR size<br />
-                If you want to change the DDR size, you need to change the definitions in the following file:
-                <!-- DDR Size table start -->
+              <li>Change the DRAM size<br />
+                If you want to change the DRAM size, you need to change the definitions in the following file:
+                <!-- DRAM Size table start -->
                 <table class="mytable">
                   <tr>
                     <th>Device</th>
@@ -2671,7 +2677,7 @@ boot</code></pre></figure>
                 <br />
               </li>
               <li>Modify the device tree file.<br />
-                If you change the DDR size, you must change the definition of the device tree.
+                If you change the DRAM size, you must change the definition of the device tree.
                 <!-- Device tree file table start -->
                 <table class="mytable">
                   <tr>
@@ -2704,7 +2710,7 @@ boot</code></pre></figure>
                 <div class="box1">
                   <u><b>Example:</b></u><br />
                   <ul>
-                    <li>If you use 4GB x 2 pieces totaling 8GB of DDR on RZ/V2H, change it as follows.</li><br />
+                    <li>If you use 4GB x 2 pieces totaling 8GB of DRAM on RZ/V2H, change it as follows.</li><br />
                     <b>rzv2h-dev.h</b><br />
 <pre><code>#define CONFIG_SYS_SDRAM_SIZE  (<span style="color:red;">0x100000000u</span> - DRAM_RSV_SIZE) //total 4GB
 </code></pre>
@@ -2825,7 +2831,7 @@ memory@240000000 {
 
                     <div class="note">
                       <span class="note-title">Note 1</span>
-                      If you want to run both the "D5.How to modify the memory map" and "D6.How to change the DDR size" examples, <br />
+                      If you want to run both the "D5.How to modify the memory map" and "D6.How to change the DRAM size" examples, <br />
                       modify the linux-renesas_5.10.bbappend file as follows.<br />
 <pre><code>SRC_URI_append += "\
   file://0001-rollback-cru.patch \
@@ -2845,7 +2851,7 @@ memory@240000000 {
                 <br />
               </li>
               <li>Build the trusted-firmware-a and u-boot.<br />
-                After change the number and size of DDR, run the following command to build the trusted-firmware-a and u-boot.<br />
+                After change the number and size of DRAM, run the following command to build the trusted-firmware-a and u-boot.<br />
                 <br />
                 <ul>
                   <li>For RZ/V2H<br />
@@ -2874,7 +2880,7 @@ memory@240000000 {
               </li>
             </ol>
             <br />
-          This is the end of How to change the DDR size.<br />
+          This is the end of How to change the DRAM size.<br />
         </div>
     </div>
 </div>

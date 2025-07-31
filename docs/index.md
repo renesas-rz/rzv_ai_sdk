@@ -77,86 +77,35 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.7.11
+                2025.7.31
             </h6>
             <ul>
                 <li>
-                    <b>Developer's Guide</b> is updated.
+                    <b>RZ/V AI Transfer Learning Tool v6.00</b> is released.
                     <ul>
                         <li>
-                            Added how to modify the memory map for RZ/V2H and RZ/V2N.<br>
+                            Supported AI Applications v6.00 for RZ/V2H, RZ/V2N and RZ/V2L.
                         </li>
                         <li>
-                            Added how to change the DDR size for RZ/V2H and RZ/V2N.
+                            Supported 50 AI Applications.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}"><b>Developer's Guide</b></a>.
-            <br>
-            <br>
-        </div>
-        <div class="col-12">
-            <h6 align="right" >
-                2025.6.30
-            </h6>
-            <ul>
-                <li>
-                    <b>RZ/V AI Applications v6.00</b> is released.
-                    <ul>
-                        <li> 
-                            18 applications supported RZ/V2N AI SDK v6.00.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#ai-applications"><b>AI Applications</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}"><b>How to Re-train AI model</b></a>.
             <br>
             <br>
             <ul>
                 <li>
-                    <b>RZ/V2N AI SDK v6.00</b> is released.
+                    <b>Reference</b> is updated.
                     <ul>
-                        <li>
-                            Supported DRP-AI TVM v2.5.1.<br>
-                        </li>
-                        <li>
-                            Updated RZ/V2N Linux BSP to v2.0.0.
-                        </li>
                         <li> 
-                            Updated Graphics Library to v4.1.2.4.
-                        </li>
-                        <li> 
-                            Updated Video Codec Library to v4.3.3.0.
-                        </li>
-                        <li> 
-                            Updated OpenCV Accelerator to v1.30.
-                        </li>
-                        <li> 
-                            Updated DRP-AI Driver to v1.30.
-                        </li>
-                        <li>
-                            Supported OpenMP v13.3.0.
+                            RZ/V2N ROS2 Package is released.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2n-spec"><b>RZ/V2N AI SDK Specification</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>AI Navigator v2.0.0</b> is released.
-                    <ul>
-                        <li> 
-                            Users can develop more AI Applications using RZ/V AI Applications v5.20 and the corresponding environment.
-                            <br>
-                            The supported AI Applications are listed at the top of the guide.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#reference"><b>Reference</b></a>.
             <br>
             <br>
         </div>
@@ -1351,7 +1300,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <!-- RZ/V2N Reference -->
                 <tr>
-                    <td rowspan="5">RZ/V2N</td>
+                    <td rowspan="6">RZ/V2N</td>
                     <td>
                         <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator" target="_blank" rel="noopener noreferrer">
                             RZ/V2N OpenCV Accelerator 
@@ -1377,7 +1326,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                         </small>
                     </td>
                 </tr>
-<!--                <tr>
+                <tr>
                     <td>
                         <a href="https://www.renesas.com/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">
                             RZ/V2N ROS2 Package 
@@ -1388,7 +1337,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                         Package that can be applied to RZ/V2N AI SDK to use ROS2.
                         </small>
                     </td>
-                </tr> -->
+                </tr>
                 <tr>
                     <td>
                         <a href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" target="_blank" rel="noopener noreferrer">

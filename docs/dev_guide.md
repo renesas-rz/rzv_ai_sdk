@@ -110,7 +110,7 @@ Developer's Guide
               </tr>
               <tr>
                 <td>D6</td>
-                <td><a href="#D6">How to change the DDR size</a></td>
+                <td><a href="#D6">How to change the DRAM size</a></td>
                 <td>
                   RZ/V2H<br>
                   RZ/V2N
@@ -1531,8 +1531,8 @@ rzv2n-evk login:
         <div class="col-12">
           <h3 id="D5">D5. For RZ/V2H, RZ/V2N: How to modify the memory map</h3>
             This section explains how to modify the device tree file to change the memory map.<br>
-            If you also want to change the DDR size, <br>
-            performe <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D6">D6.How to change the DDR size</a> after performing the steps in this section.
+            If you also want to change the DRAM size, <br>
+            performe <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D6">D6.How to change the DRAM size</a> after performing the steps in this section.
             <div class="note">
               <span class="note-title">Note</span>
               Modifications to the memory map are to be performed at the your own risk and should be thoroughly validated.
@@ -1576,20 +1576,20 @@ rzv2n-evk login:
                 You can define new memory regions in the reserved-memory area of the device tree,
                 and the default memory regions can be moved or reduced.<br>
                 We recommend you do not change the area up to address 0x80000000, which includes Linux CMA(global_cma) memory region,<br>
-                and each memory regions don't span DDR channels. (ch0: 0x40000000-0x23FFFFFFF, ch1: 0x240000000-0x43FFFFFFF)<br>
+                and each memory regions don't span DRAM channels. (ch0: 0x40000000-0x23FFFFFFF, ch1: 0x240000000-0x43FFFFFFF)<br>
                 If you wish to reduce the default memory regions, follow the table below.<br>
                 <div class="note">
                   <span class="note-title">Note</span>
                   When modifying the device tree, please note the following:
                   <ul>
                     <li>Be careful not to overlap the memory regions.</li>
-                    <li>Be careful to stay within the DDR size.<br>
-                      AI ​​SDK assumes the following DDR configuration by default.<br>
+                    <li>Be careful to stay within the DRAM size.<br>
+                      AI ​​SDK assumes the following DRAM configuration by default.<br>
                       (The area 0x40000000-0x48000000 is Security Area and cannot be used.)
                       <table class="mytable">
                         <tr>
                           <th>Device</th>
-                          <th>DDR Configuration</th>
+                          <th>DRAM Configuration</th>
                         </tr>
                         <tr>
                           <td>RZ/V2H</td>
@@ -1669,7 +1669,10 @@ rzv2n-evk login:
                   <tr>
                     <td>DRP-AI</td>
                     <td>drp_reserved</td>
-                    <td>A quantity that can be loaded into the AI ​​model is required.</td>
+                    <td>
+                      A quantity that can be loaded into the AI ​​model is required.<br>
+                      It is recommended that the address be aligned to 16MB boundaries, and the size be specified in 16MB increments. 
+                    </td>
                   </tr>
                 </table>
                 <!-- Memory map table end -->
@@ -1765,15 +1768,14 @@ MACHINE=rzv2n-evk bitbake core-image-weston
           <br>
           <br>
         </div>
-<!-- D6. How to change the DDR size -->
+<!-- D6. How to change the DRAM size -->
         <div class="col-12">
-          <h3 id="D6">D6. For RZ/V2H, RZ/V2N: How to change the DDR size</h3>
-            This section explains how to change the DDR size.<br>
-            If you also want to change the memory map to match the changed DDR size, <br>
-            perform <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D5" target="_blank" rel="noopener noreferrer">D5.How to modify the memory map</a> first, and then perform this section.
+          <h3 id="D6">D6. For RZ/V2H, RZ/V2N: How to change the DRAM size</h3>
+            RZ/V2H and RZ/V2N are equipped with DDR memory as DRAM. This section explains how to change the DRAM size.<br>
+            If you also want to change the memory map to match the changed DRAM size, perform <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D5" target="_blank" rel="noopener noreferrer">D5.How to modify the memory map</a> first, and then perform this section.
             <div class="note">
               <span class="note-title">Note</span>
-              Any changes to the DDR size must be made at the customer's own risk and should be thoroughly validated.
+              Any changes to the DRAM size must be made at the customer's own risk and should be thoroughly validated.
             </div>
             <div class="note">
               <span class="note-title">Note</span>
@@ -1808,11 +1810,15 @@ MACHINE=rzv2n-evk bitbake core-image-weston
                   </tr>
                 </table>
                 <!-- DDRTOP Parametar table end -->
+                <div class="note">
+                  <span class="note-title">Note</span>
+                  To obtain the RZ/V DDRTOP Application Note, it is necessary to enter into a Non-Disclosure Agreement (NDA).
+                </div>
                 <br>
               </li>
-              <li>Change the DDR size<br>
-                If you want to change the DDR size, you need to change the definitions in the following file:
-                <!-- DDR Size table start -->
+              <li>Change the DRAM size<br>
+                If you want to change the DRAM size, you need to change the definitions in the following file:
+                <!-- DRAM Size table start -->
                 <table class="mytable">
                   <tr>
                     <th>Device</th>
@@ -1842,7 +1848,7 @@ MACHINE=rzv2n-evk bitbake core-image-weston
                 <br>
               </li>
               <li>Modify the device tree file.<br>
-                If you change the DDR size, you must change the definition of the device tree.
+                If you change the DRAM size, you must change the definition of the device tree.
                 <!-- Device tree file table start -->
                 <table class="mytable">
                   <tr>
@@ -1875,7 +1881,7 @@ MACHINE=rzv2n-evk bitbake core-image-weston
                 <div class="box1">
                   <u><b>Example:</b></u><br>
                   <ul>
-                    <li>If you use 4GB x 2 pieces totaling 8GB of DDR on RZ/V2H, change it as follows.</li><br>
+                    <li>If you use 4GB x 2 pieces totaling 8GB of DRAM on RZ/V2H, change it as follows.</li><br>
                     <b>rzv2h-dev.h</b><br>
 <pre><code>#define CONFIG_SYS_SDRAM_SIZE  (<span style="color:red;">0x100000000u</span> - DRAM_RSV_SIZE) //total 4GB
 </code></pre>
@@ -1996,7 +2002,7 @@ sudo cp <Path to the file>/d006-linux-renesas_5.10.bbappend ./linux-renesas_5.10
 {% endhighlight %}
                     <div class="note">
                       <span class="note-title">Note 1</span>
-                      If you want to run both the "D5.How to modify the memory map" and "D6.How to change the DDR size" examples, <br>
+                      If you want to run both the "D5.How to modify the memory map" and "D6.How to change the DRAM size" examples, <br>
                       modify the linux-renesas_5.10.bbappend file as follows.<br>
 <pre><code>SRC_URI_append += "\
   file://0001-rollback-cru.patch \
@@ -2016,7 +2022,7 @@ sudo cp <Path to the file>/d006-linux-renesas_5.10.bbappend ./linux-renesas_5.10
                 <br>
               </li>
               <li>Build the trusted-firmware-a and u-boot.<br>
-                After change the number and size of DDR, run the following command to build the trusted-firmware-a and u-boot.<br>
+                After change the number and size of DRAM, run the following command to build the trusted-firmware-a and u-boot.<br>
                 <br>
                 <ul>
                   <li>For RZ/V2H<br>
@@ -2045,7 +2051,7 @@ MACHINE=rzv2n-evk bitbake core-image-weston
               </li>
             </ol>
             <br>
-          This is the end of How to change the DDR size.<br>
+          This is the end of How to change the DRAM size.<br>
         </div>
     </div>
 </div>
