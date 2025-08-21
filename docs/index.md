@@ -77,35 +77,22 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.7.31
+                2025.8.25
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V AI Transfer Learning Tool v6.00</b> is released.
-                    <ul>
-                        <li>
-                            Supported AI Applications v6.00 for RZ/V2H, RZ/V2N and RZ/V2L.
-                        </li>
-                        <li>
-                            Supported 50 AI Applications.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link howto_retrain.md %}"><b>How to Re-train AI model</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>Reference</b> is updated.
+                    <b>Community Page</b> is updated.
                     <ul>
                         <li> 
-                            RZ/V2N ROS2 Package is released.
+                            [Renesas] Face mosaic application is added.
+                        </li>
+                        <li> 
+                            [Renesas] Lens distortion correction application is added.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#reference"><b>Reference</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community Page</b></a>.
             <br>
             <br>
         </div>

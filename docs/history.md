@@ -13,7 +13,30 @@ layout: default
     <div class="row">
         <div class="col-12">
             <br>
+            <br><!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.8.25
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Community Page is updated.</h5>
+                    <ul>
+                        <li> 
+                            [Renesas] Face mosaic application is added.
+                        </li>
+                        <li> 
+                            [Renesas] Lens distortion correction application is added.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             <br>
+            <!-- Topic above -->
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">

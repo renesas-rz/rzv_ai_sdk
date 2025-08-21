@@ -603,7 +603,7 @@ exit
   </li>
   <li>To start the docker container again, run the following command.<br>
 {% highlight shell%}
-docker start -i <container_name, i.e., rzv2l_ai_sdk_container>
+sudo docker start -i <container_name, i.e., rzv2l_ai_sdk_container>
 {% endhighlight %}
   </li>
 </ol>
@@ -729,7 +729,7 @@ git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
           <u><b>Example:</b></u><br>
           Run the following command to start the docker container created in <a href="#step5">Step 5</a>.
 {% highlight shell%}
-docker start -i rzv2l_ai_sdk_container
+sudo docker start -i rzv2l_ai_sdk_container
 {% endhighlight %}
         </div>
       </li><br>

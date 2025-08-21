@@ -227,10 +227,14 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       </li>
   -->
   <!-- MEMO:: Bus setting patch file is non -support. -->
-      <li id="bus_patch">Apply patch file for bus setting.<br>
+      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting.<br>
       If the system does not work properly, such as the stream stopping, when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
-      This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.<br>
-      Please apply this patch with caution after thorough verification.<br><br>
+      This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.
+        <div class="note">
+          <span class="note-title">Note</span>
+          Applying this patch will improve system stability, but decrease the performance of single functions such as DRP-AI and Codec.<br>
+          Please apply this patch with caution after thorough verification.<br>
+        </div>
         <ol type="A">
           <li>
             Obtain the patch file from the link below.

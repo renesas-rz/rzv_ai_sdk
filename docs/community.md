@@ -41,7 +41,8 @@ For any enquiries, please contact each company.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://github.com/Nota-NetsPresso/Optimized-AI-Applications-for-Renesas-HWs/tree/main/1.%20People%20Detection%20on%20RZV2L" 
-                                style="color:white">
+                                style="color:white" 
+                                target="_blank" rel="noopener noreferrer">
                                 Click >
                             </a>
                         </div>
@@ -62,7 +63,8 @@ For any enquiries, please contact each company.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://github.com/Nota-NetsPresso/Optimized-AI-Applications-for-Renesas-HWs/tree/main/2.%20Line%20Crossing%20People%20Counting%20on%20RZV2L" 
-                                style="color:white">
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
                                 Click >
                             </a>
                         </div>
@@ -86,7 +88,8 @@ For any enquiries, please contact each company.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://github.com/Nota-NetsPresso/Optimized-AI-Applications-for-Renesas-HWs/tree/main/3.%20Driver%20Monitoring%20System%20on%20RZV2L" 
-                                style="color:white">
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
                                 Click >
                             </a>
                         </div>
@@ -102,8 +105,8 @@ For any enquiries, please contact each company.<br>
             <h3>Renesas Electronics</h3>
         </div>
         <div class="col-9">
-            In addition to <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">RZ/V AI Applications</a>, Renesas Electronics provides sample applications, including non-AI applications, i.e., ISP.<br>
-            To make an enquiry about these sample applications, please use "Support Tickets" > "Submit a Ticket" from <a href="https://www.renesas.com/support">Renesas Technical Support</a>.
+            In addition to <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="_blank" rel="noopener noreferrer">RZ/V AI Applications</a>, Renesas Electronics provides sample applications, including non-AI applications, i.e., ISP.<br>
+            To make an enquiry about these sample applications, please use "Support Tickets" > "Submit a Ticket" from <a href="https://www.renesas.com/support" target="_blank" rel="noopener noreferrer">Renesas Technical Support</a>.
         </div>
         <div class="col-3">
             <img class="mt-2" src="img/community/renesas/renesas_logomark_blue.png" alt="board"/>
@@ -128,8 +131,58 @@ For any enquiries, please contact each company.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" 
-                                style="color:white">
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
                                 RZ/V2N >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+        <div id="" class="application_card col-lg-6 col-xl-4">
+            <li class="griditem" style="list-style: none;">
+                <img src="img/community/renesas/renesas_face-mosaic1_trimmed_resized.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Face mosaic application</dt>
+                <h6 class="appstatus" align="right"><b><br /></b></h6>
+                <div class="griditem-add">
+                    Image data is captured using a USB camera, and human heads are detected using AI processing. <br>
+                    The detected heads are subjected to a mosaic process, and the results are displayed on a monitor via HDMI.<br>
+                    On RZ/V2H, image processing is performed by OpenCV Accelerator.<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/renesas-rz/rzv_sample_apps/tree/main/S01_face_mosaic" 
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+        <div id="" class="application_card col-lg-6 col-xl-4">
+            <li class="griditem" style="list-style: none;">
+                <img src="img/community/renesas/renesas_distortion-correction2_resized.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Lens distortion correction application</dt>
+                <h6 class="appstatus" align="right"><b><br /></b></h6>
+                <div class="griditem-add">
+                    Image data is captured using a MIPI camera, and lens distortion is corrected using OpenCV's remap. <br>
+                    The processed results are displayed alongside the camera image on a display via HDMI.<br> 
+                    Image processing can also be performed by OpenCV Accerelator.<br>
+                    This application also has a calibration function, so it can handle distortion caused by various lenses.<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/renesas-rz/rzv_sample_apps/tree/main/S02_remap" 
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
+                                Click >
                             </a>
                         </div>
                     </dd>
@@ -162,7 +215,13 @@ For any enquiries, please contact each company.<br>
                 <dl>
                     <dd style="display: flex">
                         <div class="partnerlinkbutton_parent">
-                            <a class="partnerlinkbutton" href="" style="color:white">Click ></a>
+                            <a class="partnerlinkbutton" 
+                                href="" 
+                                style="color:white"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Click >
+                            </a>
                         </div>
                     </dd>
                 </dl>
@@ -179,7 +238,13 @@ For any enquiries, please contact each company.<br>
                 <dl>
                     <dd style="display: flex">
                         <div class="partnerlinkbutton_parent">
-                            <a class="partnerlinkbutton" href="" style="color:white">Click ></a>
+                            <a class="partnerlinkbutton" 
+                                href="" 
+                                style="color:white"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Click >
+                            </a>
                         </div>
                     </dd>
                 </dl>
