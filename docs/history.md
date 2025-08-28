@@ -19,7 +19,7 @@ layout: default
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >
-                    2025.8.25
+                    2025.8.28
                 </h6>
             </i>
             <ul>

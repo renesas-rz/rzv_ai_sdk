@@ -77,7 +77,7 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.8.25
+                2025.8.28
             </h6>
             <ul>
                 <li>
