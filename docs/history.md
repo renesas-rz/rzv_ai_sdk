@@ -13,7 +13,29 @@ layout: default
     <div class="row">
         <div class="col-12">
             <br>
-            <br><!-- Topic below -->
+            <br>
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.9.5
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Community Page is updated.</h5>
+                    <ul>
+                        <li> 
+                            [Irida Labs] Number-Plate Recognition (ANPR) on RZ/V2H is added.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
             <i>
                 <h3 class="history-title">
                     RZ/V AI Web

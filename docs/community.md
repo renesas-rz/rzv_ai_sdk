@@ -41,7 +41,7 @@ For any enquiries, please contact each company.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://github.com/Nota-NetsPresso/Optimized-AI-Applications-for-Renesas-HWs/tree/main/1.%20People%20Detection%20on%20RZV2L" 
-                                style="color:white" 
+                                style="color:white"
                                 target="_blank" rel="noopener noreferrer">
                                 Click >
                             </a>
@@ -88,6 +88,45 @@ For any enquiries, please contact each company.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://github.com/Nota-NetsPresso/Optimized-AI-Applications-for-Renesas-HWs/tree/main/3.%20Driver%20Monitoring%20System%20on%20RZV2L" 
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <h3>Irida Labs</h3>
+        </div>
+        <div class="col-9">
+            Irida Labs is a global leader in edge computer vision software, transforming cameras into intelligent AIoT sensors. Through our game-changer platform, PerCV.ai, we turn visual data into actionable metadata, helping businesses streamline operations, enhance automation, and improve safety at scale. <br>
+            Our mission is to make Vision AI accessible and impactful, delivering end-to-end, deployment-ready systems that ensure rapid time-to-market and future-proof scalability for real-world challenges. <br>
+        </div>
+        <div class="col-3 text-center">
+            <img style="max-height: 150px; " src="img/community/IridaLabs/irida-logo_edited_larger copy.jpg" alt="logo"/>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div id="" class="application_card col-lg-6 col-xl-4">
+            <li class="griditem" style="list-style: none;">
+                <img src="img/community/IridaLabs/Renesas_ANPR_RZV2H_resized.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Number-Plate Recognition (ANPR) on RZ/V2H</dt>
+                <h6 class="appstatus" align="right"><b><br /></b></h6>
+                <div class="griditem-add">
+                    Experience high-performance, edge-based license plate recognition using the Renesas RZ/V2H AI MPU evaluation kit. This Vision AI-powered ANPR solution automatically detects and recognizes car registration plates from preloaded video input - no external camera required. Ideal for traffic analytics, parking systems, toll booths, and smart city applications.<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://iridalabs.com/percv-ai-automatic-number-plate-recognition-anpr-solution-renesas-rz-v2h/" 
                                 style="color:white"
                                 target="_blank" rel="noopener noreferrer">
                                 Click >

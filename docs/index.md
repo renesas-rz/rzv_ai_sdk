@@ -77,6 +77,19 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2025.9.5
+            </h6>
+            <ul>
+                <li>
+                    <b>Community Page</b> is updated.
+                    <ul>
+                        <li> 
+                            [Irida Labs] Number-Plate Recognition (ANPR) on RZ/V2H is added.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h6 align="right" >
                 2025.8.28
             </h6>
             <ul>
@@ -92,9 +105,9 @@ layout: default
                     </ul>
                 </li>
             </ul>
+            <br>
+            <br>
             For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community Page</b></a>.
-            <br>
-            <br>
         </div>
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link history.md %}" role="button">
