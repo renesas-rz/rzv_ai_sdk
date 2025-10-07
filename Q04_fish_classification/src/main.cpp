@@ -76,7 +76,9 @@ std::map<std::string, int> input_source_map =
         {"WS", 1},
         {"USB", 2},
         {"IMAGE", 3},
-        {"VIDEO", 4},
+        #ifndef V2N
+            {"VIDEO", 4},
+        #endif
         #ifdef V2L
             {"MIPI", 5}
         #endif
@@ -689,7 +691,7 @@ std::string getipaddress()
             inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
             /* The ifa_name points to the null-terminated interface name. */
             std::string ifaname = ifa->ifa_name;
-            if (ifaname.find("eth") == 0 || ifaname.find("enp") == 0)
+            if (ifaname.find("eth") == 0 || ifaname.find("enp") == 0 || ifaname.find("end") == 0)
             {
                 ip_address = std::string(addressBuffer);
                 /* returns the IP address*/
@@ -746,7 +748,7 @@ int8_t R_Main_Process()
     float re_fl;
 
     /* Initialize waylad */
-    ret = wayland.init(idx, IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    ret = wayland.init(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
     if (0 != ret)
     {
         fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
@@ -800,12 +802,12 @@ int8_t R_Main_Process()
                 {   
                     if(val > threshold*100)
                     {
-                        cv::putText(bgra_image, "Fish class: "+ std::string(class_name), cv::Point(40, 35), cv::FONT_HERSHEY_SIMPLEX, font_scale, GREEN, font_thickness + 1);
-                        cv::putText(bgra_image, "Score: "+ float_to_string(re_fl) +"%", cv::Point(40, 83), cv::FONT_HERSHEY_SIMPLEX, font_scale, GREEN, font_thickness +1);  
+                        cv::putText(bgra_image, "Fish class: "+ std::string(class_name), cv::Point(40, 65), cv::FONT_HERSHEY_SIMPLEX, font_scale, GREEN, font_thickness + 1);
+                        cv::putText(bgra_image, "Score: "+ float_to_string(re_fl) +"%", cv::Point(40, 113), cv::FONT_HERSHEY_SIMPLEX, font_scale, GREEN, font_thickness +1);  
                     }
                     else
                     {
-                        cv::putText(bgra_image,"Cannot Identify ! ",cv::Point(40, 30), cv::FONT_HERSHEY_SIMPLEX, font_scale, RED, font_thickness + 2);
+                        cv::putText(bgra_image,"Cannot Identify ! ",cv::Point(40, 60), cv::FONT_HERSHEY_SIMPLEX, font_scale, RED, font_thickness + 2);
                     }
                 }
             }
@@ -1031,6 +1033,20 @@ key_hit_end:
 }
 
 
+/*****************************************
+ * Function Name : print_usage_info
+ * Description   : function to print usage info.
+ ******************************************/
+void print_usage_info()
+{
+    #ifdef V2N
+        std::cout << "[INFO] usage: ./fish_classification USB|IMAGE [Input_file for IMAGE]" << std::endl;
+    #elif V2H
+        std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO [Input_file for IMAGE|VIDEO]" << std::endl;
+    #elif V2L
+        std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO|MIPI [Input_file for IMAGE|VIDEO]"<< std::endl;
+    #endif
+}
 
 int32_t main(int32_t argc, char *argv[])
 {
@@ -1092,11 +1108,7 @@ int32_t main(int32_t argc, char *argv[])
     if (errorHandle)
     {
         std::cout << "\n[ERROR] Please specify proper argument/Input Source" << std::endl;
-        #ifdef V2H
-            std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO [Input_file for IMAGE|VIDEO]" << std::endl;
-        #elif V2L
-            std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO|MIPI [Input_file for IMAGE|VIDEO]"<< std::endl;
-        #endif
+        print_usage_info();
         std::cout << "\n[INFO] End Application\n";
         return -1;
     }
@@ -1108,12 +1120,16 @@ int32_t main(int32_t argc, char *argv[])
         else 
             drpai_freq = DRPAI_FREQ;
         std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
-        printf("AI Application for RZ/V2H\n");
-        printf("Model : classification model | %s\n", ini_values["path"]["model_path"].c_str());
+        #ifdef V2N
+            printf("AI Application for RZ/V2N\n");
+        #else
+            printf("AI Application for RZ/V2H\n");
+        #endif
+            printf("Model : classification model | %s\n", model_dir.c_str());
     #elif V2L
         /* AI Application for RZ/V2L */
         printf("AI Application for RZ/V2L\n");
-        printf("Model : classification model | %s\n", ini_values["path"]["model_path"].c_str());
+        printf("Model : classification model | %s\n", model_dir.c_str());
     #endif
 
     /* Access input source arguments */
@@ -1155,11 +1171,7 @@ int32_t main(int32_t argc, char *argv[])
             else
             {
                 std::cout << "\n[ERROR] Please specify proper argument/Input Source" << std::endl;
-                #ifdef V2H
-                    std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO [Input_file for IMAGE|VIDEO]" << std::endl;
-                #elif V2L
-                    std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO|MIPI [Input_file for IMAGE|VIDEO]"<< std::endl;
-                #endif
+                print_usage_info();
                 std::cout << "\n[INFO] End Application\n";
                 return -1;
             }
@@ -1193,11 +1205,7 @@ int32_t main(int32_t argc, char *argv[])
         default:
         {
             std::cout << "\n[ERROR] Please specify proper argument/Input Source" << std::endl;
-            #ifdef V2H
-                std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO [Input_file for IMAGE|VIDEO]" << std::endl;
-            #elif V2L
-                std::cout << "[INFO] usage: ./fish_classification USB|IMAGE|VIDEO|MIPI [Input_file for IMAGE|VIDEO]"<< std::endl;
-            #endif
+            print_usage_info();
             std::cout << "\n[INFO] End Application\n";
             return -1;
         }
