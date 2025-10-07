@@ -76,7 +76,9 @@ bool g_imagemode=false;
 std::map<std::string, int> input_source_map =
 {
     {"USB",   1},
-    {"MIPI",  2},
+    #ifdef V2L
+        {"MIPI",  2},
+    #endif
     {"IMAGE", 3}
 };
 
@@ -1114,8 +1116,6 @@ int8_t R_Main_Process()
     int8_t ret = 0;
     /*Variable for image buffer id*/
     uint8_t img_buf_id;
-    /* wayland Index = 0 */
-    uint32_t idx = 0;
     
     /*Variable for detected object time ids*/
     std::map<int, int> id_time;
@@ -1132,7 +1132,7 @@ int8_t R_Main_Process()
     std::string objects_not_available = "";
     
     /* Initialize waylad */
-    ret = wayland.init(idx, DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    ret = wayland.init(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
     if(0 != ret)
     {
         fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
@@ -1394,6 +1394,20 @@ void mipi_cam_init(void)
     }
 }
 
+/*****************************************
+ * Function Name : print_usage_info
+ * Description   : function to print usage info.
+ ******************************************/
+void print_usage_info()
+{
+    #ifdef V2H
+        std::cout << "[INFO] usage: ./date_extraction USB|IMAGE [Input_file for IMAGE]\n"
+    #elif V2L
+        std::cout << "[INFO] usage: ./date_extraction USB|MIPI|IMAGE [Input_file for IMAGE]\n"
+    #endif
+    <<" --rem=true|false[Optional]" << std::endl;
+}
+
 int32_t main(int32_t argc, char * argv[])
 {
     int8_t main_proc = 0;
@@ -1414,11 +1428,6 @@ int32_t main(int32_t argc, char * argv[])
     int32_t create_thread_exit    = -1;
     int32_t create_thread_key     = -1;
     int32_t sem_create            = -1;
-
-    /* initialize tesseract engine */
-    TesseractEngine &tesseract = TesseractEngine::getInstance();
-    /* create regex dictionary from regex module functions */
-    regex_dict_g = create_regex_dict();
 
     InOutDataType input_data_type;
     bool runtime_status = false;
@@ -1449,7 +1458,6 @@ int32_t main(int32_t argc, char * argv[])
         errorHandle=true;
     }
 
-
     if (argc < 2) 
     {     
         errorHandle = true;
@@ -1457,28 +1465,17 @@ int32_t main(int32_t argc, char * argv[])
     else 
     {
       std::string input_source = argv[1];
-      #ifdef V2H
-        if (input_source == "USB" && argc >= 2)
-      #elif V2L
-        if ((input_source == "USB" || input_source == "MIPI") && argc >= 2)
-      #endif
+      if ((input_source == "USB" || input_source == "MIPI") && argc >= 2)
         errorHandle = false;
       else if(input_source == "IMAGE" && argc >= 3)
         errorHandle = false;
       else
         errorHandle = true;
-      
     }
     if (errorHandle)
     {
         std::cout << "\n[ERROR] Please specify proper argument/Input Source" << std::endl;
-        #ifdef V2H
-            std::cout << "[INFO] usage: ./date_extraction USB|IMAGE [Input_file for IMAGE]\n"
-        #elif V2L
-            std::cout << "[INFO] usage: ./date_extraction USB|MIPI|IMAGE [Input_file for IMAGE]\n"
-        #endif
-
-        <<" --rem=true|false[Optional]" << std::endl;
+        print_usage_info();
         std::cout << "\n[INFO] End Application\n";  
         return -1; 
     }
@@ -1534,6 +1531,7 @@ int32_t main(int32_t argc, char * argv[])
         default:
         {
             std::cout << "[ERROR] Invalid Input source\n";
+            print_usage_info();
             std::cout << "[INFO] End Application.\n";
             return -1;
         }
@@ -1546,12 +1544,22 @@ int32_t main(int32_t argc, char * argv[])
         else 
             drpai_freq = DRPAI_FREQ;
         std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
-        /* AI Application for RZ/V2H */
-        printf("\nAI Application for RZ/V2H\n");
+
+        #ifdef V2N
+            printf("AI Application for RZ/V2N\n");
+        #else
+            printf("AI Application for RZ/V2H\n");
+        #endif
+        
     #elif V2L
         /* AI Application for RZ/V2L */
         printf("\nAI Application for RZ/V2L\n");
     #endif
+    
+    /* initialize tesseract engine */
+    TesseractEngine &tesseract = TesseractEngine::getInstance();
+    /* create regex dictionary from regex module functions */
+    regex_dict_g = create_regex_dict();
 
     int drpai_fd = open("/dev/drpai0", O_RDWR);
     if (0 > drpai_fd)
