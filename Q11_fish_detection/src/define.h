@@ -82,7 +82,7 @@
 ******************************************/
 
 /*Model data*/
-int32_t num_class;
+static int32_t num_class;
 constexpr static float TH_PROB = 0.5f;
 constexpr static float TH_NMS = 0.5f;
 constexpr static int32_t NUM_BB = 3;
