@@ -85,7 +85,9 @@ std::map<int, std::string> label_file_map;
 /* Map to store input source list */
 std::map<std::string, int> input_source_map =
 {
-    {"VIDEO", 1},
+    #ifndef V2N
+        {"VIDEO", 1},
+    #endif
     {"IMAGE", 2},
     {"USB", 3}
 };
@@ -931,7 +933,11 @@ std::string query_device_status(std::string device_type)
  ******************************************/
 void print_usage_info()
 {
-    std::cout << "[INFO] usage: ./keypoint_detector USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
+    #ifdef V2N
+        std::cout << "[INFO] usage: ./keypoint_detector USB|IMAGE [Input_file for IMAGE]" << std::endl;
+    #else
+        std::cout << "[INFO] usage: ./keypoint_detector USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
+    #endif
 }
 
 int main(int argc, char **argv)
@@ -940,7 +946,6 @@ int main(int argc, char **argv)
     bool pose_classifier_runtime_status = false;
     uint64_t drpaimem_addr_start = 0;
     bool errorHandle = false;
-    std::string input_source;
 
     /*Disable OpenCV Accelerator due to the use of multithreading */
     unsigned long OCA_list[16];
@@ -957,16 +962,14 @@ int main(int argc, char **argv)
         return 0;
     }
 
-
-    /* Check the input source is valid.*/
     if (argc < 2)
     {
         errorHandle = true;
     }
     else
     {
-        input_source = argv[1];
-        if ((input_source == "USB") && argc >= 2)
+        std::string input_source = argv[1];
+        if (input_source == "USB" && argc >= 2)
             errorHandle = false;
         else if((input_source == "IMAGE"|| input_source == "VIDEO") && argc >= 3)
             errorHandle = false;
@@ -975,64 +978,14 @@ int main(int argc, char **argv)
     }
     if (errorHandle)
     {
-        std::cout << "\n[ERROR] Please specify proper argument/Input Source" << std::endl;
+        std::cout << "[ERROR] Please specify Input Source\n";
         print_usage_info();
-        std::cout << "\n[INFO] End Application\n";
+        std::cout << "[INFO] End Application.\n";
         return -1;
     }
 
-    
-    std::map<std::string, std::string> args;
-    /* Parse input arguments */
-    for (int i = 1; i < argc; ++i) 
-    {
-        std::string arg = argv[i];
-        size_t pos = arg.find('=');
-        if (pos != std::string::npos) 
-        {
-            std::string key = arg.substr(0, pos);
-            std::string value = arg.substr(pos + 1);
-            args[key] = value;
-        }
-    }
-    
-    /* DRP-AI Frequency Setting */
-    if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0) 
-        drpai_freq = std::stoi(args["--drpai_freq"]);
-    else 
-        drpai_freq = DRPAI_FREQ;
-        std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
-        /* AI Application for RZ/V2H */
-        printf("\nAI Application for RZ/V2H\n");
 
-    errno = 0;
-    int drpai_fd = open("/dev/drpai0", O_RDWR);
-    if (0 > drpai_fd)
-    {
-        std::cerr << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno << std::endl;
-        return -1;
-    }
-
-    /* Initialize DRP-AI (Get DRP-AI memory address and set DRP-AI frequency)*/
-    drpaimem_addr_start = init_drpai(drpai_fd);
-    if (drpaimem_addr_start == 0) 
-    {
-        fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
-        close(drpai_fd);
-	    return -1;
-    }
-    /* Initialize wayland */
-    int8_t ret = 0;
-    ret = wayland.init(0, DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
-    if(0 != ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
-        return -1;
-    }
-
-    std::thread keyboard_exit_thread(keyboard_exit);
-    keyboard_exit_thread.detach();
-
+    std::string input_source = argv[1];
     /* Get input Source WS/VIDEO/CAMERA */
     switch (input_source_map[input_source])
     {
@@ -1087,14 +1040,70 @@ int main(int argc, char **argv)
         /* default case */
         default:
         {
-            std::cout << "[ERROR] Invalid Input source\n";
-            std::cout << "\n[ERROR] Please specify Input Source" << std::endl;
+            std::cout << "[ERROR] Please specify proper argument/Input Source" << std::endl;
             print_usage_info();
             std::cout << "\n[INFO] End Application\n";
             
             return -1;
         }
     }
+
+    
+    std::map<std::string, std::string> args;
+    /* Parse input arguments */
+    for (int i = 1; i < argc; ++i) 
+    {
+        std::string arg = argv[i];
+        size_t pos = arg.find('=');
+        if (pos != std::string::npos) 
+        {
+            std::string key = arg.substr(0, pos);
+            std::string value = arg.substr(pos + 1);
+            args[key] = value;
+        }
+    }
+    
+    /* DRP-AI Frequency Setting */
+    #ifdef V2H
+        if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0) 
+            drpai_freq = std::stoi(args["--drpai_freq"]);
+        else 
+            drpai_freq = DRPAI_FREQ;
+        std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+        #ifdef V2N
+            printf("AI Application for RZ/V2N\n");
+        #else
+            printf("AI Application for RZ/V2H\n");
+        #endif
+    #endif
+
+    errno = 0;
+    int drpai_fd = open("/dev/drpai0", O_RDWR);
+    if (0 > drpai_fd)
+    {
+        std::cerr << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno << std::endl;
+        return -1;
+    }
+
+    /* Initialize DRP-AI (Get DRP-AI memory address and set DRP-AI frequency)*/
+    drpaimem_addr_start = init_drpai(drpai_fd);
+    if (drpaimem_addr_start == 0) 
+    {
+        fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
+        close(drpai_fd);
+	    return -1;
+    }
+    /* Initialize wayland */
+    int8_t ret = 0;
+    ret = wayland.init(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    if(0 != ret)
+    {
+        fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
+        return -1;
+    }
+
+    std::thread keyboard_exit_thread(keyboard_exit);
+    keyboard_exit_thread.detach();
     
     keypoint_runtime_status = keypoint_runtime.LoadModel(keypoint_model_dir, drpaimem_addr_start+DRPAI_MEM_OFFSET);
     if(!keypoint_runtime_status)

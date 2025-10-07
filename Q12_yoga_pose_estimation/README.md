@@ -17,12 +17,12 @@ Here are some of the key features of the Fish Detection Application:
 
 It has following modes of running.
 
-|Mode | RZ/V2H and RZ/V2N |
-|:---|:---|
-|MIPI Camera|`-`|
-|USB Camera|`Supported`|
-|Image|`Supported`|
-|Video|`Supported`|
+|Mode | RZ/V2H | RZ/V2N |
+|:---|:---|:---|
+|MIPI Camera|`-`|`-`|
+|USB Camera|`Supported`|`Supported`|
+|Image|`Supported`|`Supported`|
+|Video|`Supported`| `-` |
 
 
 ### Supported Product
@@ -37,7 +37,7 @@ It has following modes of running.
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v5.00</td>
+       <td>RZ/V2N AI SDK v6.00</td>
      </tr>
  </table>  
 
@@ -156,10 +156,10 @@ After completion of the guide, the user is expected of following things.
 - Following docker container is running on the host machine.
     |Board | Docker container |
     |:---|:---|
-    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2N EVK|`rzv2n_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -194,7 +194,6 @@ E.g.,use the `rzv2h_ai_sdk_container` as the name of container created from  `rz
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 5. The following application file would be generated in the `${PROJECT_PATH}/Q12_yoga_pose_estimation/src/build` directory
     - pose_estimator
 
@@ -210,8 +209,8 @@ After completion of the guide, the user is expected of following things.
 For the ease of deployment all the deployable files and folders are provided in following folders.  
 |Board | `EXE_DIR` |
 |:---|:---|
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+|RZ/V2N EVK|[exe_v2n](./exe_v2n)  |
 
 Each folder contains following items.
 |File | Details |
@@ -224,15 +223,17 @@ Each folder contains following items.
 |yoga_sample.mp4 | Sample video file. |
 
 ### Instruction
-1. Copy the files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`pose_estimator` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-2. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
+
+   For RZ/V2H
     ```sh
     |-- usr
     |   `-- lib64
@@ -255,6 +256,28 @@ Each folder contains following items.
                 |-- labels.txt
                 `-- pose_estimator
     ```
+   For RZ/V2N
+    ```sh
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- keypoint_detection_model
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   |-- deploy.so
+                |
+                |-- pose_classifier_model
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   |-- deploy.so
+                |
+                |-- sample_images
+                |-- labels.txt
+                `-- pose_estimator
+    ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
@@ -268,24 +291,46 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
+
+   - For RZ/V2H
     ```sh
     cd /home/root/tvm
     ```
+   - For RZ/V2N
+    ```sh
+    cd /home/weston/tvm
+    ```
 
 2. Run the application.
-    - For USB Camera Mode
-    ```sh
-    ./pose_estimator USB
-    ```
-    - For IMAGE Mode
-    ```sh
-    ./pose_estimator IMAGE "path to the input image"
-    ```
-    - For VIDEO Mode
-    ```sh
-    ./pose_estimator VIDEO "path to the input video"
-    ```
-    > Note : Due to the number of equipped IP on RZ/V2N, this application will show the error when using the hardware decoding (H.264/H.265) with VIDEO input for RZ/V2N.  CPU decoding, i.e., MJPEG, can be used.
+
+    1. For RZ/V2H
+        1. For USB Camera Mode
+        ```sh
+        ./pose_estimator USB
+        ```
+        2. For IMAGE Mode
+        ```sh
+        ./pose_estimator IMAGE "path to the input image"
+        ```
+        3. For VIDEO Mode **(RZ/V2H only)**
+        ```sh
+        ./pose_estimator VIDEO "path to the input video"
+        ```
+    2. For RZ/V2N
+        1. For USB Camera Mode
+        ```sh
+        su 
+        ./pose_estimator USB
+        exit # After terminated the application.
+        ```
+        2. For IMAGE Mode
+        ```sh
+        su
+        ./pose_estimator IMAGE "path to the input image"
+        exit # After terminated the application.
+        ```
+    > Note : On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running.
+       See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details. 
 
 3. Following window shows up on HDMI screen.  
 
@@ -304,11 +349,8 @@ After completion of the guide, the user is expected of following things.
         - Inference: Processing time taken for AI inference for both key-point detection and pose classifier models.
         - Postprocess: Total time taken for post-processing the model outputs for both key-point detection and pose classifier models.
         
-4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
+4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
- i.e., RZ/V2N application log contains "RZ/V2H".  
- This will be solved in the future version.
 
 ## Application: Configuration
 ### AI Model  
@@ -337,7 +379,7 @@ After completion of the guide, the user is expected of following things.
 |Board |  AI inference time <br>for keypoint detection| AI inference time <br>for pose classification |
 |:---:|:---:| :---:|
 |RZ/V2H EVK | Approximately 18 ms  | Approximately 1 ms  |
-|RZ/V2N EVK | Approximately 35 ms  | Approximately 1 ms  |
+|RZ/V2N EVK | Approximately 23 ms  | Approximately 1 ms  |
 
 ### Processing
 
