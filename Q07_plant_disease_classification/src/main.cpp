@@ -76,7 +76,9 @@ std::map<std::string, int> input_source_map =
     {
         {"USB", 1},
         {"IMAGE", 2},
-        {"VIDEO", 3},
+        #ifndef V2N
+            {"VIDEO", 3},
+        #endif
         #ifdef V2L
             {"MIPI", 4}
         #endif
@@ -964,7 +966,9 @@ std::string query_device_status(std::string device_type)
 ******************************************/
 void print_usage_info()
 {
-    #ifdef V2H
+    #ifdef V2N
+        std::cout << "[INFO] usage: ./plant_leaf_disease_classify USB|IMAGE [Input_file for IMAGE]" << std::endl;
+    #elif V2H
         std::cout << "[INFO] usage: ./plant_leaf_disease_classify USB|IMAGE|VIDEO [Input_file for IMAGE|VIDEO]" << std::endl;
     #elif V2L
         std::cout << "[INFO] usage: ./plant_leaf_disease_classify USB|IMAGE|VIDEO|MIPI [Input_file for IMAGE|VIDEO]" << std::endl;
@@ -1214,8 +1218,14 @@ int32_t main(int32_t argc, char *argv[])
             drpai_freq = DRPAI_FREQ;
 
         std::cout <<  "\n[INFO] DRPAI FREQUENCY   : " << drpai_freq << "\n";
-        printf("AI Application for RZ/V2H\n");
-        printf("Model : classification model | %s\n", ini_values["path"]["model_path"].c_str());
+        /* AI Application for RZ/V2N */
+        #ifdef V2N
+            printf("AI Application for RZ/V2N\n");
+        /* AI Application for RZ/V2H */
+        #else
+            printf("AI Application for RZ/V2H\n");
+        #endif
+            printf("Model : classification model | %s\n", ini_values["path"]["model_path"].c_str());
     #elif V2L
         /* AI Application for RZ/V2L */
         printf("\nAI Application for RZ/V2L\n");
