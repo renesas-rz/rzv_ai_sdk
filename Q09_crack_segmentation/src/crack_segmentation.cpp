@@ -165,7 +165,9 @@ static int32_t drpai_freq;
 /* Map to store input source list */
 std::map<std::string, int> input_source_map =
 {
-    {"VIDEO", 1},
+    #ifndef V2N
+        {"VIDEO", 1},
+    #endif
     {"IMAGE", 2},
     {"USB", 3},
     #ifdef V2L
@@ -700,10 +702,12 @@ std::string query_device_status(std::string device_type)
  ******************************************/
 void print_usage_info()
 {
-    #ifdef V2H
-        std::cout << "[INFO] usage: ./crack_segmentation USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
+    #ifdef V2N
+        std::cout << "[INFO] usage: ./crack_segmentation USB|IMAGE [Input_file for IMAGE]" << std::endl;
     #elif V2L
         std::cout << "[INFO] usage: ./crack_segmentation USB|VIDEO|IMAGE|MIPI [Input_file for VIDEO/IMAGE]" << std::endl;
+    #elif V2H
+        std::cout << "[INFO] usage: ./crack_segmentation USB|VIDEO|IMAGE [Input_file for VIDEO/IMAGE]" << std::endl;
     #endif
 }
 
@@ -768,8 +772,14 @@ int main(int argc, char **argv)
         else 
             drpai_freq = DRPAI_FREQ;
         std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+        /* AI Application for RZ/V2N */
+        // printf("\nAI Application for RZ/V2H\n");
+        #ifdef V2N
+            printf("\nAI Application for RZ/V2N\n");
+        #else
         /* AI Application for RZ/V2H */
-        printf("\nAI Application for RZ/V2H\n");
+            printf("\nAI Application for RZ/V2H\n");
+        #endif
     #elif V2L
         /* AI Application for RZ/V2L */
         printf("\nAI Application for RZ/V2L\n");
@@ -877,7 +887,7 @@ int main(int argc, char **argv)
 
     /* Initialize wayland */
     int8_t ret = 0;
-    ret = wayland.init(0, DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    ret = wayland.init(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
     if(0 != ret)
     {
         fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
