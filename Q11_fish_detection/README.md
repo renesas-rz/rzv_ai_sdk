@@ -13,15 +13,15 @@ Fish detection applications can be used in a variety of different settings, incl
 Here are some of the key features of the Fish Detection Application:
 
 - **Automatic Detection**: 
-    The application utilizes Tiny-yolov3/yolov3 model for detection, identifying and localizing people specified within the provided frame.
+    The application utilizes Tiny-YOLOv3/YOLOv3 model for detection, identifying and localizing people specified within the provided frame.
 - **Customizable Settings**: 
     Users can adjust the detection parameters by using the config file provided in the repository
 
 It has following camera input modes.
-| Mode | RZ/V2L | RZ/V2H and RZ/V2N |
-|:---|:---|:---|
-| USB Camera| Supported | Supported |
-| MIPI Camera| Supported | - |
+| Mode | RZ/V2L | RZ/V2H | RZ/V2N |
+|:---|:---|:---|:---|
+| USB Camera| Supported | Supported | Supported |
+| MIPI Camera| Supported | - | - |
 
 ### Supported Product
 <table>
@@ -39,7 +39,7 @@ It has following camera input modes.
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v5.00</td>
+       <td>RZ/V2N AI SDK v6.00</td>
      </tr>
  </table>
 
@@ -178,13 +178,13 @@ This section expects the user to have completed Step 5 of [Getting Started Guide
 After completion of the guide, the user is expected of following things.
 - AI SDK setup is done.
 - Following docker container is running on the host machine.
-    |Board | Docker container |
+    |Board | Docker container|
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
-
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2N EVK|`rzv2n_ai_sdk_container`  |
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.  
+      
 
 
 ### Application File Generation
@@ -214,17 +214,11 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     mkdir -p build && cd build
     ``````
 6. Build the application by following the commands below.  
-    **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H and RZ/V2N**
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
-    make -j$(nproc)
-    ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
+    
 7. The following application file would be generated in the `${PROJECT_PATH}/Q11_fish_detection/src/build` directory
     - fish_detector
 
@@ -241,8 +235,8 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK |[exe_v2h](./exe_v2h)  |  
+|RZ/V2N EVK|[exe_v2n](./exe_v2n)  |   
 
 Each folder contains following items.
 |File | Details |
@@ -253,26 +247,36 @@ Each folder contains following items.
 |fish_detector | application file. |
 
 ### Instruction
-1. [FOR RZ/V2H and RZ/V2N] Run following commands to download the necessary file.  
+1. [FOR RZ/V2H] Run following commands to download the necessary file.  
     ```sh
     cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q11_fish_detection/exe_v2h/fish_detection_model
-    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q11_fish_detection_deploy_tvm_v2h-v230.so
+    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/Q11_fish_detection_deploy_tvm_v2h-v230.so
     ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.
+
+    [FOR RZ/V2N] Run following commands to download the necessary file. 
+
+    ```sh
+    cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q11_fish_detection/exe_v2n/fish_detection_model
+    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.10/Q11_fish_detection_deploy_tvm_v2n-v251.so
+    ```
+
     
 2. [FOR RZ/V2H and RZ/V2N] Rename the `Q11_fish_detection_deploy_*.so` to `deploy.so`.
     ```sh
     mv Q11_fish_detection_deploy_*.so deploy.so
     ```
-3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+3. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`fish_detector` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
+4. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
+
+   For RZ/V2L and RZ/V2H
+
     ```
     |-- usr
     |   `-- lib64
@@ -288,6 +292,25 @@ Each folder contains following items.
                 |-- fish_class.txt
                 `-- fish_detector
     ```
+
+    For RZ/V2N
+
+    ```
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- fish_detection_model
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   `-- deploy.so
+                |-- config.ini
+                |-- fish_class.txt
+                `-- fish_detector
+    ```
+
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
@@ -301,8 +324,15 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
+    
+    For RZ/V2L and RZ/V2H
     ```sh
     cd /home/root/tvm
+    ```
+
+    For RZ/V2N
+    ```sh
+    cd /home/weston/tvm
     ```
 
 2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at [below section](#explanation-of-the-configini-file).
@@ -311,6 +341,8 @@ After completion of the guide, the user is expected of following things.
     ```
 
 3. Run the application.
+
+    For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
     ./fish_detector USB
@@ -319,7 +351,17 @@ After completion of the guide, the user is expected of following things.
     ```sh
     ./fish_detector MIPI
     ```
-    > Note: MIPI Camera Mode is only supported by RZ/V2L EVK.
+
+
+    For RZ/V2N
+
+    - For USB Camera Mode
+    ```sh
+    su
+    ./fish_detector USB
+    exit # After terminated the application.
+    ```
+
 4. Following window shows up on HDMI screen.  
 
     |RZ/V2L EVK | RZ/V2H EVK and RZ/V2N EVK* |
@@ -337,11 +379,9 @@ After completion of the guide, the user is expected of following things.
         - PreProcess: Processing time taken for AI pre-processing.  
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
-5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
+5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
- i.e., RZ/V2N application log contains "RZ/V2H".  
- This will be solved in the future version.
+ 
 
 ## Application: Configuration
 ### AI Model  
@@ -365,7 +405,7 @@ After completion of the guide, the user is expected of following things.
 |:---|:---|:---|
 |RZ/V2L EVK|Tiny YOLOv3| Approximately 58 ms  |
 |RZ/V2H EVK |YOLOv3 | Approximately 26 ms  |
-|RZ/V2N EVK |YOLOv3 | Approximately 82 ms  |
+|RZ/V2N EVK |YOLOv3 | Approximately 71 ms  |
 
 ### Processing
 
