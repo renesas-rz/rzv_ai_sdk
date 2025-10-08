@@ -49,11 +49,20 @@ typedef struct
 } Box;
 
 /*****************************************
+* CBox : Bounding box coordinates and its corners
+******************************************/
+typedef struct
+{
+    float x1, y1, x2, y2;
+} CBox;
+
+/*****************************************
 * detection : Detected result
 ******************************************/
 typedef struct detection
 {
     Box bbox;
+    CBox cbox;
     int32_t c;
     float prob;
 } detection;
