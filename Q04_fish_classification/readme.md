@@ -9,14 +9,13 @@ The application could be used to classify fishes during fish farming, or from ce
 
 It has 4 modes of running.
 
-|Mode | RZ/V2L | RZ/V2H and RZ/V2N |
-|:---|:---|:---|
-|MIPI Camera|`Supported`|`-`|
-|USB Camera|`Supported`|`Supported`|
-|Image|`Supported`|`Supported`|
-|Video|`Supported`|`Supported`|
-|Web App|`Supported`</br>[(Link to readme)](./etc_v2l/readme.md)|`Supported`</br>[(Link to readme)](./etc_v2h/readme.md)|
-
+|Mode | RZ/V2L | RZ/V2H |RZ/V2N |
+|:---|:---|:---|:---|
+|MIPI Camera|`Supported`|`-`|`-`|
+|USB Camera|`Supported`|`Supported`|`Supported`|
+|Image|`Supported`|`Supported`|`Supported`|
+|Video|`Supported`|`Supported`|`-`|
+|Web App|`Supported`</br>[(Link to readme)](./etc_v2l/readme.md)|`Supported`</br>[(Link to readme)](./etc_v2h/readme.md)|`Supported`</br>[(Link to readme)](./etc_v2n/readme.md)|
 
 ### Supported Product
 <table>
@@ -34,7 +33,7 @@ It has 4 modes of running.
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v5.00</td>
+       <td>RZ/V2N AI SDK v6.00</td>
      </tr>
  </table>  
 
@@ -176,10 +175,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK |`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2N EVK|`rzv2n_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used.
 
 ### Application File Generation
 1. On your host machine, copy the repository from the GitHub to the desired location. 
@@ -209,17 +208,10 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     mkdir -p build && cd build
     ```
 6. Build the application by following the commands below.  
-   **For RZ/V2L**
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H and RZ/V2N**
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
-    make -j$(nproc)
-    ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 7. The following application file would be generated in the `${PROJECT_PATH}/Q04_fish_classification/src/build` directory
     - fish_classification
 
@@ -236,8 +228,8 @@ For the ease of deployment all the deployable file and folders are provided in f
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |
+|RZ/V2N EVK|[exe_v2n](./exe_v2n)  |  
 
 Each folder contains following items.
 |File | Details |
@@ -250,15 +242,17 @@ Each folder contains following items.
 
 
 ### Instruction
-1. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`fish_classification` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-2. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
+
+   For RZ/V2L and RZ/V2H
     ```
     |-- usr
     |   `-- lib64
@@ -275,6 +269,23 @@ Each folder contains following items.
                 |-- fish_classification
                 `-- output.mp4
     ```
+   For RZ/V2N
+    ```
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- fish_classification_model
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   `-- deploy.so
+                |-- Bangus.jpg
+                |-- fish_class_list.txt
+                `-- fish_classification
+    ```
+
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
@@ -288,33 +299,57 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
+
+   - For RZ/V2L and RZ/V2H
     ```sh
     cd /home/root/tvm/
     ```
+   - For RZ/V2N
+   ```sh
+    cd /home/weston/tvm/
+    ```
     
 2. Run the application.
-  
-      - For Image Mode
+   1. For RZ/V2L and RZ/V2H
+
+      1. For Image Mode
       ```sh
       ./fish_classification IMAGE Bangus.jpg
       ```
       > Note: Tested with image file format .png and .jpg
 
-      - For USB Camera Mode
+      2. For USB Camera Mode
       ```sh
       ./fish_classification USB
       ```
-      - For MIPI Camera Mode [RZ/V2L only]
-      ```sh
-      ./fish_classification MIPI
-      ```
-      - For VIDEO Mode
+
+      3. For VIDEO Mode
       ```sh
       ./fish_classification VIDEO output.mp4
       ```
-      > Note 1: Tested with video file format .mp4 and .avi  
-      > Note 2: Due to the number of equipped IP on RZ/V2N, this application will show the error when using the hardware decoding (H.264/H.265) with VIDEO input for RZ/V2N.  CPU decoding, i.e., MJPEG, can be used.
+      > Note: Tested with video file format .mp4 and .avi  
+      4. For MIPI Camera Mode [RZ/V2L only]
+      ```sh
+      ./fish_classification MIPI
+      ```
+   2. For RZ/V2N
+      1. For Image Mode
+      ```sh
+      su
+      ./fish_classification IMAGE Bangus.jpg
+      exit # After terminated the application.
+      ```
+      > Note: Tested with image file format .png and .jpg
+      2. For USB Camera Mode
+      ```sh
+      su 
+      ./fish_classification USB
+      exit # After terminated the application.
+      ```
 
+    
+      
+      > Note:  On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running. See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details.
 3. Following window shows up on HDMI screen.  
 
     |RZ/V2L EVK | RZ/V2H EVK and RZ/V2N EVK* |
@@ -330,13 +365,7 @@ After completion of the guide, the user is expected of following things.
     - Frames per Second
     - Top 5 Classification Results (Based on the score)
         
-4. To terminate the application, follow the termination method below.
-   - For RZ/V2L, press Esc key to terminate the application.
-   - For RZ/V2H, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
-
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
- i.e., RZ/V2N application log contains "RZ/V2H".  
- This will be solved in the future version.
+4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
 ## Application: Configuration 
 ### AI Model
@@ -409,7 +438,7 @@ The number of classes: 1760
 |:---|:---|
 |RZ/V2L EVK| Approximately 50 ms  |
 |RZ/V2H EVK | Approximately 4 ms  |
-|RZ/V2N EVK | Approximately 17 ms  |
+|RZ/V2N EVK | Approximately 6 ms  |
 
 ### Processing
 
