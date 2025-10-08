@@ -52,7 +52,9 @@
 /* Map to store input source list */
 std::map<std::string, int> input_source_map =
 {
-    {"VIDEO", 1},
+    #ifndef V2N
+        {"VIDEO", 1},
+    #endif
     {"USB", 2},
     #ifdef V2L
         {"MIPI", 3}
@@ -432,7 +434,9 @@ int plot_graph()
  ******************************************/
 void print_usage_info()
 {   
-    #ifdef V2H
+    #ifdef V2N
+        std::cout << "[INFO] usage: ./suspicious_activity USB" << std::endl;
+    #elif V2H
         std::cout << "[INFO] usage: ./suspicious_activity USB|VIDEO [Input_file for VIDEO]" << std::endl;
     #elif V2L
         std::cout << "[INFO] usage: ./suspicious_activity USB|VIDEO|MIPI [Input_file for VIDEO]" << std::endl;
@@ -929,7 +933,7 @@ int8_t R_Main_Process()
     cv::Scalar Color;
 
     /* Initialize wayland */
-    ret = wayland.init(idx, DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    ret = wayland.init(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
     if(0 != ret)
     {
         fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
@@ -1073,24 +1077,19 @@ int32_t main(int32_t argc, char * argv[])
     std::string gstreamer_pipeline;
 
     
-
-    if (argc < 2) 
-    {     
+    if (argc < 2)
+    {
         errorHandle = true;
     }
-    else 
+    else
     {
-      std::string input_source = argv[1];
-      #ifdef V2H
-        if (input_source == "USB" && argc >= 2)
-      #elif V2L
+        std::string input_source = argv[1];
         if ((input_source == "USB" || input_source == "MIPI") && argc >= 2)
-      #endif
-        errorHandle = false;
-      else if(input_source == "VIDEO" && argc >= 3)
-        errorHandle = false;
-      else
-        errorHandle = true;
+            errorHandle = false;
+        else if(input_source == "VIDEO" && argc >= 3)
+            errorHandle = false;
+        else
+            errorHandle = true;
     }
     if (errorHandle)
     {
@@ -1134,11 +1133,7 @@ int32_t main(int32_t argc, char * argv[])
         default:
         {
             std::cout << "[ERROR] Invalid Input source\n";
-            #ifdef V2H
-                std::cout << "[INFO] usage: ./suspicious_activity USB|VIDEO [Input_file for VIDEO].\n";
-            #elif V2L
-                std::cout << "[INFO] usage: ./suspicious_activity USB|VIDEO|MIPI [Input_file for VIDEO]\n";
-            #endif
+            print_usage_info();
             std::cout << "[INFO] End Application.\n";
             return -1;
         }
@@ -1164,8 +1159,13 @@ int32_t main(int32_t argc, char * argv[])
         else 
             drpai_freq = DRPAI_FREQ;
         std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+        /* AI Application for RZ/V2N */
+        #ifdef V2N
+            printf("AI Application for RZ/V2N\n");
         /* AI Application for RZ/V2H */
-        printf("\nAI Application for RZ/V2H\n");
+        #else
+            printf("AI Application for RZ/V2H\n");
+        #endif
     #elif V2L
         /* AI Application for RZ/V2L */
         printf("\nAI Application for RZ/V2L\n");
