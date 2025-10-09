@@ -77,37 +77,15 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.9.5
+                2025.10.10
             </h6>
-            <ul>
-                <li>
-                    <b>Community Page</b> is updated.
-                    <ul>
-                        <li> 
-                            [Irida Labs] Number-Plate Recognition (ANPR) on RZ/V2H is added.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <h6 align="right" >
-                2025.8.28
-            </h6>
-            <ul>
-                <li>
-                    <b>Community Page</b> is updated.
-                    <ul>
-                        <li> 
-                            [Renesas] Face mosaic application is added.
-                        </li>
-                        <li> 
-                            [Renesas] Lens distortion correction application is added.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+                <b>Users are recommended to use the latest version in the following URL.</b><br>
+                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
             <br>
             <br>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community Page</b></a>.
         </div>
         <div class="col-12" align="right">
             <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link history.md %}" role="button">

@@ -211,7 +211,7 @@ For any enquiries, please contact each company.<br>
                 <div class="griditem-add">
                     Image data is captured using a MIPI camera, and lens distortion is corrected using OpenCV's remap. <br>
                     The processed results are displayed alongside the camera image on a display via HDMI.<br> 
-                    Image processing can also be performed by OpenCV Accerelator.<br>
+                    Image processing can also be performed by OpenCV Accelerator.<br>
                     This application also has a calibration function, so it can handle distortion caused by various lenses.<br><br>
                 </div>
                 <dl>
