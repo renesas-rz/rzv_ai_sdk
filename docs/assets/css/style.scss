@@ -456,6 +456,22 @@ strong {
   {
     font-size: 13px;
   }
+
+  /* For ai-software.md */
+  .square-button-toggle-down{
+    position: relative;
+    padding: 3px;
+    text-align: center;
+    font-size: 9px;
+  }
+  .square-button-toggle-down::before{
+   /*Delete Arrow*/
+    content: "";
+    width: 0px;
+    height: 0px;
+    border: none;
+    margin: auto;
+  }
 }
 //Boostrap lg
 .lg-display{
@@ -605,21 +621,6 @@ strong {
     font-size: 24px;
   }
 
-  /* For ai-software.md */
-  .square-button-toggle-down{
-    position: relative;
-    padding: 3px;
-    text-align: center;
-    font-size: 9px;
-  }
-  .square-button-toggle-down::before{
-   /*Delete Arrow*/
-    content: "";
-    width: 0px;
-    height: 0px;
-    border: none;
-    margin: auto;
-  }
 }
 
 @media print, screen and (max-width: 480px) {
@@ -1404,6 +1405,15 @@ dl {
         position: relative; 
         display: none; 
     } 
+    // Hover to check the abbreviated label
+    .ellipsis-display label:hover {
+      white-space: normal;
+      position: absolute;
+      z-index: 10;
+      left: 17px;
+      font-size: small;
+    }
+
   }
 
 #application-filter-button-container { 
@@ -1416,4 +1426,13 @@ dl {
 .checkbox-group:hover{
   color:dodgerblue;
 }
-
+// Abbreviating the long label in application filter
+.ellipsis-display {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
+}
+.ellipsis-display label {
+  display: inline;
+}

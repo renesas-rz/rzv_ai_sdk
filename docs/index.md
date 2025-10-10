@@ -79,11 +79,44 @@ layout: default
             <h6 align="right" >
                 2025.10.10
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>RZ/V AI Applications v6.10</b> is released.
+                    <ul>
+                        <li>
+                            37 applications supported RZ/V2N AI SDK v6.00.
+                        </li>
+                        <li>
+                            Updated AI models used in 11 applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>RZ/V Reference Applications</b> page is published.
+                    <ul>
+                        <li> 
+                            Users can check following reference applications provided by Renesas.
+                            <ul>
+                                <li> 
+                                    Dual Camera Video Encode + AI Reference
+                                </li>
+                                <li> 
+                                    Face mosaic application
+                                </li>
+                                <li> 
+                                    Lens distortion correction application
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications</b></a>.
             <br>
             <br>
         </div>
@@ -254,12 +287,39 @@ layout: default
 </div>
 <br>
 <br>
-<h3 id="com-applications">Community Applications</h3>
+<h3 id="ref-applications">Reference Applications</h3>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            In addition to RZ/V AI Applications, there are Community Applications provided by the partner companies and Renesas.<br>
-            Community Applications are sets of sample applications for RZ/V series and listed in the Community page.<br>
+            In addition to RZ/V AI Applications, Renesas provides RZ/V Reference Applications.<br>
+            RZ/V Reference Applications are a set of sample applications that help your solution development not only for AI, but also for camera control, encoding, etc..<br>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6 col-xl-4">
+            <a class="btn btn-secondary square-button ms-3 mt-1" 
+                style="text-align:left; width: 100%;" 
+                href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}" 
+                role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    RZ/V Reference Applications >
+                    <br>
+                    <span style="font-size:70%;font-weight: normal;">
+                        List of sample applications.<br>
+                    </span>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<h3 id="ptn-applications">Partner Applications</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            Community page shows the list of solutions for RZ/V series provided by the partner companies.<br>
             <br>
         </div>
     </div>
@@ -273,7 +333,7 @@ layout: default
                     Community Page >
                     <br>
                     <span style="font-size:70%;font-weight: normal;">
-                        List of Partner Applications and other sample applications.<br>
+                        List of Partner Applications.<br>
                     </span>
                 </span>
             </a>

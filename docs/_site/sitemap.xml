@@ -30,7 +30,7 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/community.html</loc>
-<lastmod>2025-09-04T20:52:58+09:00</lastmod>
+<lastmod>2025-10-09T20:08:48+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/demo.html</loc>
@@ -54,7 +54,7 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html</loc>
-<lastmod>2025-08-21T21:02:53+09:00</lastmod>
+<lastmod>2025-10-09T20:08:48+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started_v2h.html</loc>
@@ -90,7 +90,11 @@
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/</loc>
-<lastmod>2025-09-04T20:52:58+09:00</lastmod>
+<lastmod>2025-10-09T20:08:48+09:00</lastmod>
+</url>
+<url>
+<loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/ref_applications.html</loc>
+<lastmod>2025-10-10T13:06:54+09:00</lastmod>
 </url>
 <url>
 <loc>https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html</loc>

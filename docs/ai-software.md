@@ -74,6 +74,7 @@ layout: default
             <h3 id="user-journey">
                 User Journey
             </h3>
+            Followings are user journey to start AI development.
             <h4 id="user-journey-overview" class="u_line">
                 Overview
             </h4>
@@ -118,8 +119,8 @@ layout: default
         </div>
         <div class="col-12 text-center p-0">
             <br>
-            <a href="img/where_to_start.svg" data-lightbox="group">
-                <img src="img/where_to_start.svg" alt="">
+            <a href="img/where_to_start_2.svg" data-lightbox="group">
+                <img src="img/where_to_start_2.svg" alt="">
             </a>
             <br>
             <br>
@@ -130,6 +131,11 @@ layout: default
             </div>
         </div>
         <div class="col-2 text-center p-0">
+            <div class="btn btn-secondary square-button square-button-toggle-down btn_sw btn_rel" data-id="rel">
+                  Click
+            </div>
+        </div>
+        <div class="col-1 text-center p-0">
             <div class="btn btn-secondary square-button square-button-toggle-down btn_sw btn_ai btn_tvm" data-id="tvm">
                   Click
             </div>
@@ -139,7 +145,7 @@ layout: default
                   Click
             </div>
         </div>
-        <div class="col-2 text-center p-0">
+        <div class="col-1 text-center p-0">
             <div class="btn btn-secondary square-button square-button-toggle-down btn_sw btn_ai btn_ai-apps" data-id="ai-apps">
                   Click
             </div>
@@ -155,7 +161,7 @@ layout: default
             </div>
         </div>
         <div class="col-2 text-center p-0">
-            <div class="btn btn-secondary square-button square-button-toggle-down btn_sw btn_trial btn_ai-apps_demo" data-id="ai-apps-demo">
+            <div class="btn btn-secondary square-button square-button-toggle-down btn_sw btn_trial btn_ai-apps-demo" data-id="ai-apps-demo">
                   Click
             </div>
         </div>
@@ -165,7 +171,7 @@ layout: default
     <!-- Guide Box: hidden as default -->
     <div class="row contents-sw contents-sw-other partner" >
         <div class="col-12 contents-sw-title contents-sw-title-other">
-            AI Partner
+            Partner Applications
         </div>
         <div class="col-12">
             RZ/V AI Applications are free of charge and open source software, which can be used not only for evaluation purposes but also for your mass production development.<br>
@@ -187,16 +193,54 @@ layout: default
                     Community page
                 </span><br>
                 <span class="banner-line">
-                    List of partner applications and other sample applications.<br>
+                    List of Partner Applications.<br>
                 </span>
             </a>
             <br>
             <br>
-            We also have the list of our partners in <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rz-partner-solutions?partners-mcu-filter=rz-v">Renesas RZ Partner Ecosystem Solutions</a> page.
+            We also have the list of our partners in 
+            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rz-partner-solutions?partners-mcu-filter=rz-v" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                Renesas RZ Partner Ecosystem Solutions
+            </a> page.
             <br>
             <br>
             To make an enquiry regarding AI partner, please use <b>"Support Tickets"</b> > <b>"Submit a Ticket"</b> from following page.<br>
-            <a class="btn btn-primary download-button" href="https://www.renesas.com/support" role="button">
+            <a class="btn btn-primary download-button" 
+                href="https://www.renesas.com/support" 
+                role="button"
+                target="_blank" 
+                rel="noopener noreferrer">
+                Renesas Technical Support
+            </a>
+        </div>
+    </div><div class="row contents-sw contents-sw-rel rel" >
+        <div class="col-12 contents-sw-title contents-sw-title-rel">
+            RZ/V Reference Applications
+        </div>
+        <div class="col-12">
+            RZ/V Reference Applications are a set of sample applications that help your solution development not only for AI, but also for camera control, encoding, etc..<br>
+            <a class="btn btn-secondary square-button ms-3 mt-1" 
+                style="text-align:left;d" 
+                href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}" 
+                role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    RZ/V Reference Applications >
+                    <br>
+                    <span style="font-size:70%;font-weight: normal;">
+                        List of sample applications.<br>
+                    </span>
+                </span>
+            </a>
+            <br>
+            <br>
+            To make an enquiry regarding RZ/V Reference Applications, please use <b>"Support Tickets"</b> > <b>"Submit a Ticket"</b> from following page.<br>
+            <a class="btn btn-primary download-button" 
+                href="https://www.renesas.com/support" 
+                role="button"
+                target="_blank" 
+                rel="noopener noreferrer">
                 Renesas Technical Support
             </a>
         </div>
@@ -767,6 +811,24 @@ layout: default
                     </tr>
                     <tr>
                         <td>
+                            RZ/V Reference Applications
+                        </td>
+                        <td>
+                            <h6 class="mb-1">
+                                Sample applications to support your solution development not only for AI, but also for camera control, encoding, etc..
+                            </h6>
+                        </td>
+                        <td>
+                            <a 
+                                class="btn btn-secondary square-button square-button-link-small mb-2" 
+                                style="width:220px;" 
+                                href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}">
+                                RZ/V Reference Applications
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             RZ/V AI Transfer Learning Tool (TLT)
                         </td>
                         <td>
@@ -883,6 +945,10 @@ layout: default
     border:1px solid #635D89;
     background:rgb(235, 233, 244);
 }
+.contents-sw-rel{
+    border:1px solid #2a289d;
+    background: #dddcff;
+}
 .contents-sw-other{
     border:1px solid rgb(235, 98, 9);
     background: #FADCCA;
@@ -899,9 +965,17 @@ layout: default
     border:1px solid #635D89;
     background: #635D89;
 }
+.btn_sw-rel-Active{
+    border:1px solid #2a289d;
+    background: #2a289d;
+}
 .btn_sw-other-Active{
     border:1px solid rgb(235, 98, 9);
     background: rgb(235, 98, 9);
+}
+.btn_sw-InActive{
+    border:1px solid rgb(121, 111, 111);
+    background: rgb(121, 111, 111);
 }
 .contents-sw-title {
   max-width: fit-content;
@@ -924,6 +998,9 @@ layout: default
 .contents-sw-title-trial {
   background: #635D89;
 }
+.contents-sw-title-rel {
+  background: #2a289d;
+}
 .contents-sw-title-other {
   background: rgb(235, 98, 9);
 }
@@ -935,18 +1012,30 @@ $('.btn_sw').on('click', function(){
     let button_name = ".btn_"+click;
     document.querySelectorAll(".contents-sw").forEach(elm => elm.style.display="none");
     document.querySelectorAll(class_name).forEach(elm => elm.style.display="flex"); //For bootstrap responsive design.
+    document.querySelectorAll(".btn_sw").forEach(elm => elm.classList.add("btn_sw-InActive"));
+    document.querySelectorAll(button_name).forEach(elm => elm.classList.remove("btn_sw-InActive"));
     if (click === "partner")
     {
         document.querySelectorAll(".btn_ai").forEach(elm => elm.classList.remove("btn_sw-ai-Active"));
         document.querySelectorAll(".btn_linux").forEach(elm => elm.classList.remove("btn_sw-linux-Active"));
         document.querySelectorAll(".btn_trial").forEach(elm => elm.classList.remove("btn_sw-trial-Active"));
+        document.querySelectorAll(".btn_rel").forEach(elm => elm.classList.remove("btn_sw-rel-Active"));
         document.querySelectorAll(".btn_partner").forEach(elm => elm.classList.add("btn_sw-other-Active"));
+    }
+    else if (click === "rel")
+    {
+        document.querySelectorAll(".btn_ai").forEach(elm => elm.classList.remove("btn_sw-ai-Active"));
+        document.querySelectorAll(".btn_linux").forEach(elm => elm.classList.remove("btn_sw-linux-Active"));
+        document.querySelectorAll(".btn_trial").forEach(elm => elm.classList.remove("btn_sw-trial-Active"));
+        document.querySelectorAll(".btn_rel").forEach(elm => elm.classList.add("btn_sw-rel-Active"));
+        document.querySelectorAll(".btn_partner").forEach(elm => elm.classList.remove("btn_sw-other-Active"));
     }
     else if (click === "ai-sdk-src")
     {
         document.querySelectorAll(".btn_ai").forEach(elm => elm.classList.remove("btn_sw-ai-Active"));
         document.querySelectorAll(".btn_linux").forEach(elm => elm.classList.add("btn_sw-linux-Active"));
         document.querySelectorAll(".btn_trial").forEach(elm => elm.classList.remove("btn_sw-trial-Active"));
+        document.querySelectorAll(".btn_rel").forEach(elm => elm.classList.remove("btn_sw-rel-Active"));
         document.querySelectorAll(".btn_partner").forEach(elm => elm.classList.remove("btn_sw-other-Active"));
     }
     else if (click === "ai-apps-demo")
@@ -954,6 +1043,7 @@ $('.btn_sw').on('click', function(){
         document.querySelectorAll(".btn_ai").forEach(elm => elm.classList.remove("btn_sw-ai-Active"));
         document.querySelectorAll(".btn_linux").forEach(elm => elm.classList.remove("btn_sw-linux-Active"));
         document.querySelectorAll(".btn_trial").forEach(elm => elm.classList.add("btn_sw-trial-Active"));
+        document.querySelectorAll(".btn_rel").forEach(elm => elm.classList.remove("btn_sw-rel-Active"));
         document.querySelectorAll(".btn_partner").forEach(elm => elm.classList.remove("btn_sw-other-Active"));
     }
     else
@@ -961,6 +1051,7 @@ $('.btn_sw').on('click', function(){
         document.querySelectorAll(".btn_ai").forEach(elm => elm.classList.remove("btn_sw-ai-Active"));
         document.querySelectorAll(".btn_linux").forEach(elm => elm.classList.remove("btn_sw-linux-Active"));
         document.querySelectorAll(".btn_trial").forEach(elm => elm.classList.remove("btn_sw-trial-Active"));
+        document.querySelectorAll(".btn_rel").forEach(elm => elm.classList.remove("btn_sw-rel-Active"));
         document.querySelectorAll(".btn_partner").forEach(elm => elm.classList.remove("btn_sw-other-Active"));
         document.querySelectorAll(button_name).forEach(elm => elm.classList.add("btn_sw-ai-Active"));
     }

@@ -17,6 +17,62 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Applications v6.10
+                </h3>
+                <h6 align="right" >
+                    2025.10.10
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v6.10 is released.</h5>
+                    <ul>
+                        <li>
+                            37 applications supported RZ/V2N AI SDK v6.00.
+                        </li>
+                        <li>
+                            Updated AI models used in 11 applications.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.10.10
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V Reference Applications page is published.</h5>
+                    <ul>
+                        <li> 
+                            Users can check following reference applications provided by Renesas.
+                            <ul>
+                                <li> 
+                                    Dual Camera Video Encode + AI Reference
+                                </li>
+                                <li> 
+                                    Face mosaic application
+                                </li>
+                                <li> 
+                                    Lens distortion correction application
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >

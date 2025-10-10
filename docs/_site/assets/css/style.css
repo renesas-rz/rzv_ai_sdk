@@ -3327,7 +3327,10 @@ strong { color: #222; font-weight: 700; }
   .br-nsp { display: block; }
   .ham-nodisplay { display: none; }
   .main-message { font-size: 19px; }
-  .sub-message { font-size: 13px; } }
+  .sub-message { font-size: 13px; }
+  /* For ai-software.md */
+  .square-button-toggle-down { position: relative; padding: 3px; text-align: center; font-size: 9px; }
+  .square-button-toggle-down::before { /*Delete Arrow*/ content: ""; width: 0px; height: 0px; border: none; margin: auto; } }
 .lg-display { display: none; }
 
 @media (max-width: 1091px) { .lg-no-display { display: none; }
@@ -3359,10 +3362,7 @@ strong { color: #222; font-weight: 700; }
   header, section { padding: 10px; height: auto; }
   header ul, header p.view { position: static; }
   /*pre, code { word-wrap:normal; }*/
-  .top { font-size: 24px; }
-  /* For ai-software.md */
-  .square-button-toggle-down { position: relative; padding: 3px; text-align: center; font-size: 9px; }
-  .square-button-toggle-down::before { /*Delete Arrow*/ content: ""; width: 0px; height: 0px; border: none; margin: auto; } }
+  .top { font-size: 24px; } }
 @media print, screen and (max-width: 480px) { body { padding: 15px; word-wrap: break-word; }
   .downloads { width: 100%; }
   .downloads li, .downloads li + li + li { width: 100%; } }
@@ -3538,7 +3538,12 @@ dl { display: flex; flex-wrap: wrap; margin: 0; }
   #application-filter-visible-button { display: none; position: fixed; top: 60px; right: 0px; z-index: 2; color: #000077; display: block; }
   #application-filter-erase-button { position: relative; display: none; color: darkgrey; padding-left: 0; margin-left: -20%; margin-top: -30px; margin-bottom: -10px; box-shadow: none; }
   #application-filter-erase-button :hover { color: dodgerblue; }
-  #application-filter-hide-button { position: relative; display: none; } }
+  #application-filter-hide-button { position: relative; display: none; }
+  .ellipsis-display label:hover { white-space: normal; position: absolute; z-index: 10; left: 17px; font-size: small; } }
 #application-filter-button-container { position: fixed; top: 145px; right: 30px; z-index: 2; }
 
 .checkbox-group:hover { color: dodgerblue; }
+
+.ellipsis-display { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; position: relative; }
+
+.ellipsis-display label { display: inline; }
