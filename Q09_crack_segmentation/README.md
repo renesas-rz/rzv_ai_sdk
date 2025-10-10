@@ -11,12 +11,12 @@ Surface crack segmentation has a wide range of applications, including:
 - Painting and coating inspection: The identification of cracks in paint or coatings can help to prevent the ingress of moisture and other harmful substances.
 
 
-| Mode | RZ/V2L | RZ/V2H and RZ/V2N |
-|:---|:---|:---|
-| MIPI Camera| Supported | - |
-| USB Camera| Supported | Supported |
-| Image | Supported | Supported |
-| Video | Supported | Supported |
+| Mode | RZ/V2L | RZ/V2H | RZ/V2N |
+|:---|:---|:---|:---|
+| MIPI Camera| Supported | - | - |
+| USB Camera| Supported | Supported |Supported |
+| Image | Supported | Supported | Supported |
+| Video | Supported | Supported | - |
 
 ### Supported Product
 <table>
@@ -34,7 +34,7 @@ Surface crack segmentation has a wide range of applications, including:
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v5.00</td>
+       <td>RZ/V2N AI SDK v6.00</td>
      </tr>
  </table>  
 
@@ -176,10 +176,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK |`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK  |`rzv2h_ai_sdk_container`  |
+    |RZ/V2N EVK | `rzv2n_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -210,17 +210,12 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     mkdir -p build && cd build
     ``````
 6. Build the application by following the commands below.  
-   **For RZ/V2L**
+   
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H and RZ/V2N**
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
-    make -j$(nproc)
-    ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
+   
 7. The following application file would be generated in the `${PROJECT_PATH}/Q09_crack_segmentation/src/build` directory
     - crack_segmentation
 
@@ -236,8 +231,8 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK |[exe_v2h](./exe_v2h)  |  
+|RZ/V2N EVK |[exe_v2n](./exe_v2n)  |
 
 Each folder contains following items.
 |File | Details |
@@ -249,15 +244,17 @@ Each folder contains following items.
 
 ### Instruction
 
-1. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`crack_segmentation` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-2. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
+
+    For RZ/V2L and RZ/V2H
     ```
     |-- usr
     |   `-- lib64
@@ -273,6 +270,22 @@ Each folder contains following items.
                 |-- output.mp4
                 `-- sample.jpg
     ```
+
+    For RZ/V2N
+    ```
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- crack_segmentation_model
+                |   |-- deploy.json
+                |   |-- deploy.params
+                |   `-- deploy.so
+                |-- crack_segmentation
+                `-- sample.jpg
+    ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
 ## Application: Run Stage
@@ -286,11 +299,17 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
+    - For RZ/V2L and RZ/V2H
     ```sh
-    cd /home/root/tvm
+    cd /home/root/tvm/
     ```
-
+    - For RZ/V2N
+    ```sh
+    cd /home/weston/tvm/
+    ```
 2. Run the application.
+
+    For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
     ./crack_segmentation USB
@@ -300,7 +319,7 @@ After completion of the guide, the user is expected of following things.
     ./crack_segmentation MIPI
     ```
     > Note: MIPI Camera Mode is only supported by RZ/V2L EVK.
-    - For Image Input Mode
+    - For Image Mode
     ```sh
     ./crack_segmentation IMAGE sample.jpg
     ```
@@ -309,8 +328,24 @@ After completion of the guide, the user is expected of following things.
     ```sh 
     ./crack_segmentation VIDEO output.mp4
     ```
-    > Note 1: Tested with video file format `.mp4` and `.avi`.  
-    > Note 2: Due to the number of equipped IP on RZ/V2N, this application will show the error when using the hardware decoding (H.264/H.265) with VIDEO input for RZ/V2N.  CPU decoding, i.e., MJPEG, can be used.
+     > Note : Tested with video file format `.mp4` and `.avi`.
+     
+     For RZ/V2N
+
+    - For USB Camera Mode
+   ```sh
+    su 
+    ./crack_segmentation USB
+    exit # After terminated the application.
+    ```
+     - For Image Mode
+    ```sh
+    su
+    ./crack_segmentation IMAGE sample_img.jpg
+    exit # After terminated the application.
+    ```
+     
+    > Note : On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running. See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details.
   
 3. Following window shows up on HDMI screen.  
 
@@ -318,17 +353,14 @@ After completion of the guide, the user is expected of following things.
     |:---|:---|
     |<img src=./images/Q09_crack_pic_v2l.png width=350>| <img src=./images/Q09_crack_pic_v2h.png width=350>  |
 
-> *Performance in the screenshot is for RZ/V2H EVK.
+    > *Performance in the screenshot is for RZ/V2H EVK.
 
-    - AI inferece time and Frames Per Sec (FPS) is shown on top right corner.
+    - AI inferece time is shown on top right corner.
     - For RZ/V2L: The cracks detected are shown in green mask/region.
     - For RZ/V2H and RZ/V2N: A heatmap is used to illustrate the intensity of detected cracks, with hotter areas representing more severe cracks.
         
-4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab ` and press ENTER key on the terminal of the board.
+4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
- i.e., RZ/V2N application log contains "RZ/V2H".  
- This will be solved in the future version.
 
 ## Application: Configuration 
 ### AI Model
@@ -342,7 +374,7 @@ After completion of the guide, the user is expected of following things.
 |:---|:---|
 |RZ/V2L EVK| Approximately  90 ms  |
 |RZ/V2H EVK | Approximately  10 ms  |
-|RZ/V2N EVK | Approximately  28 ms  |
+|RZ/V2N EVK | Approximately  16 ms  |
 
 ### Processing
 

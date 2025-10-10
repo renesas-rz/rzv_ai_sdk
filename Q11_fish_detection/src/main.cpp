@@ -49,7 +49,7 @@
 #include "define.h"
 /*box drawing*/
 #include "box.h"
-/*Double cliick termination*/
+/*Double click termination*/
 #include "utils.h"
 /*Wayland display*/
 #include "wayland.h"
@@ -817,8 +817,6 @@ int8_t R_Main_Process()
     int8_t ret = 0;
     /*Variable for image buffer id*/
     uint8_t img_buf_id;
-    /* wayland Index = 0 */
-    uint32_t idx = 0;
 
     /*Variable for detected object time ids*/
     std::map<int, int> id_time;
@@ -891,7 +889,7 @@ int8_t R_Main_Process()
     int text_height = 150;
 
     /* Initialize waylad */
-    ret = wayland.init(idx, IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    ret = wayland.init(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
     if(0 != ret)
     {
         fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
@@ -987,11 +985,7 @@ int8_t R_Main_Process()
             mtx.unlock();
             bgra_image = create_output_frame(bgra_image);
             cv::putText(bgra_image, "Total AI Time[ms] : " + float_to_string(total_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 60),
-            cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-        
-            cv::putText(bgra_image, "Double Click to exit the Application!!", cv::Point(DISP_IMAGE_OUTPUT_WIDTH  + 20, DISP_IMAGE_OUTPUT_HEIGHT -10), 
-                    cv::FONT_HERSHEY_SIMPLEX, font_size - 0.2, cv::Scalar(255, 255, 255), font_weight, cv::LINE_AA);
-        
+                        cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "Preprocess Time: " + float_to_string(pre_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH  + 20, 100), 
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             cv::putText(bgra_image, "AI Inference Time: " + float_to_string(ai_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH  + 20, 140), 
@@ -1313,8 +1307,12 @@ int32_t main(int32_t argc, char * argv[])
         else 
             drpai_freq = DRPAI_FREQ;
         std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
-        /* AI Application for RZ/V2H */
-        printf("\nAI Application for RZ/V2H\n");
+        
+        #ifdef V2N
+            printf("\nAI Application for RZ/V2N\n");
+        #else
+            printf("\nAI Application for RZ/V2H\n");
+        #endif
         printf("Model : Darknet YOLOv3 | %s\n", ini_values["path"]["model_path"].c_str());
     #elif V2L
         /* AI Application for RZ/V2L */

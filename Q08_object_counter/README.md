@@ -1,7 +1,7 @@
 # Object Counter Application
 
 ## Application: Overview
-The Object Counter Application is a user-friendly and efficient generic software tool that can be used to create custom counting applications for any scenario. This application uses the advanced YOLOV3/Tiny YOLOv3 algorithm to identify and count objects in images or videos.
+The Object Counter Application is a user-friendly and efficient generic software tool that can be used to create custom counting applications for any scenario. This application uses the advanced EdgeYOLO-M / tinyyolov3 algorithm to identify and count objects in images or videos.
 
 ### Use Cases
 The Generic Counter Application is a powerful tool that can be used to count objects in a variety of settings, including:
@@ -22,17 +22,17 @@ The other use cases could be:
 Here are some of the key features of the Generic Counter Application:
 
 - **Automatic Object Detection**: 
-    The application utilizes YOLOv3/Tiny YOLOv3 model for detection, identifying and localizing objects specified within the provided frame.
+    The application utilizes EdgeYOLO-M model for detection, identifying and localizing objects specified within the provided frame.
 - **Flexible**: 
     The application can be customized to meet the specific needs of any counting scenario.
 - **Customizable Settings**: 
     Users can adjust the detection and classification parameters by using the config file provided in the repository.
 
 It has following camera input modes.
-| Mode | RZ/V2L | RZ/V2H and RZ/V2N |
-|:---|:---|:---|
-| MIPI Camera| Supported | - |
-| USB Camera| Supported | Supported |
+| Mode | RZ/V2L | RZ/V2H | RZ/V2N |
+|:---|:---|:---|:---|
+| MIPI Camera| Supported | - | - |
+| USB Camera| Supported | Supported | Supported |
 
 Users can select detection target from following list
 - Animal
@@ -55,7 +55,7 @@ Users can select detection target from following list
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v5.00</td>
+       <td>RZ/V2N AI SDK v6.00</td>
      </tr>
  </table>  
 
@@ -197,10 +197,10 @@ After completion of the guide, the user is expected of following things.
     |Board | Docker container |
     |:---|:---|
     |RZ/V2L EVK|`rzv2l_ai_sdk_container`  |
-    |RZ/V2H EVK and RZ/V2N EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2H EVK|`rzv2h_ai_sdk_container`  |
+    |RZ/V2N EVK|`rzv2n_ai_sdk_container`  |
 
     >**Note 1:** Docker environment is required for building the sample application.  
-    >**Note 2:** Since RZ/V2N is a brother chip of RZ/V2H, the same environment can be used. 
 
 
 ### Application File Generation
@@ -229,18 +229,11 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```sh
     mkdir -p build && cd build
     ``````
-5. Build the application by following the commands below.  
-    **For RZ/V2L**
+5. Build the application by following the commands below. 
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
-    **For RZ/V2H and RZ/V2N**
-    ```sh
-    cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake -DV2H=ON ..
-    make -j$(nproc)
-    ```
-    >Note: Since RZ/V2N is a brother chip of RZ/V2H, the same source code can be used.
 6. The following application file would be generated in the `${PROJECT_PATH}/Q08_object_counter/src/build` directory
     - object_counter
 
@@ -257,14 +250,14 @@ For the ease of deployment all the deployable files and folders are provided in 
 |Board | `EXE_DIR` |
 |:---|:---|
 |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |
-|RZ/V2H EVK and RZ/V2N EVK|[exe_v2h](./exe_v2h)  |  
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  
+|RZ/V2H EVK|[exe_v2h](./exe_v2h)  |  
+|RZ/V2N EVK|[exe_v2n](./exe_v2n)  |  
 
 Each folder contains following items.
 |File | Details |
 |:---|:---|
 |coco/tinyyolov3_onnx | **[RZ/V2L only]** Model object files for Coco Detection |
-|coco/yolov3_onnx | **[RZ/V2H and RZ/V2N]** Model object files for Coco Detection |
+|coco/coco_onnx | **[RZ/V2H and RZ/V2N]** Model object files for Coco Detection |
 |coco/coco_class.txt | Label list for Coco Detection |
 |coco/config.ini | User input model config object | 
 |animal/animal_onnx | Model object files for Animal Detection |
@@ -278,37 +271,16 @@ Each folder contains following items.
 
 
 ### Instruction
-1. **[For RZ/V2H and RZ/V2N]** Run following commands to download the necessary file.  
-Replace each variable according to your board.  
-    ```sh
-    cd <path_to_data_folder_on_host>/data/Q08_object_counter/<EXE_PATH> 
-    wget <URL>
-    ```
-    | Target | `EXE_PATH` |`URL` |`SO_FILE` |`File Location` |
-    |:---|:---|:---|:---|:---|
-    |Animal|[exe_v2h/animal/animal_onnx](./exe_v2h/animal/animal_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_animal_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_animal_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
-    |Vehicle|[exe_v2h/vehicle/vehicle_onnx](./exe_v2h/vehicle/vehicle_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_vehicle_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_vehicle_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
-    |COCO|[exe_v2h/coco/yolov3_onnx](./exe_v2h/coco/yolov3_onnx) | `https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_coco_deploy_tvm_v2h-v230.so` |<span style="font-size: small">`Q08_object_counter_coco_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
-    > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.
-
-    - E.g., for Animal counting, use following commands.
-        ```sh
-        cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q08_object_counter/exe_v2h/animal/animal_onnx
-        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/Q08_object_counter_animal_deploy_tvm_v2h-v230.so
-        ```
-2. **[For RZ/V2H and RZ/V2N]** Rename the `Q08_object_counter_*.so` to `deploy.so`.
-    ```sh
-    mv Q08_object_counter_*.so deploy.so
-    ```
-3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`object_counter` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib64` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
-5. Folder structure in the rootfs (SD Card) would look like:
+3. Folder structure in the rootfs (SD Card) would look like:
+    - For RZ/V2L and RZ/V2H
     ```
     |-- usr
     |   `-- lib64
@@ -322,10 +294,42 @@ Replace each variable according to your board.
                 |   |   |-- deploy.params     #RZ/V2L only
                 |   |   `-- deploy.so         #RZ/V2L only
                 |   |
-                |   |-- yolov3_onnx           #RZ/V2H and RZ/V2N
+                |   |-- coco_onnx             #RZ/V2H and RZ/V2N
                 |   |   |-- deploy.json       #RZ/V2H and RZ/V2N
                 |   |   |-- deploy.params     #RZ/V2H and RZ/V2N
                 |   |   `-- deploy.so         #RZ/V2H and RZ/V2N
+                |   |-- coco_class.txt 
+                |   `-- config.ini
+                |-- animal
+                |   |-- animal_onnx
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- animal_class.txt
+                |   `-- config.ini
+                |-- vehicle
+                |   |-- vehicle_onnx
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- vehicle_class.txt
+                |   `-- config.ini
+                |-- app_conf.ini
+                `-- object_counter
+    ```
+    - For RZ/V2N
+    ```
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- coco
+                |   |-- coco_onnx         
+                |   |   |-- deploy.json   
+                |   |   |-- deploy.params 
+                |   |   `-- deploy.so     
                 |   |-- coco_class.txt 
                 |   `-- config.ini
                 |-- animal
@@ -358,8 +362,13 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
+    - For RZ/V2L and RZ/V2H
     ```sh
     cd /home/root/tvm/
+    ```
+    - For RZ/V2N
+    ```sh
+    cd /home/weston/tvm/
     ```
 
 2. Change the values in `app_conf.ini` as per the requirements. Detailed explanation of the `app_conf.ini` file is given at [below section](#explanation-of-the-app_confini-file).
@@ -369,9 +378,17 @@ After completion of the guide, the user is expected of following things.
     ```
 
 3. Run the application.
+    
+    For RZ/V2L and RZ/V2H
     ```sh
     ./object_counter <mode> <camera>
     ```    
+    For RZ/V2N
+    ```sh
+    su
+    ./object_counter <mode> <camera>
+    exit  # After terminated the application.
+    ```   
     - mode options
         |Value  |Description                          |
         |-------|-------------------------------------|
@@ -411,10 +428,6 @@ After completion of the guide, the user is expected of following things.
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
 
- > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment is used, which causes inconsistency in display contents,  
- i.e., RZ/V2N application log contains "RZ/V2H".  
- This will be solved in the future version.
-
 ## Application: Configuration 
 ### AI Model
 - RZ/V2L
@@ -425,12 +438,10 @@ After completion of the guide, the user is expected of following things.
     Output2 size: 1x26x26x255 (COCO) / 1x26x26x54 (Animal) / 1x26x26x45 (Vehicle)   
   
 - RZ/V2H and RZ/V2N
-    - YOLOv3: [Darknet](https://pjreddie.com/darknet/yolo/)  
+    - EdgeYOLO-M: [Pytorch](https://github.com/LSH9832/edgeyolo/blob/main/README_EN.md)  
     Dataset: [COCO](https://cocodataset.org/#home)  
     Input size: 1x3x416x416   
-    Output1 size: 1x13x13x255 (COCO) / 1x13x13x54 (Animal) / 1x13x13x45 (Vehicle)    
-    Output2 size: 1x26x26x255 (COCO) / 1x26x26x54 (Animal) / 1x26x26x45 (Vehicle)    
-    Output2 size: 1x52x52x255 (COCO) / 1x52x52x54 (Animal) / 1x52x52x45 (Vehicle)    
+    Output size: 1x3549x85 (COCO) / 1x3549x18 (Animal) / 1x3549x15 (Vehicle)    
 
 ### Dataset
 
@@ -458,11 +469,11 @@ After completion of the guide, the user is expected of following things.
 
 
 ### AI inference time
-|Board | AI model | AI inference time|
-|:---|:---|:---|
-|RZ/V2L EVK|Tiny YOLOv3| Approximately 57 ms  |
-|RZ/V2H EVK |YOLOv3 | Approximately 26 ms  |
-|RZ/V2N EVK |YOLOv3 | Approximately 82 ms  |
+|Board | AI model | AI inference time (COCO) | AI inference time (Animal) |AI inference time (Vehicle) |
+|:---|:---|:---|:---|:---|
+|RZ/V2L EVK|Tiny YOLOv3| Approximately 57 ms  | Approximately 57 ms  | Approximately 57 ms  |
+|RZ/V2H EVK |EdgeYOLO-M | Approximately 44 ms  | Approximately 22 ms  | Approximately 21 ms  |
+|RZ/V2N EVK |EdgeYOLO-M | Approximately 110 ms  | Approximately 82 ms  | Approximately 82 ms  |
 
 ### Processing
 
@@ -494,10 +505,10 @@ After completion of the guide, the user is expected of following things.
 
 ### Explanation of the `config.ini` file
 
-- The [**detect**] section contains three variables - `conf`, `anchors` & `objects`.
+- The [**detect**] section contains two variables - `conf` & `objects`.
 
-  - The `conf` value is the confidence threshold used for object detection,
-  - The `anchors` are the yolo anchors for the object detection. 
+  - The `conf` value is the confidence threshold used for object detection.
+
   - The `objects` represents class to be identified and it can be changed to other classes present on the class label list.
 
 - To modify the configuration settings, edit the values in this file using VI Editor.

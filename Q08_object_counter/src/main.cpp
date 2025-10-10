@@ -1,7 +1,7 @@
 /*
  * Original Code (C) Copyright Edgecortix, Inc. 2022
  * Modified Code (C) Copyright Renesas Electronics Corporation 2024
- * 
+ *
  *  *1 DRP-AI TVM is powered by EdgeCortix MERA(TM) Compiler Framework.
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -23,35 +23,34 @@
  *
  */
 /***********************************************************************************************************************
-* DISCLAIMER
-* This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
-* other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
-* applicable laws, including copyright laws.
-* THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
-* THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
-* EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
-* SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
-* SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-* Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
-* this software. By using this software, you agree to the additional terms and conditions found by accessing the
-* following link:
-* http://www.renesas.com/disclaimer
-*
-* Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
-***********************************************************************************************************************/
+ * DISCLAIMER
+ * This software is supplied by Renesas Electronics Corporation and is only intended for use with Renesas products. No
+ * other uses are authorized. This software is owned by Renesas Electronics Corporation and is protected under all
+ * applicable laws, including copyright laws.
+ * THIS SOFTWARE IS PROVIDED "AS IS" AND RENESAS MAKES NO WARRANTIES REGARDING
+ * THIS SOFTWARE, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. ALL SUCH WARRANTIES ARE EXPRESSLY DISCLAIMED. TO THE MAXIMUM
+ * EXTENT PERMITTED NOT PROHIBITED BY LAW, NEITHER RENESAS ELECTRONICS CORPORATION NOR ANY OF ITS AFFILIATED COMPANIES
+ * SHALL BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES FOR ANY REASON RELATED TO THIS
+ * SOFTWARE, EVEN IF RENESAS OR ITS AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * Renesas reserves the right, without notice, to make changes to this software and to discontinue the availability of
+ * this software. By using this software, you agree to the additional terms and conditions found by accessing the
+ * following link:
+ * http://www.renesas.com/disclaimer
+ *
+ * Copyright (C) 2024 Renesas Electronics Corporation. All rights reserved.
+ ***********************************************************************************************************************/
 /*****************************************
-* Includes
-******************************************/
+ * Includes
+ ******************************************/
 /*DRP-AI TVM[*1] Runtime*/
 #include "MeraDrpRuntimeWrapper.h"
-/*Definition of Macros & other variables*/
+/*Definition of Macros*/
 #include "define.h"
 /*box drawing*/
 #include "box.h"
 #include "utils.h"
-
-
+#include "wayland.h"
 
 /*Multithreading*/
 static sem_t terminate_req_sem;
@@ -62,77 +61,87 @@ static pthread_t kbhit_thread;
 static std::mutex mtx;
 
 /*Flags*/
-static std::atomic<uint8_t> inference_start (0);
-static std::atomic<uint8_t> img_obj_ready   (0);
+static std::atomic<uint8_t> inference_start(0);
+static std::atomic<uint8_t> img_obj_ready(0);
 
 /*Global Variables*/
-float * drpai_output_buf;
-static uint64_t udmabuf_address = 0;
+float *drpai_output_buf;
+cv::Mat yuyv_image;
+cv::Mat input_image;
+static Wayland wayland;
+std::unordered_map<std::string, std::string> ini_values;
+bool doubleClick = false;
+using INI_FORMAT = std::unordered_map<std::string, std::unordered_map<std::string, std::string>>;
+
+/* Model Variables*/
+static std::vector<std::string> label_file_map = {};
+static int32_t NUM_CLASS;
+static std::vector<detection> g_detections;
+static float ratio;
+
+/* Timing variables */
+static float pre_time = 0;
+static float post_time = 0;
+static float ai_time = 0;
+static float total_time = 0;
 
 /*AI Inference for DRPAI*/
 /* DRP-AI TVM[*1] Runtime object */
 MeraDrpRuntimeWrapper runtime;
 
-static float pre_time = 0;
-static float post_time = 0;
-static float ai_time = 0;
-static float total_time = 0;
-static std::vector<detection> det;
-cv::Mat yuyv_image;
-cv::Mat input_image;
-std::unordered_map<std::string, std::string> ini_values;
-std::vector<double> anchors;
-bool doubleClick = false;
-using INI_FORMAT = std::unordered_map<std::string, std::unordered_map<std::string, std::string>>; 
 #ifdef V2H
-    /*DRP-AI Frequency setting*/
-    static int32_t drpai_freq;
+/*DRP-AI Frequency setting*/
+static int32_t drpai_freq;
 #endif
 std::map<std::string, int> input_source_map =
-{
-    #ifdef V2L
+    {
+#ifdef V2L
         {"MIPI", 1},
-    #endif
-    {"USB", 2}
+#endif
+        {"USB", 2},
 };
 
+#ifdef V2L
+std::vector<double> anchors;
+#endif
+
 /*****************************************
-* Function Name     : float16_to_float32
-* Description       : Function by Edgecortex. Cast uint16_t a into float value.
-* Arguments         : a = uint16_t number
-* Return value      : float = float32 number
-******************************************/
+ * Function Name     : float16_to_float32
+ * Description       : Function by Edgecortex. Cast uint16_t a into float value.
+ * Arguments         : a = uint16_t number
+ * Return value      : float = float32 number
+ ******************************************/
 float float16_to_float32(uint16_t a)
 {
     return __extendXfYf2__<uint16_t, uint16_t, 10, float, uint32_t, 23>(a);
 }
 
 /*****************************************
-* Function Name : timedifference_msec
-* Description   : compute the time differences in ms between two moments
-* Arguments     : t0 = start time
-*                 t1 = stop time
-* Return value  : the time difference in ms
-******************************************/
+ * Function Name : timedifference_msec
+ * Description   : compute the time differences in ms between two moments
+ * Arguments     : t0 = start time
+ *                 t1 = stop time
+ * Return value  : the time difference in ms
+ ******************************************/
 static double timedifference_msec(struct timespec t0, struct timespec t1)
 {
     return (t1.tv_sec - t0.tv_sec) * 1000.0 + (t1.tv_nsec - t0.tv_nsec) / 1000000.0;
 }
 
 /*****************************************
-* Function Name : wait_join
-* Description   : waits for a fixed amount of time for the thread to exit
-* Arguments     : p_join_thread = thread that the function waits for to Exit
-*                 join_time = the timeout time for the thread for exiting
-* Return value  : 0 if successful
-*                 not 0 otherwise
-******************************************/
+ * Function Name : wait_join
+ * Description   : waits for a fixed amount of time for the thread to exit
+ * Arguments     : p_join_thread = thread that the function waits for to Exit
+ *                 join_time = the timeout time for the thread for exiting
+ * Return value  : 0 if successful
+ *                 not 0 otherwise
+ ******************************************/
 static int8_t wait_join(pthread_t *p_join_thread, uint32_t join_time)
 {
     int8_t ret_err;
     struct timespec join_timeout;
     ret_err = clock_gettime(CLOCK_REALTIME, &join_timeout);
-    if ( 0 == ret_err )
+    if (0 == ret_err)
     {
         join_timeout.tv_sec += join_time;
         ret_err = pthread_timedjoin_np(*p_join_thread, NULL, &join_timeout);
@@ -149,16 +158,16 @@ static int8_t wait_join(pthread_t *p_join_thread, uint32_t join_time)
  ******************************************/
 std::string float_to_string(float number, int precision = 2)
 {
-    std::stringstream stream;  
+    std::stringstream stream;
     stream.precision(precision);
-    stream << std::fixed << number;  
+    stream << std::fixed << number;
     return stream.str();
 }
 
 /*****************************************
-* Function Name     : config_read
-* Description       : Read configuration from the config.ini file.
-******************************************/
+ * Function Name     : config_read
+ * Description       : Read configuration from the config.ini file.
+ ******************************************/
 INI_FORMAT config_read(std::string file)
 {
     INI_FORMAT ini_values;
@@ -195,12 +204,12 @@ INI_FORMAT config_read(std::string file)
     return ini_values;
 }
 /*****************************************
-* Function Name     : load_label_file
-* Description       : Load label list text file and return the label list that contains the label.
-* Arguments         : label_file_name = filename of label list. must be in txt format
-* Return value      : vector<string> list = list contains labels
-*                     empty if error occurred
-******************************************/
+ * Function Name     : load_label_file
+ * Description       : Load label list text file and return the label list that contains the label.
+ * Arguments         : label_file_name = filename of label list. must be in txt format
+ * Return value      : vector<string> list = list contains labels
+ *                     empty if error occurred
+ ******************************************/
 std::vector<std::string> load_label_file(std::string label_file_name)
 {
     std::vector<std::string> list = {};
@@ -213,7 +222,7 @@ std::vector<std::string> load_label_file(std::string label_file_name)
     }
 
     std::string line = "";
-    while (getline(infile,line))
+    while (getline(infile, line))
     {
         list.push_back(line);
         if (infile.fail())
@@ -226,21 +235,21 @@ std::vector<std::string> load_label_file(std::string label_file_name)
 }
 
 /*****************************************
-* Function Name : get_result
-* Description   : Get DRP-AI Output from memory via DRP-AI Driver
-* Arguments     : drpai_fd = file descriptor of DRP-AI Driver
-*                 output_addr = memory start address of DRP-AI output
-*                 output_size = output data size
-* Return value  : 0 if succeeded
-*                 not 0 otherwise
-******************************************/
+ * Function Name : get_result
+ * Description   : Get DRP-AI Output from memory via DRP-AI Driver
+ * Arguments     : drpai_fd = file descriptor of DRP-AI Driver
+ *                 output_addr = memory start address of DRP-AI output
+ *                 output_size = output data size
+ * Return value  : 0 if succeeded
+ *                 not 0 otherwise
+ ******************************************/
 int8_t get_result()
 {
     int8_t ret = 0;
     int32_t i = 0;
 
     int32_t output_num = 0;
-    std::tuple<InOutDataType, void*, int64_t> output_buffer;
+    std::tuple<InOutDataType, void *, int64_t> output_buffer;
     int64_t output_size;
     uint32_t size_count = 0;
 
@@ -248,7 +257,7 @@ int8_t get_result()
     output_num = runtime.GetNumOutput();
     size_count = 0;
     /*GetOutput loop*/
-    for (i = 0;i<output_num;i++)
+    for (i = 0; i < output_num; i++)
     {
         /* output_buffer below is tuple, which is { data type, address of output data, number of elements } */
         output_buffer = runtime.GetOutput(i);
@@ -259,20 +268,20 @@ int8_t get_result()
         if (InOutDataType::FLOAT16 == std::get<0>(output_buffer))
         {
             /*Output Data = std::get<1>(output_buffer)*/
-            uint16_t* data_ptr = reinterpret_cast<uint16_t*>(std::get<1>(output_buffer));
-            for (int j = 0; j<output_size; j++)
+            uint16_t *data_ptr = reinterpret_cast<uint16_t *>(std::get<1>(output_buffer));
+            for (int j = 0; j < output_size; j++)
             {
                 /*FP16 to FP32 conversion*/
-                drpai_output_buf[j + size_count]=float16_to_float32(data_ptr[j]);
+                drpai_output_buf[j + size_count] = float16_to_float32(data_ptr[j]);
             }
         }
         else if (InOutDataType::FLOAT32 == std::get<0>(output_buffer))
         {
             /*Output Data = std::get<1>(output_buffer)*/
-            float* data_ptr = reinterpret_cast<float*>(std::get<1>(output_buffer));
-            for (int j = 0; j<output_size; j++)
+            float *data_ptr = reinterpret_cast<float *>(std::get<1>(output_buffer));
+            for (int j = 0; j < output_size; j++)
             {
-                drpai_output_buf[j + size_count]=data_ptr[j];
+                drpai_output_buf[j + size_count] = data_ptr[j];
             }
         }
         else
@@ -287,18 +296,17 @@ int8_t get_result()
 }
 
 /*****************************************
-* Function Name : sigmoid
-* Description   : Helper function for YOLO Post Processing
-* Arguments     : x = input argument for the calculation
-* Return value  : sigmoid result of input x
-******************************************/
+ * Function Name : sigmoid
+ * Description   : Helper function for YOLO Post Processing
+ * Arguments     : x = input argument for the calculation
+ * Return value  : sigmoid result of input x
+ ******************************************/
 double sigmoid(double x)
 {
-    return 1.0/(1.0 + exp(-x));
+    return 1.0 / (1.0 + exp(-x));
 }
 
-
-
+#ifdef V2L
 /*****************************************
 * Function Name : yolo_index
 * Description   : Get the index of the bounding box attributes based on the input offset
@@ -310,7 +318,7 @@ double sigmoid(double x)
 int32_t yolo_index(uint8_t n, int32_t offs, int32_t channel)
 {
     uint8_t num_grid = num_grids[n];
-    return offs + channel * num_grid *  num_grid;
+    return offs + channel * num_grid * num_grid;
 }
 
 /*****************************************
@@ -325,56 +333,39 @@ int32_t yolo_index(uint8_t n, int32_t offs, int32_t channel)
 ******************************************/
 int32_t yolo_offset(uint8_t n, int32_t b, int32_t y, int32_t x)
 {
- 
+
     uint8_t num = num_grids[n];
     uint32_t prev_layer_num = 0;
     int32_t i = 0;
 
-    for (i = 0 ; i < n; i++)
+    for (i = 0; i < n; i++)
     {
-        prev_layer_num += NUM_BB *(NUM_CLASS + 5)* num_grids[i] * num_grids[i];
+        prev_layer_num += NUM_BB * (NUM_CLASS + 5) * num_grids[i] * num_grids[i];
     }
-    return prev_layer_num + b *(NUM_CLASS + 5)* num * num + y * num + x;
+    return prev_layer_num + b * (NUM_CLASS + 5) * num * num + y * num + x;
 }
 
-
 /*****************************************
- * Function Name : hwc2chw
- * Description   : This function takes an input image in HWC (height, width, channels)
- *                 format and returns an output image in CHW (channels, height, width) format.
- * Arguments     : image = cv::Mat
- * Return value  : flat_image = cv::Mat
+ * Function Name : tinyyolov3_postprocess
+ * Description   : Postprocessing for tinyyolov3
+ * Arguments     : output = output buffer from AI inference
+ *                 num_boxes = Max bounding box
+ *                 conf_thres = confidence threshold
+ *                 nms_thres = nms threshold
+ *                 ratio = ratio used in preprocessing
+ * Return value  : 0 if succeeded
+ *                 not 0 otherwise
  ******************************************/
-cv::Mat hwc2chw(const cv::Mat &image)
+std::vector<detection> tinyyolov3_postprocess(const float *floatarr, float conf_thres, float nms_thres)
 {
-    std::vector<cv::Mat> rgb_images;
-    cv::split(image, rgb_images);
-    cv::Mat m_flat_r = rgb_images[0].reshape(1, 1);
-    cv::Mat m_flat_g = rgb_images[1].reshape(1, 1);
-    cv::Mat m_flat_b = rgb_images[2].reshape(1, 1);
-    cv::Mat matArray[] = {m_flat_r, m_flat_g, m_flat_b};
-    cv::Mat flat_image;
-    cv::hconcat(matArray, 3, flat_image);
-    return flat_image;
-}
+    std::vector<detection> detections;
 
-/*****************************************
-* Function Name : R_Post_Proc
-* Description   : Process CPU post-processing for YOLOv3
-* Arguments     : floatarr = drpai output address
-* Return value  : -
-******************************************/
-void R_Post_Proc(float* floatarr)
-{
-    /* Following variables are required for correct_region_boxes in Darknet implementation*/
-    /* Note: This implementation refers to the "darknet detector test" */
-    mtx.lock();
     float new_w, new_h;
     float correct_w = 1.;
     float correct_h = 1.;
-    if ((float) (MODEL_IN_W / correct_w) < (float) (MODEL_IN_H/correct_h) )
+    if ((float)(MODEL_IN_W / correct_w) < (float)(MODEL_IN_H / correct_h))
     {
-        new_w = (float) MODEL_IN_W;
+        new_w = (float)MODEL_IN_W;
         new_h = correct_h * MODEL_IN_W / correct_w;
     }
     else
@@ -405,21 +396,19 @@ void R_Post_Proc(float* floatarr)
     float max_pred = 0;
     int32_t pred_class = -1;
     float probability = 0;
-    detection d;
-    /* Clear the detected result list */
-    det.clear();
+    detection det;
 
     /*Post Processing Start*/
     for (n = 0; n < NUM_INF_OUT_LAYER; n++)
     {
         num_grid = num_grids[n];
         anchor_offset = 2 * NUM_BB * (NUM_INF_OUT_LAYER - (n + 1));
-        
-        for(b = 0; b < NUM_BB; b++)        
+
+        for (b = 0; b < NUM_BB; b++)
         {
-            for(y = 0; y < num_grid; y++)
+            for (y = 0; y < num_grid; y++)
             {
-                for(x = 0; x < num_grid; x++)
+                for (x = 0; x < num_grid; x++)
                 {
                     offs = yolo_offset(n, b, y, x);
                     tx = floatarr[offs];
@@ -429,26 +418,31 @@ void R_Post_Proc(float* floatarr)
                     tc = floatarr[yolo_index(n, offs, 4)];
                     /* Compute the bounding box */
                     /*get_region_box*/
-                    center_x = ((float) x + sigmoid(tx)) / (float) num_grid;
-                    center_y = ((float) y + sigmoid(ty)) / (float) num_grid;
-                    box_w = (float) exp(tw) * anchors[anchor_offset+2*b+0] / (float) MODEL_IN_W;
-                    box_h = (float) exp(th) * anchors[anchor_offset+2*b+1] / (float) MODEL_IN_W;
+                    center_x = ((float)x + sigmoid(tx)) / (float)num_grid;
+                    center_y = ((float)y + sigmoid(ty)) / (float)num_grid;
+                    box_w = (float)exp(tw) * anchors[anchor_offset + 2 * b + 0] / (float)MODEL_IN_W;
+                    box_h = (float)exp(th) * anchors[anchor_offset + 2 * b + 1] / (float)MODEL_IN_W;
                     /* Adjustment for VGA size */
                     /* correct_region_boxes */
-                    center_x = (center_x - (MODEL_IN_W - new_w) / 2. / MODEL_IN_W) / ((float) new_w / MODEL_IN_W);
-                    center_y = (center_y - (MODEL_IN_H - new_h) / 2. / MODEL_IN_H) / ((float) new_h / MODEL_IN_H);
-                    box_w *= (float) (MODEL_IN_W / new_w);
-                    box_h *= (float) (MODEL_IN_H / new_h);
-                    center_x = round(center_x * DRPAI_IN_WIDTH);
-                    center_y = round(center_y * DRPAI_IN_HEIGHT);
-                    box_w = round(box_w * DRPAI_IN_WIDTH);
-                    box_h = round(box_h * DRPAI_IN_HEIGHT);
+                    center_x = (center_x - (MODEL_IN_W - new_w) / 2. / MODEL_IN_W) / ((float)new_w / MODEL_IN_W);
+                    center_y = (center_y - (MODEL_IN_H - new_h) / 2. / MODEL_IN_H) / ((float)new_h / MODEL_IN_H);
+                    box_w *= (float)(MODEL_IN_W / new_w);
+                    box_h *= (float)(MODEL_IN_H / new_h);
+                    center_x = round(center_x * CAM_IMAGE_WIDTH);
+                    center_y = round(center_y * CAM_IMAGE_HEIGHT);
+                    box_w = round(box_w * CAM_IMAGE_WIDTH);
+                    box_h = round(box_h * CAM_IMAGE_HEIGHT);
                     objectness = sigmoid(tc);
                     Box bb = {center_x, center_y, box_w, box_h};
+                    CBox cb;
+                    cb.x1 = bb.x - bb.w / 2;
+                    cb.y1 = bb.y - bb.h / 2;
+                    cb.x2 = bb.x + bb.w / 2;
+                    cb.y2 = bb.y + bb.h / 2;
                     /* Get the class prediction */
                     for (i = 0; i < NUM_CLASS; i++)
                     {
-                        classes[i] = sigmoid(floatarr[yolo_index(n, offs, 5+i)]);
+                        classes[i] = sigmoid(floatarr[yolo_index(n, offs, 5 + i)]);
                     }
                     max_pred = 0;
                     pred_class = -1;
@@ -462,24 +456,96 @@ void R_Post_Proc(float* floatarr)
                     }
                     /* Store the result into the list if the probability is more than the threshold */
                     probability = max_pred * objectness;
-                    if (probability > TH_PROB)
+                    if (probability > conf_thres)
                     {
-                        d = {bb, pred_class, probability};
-                        det.push_back(d);
+                        det = {bb, cb, pred_class, probability};
+                        detections.push_back(det);
                     }
                 }
             }
         }
     }
-    /* Non-Maximum Supression filter */
-    filter_boxes_nms(det, det.size(), TH_NMS);
-    mtx.unlock();
-    return ;
+
+    filter_boxes_nms(detections, detections.size(), nms_thres);
+    return detections;
+}
+#endif
+
+/*****************************************
+ * Function Name : postprocess
+ * Description   : Postprocessing for edgeyolo
+ * Arguments     : output = output buffer from AI inference
+ *                 num_boxes = Max bounding box
+ *                 conf_thres = confidence threshold
+ *                 nms_thres = nms threshold
+ *                 ratio = ratio used in preprocessing
+ * Return value  : 0 if succeeded
+ *                 not 0 otherwise
+ ******************************************/
+std::vector<detection> postprocess(const float *output, int num_boxes, float conf_thres, float nms_thres, float ratio)
+{
+    std::vector<detection> detections;
+
+    for (int i = 0; i < num_boxes; ++i)
+    {
+        float obj_conf = output[i * (5 + NUM_CLASS) + 4];
+        if (obj_conf < conf_thres)
+            continue;
+
+        float max_cls_conf = 0;
+        int cls_id = -1;
+        for (int j = 0; j < NUM_CLASS; ++j)
+        {
+            float cls_conf = output[i * (5 + NUM_CLASS) + 5 + j];
+            if (cls_conf > max_cls_conf)
+            {
+                max_cls_conf = cls_conf;
+                cls_id = j;
+            }
+        }
+
+        float conf = obj_conf * max_cls_conf;
+        if (conf < conf_thres)
+            continue;
+
+        detection det;
+        Box bb;
+        CBox cb;
+        bb.x = output[i * (5 + NUM_CLASS) + 0] / ratio;
+        bb.y = output[i * (5 + NUM_CLASS) + 1] / ratio;
+        bb.w = output[i * (5 + NUM_CLASS) + 2] / ratio;
+        bb.h = output[i * (5 + NUM_CLASS) + 3] / ratio;
+
+        cb.x1 = bb.x - bb.w / 2;
+        cb.y1 = bb.y - bb.h / 2;
+        cb.x2 = bb.x + bb.w / 2;
+        cb.y2 = bb.y + bb.h / 2;
+
+        det = {bb, cb, cls_id, conf};
+        detections.push_back(det);
+    }
+    filter_boxes_nms(detections, detections.size(), nms_thres);
+    return detections;
 }
 
-
-
-
+/*****************************************
+ * Function Name : R_Post_Proc
+ * Description   : Process CPU post-processing for Edgeyolo
+ * Arguments     : floatarr = drpai output address
+ * Return value  : -
+ ******************************************/
+void R_Post_Proc(float *floatarr)
+{
+    mtx.lock();
+    g_detections.clear();
+#ifdef V2H
+    g_detections = postprocess(floatarr, MAX_PROPOSALS, TH_PROB, TH_NMS, ratio);
+#elif V2L
+    g_detections = tinyyolov3_postprocess(floatarr, TH_PROB, TH_NMS);
+#endif
+    mtx.unlock();
+    return;
+}
 
 /*****************************************
  * Function Name : R_exit_Thread
@@ -540,14 +606,83 @@ exit_end:
     pthread_exit(NULL);
 }
 
-
+/*****************************************
+ * Function Name : hwc2chw
+ * Description   : This function takes an input image in HWC (height, width, channels)
+ *                 format and returns an output image in CHW (channels, height, width) format.
+ * Arguments     : image = cv::Mat
+ * Return value  : flat_image = cv::Mat
+ ******************************************/
+cv::Mat hwc2chw(const cv::Mat &image)
+{
+    std::vector<cv::Mat> rgb_images;
+    cv::split(image, rgb_images);
+    cv::Mat m_flat_r = rgb_images[0].reshape(1, 1);
+    cv::Mat m_flat_g = rgb_images[1].reshape(1, 1);
+    cv::Mat m_flat_b = rgb_images[2].reshape(1, 1);
+    cv::Mat matArray[] = {m_flat_r, m_flat_g, m_flat_b};
+    cv::Mat flat_image;
+    cv::hconcat(matArray, 3, flat_image);
+    return flat_image;
+}
 
 /*****************************************
-* Function Name : R_Inf_Thread
-* Description   : Executes the DRP-AI inference thread
-* Arguments     : threadid = thread identification
-* Return value  : -
-******************************************/
+ * Function Name : preprocess
+ * Description   : preprocessing for edgeyolo
+ * Arguments     : img = raw image/frame
+ *                 input_size = model input size
+ *                 ratio = ratio value for postprocessing
+ *                 input_tensor_values = preprocessed image
+ * Return value  : -
+ ******************************************/
+void tinyyolov3_preprocess(cv::Mat &input_image, cv::Size input_size)
+{
+    cv::resize(input_image, input_image, input_size);
+    cv::cvtColor(input_image, input_image, cv::COLOR_BGR2RGB);
+    input_image = hwc2chw(input_image);
+    input_image.convertTo(input_image, CV_32FC3, 1.0 / 255.0, 0);
+    if (!input_image.isContinuous())
+        input_image = input_image.clone();
+}
+
+/*****************************************
+ * Function Name : preprocess
+ * Description   : preprocessing for edgeyolo
+ * Arguments     : img = raw image/frame
+ *                 input_size = model input size
+ *                 ratio = ratio value for postprocessing
+ *                 input_tensor_values = preprocessed image
+ * Return value  : -
+ ******************************************/
+void preprocess(const cv::Mat &img, cv::Size input_size, float &ratio, std::vector<float> &input_tensor_values)
+{
+    int h = img.rows, w = img.cols;
+    ratio = std::min(input_size.width / (float)w, input_size.height / (float)h);
+    int new_w = int(w * ratio), new_h = int(h * ratio);
+
+    cv::Mat resized;
+    cv::resize(img, resized, cv::Size(new_w, new_h));
+    cv::Mat padded(input_size, CV_8UC3, cv::Scalar(114, 114, 114));
+    resized.copyTo(padded(cv::Rect(0, 0, new_w, new_h)));
+
+    padded.convertTo(padded, CV_32F);
+
+    std::vector<cv::Mat> channels(3);
+    cv::split(padded, channels);
+    for (int c = 0; c < 3; ++c)
+    {
+        input_tensor_values.insert(input_tensor_values.end(),
+                                   (float *)channels[c].datastart,
+                                   (float *)channels[c].dataend);
+    }
+}
+
+/*****************************************
+ * Function Name : R_Inf_Thread
+ * Description   : Executes the DRP-AI inference thread
+ * Arguments     : threadid = thread identification
+ * Return value  : -
+ ******************************************/
 void *R_Inf_Thread(void *threadid)
 {
     /*Semaphore Variable*/
@@ -570,9 +705,9 @@ void *R_Inf_Thread(void *threadid)
     std::cout << "[INFO] Inference Thread Starting\n";
 
     /*Inference Loop Start*/
-    while(1)
+    while (1)
     {
-        while(1)
+        while (1)
         {
             /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
             /*Checks if sem_getvalue is executed wihtout issue*/
@@ -604,24 +739,27 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
 
-        cv::Size size(MODEL_IN_H, MODEL_IN_W);
-        cv::resize(input_image, input_image, size);
-        cv::cvtColor(input_image, input_image, cv::COLOR_BGR2RGB);
-        input_image = hwc2chw(input_image);
-        input_image.convertTo(input_image, CV_32FC3,1.0 / 255.0, 0);
-        if (!input_image.isContinuous())
-        input_image = input_image.clone();
+#ifdef V2H
+        std::vector<float> input_tensor;
+        preprocess(input_image, cv::Size(MODEL_IN_H, MODEL_IN_W), ratio, input_tensor);
+#elif V2L
+        tinyyolov3_preprocess(input_image, cv::Size(MODEL_IN_H, MODEL_IN_W));
+#endif
 
         ret = timespec_get(&pre_end_time, TIME_UTC);
-        if ( 0 == ret)
+        if (0 == ret)
         {
             fprintf(stderr, "[ERROR] Failed to Get Pre-process End Time\n");
             goto err;
         }
 
         /*Set Pre-processing output to be inference input. */
+#ifdef V2H
+        runtime.SetInput(0, input_tensor.data());
+#elif V2L
         runtime.SetInput(0, input_image.ptr<float>());
-        
+#endif
+
         /*Pre-process Time Result*/
         pre_time = (float)((timedifference_msec(pre_start_time, pre_end_time)));
 
@@ -633,16 +771,15 @@ void *R_Inf_Thread(void *threadid)
             goto err;
         }
 
-        #ifdef V2H
-            runtime.Run(drpai_freq);
-        #elif V2L
-            runtime.Run();
-        #endif
-
+#ifdef V2H
+        runtime.Run(drpai_freq);
+#elif V2L
+        runtime.Run();
+#endif
 
         /*Gets AI Inference End Time*/
         ret = timespec_get(&inf_end_time, TIME_UTC);
-        if ( 0 == ret)
+        if (0 == ret)
         {
             fprintf(stderr, "[ERROR] Failed to Get Inference End Time\n");
             goto err;
@@ -664,12 +801,12 @@ void *R_Inf_Thread(void *threadid)
             fprintf(stderr, "[ERROR] Failed to get result from memory.\n");
             goto err;
         }
-        
+
         /*CPU Post-Processing For YOLOv3*/
         R_Post_Proc(drpai_output_buf);
         /*Gets Post-process End Time*/
         ret = timespec_get(&post_end_time, TIME_UTC);
-        if ( 0 == ret)
+        if (0 == ret)
         {
             fprintf(stderr, "[ERROR] Failed to Get Post-process End Time\n");
             goto err;
@@ -694,14 +831,14 @@ ai_inf_end:
 }
 
 /*****************************************
-* Function Name : R_Capture_Thread
-* Description   : Executes the V4L2 capture with Capture thread.
-* Arguments     : cap_pipeline = gstreamer pipeline
-* Return value  : -
-******************************************/
+ * Function Name : R_Capture_Thread
+ * Description   : Executes the V4L2 capture with Capture thread.
+ * Arguments     : cap_pipeline = gstreamer pipeline
+ * Return value  : -
+ ******************************************/
 void *R_Capture_Thread(void *cap_pipeline)
 {
-    std::string &gstream = *(static_cast<std::string*>(cap_pipeline));
+    std::string &gstream = *(static_cast<std::string *>(cap_pipeline));
     std::cout << gstream << std::endl;
     /*Semaphore Variable*/
     int32_t capture_sem_check = 0;
@@ -720,7 +857,7 @@ void *R_Capture_Thread(void *cap_pipeline)
         goto err;
     }
 
-    while(1)
+    while (1)
     {
         /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
         /*Checks if sem_getvalue is executed wihtout issue*/
@@ -745,8 +882,8 @@ void *R_Capture_Thread(void *cap_pipeline)
             goto capture_end;
         }
         else
-        {   
-            //cv::resize(g_frame, g_frame, cv::Size(CAM_IMAGE_WIDTH, CAM_IMAGE_HEIGHT));
+        {
+            // cv::resize(g_frame, g_frame, cv::Size(CAM_IMAGE_WIDTH, CAM_IMAGE_HEIGHT));
             if (!inference_start.load())
             {
 
@@ -775,7 +912,6 @@ capture_end:
     pthread_exit(NULL);
 }
 
-
 /*****************************************
  * Function Name    : create_output_frame
  * Description      : create the output frame with space for displaying inference details
@@ -795,14 +931,13 @@ cv::Mat create_output_frame(cv::Mat frame_g)
     return background;
 }
 
-
 /*****************************************
-* Function Name : R_Main_Process
-* Description   : Runs the main process loop
-* Arguments     : -
-* Return value  : 0 if succeeded
-*                 not 0 otherwise
-******************************************/
+ * Function Name : R_Main_Process
+ * Description   : Runs the main process loop
+ * Arguments     : -
+ * Return value  : 0 if succeeded
+ *                 not 0 otherwise
+ ******************************************/
 int8_t R_Main_Process()
 {
     /*Main Process Variables*/
@@ -823,20 +958,22 @@ int8_t R_Main_Process()
     std::set<std::string> detection_object_set;
     std::string objects_available = "";
     std::string objects_not_available = "";
-    /* detection count <key:object,value:count> */ 
+    /* detection count <key:object,value:count> */
     std::map<std::string, int> detection_count;
     std::string config_file_path = ini_values["config_path"];
     INI_FORMAT config_values = config_read(config_file_path);
     float conf = std::stof(config_values["detect"]["conf"]);
+#ifdef V2L
     std::string get_anchor = config_values["detect"]["anchors"];
-    std::string detection_object_string = config_values["detect"]["objects"];
     std::stringstream detection_anchor_ss(get_anchor);
     std::string anch_value;
     while (std::getline(detection_anchor_ss, anch_value, ','))
     {
-        double conv_anch_value =std::stod(anch_value);
+        double conv_anch_value = std::stod(anch_value);
         anchors.push_back(conv_anch_value);
     }
+#endif
+    std::string detection_object_string = config_values["detect"]["objects"];
     std::stringstream detection_object_ss(detection_object_string);
     std::string item;
     while (std::getline(detection_object_ss, item, ','))
@@ -851,7 +988,7 @@ int8_t R_Main_Process()
             objects_not_available += item + "\n";
         }
     }
-     std::cout << "[INFO] *******************Detection Parameters*******************" << std::endl;
+    std::cout << "[INFO] *******************Detection Parameters*******************" << std::endl;
     if (!objects_not_available.empty())
     {
         std::cout << "[INFO] Selected objects in config.ini which is not found in the label list\n"
@@ -867,20 +1004,20 @@ int8_t R_Main_Process()
         std::cerr << "[ERROR] No matching objects in label list from the config.ini file" << std::endl;
         exit(0);
     }
-    /*Display font parameter values*/
-    #ifdef V2H
-        float font_size = 0.85;
-        float font_weight = 1;
-    #elif V2L
-        float font_size = 0.6;
-        float font_weight = 1;
-    #endif
+/*Display font parameter values*/
+#ifdef V2H
+    float font_size = 0.85;
+    float font_weight = 1;
+#elif V2L
+    float font_size = 0.6;
+    float font_weight = 1;
+#endif
     float font_size_dt = 0.65;
     float font_size_bb = 0.5;
     float font_weight_bb = 1;
 
     printf("Main Loop Starts\n");
-    while(1)
+    while (1)
     {
         /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
         errno = 0;
@@ -895,7 +1032,7 @@ int8_t R_Main_Process()
         {
             goto main_proc_end;
         }
-            /* Check img_obj_ready flag which is set in Capture Thread. */
+        /* Check img_obj_ready flag which is set in Capture Thread. */
         if (img_obj_ready.load())
         {
             /*key : object, value:count*/
@@ -906,87 +1043,59 @@ int8_t R_Main_Process()
             int items = 0;
 
             mtx.lock();
-            /*filter detection based on confidence score and objects selected*/
-            for (detection detect : det)
+            for (const detection &det : g_detections)
             {
-                bbox_t dat;
-
                 /*ignore detection based on the threshold from the config.ini file*/
-                if (detect.prob < conf)
+                if (det.prob < conf)
                 {
                     continue;
                 }
-                /*get the label from label file map*/
-                dat.name = label_file_map[detect.c].c_str();
+
+                std::string class_name = label_file_map[det.c].c_str();
 
                 /*check if the detected object is in the list of objects to be detected(from the config.ini file)*/
-                if (count(detection_object_set.begin(), detection_object_set.end(), dat.name) <= 0)
+                if (count(detection_object_set.begin(), detection_object_set.end(), class_name) <= 0)
                 {
                     continue;
                 }
 
                 /*map for storing the count of detected objects*/
-                if (detection_count.count(dat.name) > 0)
+                if (detection_count.count(class_name) > 0)
                 {
-                    detection_count[dat.name]++;
+                    detection_count[class_name]++;
                 }
                 else
                 {
-                    detection_count[dat.name] = 1;
+                    detection_count[class_name] = 1;
                 }
 
-                dat.X = (int32_t)(detect.bbox.x - (detect.bbox.w / 2));
-                dat.Y = (int32_t)(detect.bbox.y - (detect.bbox.h / 2));
-                dat.W = (int32_t)detect.bbox.w;
-                dat.H = (int32_t)detect.bbox.h;
-                dat.pred = detect.prob * 100.0;
-
-                cv::Size text_size = cv::getTextSize(dat.name, cv::FONT_HERSHEY_SIMPLEX, font_size_bb, 2, 0);
-                /*adjust the font size based on the detection text size*/
-                if (text_size.width > dat.W)
-                {
-                    font_weight_bb  = .75;
-                    font_size_bb    = 0.3;
-                } 
-                else 
-                {
-                    font_size_dt = 0.65;
-                    font_size_bb = 0.55;
-                }
-
-                cv::Rect rect(dat.X, dat.Y, dat.W, dat.H);
-                cv::Rect rect_text_box(dat.X, dat.Y - 20, dat.W, 20);
-                /*draw the rectangle for detected object*/
-                cv::rectangle(bgra_image, rect, cv::Scalar(0, 255, 0), 1.5);
-                /*draw text box for holding the class label*/
-                cv::rectangle(bgra_image, rect_text_box, cv::Scalar(0, 255, 0), cv::FILLED);
-                /*writing class label to the display frame */
-                cv::putText(bgra_image, dat.name, cv::Point(dat.X + 5, dat.Y - 8), 
-                            cv::FONT_HERSHEY_SIMPLEX, font_size_bb, cv::Scalar(0, 0, 0), font_weight_bb);
+                cv::rectangle(bgra_image, cv::Point(det.cbox.x1, det.cbox.y1), cv::Point(det.cbox.x2, det.cbox.y2), cv::Scalar(0, 255, 0), 2);
+                cv::rectangle(bgra_image, cv::Point(det.cbox.x1, det.cbox.y1 - 20), cv::Point(det.cbox.x2, det.cbox.y1), cv::Scalar(0, 255, 0), cv::FILLED);
+                cv::putText(bgra_image, class_name, cv::Point(det.cbox.x1 + 5, det.cbox.y1 - 8), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 0), 2);
             }
             mtx.unlock();
             bgra_image = create_output_frame(bgra_image);
-            cv::putText(bgra_image, "Preprocess Time: " + float_to_string(pre_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 60), 
+            cv::putText(bgra_image, "Preprocess Time: " + float_to_string(pre_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 60),
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "AI Inference Time: " + float_to_string(ai_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 90), 
+            cv::putText(bgra_image, "AI Inference Time: " + float_to_string(ai_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 90),
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
-            cv::putText(bgra_image, "Postprocess Time: " + float_to_string(post_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 120), 
+            cv::putText(bgra_image, "Postprocess Time: " + float_to_string(post_time), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 120),
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             for (std::map<std::string, int>::iterator it = detection_count.begin(); it != detection_count.end(); ++it)
             {
-                cv::putText(bgra_image, std::string(it->first) + ": " + std::to_string(it->second), 
-                            cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 30, 180 + 30*items), cv::FONT_HERSHEY_DUPLEX, font_size, 
+                cv::putText(bgra_image, std::string(it->first) + ": " + std::to_string(it->second),
+                            cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 30, 180 + 30 * items), cv::FONT_HERSHEY_DUPLEX, font_size,
                             cv::Scalar(255, 255, 255), font_weight);
                 total_count += (int)it->second;
                 items++;
             }
-            cv::putText(bgra_image, "Total Objects:  " + std::to_string(total_count), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 150), 
+            cv::putText(bgra_image, "Total Objects:  " + std::to_string(total_count), cv::Point(DISP_IMAGE_OUTPUT_WIDTH + 20, 150),
                         cv::FONT_HERSHEY_DUPLEX, font_size, cv::Scalar(255, 255, 255), font_weight);
             cv::cvtColor(bgra_image, bgra_image, cv::COLOR_BGR2BGRA);
             wayland.commit(bgra_image.data, NULL);
             img_obj_ready.store(0);
         }
- 
+
         /*Wait for 1 TICK.*/
         usleep(WAIT_TIME);
     }
@@ -1004,50 +1113,48 @@ main_proc_end:
     return main_ret;
 }
 
-
 /*****************************************
-* Function Name : get_drpai_start_addr
-* Description   : Get DRP-AI Memory Area Address via DRP-AI Driver
-* Arguments     : -
-* Return value  : drpai start address 
-******************************************/
+ * Function Name : get_drpai_start_addr
+ * Description   : Get DRP-AI Memory Area Address via DRP-AI Driver
+ * Arguments     : -
+ * Return value  : drpai start address
+ ******************************************/
 #ifdef V2H
-    uint64_t get_drpai_start_addr(int drpai_fd)
+uint64_t get_drpai_start_addr(int drpai_fd)
 #elif V2L
-    uint32_t get_drpai_start_addr(int drpai_fd)
+uint32_t get_drpai_start_addr(int drpai_fd)
 #endif
 {
-    int fd  = 0;
+    int fd = 0;
     int ret = 0;
     drpai_data_t drpai_data;
 
     errno = 0;
 
     /* Get DRP-AI Memory Area Address via DRP-AI Driver */
-    ret = ioctl(drpai_fd , DRPAI_GET_DRPAI_AREA, &drpai_data);
+    ret = ioctl(drpai_fd, DRPAI_GET_DRPAI_AREA, &drpai_data);
     if (-1 == ret)
     {
-        std::cerr << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno ;
+        std::cerr << "[ERROR] Failed to get DRP-AI Memory Area : errno=" << errno;
         return (uint32_t)NULL;
     }
 
     return drpai_data.address;
 }
 
-
 /*****************************************
  * Function Name : query_device_status
  * Description   : function to check USB device is connectod.
- * Return value  : media_port, media port that device is connectod. 
+ * Return value  : media_port, media port that device is connectod.
  ******************************************/
 std::string query_device_status(std::string device_type)
 {
     std::string media_port = "";
     /* Linux command to be executed */
-    const char* command = "v4l2-ctl --list-devices";
-    /* Open a pipe to the command and execute it */ 
-    FILE* pipe = popen(command, "r");
-    if (!pipe) 
+    const char *command = "v4l2-ctl --list-devices";
+    /* Open a pipe to the command and execute it */
+    FILE *pipe = popen(command, "r");
+    if (!pipe)
     {
         std::cerr << "[ERROR] Unable to open the pipe." << std::endl;
         return media_port;
@@ -1055,7 +1162,7 @@ std::string query_device_status(std::string device_type)
     /* Read the command output line by line */
     char buffer[128];
     size_t found;
-    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) 
+    while (fgets(buffer, sizeof(buffer), pipe) != nullptr)
     {
         std::string response = std::string(buffer);
         found = response.find(device_type);
@@ -1066,33 +1173,32 @@ std::string query_device_status(std::string device_type)
             pclose(pipe);
             /* return media port*/
             return media_port;
-        } 
+        }
     }
     pclose(pipe);
     /* return media port*/
     return media_port;
 }
 
-
 /*****************************************
-* Function Name : init_drpai
-* Description   : Function to initialize DRP-AI.
-* Arguments     : drpai_fd: DRP-AI file descriptor
-* Return value  : If non-zero, DRP-AI memory start address.
-*                 0 is failure.
-******************************************/
+ * Function Name : init_drpai
+ * Description   : Function to initialize DRP-AI.
+ * Arguments     : drpai_fd: DRP-AI file descriptor
+ * Return value  : If non-zero, DRP-AI memory start address.
+ *                 0 is failure.
+ ******************************************/
 #ifdef V2H
-    uint64_t init_drpai(int drpai_fd)
+uint64_t init_drpai(int drpai_fd)
 #elif V2L
-    uint32_t init_drpai(int drpai_fd)
+uint32_t init_drpai(int drpai_fd)
 #endif
 {
     int ret = 0;
-    #ifdef V2H
-        uint64_t drpai_addr = 0;
-    #elif V2L
-        uint32_t drpai_addr = 0;
-    #endif
+#ifdef V2H
+    uint64_t drpai_addr = 0;
+#elif V2L
+    uint32_t drpai_addr = 0;
+#endif
 
     /*Get DRP-AI memory start address*/
     drpai_addr = get_drpai_start_addr(drpai_fd);
@@ -1184,12 +1290,11 @@ void mipi_cam_init(void)
     int ret = 0;
     std::cout << "[INFO] MIPI CAM Init \n";
     const char *commands[4] =
-    {
-        "media-ctl -d /dev/media0 -r",
-        "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
-        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
-        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
-    };
+        {
+            "media-ctl -d /dev/media0 -r",
+            "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+            "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
+            "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""};
 
     /* media-ctl command */
     for (int i = 0; i < 4; i++)
@@ -1207,26 +1312,27 @@ void mipi_cam_init(void)
 
 void print_usage_info()
 {
-    #ifdef V2H
-        std::cout << "[INFO] usage: ./object_counter COCO|animal|vehicle USB\n";
-    #elif V2L
-        std::cout << "[INFO] usage: ./object_counter COCO|animal|vehicle USB|MIPI\n";
-    #endif
+#ifdef V2H
+    std::cout << "[INFO] usage: ./object_counter COCO|animal|vehicle USB\n";
+#elif V2L
+    std::cout << "[INFO] usage: ./object_counter COCO|animal|vehicle USB|MIPI\n";
+#endif
 }
 
-int32_t main(int32_t argc, char * argv[])
+int32_t main(int32_t argc, char *argv[])
 {
     int8_t main_proc = 0;
     int8_t ret = 0;
     int8_t ret_w = 0;
     int8_t ret_main = 0;
 
-    #ifdef V2H
-        /*Disable OpenCV Accelerator due to the use of multithreading */
-        unsigned long OCA_list[16];
-        for(int i = 0; i < 16; i++) OCA_list[i] = 0;
-        OCA_Activate(&OCA_list[0]);
-    #endif
+#ifdef V2H
+    /*Disable OpenCV Accelerator due to the use of multithreading */
+    unsigned long OCA_list[16];
+    for (int i = 0; i < 16; i++)
+        OCA_list[i] = 0;
+    OCA_Activate(&OCA_list[0]);
+#endif
 
     /*Multithreading Variables*/
     int32_t create_thread_ai = -1;
@@ -1238,13 +1344,12 @@ int32_t main(int32_t argc, char * argv[])
     bool runtime_status = false;
     std::string gstreamer_pipeline;
 
-    if (argc<3) 
+    if (argc < 3)
     {
         std::cout << "[ERROR] Please specify Input Option/Source\n";
         print_usage_info();
         std::cout << "[INFO] End Application.\n";
         return -1;
-
     }
 
     std::string mode = argv[1];
@@ -1252,11 +1357,11 @@ int32_t main(int32_t argc, char * argv[])
 
     std::map<std::string, std::string> args;
     /* Parse input arguments */
-    for (int i = 1; i < argc; ++i) 
+    for (int i = 1; i < argc; ++i)
     {
         std::string arg = argv[i];
         size_t pos = arg.find('=');
-        if (pos != std::string::npos) 
+        if (pos != std::string::npos)
         {
             std::string key = arg.substr(0, pos);
             std::string value = arg.substr(pos + 1);
@@ -1264,19 +1369,24 @@ int32_t main(int32_t argc, char * argv[])
         }
     }
 
-    #ifdef V2H
-         /* DRP-AI Frequency Setting */
-        if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0)
-            drpai_freq = stoi(args["--drpai_freq"]);
-        else 
-            drpai_freq = DRPAI_FREQ;
-        std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+#ifdef V2H
+    /* DRP-AI Frequency Setting */
+    if (args.find("--drpai_freq") != args.end() && std::stoi(args["--drpai_freq"]) <= 127 && std::stoi(args["--drpai_freq"]) > 0)
+        drpai_freq = stoi(args["--drpai_freq"]);
+    else
+        drpai_freq = DRPAI_FREQ;
+    std::cout << "\n[INFO] DRPAI FREQUENCY : " << drpai_freq << "\n";
+    #ifdef V2N
+        /* AI Application for RZ/V2N */
+        printf("\nAI Application for RZ/V2N\n");
+    #else
         /* AI Application for RZ/V2H */
         printf("\nAI Application for RZ/V2H\n");
-    #elif V2L
-        /* AI Application for RZ/V2L */
-        printf("\nAI Application for RZ/V2L\n");
     #endif
+#elif V2L
+    /* AI Application for RZ/V2L */
+    printf("\nAI Application for RZ/V2L\n");
+#endif
 
     /* Read the configuration file */
     INI_FORMAT config_values = config_read("app_conf.ini");
@@ -1293,12 +1403,10 @@ int32_t main(int32_t argc, char * argv[])
         std::cout << "[INFO] " << mode << " OPTION VALID" << std::endl;
         ini_values = config_values[mode];
     }
-    
-  
 
     /* Initialize waylad */
-    ret_w = wayland.init(0, DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
-    if(0 != ret_w)
+    ret_w = wayland.init(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    if (0 != ret_w)
     {
         fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
         return -1;
@@ -1306,78 +1414,82 @@ int32_t main(int32_t argc, char * argv[])
 
     switch (input_source_map[input_source])
     {
-        /* Input Source : MIPI Camera */
-        case 1:
-        {
-            std::cout << "[INFO] MIPI CAMERA \n";
-            mipi_cam_init();
-            std::string media_port = query_device_status("CRU");
-            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
-
-        }
-        break;
-        /* Input Source : USB Camera */
-        case 2:
-        {
-            std::cout << "[INFO] USB CAMERA \n";
-            std::string media_port = query_device_status("usb");
-            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
-
-        }
-        break;
-        default:
-        {
-            std::cout << "[ERROR] Please specify Mode and Input Source" << std::endl;
-            print_usage_info();
-            std::cout << "\n[INFO] End Application\n";
-            return -1;
-        }
+    /* Input Source : MIPI Camera */
+    case 1:
+    {
+        std::cout << "[INFO] MIPI CAMERA \n";
+        mipi_cam_init();
+        std::string media_port = query_device_status("CRU");
+        gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
     }
- 
+    break;
+    /* Input Source : USB Camera */
+    case 2:
+    {
+        std::cout << "[INFO] USB CAMERA \n";
+        std::string media_port = query_device_status("usb");
+        gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+    }
+    break;
+    default:
+    {
+        std::cout << "[ERROR] Please specify Mode and Input Source" << std::endl;
+        print_usage_info();
+        std::cout << "\n[INFO] End Application\n";
+        return -1;
+    }
+    }
+
     int drpai_fd = open("/dev/drpai0", O_RDWR);
     if (0 > drpai_fd)
     {
         std::cerr << "[ERROR] Failed to open DRP-AI Driver : errno=" << errno << std::endl;
         return -1;
     }
-    
+
     uint64_t drpaimem_addr_start = 0;
 
     /*Load Label from label_list file*/
+    int emptyCount = 0;
     label_file_map = load_label_file(ini_values["label_path"]);
     if (label_file_map.empty())
     {
-        fprintf(stderr,"[ERROR] Failed to load label file: %s\n", ini_values["label_path"].c_str());
+        fprintf(stderr, "[ERROR] Failed to load label file: %s\n", ini_values["label_path"].c_str());
         ret = -1;
         goto end_main;
     }
     uint32_t INF_OUT_SIZE;
-    
-    /*Load number of class from label_list file*/
-    NUM_CLASS = label_file_map.size();
 
-    #ifdef V2H
-        INF_OUT_SIZE = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * num_grids[0] 
-                    + (NUM_CLASS + 5) * NUM_BB * num_grids[1] * num_grids[1]
-                    + (NUM_CLASS + 5) * NUM_BB * num_grids[2] * num_grids[2];
-    #elif V2L
-        INF_OUT_SIZE = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * num_grids[0] 
-                    + (NUM_CLASS + 5) * NUM_BB * num_grids[1] * num_grids[1];
-    #endif
+    emptyCount = std::count_if(label_file_map.begin(), label_file_map.end(), [](const std::string &str)
+                               { return str.empty(); });
+
+    if (emptyCount)
+    {
+        std::cout << "[Warning] " << emptyCount << " Empty entry in label list detected" << std::endl;
+    }
+
+    /*Load number of class from label_list file*/
+    NUM_CLASS = label_file_map.size() - emptyCount;
+
+#ifdef V2H
+    INF_OUT_SIZE = (NUM_CLASS + 5) * MAX_PROPOSALS;
+#elif V2L
+    INF_OUT_SIZE = (NUM_CLASS + 5) * NUM_BB * num_grids[0] * num_grids[0] + (NUM_CLASS + 5) * NUM_BB * num_grids[1] * num_grids[1];
+#endif
 
     drpai_output_buf = new float[INF_OUT_SIZE];
 
     /*Load model_dir structure and its weight to runtime object */
     drpaimem_addr_start = init_drpai(drpai_fd);
 
-    if ((uint32_t)NULL == drpaimem_addr_start) 
+    if ((uint32_t)NULL == drpaimem_addr_start)
     {
         fprintf(stderr, "[ERROR] Failed to get DRP-AI memory area start address.\n");
         goto end_main;
     }
 
-    runtime_status = runtime.LoadModel(ini_values["model_path"], drpaimem_addr_start+DRPAI_MEM_OFFSET);
-    if(!runtime_status)
+    runtime_status = runtime.LoadModel(ini_values["model_path"], drpaimem_addr_start);
+    if (!runtime_status)
     {
         fprintf(stderr, "[ERROR] Failed to load model.\n");
         goto end_main;
@@ -1439,7 +1551,7 @@ int32_t main(int32_t argc, char * argv[])
     }
 
     /*Create Capture Thread*/
-    create_thread_capture = pthread_create(&capture_thread, NULL, R_Capture_Thread, (void *) &gstreamer_pipeline);
+    create_thread_capture = pthread_create(&capture_thread, NULL, R_Capture_Thread, (void *)&gstreamer_pipeline);
     if (0 != create_thread_capture)
     {
         sem_trywait(&terminate_req_sem);
@@ -1458,7 +1570,7 @@ int32_t main(int32_t argc, char * argv[])
     goto end_threads;
 
 end_threads:
-    if(0 == create_thread_capture)
+    if (0 == create_thread_capture)
     {
         ret = wait_join(&capture_thread, CAPTURE_TIMEOUT);
         if (0 != ret)
@@ -1476,7 +1588,6 @@ end_threads:
             ret_main = -1;
         }
     }
-
 
     /*Delete Terminate Request Semaphore.*/
     if (0 == sem_create)

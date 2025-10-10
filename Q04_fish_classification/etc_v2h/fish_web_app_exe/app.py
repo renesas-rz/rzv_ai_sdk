@@ -3,7 +3,7 @@ Filename: app.py
 Created Date: Wednesday, May 29th 2023, 13:01:21
 Author: Quest Global
 Copyright (c) 2023 Renesas
-Functionality: Application for UI and WS communication to V2L board
+Functionality: Application for UI and WS communication to V2H board
 '''
 
 import base64

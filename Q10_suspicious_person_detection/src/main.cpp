@@ -890,7 +890,7 @@ int8_t R_Main_Process()
     int text_height;
 
     /* Initialize waylad */
-    ret = wayland.init(idx, DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
+    ret = wayland.init(DISP_OUTPUT_WIDTH, DISP_OUTPUT_HEIGHT, IMAGE_CHANNEL_BGRA);
     if(0 != ret)
     {
         fprintf(stderr, "[ERROR] Failed to initialize Image for Wayland\n");
@@ -1317,8 +1317,15 @@ int32_t main(int32_t argc, char * argv[])
         else 
             drpai_freq = DRPAI_FREQ;
         std::cout<<"\n[INFO] DRPAI FREQUENCY : "<<drpai_freq<<"\n";
+        /* AI Application for RZ/V2N */
+        // printf("\nAI Application for RZ/V2H\n");
+        #ifdef V2N
+            printf("\nAI Application for RZ/V2N\n");
+        #else
         /* AI Application for RZ/V2H */
-        printf("\nAI Application for RZ/V2H\n");
+            printf("\nAI Application for RZ/V2H\n");
+        #endif
+
         printf("Model : Darknet YOLOv3 | %s\n", ini_values["path"]["model_path"].c_str());
     #elif V2L
         /* AI Application for RZ/V2L */
