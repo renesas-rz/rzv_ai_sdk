@@ -17,6 +17,27 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2H, RZ/V2N & RZ/V2L - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2025.10.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Navigator v2.1.0 is released.</h5>
+                    <ul>
+                        <li>
+                            Users can use RZ/V AI TLT v6.00.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications v6.10
                 </h3>
                 <h6 align="right" >

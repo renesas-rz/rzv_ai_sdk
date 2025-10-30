@@ -77,46 +77,19 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.10.10
+                2025.10.31
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V AI Applications v6.10</b> is released.
+                    <b>AI Navigator v2.1.0</b> is released.
                     <ul>
                         <li>
-                            37 applications supported RZ/V2N AI SDK v6.00.
-                        </li>
-                        <li>
-                            Updated AI models used in 11 applications.
+                            Users can use RZ/V AI TLT v6.00.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>RZ/V Reference Applications</b> page is published.
-                    <ul>
-                        <li> 
-                            Users can check following reference applications provided by Renesas.
-                            <ul>
-                                <li> 
-                                    Dual Camera Video Encode + AI Reference
-                                </li>
-                                <li> 
-                                    Face mosaic application
-                                </li>
-                                <li> 
-                                    Lens distortion correction application
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
             <br>
             <br>
         </div>
@@ -1224,13 +1197,18 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <tr>
                     <td>
                         <a href="https://www.renesas.com/document/mas/rzv2h-group-and-rzv2n-group-linux-interface-specification-gstreamer-users-manual-software" target="_blank" rel="noopener noreferrer">
-                            RZ/V2H and RZ/V2N Video Codec Library User's Manual
+                            GStreamer User's Manual
                         </a>
                     </td>
                     <td>
                         <small>
-                        RZ/V2H Group and RZ/V2N Group Linux Interface Specification GStreamer User's Manual: Software.<br>
-                        Document for GStreamer in Video Codec Library used in RZ/V2H AI SDK and RZ/V2N AI SDK.
+                        This document explains the expanded specification of GStreamer Plug-in and explains how to run the GStreamer Plug-in and GStreamer on Linux on RZ/V2H Group and RZ/V2N Group MPU(s).<br>
+                        See below for Gstreamer Sample Code.<br>
+                        <ul class="mb-1">
+                            <li>
+                                <a href="https://github.com/renesas-rz/rz_gstreamer_sample_code/releases/tag/ai-sdk-6.00_rz-v2n" target="_blank" rel="noopener noreferrer">RZ/V2N Group GStreamer Sample Code for AI SDK v6.00</a>
+                            </li>
+                        </ul>
                         </small>
                     </td>
                 </tr>

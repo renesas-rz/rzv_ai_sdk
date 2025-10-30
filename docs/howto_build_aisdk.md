@@ -241,16 +241,48 @@ downloads
       </li>
     </ul>
   </li>
-  <li>Apply a patch file:<br>
-    <ul>
-      <li>To add Tesseract Open Source OCR Engine for AI applications.
-      </li>
-      <li>Not to use network connection during the build. (Necessary OSS source codes are already provided in AI SDK Source Code.)
-      </li>     
-    </ul>
+  <li>Apply patch files:<br>
+    <ol>
+      <li>To add Tesseract Open Source OCR Engine for AI applications.<br>
+          Not to use network connection during the build. (Necessary OSS source codes are already provided in AI SDK Source Code.)
 {% highlight shell%}
 patch -p1 -i ../patch/0002-no-network-tesseract.patch
 {% endhighlight %}
+      </li>
+      <!-- DRP-AI Driver issue patch file -->
+      <li>Apply a patch file for DRP-AI Driver.<br>
+          This patch file will update the DRP-AI driver to the latest version.<br>
+        <ol type="A">
+          <li>Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch">
+                    0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch
+                  </a>
+                </td>
+                <td>
+                  Patch file for updating the DRP-AI Driver to the latest version
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < 0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch
+cd ${YOCTO_WORK}/build
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
+    </ol>
   </li>
   <li>Run the following command to build the <b>Linux kernel files.</b><br>
     (It takes a few hours to finish building depending on the user’s host PC performance)
