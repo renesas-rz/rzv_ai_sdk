@@ -77,19 +77,24 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.10.31
+                2025.12.17
             </h6>
             <ul>
                 <li>
-                    <b>AI Navigator v2.1.0</b> is released.
+                    <b>RZ/V Reference Applications</b> page is updated.
                     <ul>
                         <li>
-                            Users can use RZ/V AI TLT v6.00.
+                            Following reference application is added.
+                            <ul>
+                                <li>
+                                    Dashcam System Control Reference
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications</b></a>.
             <br>
             <br>
         </div>
