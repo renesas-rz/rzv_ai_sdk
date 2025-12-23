@@ -23,14 +23,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The best solution for starting your AI applications." />
 <meta property="og:description" content="The best solution for starting your AI applications." />
-<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/howto_retrain.html" />
-<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/6.10/howto_retrain.html" />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/transformer_replace_guide.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/6.10/transformer_replace_guide.html" />
 <meta property="og:site_name" content="Renesas RZ/V AI" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Renesas RZ/V AI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-07-31T10:25:16+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.10/howto_retrain.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-12-23T13:59:23+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.10/transformer_replace_guide.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="assets/css/style.css?v=a4a33ac96b1a8729e054c905e3d71f394dc7fe48">
@@ -843,907 +843,1043 @@
       </header>
       <section>
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
-
-<style>
-  /**
-   * This <style> tag is used to hide some rows of the table in the "Hardware Preparation" section.
-   * This style applies only to this demo.md file, so do not put it in assets/css/style.scss file.
-   */
-  .forV2LDemo{
-    display:none;
-  }
-</style>
-
-<div class="container">
+        <div class="container">
     <div class="row">
-        <div class="top col-12">
-How to Re-train AI model
+        <div id="page-top" class="top col-12">
+        How to replace a Transformer-based AI model
         </div>
     </div>
 </div>
 <p><br />
 <br /></p>
-<h5>
-  This page explains how to re-train the AI model of AI Applications using <b>RZ/V AI Transfer Learning Tool</b>.
-  <br /><br />
-  Supported version: <b>RZ/V AI Applications v6.00</b><br />
-</h5>
-
-<p><br /></p>
-
-<h2 id="intro">Introduction</h2>
+<h5>This document explains how to replace and execute a Transformer-based AI model (e.g., SegFormer) on the <b>RZ/V2N</b> platform using the DRP-AI TVM runtime.
+<br /></h5>
+<h5>The following is an example of how to implement the SegFormer model on <b>RZ/V2N</b> by adapting the existing <code>Q09_crack_segmentation</code> sample application.</h5>
+<h3>Introduction</h3>
 <div class="container">
   <div class="row">
     <div class="col-12">
-      RZ/V AI Transfer Learning Tool (TLT) can re-train AI model used in  <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/applications.html"><b>RZ/V AI Applications</b></a> with different datasets.
-      <br />
-      <br />
-    </div>
-    <div class="col-12 text-center">
-      <a href="img/tlt_overview.svg" data-lightbox="group">
-        <img src="img/tlt_overview.svg" alt="RZ/V TLT overview" />
-      </a>
-      <br />
-      <br />
-      <br />
+      <h4 class="u_line">Model Overview</h4>
+      <a href="https://github.com/open-mmlab/mmsegmentation/tree/main/configs/segformer" target="_blank" rel="noopener noreferrer">Segformer</a>  is a state-of-the-art semantic segmentation model that combines Transformers with lightweight multilayer perceptron (MLP) decoders. It leverages a hierarchical Transformer-based encoder (e.g., MiT-Mix Vision Transformer) to extract multi-scale features and a lightweight MLP decoder to produce high-resolution segmentation maps.<br />
     </div>
     <div class="col-12">
-      RZ/V AI Transfer Learning Tool has 5 Sections.<br />
-      <ul>
-        <li>PROJECT DETAILS: Create new project or load an existing project.</li>
-        <li>ANNOTASTION: Create your own training data by labeling images.</li>
-        <li>DATASET: Load the dataset to be used for training.</li>
-        <li>TRAINING: Train the model on the selected dataset.</li>
-        <li>INFERENCE: Test the trained model.</li>
-      </ul>
+      <h4 class="u_line">Work Flow</h4>
+      In this workflow, the process begins with preparing a Transformer-based AI model and ends with running inference on the RZ/V2N board.<br />
+      From Step 1 to Step 5, each stage corresponds to the sections described below in this guide.
+      <br />
+      <br />
     </div>
-    <div class="col-12 text-center">
-      <a href="img/tlt_home_page.png" data-lightbox="group">
-        <img src="img/tlt_home_page.png" alt="RZ/V TLT Launch page" style="max-width: 900px; border:1px solid #acacac;" />
-      </a>
-    </div>
-    <br />
   </div>
+<div class="col-12 text-center">
+  <a href="img/transformer_workflow.png" data-lightbox="group"><img src="img/transformer_workflow.png" alt="Workflow" class="img-fluid" style="max-width: 1000px; margin: 0 auto;" /></a><br />
 </div>
+<ul class="mt-1 mb-1">
+  <li><a href="#step1">Step1: Prepare the SegFormer ONNX model</a></li>
+  <li><a href="#step2">Setp2: Setup Environment</a></li>
+  <li><a href="#step3">Step3: Compile AI Model with DRP-AI TVM</a></li>
+  <li><a href="#step4">Step4: Build the Application</a></li>
+  <li><a href="#step5">Step5: Deploy and Run Application on the Board</a></li>
+</ul>
+</div>
+<p><br /></p>
+<h3 id="step1">Step 1: Prepare the SegFormer ONNX Model </h3>
+<p>In your environment, prepare your own SegFormer model and convert it into ONNX format, which will be used in Step 3.<br />
+This step provides an <b>example</b> for reference purposes.</p>
+<h4 class="mt-5 u_line">1. Operating Environment </h4>
+<table class="gstable">
+    <tr>
+        <th>Category</th>
+        <th>Item</th>
+        <th>Version</th>
+    </tr>
+    <tr>
+        <td rowspan="1">Hardware</td>
+        <td>Ubuntu Desktop<br /> 
+        &nbsp;&nbsp;&nbsp;&nbsp;GPU: NVIDIA GPU with CUDA support</td>
+        <td>20.04</td>
+    </tr>
+    <tr>
+        <td rowspan="8">Software</td>
+        <td>Python</td>
+        <td>3.10.6</td>
+    </tr>
+    <tr>
+        <td>PyTorch</td>
+        <td>1.12.0+cu116</td>
+    </tr>
+    <tr>
+        <td>Torchvision</td>
+        <td>0.13.0+cu116</td>
+    </tr>
+    <tr>
+        <td>pip</td>
+        <td>25.3</td>
+    </tr>
+    <tr>
+        <td>ONNX version</td>
+        <td>1.19.0</td>
+    </tr>
+    <tr>
+        <td>Opset version</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>mmcv-full</td>
+        <td>1.6.0</td>
+    </tr>
+    <tr>
+        <td>mmsegmentation</td>
+        <td>0.30.0</td>
+    </tr>
+</table>
+<h4 class="mt-5 u_line">2. SegFomer implementation details</h4>
+<p>SegFormer is implemented based on the <a href="https://github.com/open-mmlab/mmsegmentation" target="_blank" rel="noopener noreferrer">MMSegmentation</a> repository.<br />
+  The training code was used from the MMSegmentation GitHub repository on the master branch, which is based on the mmcv library. The MMSegmentation package should be installed from the repository using the command below:<br /></p>
 
-<p><br />
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">git clone https://github.com/open-mmlab/mmsegmentation
+<span class="nb">cd </span>mmsegmentation
+git checkout 38900d5c51395dde78b494d9e86a8ed92cc81b49
+pip <span class="nb">install</span> <span class="nt">-v</span> <span class="nt">-e</span> .</code></pre></figure>
+
+<h4 class="mt-5 u_line">3. Model Conversion</h4>
+<p>After training the model and obtaining the PyTorch checkpoint file (<code>.pth</code>), the next step is to convert it into the ONNX format.<br />
+  This conversion can be done using PyTorch’s standard API, <code> torch.onnx</code>(<a href="https://docs.pytorch.org/docs/1.12/onnx.html" target="_blank" rel="noopener noreferrer">PyTorch 1.12</a>), which takes your trained model and a sample input tensor to generate an ONNX model file as output.
+<br />
 <br />
 <br /></p>
-
-<h3 id="functions">Supported Functions of AI Applications</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <table class="gstable" style="font-size: 0.8em">
-        <tr>
-          <th rowspan="2">
-            Function Name of AI Application
-          </th>
-          <th rowspan="2">
-            TLT Project Name
-          </th>
-          <th rowspan="2">
-            AI Model
-          </th>
-          <th rowspan="2">
-            Task Type
-          </th>
-          <th rowspan="2">
-            Download Dataset Name
-            <a href="#footnote_dataset" class="text-white">
-              <sup>*1</sup>
-            </a>
-          </th>
-          <th colspan="2">
-            Target product <br />
-            in AI Application
-          </th>
-        </tr>
-        <tr>
-          <th>RZ/V2L</th>
-          <th>RZ/V2H and RZ/V2N</th>
-        </tr>
-        <tr>
-          <td>01_Head_count</td>
-          <td>01_Head_count_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>01 Head Count(141MB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">02_Line_crossing_object_counting</td>
-          <td>02_Line_crossing_object_counting_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>02 Line Cross Object Counting(141MB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>02_Line_crossing_object_counting_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>02 Line Cross Object Counting(141MB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">03_Elderly_fall_detection</td>
-          <td>03_Elderly_fall_detection_tinyyolov2</td>
-          <td>TinyYOLOv2</td>
-          <td>Object detection</td>
-          <td>03 Elderly Fall Detection TinyYolov2(18.6GB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>03_Elderly_fall_detection_HRNet</td>
-          <td>HRNet</td>
-          <td>Keypoint detection</td>
-          <td>03 COCO 16 Keyopoint</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>04_Safety_helmet_vest_detection</td>
-          <td>04_Safety_helmet_vest_detection_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>04 Safety Helmet Vest Detection(3.42GB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>07_Animal_detection</td>
-          <td>07_Animal_detection_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>07 Animal Detection(1.83GB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">09_Human_gaze_detection</td>
-          <td>09_Human_gaze_detection_resnet18</td>
-          <td>ResNet18</td>
-          <td>Classification</td>
-          <td>09 Human gaze detection resnet18(17GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>09_Human_gaze_detection_tinyyolov2</td>
-          <td>TinyYOLOv2</td>
-          <td>Object detection</td>
-          <td>09 Human gaze detection(4.43GB)<a href="#footnote_09data"><sup>*2</sup></a></td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="3">10_Driver_monitoring_system</td>
-          <td>10_Driver_monitoring_system_tinyyolov2</td>
-          <td>TinyYOLOv2</td>
-          <td>Object detection</td>
-          <td>10 Driver Monitoring System TinyYolov2(4.43GB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>10_Driver_monitoring_system_yolov3</td>
-          <td>HRNet</td>
-          <td>Object detection</td>
-          <td>10 Driver Monitoring System Yolov3(1.80GB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>10_Driver_monitoring_system_Deeppose</td>
-          <td>DeepPose</td>
-          <td>Keypoint detection</td>
-          <td>10 Driver monitoring system Deeppose(723MB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>11_Head_count_topview</td>
-          <td>11_Head_count_topview_yolov3</td>
-          <td>YOLOV3</td>
-          <td>Object detection</td>
-          <td>11 Head Count Topview(1.8GB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="3">12_Hand_gesture_recognition_v2</td>
-          <td>12_Hand_gesture_recognition_v2_resnet_18</td>
-          <td>ResNet18</td>
-          <td>Classification</td>
-          <td>12 Hand Gesture Recognition Resnet(21.9GB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>12_Hand_gesture_recognition_v2_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>12 Hand Gesture Recognition Tiny Yolo(1.2GB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>12_Hand_gesture_recognition_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>12 Hand gesture recognitionyolov3(161MB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>13_Car_ahead_departure_detection</td>
-          <td>13_Car_ahead_departure_detection_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>COCO</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>14_Multi_camera_vehicle_detection</td>
-          <td>14_Multi_camera_vehicle_detection_yoloxl</td>
-          <td>YOLOX-l</td>
-          <td>Object detection</td>
-          <td>14 Multi Camera Vehicle Detection(249MB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>15_Road_lane_segmentation</td>
-          <td>15_Road_lane_segmentation_unet</td>
-          <td>Unet</td>
-          <td>Segmentation</td>
-          <td>15 Road Lane Segmentation(68MB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">Q01_footfall_counter</td>
-          <td>Q01_footfall_counter_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>COCO</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q01_footfall_counter_yolov3</td>
-          <td>YOLOV3</td>
-          <td>Object detection</td>
-          <td>COCO</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>Q03_smart_parking</td>
-          <td>Q03_smart_parking</td>
-          <td>Custom model</td>
-          <td>Classification</td>
-          <td>Q03 Smart Parking(421MB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q04_fish_classification</td>
-          <td>Q04_fish_classification_resnet34</td>
-          <td>ResNet34</td>
-          <td>Classification</td>
-          <td>Q04 Fish Classification(1.58GB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">Q06_expiry_date_detection</td>
-          <td>Q06_expiry_date_detection_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>Q06 Expiry Date Detection(1.32GB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q06_expiry_date_detection_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>Expiry Date Detection(1.32GB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>Q07_plant_disease_classification</td>
-          <td>Q07_plant_disease_classification_resnet34</td>
-          <td>ResNet34</td>
-          <td>Classification</td>
-          <td>Q07 Plant Disease(1.34GB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="6">Q08_object_counter</td>
-          <td>Q08_object_counter_animal_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>Q08 Object Counter Animal(6.97GB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q08_object_counter_animal_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>Q08 Object Counter Animal(6.97GB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>Q08_object_counter_coco_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>COCO</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q08_object_counter_coco_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>COCO</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>Q08_object_counter_vehicle_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>Q08 Object Counter Vehicle(1.51GB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q08_object_counter_vehicle_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>Q08 Object Counter Vehicle(1.51GB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>Q09_crack_segmentation</td>
-          <td>Q09_crack_segmentation_unet</td>
-          <td>Unet</td>
-          <td>Segmentation</td>
-          <td>Q09 Crack Segmentation(0.99GB)</td>
-          <td>&#10004;</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">Q10_suspicious_person_detection</td>
-          <td>Q10_suspicious_person_detection_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>Q10 Suspicious Person Detection(1.57GB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q10_suspicious_person_detection_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>Q10 Suspicious Person Detection(1.57GB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">Q11_fish_detection</td>
-          <td>Q11_fish_detection_tinyyolov3</td>
-          <td>TinyYOLOv3</td>
-          <td>Object detection</td>
-          <td>Q11 Fish Detection(708MB)</td>
-          <td>&#10004;</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>Q11_fish_detection_yolov3</td>
-          <td>YOLOv3</td>
-          <td>Object detection</td>
-          <td>Q11 Fish Detection(708MB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td rowspan="2">Q12_yoga_pose_estimation</td>
-          <td>Q12_yoga_pose_estimation_custom_classifier</td>
-          <td>Custom model</td>
-          <td>Classification</td>
-          <td>Q12 Yoga Pose Estimation Dataset(15MB)</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-        <tr>
-          <td>Q12_yoga_pose_estimation_HRNet</td>
-          <td>HRNet</td>
-          <td>Keypoint detection</td>
-          <td>Q12 COCO 17 Keypoint</td>
-          <td>-</td>
-          <td>&#10004;</td>
-        </tr>
-      </table>
-      <h6>
-        <span id="footnote_dataset">
-          *1: Datasets will be downloaded automatically as needed.
-          <br />
-        </span>
-        <span id="footnote_09data">
-          *2: This file is temporarily unavailable for automatic download. To obtain the file, please contact <a href="https://www.renesas.com/support">Renesas Technical Support</a>.
-          <br />
-        </span>
-      </h6>
-    </div>
-    <div class="col-12">
-      <h4 id="unsupport">Unsupported Functions of AI Applications</h4>
-      The following Functions of AI Applications are NOT supported.<br />
-      <ul>
-        <li>05_Age_gender_detection</li>
-        <li>06_Face_recognition_spoof_detection</li>
-        <li>08_Hand_gesture_recognition</li>
-        <li>Q02_face_authentication</li>
-        <li>Q05_suspicious_activity</li>
-        <li>C01_river_area_monitoring</li>
-        <li>C02_depth_cam_human_body_estimation</li>
-        <li>C03_surface_anomaly_detection</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<p><br /></p>
-
-<h2 id="install">Installation</h2>
-<p>To start using RZ/V AI Transfer Learning Tool, PC that can display the desktop with the following environment is recommended.<br /></p>
-
-<h3 id="hw">Hardware</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <table>
-        <tr>
-          <th>Description</th>
-          <th>Specification</th>
-        </tr>
-        <tr>
-          <td>Linux OS</td>
-          <td>Ubuntu 20.04 and above.</td>
-        </tr>
-        <tr>
-          <td>Processor</td>
-          <td>Intel(R) Xeon(R) and above.</td>
-        </tr>
-        <tr>
-          <td>GPU</td>
-          <td>Any GPU with CUDA.</td>
-        </tr>
-        <tr>
-          <td>Storage</td>
-          <td>At least 100GB of free space is necessary.</td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<h3 id="sw">Software</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <table>
-        <tr>
-          <th>Description</th>
-          <th>Specification</th>
-        </tr>
-        <tr>
-          <td>Python</td>
-          <td>3.10.5</td>
-        </tr>
-        <tr>
-          <td>Docker</td>
-          <td>28.1.1</td>
-        </tr>
-      </table>
-      Other software not listed above will be installed automatically when you install the tool.
-    </div>
-  </div>
-</div>
-
-<p><br /></p>
-
-<h3 id="installpro">Installation procedures</h3>
-<p>This chapter describes the installation procedure when using <b>RZ/V AI Transfer Learning Tool alone</b>.<br /></p>
+<h3 id="step2">Step 2: Setup AI SDK Environment </h3>
 <div class="note">
     <span class="note-title">Note</span>
-    If you use <b>AI Navigator of e<sup>2</sup> studio</b>, the installation procedure is different, so please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/ainavi_quick_start_guide.html">AI Navigator Quick Start Guide</a>.
-    In AI Navigator v2.0.0 (latest), RZ/V AI Transfer Learning Tool v4.00 will be automatically installed, so please see the documentation for <a href="https://renesas-rz.github.io/rzv_ai_sdk/5.20/howto_retrain.html">previous version</a>.
+    Make sure that you have installed <a href="https://docs.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a> on your Linux PC.
   </div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <ol>
-        <li>
-          If you have not yet obtained <b>RZ/V AI Transfer Learning Tool v6.00</b>, click on the link below to download it.
-          <br /><br />
-          <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv-ai-transfer-learning-tool-v600" role="button">Download Link</a>
-          <br /><br />
-        </li>
-        <li>
-          Put the downloaded tar file into a Linux PC and extract it using the following command in a terminal.<br />
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">tar</span> <span class="nt">-xzvf</span> RTK0EF0178Z06000SJ_rzv-ai-tlt.tar.gz</code></pre></figure>
-
-          <br />
-          Make sure the following folders and files are generated after extracting the tar file.
-          <table id="demodirs" class="mytable">
-            <caption>Tool File Structure</caption>
-            <tr>
-              <th colspan="3">Folder or File Name</th>
-              <th>Description</th>
-            </tr>
-            <tr>
-              <td colspan="2">docs/</td>
-              <td>r21ut0254ej0600-rzv-ai-tlt.pdf</td>
-              <td>User's Manual.</td>
-            </tr>
-            <tr>
-              <td rowspan="7">rzv_ai_tlt_v6.00/</td>
-              <td rowspan="6">tlt_backend/</td>
-              <td>install_docker.sh</td>
-              <td>Script to install TLT.</td>
-            </tr>
-            <tr>
-              <td>launch_tlt_service.sh</td>
-              <td>Script to setup the TLT docker container.</td>
-            </tr>
-            <tr>
-              <td>requirements.txt</td>
-              <td>Package list for installing TLT.</td>
-            </tr>
-            <tr>
-              <td>uninstall_tlt.sh</td>
-              <td>Script to uninstall TLT.</td>
-            </tr>
-            <tr>
-              <td>assets/</td>
-              <td>TLT projects directory.<br />
-                  Note: This directory is created by installation procedure.<br />
-              </td>
-            </tr>
-            <tr>
-              <td>datasets/</td>
-              <td>Datasets directory<br />
-                  Note: This directory is created by installation procedure.<br />
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">start_rzv_ai_tlt_gui.sh</td>
-              <td>Launch the TLT GUI.</td>
-            </tr>
-          </table>
-        </li>
-        <li>
-          Change to <code>tlt_backend</code> directory and install the tool.<br />
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd </span>RTK0EF0178Z06000SJ_rzv-ai-tlt/rzv_ai_tlt_v6.00/tlt_backend
-./install_docker.sh</code></pre></figure>
-
-          <br />
-        </li>
-        <li>
-          Build the docker image and start the docker container.<br />
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">./launch_tlt_service.sh</code></pre></figure>
-
-          <br />
-        </li>
-        <li>
-          Change to <code>rzv_ai_tlt_v6.00</code> directory and launch the tool.<br />
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ../
-./start_rzv_ai_tlt_gui.sh</code></pre></figure>
-
-          <br />
-          <a href="img/tlt_launch.png" data-lightbox="group">
-            <img src="img/tlt_launch.png" alt="RZ/V TLT Launch" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-          If the popup is "Docker container is up and running", click "OK" to start.<br />
-          <div class="note">
-            <span class="note-title">Note</span>
-            If the docker container is not running, you can restart it by clicking the RESTART button in the upper right corner of the GUI.<br />
-            <a href="img/tlt_restart.png" data-lightbox="group">
-              <img src="img/tlt_restart.png" alt="RZ/V TLT Project Details" style="max-width: 900px" />
-            </a>
-            <br />
-          </div>
-        </li>
-      </ol>
-    </div>
-  </div>
+<p><br />
+Once the ONNX model is generated, the next step is to prepare the execution environment for model compilation and deployment.<br /></p>
+<ol>
+ <li>Please follow the Step 1 ~ 5 in the official RZ/V AI SDK Getting Started guide below to set up the AI SDK environment and launch the Docker container.
+   <ul class="mt-1 mb-1">
+    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html" target="_blank" rel="noopener noreferrer">RZ/V AI SDK Getting Started (v6.10)</a>
+    </li> 
+   </ul>
+ </li>
+</ol>
+<table class="gstable">
+    <tr style="white-space: nowrap;">
+      <th>Targer Board</th>
+      <th>PRODUCT</th>
+      <th>AI SDK</th>
+      <th>DRP-AI TVM</th>
+      <th>DRP-AI Translator</th>
+    </tr>
+    <tr>
+      <td>RZ/V2N Evaluation Board Kit (EVK)
+      </td>
+      <td>RZ/V2N</td>
+      <td>v6.00</td>
+      <td>v2.5.1 (AI SDK v6.00)</td>
+      <td>i8 v1.04 (AI SDK v6.00)</td>
+    </tr>
+  </table>
+<p>After completing Getting Started Step 1 ~ 5, the Docker container environment will be running and ready.<br />
+<br />
+<br /></p>
+<h3 id="step3">Step 3: Compile AI Model with DRP-AI TVM</h3>
+<p>This chapter explains how to compile your ONNX model using DRP-AI TVM to make it executable on the RZ/V2N EVK.</p>
+<div class="note">
+  <span class="note-title">Note</span>
+    Before proceeding with Step 3, make sure that you have completed Step 2 and the Docker container has been created successfully.
 </div>
+<h4 class="mt-5 u_line">3-1. Copy Your ONNX Model into the Working Directory</h4>
+<p>Please choose any preferred method to copy your ONNX model into the working directory inside the Docker container, which is <code>$TVM_ROOT/tutorials</code>. <br /><br />
+In this document, we provide an <b>example</b> using the <code>docker cp</code> command for simplicity.<br /></p>
+<ol>
+ <li>If you are currently inside the <b>Docker container</b>, run the following command to exit.<br />
 
-<p><br /></p>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">exit</span></code></pre></figure>
 
-<h2 id="retrain">Re-train the AI model</h2>
-<p>Once the <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/howto_retrain.html#install"><b>installation</b></a> is complete, you can retrain the model.<br /></p>
+ </li>
+ <li>Run the following command on <b><span style="color:red">host PC</span></b> to copy the ONNX model into the working directory on your <b>Docker container</b>.
 
-<h3 id="project">Step 1: Create the TLT project</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <ol>
-        <li>Select <b>PROJECT DETAILS</b>.<br />
-          <br />
-          <a href="img/tlt_home_project.png" data-lightbox="group">
-            <img src="img/tlt_home_project.png" alt="RZ/V TLT Project Details" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>After selecting <b>UPLOAD</b>, upload the YAML file in <b>UPLAOD YAML</b>.<br />
-          The YAML files for existing projects are located at <code>rzv_ai_tlt_v6.00/tlt_backend/assets/(any YAML file of TLT project)/config.yaml</code>.<br />
-          This time, we uploaded <code>rzv_ai_tlt_v6.00/tlt_backend/assets/Q03_smart_parking/config.yaml</code>.<br />
-          <br />
-          <a href="img/tlt_project_uplaod.png" data-lightbox="group">
-            <img src="img/tlt_project_uplaod.png" alt="RZ/V TLT Project Upload" style="max-width: 600px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li><b>Set the project name</b> and click <b>SUBMIT SELECTION</b>.<br />
-          (The project name must be different from any existing project.)<br />
-          If successful, <b>Successfully created the task!!</b> will be displayed.
-          <br />
-          <br />
-          <a href="img/tlt_project_loaded.png" data-lightbox="group">
-            <img src="img/tlt_project_loaded.png" alt="RZ/V TLT Project Loaded" style="max-width: 600px" />
-          </a>
-          <br />
-          <br />
-        </li>
-      </ol>
-    </div>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>docker <span class="nb">cp</span> &lt;path_to_file&gt;/segformer.onnx rzv2n_ai_sdk_container:<span class="k">${</span><span class="nv">TVM_ROOT</span><span class="k">}</span>/tutorials/</code></pre></figure>
+
+  <div class="note">
+  <span class="note-title">Note</span>
+    The example use <code>segformer.onnx</code>, please replace it with your own ONNX model file name.
   </div>
+ </li>
+</ol>
+<h4 class="mt-5 u_line">3-2. Move to the Working Directory</h4>
+<ol>
+ <li>If the Docker container is not currently running, start it with the following command on your <b><span style="color:red">host PC</span></b>.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>docker start <span class="nt">-i</span> rzv2n_ai_sdk_container</code></pre></figure>
+
+ </li>
+ <li>Once inside the <b>Docker container</b>, move to the working directory by running the following command.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">TVM_ROOT</span><span class="k">}</span>/tutorials/ </code></pre></figure>
+
+ </li>
+</ol>
+<h4 class="mt-5 u_line">3-3. Confirm the model information</h4>
+<p>To compile the model with DRP-AI TVM, please verify the settings you used during training.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+    If any of these conditions differ from the training settings, the model accuracy will significantly drop.
 </div>
-
-<p><br /></p>
-
-<h3 id="annotation">Step 2: Create the custom dataset</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      In ANNOTATION, you can create custom datasets <b>only for object detection</b>.<br />
-      <br />
-      <a href="img/tlt_annotation.png" data-lightbox="group">
-      <img src="img/tlt_annotation.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-      </a>
-      <br />
-      <br />
-      This time, since <code>Q03_smart_parking</code> is a classification model, we will skip ANNOTATION.<br />
-      Please refer to the user's manual for how to use ANNOTATION.<br />
+<div>
+  <b>Example of settings to verify</b>
+  <ul>
+    <li>Input shape (e.g., 1x3x240x320)</li>
+    <li>Color order (e.g., RGB or BGR)</li>
+    <li>
+      Preprocess
+      <ul>
+        <li>Normalization (mean and std)</li>
+        <li>Resize algorithm and input size</li>
+      </ul>
+    </li>
+    <li>Tensor layout (e.g., NCHW or NHWC)</li>
+  </ul>
+</div>
+<div class="box1">
+          <u><b>Example:</b></u><br />
+          Some of the settings can also be checked in <a href="https://netron.app/" target="_blank" rel="noopener noreferrer">Netron</a>.<br />
+          Input shape: [1,3,240,320]<br />
+          Tensor layout: NCHW     
+    <div class="col-12 text-center">
+        <a href="img/transformer_netron.png" data-lightbox="group"><img src="img/transformer_netron.png" alt="Netron" class="img-fluid" style="max-width: 600px; margin: 0 auto;" /></a><br />
     </div>
-  </div>
 </div>
+<h4 class="mt-5 u_line">3-4. Modify the sample script</h4>
+<p>Next, modify the sample script according to your model information . The input image format must match the conditions used during training (e.g., image size, normalization, channel order, etc.).<br />
+In this guide, we use <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm/blob/main/tutorials/compile_onnx_model_quant.py" target="_blank" rel="noopener noreferrer">compile_onnx_model_quant.py</a> as the working example. <br />
+Please <b>adjust the preprocessing steps</b> according to the settings confirmed in Step 3-3.<br />
+<br />
+Renesas modified the following process to match the SegFormer model input specification. And the modified version is provided as a reference. <br /></p>
+<ol>
+ <li>
+ Replaced the original ImageNet preprocessing in L.101~L.112 with a simplified version aligned to the SegFormer model.<br />
 
-<p><br /></p>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"> 
+<span class="gd">- def pre_process_imagenet_pytorch(img, mean=[0.485, 0.456, 0.406], stdev=[0.229, 0.224, 0.225], dims=None, need_transpose=False):   
+-   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+-   img = Image.fromarray(img)
+-   img = F.resize(img, 256, Image.BILINEAR)
+-   img = F.center_crop(img, 224)
+-   img = F.to_tensor(img)
+-   std = stdev
+-   img = F.normalize(img, mean, std, inplace=False)
+-   if not need_transpose:
+-      img = img.permute(1, 2, 0) # NHWC
+-   img = np.asarray(img, dtype='float32')
+-   return img
+</span>
 
-<h3 id="dataset">Step 3: Load the dataset</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <ol>
-        <li>Select <b>DATASET</b>.<br />
-          <br />
-          <a href="img/tlt_dataset.png" data-lightbox="group">
-            <img src="img/tlt_dataset.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Click <b>Download Dataset</b> and Select a dataset from the list.<br />
-          The list of downloadable datasets changes depending on the loaded project.<br />
-          This time, we use <code>Q03 Smart Parking</code>.<br />
-          <br />
-          <a href="img/tlt_dataset_list.png" data-lightbox="group">
-            <img src="img/tlt_dataset_list.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Click <b>Download button</b> to download the dataset.<br />
-          (After it reaches 100%, it will take some time to unpack the downloaded file, depending on the size of the dataset.)<br />
-          <br />
-          <a href="img/tlt_dataset_download.png" data-lightbox="group">
-            <img src="img/tlt_dataset_download.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Click <b>SELECT DIRECTORY</b> to select the dataset directory, and click <b>NEXT</b>.<br />
-          The downloaded dataset is located at <code>rzv_ai_tlt_v6.00/tlt_backend/datasets/</code>.<br />
-          This time, we use <code>rzv_ai_tlt_v6.00/tlt_backend/datasets/Q03_smart_parking/</code>.<br />
-          <br />
-          <a href="img/tlt_dataset_set.pngg" data-lightbox="group">
-            <img src="img/tlt_dataset_set.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Set the image size to input to the model and select Augmentation.<br />
-          This time, leave the defaults and click <b>NEXT</b>.<br />
-          <br />
-          <a href="img/tlt_dataset_image.png" data-lightbox="group">
-            <img src="img/tlt_dataset_image.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Set the dataloader parameters according to your PC environment.<br />
-          This time, leave the defaults and click <b>FINISH</b>.<br />
-          <br />
-          <a href="img/tlt_dataset_parameters.png" data-lightbox="group">
-            <img src="img/tlt_dataset_parameters.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>After confirming the settings, click <b>SUBMIT SELECTION</b>.<br />
-          If the load is successful, the dataset configuration will be displayed.<br />
-          You can save the data set settings by clicking the SAVE CONFIGURATION button.<br />
-          <br />
-          <a href="img/tlt_dataset_finish.png" data-lightbox="group">
-            <img src="img/tlt_dataset_finish.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-      </ol>
-    </div>
-  </div>
+<span class="gi">+ def preprocess_image(image):
++   mean = np.array([123.675, 116.28, 103.53], dtype=np.float32)
++   std = np.array([58.395, 57.12, 57.375], dtype=np.float32)
++   img_scale = (320, 240)
++   resized_image = cv2.resize(image, img_scale)
++   img_float = resized_image.astype(np.float32)
++   img_normalized = (img_float - mean) / std
++   img_chw = img_normalized.transpose(2, 0, 1)
++   return img_chw
+</span> </code></pre></figure>
+
+ </li>
+ <li>
+  Add the following line between L.155 and L.157 to print the input details of ONNX model.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">  for inp in model_inputs:
+      if inp not in model_initializers:
+          model_vars.append(inp)
+          
+<span class="gi">+ print(f"Model inputs: {onnx_model.graph.input}")
+</span>
+  np.random.seed(41264126)</code></pre></figure>
+
+ </li>
+ <li>
+  Replace the L.209 to match the input format required by the SegFormer model.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">  for i in range(len(input_list)):
+      img_file_name = str(input_list[i])
+      image = cv2.imread(img_file_name)
+<span class="gd">-     input_data = pre_process_imagenet_pytorch(image, mean, stdev, need_transpose=True)
+</span><span class="gi">+     input_data = preprocess_image(image)
+</span>      input_data = np.expand_dims(input_data, 0)
+      rt_mod.set_input(0, input_data)
+      rt_mod.run()
+      print("calib data", img_file_name)</code></pre></figure>
+
+ </li>
+ <li>
+  Update the L.221.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">  drp_config = {
+      "target": "InterpreterQuant",
+      "drp_compiler_version": opts["drp_compiler_version"],
+      "quantization_tool": opts["quantization_tool"],
+      "quantization_option": opts["quantization_option"],
+<span class="gd">-     "calibration_data": record_dirmodel_vars.append(inp)
+</span><span class="gi">+     "calibration_data": record_dir
+</span>  }</code></pre></figure>
+
+ </li>
+</ol>
+<p>This completes the modification of the sample script.</p>
+<h4 class="mt-5 u_line">3-5. Compilation</h4>
+<p>Using the modified sample script from the previous section, the SegFormer model can be compiled with the following command on your <b>Docker container</b> created in Step 2.<br /></p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">python3 compile_onnx_model_quant.py <span class="se">\</span>
+    ./segformer.onnx <span class="se">\ </span>               <span class="c"># target ONNX model file to compile</span>
+    <span class="nt">-o</span> ../data/segformer <span class="se">\ </span>           <span class="c"># specify the output directory for compiled files</span>
+    <span class="nt">-t</span> <span class="nv">$SDK</span> <span class="se">\ </span>                        <span class="c"># path to the SDK (toolchain)</span>
+    <span class="nt">-d</span> <span class="nv">$TRANSLATOR</span> <span class="se">\ </span>                 <span class="c"># path to the DRP-AI Translator</span>
+    <span class="nt">-c</span> <span class="nv">$QUANTIZER</span>                     <span class="c"># path to the DRP-AI Quantize</span></code></pre></figure>
+
+<div class="note">
+  <span class="note-title">Note</span>
+    No calibration data was used in this sample case. Calibration is typically recommended, however, it was not required here since the inference results were nearly identical, and omitting calibration shortens the compilation time.
 </div>
+<h4 class="mt-5 u_line">3-6. Confirming the output</h4>
+<p>After the compilation, the compiled AI model will be generated under the specified output directory. <br />
+In this example, the output directory was set to <code><b>${TVM_ROOT}/data/segformer/</b></code>. <br />
+Check the generated files using the following command:</p>
 
-<p><br /></p>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="k">${</span><span class="nv">TVM_ROOT</span><span class="k">}</span>/data/segformer/</code></pre></figure>
 
-<h3 id="training">Step 4: Re-train the model</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <ol>
-        <li>Select <b>TRAINING</b>.<br />
-          <br />
-          <a href="img/tlt_training.png" data-lightbox="group">
-            <img src="img/tlt_training.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Check the model and set the optimizer parameters.<br />
-          Click <b>SUBMIT SELECTION</b> and the learning log will be displayed.<br />
-          This time, leave everything as default.<br />
-          <br />
-          <a href="img/tlt_training_model.png" data-lightbox="group">
-            <img src="img/tlt_training_model.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>When <b>Training Completed!!!</b> pop-up appears, click <b>OK</b> to complete the training.<br />
-          <br />
-          <a href="img/tlt_training_ok.png" data-lightbox="group">
-            <img src="img/tlt_training_ok.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-          The trained model is stored in the following directory.<br />
-          <code>rzv_ai_tlt_v6.00/tlt_backend/assets/(Your TLT prject name)</code>.<br />
-        </li>
-      </ol>
-    </div>
-  </div>
-</div>
-
-<p><br /></p>
-
-<h3 id="inference">Step 5: Test the trained model</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <ol>
-        <li>Select <b>INFERENCE</b><br />
-          <br />
-          <a href="img/tlt_inference.png" data-lightbox="group">
-            <img src="img/tlt_inference.png" alt="RZ/V TLT Project Loaded" style="max-width: 900px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Click <b>Choose Upload Type</b> and <b>UPLOAD</b> to select a test image.<br />
-          This time, we select Image Upload and use <code>rzv_ai_tlt_v6.00/tlt_backend/datasets/Q03_smart_parking/valid/occupied/0.jpg</code>.<br />
-          <br />
-          <a href="img/tlt_inference_upload.png" data-lightbox="group">
-            <img src="img/tlt_inference_upload.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>Click <b>PREDICT</b> to test.<br />
-          Since <code>Q03_smart_parking</code> is a classification that predicts whether it is "occupied" or "empty", the result is displayed as a string.<br />
-          <br />
-          <a href="img/tlt_inference_predict.png" data-lightbox="group">
-            <img src="img/tlt_inference_predict.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px" />
-          </a>
-          <br />
-          <br />
-        </li>
-        <li>TLT usage procedure is complete.<br />
-          The trained model and logs are saved in the project folder.<br />
-          This time, the files are saved in <code>rzv_ai_tlt_v6.00/tlt_backend/assets/Q03_smart_parking_new/</code>.
-          <br />
-          <a href="img/tlt_files.png" data-lightbox="group">
-            <img src="img/tlt_files.png" alt="RZ/V TLT Project Loaded" style="max-width: 450px" />
-          </a>
-          <br />
-          <br />
-        </li>
-      </ol>
-    </div>
-  </div>
-</div>
-
-<p><br /></p>
-
-<h2 id="tips">Tips</h2>
-<h3 id="next">Next steps</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      Once the model has been trained, the next step is to convert it for DRP-AI using DRP-AI TVM.<br />
-      For instructions on how to use DRP-AI TVM, please see <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">DRP-AI TVM GitHub</a>.<br />
-      If you use DRP-AI TVM with AI Navigator, sample code for DRP-AI TVM conversion scripts for each model is provided.<br />
-    </div>
-  </div>
-</div>
-
-<p><br /></p>
-
-<h3 id="uninstall">Uninstallation</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      For instructions on how to uninstall TLT, please refer to the user's manual.<br />
-    </div>
-  </div>
-</div>
-
+<ul>
+ <li>If the following files are printed, the model files have been generated successfully.
+ <pre style="margin:0;">
+deploy.json    deploy.params    deploy.so    input_0.bin    interpreter_out    preprocess</pre>
+ </li>
+</ul>
 <p><br />
 <br /></p>
+<h3 id="step4">Step 4: Build the Application</h3>
+<h4 class="mt-5 u_line">Overview</h4>
+<p>To run inference with the AI model compiled by DRP-AI TVM, a C++ inference application is required.<br />
+Since the Segformer model is segmentation model trained with crack segmentation dataset, we can modify the source code of AI Applications, <a href="https://github.com/renesas-rz/rzv_ai_sdk/blob/v6.10/Q09_crack_segmentation/README.md" target="_blank" rel="noopener noreferrer">Q09_crack_segmentation</a>.<br />
+Following table shows the summary of application elements.
+Bold letters require the modification in the source code.</p>
+<table class="gstable">
+    <tr>
+    <th>Category</th>
+    <th>Item</th>
+    <th>Q09_crack_segmentation</th>
+    <th>This page</th>
+    <th>Comment</th>
+    </tr>
+    <tr>
+      <td rowspan="11">
+        AI Model
+      </td>
+      <td>
+        Model name
+      </td>
+     <td>
+        U-Net
+      </td>
+      <td>
+        <b>SegFormer</b>
+      </td>  
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AI task
+      </td>
+      <td>
+        Segmentation
+      </td>
+      <td>
+        Segmentation
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Dataset
+      </td>
+      <td>
+        Crack segmentation dataset
+      </td>
+      <td>
+        Crack segmentation dataset
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target class
+      </td>
+      <td>
+        Background/Crack
+      </td>
+      <td>
+        Background/Crack
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Number of class
+      </td>
+      <td>
+       2
+      </td>
+      <td>
+       2
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input size
+      </td>
+      <td>
+       224x224x3
+      </td>
+      <td>
+       <b>240x320x3</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output size
+      </td>
+      <td>
+       224x224x1
+      </td>
+      <td>
+       <b>240x320x1</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input datatype
+      </td>
+      <td>
+       floating-point type
+      </td>
+      <td>
+       floating-point type
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output datatype
+      </td>
+      <td>
+       floating-point type
+      </td>
+      <td>
+       <b>integer type</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Pre-processing
+      </td>
+      <td>
+       Pre-processing for U-Net
+      </td>
+      <td>
+       <b>Pre-processing for SegFormer</b>
+      </td>
+       <td style="vertical-align: middle;"><small>Differences in Pre-processing will be explained in<i>Section 4-2: Modify the Source Code</i>.</small>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Post-processing
+      </td>
+      <td>
+       Post-processing for U-Net
+      </td>
+      <td>
+       <b>Post-processing for SegFormer</b>
+      </td>
+      <td style="vertical-align: middle;"><small>Differences in Pre-processing will be explained in<i>Section 4-2: Modify the Source Code</i>.</small>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="5">
+        Application
+      </td>
+      <td>
+        Target board
+      </td>
+      <td>
+        RZ/V2H, RZ/V2N, RZ/V2L
+      </td>
+      <td>
+        <b>RZ/V2N (, RZ/V2H)</b>
+      </td>
+      <td style="vertical-align: middle;"><small>
+       RZ/V2N and RZ/V2H are brother chips, same application can run on the board. </small>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Model folder name
+      </td>
+      <td>
+      "crack_segmentation_model"
+      </td>
+      <td>
+       <b>"segformer_model"</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Application input data
+      </td>
+      <td>
+        USB Camera 1ch (640x480)
+      </td>
+      <td>
+        USB Camera 1ch (640x480)
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Application output
+      </td>
+      <td>
+       HDMI display 1920x1080
+      </td>
+      <td>
+       HDMI display 1920x1080
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Segmentation result display
+      </td>
+      <td>
+       RZ/V2H, RZ/V2N: Heatmap<br />
+       RZ/V2L: Green highlight
+      </td>
+      <td>
+       <b>RZ/V2N: Red highlight</b>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+<h4 class="mt-5 u_line">4-1. Prepare the Application</h4>
+<p>Check the <a href="https://github.com/renesas-rz/rzv_ai_sdk/blob/v6.10/Q09_crack_segmentation/README.md" target="_blank" rel="noopener noreferrer">Q09_crack_segmentation</a> application, follow the instruction “Application File Generation 1-4” to go to the application source code directory.</p>
+<h4 class="mt-5 u_line">4-2. Modify the Source Code</h4>
+<p>Edit the following source file to adapt the application to the SegFormer model compiled in Step 3.<br />
+Path: <code>${PROJECT_PATH}/Q09_crack_segmentation/src/crack_segmentation.cpp</code>
+<br />
+<br />
+The following code examples show the differences between the original U-Net model and the SegFormer model.</p>
+<ol>
+  <li>Modify the definition of the AI model's input size (L.101~L.102).<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   /*Model input info*/
+<span class="gd">-  #define MODEL_IN_H          (224)
+-  #define MODEL_IN_W          (224)
+</span><span class="gi">+  #define MODEL_IN_H          (240)
++  #define MODEL_IN_W          (320)</span></code></pre></figure>
+
+  </li>
+<li>Modify the AI model's output datatype in L.152, L.370 and L.467.<br />
+ <ul>
+  <li>L.152<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"> 
+<span class="gd">-  std::vector&lt;float&gt; floatarr(1);
+</span><span class="gi">+  std::vector&lt;uint64_t&gt; intarr(1);
+</span> </code></pre></figure>
+    
+  </li>
+  <li>L.370<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   ******************************************/
+<span class="gd">-  float *start_runtime(float *input)   
+</span><span class="gi">+  uint64_t *start_runtime(float *input)
+</span>   {
+       int ret = 0;
+       /* Set Pre-processing output to be inference input. */
+       model_runtime.SetInput(0, input);
+      ... remaining code omitted ... 
+   }</code></pre></figure>
+ 
+  </li>
+  <li>L.467<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   int ret = 0;
+<span class="gd">-  float *output; 
+</span><span class="gi">+  uint64_t *output;
+</span>   /*font size to be used for text output*/</code></pre></figure>
+ 
+    </li>
+ </ul>
+</li>
+  <li>Add a color palette for the red highlight implementation by inserting the following lines below L.178.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   /* Map to store input source list */
+   std::map&lt;std::string, int&gt; input_source_map =
+   {
+       #ifndef V2N
+           {"VIDEO", 1},
+       #endif
+       {"IMAGE", 2},
+       {"USB", 3},
+       #ifdef V2L
+           {"MIPI", 4}
+       #endif
+
+   };
+ 
+<span class="gi">+  std::vector&lt;cv::Vec3b&gt; palette = 
++  {
++      {0,0,200},
++      {0,0,0}
++  };</span></code></pre></figure>
+ 
+  </li>
+  <li> Modify image resizing, add mean/std normalization, remove RGB conversion (L.352~L.362), and delete the image resizing process (L.492~L.494) for SegFormer pre-processing.<br />
+<ul>
+ <li>L.352~L.362<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  cv::Mat start_preprocessing(cv::Mat frame)
+-  cv::Mat start_preprocessing(cv::Mat frame)
+-  {
+-      cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
+-      frame = hwc2chw(frame);
+-      /*convert to FP32*/
+-      frame.convertTo(frame, CV_32FC3,1.0 / 255.0, 0);
+-      /*deep copy, if not continuous*/
+-      if (!frame.isContinuous())
+-      frame = frame.clone();
+-      return frame;
+-  }
+</span><span class="gi">+  cv::Mat start_preprocessing(const cv::Mat&amp; image) 
++  {
++      cv::Scalar mean = {123.675f, 116.28f, 103.53f};
++      cv::Scalar std = {58.395f, 57.12f, 57.375f};
++      cv::Size img_scale(MODEL_IN_W,MODEL_IN_H);
++      cv::Mat processed_image;
++      cv::resize(image, processed_image, img_scale);
++      processed_image.convertTo(processed_image, CV_32FC3);
++      processed_image -= mean;
++      processed_image /= std;
++      processed_image = hwc2chw(processed_image);
++      return processed_image;
++  }</span></code></pre></figure>
+ 
+ </li>
+ <li>L.492~L.494<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  cv::Size size(MODEL_IN_H, MODEL_IN_W);
+-  /*resize the image to the model input size*/
+-  cv::resize(frame, frame, size); </span></code></pre></figure>
+ 
+ </li>
+</ul>
+  </li>
+  <li>Update the post-processing and variable definitions according to the model's output datatype (L.410~L.422).
+  <br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  floatarr.resize(g_out_size_arr);
+</span>    /* Post-processing for FP16 */
+<span class="gd">-  if (InOutDataType::FLOAT16 == std::get&lt;0&gt;(output_buffer))
+-  {
+-      /* Extract data in FP16 &lt;uint16_t&gt;. */
+-      uint16_t *data_ptr = reinterpret_cast&lt;uint16_t *&gt;(std::get&lt;1&gt;(output_buffer));
+-      for (int n = 0; n &lt; g_out_size_arr; n++)
+-      {
+-           /* Cast FP16 output data to FP32. */
+-           floatarr[n] = float16_to_float32(data_ptr[n]);
+-      }
+-  }
+-  return floatarr.data();
+</span><span class="gi">+  intarr.resize(g_out_size_arr);
+</span>    /* Post-processing for FP16 */
+<span class="gi">+  if (InOutDataType::INT64 == std::get&lt;0&gt;(output_buffer))
++  {
++      /* Extract data in INT64 &lt;uint16_t&gt;. */
++     uint64_t *data_ptr = reinterpret_cast&lt;uint64_t *&gt;(std::get&lt;1&gt;(output_buffer));
++     for (int n = 0; n &lt; g_out_size_arr; n++)
++     {
++          intarr[n] = data_ptr[n];
++     }
++  }
++  return intarr.data();</span></code></pre></figure>
+ 
+  </li>
+  <li>Update the post-processing step by removing <code>colour_convert</code> and overlaying the colorized segmentation result directly onto the input image data (L.425~L.456).<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  /*****************************************
+-   * Function Name : colour_convert
+-   * Description   : function to convert white colour to green colour.
+-   * Arguments     : Mat image
+-   * Return value  : Mat result
+-   ******************************************/
+-   cv::Mat colour_convert(cv::Mat image)
+-   {
+-       /* Convert the image to HSV */ 
+-       cv::Mat hsv;
+-       cv::cvtColor(image, hsv, cv::COLOR_BGR2HSV);
+-       /* Define the lower and upper HSV range for white color */
+-       cv::Scalar lower_white = cv::Scalar(0, 0, 200); // Adjust these values as needed
+-       cv::Scalar upper_white = cv::Scalar(180, 30, 255); // Adjust these values as needed
+-       /* Create a mask for the white color */
+-       cv::Mat mask;
+-       cv::inRange(hsv, lower_white, upper_white, mask);
+-       /* Create a green image */
+-       cv::Mat green_image = cv::Mat::zeros(image.size(), image.type());
+-       green_image.setTo(cv::Scalar(0, 100, 0), mask);
+-       /* Replace white regions in the original image with green */
+-       cv::Mat result;
+-       cv::bitwise_and(image, image, result, ~mask);
+-       cv::add(result, green_image, result);
+-       cv::resize(result, result, cv::Size(MODEL_IN_H, MODEL_IN_W));
+-       /* return result */
+-       return result;
+-   }
+</span><span class="gi">+   cv::Mat overlay_segmentation(const cv::Mat&amp; original_image, const cv::Mat&amp; processed_mask, float alpha = 0.4f) 
++   {
++        int original_height = original_image.rows;
++        int original_width = original_image.cols;
++        cv::Mat mask_resized;
++        cv::resize(processed_mask, mask_resized, cv::Size(original_width, original_height), 0, 0, cv::INTER_NEAREST);
++        cv::Mat output_mask = cv::Mat::zeros(original_image.size(), original_image.type());
++        for (int y = 0; y &lt; mask_resized.rows; ++y) 
++        {
++            for (int x = 0; x &lt; mask_resized.cols; ++x) 
++            {
++                int class_id = mask_resized.at&lt;uchar&gt;(y, x);
++                if (class_id &lt; 1) 
++                {
++                    output_mask.at&lt;cv::Vec3b&gt;(y, x) = palette[class_id];
++                }
++                else
++                {
++                    output_mask.at&lt;cv::Vec3b&gt;(y, x) = original_image.at&lt;cv::Vec3b&gt;(y, x);
++                }
++            }
++        }
++        cv::Mat overlayed_image;
++        cv::addWeighted(original_image, 1.0f - alpha, output_mask, alpha, 0.0, overlayed_image);
++        return overlayed_image;
++   }</span></code></pre></figure>
+ 
+  </li>
+  <li>Modify the <code>run_inference()</code> function to return a cloned frame in L.483.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   cv::Mat input_frame,output_frame;
+<span class="gd">-  input_frame = frame; 
+</span><span class="gi">+  input_frame = frame.clone();
+</span> </code></pre></figure>
+ 
+  </li>
+  <li>Update segmentation result display to SegFormer red-highlight style by applying <code>overlay_segmentation</code> (L.509~L.527).
+  <br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  #ifdef V2H
+-     /* convert float32 format to opencv mat image format */ 
+-     cv::Mat img_mask(MODEL_IN_H,MODEL_IN_W,CV_32F,(void*)output);
+-     /* setting minimum threshold to heatmap */ 
+-     cv::threshold(img_mask,img_mask,min_threshold,0.0,cv::THRESH_TOZERO);
+-     cv::normalize(img_mask, img_mask, 0.0, 1.0, cv::NORM_MINMAX);
+-     /* Scale the float values to 0-255 range for visualization */
+-     cv::Mat heatmap_scaled;
+-     img_mask.convertTo(heatmap_scaled, CV_8U, 255.0);
+-     /* Create a grayscale heatmap */
+-     cv::applyColorMap(heatmap_scaled, img_mask, cv::COLORMAP_INFERNO);
+-  #elif V2L
+-     /* convert float32 format to opencv mat image format */ 
+-     cv::Mat img_mask(MODEL_IN_H,MODEL_IN_W,CV_32F,(void*)output); 
+-     cv::threshold(img_mask,img_mask,-0.5,255,cv::THRESH_BINARY);  
+-     img_mask.convertTo(img_mask,CV_8UC1);
+-  #endif  
+</span><span class="gi">+  cv::Mat mask(MODEL_IN_H, MODEL_IN_W, CV_8UC1);
++  for (int i = 0; i &lt; MODEL_IN_H; ++i) 
++  {
++    for (int j = 0; j &lt; MODEL_IN_W; ++j) 
++    {
++        mask.at&lt;uchar&gt;(i, j) = static_cast&lt;uchar&gt;(output[i * MODEL_IN_W + j]);
++    }
++  }
++  output_frame = overlay_segmentation(input_frame, mask);</span></code></pre></figure>
+ 
+  </li>
+  <li>Remove the post-processing for U-Net; for SegFormer, the process is consolidated into <code>overlay_segmentation</code> (L.537~L.561).<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  total_time = pre_time + ai_time + post_time;
+-  cv::cvtColor(img_mask, output_frame, cv::COLOR_RGB2BGR);
+-  /* convert white colour from output frame to green colour */
+-  output_frame = colour_convert(output_frame);
+-  cv::resize(input_frame, input_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
+-  cv ::cvtColor(input_frame, input_frame, cv::COLOR_RGB2BGR);
+-  cv::resize(output_frame, output_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
+-  #ifdef V2H
+-      cv::threshold(output_frame, output_frame, 0.7, 255, 3);
+-  #endif
+-  /* blending both input and ouput frames that have same size and format and combined one single frame */
+-  cv::addWeighted(input_frame, 1.0, output_frame, 0.5, 0.0, output_frame);
+-  #ifdef V2H
+-      /* resize the output image with respect to output window size */
+-      cv::cvtColor(output_frame, output_frame, cv::COLOR_RGB2BGR);
+-  #elif V2L
+-      /* resize the output image with respect to output window size */
+-      cv::cvtColor(output_frame, output_frame, cv::COLOR_BGR2RGB);
+-  #endif
+</span><span class="gi">+  total_time = pre_time + ai_time + post_time;</span></code></pre></figure>
+ 
+  </li>
+  <li>Modify the model folder name in L.730.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   /* Model Binary */
+<span class="gd">-  std::string model_dir = "crack_segmentation_model";
+</span><span class="gi">+  std::string model_dir = "segformer_model";
+</span> </code></pre></figure>
+ 
+  </li>
+</ol>
+<h4 class="mt-5 u_line">4-3. Build the Application</h4>
+<p>Follow the <a href="https://github.com/renesas-rz/rzv_ai_sdk/blob/v6.10/Q09_crack_segmentation/README.md" target="_blank" rel="noopener noreferrer">Q09_crack_segmentation</a> “Application File Generation 4 to 7” to build the application.<br />
+After running the commands, the following application file would be generated in the <code>${PROJECT_PATH}/Q09_crack_segmentation/src/build</code>.</p>
+<ul>
+  <li><code>crack_segmentation</code></li>
+</ul>
+<p><br />
+<br /></p>
+<h3 id="step5">Step 5: Deploy and Run Application on the Board</h3>
+<p>This step explains how to deloy and run application on the RZ/V2N board.</p>
+<h4 class="mt-5 u_line">5-1. Deploy Stage</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="u_line">Prerequisites</h4>
+      This section assumes that the microSD card setup has been completed by following Step 7-1 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
+    </div>
+    <div class="note">
+    <span class="note-title">Note</span>
+    If you prefer to deploy the files via <b>SCP</b> instead of using a microSD card, please refer to "5. Run on the Board" in the official  <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/compile_your_own_model.html" target="_blank" rel="noopener noreferrer">How to compile Your Own Model | DRP-AI TVM on RZ/V series</a> guide. 
+    </div>
+    <div>
+     <h4 class="u_line">File Configuration</h4>
+     For deployment, the following files are required for the Segformer application
+     (generated in Step 4).
+     <br />
+     <table class="gstable">
+     <tr>
+     <th>File</th>
+      <th>Details</th>
+      </tr>
+      <tr>
+        <td>
+        <code>deploy.so</code>
+        </td>
+        <td>
+        DRP-AI TVM compiled model (generated in Step 3)
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code>deploy.json</code>
+        </td>
+        <td>
+        Model graph definition file (generated in Step 3)
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code>deploy.params</code>
+        </td>
+        <td>
+        Model parameter file (generated in Step 3)
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code>crack_segmentation</code>
+        </td>
+        <td>
+        Application executable file (generated in Step 4)
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code>libtvm_runtime.so</code>
+        </td>
+        <td>
+        TVM runtime library required by the application
+        </td>
+      </tr>
+     </table>
+    </div>
+    <div>
+    <h4 class="u_line">Instruction</h4>
+    <ol>
+      <li>Insert the microSD card to Linux PC.
+      </li>
+      <li>Run the following commands to mount the partition 2, which contains the root filesystem.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> /mnt/sd <span class="nt">-p</span>
+<span class="nb">sudo </span>mount /dev/sdb2 /mnt/sd</code></pre></figure>
+
+        <div class="warning">
+          <span class="warning-title">Warning</span>
+          Change <code>/dev/sdb</code> to your microSD card device name.
+        </div>
+      </li>
+      <li>Create the application directory on root filesystem.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> /mnt/sd/home/weston/transformer/segformer_model</code></pre></figure>
+
+    <div class="note">
+      <span class="note-title">Note</span>
+      Directory name "<b><code>transformer</code></b>" can be determined by user.
+    </div>
+      </li>
+      <li>Copy the necessary files in execution environment to the <code>/home/weston/transformer</code> directory of the rootfs (SD Card) for the board.<br />
+      Use the following command to copy the files to root filesystem.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/segformer/deploy.json /mnt/sd/home/weston/transformer/segformer_model
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/segformer/deploy.params /mnt/sd/home/weston/transformer/segformer_model 
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/segformer/deploy.so /mnt/sd/home/weston/transformer/segformer_model 
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/rzv_ai_sdk/Q09_crack_segmentation/src/build/crack_segmentation /mnt/sd/home/weston/transformer</code></pre></figure>
+
+          </li>
+          <li>Check if <code>libtvm_runtime.so</code> exists under <code>/usr/lib</code> directory of the rootfs (SD card) on the board.
+          </li>
+          <li>Folder structure in the rootfs (SD Card) would look like:
+          <div>
+    <pre><code>
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+      `-- weston
+        `-- transformer
+            |-- segformer_model
+            |   |-- deploy.json
+            |   |-- deploy.params
+            |    `-- deploy.so
+            `-- crack_segmentation
+    </code></pre>
+          </div>
+          </li>
+      <li>Run the following command to sync the data with memory.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sync</span></code></pre></figure>
+
+      </li>
+      <li>Run the following command to unmount the partition 2.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>umount /mnt/sd</code></pre></figure>
+
+      </li>
+      <li>Eject the microSD card by running the following command and remove the microSD card from Linux PC.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>eject /dev/sdb</code></pre></figure>
+
+    <div class="warning">
+          <span class="warning-title">Warning</span>
+          Change <code>/dev/sdb</code> to your microSD card device name.
+    </div>
+      </li>
+      <li>Follow the instruction <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started_v2n.html#step7" target="_blank" rel="noopener noreferrer">RZ/V2N EVK Getting Started Step 7-3: Boot RZ/V2N EVK</a> to boot.
+      </li>
+    </ol>
+    </div>
+  </div>
+</div>
+<h4 class="mt-5 u_line">5-2. Run Stage</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    <h4 class="u_line">Prerequisites</h4>
+    This section expects the user to have completed Step 7-3 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
+    <br />
+    After completion of the guide, the user is expected of following things.
+    <ul>
+      <li>The board setup is done.</li>
+      <li>The board is booted with microSD card, which contains the application file.</li>
+    </ul>
+    </div>
+    <div>
+    <h4 class="u_line">Instruction</h4>
+    <ol>
+      <li>On Board terminal, go to the <code>transformer</code> directory of the rootfs.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /home/weston/transformer/</code></pre></figure>
+
+        <div class="note">
+        <span class="note-title">Note</span>
+          Directory name "<code><b>transformer</b></code>" can be determined by user.
+        </div>
+      </li>
+      <li>Run the application.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">su 
+./crack_segmentation USB
+<span class="nb">exit</span> <span class="c"># After terminated the application.</span></code></pre></figure>
+
+      </li>
+      <li>Following window shows up on HDMI screen. </li>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <a href="img/transformer_screenshot.jpg" data-lightbox="group">
+          <img src="img/transformer_screenshot.jpg" alt="transformer_screenshot" width="100%" />
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+        <table>
+        <tr>
+          <th>Board</th>
+          <th>AI inference time</th>
+        </tr>
+        <tr>
+        <td>RZ/V2N EVK</td>
+        <td>Approximately 320 ms</td>
+        </tr>
+        </table>
+        </div>
+      </div>
+      <li>To terminate the application, switch the application window to the terminal by using <code>Super(windows key)+Tab</code> and press ENTER key on the terminal of the board.
+      </li></ol>
+    </div>
+  </div>
+</div>
+<h4 class="mt-5 u_line">This is the ending of replacing a Transformer-based AI model.</h4>
 
 <div class="container">
   <div class="row">
-      <div class="col-12" align="right">
-          <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/" role="button">
-              Back to Home &gt;
-          </a>
-      </div>
+    <div class="col-12" align="right">
+      <a class="btn btn-secondary square-button" href="#page-top" role="button">
+Back to Top &gt;
+      </a>
+    </div>
   </div>
 </div>
 
