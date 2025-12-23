@@ -13,32 +13,7 @@ layout: default
     <div class="row">
         <div class="col-12">
             <br>
-            <br><!-- Topic below -->
-            <i>
-                <h3 class="history-title">
-                    RZ/V AI Web
-                </h3>
-                <h6 align="right" >
-                    2025.12.17
-                </h6>
-            </i>
-            <ul>
-                <li>
-                    <h5 class="history-item">RZ/V Reference Applications page is updated.</h5>
-                    <ul>
-                        <li>
-                            Following reference application is added.
-                            <ul>
-                                <li>
-                                    Dashcam System Control Reference
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
             <br>
-            <!-- Topic above -->
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
