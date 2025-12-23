@@ -366,7 +366,7 @@ layout: default
                 </li>
             </ul>
             It is provided on GitHub with free of charge and open-source software licenses.<br>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" role="button">
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title" style="line-height:1.0;">
                     RZ/V AI Applications
                 </span><br>
@@ -380,7 +380,7 @@ layout: default
             <br> 
             It includes the pre-build binary of bootloader, Linux Kernel and cross compiler, which contain a complete set of libraries to run RZ/V AI Apps.
             <br>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}" role="button">
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title" style="line-height:1.0;">
                     RZ/V AI SDK Overview
                 </span><br>
@@ -394,7 +394,7 @@ layout: default
             <br>
             First, please follow the <b>Getting Started Guide</b> to run the RZ/V AI Apps on the board with RZ/V AI SDK.
             <br>
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button">
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title" style="line-height:1.0;">
                     Getting Started
                 </span><br>
@@ -407,6 +407,20 @@ layout: default
             <br>
             After the Getting Started, please select and try <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>RZ/V AI Apps</b></a> to expand your AI development.
             <br>
+            RZ/V AI Applications Customize Guide shows examples of how to modify RZ/V AI Apps.<br>
+            <a class="btn btn-secondary square-button ms-3 mt-1" 
+                style="text-align:left;" 
+                href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}" 
+                role="button"
+                target="_blank"
+                rel="noopener noreferrer">
+                <span class="banner-title" style="line-height:1.0;">
+                    RZ/V AI Applications Customize Guide
+                </span><br>
+                <span class="banner-line">
+                    How to implement Transformer-based model?<br>
+                </span>
+            </a>
         </div>
     </div>
     <div class="row contents-sw contents-sw-ai ai-navi">
@@ -724,6 +738,12 @@ layout: default
                                 style="width:220px;" 
                                 href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}">
                                 AI Applications
+                            </a>
+                            <br>
+                            <a class="btn btn-secondary square-button square-button-link-small mb-2" 
+                                style="width:220px;" 
+                                href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}">
+                                AI Apps Customize Guide
                             </a>
                         </td>
                     </tr>

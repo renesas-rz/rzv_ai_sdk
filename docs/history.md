@@ -17,6 +17,58 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.12.23
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications Customize Guide is published.</h5>
+                    <ul>
+                        <li>
+                            Users can check following content.
+                            <ul>
+                                <li>
+                                    How to replace a Transformer-based AI model
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2025.12.17
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V Reference Applications page is updated.</h5>
+                    <ul>
+                        <li>
+                            Following reference application is added.
+                            <ul>
+                                <li>
+                                    Dashcam System Control Reference
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     e<sup>2</sup> studio for RZ/V2H, RZ/V2N & RZ/V2L - AI Navigator Quick Start Guide
                 </h3>
                 <h6 align="right" >

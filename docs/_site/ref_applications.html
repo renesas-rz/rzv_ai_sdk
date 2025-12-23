@@ -33,7 +33,7 @@
 {"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-10-10T13:11:30+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.10/ref_applications.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=ec5259c002bd3b1f52753682d05c27068c0d69c6">
+    <link rel="stylesheet" href="assets/css/style.css?v=63e4ba29cb3b3f4f0a3afea3690ec7fa88f4c585">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -618,6 +618,16 @@
               </ul>
             </details>
     <!-- Copy index_list.html end -->
+            <details close>
+              <summary>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/customize_guide.html">Customize Guide</a>
+              </summary>
+              <ul class="index">
+                <li>
+                  <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/transformer_replace_guide.html">Transformer model</a>
+                </li>
+              </ul>
+            </details>
             <br class="br-nsp">
             <div class="u_line">
               Reference Applications
@@ -858,7 +868,7 @@ For any enquiries, please use Renesas Technical Support.<br />
 <br /></p>
 <div class="container">
     <div class="row">
-        <div class="application_card col-lg-6 col-xl-4">
+        <div id="ref1" class="application_card col-lg-6 col-xl-4">
             <li class="griditem" style="list-style: none;">
                 <img src="img/ref_app/renesas_v2n_isp_960x540.jpg" alt="application" />
                 <dt class="mt-1" style="color: #2a289d;">Dual Camera Video Encode + AI Reference</dt>
@@ -871,7 +881,7 @@ For any enquiries, please use Renesas Technical Support.<br />
                     The output can be checked on PC sent via Ethernet.
                     <br />
                     <br />
-                    The sample application is included in the RZ/V ISP Support Package, which requires users to submit secure access request.<br /><br />
+                    The sample application is included in the RZ/V ISP Support Package and requires users to submit secure access request.<br /><br />
                 </div>
                 <dl>
                     <dd style="display: flex">
@@ -884,7 +894,7 @@ For any enquiries, please use Renesas Technical Support.<br />
                 </dl>
             </li>
         </div>
-        <div class="application_card col-lg-6 col-xl-4">
+        <div id="ref2" class="application_card col-lg-6 col-xl-4">
             <li class="griditem" style="list-style: none;">
                 <img src="img/ref_app/renesas_face-mosaic1_trimmed_resized.jpg" alt="application" />
                 <dt class="mt-1" style="color: #2a289d;">Face mosaic application</dt>
@@ -905,7 +915,7 @@ For any enquiries, please use Renesas Technical Support.<br />
                 </dl>
             </li>
         </div>
-        <div class="application_card col-lg-6 col-xl-4">
+        <div id="ref3" class="application_card col-lg-6 col-xl-4">
             <li class="griditem" style="list-style: none;">
                 <img src="img/ref_app/renesas_distortion-correction2_resized.jpg" alt="application" />
                 <dt class="mt-1" style="color: #2a289d;">Lens distortion correction application</dt>
@@ -927,6 +937,36 @@ For any enquiries, please use Renesas Technical Support.<br />
                 </dl>
             </li>
         </div>
+        <br />
+        <br />
+        <div id="ref4" class="application_card col-lg-6 col-xl-4">
+            <li class="griditem" style="list-style: none;">
+                <img src="img/ref_app/renesas_dashcam_960x540.jpg" alt="application" />
+                <dt class="mt-1" style="color: #2a289d;">Dashcam System Control Reference</dt>
+                <h6 class="appstatus" align="right"><b><br /></b></h6>
+                <div class="griditem-add">
+                    The reference application for dashcam system.<br />
+                    Input images are captured by two camera sensors via MIPI-I/F which are processed by the LSI-integrated ISP.<br />
+                    Each image is subjected to video encoding and AI processing.<br />
+                    AI processing can be selected from the Driver Monitoring, the gaze detection, etc..  <br />
+                    The result can be checked on PC via Ethernet.<br />
+                    The output image will be storable on a microSD card for recording purpose from early 2026.<br />
+                    <br />
+                    The application is included in the RZ/V ISP Support Package as <b>"Sample application No.2"</b>, and requires users to submit secure access request. 
+                    <br /><br />
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" style="color:white" target="_blank" rel="noopener noreferrer">
+                                RZ/V2N &gt;
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div> 
+        <br />
     </div>
 <!-- Template -->
     <!-- <div class="row">

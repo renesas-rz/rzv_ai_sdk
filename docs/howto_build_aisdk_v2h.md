@@ -288,6 +288,12 @@ patch -p1 -i e-CAM22_CURZ*.patch
 {% endhighlight %}
           </li>
         </ol>
+        <div class="note">
+          <span class="note-title">Note</span>
+          You can also use Arducam Technology's MIPI camera by installing its driver. Please refer to <a href="https://docs.arducam.com/Renesas-Camera/Renesas-RZ-V2H/Quick-Start-Guide/#supported-products" target="_blank" rel="noopener noreferrer">this link</a> for the driver download and instructions. <br>
+          For support and inquiries regarding this driver and Arducam Technology's MIPI camera, please contact Arducam Technology.
+          <br>
+        </div>
       </li>
     </ol>
   </li>

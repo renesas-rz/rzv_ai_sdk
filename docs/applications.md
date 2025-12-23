@@ -12,15 +12,20 @@ layout: default
 </div>
 <br>
 
-<h5 align="left">
-    AI Applications are provided with pre-trained AI models. <br><br>
-    Select each application to access the source code.<br><br><br>
-    To run the AI Applications without constructing the AI SDK environment, refer to <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>.
+<h5 align="left" class="mb-0">
+    AI Applications are provided with pre-trained AI models. <br>
+    Select each application to access the source code.<br><br>
+    To run the AI Applications without constructing the AI SDK environment, refer to <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo" target="_blank" rel="noopener noreferrer">Demo</a>.
     <br>
     <br>
-    To see the overview about AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">About AI Applications</a> page.<br>
+    To see the overview about AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" target="_blank" rel="noopener noreferrer">About AI Applications</a> page.<br>
 </h5>
-<a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" role="button">
+<a class="btn btn-secondary square-button ms-3 mt-1" 
+    style="text-align:left;" 
+    href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" 
+    role="button"
+    target="_blank" 
+    rel="noopener noreferrer">
     <span class="banner-title">About AI Applications</span><br>
     <span class="banner-line">
     What is AI Applications?<br>
@@ -28,7 +33,21 @@ layout: default
     How can I download the previous version?<br></span>
 </a>
 <br>
-
+<br>
+<h5 align="left" class="mb-0">
+    To modify AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}" target="_blank" rel="noopener noreferrer">AI Applications Customize Guide</a> page.<br>
+</h5>
+<a class="btn btn-secondary square-button ms-3 mt-1" 
+    style="text-align:left;" 
+    href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}" 
+    role="button"
+    target="_blank" 
+    rel="noopener noreferrer">
+    <span class="banner-title">AI Applications Customize Guide</span><br>
+    <span class="banner-line">
+        How can I implement Transformer-based model?<br>
+    </span>
+</a>
 <div id="agriculture" class="category_section container pb-4" data-category="Agriculture">
 <h3 align="left"><i>Agriculture</i></h3>
 <div class="container">

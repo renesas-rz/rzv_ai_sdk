@@ -32,7 +32,7 @@ For any enquiries, please use Renesas Technical Support.<br>
 <br>
 <div class="container">
     <div class="row">
-        <div id="" class="application_card col-lg-6 col-xl-4">
+        <div id="ref1" class="application_card col-lg-6 col-xl-4">
             <li class="griditem" style="list-style: none;">
                 <img src="img/ref_app/renesas_v2n_isp_960x540.jpg" alt="application">
                 <dt class="mt-1" style="color: #2a289d;">Dual Camera Video Encode + AI Reference</dt>
@@ -45,7 +45,7 @@ For any enquiries, please use Renesas Technical Support.<br>
                     The output can be checked on PC sent via Ethernet.
                     <br>
                     <br>
-                    The sample application is included in the RZ/V ISP Support Package, which requires users to submit secure access request.<br><br>
+                    The sample application is included in the RZ/V ISP Support Package and requires users to submit secure access request.<br><br>
                 </div>
                 <dl>
                     <dd style="display: flex">
@@ -61,7 +61,7 @@ For any enquiries, please use Renesas Technical Support.<br>
                 </dl>
             </li>
         </div>
-        <div id="" class="application_card col-lg-6 col-xl-4">
+        <div id="ref2" class="application_card col-lg-6 col-xl-4">
             <li class="griditem" style="list-style: none;">
                 <img src="img/ref_app/renesas_face-mosaic1_trimmed_resized.jpg" alt="application">
                 <dt class="mt-1" style="color: #2a289d;">Face mosaic application</dt>
@@ -85,7 +85,7 @@ For any enquiries, please use Renesas Technical Support.<br>
                 </dl>
             </li>
         </div>
-        <div id="" class="application_card col-lg-6 col-xl-4">
+        <div id="ref3" class="application_card col-lg-6 col-xl-4">
             <li class="griditem" style="list-style: none;">
                 <img src="img/ref_app/renesas_distortion-correction2_resized.jpg" alt="application">
                 <dt class="mt-1" style="color: #2a289d;">Lens distortion correction application</dt>
@@ -110,6 +110,39 @@ For any enquiries, please use Renesas Technical Support.<br>
                 </dl>
             </li>
         </div>
+        <br>
+        <br>
+        <div id="ref4" class="application_card col-lg-6 col-xl-4">
+            <li class="griditem" style="list-style: none;">
+                <img src="img/ref_app/renesas_dashcam_960x540.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Dashcam System Control Reference</dt>
+                <h6 class="appstatus" align="right"><b><br /></b></h6>
+                <div class="griditem-add">
+                    The reference application for dashcam system.<br>
+                    Input images are captured by two camera sensors via MIPI-I/F which are processed by the LSI-integrated ISP.<br>
+                    Each image is subjected to video encoding and AI processing.<br>
+                    AI processing can be selected from the Driver Monitoring, the gaze detection, etc..  <br>
+                    The result can be checked on PC via Ethernet.<br>
+                    The output image will be storable on a microSD card for recording purpose from early 2026.<br>
+                    <br>
+                    The application is included in the RZ/V ISP Support Package as <b>"Sample application No.2"</b>, and requires users to submit secure access request. 
+                    <br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" 
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
+                                RZ/V2N >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div> 
+        <br>
     </div>
 <!-- Template -->
     <!-- <div class="row">

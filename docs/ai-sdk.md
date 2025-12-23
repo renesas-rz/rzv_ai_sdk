@@ -624,6 +624,7 @@ layout: default
             <br>
             <br>
             <!-- Reference to V2H How to Build page -->
+            To add additional components/drivers, such as <a href="https://docs.arducam.com/Renesas-Camera/Renesas-RZ-V2H/Quick-Start-Guide/#supported-products" target="_blank" rel="noopener noreferrer">Arducam Technology's MIPI camera driver</a>, users are required to build AI SDK Source Code.<br>
             For more information on AI SDK Source Code, see How to Build AI SDK page.<br>
             <a class="btn btn-secondary square-button-gray ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button" target="_blank" rel="noopener noreferrer">
                 <span class="banner-title">How to Build RZ/V2H AI SDK</span>

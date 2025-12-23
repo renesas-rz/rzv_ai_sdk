@@ -251,21 +251,27 @@ const static std::string model_dir = "yolov3_onnx_fhd";
         <div class="col-12" align="left">
             <h3 align="left" tag="ending"><i>Reference</i></h3>
             To select the AI Application, choose the category from AI Applications section of the top page.<br>
-            <a class="btn btn-secondary square-button mt-1 ms-3" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#ai-applications" role="button">
+            <a class="btn btn-secondary square-button mt-1 ms-3" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#ai-applications" role="button" target="_blank" rel="noopener noreferrer">
 Go to Home to select category >
             </a>
             <br>
             <br>
             Getting Started explains the whole procedure to build/run the AI Applications.<br>
             To build the application, see Step 6 of Getting Started.<br>
-            <a class="btn btn-secondary square-button-gray mt-1 ms-3" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6" role="button">
+            <a class="btn btn-secondary square-button-gray mt-1 ms-3" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6" role="button" target="_blank" rel="noopener noreferrer">
 Go to Getting Started Step 6 >
             </a>
             <br>
             <br>
             To run the application, see Step 7~8 of Getting Started.<br>
-            <a class="btn btn-secondary square-button-gray mt-1 ms-3" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7" role="button">
+            <a class="btn btn-secondary square-button-gray mt-1 ms-3" href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7" role="button" target="_blank" rel="noopener noreferrer">
 Go to Getting Started Step 7 >
+            </a>
+            <br>
+            <br>
+            RZ/V AI Applications Customize Guide explains examples of how to modify AI Applications.<br>
+            <a class="btn btn-secondary square-button mt-1 ms-3" href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}" role="button" target="_blank" rel="noopener noreferrer">
+Go to RZ/V AI Applications Customize Guide >
             </a>
         </div>
     </div>

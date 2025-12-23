@@ -31,7 +31,7 @@ layout: default
 <div class="container">
     <div class="row">
         <div class="top col-12">
-Developer's Guide
+RZ/V AI SDK Developer's Guide
         </div>
     </div>
 </div>

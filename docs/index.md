@@ -77,19 +77,45 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2025.10.31
+                2025.12.23
             </h6>
             <ul>
                 <li>
-                    <b>AI Navigator v2.1.0</b> is released.
+                    <b>RZ/V AI Applications Customize Guide</b> is published.
                     <ul>
                         <li>
-                            Users can use RZ/V AI TLT v6.00.
+                            Users can check following content.
+                            <ul>
+                                <li>
+                                    How to replace a Transformer-based AI model
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}"><b>RZ/V AI Applications Customize Guide</b></a>.
+            <br>
+            <br>
+            <h6 align="right" >
+                2025.12.17
+            </h6>
+            <ul>
+                <li>
+                    <b>RZ/V Reference Applications</b> page is updated.
+                    <ul>
+                        <li>
+                            Following reference application is added.
+                            <ul>
+                                <li>
+                                    Dashcam System Control Reference
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications</b></a>.
             <br>
             <br>
         </div>
@@ -186,6 +212,19 @@ layout: default
                 <span class="banner-line lg-no-display">
                     What is AI Applications?<br>
                     How is directory/file structured?
+                </span>
+            </a>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4">
+            <a class="btn btn-secondary square-button-gray ms-3 mt-1" 
+                style="text-align:left; width: 100%; " 
+                href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}" 
+                role="button">
+                <span class="banner-title" style="line-height:1.0;">
+                    RZ/V AI Applications Customize Guide >
+                </span><br>
+                <span class="banner-line lg-no-display">
+                    How can I implement Transformer-based model?
                 </span>
             </a>
         </div>

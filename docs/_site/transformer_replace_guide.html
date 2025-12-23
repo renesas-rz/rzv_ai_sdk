@@ -23,14 +23,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The best solution for starting your AI applications." />
 <meta property="og:description" content="The best solution for starting your AI applications." />
-<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/howto_build_aisdk.html" />
-<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/6.10/howto_build_aisdk.html" />
+<link rel="canonical" href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/transformer_replace_guide.html" />
+<meta property="og:url" content="https://renesas-rz.github.io/rzv_ai_sdk/6.10/transformer_replace_guide.html" />
 <meta property="og:site_name" content="Renesas RZ/V AI" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Renesas RZ/V AI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-10-30T20:42:00+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.10/howto_build_aisdk.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-12-23T13:47:21+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.10/transformer_replace_guide.html"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="stylesheet" href="assets/css/style.css?v=63e4ba29cb3b3f4f0a3afea3690ec7fa88f4c585">
@@ -845,506 +845,1041 @@
 
         <div class="container">
     <div class="row">
-        <div class="top col-12">
-          How to build RZ/V2L AI SDK Source Code
+        <div id="page-top" class="top col-12">
+        How to replace a Transformer-based AI model
         </div>
     </div>
 </div>
 <p><br />
 <br /></p>
-<h5>This page explains how to build Linux with <b>RZ/V2L AI SDK Source Code.</b></h5>
-
-<h5>Supported version: <b>RZ/V2L AI SDK v5.00</b></h5>
-
-<h3 id="intro">Introduction</h3>
+<h5>This document explains how to replace and execute a Transformer-based AI model (e.g., SegFormer) on the <b>RZ/V2N</b> platform using the DRP-AI TVM runtime.
+<br /></h5>
+<h5>The following is an example of how to implement the SegFormer model on <b>RZ/V2N</b> by adapting the existing <code>Q09_crack_segmentation</code> sample application.</h5>
+<h3>Introduction</h3>
 <div class="container">
   <div class="row">
     <div class="col-12">
-      AI SDK is a quick and easy AI Application development environment.<br />
-      It is specifically made for RZ/V2L Evaluation Board Kit with fixed Linux components.<br />
-      (For more information, please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html" target="_blank" rel="noopener noreferrer">Getting Started</a> and <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/ai-sdk.html" target="_blank" rel="noopener noreferrer">AI SDK</a>.)<br />
-      <br />
-      To modify Linux component, you need to build AI SDK from source code.<br />
-      AI SDK Source Code can generate the same Linux environment as AI SDK.<br />
-      <br />
+      <h4 class="u_line">Model Overview</h4>
+      <a href="https://github.com/open-mmlab/mmsegmentation/tree/main/configs/segformer" target="_blank" rel="noopener noreferrer">Segformer</a>  is a state-of-the-art semantic segmentation model that combines Transformers with lightweight multilayer perceptron (MLP) decoders. It leverages a hierarchical Transformer-based encoder (e.g., MiT-Mix Vision Transformer) to extract multi-scale features and a lightweight MLP decoder to produce high-resolution segmentation maps.<br />
     </div>
-  </div>
-</div>
-<div class="col-12  col-md-6 text-center">
-  <a href="img/aisdk_sc.svg" data-lightbox="group"><img src="img/aisdk_sc.svg" alt="AI Application and AI SDK software" /></a><br />
-</div>
-<div class="container">
-  <div class="row">
     <div class="col-12">
+      <h4 class="u_line">Work Flow</h4>
+      In this workflow, the process begins with preparing a Transformer-based AI model and ends with running inference on the RZ/V2N board.<br />
+      From Step 1 to Step 5, each stage corresponds to the sections described below in this guide.
       <br />
-      This page explains how to build AI SDK Source Code.<br />
-      After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br />
       <br />
-      <div class="note">
-        <span class="note-title">Requirement</span>
-        <ol>
-          <li>Users have launched RZ/V2L Evaluation Board Kit according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html" target="_blank" rel="noopener noreferrer">Getting Started</a>, which means they can run <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/applications.html" target="_blank" rel="noopener noreferrer">AI Application</a> on the board.<br />
-          </li>
-          <li>To build Yocto Linux, the below equipment should be prepared.<br />
-            <table class="gstable">
-              <tr>
-                <th>Equipment</th>
-                <th colspan="2">Details</th>
-              </tr>
-              <tr>
-                <td rowspan="2">Linux PC</td>
-                <td colspan="2">Approximately <b>110GB free space</b> is necessary.</td>
-              </tr>
-              <tr>
-                <td>OS</td>
-                <td><b>Ubuntu 20.04 LTS</b><br />
-                    64bit OS must be used.</td>      
-              </tr>
-            </table>
-          </li>
-        </ol>
-      </div>
-      <br />
-      Now you are ready to build your Linux development environment.<br />
-      <h5><b><i>Let's get started!!</i></b></h5><br />
     </div>
   </div>
+<div class="col-12 text-center">
+  <a href="img/transformer_workflow.png" data-lightbox="group"><img src="img/transformer_workflow.png" alt="Workflow" class="img-fluid" style="max-width: 1000px; margin: 0 auto;" /></a><br />
+</div>
+<ul class="mt-1 mb-1">
+  <li><a href="#step1">Step1: Prepare the SegFormer ONNX model</a></li>
+  <li><a href="#step2">Setp2: Setup Environment</a></li>
+  <li><a href="#step3">Step3: Compile AI Model with DRP-AI TVM</a></li>
+  <li><a href="#step4">Step4: Build the Application</a></li>
+  <li><a href="#step5">Step5: Deploy and Run Application on the Board</a></li>
+</ul>
 </div>
 <p><br /></p>
+<h3 id="step1">Step 1: Prepare the SegFormer ONNX Model </h3>
+<p>In your environment, prepare your own SegFormer model and convert it into ONNX format, which will be used in Step 3.<br />
+This step provides an <b>example</b> for reference purposes.</p>
+<h4 class="mt-5 u_line">1. Operating Environment </h4>
+<table class="gstable">
+    <tr>
+        <th>Category</th>
+        <th>Item</th>
+        <th>Version</th>
+    </tr>
+    <tr>
+        <td rowspan="1">Hardware</td>
+        <td>Ubuntu Desktop<br /> 
+        &nbsp;&nbsp;&nbsp;&nbsp;GPU: NVIDIA GPU with CUDA support</td>
+        <td>20.04</td>
+    </tr>
+    <tr>
+        <td rowspan="8">Software</td>
+        <td>Python</td>
+        <td>3.10.6</td>
+    </tr>
+    <tr>
+        <td>PyTorch</td>
+        <td>1.12.0+cu116</td>
+    </tr>
+    <tr>
+        <td>Torchvision</td>
+        <td>0.13.0+cu116</td>
+    </tr>
+    <tr>
+        <td>pip</td>
+        <td>25.3</td>
+    </tr>
+    <tr>
+        <td>ONNX version</td>
+        <td>1.19.0</td>
+    </tr>
+    <tr>
+        <td>Opset version</td>
+        <td>11</td>
+    </tr>
+    <tr>
+        <td>mmcv-full</td>
+        <td>1.6.0</td>
+    </tr>
+    <tr>
+        <td>mmsegmentation</td>
+        <td>0.30.0</td>
+    </tr>
+</table>
+<h4 class="mt-5 u_line">2. SegFomer implementation details</h4>
+<p>SegFormer is implemented based on the <a href="https://github.com/open-mmlab/mmsegmentation" target="_blank" rel="noopener noreferrer">MMSegmentation</a> repository.<br />
+  The training code was used from the MMSegmentation GitHub repository on the master branch, which is based on the mmcv library. The MMSegmentation package should be installed from the repository using the command below:<br /></p>
 
-<h3 id="step1">Step 1: Obtain RZ/V2L AI SDK Source Code</h3>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      Download the RZ/V2L AI SDK Source Code from the link below.<br /><br />
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v500-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
-      <br /><br />
- 	    AI SDK Source Code (<b><code>RTK0EF0160F*_linux-src.zip</code></b>) contains following files:<br />
-      <table class="mytable">
-        <tr>
-          <th>File name</th>
-          <th>Description</th>
-        </tr>
-        <tr>
-          <td>README.txt</td>
-          <td>README file.</td>
-        </tr>
-        <tr>
-          <td>rzv2l_ai-sdk_yocto_recipe_v*.tar.gz</td>
-          <td>Yocto recipe.<br />
-          Yocto recipes are text files that contains necessary information to build Yocto Linux.</td>
-        </tr>
-        <tr>
-          <td>oss_pkg_rzv_v*.7z</td>
-          <td>OSS package.<br />
-            OSS package is a set of Open Source Software source code used when building the Yocto Linux.<br />
-            AI SDK Source Code provides this file to reproduce the same Linux environment provided in RZ/V2L AI SDK.
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-<p><br /></p>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">git clone https://github.com/open-mmlab/mmsegmentation
+<span class="nb">cd </span>mmsegmentation
+git checkout 38900d5c51395dde78b494d9e86a8ed92cc81b49
+pip <span class="nb">install</span> <span class="nt">-v</span> <span class="nt">-e</span> .</code></pre></figure>
 
-<h3 id="step2">Step 2: Extract RZ/V2L AI SDK Source Code</h3>
-<p><br />
-This step explains how to extract RZ/V2L AI SDK Source Code zip file.
+<h4 class="mt-5 u_line">3. Model Conversion</h4>
+<p>After training the model and obtaining the PyTorch checkpoint file (<code>.pth</code>), the next step is to convert it into the ONNX format.<br />
+  This conversion can be done using PyTorch’s standard API, <code> torch.onnx</code>(<a href="https://docs.pytorch.org/docs/1.12/onnx.html" target="_blank" rel="noopener noreferrer">PyTorch 1.12</a>), which takes your trained model and a sample input tensor to generate an ONNX model file as output.
+<br />
+<br />
 <br /></p>
+<h3 id="step2">Step 2: Setup AI SDK Environment </h3>
+<div class="note">
+    <span class="note-title">Note</span>
+    Make sure that you have installed <a href="https://docs.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a> on your Linux PC.
+  </div>
+<p><br />
+Once the ONNX model is generated, the next step is to prepare the execution environment for model compilation and deployment.<br /></p>
 <ol>
-  <li>On your Linux PC, check you have already registered the environment variable <b><code>WORK</code></b> with the below command.
+ <li>Please follow the Step 1 ~ 5 in the official RZ/V AI SDK Getting Started guide below to set up the AI SDK environment and launch the Docker container.
+   <ul class="mt-1 mb-1">
+    <li><a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html" target="_blank" rel="noopener noreferrer">RZ/V AI SDK Getting Started (v6.10)</a>
+    </li> 
+   </ul>
+ </li>
+</ol>
+<table class="gstable">
+    <tr style="white-space: nowrap;">
+      <th>Targer Board</th>
+      <th>PRODUCT</th>
+      <th>AI SDK</th>
+      <th>DRP-AI TVM</th>
+      <th>DRP-AI Translator</th>
+    </tr>
+    <tr>
+      <td>RZ/V2N Evaluation Board Kit (EVK)
+      </td>
+      <td>RZ/V2N</td>
+      <td>v6.00</td>
+      <td>v2.5.1 (AI SDK v6.00)</td>
+      <td>i8 v1.04 (AI SDK v6.00)</td>
+    </tr>
+  </table>
+<p>After completing Getting Started Step 1 ~ 5, the Docker container environment will be running and ready.<br />
+<br />
+<br /></p>
+<h3 id="step3">Step 3: Compile AI Model with DRP-AI TVM</h3>
+<p>This chapter explains how to compile your ONNX model using DRP-AI TVM to make it executable on the RZ/V2N EVK.</p>
+<div class="note">
+  <span class="note-title">Note</span>
+    Before proceeding with Step 3, make sure that you have completed Step 2 and the Docker container has been created successfully.
+</div>
+<h4 class="mt-5 u_line">3-1. Copy Your ONNX Model into the Working Directory</h4>
+<p>Please choose any preferred method to copy your ONNX model into the working directory inside the Docker container, which is <code>$TVM_ROOT/tutorials</code>. <br /><br />
+In this document, we provide an <b>example</b> using the <code>docker cp</code> command for simplicity.<br /></p>
+<ol>
+ <li>If you are currently inside the <b>Docker container</b>, run the following command to exit.<br />
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">printenv </span>WORK</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">exit</span></code></pre></figure>
 
-    <ul>
-      <li>
-      If the above command prints followings, proceed next step. <br />
+ </li>
+ <li>Run the following command on <b><span style="color:red">host PC</span></b> to copy the ONNX model into the working directory on your <b>Docker container</b>.
 
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">&lt;path to the working directory&gt;/ai_sdk_work</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>docker <span class="nb">cp</span> &lt;path_to_file&gt;/segformer.onnx rzv2n_ai_sdk_container:<span class="k">${</span><span class="nv">TVM_ROOT</span><span class="k">}</span>/tutorials/</code></pre></figure>
 
-      If not, please register the working directory path to an environment variable according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html#step4" target="_blank" rel="noopener noreferrer">Step4: Extract RZ/V AI SDK package in Getting Started</a>.
-      </li>
-    </ul>
+  <div class="note">
+  <span class="note-title">Note</span>
+    The example use <code>segformer.onnx</code>, please replace it with your own ONNX model file name.
+  </div>
+ </li>
+</ol>
+<h4 class="mt-5 u_line">3-2. Move to the Working Directory</h4>
+<ol>
+ <li>If the Docker container is not currently running, start it with the following command on your <b><span style="color:red">host PC</span></b>.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>docker start <span class="nt">-i</span> rzv2n_ai_sdk_container</code></pre></figure>
+
+ </li>
+ <li>Once inside the <b>Docker container</b>, move to the working directory by running the following command.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">TVM_ROOT</span><span class="k">}</span>/tutorials/ </code></pre></figure>
+
+ </li>
+</ol>
+<h4 class="mt-5 u_line">3-3. Confirm the model information</h4>
+<p>To compile the model with DRP-AI TVM, please verify the settings you used during training.<br /></p>
+<div class="note">
+  <span class="note-title">Note</span>
+    If any of these conditions differ from the training settings, the model accuracy will significantly drop.
+</div>
+<div>
+  <b>Example of settings to verify</b>
+  <ul>
+    <li>Input shape (e.g., 1x3x240x320)</li>
+    <li>Color order (e.g., RGB or BGR)</li>
+    <li>
+      Preprocess
+      <ul>
+        <li>Normalization (mean and std)</li>
+        <li>Resize algorithm and input size</li>
+      </ul>
+    </li>
+    <li>Tensor layout (e.g., NCHW or NHWC)</li>
+  </ul>
+</div>
+<div class="box1">
+          <u><b>Example:</b></u><br />
+          Some of the settings can also be checked in <a href="https://netron.app/" target="_blank" rel="noopener noreferrer">Netron</a>.<br />
+          Input shape: [1,3,240,320]<br />
+          Tensor layout: NCHW     
+    <div class="col-12 text-center">
+        <a href="img/transformer_netron.png" data-lightbox="group"><img src="img/transformer_netron.png" alt="Netron" class="img-fluid" style="max-width: 600px; margin: 0 auto;" /></a><br />
+    </div>
+</div>
+<h4 class="mt-5 u_line">3-4. Modify the sample script</h4>
+<p>Next, modify the sample script according to your model information . The input image format must match the conditions used during training (e.g., image size, normalization, channel order, etc.).<br />
+In this guide, we use <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm/blob/main/tutorials/compile_onnx_model_quant.py" target="_blank" rel="noopener noreferrer">compile_onnx_model_quant.py</a> as the working example. <br />
+Please <b>adjust the preprocessing steps</b> according to the settings confirmed in Step 3-3.<br />
+<br />
+Renesas modified the following process to match the SegFormer model input specification. And the modified version is provided as a reference. <br /></p>
+<ol>
+ <li>
+ Replaced the original ImageNet preprocessing in L.101~L.112 with a simplified version aligned to the SegFormer model.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"> 
+<span class="gd">- def pre_process_imagenet_pytorch(img, mean=[0.485, 0.456, 0.406], stdev=[0.229, 0.224, 0.225], dims=None, need_transpose=False):   
+-   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+-   img = Image.fromarray(img)
+-   img = F.resize(img, 256, Image.BILINEAR)
+-   img = F.center_crop(img, 224)
+-   img = F.to_tensor(img)
+-   std = stdev
+-   img = F.normalize(img, mean, std, inplace=False)
+-   if not need_transpose:
+-      img = img.permute(1, 2, 0) # NHWC
+-   img = np.asarray(img, dtype='float32')
+-   return img
+</span>
+
+<span class="gi">+ def preprocess_image(image):
++   mean = np.array([123.675, 116.28, 103.53], dtype=np.float32)
++   std = np.array([58.395, 57.12, 57.375], dtype=np.float32)
++   img_scale = (320, 240)
++   resized_image = cv2.resize(image, img_scale)
++   img_float = resized_image.astype(np.float32)
++   img_normalized = (img_float - mean) / std
++   img_chw = img_normalized.transpose(2, 0, 1)
++   return img_chw
+</span> </code></pre></figure>
+
+ </li>
+ <li>
+  Add the following line between L.155 and L.157 to print the input details of ONNX model.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">  for inp in model_inputs:
+      if inp not in model_initializers:
+          model_vars.append(inp)
+          
+<span class="gi">+ print(f"Model inputs: {onnx_model.graph.input}")
+</span>
+  np.random.seed(41264126)</code></pre></figure>
+
+ </li>
+ <li>
+  Replace the L.209 to match the input format required by the SegFormer model.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">  for i in range(len(input_list)):
+      img_file_name = str(input_list[i])
+      image = cv2.imread(img_file_name)
+<span class="gd">-     input_data = pre_process_imagenet_pytorch(image, mean, stdev, need_transpose=True)
+</span><span class="gi">+     input_data = preprocess_image(image)
+</span>      input_data = np.expand_dims(input_data, 0)
+      rt_mod.set_input(0, input_data)
+      rt_mod.run()
+      print("calib data", img_file_name)</code></pre></figure>
+
+ </li>
+ <li>
+  Update the L.221.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">  drp_config = {
+      "target": "InterpreterQuant",
+      "drp_compiler_version": opts["drp_compiler_version"],
+      "quantization_tool": opts["quantization_tool"],
+      "quantization_option": opts["quantization_option"],
+<span class="gd">-     "calibration_data": record_dirmodel_vars.append(inp)
+</span><span class="gi">+     "calibration_data": record_dir
+</span>  }</code></pre></figure>
+
+ </li>
+</ol>
+<p>This completes the modification of the sample script.</p>
+<h4 class="mt-5 u_line">3-5. Compilation</h4>
+<p>Using the modified sample script from the previous section, the SegFormer model can be compiled with the following command on your <b>Docker container</b> created in Step 2.<br /></p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">python3 compile_onnx_model_quant.py <span class="se">\</span>
+    ./segformer.onnx <span class="se">\ </span>               <span class="c"># target ONNX model file to compile</span>
+    <span class="nt">-o</span> ../data/segformer <span class="se">\ </span>           <span class="c"># specify the output directory for compiled files</span>
+    <span class="nt">-t</span> <span class="nv">$SDK</span> <span class="se">\ </span>                        <span class="c"># path to the SDK (toolchain)</span>
+    <span class="nt">-d</span> <span class="nv">$TRANSLATOR</span> <span class="se">\ </span>                 <span class="c"># path to the DRP-AI Translator</span>
+    <span class="nt">-c</span> <span class="nv">$QUANTIZER</span>                     <span class="c"># path to the DRP-AI Quantize</span></code></pre></figure>
+
+<div class="note">
+  <span class="note-title">Note</span>
+    No calibration data was used in this sample case. Calibration is typically recommended, however, it was not required here since the inference results were nearly identical, and omitting calibration shortens the compilation time.
+</div>
+<h4 class="mt-5 u_line">3-6. Confirming the output</h4>
+<p>After the compilation, the compiled AI model will be generated under the specified output directory. <br />
+In this example, the output directory was set to <code><b>${TVM_ROOT}/data/segformer/</b></code>. <br />
+Check the generated files using the following command:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="k">${</span><span class="nv">TVM_ROOT</span><span class="k">}</span>/data/segformer/</code></pre></figure>
+
+<ul>
+ <li>If the following files are printed, the model files have been generated successfully.
+ <pre style="margin:0;">
+deploy.json    deploy.params    deploy.so    input_0.bin    interpreter_out    preprocess</pre>
+ </li>
+</ul>
+<p><br />
+<br /></p>
+<h3 id="step4">Step 4: Build the Application</h3>
+<h4 class="mt-5 u_line">Overview</h4>
+<p>To run inference with the AI model compiled by DRP-AI TVM, a C++ inference application is required.<br />
+Since the Segformer model is segmentation model trained with crack segmentation dataset, we can modify the source code of AI Applications, <a href="https://github.com/renesas-rz/rzv_ai_sdk/blob/v6.10/Q09_crack_segmentation/README.md" target="_blank" rel="noopener noreferrer">Q09_crack_segmentation</a>.<br />
+Following table shows the summary of application elements.
+Bold letters require the modification in the source code.</p>
+<table class="gstable">
+    <tr>
+    <th>Category</th>
+    <th>Item</th>
+    <th>Q09_crack_segmentation</th>
+    <th>This page</th>
+    <th>Comment</th>
+    </tr>
+    <tr>
+      <td rowspan="11">
+        AI Model
+      </td>
+      <td>
+        Model name
+      </td>
+     <td>
+        U-Net
+      </td>
+      <td>
+        <b>SegFormer</b>
+      </td>  
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        AI task
+      </td>
+      <td>
+        Segmentation
+      </td>
+      <td>
+        Segmentation
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Dataset
+      </td>
+      <td>
+        Crack segmentation dataset
+      </td>
+      <td>
+        Crack segmentation dataset
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Target class
+      </td>
+      <td>
+        Background/Crack
+      </td>
+      <td>
+        Background/Crack
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Number of class
+      </td>
+      <td>
+       2
+      </td>
+      <td>
+       2
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input size
+      </td>
+      <td>
+       224x224x3
+      </td>
+      <td>
+       <b>240x320x3</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output size
+      </td>
+      <td>
+       224x224x1
+      </td>
+      <td>
+       <b>240x320x1</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Input datatype
+      </td>
+      <td>
+       floating-point type
+      </td>
+      <td>
+       floating-point type
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Output datatype
+      </td>
+      <td>
+       floating-point type
+      </td>
+      <td>
+       <b>integer type</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Pre-processing
+      </td>
+      <td>
+       Pre-processing for U-Net
+      </td>
+      <td>
+       <b>Pre-processing for SegFormer</b>
+      </td>
+       <td style="vertical-align: middle;"><small>Differences in Pre-processing will be explained in<i>Section 4-2: Modify the Source Code</i>.</small>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Post-processing
+      </td>
+      <td>
+       Post-processing for U-Net
+      </td>
+      <td>
+       <b>Post-processing for SegFormer</b>
+      </td>
+      <td style="vertical-align: middle;"><small>Differences in Pre-processing will be explained in<i>Section 4-2: Modify the Source Code</i>.</small>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="5">
+        Application
+      </td>
+      <td>
+        Target board
+      </td>
+      <td>
+        RZ/V2H, RZ/V2N, RZ/V2L
+      </td>
+      <td>
+        <b>RZ/V2N (, RZ/V2H)</b>
+      </td>
+      <td style="vertical-align: middle;"><small>
+       RZ/V2N and RZ/V2H are brother chips, same application can run on the board. </small>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Model folder name
+      </td>
+      <td>
+      "crack_segmentation_model"
+      </td>
+      <td>
+       <b>"segformer_model"</b>
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Application input data
+      </td>
+      <td>
+        USB Camera 1ch (640x480)
+      </td>
+      <td>
+        USB Camera 1ch (640x480)
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Application output
+      </td>
+      <td>
+       HDMI display 1920x1080
+      </td>
+      <td>
+       HDMI display 1920x1080
+      </td>
+      <td> <span></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Segmentation result display
+      </td>
+      <td>
+       RZ/V2H, RZ/V2N: Heatmap<br />
+       RZ/V2L: Green highlight
+      </td>
+      <td>
+       <b>RZ/V2N: Red highlight</b>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+<h4 class="mt-5 u_line">4-1. Prepare the Application</h4>
+<p>Check the <a href="https://github.com/renesas-rz/rzv_ai_sdk/blob/v6.10/Q09_crack_segmentation/README.md" target="_blank" rel="noopener noreferrer">Q09_crack_segmentation</a> application, follow the instruction “Application File Generation 1-4” to go to the application source code directory.</p>
+<h4 class="mt-5 u_line">4-2. Modify the Source Code</h4>
+<p>Edit the following source file to adapt the application to the SegFormer model compiled in Step 3.<br />
+Path: <code>${PROJECT_PATH}/Q09_crack_segmentation/src/crack_segmentation.cpp</code>
+<br />
+<br />
+The following code examples show the differences between the original U-Net model and the SegFormer model.</p>
+<ol>
+  <li>Modify the definition of the AI model's input size (L.101~L.102).<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   /*Model input info*/
+<span class="gd">-  #define MODEL_IN_H          (224)
+-  #define MODEL_IN_W          (224)
+</span><span class="gi">+  #define MODEL_IN_H          (240)
++  #define MODEL_IN_W          (320)</span></code></pre></figure>
+
   </li>
+<li>Modify the AI model's output datatype in L.152, L.370 and L.467.<br />
+ <ul>
+  <li>L.152<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"> 
+<span class="gd">-  std::vector&lt;float&gt; floatarr(1);
+</span><span class="gi">+  std::vector&lt;uint64_t&gt; intarr(1);
+</span> </code></pre></figure>
+    
+  </li>
+  <li>L.370<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   ******************************************/
+<span class="gd">-  float *start_runtime(float *input)   
+</span><span class="gi">+  uint64_t *start_runtime(float *input)
+</span>   {
+       int ret = 0;
+       /* Set Pre-processing output to be inference input. */
+       model_runtime.SetInput(0, input);
+      ... remaining code omitted ... 
+   }</code></pre></figure>
+ 
+  </li>
+  <li>L.467<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   int ret = 0;
+<span class="gd">-  float *output; 
+</span><span class="gi">+  uint64_t *output;
+</span>   /*font size to be used for text output*/</code></pre></figure>
+ 
+    </li>
+ </ul>
+</li>
+  <li>Add a color palette for the red highlight implementation by inserting the following lines below L.178.<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   /* Map to store input source list */
+   std::map&lt;std::string, int&gt; input_source_map =
+   {
+       #ifndef V2N
+           {"VIDEO", 1},
+       #endif
+       {"IMAGE", 2},
+       {"USB", 3},
+       #ifdef V2L
+           {"MIPI", 4}
+       #endif
+
+   };
+ 
+<span class="gi">+  std::vector&lt;cv::Vec3b&gt; palette = 
++  {
++      {0,0,200},
++      {0,0,0}
++  };</span></code></pre></figure>
+ 
+  </li>
+  <li> Modify image resizing, add mean/std normalization, remove RGB conversion (L.352~L.362), and delete the image resizing process (L.492~L.494) for SegFormer pre-processing.<br />
+<ul>
+ <li>L.352~L.362<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  cv::Mat start_preprocessing(cv::Mat frame)
+-  cv::Mat start_preprocessing(cv::Mat frame)
+-  {
+-      cv::cvtColor(frame, frame, cv::COLOR_BGR2RGB);
+-      frame = hwc2chw(frame);
+-      /*convert to FP32*/
+-      frame.convertTo(frame, CV_32FC3,1.0 / 255.0, 0);
+-      /*deep copy, if not continuous*/
+-      if (!frame.isContinuous())
+-      frame = frame.clone();
+-      return frame;
+-  }
+</span><span class="gi">+  cv::Mat start_preprocessing(const cv::Mat&amp; image) 
++  {
++      cv::Scalar mean = {123.675f, 116.28f, 103.53f};
++      cv::Scalar std = {58.395f, 57.12f, 57.375f};
++      cv::Size img_scale(MODEL_IN_W,MODEL_IN_H);
++      cv::Mat processed_image;
++      cv::resize(image, processed_image, img_scale);
++      processed_image.convertTo(processed_image, CV_32FC3);
++      processed_image -= mean;
++      processed_image /= std;
++      processed_image = hwc2chw(processed_image);
++      return processed_image;
++  }</span></code></pre></figure>
+ 
+ </li>
+ <li>L.492~L.494<br />
+
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  cv::Size size(MODEL_IN_H, MODEL_IN_W);
+-  /*resize the image to the model input size*/
+-  cv::resize(frame, frame, size); </span></code></pre></figure>
+ 
+ </li>
+</ul>
+  </li>
+  <li>Update the post-processing and variable definitions according to the model's output datatype (L.410~L.422).
   <br />
-  <li>Make the working directory on your Linux PC.
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">mkdir</span> <span class="nt">-p</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
-
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  floatarr.resize(g_out_size_arr);
+</span>    /* Post-processing for FP16 */
+<span class="gd">-  if (InOutDataType::FLOAT16 == std::get&lt;0&gt;(output_buffer))
+-  {
+-      /* Extract data in FP16 &lt;uint16_t&gt;. */
+-      uint16_t *data_ptr = reinterpret_cast&lt;uint16_t *&gt;(std::get&lt;1&gt;(output_buffer));
+-      for (int n = 0; n &lt; g_out_size_arr; n++)
+-      {
+-           /* Cast FP16 output data to FP32. */
+-           floatarr[n] = float16_to_float32(data_ptr[n]);
+-      }
+-  }
+-  return floatarr.data();
+</span><span class="gi">+  intarr.resize(g_out_size_arr);
+</span>    /* Post-processing for FP16 */
+<span class="gi">+  if (InOutDataType::INT64 == std::get&lt;0&gt;(output_buffer))
++  {
++      /* Extract data in INT64 &lt;uint16_t&gt;. */
++     uint64_t *data_ptr = reinterpret_cast&lt;uint64_t *&gt;(std::get&lt;1&gt;(output_buffer));
++     for (int n = 0; n &lt; g_out_size_arr; n++)
++     {
++          intarr[n] = data_ptr[n];
++     }
++  }
++  return intarr.data();</span></code></pre></figure>
+ 
   </li>
-  <li>Move to the working directory.
+  <li>Update the post-processing step by removing <code>colour_convert</code> and overlaying the colorized segmentation result directly onto the input image data (L.425~L.456).<br />
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
-
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  /*****************************************
+-   * Function Name : colour_convert
+-   * Description   : function to convert white colour to green colour.
+-   * Arguments     : Mat image
+-   * Return value  : Mat result
+-   ******************************************/
+-   cv::Mat colour_convert(cv::Mat image)
+-   {
+-       /* Convert the image to HSV */ 
+-       cv::Mat hsv;
+-       cv::cvtColor(image, hsv, cv::COLOR_BGR2HSV);
+-       /* Define the lower and upper HSV range for white color */
+-       cv::Scalar lower_white = cv::Scalar(0, 0, 200); // Adjust these values as needed
+-       cv::Scalar upper_white = cv::Scalar(180, 30, 255); // Adjust these values as needed
+-       /* Create a mask for the white color */
+-       cv::Mat mask;
+-       cv::inRange(hsv, lower_white, upper_white, mask);
+-       /* Create a green image */
+-       cv::Mat green_image = cv::Mat::zeros(image.size(), image.type());
+-       green_image.setTo(cv::Scalar(0, 100, 0), mask);
+-       /* Replace white regions in the original image with green */
+-       cv::Mat result;
+-       cv::bitwise_and(image, image, result, ~mask);
+-       cv::add(result, green_image, result);
+-       cv::resize(result, result, cv::Size(MODEL_IN_H, MODEL_IN_W));
+-       /* return result */
+-       return result;
+-   }
+</span><span class="gi">+   cv::Mat overlay_segmentation(const cv::Mat&amp; original_image, const cv::Mat&amp; processed_mask, float alpha = 0.4f) 
++   {
++        int original_height = original_image.rows;
++        int original_width = original_image.cols;
++        cv::Mat mask_resized;
++        cv::resize(processed_mask, mask_resized, cv::Size(original_width, original_height), 0, 0, cv::INTER_NEAREST);
++        cv::Mat output_mask = cv::Mat::zeros(original_image.size(), original_image.type());
++        for (int y = 0; y &lt; mask_resized.rows; ++y) 
++        {
++            for (int x = 0; x &lt; mask_resized.cols; ++x) 
++            {
++                int class_id = mask_resized.at&lt;uchar&gt;(y, x);
++                if (class_id &lt; 1) 
++                {
++                    output_mask.at&lt;cv::Vec3b&gt;(y, x) = palette[class_id];
++                }
++                else
++                {
++                    output_mask.at&lt;cv::Vec3b&gt;(y, x) = original_image.at&lt;cv::Vec3b&gt;(y, x);
++                }
++            }
++        }
++        cv::Mat overlayed_image;
++        cv::addWeighted(original_image, 1.0f - alpha, output_mask, alpha, 0.0, overlayed_image);
++        return overlayed_image;
++   }</span></code></pre></figure>
+ 
   </li>
-  <li>Extract RZ/V2L AI SDK Sorce Code zip file.
+  <li>Modify the <code>run_inference()</code> function to return a cloned frame in L.483.<br />
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">unzip &lt;Path to the file&gt;/RTK0EF0160F<span class="k">*</span>_linux-src.zip <span class="nt">-d</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
-
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   cv::Mat input_frame,output_frame;
+<span class="gd">-  input_frame = frame; 
+</span><span class="gi">+  input_frame = frame.clone();
+</span> </code></pre></figure>
+ 
   </li>
-  <li>Check the working directory to confirm the package contents.
+  <li>Update segmentation result display to SegFormer red-highlight style by applying <code>overlay_segmentation</code> (L.509~L.527).
+  <br />
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="nt">-1</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup</code></pre></figure>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  #ifdef V2H
+-     /* convert float32 format to opencv mat image format */ 
+-     cv::Mat img_mask(MODEL_IN_H,MODEL_IN_W,CV_32F,(void*)output);
+-     /* setting minimum threshold to heatmap */ 
+-     cv::threshold(img_mask,img_mask,min_threshold,0.0,cv::THRESH_TOZERO);
+-     cv::normalize(img_mask, img_mask, 0.0, 1.0, cv::NORM_MINMAX);
+-     /* Scale the float values to 0-255 range for visualization */
+-     cv::Mat heatmap_scaled;
+-     img_mask.convertTo(heatmap_scaled, CV_8U, 255.0);
+-     /* Create a grayscale heatmap */
+-     cv::applyColorMap(heatmap_scaled, img_mask, cv::COLORMAP_INFERNO);
+-  #elif V2L
+-     /* convert float32 format to opencv mat image format */ 
+-     cv::Mat img_mask(MODEL_IN_H,MODEL_IN_W,CV_32F,(void*)output); 
+-     cv::threshold(img_mask,img_mask,-0.5,255,cv::THRESH_BINARY);  
+-     img_mask.convertTo(img_mask,CV_8UC1);
+-  #endif  
+</span><span class="gi">+  cv::Mat mask(MODEL_IN_H, MODEL_IN_W, CV_8UC1);
++  for (int i = 0; i &lt; MODEL_IN_H; ++i) 
++  {
++    for (int j = 0; j &lt; MODEL_IN_W; ++j) 
++    {
++        mask.at&lt;uchar&gt;(i, j) = static_cast&lt;uchar&gt;(output[i * MODEL_IN_W + j]);
++    }
++  }
++  output_frame = overlay_segmentation(input_frame, mask);</span></code></pre></figure>
+ 
+  </li>
+  <li>Remove the post-processing for U-Net; for SegFormer, the process is consolidated into <code>overlay_segmentation</code> (L.537~L.561).<br />
 
-    <ul>
-      <li>
-If the above command prints followings, the package is extracted correctly.
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gd">-  total_time = pre_time + ai_time + post_time;
+-  cv::cvtColor(img_mask, output_frame, cv::COLOR_RGB2BGR);
+-  /* convert white colour from output frame to green colour */
+-  output_frame = colour_convert(output_frame);
+-  cv::resize(input_frame, input_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
+-  cv ::cvtColor(input_frame, input_frame, cv::COLOR_RGB2BGR);
+-  cv::resize(output_frame, output_frame, cv::Size(IMAGE_OUTPUT_WIDTH, IMAGE_OUTPUT_HEIGHT));
+-  #ifdef V2H
+-      cv::threshold(output_frame, output_frame, 0.7, 255, 3);
+-  #endif
+-  /* blending both input and ouput frames that have same size and format and combined one single frame */
+-  cv::addWeighted(input_frame, 1.0, output_frame, 0.5, 0.0, output_frame);
+-  #ifdef V2H
+-      /* resize the output image with respect to output window size */
+-      cv::cvtColor(output_frame, output_frame, cv::COLOR_RGB2BGR);
+-  #elif V2L
+-      /* resize the output image with respect to output window size */
+-      cv::cvtColor(output_frame, output_frame, cv::COLOR_BGR2RGB);
+-  #endif
+</span><span class="gi">+  total_time = pre_time + ai_time + post_time;</span></code></pre></figure>
+ 
+  </li>
+  <li>Modify the model folder name in L.730.<br />
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">README.txt
-oss_pkg_rzv_v<span class="k">*</span>.7z 
-rzv2l_ai-sdk_yocto_recipe_v<span class="k">*</span>.tar.gz</code></pre></figure>
-
-      </li>
-    </ul>
+<figure class="highlight"><pre><code class="language-diff" data-lang="diff">   /* Model Binary */
+<span class="gd">-  std::string model_dir = "crack_segmentation_model";
+</span><span class="gi">+  std::string model_dir = "segformer_model";
+</span> </code></pre></figure>
+ 
   </li>
 </ol>
-<p><br /></p>
-
-<h3 id="step3">Step 3: Build RZ/V2L AI SDK Source Code</h3>
-<p>This step explains how to build Linux environment with RZ/V2L AI SDK Source Code</p>
-<ol>
-  <li> To install necessary sofware, run the following commands on your Linux PC.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>apt-get update
-<span class="nb">sudo </span>apt-get <span class="nb">install </span>gawk wget git-core diffstat unzip texinfo gcc-multilib <span class="se">\</span>
-build-essential chrpath socat cpio python python3 python3-pip python3-pexpect <span class="se">\</span>
-xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev <span class="se">\</span>
-libssl-dev</code></pre></figure>
-
-  </li>
-  <li>Run the following commands and set the user name and email address before starting the build procedure.<br />
-    It is needed to avoid errors when using git command to apply patches.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">git config <span class="nt">--global</span> user.email <span class="s2">"you@example.com"</span>
-git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span></code></pre></figure>
-
-  </li>
-  <li>Register the working directory path to an environment variable.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">export </span><span class="nv">YOCTO_WORK</span><span class="o">=</span><span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/yocto
-<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
-
-  </li>
-  <li>Extract Yocto recipe package.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-<span class="nb">tar </span>zxvf <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/rzv2l_ai-sdk_yocto_recipe_v<span class="k">*</span>.tar.gz</code></pre></figure>
-
-  </li>
-  <li id="step3-5">Check the working directory to confirm Yocto recipes content.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="nt">-1</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
-
-    <ul>
-      <li>If the above command prints followings, Yocto recipes are extracted correctly.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">extra
-meta-gplv2
-meta-openembedded
-meta-qt5
-meta-renesas
-meta-rz-features
-meta-virtualization
-patch
-poky</code></pre></figure>
-
-      </li>
-    </ul>
-  </li>
-  <li id="step3-6">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-<span class="nv">TEMPLATECONF</span><span class="o">=</span><span class="nv">$PWD</span>/meta-renesas/meta-rzv2l/docs/template/conf/ <span class="nb">source </span>poky/oe-init-build-env build</code></pre></figure>
-
-  </li>
-  <li>Run the following commands to add necessary layers for AI application to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
-bitbake-layers add-layer ../meta-rz-features/meta-rz-codecs
-bitbake-layers add-layer ../meta-rz-features/meta-rz-drpai</code></pre></figure>
-
-  </li>
-  <li>Run the following commands to extract the OSS package. 
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/oss_pkg_rzv_<span class="k">*</span>.7z <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-7z x <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/oss_pkg_rzv_<span class="k">*</span>.7z <span class="nt">-o</span><span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build</code></pre></figure>
-
-  </li>
-   <li>Check the working directory to confirm the package contents.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="nt">-1</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build</code></pre></figure>
- 
-    <ul>
-      <li>If the above command prints followings, the package is extracted correctly.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">conf
-downloads</code></pre></figure>
-
-      </li>
-    </ul>
-  </li>
-  <li>Apply patch files:<br />
-    <ol>
-      <li>To add Tesseract Open Source OCR Engine for AI applications.<br />
-          Not to use network connection during the build. (Necessary OSS source codes are already provided in AI SDK Source Code.)
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> <span class="nt">-i</span> ../patch/0002-no-network-tesseract.patch</code></pre></figure>
-
-      </li>
-      <!-- DRP-AI Driver issue patch file -->
-      <li>Apply a patch file for DRP-AI Driver.<br />
-          This patch file will update the DRP-AI driver to the latest version.<br />
-        <ol type="A">
-          <li>Obtain the patch file from the link below.
-            <table class="mytable">
-              <tr>
-                <th>Patch file link</th>
-                <th>Description</th>
-              </tr>
-              <tr>
-                <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch">
-                    0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch
-                  </a>
-                </td>
-                <td>
-                  Patch file for updating the DRP-AI Driver to the latest version
-                </td>
-              </tr>
-            </table>
-          </li>
-          <li>
-            Copy and apply the patch file.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-patch <span class="nt">-p1</span> &lt; 0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch
-<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build</code></pre></figure>
-
-          </li>
-        </ol>
-      </li>
-    </ol>
-  </li>
-  <li>Run the following command to build the <b>Linux kernel files.</b><br />
-    (It takes a few hours to finish building depending on the user’s host PC performance)
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>smarc-rzv2l bitbake core-image-weston</code></pre></figure>
-
-    All necessary files listed below will be generated by the build command and 
-	  they will be located in <b><code>${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</code></b> directory.<br />
-        <table class="mytable">
-          <tr>
-            <th>File name</th>
-           <th>Description</th>
-          </tr>
-          <tr>
-            <td>Image-smarc-rzv2l.bin</td>
-            <td>Linux kernel</td>
-          </tr>
-          <tr>
-            <td>Image-r9a07g054l2-smarc.dtb</td>
-            <td>Device tree file</td>
-          </tr>
-          <tr>
-           <td>bl2_bp_esd-smarc-rzv2l_pmic.bin<br />
-              bl2-smarc-rzv2l_pmic.bin<br />
-              fip-smarc-rzv2l_pmic.bin</td>
-            <td>*1 Bootloader generated when using eSD Bootloader</td>
-          </tr>
-          <tr>
-            <td>
-              bl2_bp-smarc-rzv2l_pmic.srec<br />
-              fip-smarc-rzv2l_pmic.srec<br />
-              Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</td>
-            <td>*1 Bootloader generated when using QSPI Bootloader</td>
-          </tr>
-         <tr>
-           <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
-            <td>Root filesystem</td>
-         </tr>
-        </table>
-  <div class="note">
+<h4 class="mt-5 u_line">4-3. Build the Application</h4>
+<p>Follow the <a href="https://github.com/renesas-rz/rzv_ai_sdk/blob/v6.10/Q09_crack_segmentation/README.md" target="_blank" rel="noopener noreferrer">Q09_crack_segmentation</a> “Application File Generation 4 to 7” to build the application.<br />
+After running the commands, the following application file would be generated in the <code>${PROJECT_PATH}/Q09_crack_segmentation/src/build</code>.</p>
+<ul>
+  <li><code>crack_segmentation</code></li>
+</ul>
+<p><br />
+<br /></p>
+<h3 id="step5">Step 5: Deploy and Run Application on the Board</h3>
+<p>This step explains how to deloy and run application on the RZ/V2N board.</p>
+<h4 class="mt-5 u_line">5-1. Deploy Stage</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="u_line">Prerequisites</h4>
+      This section assumes that the microSD card setup has been completed by following Step 7-1 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
+    </div>
+    <div class="note">
     <span class="note-title">Note</span>
-    Either one of bootloaders(*1) will be generated based on your bootloader choice.
-  </div>
-  </li>
-  <li>Run the following command to build <b>cross compiler installer</b>.<br />
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>smarc-rzv2l bitbake core-image-weston <span class="nt">-c</span> populate_sdk</code></pre></figure>
-
-    A necessary file listed below will be generated by the build command and the cross compiler installer will be located in <b><code>build/tmp/deploy/sdk/poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</code></b>.<br />
-    <table class="mytable">
-      <tr>
-        <th>File name</th>
-        <th>Description</th>
+    If you prefer to deploy the files via <b>SCP</b> instead of using a microSD card, please refer to "5. Run on the Board" in the official  <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/compile_your_own_model.html" target="_blank" rel="noopener noreferrer">How to compile Your Own Model | DRP-AI TVM on RZ/V series</a> guide. 
+    </div>
+    <div>
+     <h4 class="u_line">File Configuration</h4>
+     For deployment, the following files are required for the Segformer application
+     (generated in Step 4).
+     <br />
+     <table class="gstable">
+     <tr>
+     <th>File</th>
+      <th>Details</th>
       </tr>
       <tr>
-        <td>poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</td>
-        <td>Cross compiler installer</td>
+        <td>
+        <code>deploy.so</code>
+        </td>
+        <td>
+        DRP-AI TVM compiled model (generated in Step 3)
+        </td>
       </tr>
-    </table>
+      <tr>
+        <td>
+        <code>deploy.json</code>
+        </td>
+        <td>
+        Model graph definition file (generated in Step 3)
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code>deploy.params</code>
+        </td>
+        <td>
+        Model parameter file (generated in Step 3)
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code>crack_segmentation</code>
+        </td>
+        <td>
+        Application executable file (generated in Step 4)
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code>libtvm_runtime.so</code>
+        </td>
+        <td>
+        TVM runtime library required by the application
+        </td>
+      </tr>
+     </table>
+    </div>
+    <div>
+    <h4 class="u_line">Instruction</h4>
+    <ol>
+      <li>Insert the microSD card to Linux PC.
+      </li>
+      <li>Run the following commands to mount the partition 2, which contains the root filesystem.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> /mnt/sd <span class="nt">-p</span>
+<span class="nb">sudo </span>mount /dev/sdb2 /mnt/sd</code></pre></figure>
+
+        <div class="warning">
+          <span class="warning-title">Warning</span>
+          Change <code>/dev/sdb</code> to your microSD card device name.
+        </div>
+      </li>
+      <li>Create the application directory on root filesystem.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> /mnt/sd/home/weston/transformer/segformer_model</code></pre></figure>
+
     <div class="note">
       <span class="note-title">Note</span>
-      If some errors occurred during the build, 
-      please clean the directory and rebuild it after a period of time according to the below commands.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build
-<span class="nv">MACHINE</span><span class="o">=</span>smarc-rzv2l bitbake core-image-weston <span class="nt">-c</span> cleanall</code></pre></figure>
-
-      And run the build command again.
-      <ul>
-        <li>For Linux kernel files
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>smarc-rzv2l bitbake core-image-weston</code></pre></figure>
-  
-        </li>
-        <li>For cross compiler installer
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">MACHINE</span><span class="o">=</span>smarc-rzv2l bitbake core-image-weston <span class="nt">-c</span> populate_sdk</code></pre></figure>
-
-        </li>
-      </ul>
+      Directory name "<b><code>transformer</code></b>" can be determined by user.
     </div>
-  </li>
-  <li>Add setting HD(1280x720) to Weston in root filesystem.<br />
-    <ol>
-      <li>Run the following commands to extract root filesystem.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo mkdir</span> /nfs/tmp <span class="nt">-p</span>
-<span class="nb">sudo tar </span>xfj ./tmp/deploy/images/smarc-rzv2l/core-image-weston-smarc-rzv2l.tar.bz2 <span class="nt">-C</span> /nfs/tmp</code></pre></figure>
-        
       </li>
-      <li>Edit <b><code>/nfs/tmp/etc/xdg/weston/weston.ini</code></b> file with a text editor.
-        <ol>
-          <li>Before the editing, open it and check that followings are written in the file.<br />
+      <li>Copy the necessary files in execution environment to the <code>/home/weston/transformer</code> directory of the rootfs (SD Card) for the board.<br />
+      Use the following command to copy the files to root filesystem.
 
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">[core]
-idle-time=0
-require-input=false
-repaint-window=17</code></pre></figure>
-  
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/segformer/deploy.json /mnt/sd/home/weston/transformer/segformer_model
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/segformer/deploy.params /mnt/sd/home/weston/transformer/segformer_model 
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/segformer/deploy.so /mnt/sd/home/weston/transformer/segformer_model 
+<span class="nb">sudo cp</span> <span class="nv">$WORK</span>/ai_sdk_setup/data/rzv_ai_sdk/Q09_crack_segmentation/src/build/crack_segmentation /mnt/sd/home/weston/transformer</code></pre></figure>
+
           </li>
-          <li>Add the following setting to the end of the file.
+          <li>Check if <code>libtvm_runtime.so</code> exists under <code>/usr/lib</code> directory of the rootfs (SD card) on the board.
+          </li>
+          <li>Folder structure in the rootfs (SD Card) would look like:
+          <div>
+    <pre><code>
+    |-- usr
+    |   `-- lib
+    |       `-- libtvm_runtime.so
+    `-- home
+      `-- weston
+        `-- transformer
+            |-- segformer_model
+            |   |-- deploy.json
+            |   |-- deploy.params
+            |    `-- deploy.so
+            `-- crack_segmentation
+    </code></pre>
+          </div>
+          </li>
+      <li>Run the following command to sync the data with memory.<br />
 
-<figure class="highlight"><pre><code class="language-plaintxt" data-lang="plaintxt">[output]
-name=HDMI-A-1
-mode=1280x720</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sync</span></code></pre></figure>
 
-          </li>   
-          <li>After adding the above, the result will be as shown below.
-
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">[core]
-idle-time=0
-require-input=false
-repaint-window=17
-[output]
-name=HDMI-A-1
-mode=1280x720</code></pre></figure>
-   
-          </li>     
-          <li>Save and close the file.
-          </li> 
-          <br />
-        </ol>
       </li>
-      <li>Run the following commands to recompress the root filesystem.
+      <li>Run the following command to unmount the partition 2.<br />
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /nfs/tmp
-<span class="nb">sudo tar </span>cvfj <span class="k">${</span><span class="nv">WORK</span><span class="k">}</span>/src_setup/core-image-weston-smarc-rzv2l.tar.bz2 <span class="k">*</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>umount /mnt/sd</code></pre></figure>
 
+      </li>
+      <li>Eject the microSD card by running the following command and remove the microSD card from Linux PC.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>eject /dev/sdb</code></pre></figure>
+
+    <div class="warning">
+          <span class="warning-title">Warning</span>
+          Change <code>/dev/sdb</code> to your microSD card device name.
+    </div>
+      </li>
+      <li>Follow the instruction <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started_v2n.html#step7" target="_blank" rel="noopener noreferrer">RZ/V2N EVK Getting Started Step 7-3: Boot RZ/V2N EVK</a> to boot.
       </li>
     </ol>
-  </li>
-</ol>
-<p><br /></p>
-
-<h4>
-This is the end of how to build AI SDK Source Code.
-</h4>
-<p>You have prepared following files, which is same as the one provided in <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2L AI SDK in Getting Started</a>, and you can run <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/applications.html" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br />
-For more information on how to use each files, see the link in the How to use column.
-<br /></p>
-<table class="mytable">
-  <tr>
-    <th>Path</th>
-    <th>File name</th>
-    <th>Description</th>
-    <th>How to use</th>
-  </tr>
-  <tr>
-    <td rowspan="5">${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</td>
-    <td>Image-smarc-rzv2l.bin</td>
-    <td>Linux kernel</td>
-    <td rowspan="4">
-      <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started_v2l.html#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup RZ/V2L EVK in RZ/V2L EVK Getting Started</a>
-    </td>
-  </tr>
-  <tr>
-    <td>Image-r9a07g054l2-smarc.dtb</td>
-    <td>Device tree file</td>
-  </tr>
-  <tr>
-    <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
-    <td>Root filesystem</td>
-  </tr>
-  <tr>
-    <td>bl2_bp_esd-smarc-rzv2l_pmic.bin<br />
-        bl2-smarc-rzv2l_pmic.bin<br />
-        fip-smarc-rzv2l_pmic.bin</td>
-    <td>*1 Bootloader generated when using eSD Bootloader</td>
-  </tr>
-  <tr>
-    <td>bl2_bp-smarc-rzv2l_pmic.srec<br />
-        fip-smarc-rzv2l_pmic.srec<br />
-        Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</td>
-    <td>*1 Bootloader generated when using QSPI Bootloader</td>
-    <td>
-      <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/dev_guide.html#D2" target="_blank" rel="noopener noreferrer">D2.How to boot from QSPI in Developer's Guide</a>
-    </td>
-  </tr>
-  <tr>
-    <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
-    <td>poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</td>
-    <td>Cross compiler installer</td>
-    <td>
-      After replacing the file in <b><code>${WORK}/ai_sdk_setup</code></b> directory with this file, follow the steps below to setup RZ/V AI SDK.<br />
-      <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html#step5" target="_blank" rel="noopener noreferrer">Step 5: Setup RZ/V AI SDK in Getting Started</a>
-    </td>
-  </tr>
-</table>
-<div class="note">
-  <span class="note-title">Note 1</span>
-  Either one of bootloaders(*1) will be generated based on your bootloader choice.
+    </div>
+  </div>
 </div>
-<div class="note">
-  <span class="note-title">Note 2</span>
-  For more Yocto Project information, please refer the link below:<br />
-  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
-</div>
-<div class="note">
-  <span class="note-title">Note 3</span>
-  When customizing Linux development environment, following link may help.<br />
-	<a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
-</div>
-<div class="note">
-  <span class="note-title">Note 4</span>
-    Regarding the eSD (Embedded SD) booting, please note the following:
-    <ul class="mb-1">
-      <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>
-      <li>If you use the eSD boot, please implement the eSD on your board according to the standard "SD Specification Part 1 eSD Addendum (version 2.10)".</li>
+<h4 class="mt-5 u_line">5-2. Run Stage</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    <h4 class="u_line">Prerequisites</h4>
+    This section expects the user to have completed Step 7-3 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
+    <br />
+    After completion of the guide, the user is expected of following things.
+    <ul>
+      <li>The board setup is done.</li>
+      <li>The board is booted with microSD card, which contains the application file.</li>
     </ul>
+    </div>
+    <div>
+    <h4 class="u_line">Instruction</h4>
+    <ol>
+      <li>On Board terminal, go to the <code>transformer</code> directory of the rootfs.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /home/weston/transformer/</code></pre></figure>
+
+        <div class="note">
+        <span class="note-title">Note</span>
+          Directory name "<code><b>transformer</b></code>" can be determined by user.
+        </div>
+      </li>
+      <li>Run the application.<br />
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">su 
+./crack_segmentation USB
+<span class="nb">exit</span> <span class="c"># After terminated the application.</span></code></pre></figure>
+
+      </li>
+      <li>Following window shows up on HDMI screen. </li>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <a href="img/transformer_screenshot.jpg" data-lightbox="group">
+          <img src="img/transformer_screenshot.jpg" alt="transformer_screenshot" width="100%" />
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+        <table>
+        <tr>
+          <th>Board</th>
+          <th>AI inference time</th>
+        </tr>
+        <tr>
+        <td>RZ/V2N EVK</td>
+        <td>Approximately 320 ms</td>
+        </tr>
+        </table>
+        </div>
+      </div>
+      <li>To terminate the application, switch the application window to the terminal by using <code>Super(windows key)+Tab</code> and press ENTER key on the terminal of the board.
+      </li></ol>
+    </div>
+  </div>
 </div>
-<p><br />
-	If you have any questions about AI SDK Source Code,<br />
-  please add new issues to AI SDK GitHub issues.<br />
-  <br />
-  <a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a></p>
-<div class="row">
-  <div class="col-12" align="right">
-    <a class="btn btn-secondary square-button" href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/" role="button">
-      Back to Home &gt;
-    </a>
+<h4 class="mt-5 u_line">This is the ending of replacing a Transformer-based AI model.</h4>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12" align="right">
+      <a class="btn btn-secondary square-button" href="#page-top" role="button">
+Back to Top &gt;
+      </a>
+    </div>
   </div>
 </div>
 
