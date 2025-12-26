@@ -67,7 +67,6 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
 #include "wayland.h"
-#include "utils.h"
 #include <thread>
 
 /*DRP-AI memory area offset for model objects*/
@@ -130,9 +129,8 @@
 MeraDrpRuntimeWrapper model_runtime;
 
 /* flags to detect image mode*/
-bool g_image_mode         = false;
-/* flag for detecting double click*/
-bool doubleClick          = false;
+bool g_image_mode       = false;
+bool application_exit   = false;
 
 /* variables to calculate inference time */
 static float pre_time   = 0;
@@ -598,7 +596,7 @@ void capture_frame(std::string cap_pipeline,std::string input_source)
         return;
     }
     /* Taking an everlasting loop to show the output */
-    while (!doubleClick)
+    while (!application_exit)
     {
         g_cap >> g_frame;
         /* Breaking the loop if no video frame is detected */
@@ -622,19 +620,6 @@ void capture_frame(std::string cap_pipeline,std::string input_source)
 }
 
 /*****************************************
- * Function Name : mouse_exit
- * Description   : function to exit on double click
- * Return value  : -
- ******************************************/
-void mouse_exit()
-{
-    std::cout << "\n[INFO] Exit Thread Started" << std::endl;
-    std::cout << "\n[INFO] Double Click To Exit" << std::endl;
-    devices dev;
-    dev.detect_mouse_click();
-}
-
-/*****************************************
  * Function Name : keyboard_exit
  * Description   : function to exit on double click
  * Return value  : -
@@ -646,11 +631,11 @@ void keyboard_exit()
     while(true)
     {
         key = getchar();
-        if (key == 10 || doubleClick == true)
+        if (key == 10)
         {
             /* When key is pressed. */
             printf("[INFO] Enter key Detected.\n");
-            doubleClick = true;
+            application_exit = true;
             break;
         }
     }
@@ -894,13 +879,11 @@ int main(int argc, char **argv)
         return -1;
     }
 
-    std::thread exit_thread(mouse_exit);
-    exit_thread.detach();
     std::thread keyboard_exit_thread(keyboard_exit);
     keyboard_exit_thread.detach();
 
     capture_frame(gstreamer_pipeline, input_source);
-    while(g_image_mode && doubleClick == false)
+    while(g_image_mode && application_exit == false)
     {
         wayland.commit(g_fn_frame.data, NULL);
     }

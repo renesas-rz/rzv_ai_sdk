@@ -30,7 +30,7 @@ Surface crack segmentation has a wide range of applications, including:
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -101,7 +101,7 @@ Surface crack segmentation has a wide range of applications, including:
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      100W is required.</td>
+      60W is required.</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -130,7 +130,12 @@ Surface crack segmentation has a wide range of applications, including:
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:
+        <ul class="mb-1">
+          <li>
+            RZ/V2L: Ubuntu 20.04
+          </li>
+          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -239,7 +244,7 @@ Each folder contains following items.
 |:---|:---|
 |crack_segmentation_model | Model object files for deployment. |
 |crack_segmentation | Application file. |
-|output.mp4 | Sample input video for video mode. |
+|video_sample.mp4 | Sample input video for video mode. |
 |sample.jpg | Sample input image for image mode. |
 
 ### Instruction
@@ -254,7 +259,7 @@ Each folder contains following items.
 
 3. Folder structure in the rootfs (SD Card) would look like:
 
-    For RZ/V2L and RZ/V2H
+    For RZ/V2L
     ```
     |-- usr
     |   `-- lib64
@@ -267,11 +272,11 @@ Each folder contains following items.
                 |   |-- deploy.params
                 |   `-- deploy.so
                 |-- crack_segmentation
-                |-- output.mp4
+                |-- video_sample.mp4
                 `-- sample.jpg
     ```
 
-    For RZ/V2N
+    For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -284,6 +289,7 @@ Each folder contains following items.
                 |   |-- deploy.params
                 |   `-- deploy.so
                 |-- crack_segmentation
+                |-- video_sample.mp4     # RZ/V2H only
                 `-- sample.jpg
     ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
@@ -299,22 +305,24 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
-    - For RZ/V2L and RZ/V2H
+    - For RZ/V2L
     ```sh
     cd /home/root/tvm/
     ```
-    - For RZ/V2N
+    - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm/
+    su # To change user to root.
     ```
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
+
 2. Run the application.
 
-    For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
     ./crack_segmentation USB
     ```
-    - For MIPI Camera Mode
+    - For MIPI Camera Mode [RZ/V2L only]
     ```sh
     ./crack_segmentation MIPI
     ```
@@ -324,26 +332,13 @@ After completion of the guide, the user is expected of following things.
     ./crack_segmentation IMAGE sample.jpg
     ```
     > Note: Tested with image file format `.png` and `.jpg`.
-    - For Video Input Mode
+    - For Video Input Mode [RZ/V2L and RZ/V2H only]
     ```sh 
-    ./crack_segmentation VIDEO output.mp4
+    ./crack_segmentation VIDEO video_sample.mp4
     ```
      > Note : Tested with video file format `.mp4` and `.avi`.
-     
-     For RZ/V2N
 
-    - For USB Camera Mode
-   ```sh
-    su 
-    ./crack_segmentation USB
-    exit # After terminated the application.
-    ```
-     - For Image Mode
-    ```sh
-    su
-    ./crack_segmentation IMAGE sample_img.jpg
-    exit # After terminated the application.
-    ```
+    > Note:  On RZ/V2H, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2H AI SDK v6.00 and later.  Please see [RZ/V2H AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html).
      
     > Note : On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running. See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details.
   
@@ -360,6 +355,10 @@ After completion of the guide, the user is expected of following things.
     - For RZ/V2H and RZ/V2N: A heatmap is used to illustrate the intensity of detected cracks, with hotter areas representing more severe cracks.
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
 
 
 ## Application: Configuration 
@@ -373,7 +372,7 @@ After completion of the guide, the user is expected of following things.
 |Board | AI inference time|
 |:---|:---|
 |RZ/V2L EVK| Approximately  90 ms  |
-|RZ/V2H EVK | Approximately  10 ms  |
+|RZ/V2H EVK | Approximately  8 ms  |
 |RZ/V2N EVK | Approximately  16 ms  |
 
 ### Processing
