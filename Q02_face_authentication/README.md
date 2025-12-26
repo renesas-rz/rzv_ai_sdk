@@ -30,7 +30,7 @@ It has following camera input modes.
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -101,7 +101,7 @@ Following is the demo for RZ/V2L EVK.
      <tr>
        <td>AC Adapter</td>
        <td>USB Power Delivery adapter for the board power supply.<br>
-       100W is required.</td>
+       60W is required.</td>
      </tr>
      <tr>
        <td>HDMI Cable</td>
@@ -130,7 +130,12 @@ Following is the demo for RZ/V2L EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:
+        <ul class="mb-1">
+          <li>
+            RZ/V2L: Ubuntu 20.04
+          </li>
+          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -240,7 +245,7 @@ Each folder contains following items.
 |face_recognition | Application file. |
 
 ### Instruction  
-1. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
@@ -250,7 +255,7 @@ Each folder contains following items.
 
 5. Folder structure in the rootfs (SD Card) would look like:
 
-   For RZ/V2L and RZ/V2H
+   For RZ/V2L
     ```
     |-- usr
     |   `-- lib64
@@ -265,7 +270,7 @@ Each folder contains following items.
                 |-- face_rec_bg.jpg
                 `-- face_recognition
     ```
-   For RZ/V2N
+   For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -294,32 +299,26 @@ After completion of the guide, the user is expected of following things.
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
 
-   - For RZ/V2L and RZ/V2H
+   - For RZ/V2L
     ```sh
     cd /home/root/tvm
     ```
-   - For RZ/V2N
+   - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm
+    su # To change user to root.
     ```
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
 
 2. Run the application.
 
-   For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
     ./face_recognition USB
     ```
-    - For MIPI Camera Mode (RZ/V2L only)
+    - For MIPI Camera Mode [RZ/V2L only]
     ```sh
-    ./face_recognitionr MIPI
-    ```
-   For RZ/V2N
-    - For USB Camera Mode
-    ```sh
-    su 
-    ./face_recognition USB
-    exit # After terminated the application.
+    ./face_recognition MIPI
     ```
     > Note: MIPI Camera Mode is only supported by RZ/V2L EVK.
 
@@ -365,6 +364,11 @@ After completion of the guide, the user is expected of following things.
 4. Termination
     - Application can be terminated by clicking the left mouse double click.
     - Alternatively, to force close the application, switch from the application window to the terminal by pressing `Super(windows key)+Tab` and press `CTRL + C`.
+
+5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
    
 
 ## Application: Configuration
@@ -379,7 +383,7 @@ The threshold kept for the match is `0.23`.
 |Board | AI model | AI inference time|
 |:---|:---|:---|
 |RZ/V2L EVK |FaceNet | Approximately 465ms  |
-|RZ/V2H EVK |FaceNet | Approximately 195ms  |
+|RZ/V2H EVK |FaceNet | Approximately 192ms  |
 |RZ/V2N EVK |FaceNet | Approximately 192ms  |
 
 ### Processing
