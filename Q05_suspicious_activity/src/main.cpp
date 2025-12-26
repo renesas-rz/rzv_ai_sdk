@@ -65,7 +65,6 @@ std::map<std::string, int> input_source_map =
 static sem_t terminate_req_sem;
 static pthread_t ai_inf_thread;
 static pthread_t capture_thread;
-static pthread_t exit_thread;
 static pthread_t kbhit_thread;
 
 /*Flags*/
@@ -110,9 +109,6 @@ cv::Mat display;
 
 cv::Mat input_image;
 cv::Mat yuyv_image;
-
-/* Sets a flag to indicate whether a double click has been detected. */
-bool doubleClick = false;
 
 static Wayland wayland;
 
@@ -340,29 +336,6 @@ static double time_difference_msec(struct timespec t0, struct timespec t1)
     return (t1.tv_sec - t0.tv_sec) * 1000.0 + (t1.tv_nsec - t0.tv_nsec) / 1000000.0;
 }
 
-
-/*****************************************
- * Function Name : keyboard_exit
- * Description   : function to exit on Enter Key press
- * Return value  : -
- ******************************************/
-void keyboard_exit()
-{
-    std::cout << "\n[INFO] Keyboard Exit Thread Started\n";
-    int32_t key = 0;
-    while(true)
-    {
-        key = getchar();
-        if (key == 10 || exitClick == true)
-        {
-            /* When key is pressed. */
-            printf("[INFO] Enter key Detected.\n");
-            exitClick = true;
-            break;
-        }
-    }
-    std::cout << "[INFO] Keyboard Exit Thread Finished" << std::endl;
-}
 
 /*****************************************
  * Function Name : query_device_status
@@ -694,7 +667,6 @@ void *R_Kbhit_Thread(void *threadid)
     /*Variable for checking return value*/
     int8_t ret = 0;
 
-    devices dev;
     printf("[INFO] Key Hit Thread Starting\n");
 
     printf("\n\n************************************************\n");
@@ -749,65 +721,6 @@ err:
 
 key_hit_end:
     printf("[INFO] Key Hit Thread Terminated\n");
-    pthread_exit(NULL);
-}
-
-/*****************************************
-* Function Name : R_exit_Thread
-* Description   : Executes the double click exit thread
-* Arguments     : threadid = thread identification
-* Return value  : -
-******************************************/
-void *R_exit_Thread(void *threadid)
-{
-    /*Semaphore Variable*/
-    int32_t kh_sem_check = 0;
-
-    /*Variable for checking return value*/
-    int8_t ret = 0;
-    devices dev;
-
-    printf("[INFO] Exit Thread Starting\n");
-    /*Set Standard Input to Non Blocking*/
-    errno = 0;
-    ret = fcntl(0, F_SETFL, O_NONBLOCK);
-    if (-1 == ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
-        goto err;
-    }
-    
-    while(1)
-    {
-        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
-        /*Checks if sem_getvalue is executed without issue*/
-        errno = 0;
-        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
-        if (0 != ret)
-        {
-            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
-            goto err;
-        }
-        /*Checks the semaphore value*/
-        if (1 != kh_sem_check)
-        {
-            goto exit_end;
-        }
-        dev.detect_mouse_click();
-        if (doubleClick)
-        {
-            goto err;
-        }
-    }
-
-/*Error Processing*/
-err:
-    /*Set Termination Request Semaphore to 0*/
-    sem_trywait(&terminate_req_sem);
-    goto exit_end;
-
-exit_end:
-    printf("[INFO] Exit Thread Terminated\n");
     pthread_exit(NULL);
 }
 
@@ -1249,17 +1162,6 @@ int32_t main(int32_t argc, char * argv[])
         ret_main = -1;
         goto end_threads;
     }
-
-    /* Create exit Thread */
-    create_thread_exit = pthread_create(&exit_thread, NULL, R_exit_Thread, NULL);
-    if (0 != create_thread_exit)
-    {
-        fprintf(stderr, "[ERROR] Failed to create exit Thread.\n");
-        ret_main = -1;
-        goto end_threads;
-    }
-    /* Detached exit thread */
-    pthread_detach(exit_thread);
 
     /* Create Key Hit Thread */
     create_thread_key = pthread_create(&kbhit_thread, NULL, R_Kbhit_Thread, NULL);
