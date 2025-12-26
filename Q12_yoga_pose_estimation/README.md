@@ -33,7 +33,7 @@ It has following modes of running.
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -82,7 +82,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      100W is required.</td>
+      60W is required.</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -111,7 +111,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment: Ubuntu 22.04</td>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -233,30 +233,7 @@ Each folder contains following items.
 
 3. Folder structure in the rootfs (SD Card) would look like:
 
-   For RZ/V2H
-    ```sh
-    |-- usr
-    |   `-- lib64
-    |       `-- libtvm_runtime.so
-    `-- home
-        `-- root
-            `-- tvm
-                |-- keypoint_detection_model
-                |   |-- deploy.json
-                |   |-- deploy.params
-                |   |-- deploy.so
-                |
-                |-- pose_classifier_model
-                |   |-- deploy.json
-                |   |-- deploy.params
-                |   |-- deploy.so
-                |
-                |-- sample_images
-                |-- yoga_sample.mp4
-                |-- labels.txt
-                `-- pose_estimator
-    ```
-   For RZ/V2N
+   For RZ/V2H and RZ/V2N
     ```sh
     |-- usr
     |   `-- lib
@@ -275,8 +252,10 @@ Each folder contains following items.
                 |   |-- deploy.so
                 |
                 |-- sample_images
+                |-- yoga_sample.mp4          #RZ/V2H only
                 |-- labels.txt
                 `-- pose_estimator
+
     ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
 
@@ -292,45 +271,29 @@ After completion of the guide, the user is expected of following things.
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
 
-   - For RZ/V2H
-    ```sh
-    cd /home/root/tvm
-    ```
-   - For RZ/V2N
+   - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm
+    su # To change user to root.
     ```
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
 
 2. Run the application.
+    1. For USB Camera Mode
+    ```sh
+    ./pose_estimator USB
+    ```
+    2. For IMAGE Mode
+    ```sh
+    ./pose_estimator IMAGE "path to the input image"
+    ```
+    3. For VIDEO Mode [RZ/V2H only]
+    ```sh
+    ./pose_estimator VIDEO "path to the input video"
+    ```
+    > Note:  On RZ/V2H, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2H AI SDK v6.00 and later.  Please see [RZ/V2H AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html).
 
-    1. For RZ/V2H
-        1. For USB Camera Mode
-        ```sh
-        ./pose_estimator USB
-        ```
-        2. For IMAGE Mode
-        ```sh
-        ./pose_estimator IMAGE "path to the input image"
-        ```
-        3. For VIDEO Mode **(RZ/V2H only)**
-        ```sh
-        ./pose_estimator VIDEO "path to the input video"
-        ```
-    2. For RZ/V2N
-        1. For USB Camera Mode
-        ```sh
-        su 
-        ./pose_estimator USB
-        exit # After terminated the application.
-        ```
-        2. For IMAGE Mode
-        ```sh
-        su
-        ./pose_estimator IMAGE "path to the input image"
-        exit # After terminated the application.
-        ```
-    > Note : On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running.
-       See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details. 
+    > Note : On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running. See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details. 
 
 3. Following window shows up on HDMI screen.  
 
@@ -350,6 +313,10 @@ After completion of the guide, the user is expected of following things.
         - Postprocess: Total time taken for post-processing the model outputs for both key-point detection and pose classifier models.
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
 
 
 ## Application: Configuration
@@ -378,7 +345,7 @@ After completion of the guide, the user is expected of following things.
 ### AI inference time
 |Board |  AI inference time <br>for keypoint detection| AI inference time <br>for pose classification |
 |:---:|:---:| :---:|
-|RZ/V2H EVK | Approximately 18 ms  | Approximately 1 ms  |
+|RZ/V2H EVK | Approximately 12 ms  | Approximately 1 ms  |
 |RZ/V2N EVK | Approximately 23 ms  | Approximately 1 ms  |
 
 ### Processing
