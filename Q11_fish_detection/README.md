@@ -35,7 +35,7 @@ It has following camera input modes.
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -106,7 +106,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      100W is required.</td>
+      60W is required.</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -135,7 +135,12 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:
+        <ul class="mb-1">
+          <li>
+            RZ/V2L: Ubuntu 20.04
+          </li>
+          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -250,7 +255,7 @@ Each folder contains following items.
 1. [FOR RZ/V2H] Run following commands to download the necessary file.  
     ```sh
     cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q11_fish_detection/exe_v2h/fish_detection_model
-    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/Q11_fish_detection_deploy_tvm_v2h-v230.so
+    wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/Q11_fish_detection_deploy_tvm_v2h-v251.so
     ```
 
     [FOR RZ/V2N] Run following commands to download the necessary file. 
@@ -275,7 +280,7 @@ Each folder contains following items.
 
 5. Folder structure in the rootfs (SD Card) would look like:
 
-   For RZ/V2L and RZ/V2H
+   For RZ/V2L
 
     ```
     |-- usr
@@ -293,7 +298,7 @@ Each folder contains following items.
                 `-- fish_detector
     ```
 
-    For RZ/V2N
+    For RZ/V2H and RZ/V2N
 
     ```
     |-- usr
@@ -325,15 +330,18 @@ After completion of the guide, the user is expected of following things.
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
     
-    For RZ/V2L and RZ/V2H
+   - For RZ/V2L
     ```sh
     cd /home/root/tvm
     ```
 
-    For RZ/V2N
+   - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm
+    su # To change user to root.
     ```
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
+
 
 2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at [below section](#explanation-of-the-configini-file).
     ```sh
@@ -342,7 +350,6 @@ After completion of the guide, the user is expected of following things.
 
 3. Run the application.
 
-    For RZ/V2L and RZ/V2H
     - For USB Camera Mode
     ```sh
     ./fish_detector USB
@@ -350,16 +357,6 @@ After completion of the guide, the user is expected of following things.
     - For MIPI Camera Mode (RZ/V2L only)
     ```sh
     ./fish_detector MIPI
-    ```
-
-
-    For RZ/V2N
-
-    - For USB Camera Mode
-    ```sh
-    su
-    ./fish_detector USB
-    exit # After terminated the application.
     ```
 
 4. Following window shows up on HDMI screen.  
@@ -380,6 +377,10 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
 5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+6. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
 
  
 
