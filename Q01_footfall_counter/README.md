@@ -33,7 +33,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -102,7 +102,7 @@ Following is the demo for RZ/V2H EVK.
      <tr>
        <td>AC Adapter</td>
        <td>USB Power Delivery adapter for the board power supply.<br>
-       100W is required.</td>
+       60W is required.</td>
      </tr>
      <tr>
        <td>HDMI Cable</td>
@@ -131,7 +131,12 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:
+        <ul class="mb-1">
+          <li>
+            RZ/V2L: Ubuntu 20.04
+          </li>
+          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -250,7 +255,7 @@ Each folder contains following items.
 1. **[For RZ/V2H]** Run following commands to download the necessary file.  
     ```sh
       cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q01_footfall_counter/exe_v2h/d-yolov3
-      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/Q01_footfall_counter_deploy_tvm_v2h-v230.so
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/Q01_footfall_counter_deploy_tvm_v2h-v251.so
     ```
     **[For RZ/V2N]** Run following commands to download the necessary file.  
     ```sh
@@ -261,7 +266,7 @@ Each folder contains following items.
     ```sh
     mv Q01_footfall_counter_deploy_*.so deploy.so
     ```
-3. Copy the following files to the `/home/root/tvm` directory of the rootfs (SD Card) for the board.
+3. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
@@ -271,7 +276,7 @@ Each folder contains following items.
 
 5. Folder structure in the rootfs (SD Card) would look like:
 
-   For RZ/V2L and RZ/V2H
+   For RZ/V2L
     ```
     |-- usr
     |   `-- lib64
@@ -279,15 +284,10 @@ Each folder contains following items.
     `-- home
         `-- root
             `-- tvm
-                |-- tinyyolov3_onnx           #RZ/V2L only        
-                |   |-- deploy.json           #RZ/V2L only
-                |   |-- deploy.params         #RZ/V2L only
-                |   `-- deploy.so             #RZ/V2L only
-                |
-                |-- d-yolov3                  #RZ/V2H only
-                |   |-- deploy.json           #RZ/V2H only
-                |   |-- deploy.params         #RZ/V2H only
-                |   `-- deploy.so             #RZ/V2H only
+                |-- tinyyolov3_onnx            
+                |   |-- deploy.json    
+                |   |-- deploy.params  
+                |   `-- deploy.so      
                 |-- config.ini
                 |-- coco-labels-2014_2017.txt
                 |-- data.txt
@@ -295,7 +295,7 @@ Each folder contains following items.
                 `-- object_tracker
     ```
 
-   For For RZ/V2N
+   For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -328,33 +328,28 @@ After completion of the guide, the user is expected of following things.
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
 
-   - For RZ/V2L and RZ/V2H
+   - For RZ/V2L
     ```sh
     cd /home/root/tvm/
     ```
-   - For RZ/V2N
+   - For RZ/V2H and RZ/V2N
    ```sh
     cd /home/weston/tvm
+    su # To change user to root.
     ```
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
 2. Change the values in `config.ini` as per the requirements. Detailed explanation of the `config.ini` file is given at [below section](#explanation-of-the-configini-file).
     ```sh
     vi config.ini
     ```
-3. Run the application.  
-   For RZ/V2L and RZ/V2H
+3. Run the application.
     - For USB Camera Mode
     ```sh
     ./object_tracker USB [--setup=true]
     ```
-    - For MIPI Camera Mode (RZ/V2L only)
+    - For MIPI Camera Mode [RZ/V2L only]
     ```sh
     ./object_tracker MIPI [--setup=true]
-    ```
-   For RZ/V2N
-   ```sh
-    su 
-    ./object_tracker USB [--setup=true]
-    exit # After terminated the application.
     ```
     >**Note:** Enabling --setup=true option allows user's to draw line and polygon. 
 4. If setup option is enabled, a window to configure line and polygon will appear.
@@ -402,7 +397,12 @@ After completion of the guide, the user is expected of following things.
       - Each person tracked is given a unique `id`.
           - The `time` parameter of the tracked person indicates the time spent on the desired location. This incremented at regular interval.
 
-5. To terminate the application, double click the application window.
+6. To terminate the application, double click the application window.
+
+7. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
 
 
 ## Application: Configuration 
