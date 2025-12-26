@@ -44,7 +44,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -114,7 +114,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      100W is required.</td>
+      60W is required.</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -143,7 +143,12 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:
+        <ul class="mb-1">
+          <li>
+            RZ/V2L: Ubuntu 20.04
+          </li>
+          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -217,24 +222,24 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```sh
     cd ${PROJECT_PATH}/Q06_expiry_date_detection/src
     ```
-5. Download the `boost` tar file
+5. [RZ/V2L Only] Download the `boost` tar file
    ```sh
    wget https://archives.boost.io/release/1.81.0/source/boost_1_81_0.tar.bz2
    ```
    >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the src folder present on the mounted `data` directory.
 
-6. Extract tar file to the current location 
+6. [RZ/V2L Only] Extract tar file to the current location 
    ```sh
    tar -xvf boost_1_81_0.tar.bz2
    ```
 
-7. Copy the boost files to the `include` folder 
+7. [RZ/V2L Only] Copy the boost files to the `include` folder 
 
     ```sh
     mkdir -p include
     cp -r boost_1_81_0/boost include/
     ```
-8. Remove boost files [Optional]
+8. [RZ/V2L Only] Remove boost files [Optional]
 
     ```sh
     rm boost_1_81_0.tar.bz2
@@ -285,7 +290,7 @@ Each folder contains following items.
 1. **[FOR RZ/V2H]** Run following commands to download the necessary file.  
     ```sh
      cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q06_expiry_date_detection/exe_v2h/expiry_yolov3_onnx/
-     wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/Q06_expiry_date_detection_deploy_tvm_v2h-v230.so
+     wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/Q06_expiry_date_detection_deploy_tvm_v2h-v251.so
     ```
     **[For RZ/V2N]** Run following commands to download the necessary file.  
     ```sh
@@ -293,7 +298,7 @@ Each folder contains following items.
       wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.10/Q06_expiry_date_detection_deploy_tvm_v2n-v251.so
     ```
     
-2. [FOR RZ/V2H and RZ/V2N] Rename the `Q06_expiry_date_detection_deploy_*.so` to `deploy.so`.
+2. **[FOR RZ/V2H and RZ/V2N]** Rename the `Q06_expiry_date_detection_deploy_*.so` to `deploy.so`.
     ```sh
     mv Q06_expiry_date_detection_deploy_*.so deploy.so
     ```
@@ -307,7 +312,7 @@ Each folder contains following items.
 
 5. Folder structure in the rootfs (SD Card) would look like:
   
-   For RZ/V2L and RZ/V2H
+   For RZ/V2L
   
     ```
     |-- usr
@@ -316,20 +321,16 @@ Each folder contains following items.
     `-- home
         `-- root
             `-- tvm
-                |-- date_detection_tinyyolov3   #RZ/V2L only
-                |   |-- deploy.json             #RZ/V2L only
-                |   |-- deploy.params           #RZ/V2L only
-                |   `-- deploy.so               #RZ/V2L only
-                |-- expiry_yolov3_onnx          #RZ/V2H only
-                |   |-- deploy.json             #RZ/V2H only
-                |   |-- deploy.params           #RZ/V2H only
-                |   `-- deploy.so               #RZ/V2H only
+                |-- date_detection_tinyyolov3 
+                |   |-- deploy.json           
+                |   |-- deploy.params         
+                |   `-- deploy.so             
                 |-- date_class_labels.txt
                 |-- date_extraction
                 `-- sample_img.jpg
     ```
     
-    For RZ/V2N
+    For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -368,18 +369,19 @@ After completion of the guide, the user is expected of following things.
     ```
 
 2. On Board terminal, go to the `tvm` directory of the rootfs.
-    - For RZ/V2L and RZ/V2H
+    - For RZ/V2L
     ```sh
     cd /home/root/tvm/
     ```
-   - For RZ/V2N
-   ```sh
+   - For RZ/V2H and RZ/V2N
+    ```sh
     cd /home/weston/tvm
+    su # To change user to root.
     ```
-    
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
+
 3. Run the application.
 
-   For RZ/V2L and RZ/V2H
     - For Image Mode
     ```sh
     ./date_extraction IMAGE sample_img.jpg [--rem=true]
@@ -391,20 +393,6 @@ After completion of the guide, the user is expected of following things.
     - For MIPI Camera Mode (RZ/V2L only)
     ```sh
     ./date_extraction MIPI [--rem=true]
-    ```
-    For RZ/V2N
-
-    - For USB Camera Mode
-   ```sh
-    su 
-    ./date_extraction USB [--rem=true]
-    exit # After terminated the application.
-    ```
-     - For Image Mode
-    ```sh
-    su
-    ./date_extraction IMAGE sample_img.jpg [--rem=true]
-    exit # After terminated the application.
     ```
     > Note 1:--rem is an optional argument to display the remaining days to expire  
 
@@ -428,6 +416,10 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
 5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+6. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
    
 
 ## Application: Configuration 
