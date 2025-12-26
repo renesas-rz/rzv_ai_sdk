@@ -74,8 +74,10 @@ static sem_t terminate_req_sem;
 static pthread_t ai_inf_thread;
 static pthread_t kbhit_thread;
 static pthread_t capture_thread;
+#ifdef V2H	/* V2H and V2N */
 static pthread_t img_thread;
 static pthread_t hdmi_thread;
+#endif /* V2H and V2N */
 static std::mutex mtx;
 
 /*Flags*/
@@ -137,7 +139,7 @@ std::string query_device_status(std::string device_type)
     FILE* pipe = popen(command, "r");
     if (!pipe) 
     {
-        fprintf(stderr, "[ERROR] Unable to open the pipe.\n", errno);
+        fprintf(stderr, "[ERROR] Unable to open the pipe.\n");
         return media_port;
     }
     /* Read the command output line by line */
@@ -284,7 +286,7 @@ int8_t get_result()
         }
         else
         {
-            fprintf(stderr, "[ERROR] Output data type : not floating point.\n", errno);
+            fprintf(stderr, "[ERROR] Output data type : not floating point.\n");
             ret = -1;
             break;
         }
@@ -414,7 +416,6 @@ void R_Post_Proc(float* floatarr)
     float objectness = 0;
     uint8_t num_grid = 0;
     uint8_t anchor_offset = 0;
-    float classes[NUM_CLASS];
     float max_pred = 0;
     int32_t pred_class = -1;
     float probability = 0;
@@ -435,8 +436,51 @@ void R_Post_Proc(float* floatarr)
             {
                 for(x = 0; x < num_grid; x++)
                 {
+                    // Get the offset
                     offs = yolo_offset(n, b, y, x);
+
+                    // Calculate the objectness score
                     tc = floatarr[yolo_index(n, offs, 4)];
+                    objectness = sigmoid(tc);
+                    
+                    // If objectness is below the threshold, skip further calculations
+                    if (objectness <= TH_PROB) 
+                    {
+                        // Acceleration improvement 1:
+                        // The final probability is calculated as probability = max_pred * objectness;
+                        // Both max_pred and objectness have ranges of (0,1) because they are computed using the sigmoid function.
+                        // Therefore, the probability also has a range of (0,1) and will be less than objectness.
+                        // Thus, if the objectness is less than TH_PROB, then the probability will definitely be less than TH_PROB.
+                        continue;
+                    }
+
+                    // Acceleration improvement 2:
+                    // Find the maximum value and its index in floatarr[] without applying the sigmoid function.
+                    // After identifying the maximum value, apply the sigmoid function only to that value.
+                    int max_class_index = -1;
+                    float max_class_value = -FLT_MAX;
+                    for (i = 0; i < NUM_CLASS; i++) 
+                    {
+                        float class_value = floatarr[yolo_index(n, offs, 5 + i)];
+                        if (class_value > max_class_value) 
+                        {
+                            max_class_index = i;
+                            max_class_value = class_value;
+                        }
+                    }
+                    max_pred = sigmoid(max_class_value);
+                    pred_class = max_class_index;
+
+                    // Calculate the probability and check if it exceeds the threshold.
+                    probability = max_pred * objectness;
+                    if (probability <= TH_PROB) 
+                    {   
+                        // Acceleration improvement 3:
+                        // Compute the coordinates of the bounding box only if the probability exceeds the threshold.
+                        // If the probability is less than TH_PROB, skip the calculation.
+                        continue;                  
+                    }
+
                     tx = floatarr[offs];
                     ty = floatarr[yolo_index(n, offs, 1)];
                     tw = floatarr[yolo_index(n, offs, 2)];
@@ -457,30 +501,10 @@ void R_Post_Proc(float* floatarr)
                     center_y = round(center_y * DRPAI_IN_HEIGHT);
                     box_w = round(box_w * DRPAI_IN_WIDTH);
                     box_h = round(box_h * DRPAI_IN_HEIGHT);
-                    objectness = sigmoid(tc);
+                    
                     Box bb = {center_x, center_y, box_w, box_h};
-                    /* Get the class prediction */
-                    for (i = 0; i < NUM_CLASS; i++)
-                    {
-                        classes[i] = sigmoid(floatarr[yolo_index(n, offs, 5+i)]);
-                    }
-                    max_pred = 0;
-                    pred_class = -1;
-                    for (i = 0; i < NUM_CLASS; i++)
-                    {
-                        if (classes[i] > max_pred)
-                        {
-                            pred_class = i;
-                            max_pred = classes[i];
-                        }
-                    }
-                    /* Store the result into the list if the probability is more than the threshold */
-                    probability = max_pred * objectness;
-                    if (probability > TH_PROB)
-                    {
-                        d = {bb, pred_class, probability};
-                        det.push_back(d);
-                    }
+                    d = {bb, pred_class, probability};
+                    det.push_back(d);
                 }
             }
         }
@@ -506,7 +530,7 @@ void draw_bounding_box(void)
     mtx.lock();
     std::stringstream stream;
     std::string result_str;
-    int32_t i = 0;
+    size_t i = 0;
     uint32_t color = GREEN_DATA;
     uint32_t label_color = BLACK_DATA;
 
@@ -667,11 +691,6 @@ void *R_Inf_Thread(void *threadid)
 
     /*Variable for Pre-processing parameter configuration*/
     s_preproc_param_t in_param;
-
-    /*Inference Variables*/
-    fd_set rfds;
-    struct timespec tv;
-    int8_t inf_status = 0;
 
     /*Variable for checking return value*/
     int8_t ret = 0;
@@ -969,9 +988,6 @@ void *R_Img_Thread(void *threadid)
     /*Variable for checking return value*/
     int8_t ret = 0;
     
-    timespec start_time;
-    timespec end_time;
-
     printf("Image Thread Starting\n");
     while(1)
     {
@@ -1297,7 +1313,6 @@ uint64_t get_drpai_start_addr(int drpai_fd)
 ******************************************/
 uint64_t init_drpai(int drpai_fd)
 {
-    int ret = 0;
     uint64_t drpai_addr = 0;
 
     /*Get DRP-AI memory start address*/
@@ -1320,8 +1335,10 @@ int32_t main(int32_t argc, char * argv[])
     int32_t create_thread_ai = -1;
     int32_t create_thread_key = -1;
     int32_t create_thread_capture = -1;
+#ifdef V2H	/* V2H and V2N */
     int32_t create_thread_img = -1;
     int32_t create_thread_hdmi = -1;
+#endif /* V2H and V2N */
     int32_t sem_create = -1;
 
     InOutDataType input_data_type;
@@ -1341,9 +1358,15 @@ int32_t main(int32_t argc, char * argv[])
 
     #ifdef V2H
     /*Disable OpenCV Accelerator due to the use of multithreading */
+    #ifdef V2N
     unsigned long OCA_list[16];
     for (int i=0; i < 16; i++) OCA_list[i] = 0;
+    #else /* for V2H */
+    unsigned long OCA_list[OCA_LIST_NUM];
+    for (int i=0; i < OCA_LIST_NUM; i++) OCA_list[i] = 0;
+    #endif
     OCA_Activate( &OCA_list[0] );
+    printf("Disable OpenCVA\n");
     
     std::string media_port = query_device_status("usb");
     #else /* for V2L */
