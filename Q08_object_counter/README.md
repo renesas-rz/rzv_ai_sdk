@@ -51,7 +51,7 @@ Users can select detection target from following list
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -121,7 +121,7 @@ Users can select detection target from following list
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      100W is required.</td>
+      60W is required.</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -150,7 +150,12 @@ Users can select detection target from following list
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:
+        <ul class="mb-1">
+          <li>
+            RZ/V2L: Ubuntu 20.04
+          </li>
+          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -280,7 +285,7 @@ Each folder contains following items.
 2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
-    - For RZ/V2L and RZ/V2H
+    - For RZ/V2L
     ```
     |-- usr
     |   `-- lib64
@@ -289,15 +294,10 @@ Each folder contains following items.
         `-- root
             `-- tvm
                 |-- coco
-                |   |-- tinyyolov3_onnx       #RZ/V2L only
-                |   |   |-- deploy.json       #RZ/V2L only
-                |   |   |-- deploy.params     #RZ/V2L only
-                |   |   `-- deploy.so         #RZ/V2L only
-                |   |
-                |   |-- coco_onnx             #RZ/V2H and RZ/V2N
-                |   |   |-- deploy.json       #RZ/V2H and RZ/V2N
-                |   |   |-- deploy.params     #RZ/V2H and RZ/V2N
-                |   |   `-- deploy.so         #RZ/V2H and RZ/V2N
+                |   |-- tinyyolov3_onnx  
+                |   |   |-- deploy.json  
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so    
                 |   |-- coco_class.txt 
                 |   `-- config.ini
                 |-- animal
@@ -317,7 +317,7 @@ Each folder contains following items.
                 |-- app_conf.ini
                 `-- object_counter
     ```
-    - For RZ/V2N
+    - For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -362,14 +362,16 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
-    - For RZ/V2L and RZ/V2H
+    - For RZ/V2L
     ```sh
     cd /home/root/tvm/
     ```
-    - For RZ/V2N
+    - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm/
+    su # To change user to root.
     ```
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
 
 2. Change the values in `app_conf.ini` as per the requirements. Detailed explanation of the `app_conf.ini` file is given at [below section](#explanation-of-the-app_confini-file).
     
@@ -379,16 +381,9 @@ After completion of the guide, the user is expected of following things.
 
 3. Run the application.
     
-    For RZ/V2L and RZ/V2H
     ```sh
     ./object_counter <mode> <camera>
     ```    
-    For RZ/V2N
-    ```sh
-    su
-    ./object_counter <mode> <camera>
-    exit  # After terminated the application.
-    ```   
     - mode options
         |Value  |Description                          |
         |-------|-------------------------------------|
@@ -427,6 +422,10 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).   -->
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
 
 ## Application: Configuration 
 ### AI Model
@@ -472,7 +471,7 @@ After completion of the guide, the user is expected of following things.
 |Board | AI model | AI inference time (COCO) | AI inference time (Animal) |AI inference time (Vehicle) |
 |:---|:---|:---|:---|:---|
 |RZ/V2L EVK|Tiny YOLOv3| Approximately 57 ms  | Approximately 57 ms  | Approximately 57 ms  |
-|RZ/V2H EVK |EdgeYOLO-M | Approximately 44 ms  | Approximately 22 ms  | Approximately 21 ms  |
+|RZ/V2H EVK |EdgeYOLO-M | Approximately 44 ms  | Approximately 22 ms  | Approximately 22 ms  |
 |RZ/V2N EVK |EdgeYOLO-M | Approximately 110 ms  | Approximately 82 ms  | Approximately 82 ms  |
 
 ### Processing
