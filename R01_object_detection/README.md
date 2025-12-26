@@ -18,7 +18,7 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
     </tr>
     <tr>
       <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-      <td>RZ/V2H AI SDK v5.20</td>
+      <td>RZ/V2H AI SDK v6.00</td>
     </tr>
     <tr>
       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -136,7 +136,9 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:<br>
+      - RZ/V2L: Ubuntu 20.04<br>
+      - RZ/V2H and RZ/V2N: Ubuntu 22.04</td>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -270,15 +272,15 @@ Replace each variable according to your board.
     |Board | `EXE_DIR` |`URL` |`SO_FILE` |File Location |
     |:---|:---|:---|:---|:---|
     |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2l-v230.so`</span>  |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
-    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v230.so`</span> |[Release v5.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v5.00/)  |
+    |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v251.so`</span> |[Release v6.20](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v6.20/)  |
     |RZ/V2N EVK|[exe_v2n](./exe_v2n)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2n-v251.so`</span> |[Release v6.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v6.00/)  |
 <!--    > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  -->
 
-    - E.g., for RZ/V2L EVK, use following commands.
-        ```sh
-        cd ${APPS_PATH}/R01_object_detection/exe_v2l/yolov3_onnx
-        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/R01_object_detection_deploy_tvm_v2l-v230.so
-        ```
+  - E.g., for RZ/V2L EVK, use following commands.
+      ```sh
+      cd ${APPS_PATH}/R01_object_detection/exe_v2l/yolov3_onnx
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/R01_object_detection_deploy_tvm_v2l-v230.so
+      ```
 3. Rename the `R01_object_detection_deploy_*.so` to `deploy.so`.
     ```sh
     mv <SO_FILE> deploy.so
@@ -292,7 +294,7 @@ Replace each variable according to your board.
 5. Folder structure in the rootfs (SD Card) is shown below.<br>
    Check if `libtvm_runtime.so` exists in the rootfs directory (SD card) on the board.
    
-   - For RZ/V2L and RZ/V2H
+   - For RZ/V2L
     ```
     |-- usr/
     |   `-- lib64/
@@ -309,7 +311,7 @@ Replace each variable according to your board.
                 |-- coco-labels-2014_2017.txt
                 `-- object_detection
     ```
-   - For RZ/V2N
+   - For RZ/V2H and RZ/V2N
     ```
     |-- usr/
     |   `-- lib/
@@ -340,27 +342,27 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
-   - For RZ/V2L and RZ/V2H
+   - For RZ/V2L
     ```sh
     cd /home/root/tvm
     ```
-   - For RZ/V2N
+   - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm
     ```
 
 2. Run the application.
-   - For RZ/V2L and RZ/V2H
+   - For RZ/V2L
     ```sh
     ./object_detection
     ```
-   - For RZ/V2N
+   - For RZ/V2H and RZ/V2N
     ```sh
     su
     ./object_detection
     exit    # After pressing ENTER key to terminate the application.
     ```
->**Note:** For RZ/V2N AI SDK v6.00 and later, you need to switch to the root user with the 'su' command when running an application.<br>
+>**Note:** For RZ/V2N AI SDK v6.00 and later or RZ/V2H AI SDK v6.00 and later, you need to switch to the root user with the 'su' command when running an application.<br>
 This is because when you run an application from a weston-terminal, you are switched to the "weston" user, which does not have permission to run the /dev/xxx device used in the application.<br>
 
 3. Following window shows up on HDMI screen.  
