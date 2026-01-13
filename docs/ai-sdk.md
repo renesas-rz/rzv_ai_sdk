@@ -566,7 +566,7 @@ layout: default
                                 </a>
                             ]
                             [
-                                <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
+                                <a href="https://www.renesas.com/document/mas/rzg2l-rzv2l-rzv2n-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v404">
                                     Manual
                                 </a>
                             ]
