@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -472,7 +471,7 @@ To power-off the RZ/V2H EVK, follow the procedures below.
   <li>Run the <code>shutdown</code> command on board console.
     <br>
 {% highlight shell %}
-shutdown -h now
+sudo -i shutdown -h now
 {% endhighlight %}
   </li>
   <li>

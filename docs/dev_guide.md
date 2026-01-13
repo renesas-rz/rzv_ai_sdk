@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -69,7 +68,7 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2H -->AI SDK Source Code v5.20<br>
+                  <!-- V2H -->AI SDK Source Code v6.00<br>
                   <!-- V2N -->AI SDK Source Code v6.00
                 </td>
               </tr>
@@ -87,7 +86,7 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2H -->AI SDK Source Code v5.20<br>
+                  <!-- V2H -->AI SDK Source Code v6.00<br>
                   <!-- V2N -->AI SDK Source Code v6.00
                 </td>
               </tr>
@@ -132,7 +131,7 @@ RZ/V AI SDK Developer's Guide
           <div class="note">
             <span class="note-title">Note</span>
             This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> below.<br>
-            <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-10" target="_blank" rel="noopener noreferrer">Step 3-10</a></li>
+            <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-9" target="_blank" rel="noopener noreferrer">Step 3-9</a></li>
             <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-9" target="_blank" rel="noopener noreferrer">Step 3-9</a></li>
           </div>
           <ol>
@@ -140,14 +139,13 @@ RZ/V AI SDK Developer's Guide
             </li>
             <li>Find the following text in the file and edit the highlighted value to define the disk space of the image in Kbytes.
 <pre><code>...
-# Support WIC images with default wks from WKS_DEFAULT_FILE
-# Reupdate WKS_DEFAULT_FILE if want to support another wks file.
-WKS_SUPPORT ?= "1"
-WKS_DEFAULT_FILE_rzv2h-dev = "rz-image-bootpart-mmc.wks"
-WKS_DEFAULT_FILE_rzv2h-evk-alpha = "rz-image-bootpart-esd_rzv2h.wks"
-WKS_DEFAULT_FILE_rzv2h-evk-ver1 = "rz-image-bootpart-esd_rzv2h.wks"
-# Defines additional free disk space created in the image in Kbytes.
-IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
+BB_NO_NETWORK = "1"
+BB_GENERATE_MIRROR_TARBALLS = "1"
+BB_GENERATE_SHALLOW_TARBALLS = "1"
+BB_GIT_SHALLOW = "1"
+BB_GIT_SHALLOW_DEPTH = "1"
+
+IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">6291456</mark>"
 ...
 </code></pre>
               The table below shows examples of setting values written in <b><code>local.conf</code></b> file.<br>
@@ -157,12 +155,13 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
               </div>
               <table class="mytable">
                 <tr>
-                  <th>Device</th>
+<!--                  <th>Device</th>
+-->
                   <th>SD card image size<br>(Gbytes)</th>
                   <th>Setting values in the "local.conf" file<br>(Kbytes)</th>
                 </tr>
                 <!-- for RZ/V2H -->
-                <tr>
+<!--                <tr>
                   <td rowspan="3">RZ/V2H</td>
                   <td>4</td>
                   <td>1048576</td>
@@ -175,9 +174,11 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
                   <td>16</td>
                   <td>8388608 (default)</td>
                 </tr>
+-->
                 <!-- for RZ/V2N -->
                 <tr>
-                  <td rowspan="3">RZ/V2N</td>
+<!--                   <td rowspan="3">RZ/V2N</td>
+-->
                   <td>8</td>
                   <td>1048576</td>
                 </tr>
@@ -194,7 +195,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">8388608</mark>"
           </ol>
         After this procedure, please proceed to <b><span style="color: #2a289d;">the step in How to build RZ/V AI SDK Source Code</span></b> below to build the Linux kernel files.
         <br>
-        <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-11">Step 3-11</a></li>
+        <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-10">Step 3-10</a></li>
         <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-10">Step 3-10</a></li>
         <br>
         </div>
@@ -657,11 +658,11 @@ smarc-rzv2l login:
                   </tr>
                   <tr>
                     <td rowspan="2">RZ/V2H</td>
-                    <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk-ver1</td>
+                    <td>${YOCTO_WORK}/build/tmp/deploy/images/rzv2h-evk</td>
                     <td rowspan="2">
                       Flash_Writer_SCIF_RZV2H_DEV_INTERNAL_MEMORY.mot<br>
-                      bl2_bp_spi-rzv2h-evk-ver1.srec<br>
-                      fip-rzv2h-evk-ver1.srec
+                      bl2_bp_spi-rzv2h-evk.srec<br>
+                      fip-rzv2h-evk.srec
                     </td>
                     <td>
                       Directory path and files when using files generated with How to build RZ/V AI SDK Source Code
@@ -1542,8 +1543,10 @@ rzv2n-evk login:
               <span class="note-title">Note</span>
               This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b>.<br>
               <b><span style="color: #2a289d;">If you want to execute the D6.Example after the D5.Example, do not apply the patch file for BUS settings in Step 3-5-1</span></b>.
-              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2H AI SDK Source Code</a></li>
-              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2N AI SDK Source Code</a></li>
+              <ul class="mb-1">
+                <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2H AI SDK Source Code</a></li>
+                <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2N AI SDK Source Code</a></li>
+              </ul>
             </div>
             <br>
             <ol>
@@ -1782,8 +1785,10 @@ MACHINE=rzv2n-evk bitbake core-image-weston
               <span class="note-title">Note</span>
               This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b>.<br>
               <b><span style="color: #2a289d;">The Example in this chapter assume that the bus setting patch in Step 3-5-1 is not applied</span></b>.
-              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2H AI SDK Source Code</a></li>
-              <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2N AI SDK Source Code</a></li>
+              <ul class="mb-1">
+                <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2H AI SDK Source Code</a></li>
+                <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" target="_blank" rel="noopener noreferrer">How to build RZ/V2N AI SDK Source Code</a></li>
+              </ul>
             </div>
             <ol>
               <li>Change the DDR settings.<br>

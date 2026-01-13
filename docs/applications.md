@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <div class="application-window">
@@ -49,6 +48,7 @@ layout: default
         How can I implement Transformer-based model?<br>
     </span>
 </a>
+<br>
 <div id="agriculture" class="category_section container pb-4" data-category="Agriculture">
 <h3 align="left"><i>Agriculture</i></h3>
 <div class="container">
@@ -73,7 +73,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 07_Animal_detection<br>
                         <b>Model:</b> YOLOv3<br>
@@ -100,7 +100,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">39fps</p>
+                                <p class="Perf-Framerate">38fps</p>
                                 <a class="videolinkbutton" 
                                     href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#agriculture1_v2h" 
                                     target="_blank" 
@@ -138,7 +138,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q07_plant_disease_classification<br>
                         <b>Model:</b> Custom<br>
@@ -197,7 +197,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q08_object_counter (Animal Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | EdgeYOLO-M<br>
@@ -224,7 +224,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">46fps</p>
+                                <p class="Perf-Framerate">45fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -252,20 +252,20 @@ layout: default
             <div id="building1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Elevator passengers Counting</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues alerts if the elevator is overcrowded and exceeds its capacity.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 01_Head_count<br>
                         <b>Model:</b> YOLOv3<br>
@@ -311,7 +311,7 @@ layout: default
             <div id="building2" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
@@ -322,13 +322,13 @@ layout: default
                         onmouseover="this.src='img/GIF/SmartBuilding2_480x270.gif'" 
                         onmouseout="this.src='img/SmartBuilding2_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Conference Room Usage Monitor</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors if the meeting room is vacant by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
@@ -386,20 +386,20 @@ layout: default
             <div id="building3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Lighting Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Automatically controls the lighting according to the situation by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
@@ -458,7 +458,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -517,7 +517,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 04_Safety_helmet_vest_detection<br>
                         <b>Model:</b> YOLOv3<br>
@@ -576,7 +576,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
                         <b>Model:</b> Tiny YOLOv2+ResNet-18 | YOLOv3<br>
@@ -603,7 +603,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">39fps</p>
+                                <p class="Perf-Framerate">38fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -622,20 +622,20 @@ layout: default
             <div id="building7" class="application_card col-lg-6 col-xl-4"
                 data-model="FaceNet"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding7_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Employee ID check for Restricted Area</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Checks the employee ID and the person matches before entering to restricted area.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q02_face_authentication<br>
                         <b>Model:</b> FaceNet<br>
@@ -681,20 +681,20 @@ layout: default
             <div id="building8" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Parking Lot Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors cars or other vehicles going in and out of a parking lot.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
@@ -739,20 +739,20 @@ layout: default
             <div id="city1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection in Railway Station</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the congestion level on trains and buses by detecting the number of passengers.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
@@ -811,7 +811,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -870,7 +870,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 09_Human_gaze_detection<br>
                         <b>Model:</b> ResNet-18+Tiny YOLOv3 | ResNet-18+YOLOv3<br>
@@ -916,20 +916,20 @@ layout: default
             <div id="city4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity6_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Duration monitoring for surveillance camera</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Prevents the theft by monitoring whether there is a suspicious person wandering around the specified area.  Can be used in car dealer, housing, etc.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q01_footfall_counter<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -956,7 +956,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">33fps</p>
+                                <p class="Perf-Framerate">34fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1053,20 +1053,20 @@ layout: default
             <div id="city7" class="application_card col-lg-6 col-xl-4"
                 data-model="FaceNet"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Passport check support</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Supports passport check in airport immigration by checking the match of users face and their passport.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q02_face_authentication<br>
                         <b>Model:</b> FaceNet<br>
@@ -1112,20 +1112,20 @@ layout: default
             <div id="city8" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bus passenger counting</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Counts the number of passengers on public transportation. It is also effective in preventing children from being left behind on school buses.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
@@ -1184,7 +1184,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -1243,7 +1243,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q05_suspicious_activity<br>
                         <b>Model:</b> CNN+MLP<br>
@@ -1302,7 +1302,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q08_object_counter (Animal Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | EdgeYOLO-M<br>
@@ -1329,7 +1329,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">46fps</p>
+                                <p class="Perf-Framerate">45fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1361,7 +1361,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | EdgeYOLO-M<br>
@@ -1388,7 +1388,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">46fps</p>
+                                <p class="Perf-Framerate">45fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1420,7 +1420,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 13_Car_ahead_departure_detection<br>
                         <b>Model:</b> Tiny YOLOv3<br>
@@ -1479,7 +1479,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | EdgeYOLO-M<br>
@@ -1506,7 +1506,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">46fps</p>
+                                <p class="Perf-Framerate">45fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1538,7 +1538,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | EdgeYOLO-M<br>
@@ -1565,7 +1565,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">46fps</p>
+                                <p class="Perf-Framerate">45fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1597,7 +1597,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | EdgeYOLO-M<br>
@@ -1624,7 +1624,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">46fps</p>
+                                <p class="Perf-Framerate">45fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1656,7 +1656,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q08_object_counter (Vehicle Counting)<br>
                         <b>Model:</b> Tiny YOLOv3 | EdgeYOLO-M<br>
@@ -1683,7 +1683,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">46fps</p>
+                                <p class="Perf-Framerate">45fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1715,7 +1715,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q09_crack_segmentation<br>
                         <b>Model:</b> Unet<br>
@@ -1742,7 +1742,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">100fps</p>
+                                <p class="Perf-Framerate">125fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1774,7 +1774,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q10_suspicious_person_detection<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -1820,20 +1820,20 @@ layout: default
             <div id="city20" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity20_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Vehicle Detector</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Allows multi-directional detection of vehicle existence with multiple cameras.  It can prevent car accidents by noticing the cars outside of human sight.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
@@ -1869,20 +1869,20 @@ layout: default
             <div id="city21" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity21_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Car Accident Prevention Alert</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Alerts children or elderly individuals that there are vehicles nearby from wearable/portable devices attached to their backpacks by multi-directional vehicle detection.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
@@ -1918,20 +1918,20 @@ layout: default
             <div id="city22" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Other"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity22_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Driving Support with Road Lane Segmentation</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Notifies drivers approaching the warning area by segmenting the road lane and crosswork.  It can prevent car accidents against people.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 15_Road_lane_segmentation<br>
                         <b>Model:</b> Unet<br>
@@ -1948,7 +1948,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <p class="Perf-Framerate">125fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1958,7 +1958,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <p class="Perf-Framerate">50fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -1967,20 +1967,20 @@ layout: default
             <div id="city23" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Other"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity23_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Visual Walking Support</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Notifies the people who require visual support when crossing the side lane or using the crosswalk.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 15_Road_lane_segmentation<br>
                         <b>Model:</b> Unet<br>
@@ -1997,7 +1997,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <p class="Perf-Framerate">125fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2007,7 +2007,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <p class="Perf-Framerate">50fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -2029,7 +2029,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> C01_river_area_monitoring<br>
                         <b>Model:</b> DeepLabv3<br>
@@ -2046,7 +2046,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">48fps</p>
+                                <p class="Perf-Framerate">53fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2087,7 +2087,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 03_Elderly_fall_detection<br>
                         <b>Model:</b> Tiny YOLOv2+HRNet<br>
@@ -2114,7 +2114,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">43fps</p>
+                                <p class="Perf-Framerate">60fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2146,7 +2146,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q12_yoga_pose_estimation<br>
                         <b>Model:</b> HRNet+Custom<br>
@@ -2163,7 +2163,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">53fps</p>
+                                <p class="Perf-Framerate">77fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2195,7 +2195,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> C02_depth_cam_human_body_estimation<br>
                         <b>Model:</b> HRNet<br>
@@ -2212,7 +2212,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">100fps</p>
+                                <p class="Perf-Framerate">200fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2240,20 +2240,20 @@ layout: default
             <div id="home1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Air Conditioner Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Automatically controls the air conditioning according to the situation by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
@@ -2351,7 +2351,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 07_Animal_detection<br>
                         <b>Model:</b> YOLOv3<br>
@@ -2378,7 +2378,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">39fps</p>
+                                <p class="Perf-Framerate">38fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2410,7 +2410,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
                         <b>Model:</b> Tiny YOLOv2+ResNet-18 | YOLOv3<br>
@@ -2437,7 +2437,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">39fps</p>
+                                <p class="Perf-Framerate">38fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2469,7 +2469,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q06_expiry_date_detection<br>
                         <b>Model:</b> Tiny YOLOv3+Tesseract | YOLOv3+Tesseract<br>
@@ -2496,7 +2496,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">39fps for<br>YOLOv3</p>
+                                <p class="Perf-Framerate">38fps for<br>YOLOv3</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2524,20 +2524,20 @@ layout: default
             <div id="industrial1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Work Area Personnel Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors attendance of workers by counting their number entered in the work area.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 01_Head_count<br>
                         <b>Model:</b> YOLOv3<br>
@@ -2600,7 +2600,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -2665,7 +2665,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 04_Safety_helmet_vest_detection<br>
                         <b>Model:</b> YOLOv3<br>
@@ -2724,7 +2724,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
                         <b>Model:</b> Tiny YOLOv2+ResNet-18 | YOLOv3<br>
@@ -2751,7 +2751,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">39fps</p>
+                                <p class="Perf-Framerate">38fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2768,7 +2768,7 @@ layout: default
                 </li>
             </div>
             <div id="industrial5" class="application_card col-lg-6 col-xl-4"
-                data-model="Tiny YOLOv3+DeepPose/YOLOv3+DeepPose"
+                data-model="Tiny YOLOv3+DeepPose/YOLOX-L"
                 data-targetobj="Face"
                 data-label="Updated!"
                 data-feature=""
@@ -2783,11 +2783,11 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 10_Driver_monitoring_system<br>
-                        <b>Model:</b> Tiny YOLOv3+DeepPose | YOLOv3+DeepPose<br>
-                        <b>Dataset:</b> HollywoodHeads/WFLW | Custom/WFLW<br>
+                        <b>Model:</b> Tiny YOLOv3+DeepPose | YOLOX-L<br>
+                        <b>Dataset:</b> HollywoodHeads/WFLW | DMS Computer Vision Dataset<br>
                         <br>
                     </div>
                     <dl>
@@ -2810,7 +2810,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">32fps</p>
+                                <p class="Perf-Framerate">77fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2820,7 +2820,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <p class="Perf-Framerate">34fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -2842,7 +2842,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q04_fish_classification<br>
                         <b>Model:</b> Custom<br>
@@ -2901,7 +2901,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q09_crack_segmentation<br>
                         <b>Model:</b> Unet<br>
@@ -2928,7 +2928,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">100fps</p>
+                                <p class="Perf-Framerate">125fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2960,7 +2960,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q11_fish_detection<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -2987,7 +2987,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">39fps</p>
+                                <p class="Perf-Framerate">38fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3019,7 +3019,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> C03_surface_anomaly_detection<br>
                         <b>Model:</b> PatchCore_resnet18<br>
@@ -3036,7 +3036,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">455fps</p>
+                                <p class="Perf-Framerate">435fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3047,6 +3047,55 @@ layout: default
                                     RZ/V2N >
                                 </a>
                                 <p class="Perf-Framerate">313fps</p>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+            </div>
+            <div id="industrial10" class="application_card col-lg-6 col-xl-4"
+                data-model="YOLOX-L+Unet"
+                data-targetobj="Other"
+                data-label="New!"
+                data-feature=""
+                data-device="RZ/V2H,RZ/V2N,"
+                >
+                <li class="griditem" style="list-style: none;">
+                    <img src="img/Industrial10_AnalogMeterReader_960x540.jpg" alt="application">
+                    <dt class="mt-1" style="color: #2a289d;">Analog Meter Reader</dt>
+                    <h6 class="appstatus" align="right"><b>New!</b></h6>
+                    <div class="griditem-add">
+                        Finds the analog meter reading value using segmentation after the initial setup of gauge min/max/center allocation.<br><br>
+                    </div>
+                    <div class="appspec">
+                        <b>Supported RZ/V2L AI SDK:</b> -<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Function:</b> Q13_analog_meter_reader<br>
+                        <b>Model:</b> YOLOX-L+Unet<br>
+                        <b>Dataset:</b> gauge-detection Dataset+analog_needle_segmentation Dataset<br>
+                        <br>
+                    </div>
+                    <dl>
+                        <dd style="display: flex">
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" 
+                                    href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q13_analog_meter_reader" 
+                                    style="color:white" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer">
+                                    RZ/V2H >
+                                </a>
+                                <p class="Perf-Framerate">9fps</p>
+                            </div>
+                            <div class="devicelinkbutton_parent">
+                                <a class="devicelinkbutton" 
+                                    href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q13_analog_meter_reader" 
+                                    style="color:white" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer">
+                                    RZ/V2N >
+                                </a>
+                                <p class="Perf-Framerate">3fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -3064,20 +3113,20 @@ layout: default
             <div id="retail1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues an alert when the store is overcrowded with more customers.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
@@ -3136,7 +3185,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 05_Age_gender_detection<br>
                         <b>Model:</b> Tiny YOLOv3+FairFace | YOLOv3+FairFace<br>
@@ -3163,7 +3212,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">35fps</p>
+                                <p class="Perf-Framerate">34fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3195,7 +3244,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 09_Human_gaze_detection<br>
                         <b>Model:</b> ResNet-18+Tiny YOLOv3 | ResNet-18+YOLOv3<br>
@@ -3241,20 +3290,20 @@ layout: default
             <div id="retail4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Staying and flow line monitoring</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Collects marketing data by monitoring the number of people and duration of their stay in a certain place.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q01_footfall_counter<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>
@@ -3281,7 +3330,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">33fps</p>
+                                <p class="Perf-Framerate">34fps</p>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3300,20 +3349,20 @@ layout: default
             <div id="retail5" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Exhibition Participants Monitoring</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitor the number of visitors to an exhibition or other open space. Changes in the number of participants can also be detected since it counts the number of participants in real time.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
                         <b>Model:</b> YOLOv3<br>
@@ -3372,7 +3421,7 @@ layout: default
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v5.20<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> Q10_suspicious_person_detection<br>
                         <b>Model:</b> Tiny YOLOv3 | YOLOv3<br>

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -76,11 +75,6 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                     </td>
                     <td>                <!-- Version -->
                         Yocto version: 5.0.6 (Scarthgap)
-                        <a href="#footnote_v2n_linux_components">
-                            <sup>
-                                *1
-                            </sup>
-                        </a>
                         <br>
                         Kernel version: 6.1.107-cip28
                     </td>

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 
@@ -18,10 +17,97 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Applications v6.20 & RZ/V2H AI SDK v6.00
+                </h3>
+                <h6 align="right" >
+                    2025.1.13
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v6.20 is released.</h5>
+                    <ul>
+                        <li>
+                            55 applications supported RZ/V2H AI SDK v6.00.
+                        </li>
+                        <li>
+                            Added 1 new application.
+                            <ul>
+                                <li>
+                                    Analog Meter Reader (Industrial)
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Updated AI models used in following applications.
+                            <ul>
+                                <li>
+                                    Driver Monitoring System (Industrial)
+                                </li>
+                                <li>
+                                    Driving Support with Road Lane Segmentation (Smart City)
+                                </li>
+                                <li>
+                                    Visual Walking Support (Smart City)
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI SDK v6.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.5.1.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2H Linux VLP to v4.0.1.
+                        </li>
+                        <li> 
+                            Updated Graphics Library to v4.1.2.6.
+                        </li>
+                        <li> 
+                            Updated Video Codec Library to v4.1.3.1.
+                        </li>
+                        <li> 
+                            Updated OpenCV Accelerator to v1.40.
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v2.20.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >
-                    2025.12.23
+                    2026.1.13
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Partner Applications on Community Page is updated.</h5>
+                    <ul>
+                        <li>
+                            [Nota AI&reg;] Nota Crowd Counting<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2026.12.23
                 </h6>
             </i>
             <ul>

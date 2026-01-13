@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -418,7 +417,7 @@ layout: default
                     <li>
                         Graphics Library Unrestricted Version v1.2.2 
                         [
-                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-graphics-library-evaluation-version-rzv2l" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.renesas.com/en/software-tool/rzv-verified-linux-package#download" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
@@ -427,7 +426,7 @@ layout: default
                         Video Codec Library Unrestricted Version v1.2.2 
                         (H.264)
                         [
-                            <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rz-mpu-video-codec-library-evaluation-version-rzv2l" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.renesas.com/en/software-tool/rzv-verified-linux-package#download" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
@@ -507,7 +506,7 @@ layout: default
             </h3>
             <h5>
                 <b>
-                    Target Version: 5.20
+                    Target Version: 6.00
                 </b>
             </h5>
         </div>
@@ -520,7 +519,7 @@ layout: default
             RZ/V2H AI SDK configuration is as follows.
             <ul>
                 <li>
-                    DRP-AI TVM v2.3.0 
+                    DRP-AI TVM v2.5.1 
                     [
                         <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             GitHub
@@ -533,7 +532,7 @@ layout: default
                     </a>
                 </li>
                 <li>
-                    RZ/V2H Linux BSP v1.0.2
+                    RZ/V2H Linux BSP v2.0.0
                     [
                         <a href="{{ site.url }}{{ site.baseurl }}{% link v2h-configuration.md %}" target="_blank" rel="noopener noreferrer">
                             Configuration
@@ -541,9 +540,9 @@ layout: default
                     ]
                     <ul>
                         <li>
-                            DRP-AI Driver v1.20 
+                            DRP-AI Driver v1.31 
                             [
-                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver/tree/V1.20" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver/tree/V1.31" target="_blank" rel="noopener noreferrer">
                                     GitHub
                                 </a>
                             ]
@@ -575,10 +574,10 @@ layout: default
                     </ul>
                 </li>
                 <li>
-                    Graphics Library Unrestricted Version v3.1.2.3
+                    Graphics Library Unrestricted Version v4.1.3.0
                 </li>
                 <li>
-                    Video Codec Library v3.3.3.2
+                    Video Codec Library v4.3.3.1
                     <a href="#footnote_v2h_drp_ai">
                         <sup>
                             *2
@@ -586,9 +585,9 @@ layout: default
                     </a>
                 </li>
                 <li>
-                    OpenCV Accelerator v1.20 (supporting OpenCV 4.1.0) 
+                    OpenCV Accelerator v1.40 (supporting OpenCV 4.9.0) 
                     [
-                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator/tree/V1.20" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator/tree/V1.40" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
                     ]
@@ -602,10 +601,10 @@ layout: default
                     Other OSS packages
                     <ul>
                         <li>
-                            Tesseract v3.05.01 (tesseract, tesseract-lang)
+                            Tesseract v5.3.4 (tesseract, tesseract-lang)
                         </li>
                         <li>
-                            OpenMP v8.3.0
+                            OpenMP v13.4.0
                         </li>
                     </ul>
                 </li>

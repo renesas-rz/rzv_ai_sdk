@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 
@@ -80,11 +79,84 @@ layout: default
             <h6 align="right" >
                 2026.1.13
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>RZ/V AI Applications v6.20</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li>
+                                55 applications supported RZ/V2H AI SDK v6.00.
+                            </li>
+                            <li>
+                                Added 1 new application.
+                                <ul>
+                                    <li>
+                                        Analog Meter Reader (Industrial)
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Updated AI models used in following applications.
+                                <ul>
+                                    <li>
+                                        Driver Monitoring System (Industrial)
+                                    </li>
+                                    <li>
+                                        Driving Support with Road Lane Segmentation (Smart City)
+                                    </li>
+                                    <li>
+                                        Visual Walking Support (Smart City)
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>RZ/V AI Applications</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>RZ/V2H AI SDK v6.00</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li> 
+                                Supported DRP-AI TVM v2.5.1.<br>
+                            </li>
+                            <li> 
+                                Updated RZ/V2H Linux BSP to v2.0.0.
+                            </li>
+                            <li> 
+                                Updated Graphics Library to v4.1.3.0.
+                            </li>
+                            <li> 
+                                Updated Video Codec Library to v4.3.3.1.
+                            </li>
+                            <li> 
+                                Updated OpenCV Accelerator to v1.40.
+                            </li>
+                            <li> 
+                                Updated DRP-AI Driver to v1.31.
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V2H AI SDK Specification</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>Partner Applications on Community Page</b> is updated.
+                    <ul>
+                        <li> 
+                            [Nota AI&reg;] Nota Crowd Counting<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community Page</b></a>.
             <br>
             <br>
         </div>
@@ -1214,6 +1286,9 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                         See below for Gstreamer Sample Code.<br>
                         <ul class="mb-1">
                             <li>
+                                <a href="https://github.com/renesas-rz/rz_gstreamer_sample_code/tree/ai-sdk-6.00_rz-v2h" target="_blank" rel="noopener noreferrer">RZ/V2H Group GStreamer Sample Code for AI SDK v6.00</a>
+                            </li>
+                            <li>
                                 <a href="https://github.com/renesas-rz/rz_gstreamer_sample_code/releases/tag/ai-sdk-6.00_rz-v2n" target="_blank" rel="noopener noreferrer">RZ/V2N Group GStreamer Sample Code for AI SDK v6.00</a>
                             </li>
                         </ul>
@@ -1300,7 +1375,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
+                        <a href="https://www.renesas.com/document/mas/rzg2l-rzv2l-rzv2n-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v404">
                             RZ/V2H BSP Manual Set
                         </a>
                     </td>

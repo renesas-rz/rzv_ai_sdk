@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 
@@ -106,6 +105,29 @@ Or if you have general questions, please use Renesas Technical Support.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://github.com/Nota-NetsPresso/Optimized-AI-Applications-for-Renesas-HWs/tree/main/3.%20Driver%20Monitoring%20System%20on%20RZV2L" 
+                                style="color:white"
+                                target="_blank" rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+        <div id="" class="application_card col-lg-6 col-xl-4">
+            <li class="griditem" style="list-style: none;">
+                <img src="img/community/notaAI/notaAI_CC_960x540.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Nota Crowd Counting</dt>
+                <h6 class="appstatus" align="right"><b><br /></b></h6>
+                <div class="griditem-add">
+                    Crowd Counting ensures the safety and efficiency of large gatherings in venues and prevents overcrowding by recognizing objects in various situations. Optimized for and supported by Renesas RZ/V2H MPUs with DRP-AI3 Accelerator, this solution performs real-time accuracy with low power consumption.
+                    <br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/Nota-NetsPresso/Optimized-AI-Applications-for-Renesas-HWs/tree/main/4.%20Crowd%20Counting%20on%20RZV2H" 
                                 style="color:white"
                                 target="_blank" rel="noopener noreferrer">
                                 Click >
