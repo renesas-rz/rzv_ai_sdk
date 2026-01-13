@@ -260,9 +260,9 @@ void Image::draw_rect(int32_t x, int32_t y, int32_t w, int32_t h, const char * s
     int32_t y_max = y + round(h / 2.) - 1;
     /* Check the bounding box is in the image range */
     x_min = x_min < 1 ? 1 : x_min;
-    x_max = ((img_w - 2) < x_max) ? (img_w - 2) : x_max;
+    x_max = ((int32_t)(img_w - 2) < x_max) ? (img_w - 2) : x_max;
     y_min = y_min < 1 ? 1 : y_min;
-    y_max = ((img_h - 2) < y_max) ? (img_h - 2) : y_max;
+    y_max = ((int32_t)(img_h - 2) < y_max) ? (img_h - 2) : y_max;
 
     /* Draw the bounding box and class and probability*/
     write_string_rgb_boundingbox(str,1,x_min, y_min,x_max,y_max,CHAR_SCALE_BB,color, label_color);

@@ -24,7 +24,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v5.20</td>
+       <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
        <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
@@ -95,7 +95,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      100W is required.</td>
+      60W is required.</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -124,7 +124,12 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment: Ubuntu 20.04</td>
+      Operating Environment:
+        <ul class="mb-1">
+          <li>
+            RZ/V2L: Ubuntu 20.04
+          </li>
+          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -251,7 +256,7 @@ Each folder contains following items.
 
 3. Folder structure in the rootfs (SD Card) would look like:
     
-    For **V2H**:
+    For **RZ/V2L**:
     ```
     |-- usr
     |   `-- lib64
@@ -259,19 +264,15 @@ Each folder contains following items.
     `-- home
         `-- root
             `-- tvm
-                |-- cnn_module  
-                |   |-- deploy.json             
-                |   |-- deploy.params           
-                |   `-- deploy.so               
-                |-- mlp_module          
+                |-- combined_module  
                 |   |-- deploy.json             
                 |   |-- deploy.params           
                 |   `-- deploy.so               
                 |-- suspicious_activity
-                |-- violence.mp4 
-                `-- non_violence.mp4 
+                |-- violence.mp4
+                `-- non_violence.mp4
     ```
-    For **V2N**:
+    For **RZ/V2H** and **RZ/V2N**:
     ```
     |-- usr
     |   `-- lib
@@ -287,24 +288,11 @@ Each folder contains following items.
                 |   |-- deploy.json             
                 |   |-- deploy.params           
                 |   `-- deploy.so               
-                `-- suspicious_activity
-    ```
-    For **V2L**:
-    ```
-    |-- usr
-    |   `-- lib64
-    |       `-- libtvm_runtime.so
-    `-- home
-        `-- root
-            `-- tvm
-                |-- combined_module  
-                |   |-- deploy.json             
-                |   |-- deploy.params           
-                |   `-- deploy.so               
                 |-- suspicious_activity
-                |-- violence.mp4 
-                `-- non_violence.mp4 
+                |-- violence.mp4        # RZ/V2H only
+                `-- non_violence.mp4    # RZ/V2H only
     ```
+    
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`. For **V2L** the `CNN` and `MLP` part are combined into a single model as shown above.
 
 ## Application: Run Stage
@@ -320,20 +308,20 @@ After completion of the guide, the user is expected of following things.
 
 1. On Board terminal, go to the `tvm` directory of the rootfs.
   
-    - For RZ/V2L and RZ/V2H
+    - For RZ/V2L
     ```sh
     cd /home/root/tvm/
     ```
-    - For RZ/V2N
+    - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm/
+    su # To change user to root.
     ```
-    
+    >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
+
 2. Run the application.
 
-   1. For RZ/V2L and RZ/V2H
-      
-      1. For VIDEO Mode
+      1. For VIDEO Mode [RZ/V2L and RZ/V2H only]
       ```sh
       ./suspicious_activity VIDEO violence.mp4
       ```
@@ -346,15 +334,9 @@ After completion of the guide, the user is expected of following things.
       ./suspicious_activity MIPI
       ```
 
-   2. For RZ/V2N
+      > Note:  On RZ/V2H, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2H AI SDK v6.00 and later.  Please see [RZ/V2H AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html).
 
-      1. For USB Camera Mode
-      ```sh
-      su 
-      ./suspicious_activity USB
-      exit # After terminated the application.
-      ```
-      Note: On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running. See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details.
+      > Note: On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running. See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/latest/ai-sdk.html#footnote_v2n_drp_ai) for more details.
 3. Following window shows up on HDMI screen.  
 
     |RZ/V2L EVK | RZ/V2H EVK and RZ/V2N EVK* |
@@ -373,6 +355,10 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
+5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+    ```
+    exit
+    ```
 
 ## Application: Configuration 
 ### AI Model

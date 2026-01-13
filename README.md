@@ -131,6 +131,8 @@ The [Fish Detection](./Q11_fish_detection) application is a software used to aut
 ### 12. Yoga Pose Estimation
 The [Yoga Pose Estimation](./Q12_yoga_pose_estimation) application is a software used to automatically identify and analyze the key points of a person's body while they are performing yoga poses.
 
+### 13. Analog Meter Reader
+The [Analog Meter Reader](./Q13_analog_meter_reader) application is a software used to capture and interpret the readings from traditional analog meters.
 
 ## Operating the application
 - Each application folder have their respective `readme.md` file to modify and run the application.

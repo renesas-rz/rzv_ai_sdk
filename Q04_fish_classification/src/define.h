@@ -152,7 +152,7 @@ const static std::string label_list     = "fish_class_list.txt";
 #ifdef V2H
     /*Image display out*/
     #define DISP_IMAGE_OUTPUT_WIDTH     (1480)
-    #define DISP_IMAGE_OUTPUT_HEIGHT    (1050)
+    #define DISP_IMAGE_OUTPUT_HEIGHT    (1080)
     /*Total Display out*/
     #define DISP_OUTPUT_WIDTH           (1920)
     #define DISP_OUTPUT_HEIGHT          (1080)

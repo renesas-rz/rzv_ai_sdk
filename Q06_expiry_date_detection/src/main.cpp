@@ -49,7 +49,6 @@
 #include "define.h"
 /*box drawing*/
 #include "box.h"
-#include "utils.h"
 
 /*****************************************
 * Global Variables
@@ -59,7 +58,6 @@
 static sem_t terminate_req_sem;
 static pthread_t ai_inf_thread;
 static pthread_t capture_thread;
-static pthread_t exit_thread;
 static pthread_t kbhit_thread;
 static std::mutex mtx;
 static std::mutex date_mtx;
@@ -453,64 +451,7 @@ void R_Post_Proc(float* floatarr)
     return ;
 }
 
-/*****************************************
- * Function Name : R_exit_Thread
- * Description   : Executes the double click exit thread
- * Arguments     : threadid = thread identification
- * Return value  : -
- ******************************************/
-void *R_exit_Thread(void *threadid)
-{
-    /*Semaphore Variable*/
-    int32_t kh_sem_check = 0;
 
-    /*Variable for checking return value*/
-    int8_t ret = 0;
-    devices dev;
-
-    /*Set Standard Input to Non Blocking*/
-    errno = 0;
-    ret = fcntl(0, F_SETFL, O_NONBLOCK);
-    if (-1 == ret)
-    {
-        fprintf(stderr, "[ERROR] Failed to run fctnl(): errno=%d\n", errno);
-        goto err;
-    }
-
-    while (1)
-    {
-        /*Gets the Termination request semaphore value. If different then 1 Termination was requested*/
-        /*Checks if sem_getvalue is executed wihtout issue*/
-        errno = 0;
-        ret = sem_getvalue(&terminate_req_sem, &kh_sem_check);
-        if (0 != ret)
-        {
-            fprintf(stderr, "[ERROR] Failed to get Semaphore Value: errno=%d\n", errno);
-            goto err;
-        }
-        /*Checks the semaphore value*/
-        if (1 != kh_sem_check)
-        {
-            goto exit_end;
-        }
-
-        dev.detect_mouse_click();
-        if (doubleClick)
-        {
-            goto err;
-        }
-    }
-
-/*Error Processing*/
-err:
-    /*Set Termination Request Semaphore to 0*/
-    sem_trywait(&terminate_req_sem);
-    goto exit_end;
-
-exit_end:
-    printf("Exit Thread Terminated\n");
-    pthread_exit(NULL);
-}
 /**
  * @brief Get the cropped gray object
  * 
@@ -1425,7 +1366,6 @@ int32_t main(int32_t argc, char * argv[])
     /*Multithreading Variables*/
     int32_t create_thread_ai      = -1;
     int32_t create_thread_capture = -1;
-    int32_t create_thread_exit    = -1;
     int32_t create_thread_key     = -1;
     int32_t sem_create            = -1;
 
@@ -1655,17 +1595,6 @@ int32_t main(int32_t argc, char * argv[])
         ret_main = -1;
         goto end_threads;
     }
-
-    /*Create exit Thread*/
-    create_thread_exit = pthread_create(&exit_thread, NULL, R_exit_Thread, NULL);
-    if (0 != create_thread_exit)
-    {
-        fprintf(stderr, "[ERROR] Failed to create exit Thread.\n");
-        ret_main = -1;
-        goto end_threads;
-    }
-    /* Detached exit thread */
-    pthread_detach(exit_thread);
 
     /*Create Key Hit Thread*/
     create_thread_key = pthread_create(&kbhit_thread, NULL, R_Kbhit_Thread, NULL);
