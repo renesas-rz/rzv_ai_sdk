@@ -17,6 +17,48 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2026.1.23
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Partner Applications on Community Page is updated.</h5>
+                    <ul>
+                        <li>
+                            [Ignitarium] MoveIt demonstration on RZ/V2H<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    Video
+                </h3>
+                <h6 align="right" >
+                    2025.1.23
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI System Evaluation Environment Introduction Video is released.</h5>
+                    <ul>
+                        <li>
+                            Software introduction video for AI, ISP, and H.264 encoding evaluation.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications v6.20 & RZ/V2H AI SDK v6.00
                 </h3>
                 <h6 align="right" >

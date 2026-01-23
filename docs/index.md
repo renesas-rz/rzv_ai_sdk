@@ -77,86 +77,32 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.1.13
+                2026.1.23
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V AI Applications v6.20</b> is released.
-                    <h6 class="mb-0">
-                        <ul>
-                            <li>
-                                55 applications supported RZ/V2H AI SDK v6.00.
-                            </li>
-                            <li>
-                                Added 1 new application.
-                                <ul>
-                                    <li>
-                                        Analog Meter Reader (Industrial)
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                Updated AI models used in following applications.
-                                <ul>
-                                    <li>
-                                        Driver Monitoring System (Industrial)
-                                    </li>
-                                    <li>
-                                        Driving Support with Road Lane Segmentation (Smart City)
-                                    </li>
-                                    <li>
-                                        Visual Walking Support (Smart City)
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </h6>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>RZ/V AI Applications</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>RZ/V2H AI SDK v6.00</b> is released.
-                    <h6 class="mb-0">
-                        <ul>
-                            <li> 
-                                Supported DRP-AI TVM v2.5.1.<br>
-                            </li>
-                            <li> 
-                                Updated RZ/V2H Linux BSP to v2.0.0.
-                            </li>
-                            <li> 
-                                Updated Graphics Library to v4.1.3.0.
-                            </li>
-                            <li> 
-                                Updated Video Codec Library to v4.3.3.1.
-                            </li>
-                            <li> 
-                                Updated OpenCV Accelerator to v1.40.
-                            </li>
-                            <li> 
-                                Updated DRP-AI Driver to v1.31.
-                            </li>
-                        </ul>
-                    </h6>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V2H AI SDK Specification</b></a>.
-            <br>
-            <br>
             <ul>
                 <li>
                     <b>Partner Applications on Community Page</b> is updated.
                     <ul>
-                        <li> 
-                            [Nota AI&reg;] Nota Crowd Counting<br>
+                        <li>
+                            [Ignitarium] MoveIt demonstration on RZ/V2H
                         </li>
                     </ul>
                 </li>
             </ul>
             For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community Page</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>RZ/V2N AI System Evaluation Environment Introduction Video</b> is released.
+                    <ul>
+                        <li>
+                            Software introduction video for AI, ISP, and H.264 encoding evaluation.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#other-video"><b>Other video in Video section</b></a>.
             <br>
             <br>
         </div>
@@ -552,7 +498,7 @@ layout: default
 <br>
 <br>
 <h3 id="video">Video</h3>
-To check RZ/V AI related videos, please see <a href="https://youtube.com/playlist?list=PLgUXqPkOStPvWajJsT4TdyKRAAfVgwtCR&si=Kes5lw6eXnznTgz9">RZ/V AI Playlist (YouTube)</a>.
+To check RZ/V AI related videos, please see <a href="https://youtube.com/playlist?list=PLgUXqPkOStPvWajJsT4TdyKRAAfVgwtCR&si=Kes5lw6eXnznTgz9" target="_blank" rel="noopener noreferrer">RZ/V AI Playlist (YouTube)</a>.
 <br>
 <div class="container">
     <div class="row">
@@ -583,7 +529,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/3uJwmpNCwik">
+                            <a href="https://youtu.be/3uJwmpNCwik" target="_blank" rel="noopener noreferrer">
                                 RZ/V2N AI Applications Tutorial - Getting Started v5.20 (Youtube) 
                             </a>
                         </b>
@@ -634,7 +580,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/ErmISuWkkBQ">
+                            <a href="https://youtu.be/ErmISuWkkBQ" target="_blank" rel="noopener noreferrer">
                                 RZ/V2H AI Applications Tutorial - Getting Started v3.00 (Youtube) 
                             </a>
                         </b>
@@ -682,7 +628,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/CPeE2q3TdOY">
+                            <a href="https://youtu.be/CPeE2q3TdOY" target="_blank" rel="noopener noreferrer">
                                 RZ/V2L AI Applications Tutorial - Getting Started v2.10 (Youtube) 
                             </a>
                         </b>
@@ -717,7 +663,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                             <h6>
                                 <ul>
                                     <li>
-                                        <a href="https://youtu.be/wFbTomH8oPs">
+                                        <a href="https://youtu.be/wFbTomH8oPs" target="_blank" rel="noopener noreferrer">
                                             v1.00
                                         </a>
                                          : Only supports eMMC bootloader
@@ -763,7 +709,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/CjX_DyCVtM8">
+                            <a href="https://youtu.be/CjX_DyCVtM8" target="_blank" rel="noopener noreferrer">
                                     Agriculture :<br>
                                     Defense Wild Animals for Crop (YouTube)
                             </a>
@@ -822,7 +768,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/XELOK3NJq68">
+                            <a href="https://youtu.be/XELOK3NJq68" target="_blank" rel="noopener noreferrer">
                                 Smart Building :<br>
                                 Conference Room Usage Monitor (YouTube)
                             </a>
@@ -881,7 +827,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/neH2vfbJQP8">
+                            <a href="https://youtu.be/neH2vfbJQP8" target="_blank" rel="noopener noreferrer">
                                 Industrial :<br>
                                 Access Control (YouTube)
                             </a>
@@ -945,7 +891,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/0z6jLEodaHk">
+                            <a href="https://youtu.be/0z6jLEodaHk" target="_blank" rel="noopener noreferrer">
                                 Smart Building :<br>
                                 Conference Room Usage Monitor (YouTube)
                             </a>
@@ -1002,6 +948,71 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
     </div>
     <div class="row">
         <!-- Video panel start -->
+        <div class="col-12 col-md-6 col-xl-4 mb-3" id="v2n_ai_system_demo">
+            <div class="griditem" style="list-style: none;">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="video-iframe"
+                        src="https://www.youtube.com/embed/_6lhKxiAOwk" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-11 pe-0">
+                        <b>
+                            <a href="https://youtu.be/_6lhKxiAOwk" target="_blank" rel="noopener noreferrer">
+                                RZ/V2N AI System Evaluation Environment Introduction (YouTube) 
+                            </a>
+                        </b>
+                    </div>
+                    <div class="col-1 ps-0">
+                        <h6 class="mb-0" style="color: gray;" align="right">3:33</h6>
+                    </div>
+                </div>
+                <div class="griditem-add">
+                    <ul class="mb-2">
+                        <li>
+                            Key feature is AI, ISP and H.264 Encoding.
+                        </li>
+                        <li>
+                            This video includes demos for dashcam, robotic arm, and home security use cases.
+                        </li>
+                        <li>
+                            Environment
+                            <ul class="mb-0">
+                                <li>
+                                    RZ/V2N Evaluation Board Kit
+                                </li>
+                                <li>
+                                    Sample Application No.2 of 
+                                    <a href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" target="_blank" rel="noopener noreferrer">
+                                        RZ/V2N ISP Support Package v1.20s
+                                    </a>
+                                </li>
+                                <li>
+                                    Input: Two MIPI Cameras (1920x1080)
+                                </li>
+                                <li>
+                                    Output: Video stream via Ethernet
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- <p align="right" class="m-0">
+                        <a class="devicelinkbutton" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}" 
+                            style="color:white">
+                            More Details >
+                        </a>
+                    </p> -->
+                </div>
+            </div>
+        </div>
+        <!-- Video panel end -->
+        <!-- Video panel start -->
         <div class="col-12 col-md-6 col-xl-4 mb-3" id="use_demo">
             <div class="griditem" style="list-style: none;">
                 <div class="video-wrapper">
@@ -1017,8 +1028,8 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/gNKu1stxuFE">
-                                How to Use the RZ/V2H AI Applications Demo
+                            <a href="https://youtu.be/gNKu1stxuFE" target="_blank" rel="noopener noreferrer">
+                                How to Use the RZ/V2H AI Applications Demo (YouTube)
                             </a>
                         </b>
                     </div>
@@ -1043,14 +1054,14 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                                     <tr>
                                         <td>RZ/V2H</td>
                                         <td>
-                                            <a href="https://youtu.be/gNKu1stxuFE">
+                                            <a href="https://youtu.be/gNKu1stxuFE" target="_blank" rel="noopener noreferrer">
                                                 YouTube
                                             </a>
                                             <br>
                                             (Video above)
                                         </td>
                                         <td>
-                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}">
+                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}" target="_blank" rel="noopener noreferrer">
                                                 Link
                                             </a>
                                         </td>
@@ -1058,12 +1069,12 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                                     <tr>
                                         <td>RZ/V2N</td>
                                         <td>
-                                            <a href="https://youtu.be/979irXertDs">
+                                            <a href="https://youtu.be/979irXertDs" target="_blank" rel="noopener noreferrer">
                                                 YouTube
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}">
+                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}" target="_blank" rel="noopener noreferrer">
                                                 Link
                                             </a>
                                         </td>
@@ -1071,12 +1082,12 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                                     <tr>
                                         <td>RZ/V2L</td>
                                         <td>
-                                            <a href="https://youtu.be/4kz9k0h_j64">
+                                            <a href="https://youtu.be/4kz9k0h_j64" target="_blank" rel="noopener noreferrer">
                                                 YouTube
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}">
+                                            <a href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}" target="_blank" rel="noopener noreferrer">
                                                 Link
                                             </a>
                                         </td>

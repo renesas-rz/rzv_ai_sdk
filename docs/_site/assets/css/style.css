@@ -3547,3 +3547,5 @@ dl { display: flex; flex-wrap: wrap; margin: 0; }
 .ellipsis-display { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; position: relative; }
 
 .ellipsis-display label { display: inline; }
+
+.sol-category { color: #777777; border: 1.3px solid #2a289d; border-radius: 5px; padding: 0px 5px; margin-left: 3px; }
