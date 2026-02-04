@@ -41,7 +41,7 @@ layout: default
                     Video
                 </h3>
                 <h6 align="right" >
-                    2025.1.23
+                    2026.1.23
                 </h6>
             </i>
             <ul>
@@ -62,7 +62,7 @@ layout: default
                     RZ/V AI Applications v6.20 & RZ/V2H AI SDK v6.00
                 </h3>
                 <h6 align="right" >
-                    2025.1.13
+                    2026.1.13
                 </h6>
             </i>
             <ul>
@@ -149,7 +149,7 @@ layout: default
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >
-                    2026.12.23
+                    2025.12.23
                 </h6>
             </i>
             <ul>

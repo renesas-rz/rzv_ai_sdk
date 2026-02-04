@@ -529,7 +529,7 @@ layout: default
                 </span>
             </a>
             <br> 
-            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}" role="button">
+            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" role="button">
                 <span class="banner-title" style="line-height:1.0;">
                     <span style="font-size:70%;">
                         RZ/V2N AI SDK Source Code
@@ -794,7 +794,7 @@ layout: default
                             <br>
                             <a class="btn btn-secondary square-button square-button-link-small mb-2" 
                                 style="width:220px;" 
-                                href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}">
+                                href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}">
                                 How to Build RZ/V2N AI SDK
                             </a>
                         </td>
