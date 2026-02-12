@@ -33,7 +33,7 @@
 {"@context":"https://schema.org","@type":"WebSite","dateModified":"2025-12-23T13:59:23+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","name":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.10/"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=7ed68f1403757538ccd887e58cf4395bae222498">
+    <link rel="stylesheet" href="assets/css/style.css?v=41d996e1f2acac3469a1cd3bbe02619059a23622">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -55,8 +55,56 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 
+    <style>
+      .old-height {
+        height: 95vh;
+      }
+      .latest-banner {
+        display: none;
+      }
+      .latest-banner_show {
+        background-color: rgb(255, 249, 141);
+        height: 5vh;
+        text-align: center;
+        color: #494949;
+        font-size: 1.5vh;
+        font-weight: bold;
+        line-height: 1.5em;
+      }
+      .latest-banner_show a {
+        color: #ff0000;
+      }
+      .latest-banner_show a:hover, .latest-banner_show a:focus {
+        color: #7d0000;
+      }
+      @media print, screen and (max-width: 960px) {
+        .latest-banner_show {
+          width: 100%;
+          padding-right: 60px;
+          font-size: small;
+          height: auto;
+        }
+        .old-height {
+          height: auto;
+        }
+      }
+      @media print, screen and (max-width: 480px) {
+          .old-body {
+            padding:0px;
+          }
+        }
+    </style>
   </head>
   <body>
+    <div class="latest-banner ">
+      <div class=" latest-banner_show">
+        This page is not the latest version!
+        Click link below to go to the latest page.<br>
+        <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/">
+            https://renesas-rz.github.io/rzv_ai_sdk/latest/
+        </a>
+      </div>
+    </div>
     <div class="wrapper">
       <header>
         <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/">Renesas RZ/V AI</a></h1> -->
@@ -915,45 +963,13 @@
     <div class="row">
         <div class="col-12">
             <h6 align="right">
-                2025.12.23
+                2026.1.13
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V AI Applications Customize Guide</b> is published.
-                    <ul>
-                        <li>
-                            Users can check following content.
-                            <ul>
-                                <li>
-                                    How to replace a Transformer-based AI model
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/customize_guide.html"><b>RZ/V AI Applications Customize Guide</b></a>.
-            <br />
-            <br />
-            <h6 align="right">
-                2025.12.17
-            </h6>
-            <ul>
-                <li>
-                    <b>RZ/V Reference Applications</b> page is updated.
-                    <ul>
-                        <li>
-                            Following reference application is added.
-                            <ul>
-                                <li>
-                                    Dashcam System Control Reference
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/ref_applications.html"><b>RZ/V Reference Applications</b></a>.
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v6.10, which is not the latest version.<br />
+                <b>Users are recommended to use the latest version in the following URL.</b><br />
+                <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/">https://renesas-rz.github.io/rzv_ai_sdk/latest/</a>
+            </font>
             <br />
             <br />
         </div>
@@ -2216,5 +2232,14 @@
       </section>
     </div>
     <script src="/rzv_ai_sdk/6.10/assets/js/scale.fix.js"></script>
+    <script>
+      var type = "old";
+      if (type === "old")
+      {
+        document.querySelectorAll(".latest-banner").forEach(elm => elm.style.display="block");
+        document.querySelectorAll("header, body, section").forEach(elm => elm.classList.add("old-height"));
+        document.querySelectorAll("body").forEach(elm => elm.classList.add("old-body"));
+      }
+    </script>
   </body>
 </html>

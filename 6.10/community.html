@@ -33,7 +33,7 @@
 {"@context":"https://schema.org","@type":"WebPage","dateModified":"2025-10-10T13:11:30+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.10/community.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=7ed68f1403757538ccd887e58cf4395bae222498">
+    <link rel="stylesheet" href="assets/css/style.css?v=41d996e1f2acac3469a1cd3bbe02619059a23622">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -55,8 +55,56 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 
+    <style>
+      .old-height {
+        height: 95vh;
+      }
+      .latest-banner {
+        display: none;
+      }
+      .latest-banner_show {
+        background-color: rgb(255, 249, 141);
+        height: 5vh;
+        text-align: center;
+        color: #494949;
+        font-size: 1.5vh;
+        font-weight: bold;
+        line-height: 1.5em;
+      }
+      .latest-banner_show a {
+        color: #ff0000;
+      }
+      .latest-banner_show a:hover, .latest-banner_show a:focus {
+        color: #7d0000;
+      }
+      @media print, screen and (max-width: 960px) {
+        .latest-banner_show {
+          width: 100%;
+          padding-right: 60px;
+          font-size: small;
+          height: auto;
+        }
+        .old-height {
+          height: auto;
+        }
+      }
+      @media print, screen and (max-width: 480px) {
+          .old-body {
+            padding:0px;
+          }
+        }
+    </style>
   </head>
   <body>
+    <div class="latest-banner ">
+      <div class=" latest-banner_show">
+        This page is not the latest version!
+        Click link below to go to the latest page.<br>
+        <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/community.html">
+            https://renesas-rz.github.io/rzv_ai_sdk/latest/community.html
+        </a>
+      </div>
+    </div>
     <div class="wrapper">
       <header>
         <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/">Renesas RZ/V AI</a></h1> -->
@@ -1058,5 +1106,14 @@ Or if you have general questions, please use Renesas Technical Support.<br />
       </section>
     </div>
     <script src="/rzv_ai_sdk/6.10/assets/js/scale.fix.js"></script>
+    <script>
+      var type = "old";
+      if (type === "old")
+      {
+        document.querySelectorAll(".latest-banner").forEach(elm => elm.style.display="block");
+        document.querySelectorAll("header, body, section").forEach(elm => elm.classList.add("old-height"));
+        document.querySelectorAll("body").forEach(elm => elm.classList.add("old-body"));
+      }
+    </script>
   </body>
 </html>
