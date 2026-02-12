@@ -55,8 +55,71 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 
+    <style>
+      .old-height {
+        height: 95vh;
+      }
+      .old-body {
+        padding:0px;
+        padding-top: 50px;
+      }
+      .wrapper {
+        padding:50px;
+      }
+      .latest-banner {
+        display: none;
+      }
+      header {
+        position: static;
+      }
+      .latest-banner_show {
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        z-index: 1;
+        background-color: rgb(255, 249, 141);
+        height: 5vh;
+        text-align: center;
+        color: #494949;
+        font-size: 1.5vh;
+        font-weight: bold;
+        line-height: 1.5em;
+      }
+      .latest-banner_show a {
+        color: #ff0000;
+      }
+      .latest-banner_show a:hover, .latest-banner_show a:focus {
+        color: #7d0000;
+      }
+      @media print, screen and (max-width: 960px) {
+        .latest-banner_show {
+          width: 100%;
+          padding-right: 60px;
+          font-size: small;
+          height: auto;
+        }
+        .old-height {
+          height: auto;
+        }
+      }
+      @media print, screen and (max-width: 480px) {
+          .old-body {
+            padding:0px;
+          }
+        }
+    </style>
   </head>
   <body>
+    <div class="latest-banner ">
+      <div class=" latest-banner_show">
+        This page is not the latest version!
+        Click link below to go to the latest page.<br>
+        <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/demo.html">
+            https://renesas-rz.github.io/rzv_ai_sdk/latest/demo.html
+        </a>
+      </div>
+    </div>
     <div class="wrapper">
       <header>
         <!-- <h1><a href="https://renesas-rz.github.io/rzv_ai_sdk/2.00/">Renesas RZ/V AI</a></h1> -->
@@ -897,11 +960,21 @@ Employee-ID-check-for-Restricted-Area.sh
   </li>
 </ul>
 
+<br><br>
 
       </section>
       <footer>
       </footer>
     </div>
     <script src="/rzv_ai_sdk/2.00/assets/js/scale.fix.js"></script>
+    <script>
+      var type = "old";
+      if (type === "old")
+      {
+        document.querySelectorAll(".latest-banner").forEach(elm => elm.style.display="block");
+        document.querySelectorAll("header, body, section").forEach(elm => elm.classList.add("old-height"));
+        document.querySelectorAll("body").forEach(elm => elm.classList.add("old-body"));
+      }
+    </script>
   </body>
 </html>
