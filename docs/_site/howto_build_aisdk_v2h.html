@@ -33,7 +33,7 @@
 {"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-01-13T15:08:35+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/6.20/howto_build_aisdk_v2h.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=859d95ffcb85878c9f5924391d17e56e7cfdb9d5">
+    <link rel="stylesheet" href="assets/css/style.css?v=6d3a896588e9d6bdd3089c328b76dfb7351c60cb">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -1118,13 +1118,13 @@ patch <span class="nt">-p1</span> &lt; <span class="k">${</span><span class="nv"
       </li>
   -->
   <!-- MEMO:: Bus setting patch file is non -support. -->
-<!--      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting.<br>
-      If the system does not work properly, such as the stream stopping, when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
+      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting.<br />
+      If the system does not work properly, such as the stream stopping, when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br />
       This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.
         <div class="note">
           <span class="note-title">Note</span>
-          Applying this patch will improve system stability, but decrease the performance of single functions such as DRP-AI and Codec.<br>
-          Please apply this patch with caution after thorough verification.<br>
+          Applying this patch will improve system stability, but decrease the performance of single functions such as DRP-AI and Codec.<br />
+          Please apply this patch with caution after thorough verification.<br />
         </div>
         <ol type="A">
           <li>
@@ -1136,7 +1136,7 @@ patch <span class="nt">-p1</span> &lt; <span class="k">${</span><span class="nv"
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch">
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch">
                     0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch
                   </a>
                 </td>
@@ -1156,7 +1156,6 @@ patch <span class="nt">-p1</span> &lt; 0001-system-setting-for-RZV2H-AI_SDK-v6.0
           </li>
         </ol>
       </li>
--->
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br />
         The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.<br />
         <ol type="A">
@@ -1187,6 +1186,102 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
           <br />
         </div>
       </li>
+      <!-- Patch file to fix Gstreamer playbin issue. -->
+      <li>Apply patch file to fix DMA issue.<br />
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch">
+                    0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing DMA issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-renesas
+patch <span class="nt">-p1</span> &lt; <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch</code></pre></figure>
+
+          </li>
+        </ol>
+      </li>
+      <!-- Patch file to fix mmngr issue. -->
+      <li>Apply patch file to fix mmngr issue.<br />
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch">
+                    0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing mmngr issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> &lt; <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch</code></pre></figure>
+
+          </li>
+        </ol>
+      </li>
+      <!-- Patch file to fix OpenCVA issue. -->
+      <li>Apply patch file to fix OpenCVA issue.<br />
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch">
+                    0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing OpenCVA issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> &lt; <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch</code></pre></figure>
+
+          </li>
+        </ol>
+      </li>
     </ol>
   </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
@@ -1197,7 +1292,11 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">e-CAM22_CURZ<span class="k">*</span>.patch
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch
+0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch    <span class="c"># Optional</span>
+0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch
+0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch
+e-CAM22_CURZ<span class="k">*</span>.patch
 meta-arm
 meta-econsys
 meta-openembedded

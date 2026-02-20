@@ -227,7 +227,7 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       </li>
   -->
   <!-- MEMO:: Bus setting patch file is non -support. -->
-<!--      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting.<br>
+      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting.<br>
       If the system does not work properly, such as the stream stopping, when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
       This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.
         <div class="note">
@@ -245,7 +245,7 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.20/0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch">
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch">
                     0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch
                   </a>
                 </td>
@@ -265,7 +265,6 @@ patch -p1 < 0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch
           </li>
         </ol>
       </li>
--->
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
         The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.<br>
         <ol type="A">
@@ -296,6 +295,102 @@ patch -p1 -i e-CAM22_CURZ*.patch
           <br>
         </div>
       </li>
+      <!-- Patch file to fix Gstreamer playbin issue. -->
+      <li>Apply patch file to fix DMA issue.<br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch">
+                    0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing DMA issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}/meta-renesas
+patch -p1 < ${YOCTO_WORK}/0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
+      <!-- Patch file to fix mmngr issue. -->
+      <li>Apply patch file to fix mmngr issue.<br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch">
+                    0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing mmngr issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < ${YOCTO_WORK}/0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
+      <!-- Patch file to fix OpenCVA issue. -->
+      <li>Apply patch file to fix OpenCVA issue.<br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch">
+                    0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing OpenCVA issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < ${YOCTO_WORK}/0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
     </ol>
   </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
@@ -306,6 +401,10 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
+0001-linux-renesas-add-bug-fix-for-DMAC-driver-1.patch
+0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch    # Optional
+0002-fix-mmngr-issue-for-RZV2H-AI_SDK-v6.00.patch
+0003-fix-opencva-issue-for-RZV2H-AI_SDK-v6.00.patch
 e-CAM22_CURZ*.patch
 meta-arm
 meta-econsys
