@@ -953,7 +953,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="video-wrapper">
                     <iframe 
                         class="video-iframe"
-                        src="https://www.youtube.com/embed/_6lhKxiAOwk" 
+                        src="https://www.youtube.com/embed/JGDrlft9B6U" 
                         title="YouTube video player" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -963,7 +963,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <div class="row mt-2">
                     <div class="col-11 pe-0">
                         <b>
-                            <a href="https://youtu.be/_6lhKxiAOwk" target="_blank" rel="noopener noreferrer">
+                            <a href="https://youtu.be/JGDrlft9B6U" target="_blank" rel="noopener noreferrer">
                                 RZ/V2N AI System Evaluation Environment Introduction (YouTube) 
                             </a>
                         </b>
