@@ -77,32 +77,37 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.1.23
+                2026.2.24
             </h6>
             <ul>
                 <li>
-                    <b>Partner Applications on Community Page</b> is updated.
+                    <b>RZ/V Reference Applications</b> are updated.
                     <ul>
                         <li>
-                            [Ignitarium] MoveIt demonstration on RZ/V2H
+                            Dashcam System Control Reference
+                            <ul>
+                                <li>
+                                    The output image can be saved on micro SD card for recording purposes.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications Page</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>Partner Applications on Community Page</b> are updated.
+                    <ul>
+                        <li>
+                            [Deep Vision Consulting] Object detection and distance measurement on RZ/V2H
                         </li>
                     </ul>
                 </li>
             </ul>
             For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community Page</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>RZ/V2N AI System Evaluation Environment Introduction Video</b> is released.
-                    <ul>
-                        <li>
-                            Software introduction video for AI, ISP, and H.264 encoding evaluation.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#other-video"><b>Other video in Video section</b></a>.
             <br>
             <br>
         </div>
