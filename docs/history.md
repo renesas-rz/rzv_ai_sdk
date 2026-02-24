@@ -41,32 +41,6 @@ layout: default
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >
-                    2026.2.24
-                </h6>
-            </i>
-            <ul>
-                <li>
-                    <h5 class="history-item">RZ/V Reference Applications are updated.</h5>
-                    <ul>
-                        <li>
-                            Dashcam System Control Reference
-                            <ul>
-                                <li>
-                                    The output image can be saved on micro SD card for recording purposes.
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <br>
-            <!-- Topic above -->
-            <!-- Topic below -->
-            <i>
-                <h3 class="history-title">
-                    RZ/V AI Web
-                </h3>
-                <h6 align="right" >
                     2026.1.23
                 </h6>
             </i>
