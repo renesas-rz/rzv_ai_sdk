@@ -77,6 +77,27 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
+                2026.2.27
+            </h6>
+            <ul>
+                <li>
+                    <b>RZ/V Reference Applications</b> are updated.
+                    <ul>
+                        <li>
+                            Dashcam System Control Reference
+                            <ul>
+                                <li>
+                                    The output image can be saved on micro SD card for recording purposes.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications Page</b></a>.
+            <br>
+            <br>
+            <h6 align="right" >
                 2026.2.24
             </h6>
             <ul>
