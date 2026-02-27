@@ -122,17 +122,17 @@ For any enquiries, please use Renesas Technical Support.<br>
                     Input images are captured by two camera sensors via MIPI-I/F which are processed by the LSI-integrated ISP.<br>
                     Each image is subjected to video encoding and AI processing.<br>
                     AI processing can be selected from the Driver Monitoring, the gaze detection, etc..  <br>
-                    Output can be verified in two ways, depending on the selected sample application.  
+                    Output can be verified in two ways.  
                     <ul class="mb-0">
                         <li>
-                        The result can be displayed on PC via Ethernet (<b>"Sample application No.2"</b>);<br>
+                        The result can be displayed on PC via Ethernet;<br>
                         </li>
                         <li>
-                        The output image is saved on microSD card for recording purposes (<b>"Sample application No.4"</b>).<br>
+                        The output image is saved on microSD card for recording purposes.<br>
                         </li>
                     </ul>
                     <br>
-                    The application is included in the RZ/V ISP Support Package, and requires users to submit secure access request. 
+                    The application is included in the RZ/V ISP Support Package as <b>"Sample application No.2"</b>, and requires users to submit secure access request. 
                     <br><br>
                 </div>
                 <dl>
