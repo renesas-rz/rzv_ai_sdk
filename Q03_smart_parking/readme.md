@@ -24,7 +24,7 @@ It has 3 modes of running.
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
  </table>
 
@@ -58,7 +58,7 @@ FPS - 200/10 ->20
 
 >**Note:** All external devices will be attached to the board and does not require any driver installation (Plug n Play Type)
 #### Software Requirements 
-- Ubuntu 20.04 
+- Ubuntu 22.04 
 - OpenCV 4.x
 - C++11 or higher
 
@@ -131,23 +131,23 @@ For ease of deployment all the files required for deployment are provided on the
 
 Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Board.
 
-* At the home/root/tvm directory of the rootfs (SD Card) for RZ/V2L evaluation board.
+* At the home/weston/tvm directory of the rootfs (SD Card) for RZ/V2L evaluation board.
    * Copy the files present in [exe](./exe) directory, which are listed in the table above
    * Copy the generated parkinglot_detection application file, if the application file is built at [build stage](#application-build-stage)
    
-* Check if libtvm_runtime.so is there on `/usr/lib64/` directory of the rootfs (SD card) RZ/V2L board.
+* Check if libtvm_runtime.so is there on `/usr/lib/` directory of the rootfs (SD card) RZ/V2L board.
 
 
->**Note:** For the video file to get executed, ensure that the video file is present inside the home/root/tvm directory of the rootfs of the board.
+>**Note:** For the video file to get executed, ensure that the video file is present inside the home/weston/tvm directory of the rootfs of the board.
 
 #### Folder Structure in the board
 
 ```
 ├── usr/
-│   └── lib64/
+│   └── lib/
 │       └── libtvm_runtime.so
 └── home/
-    └── root/
+    └── weston/
         └── tvm/
             ├── parking_model/
             │   ├── deploy.json
@@ -161,15 +161,17 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 ## Application: Runtime Stage
 
 * For running the application, run the commands as shown below on the RZ/V2L Evaluation Board Kit console.
-    * Go to the `/home/root/tvm` directory of the rootfs
+    * Go to the `/home/weston/tvm` directory of the rootfs
     ```sh
-    cd /home/root/tvm
+    cd /home/weston/tvm
+    su #To change user to root
     ```
    * To run inference from video 
 
    ```sh 
    ./parkinglot_detection VIDEO <videofile_name.mp4>
    ```
+   >Note: On RZ/V2L, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2L AI SDK v7.00 and later. Please see [RZ/V2L AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2l-configuration.html)
 
    * To run inference from the MIPI camera feed 
 
@@ -181,6 +183,11 @@ Follow the steps mentioned below to deploy the project on RZ/V2L evaluation Boar
 
    ```sh
    ./parkinglot_detection USB
+   ```
+   * Run `exit` command to end the root user mode. 
+
+   ```sh
+   exit
    ```
 
 #### GUI for running the application
@@ -264,12 +271,12 @@ Estimated Total Size (MB): 0.67
 The network diagram will be as follows: 
 
 
-<img src=./model_info/model_parking.png width="110" height="480">
+<img src=./images/model_parking.png width="110" height="480">
 
 #### Dataset 
 The dataset used is the custom datasets. 
 Please contact on this email to access the dataset:
-- Shyam.N@quest-global.com
+- jibin.george1@quest-global.com
 
 ###### AI inference
 The AI inference time is 4-7 msec per slot. 
