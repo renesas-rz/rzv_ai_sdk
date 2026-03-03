@@ -23,7 +23,7 @@ It has 4 modes of running.
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -37,7 +37,7 @@ It has 4 modes of running.
 
 ### Demo
 
-Following is the demo for RZ/V2L EVK.  
+Following is the demo for RZ/V2H EVK.  
 <img src="./images/plant_leaf_disease.gif" width="480" height="320">
 
 ## Application: Requirements
@@ -127,12 +127,7 @@ Following is the demo for RZ/V2L EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment:
-        <ul class="mb-1">
-          <li>
-            RZ/V2L: Ubuntu 20.04
-          </li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
+      Operating Environment: Ubuntu 22.04
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -248,35 +243,16 @@ Each folder contains following items.
 
 
 ### Instruction
-1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/weston/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`plant_leaf_disease_classify` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
 
-    For RZ/V2L
-    ```
-    |-- usr
-    |   `-- lib64
-    |       `-- libtvm_runtime.so
-    `-- home
-        `-- root
-            `-- tvm
-                |-- plant_dis_onnx
-                |   |-- deploy.json
-                |   |-- deploy.params
-                |   `-- deploy.so 
-                |-- plant_leaf_disease_class.txt
-                |-- plant_leaf_disease_classify
-                |-- plantvid.mp4
-                `-- sampleimg.jpg
-    ```
-
-    For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -290,7 +266,7 @@ Each folder contains following items.
                 |   `-- deploy.so 
                 |-- plant_leaf_disease_class.txt
                 |-- plant_leaf_disease_classify
-                |-- plantvid.mp4                    # RZ/V2H only
+                |-- plantvid.mp4                    # RZ/V2L and RZ/V2H only
                 `-- sampleimg.jpg
     ```
 >**Note:** The directory name could be anything instead of `tvm`. If you copy the whole `EXE_DIR` folder on the board, you are not required to rename it `tvm`.
@@ -306,18 +282,12 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
-    - For RZ/V2L
-    ```sh
-    cd /home/root/tvm/
-    ```
 
-    - For RZ/V2H and RZ/V2N
    ```sh
     cd /home/weston/tvm
     su # To change user to root.
     ```
     >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
-
     
 2. Run the application.
     
@@ -337,6 +307,8 @@ After completion of the guide, the user is expected of following things.
     ```sh
     ./plant_leaf_disease_classify VIDEO plantvid.mp4
     ```
+    >Note: On RZ/V2L, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2L AI SDK v7.00 and later. Please see [RZ/V2L AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2l-configuration.html)
+    
     > Note:  On RZ/V2H, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2H AI SDK v6.00 and later.  Please see [RZ/V2H AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html).
 
     > Note : On RZ/V2N, VIDEO mode is not available since hardware decoding (H.264/H.265) cannot be used when DRP-AI is running. See [RZ/V2N AI SDK specification](https://renesas-rz.github.io/rzv_ai_sdk/6.00/ai-sdk.html#v2n-spec) for more details.
@@ -365,7 +337,7 @@ After completion of the guide, the user is expected of following things.
     - Top 5 Classification Results (Based on the score)  
         
 5. To terminate the application, double click the application window.
-6. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+6. Run `exit` command to end the root user mode.
     ```
     exit
     ```
