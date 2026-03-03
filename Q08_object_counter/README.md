@@ -47,7 +47,7 @@ Users can select detection target from following list
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -150,12 +150,7 @@ Users can select detection target from following list
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment:
-        <ul class="mb-1">
-          <li>
-            RZ/V2L: Ubuntu 20.04
-          </li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
+      Operating Environment: Ubuntu 22.04
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -261,8 +256,7 @@ For the ease of deployment all the deployable files and folders are provided in 
 Each folder contains following items.
 |File | Details |
 |:---|:---|
-|coco/tinyyolov3_onnx | **[RZ/V2L only]** Model object files for Coco Detection |
-|coco/coco_onnx | **[RZ/V2H and RZ/V2N]** Model object files for Coco Detection |
+|coco/coco_onnx | Model object files for Coco Detection |
 |coco/coco_class.txt | Label list for Coco Detection |
 |coco/config.ini | User input model config object | 
 |animal/animal_onnx | Model object files for Animal Detection |
@@ -276,48 +270,16 @@ Each folder contains following items.
 
 
 ### Instruction
-1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/weston/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`object_counter` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
-    - For RZ/V2L
-    ```
-    |-- usr
-    |   `-- lib64
-    |       `-- libtvm_runtime.so
-    `-- home
-        `-- root
-            `-- tvm
-                |-- coco
-                |   |-- tinyyolov3_onnx  
-                |   |   |-- deploy.json  
-                |   |   |-- deploy.params
-                |   |   `-- deploy.so    
-                |   |-- coco_class.txt 
-                |   `-- config.ini
-                |-- animal
-                |   |-- animal_onnx
-                |   |   |-- deploy.json
-                |   |   |-- deploy.params
-                |   |   `-- deploy.so
-                |   |-- animal_class.txt
-                |   `-- config.ini
-                |-- vehicle
-                |   |-- vehicle_onnx
-                |   |   |-- deploy.json
-                |   |   |-- deploy.params
-                |   |   `-- deploy.so
-                |   |-- vehicle_class.txt
-                |   `-- config.ini
-                |-- app_conf.ini
-                `-- object_counter
-    ```
-    - For RZ/V2H and RZ/V2N
+
     ```
     |-- usr
     |   `-- lib
@@ -362,11 +324,7 @@ After completion of the guide, the user is expected of following things.
 
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
-    - For RZ/V2L
-    ```sh
-    cd /home/root/tvm/
-    ```
-    - For RZ/V2H and RZ/V2N
+
     ```sh
     cd /home/weston/tvm/
     su # To change user to root.
@@ -422,7 +380,7 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).   -->
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
-5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+5. Run `exit` command to end the root user mode.
     ```
     exit
     ```
