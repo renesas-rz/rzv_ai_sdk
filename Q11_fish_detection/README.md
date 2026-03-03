@@ -31,7 +31,7 @@ It has following camera input modes.
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -135,12 +135,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment:
-        <ul class="mb-1">
-          <li>
-            RZ/V2L: Ubuntu 20.04
-          </li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
+      Operating Environment: Ubuntu 22.04
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -270,36 +265,15 @@ Each folder contains following items.
     ```sh
     mv Q11_fish_detection_deploy_*.so deploy.so
     ```
-3. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
+3. Copy the following files to the `/home/weston/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`fish_detector` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
+4. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
-
-   For RZ/V2L
-
-    ```
-    |-- usr
-    |   `-- lib64
-    |       `-- libtvm_runtime.so
-    `-- home
-        `-- root
-            `-- tvm
-                |-- fish_detection_model
-                |   |-- deploy.json
-                |   |-- deploy.params
-                |   `-- deploy.so
-                |-- config.ini
-                |-- fish_class.txt
-                `-- fish_detector
-    ```
-
-    For RZ/V2H and RZ/V2N
-
     ```
     |-- usr
     |   `-- lib
@@ -330,12 +304,6 @@ After completion of the guide, the user is expected of following things.
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
     
-   - For RZ/V2L
-    ```sh
-    cd /home/root/tvm
-    ```
-
-   - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm
     su # To change user to root.
@@ -377,7 +345,7 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
 5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
-6. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+6. Run `exit` command to end the root user mode.
     ```
     exit
     ```
