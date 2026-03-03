@@ -29,7 +29,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -131,12 +131,8 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment:
-        <ul class="mb-1">
-          <li>
-            RZ/V2L: Ubuntu 20.04
-          </li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
+      Operating Environment: Ubuntu 22.04
+      </li>
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -266,36 +262,16 @@ Each folder contains following items.
     ```sh
     mv Q01_footfall_counter_deploy_*.so deploy.so
     ```
-3. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
+3. Copy the following files to the `/home/weston/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`object_tracker` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
+4. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
 
-   For RZ/V2L
-    ```
-    |-- usr
-    |   `-- lib64
-    |       `-- libtvm_runtime.so
-    `-- home
-        `-- root
-            `-- tvm
-                |-- tinyyolov3_onnx            
-                |   |-- deploy.json    
-                |   |-- deploy.params  
-                |   `-- deploy.so      
-                |-- config.ini
-                |-- coco-labels-2014_2017.txt
-                |-- data.txt
-                |-- background_image.jpg
-                `-- object_tracker
-    ```
-
-   For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -303,6 +279,10 @@ Each folder contains following items.
     `-- home
         `-- weston
             `-- tvm
+                |-- tinyyolov3_onnx    #RZ/V2L Only        
+                |   |-- deploy.json    #RZ/V2L Only
+                |   |-- deploy.params  #RZ/V2L Only
+                |   `-- deploy.so      #RZ/V2L Only
                 |-- d-yolov3                  
                 |   |-- deploy.json           
                 |   |-- deploy.params        
@@ -328,11 +308,6 @@ After completion of the guide, the user is expected of following things.
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
 
-   - For RZ/V2L
-    ```sh
-    cd /home/root/tvm/
-    ```
-   - For RZ/V2H and RZ/V2N
    ```sh
     cd /home/weston/tvm
     su # To change user to root.
@@ -399,7 +374,7 @@ After completion of the guide, the user is expected of following things.
 
 6. To terminate the application, double click the application window.
 
-7. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+7. Run `exit` command to end the root user mode.
     ```
     exit
     ```
