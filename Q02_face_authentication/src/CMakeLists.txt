@@ -26,8 +26,8 @@ elseif(PRODUCT STREQUAL "V2N")
     add_definitions(-DV2H -DV2N)
     message("-- PRODUCT [V2N]")
 else()
-    include_directories(${CMAKE_SOURCE_DIR}/drp-ai_tvm_v230)
-    file(GLOB SOURCE *.cpp *.h ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v230/*.cpp ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v230/*.h)
+    include_directories(${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261)
+    file(GLOB SOURCE *.cpp *.h ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261/*.cpp ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261/*.h)
     add_definitions(-DV2L)
     message("-- PRODUCT [V2L]")
 endif()
@@ -35,6 +35,8 @@ endif()
 add_executable (${EXE_NAME}
 ${SOURCE}
 )
+
+target_compile_options(${EXE_NAME} PRIVATE -O2)
 
 target_include_directories(${EXE_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${EXE_NAME} ${OpenCV_LIBS})
