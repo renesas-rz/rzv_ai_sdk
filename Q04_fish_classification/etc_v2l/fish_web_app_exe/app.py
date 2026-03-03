@@ -38,19 +38,19 @@ def index():
         print(ping_output)
         if "1 received" in ping_output.decode("utf-8"):
             subprocess.Popen(['ssh', '-o StrictHostKeyChecking=no',
-                             f'root@{ip_address}', "mkdir -p /home/root/fish_delivery_app/"])
+                             f'root@{ip_address}', "mkdir -p /home/weston/fish_delivery_app/"])
             subprocess.Popen(['ssh', '-o StrictHostKeyChecking=no',
                              f'root@{ip_address}', "for pid in $( ps |  grep fish | awk '{print $1}'); do kill -9 $pid; done ;"])
             src = ["fish_classification",
                    "fish_classification_model", "fish_class_list.txt"]
-            dest = f"root@{ip_address}:/home/root/fish_delivery_app"
+            dest = f"root@{ip_address}:/home/weston/fish_delivery_app"
             commands = [
                 f"scp -r -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR {ele} {dest}" for ele in src]
             for command in commands:
                 process = subprocess.Popen(command, shell=True)
                 process.wait()
             subprocess.Popen(['ssh', '-o StrictHostKeyChecking=no',
-                             f'root@{ip_address}', "cd /home/root/fish_delivery_app/; chmod -R 777 ../fish_delivery_app/; ./fish_classification WS"])
+                             f'root@{ip_address}', "cd /home/weston/fish_delivery_app/; chmod -R 777 ../fish_delivery_app/; ./fish_classification WS"])
             return redirect(url_for('upload_photo'))
         else:
             return render_template('index.html', error=True)
@@ -87,7 +87,7 @@ def send_photo(photo):
         decoded_data, np.uint8), cv2.IMREAD_COLOR)
     cv2.imwrite("test.png", img_buffer)
     src = "test.png"
-    dest = f"root@{ip_address}:/home/root/fish_delivery_app"
+    dest = f"root@{ip_address}:/home/weston/fish_delivery_app"
     command = f"yes | scp {src} {dest}"
     subprocess.run(command, shell=True, capture_output=True)
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

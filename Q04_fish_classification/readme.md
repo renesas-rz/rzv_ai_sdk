@@ -25,7 +25,7 @@ It has 4 modes of running.
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -129,12 +129,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment:
-        <ul class="mb-1">
-          <li>
-            RZ/V2L: Ubuntu 20.04
-          </li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
+      Operating Environment: Ubuntu 22.04
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -247,34 +242,16 @@ Each folder contains following items.
 
 
 ### Instruction
-1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/weston/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`fish_classification` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
 
-   For RZ/V2L
-    ```
-    |-- usr
-    |   `-- lib64
-    |       `-- libtvm_runtime.so
-    `-- home
-        `-- root
-            `-- tvm
-                |-- fish_classification_model
-                |   |-- deploy.json
-                |   |-- deploy.params
-                |   `-- deploy.so
-                |-- Bangus.jpg
-                |-- fish_class_list.txt
-                |-- fish_classification
-                `-- output.mp4
-    ```
-   For RZ/V2H and RZ/V2N
     ```
     |-- usr
     |   `-- lib
@@ -287,7 +264,7 @@ Each folder contains following items.
                 |   |-- deploy.params
                 |   `-- deploy.so
                 |-- Bangus.jpg
-                |-- output.mp4                #RZ/V2H only
+                |-- output.mp4                #For RZ/V2H and RZ/V2L
                 |-- fish_class_list.txt
                 `-- fish_classification
     ```
@@ -306,18 +283,12 @@ After completion of the guide, the user is expected of following things.
 ### Instruction
 1. On Board terminal, go to the `tvm` directory of the rootfs.
 
-   - For RZ/V2L
-    ```sh
-    cd /home/root/tvm/
-    ```
-   - For RZ/V2H and RZ/V2N
    ```sh
     cd /home/weston/tvm/
     su # To change user to root.
     ```
     >**Note:** Root previlage is required to access root owned hardware devices the application use. Run `exit` to end the root user mode.
 
-    
 2. Run the application.
 
     1. For Image Mode
@@ -339,7 +310,9 @@ After completion of the guide, the user is expected of following things.
     ```sh
     ./fish_classification VIDEO output.mp4
     ```
-    > Note: Tested with video file format .mp4 and .avi  
+    > Note: Tested with video file format .mp4 and .avi 
+
+    >Note: On RZ/V2L, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2L AI SDK v7.00 and later. Please see [RZ/V2L AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2l-configuration.html) 
     
     > Note:  On RZ/V2H, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2H AI SDK v6.00 and later.  Please see [RZ/V2H AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html).
 
@@ -360,7 +333,7 @@ After completion of the guide, the user is expected of following things.
     - Top 5 Classification Results (Based on the score)
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
-5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+5. Run `exit` command to end the root user mode.
     ```
     exit
     ```
@@ -434,7 +407,7 @@ The number of classes: 1760
 ### AI inference time
 |Board | AI inference time|
 |:---|:---|
-|RZ/V2L EVK| Approximately 50 ms  |
+|RZ/V2L EVK| Approximately 55 ms  |
 |RZ/V2H EVK | Approximately 4 ms  |
 |RZ/V2N EVK | Approximately 6 ms  |
 
