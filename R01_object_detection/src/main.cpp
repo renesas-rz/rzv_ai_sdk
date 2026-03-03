@@ -651,16 +651,19 @@ int8_t print_result(Image* img, cv::Mat& proc_image)
 void mipi_cam_init(void)
 {
     int8_t ret = 0;
-    const char* commands[4] =
+    const char* commands[7] =
     {
         "media-ctl -d /dev/media0 -r",
+        "media-ctl -d /dev/media0 -l \"\'csi-10830400.csi2\':1 -> \'cru-ip-10830000.video\':0 [1]\"",
+        "media-ctl -d /dev/media0 -l \"\'cru-ip-10830000.video\':1 -> \'CRU output\':0 [1]\"",
+        "media-ctl -d /dev/media0 -V \"\'csi-10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\"",
         "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
-        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
-        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
+        "media-ctl -d /dev/media0 -V \"\'cru-ip-10830000.video\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+        "media-ctl -d /dev/media0 -V \"\'cru-ip-10830000.video\':1 [fmt:UYVY8_2X8/640x480 field:none]\""    
     };
 
     /* media-ctl command */
-    for (int i=0; i<4; i++)
+    for (int i=0; i<7; i++)
     {
         printf("%s\n", commands[i]);
         ret = system(commands[i]);
