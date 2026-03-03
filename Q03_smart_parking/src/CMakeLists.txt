@@ -9,9 +9,13 @@ include_directories(${TVM_ROOT}/3rdparty/dlpack/include)
 include_directories(${TVM_ROOT}/3rdparty/dmlc-core/include)
 include_directories(${TVM_ROOT}/3rdparty/compiler-rt)
 set(TVM_RUNTIME_LIB ${TVM_ROOT}/build_runtime/libtvm_runtime.so)
-set(SRC parkinglot_detection.cpp MeraDrpRuntimeWrapper.cpp)
+
+include_directories(${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261)
+file(GLOB SOURCE *.cpp *.h ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261/*.cpp ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261/*.h)
+
 set(EXE_NAME parkinglot_detection)
-add_executable(${EXE_NAME} ${SRC})
+add_executable(${EXE_NAME} ${SOURCE})
+
 target_include_directories(${EXE_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${EXE_NAME} ${OpenCV_LIBS})
 target_link_libraries(${EXE_NAME} ${TVM_RUNTIME_LIB} -pthread) 
