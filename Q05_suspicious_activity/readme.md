@@ -20,7 +20,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -124,12 +124,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment:
-        <ul class="mb-1">
-          <li>
-            RZ/V2L: Ubuntu 20.04
-          </li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
+      Operating Environment: Ubuntu 22.04
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -246,23 +241,23 @@ Each folder contains following items.
 >**Note:** For **V2L** the CNN and MLP part are combined into a single model and have a combined_module directory which contains object files for deployment.
 ### Instruction
 
-1. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
+1. Copy the following files to the `/home/weston/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`suspicious_activity` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-2. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
+2. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
 
 3. Folder structure in the rootfs (SD Card) would look like:
     
     For **RZ/V2L**:
     ```
     |-- usr
-    |   `-- lib64
+    |   `-- lib
     |       `-- libtvm_runtime.so
     `-- home
-        `-- root
+        `-- weston
             `-- tvm
                 |-- combined_module  
                 |   |-- deploy.json             
@@ -308,11 +303,6 @@ After completion of the guide, the user is expected of following things.
 
 1. On Board terminal, go to the `tvm` directory of the rootfs.
   
-    - For RZ/V2L
-    ```sh
-    cd /home/root/tvm/
-    ```
-    - For RZ/V2H and RZ/V2N
     ```sh
     cd /home/weston/tvm/
     su # To change user to root.
@@ -333,6 +323,7 @@ After completion of the guide, the user is expected of following things.
       ```sh
       ./suspicious_activity MIPI
       ```
+      >Note: On RZ/V2L, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2L AI SDK v7.00 and later. Please see [RZ/V2L AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2l-configuration.html)
 
       > Note:  On RZ/V2H, CPU codec (i.e., MPEG-4, etc.) is not available if you use RZ/V2H AI SDK v6.00 and later.  Please see [RZ/V2H AI SDK Configuration](https://renesas-rz.github.io/rzv_ai_sdk/latest/v2h-configuration.html).
 
@@ -355,7 +346,7 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
 4. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
-5. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+5. Run `exit` command to end the root user mode.
     ```
     exit
     ```
