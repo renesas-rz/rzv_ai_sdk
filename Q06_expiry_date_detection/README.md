@@ -40,7 +40,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-       <td>RZ/V2L AI SDK v5.00</td>
+       <td>RZ/V2L AI SDK v7.00</td>
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -143,12 +143,7 @@ Following is the demo for RZ/V2H EVK.
     <tr>
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
-      Operating Environment:
-        <ul class="mb-1">
-          <li>
-            RZ/V2L: Ubuntu 20.04
-          </li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
+      Operating Environment: Ubuntu 22.04
     </tr>
     <tr>
       <td>SD card reader</td>
@@ -222,41 +217,18 @@ E.g., for RZ/V2L, use the `rzv2l_ai_sdk_container` as the name of container crea
     ```sh
     cd ${PROJECT_PATH}/Q06_expiry_date_detection/src
     ```
-5. [RZ/V2L Only] Download the `boost` tar file
-   ```sh
-   wget https://archives.boost.io/release/1.81.0/source/boost_1_81_0.tar.bz2
-   ```
-   >**Note:** It is expected that the docker container is able to connect to the internet. If that's not the case, User can use the same command on the host PC to download the file. Make sure you are on the src folder present on the mounted `data` directory.
-
-6. [RZ/V2L Only] Extract tar file to the current location 
-   ```sh
-   tar -xvf boost_1_81_0.tar.bz2
-   ```
-
-7. [RZ/V2L Only] Copy the boost files to the `include` folder 
-
-    ```sh
-    mkdir -p include
-    cp -r boost_1_81_0/boost include/
-    ```
-8. [RZ/V2L Only] Remove boost files [Optional]
-
-    ```sh
-    rm boost_1_81_0.tar.bz2
-    rm -rf boost_1_81_0
-    ```
-9. Create and move to the `build` directory.
+5. Create and move to the `build` directory.
     ```sh
     mkdir -p build && cd build
     ```
-10. Build the application by following the commands below.  
+6. Build the application by following the commands below.  
    
     ```sh
     cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain/runtime.cmake ..
     make -j$(nproc)
     ```
     
-11. The following application file would be generated in the `${PROJECT_PATH}/Q06_expiry_date_detection/src/build` directory
+7. The following application file would be generated in the `${PROJECT_PATH}/Q06_expiry_date_detection/src/build` directory
     - date_extraction
 
 
@@ -302,13 +274,13 @@ Each folder contains following items.
     ```sh
     mv Q06_expiry_date_detection_deploy_*.so deploy.so
     ```
-3. Copy the following files to the `/home/*/tvm` directory of the rootfs (SD Card) for the board.
+3. Copy the following files to the `/home/weston/tvm` directory of the rootfs (SD Card) for the board.
     |File | Details |
     |:---|:---|
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`date_extraction` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib*` directory of the rootfs (SD card) on the board.
+4. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
 
 5. Folder structure in the rootfs (SD Card) would look like:
   
@@ -316,10 +288,10 @@ Each folder contains following items.
   
     ```
     |-- usr
-    |   `-- lib64
+    |   `-- lib
     |       `-- libtvm_runtime.so
     `-- home
-        `-- root
+        `-- weston
             `-- tvm
                 |-- date_detection_tinyyolov3 
                 |   |-- deploy.json           
@@ -369,11 +341,7 @@ After completion of the guide, the user is expected of following things.
     ```
 
 2. On Board terminal, go to the `tvm` directory of the rootfs.
-    - For RZ/V2L
-    ```sh
-    cd /home/root/tvm/
-    ```
-   - For RZ/V2H and RZ/V2N
+
     ```sh
     cd /home/weston/tvm
     su # To change user to root.
@@ -416,7 +384,7 @@ After completion of the guide, the user is expected of following things.
         - PostProcess: Processing time taken for AI post-processing.<br>(excluding the time for drawing on HDMI screen).  
         
 5. To terminate the application, switch the application window to the terminal by using `Super(windows key)+Tab` and press ENTER key on the terminal of the board.
-6. [FOR RZ/V2H and RZ/V2N] Run `exit` command to end the root user mode.
+6. Run `exit` command to end the root user mode.
     ```
     exit
     ```
