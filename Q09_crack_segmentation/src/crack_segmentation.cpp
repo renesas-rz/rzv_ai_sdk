@@ -266,25 +266,27 @@ uint32_t init_drpai(int drpai_fd)
  ******************************************/
 void mipi_cam_init(void)
 {
-    int ret = 0;
-    std::cout << "[INFO] MIPI CAM Init \n";
-    const char *commands[4] =
+    int8_t ret = 0;
+    const char* commands[7] =
     {
         "media-ctl -d /dev/media0 -r",
+        "media-ctl -d /dev/media0 -l \"\'csi-10830400.csi2\':1 -> \'cru-ip-10830000.video\':0 [1]\"",
+        "media-ctl -d /dev/media0 -l \"\'cru-ip-10830000.video\':1 -> \'CRU output\':0 [1]\"",
+        "media-ctl -d /dev/media0 -V \"\'csi-10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\"",
         "media-ctl -d /dev/media0 -V \"\'ov5645 0-003c\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
-        "media-ctl -d /dev/media0 -l \"\'rzg2l_csi2 10830400.csi2\':1 -> \'CRU output\':0 [1]\"",
-        "media-ctl -d /dev/media0 -V \"\'rzg2l_csi2 10830400.csi2\':1 [fmt:UYVY8_2X8/640x480 field:none]\""
+        "media-ctl -d /dev/media0 -V \"\'cru-ip-10830000.video\':0 [fmt:UYVY8_2X8/640x480 field:none]\"",
+        "media-ctl -d /dev/media0 -V \"\'cru-ip-10830000.video\':1 [fmt:UYVY8_2X8/640x480 field:none]\""    
     };
-
+ 
     /* media-ctl command */
-    for (int i = 0; i < 4; i++)
+    for (int i=0; i<7; i++)
     {
-        std::cout << commands[i] << "\n";
+        printf("%s\n", commands[i]);
         ret = system(commands[i]);
-        std::cout << "system ret = " << ret << "\n";
-        if (ret < 0)
+        printf("system ret = %d\n", ret);
+        if (ret<0)
         {
-            std::cout << "[ERROR]" << __func__ << ": failed media-ctl commands. index = " << i << "\n";
+            printf("%s: failed media-ctl commands. index = %d\n", __func__, i);
             return;
         }
     }
@@ -830,7 +832,7 @@ int main(int argc, char **argv)
             /* check the status of device */
             std::string media_port = query_device_status("CRU");
             /* gstremer pipeline to read input image source */
-            gstreamer_pipeline = "v4l2src device=" + media_port + " ! videoconvert ! appsink";
+            gstreamer_pipeline = "v4l2src device=" + media_port + " ! video/x-raw,format=YUY2,width=640,height=480 ! videoconvert ! appsink";
         }
         break;
         /* default case */
