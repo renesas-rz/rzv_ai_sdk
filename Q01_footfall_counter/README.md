@@ -132,7 +132,6 @@ Following is the demo for RZ/V2H EVK.
       <td>Linux PC</td>
       <td>Used to build application and setup microSD card.<br>
       Operating Environment: Ubuntu 22.04
-      </li>
     </tr>
     <tr>
       <td>SD card reader</td>

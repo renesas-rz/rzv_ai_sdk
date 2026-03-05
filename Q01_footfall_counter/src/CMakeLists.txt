@@ -34,8 +34,6 @@ add_executable (${EXE_NAME}
 ${SOURCE} 
 )
 
-target_compile_options(${EXE_NAME} PRIVATE -O3)
-
 TARGET_LINK_LIBRARIES(${EXE_NAME} pthread)
 TARGET_LINK_LIBRARIES(${EXE_NAME} jpeg)
 TARGET_LINK_LIBRARIES(${EXE_NAME} wayland-client wayland-cursor wayland-egl)
