@@ -36,8 +36,6 @@ add_executable (${EXE_NAME}
 ${SOURCE}
 )
 
-target_compile_options(${EXE_NAME} PRIVATE -O2)
-
 target_include_directories(${EXE_NAME} PUBLIC ${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${EXE_NAME} ${OpenCV_LIBS})
 target_link_libraries(${EXE_NAME} ${TVM_RUNTIME_LIB})
