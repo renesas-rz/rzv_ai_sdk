@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -24,7 +23,7 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 5.00
+                    Target Version: 7.00
                 </b>
             </h5>
         </div>
@@ -43,11 +42,13 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         Linux Components
                     </a>
                 </li>
+<!--
                 <li>
                     <a href="#v2l-limit">
                         Limitation
                     </a>
                 </li>
+-->
             </ul>
         </div>
         <br>
@@ -75,9 +76,14 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         Yocto Linux
                     </td>
                     <td>                <!-- Version -->
-                        Yocto version: 3.1.31 (Dunfell)
+                        Yocto version: 5.0.11 (Scarthgap)
+                        <a href="#footnote_v2l_linux_components">
+                            <sup>
+                                *1
+                            </sup>
+                        </a>
                         <br>
-                        Kernel version: 5.10.201-cip41
+                        Kernel version: 6.1.141-cip43
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
@@ -88,34 +94,21 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         OpenCV
                     </td>
                     <td>                <!-- Version -->
-                        4.1.0
+                        4.9.0
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
                     </td>
                 </tr>
                 <tr>
-                    <td rowspan="2">     <!-- Component -->
+                    <td>                <!-- Component -->
                         OpenCL
                     </td>
                     <td>                <!-- Version -->
-                        1.1, 1.2, 2.0 Full Profile
+                        2.0 Full Profile
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
-                    </td>
-                </tr>
-                <tr>
-                                        <!-- Component: OpenCL -->
-                    <td>                <!-- Version -->
-                        3.0 Full Profile
-                    </td>
-                    <td>                <!-- Explanation -->
-                        <h6 class="mb-1">
-                            This is not guaranteed to be 
-                            backwards compatible with the 
-                            previous versions of OpenCL.
-                        </h6>
                     </td>
                 </tr>
                 <tr>
@@ -134,7 +127,7 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         OpenMAX IL
                     </td>
                     <td>                <!-- Version -->
-                        1.1
+                        1.1.2
                     </td>
                     <td>                <!-- Explanation -->
                         <h6 class="mb-1">
@@ -147,10 +140,17 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <br>
             <ul>
                 <li>
-                    <code>references/core-image-weston-smarc-rzv2l.manifest</code> in RZ/V2L AI SDK.
+                    <code>references/core-image-weston-smarc-rzv2l.rootfs.manifest</code> in RZ/V2L AI SDK.
                 </li>
             </ul>
+            <div class="note">
+                <span class="note-title" id="footnote_v2l_linux_components">Note1</span>
+                GStreamer libav plugin is no longer installed from Yocto version 5.0 (Scarthgap).<br>
+                This means that codecs such as MPEG-1, MPEG-2, and MPEG-4 are no longer available in AI SDK.<br>
+                You are recommended to use H.264.<br>
+            </div>
         </div>
+<!--
         <div class="col-12">
             <h3 id="v2l-limit">
                 Limitations
@@ -165,6 +165,7 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             </ul>
             <br>
         </div>
+-->
     </div>
 <!-- Footer -->
     <div class="row">

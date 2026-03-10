@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -65,10 +64,12 @@ RZ/V AI SDK Developer's Guide
                 <td>D1</td>
                 <td><a href="#D1">Change the size of the microSD card image in WIC format</a></td>
                 <td>
+                  RZ/V2L<br>
                   RZ/V2H<br>
                   RZ/V2N
                 </td>
                 <td>
+                  <!-- V2L -->AI SDK Source Code v7.00<br>
                   <!-- V2H -->AI SDK Source Code v6.00<br>
                   <!-- V2N -->AI SDK Source Code v6.00
                 </td>
@@ -77,7 +78,7 @@ RZ/V AI SDK Developer's Guide
                 <td>D2</td>
                 <td><a href="#D2">How to boot from QSPI</a></td>
                 <td>RZ/V2L</td>
-                <td>AI SDK Source Code v5.00</td>
+                <td>AI SDK Source Code v7.00</td>
               </tr>
               <tr>
                 <td>D3</td>
@@ -121,19 +122,34 @@ RZ/V AI SDK Developer's Guide
                   <!-- V2N -->AI SDK Source Code v6.00
                 </td>
               </tr>
+<!--
+              <tr>
+                <td>D7</td>
+                <td><a href="#D7">How to add the Simple ISP</a></td>
+                <td>
+                  RZ/V2L
+                </td>
+                <td>
+                  AI SDK Source Code v7.00
+                </td>
+              </tr>
+-->
             </table>
         </div>
         <br>
 <!-- D1. Change the size of the microSD card image in WIC format -->
         <div class="col-12">
           <!-- Don’t change ID "D1" to prevent reference errors -->
-          <h3 id="D1">D1. For RZ/V2H, RZ/V2N: Change the size of the microSD card image in WIC format</h3>
+          <h3 id="D1">D1. For RZ/V2L, RZ/V2H, RZ/V2N: Change the size of the microSD card image in WIC format</h3>
           This section explains how to change the microSD card image size by changing the build settings of the WIC file.<br>
           <div class="note">
             <span class="note-title">Note</span>
             This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> below.<br>
-            <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-9" target="_blank" rel="noopener noreferrer">Step 3-9</a></li>
-            <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-9" target="_blank" rel="noopener noreferrer">Step 3-9</a></li>
+            <ul class="mb-1">
+              <li><b>RZ/V2L</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}#step3-10" target="_blank" rel="noopener noreferrer">Step 3-10</a></li>
+              <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-9" target="_blank" rel="noopener noreferrer">Step 3-9</a></li>
+              <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-9" target="_blank" rel="noopener noreferrer">Step 3-9</a></li>
+            </ul>
           </div>
           <ol>
             <li>Open <b><code>${YOCTO_WORK}/build/conf/local.conf</code></b> file in a text editor.
@@ -196,8 +212,11 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">6291456</mark>"
           </ol>
         After this procedure, please proceed to <b><span style="color: #2a289d;">the step in How to build RZ/V AI SDK Source Code</span></b> below to build the Linux kernel files.
         <br>
-        <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-10">Step 3-10</a></li>
-        <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-10">Step 3-10</a></li>
+        <ul class="mb-1">
+          <li><b>RZ/V2L</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}#step3-11">Step 3-11</a></li>
+          <li><b>RZ/V2H</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3-10">Step 3-10</a></li>
+          <li><b>RZ/V2N</b>: <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3-10">Step 3-10</a></li>
+        </ul>
         <br>
         </div>
 <!-- D2. For RZ/V2L: How to boot from QSPI -->
@@ -280,7 +299,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">6291456</mark>"
                       <td>${WORK}/board_setup/QSPI/bootloader</td>
                       <td rowspan="2">
                         Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot<br>
-                        bl2_bp-smarc-rzv2l_pmic.srec<br>
+                        bl2_bp_spi-smarc-rzv2l_pmic.srec<br>
                         fip-smarc-rzv2l_pmic.srec
                       </td>
                       <td>
@@ -375,7 +394,7 @@ please send !
                   If following message is displayed, the file transfer suceeded.
 {% highlight console %}
 Flash writer for RZ/V2 Series Vx.xx xxx.xx,20xx
-Product Code : RZ/V2L
+ Product Code : RZ/V2L
 >
 {% endhighlight %}
                 </li><br>
@@ -385,7 +404,7 @@ Product Code : RZ/V2L
 ===== Qspi writing of RZ/G2 Board Command =============
 Load Program to Spiflash
 Writes to any of SPI address.
-Micron : MT25QU512
+ Micron : MT25QU512
 Program Top Address & Qspi Save Address
 ===== Please Input Program Top Address ============
   Please Input : H'
@@ -405,7 +424,7 @@ Work RAM(H'50000000-H'53FFFFFF) Clear....
 please send ! ('.' & CR stop load)
 {% endhighlight %}
                 </li><br>
-                <li>After the "please send!" message, open "File" > "Send file..." and <b>send the <code>bl2_bp-smarc-rzv2l_pmic.srec</code> file</b> as a text from the terminal software.
+                <li>After the "please send!" message, open "File" > "Send file..." and <b>send the <code>bl2_bp_spi-smarc-rzv2l_pmic.srec</code> file</b> as a text from the terminal software.
                 </li><br>
                 <li>In case a message to prompt to clear data like below, please enter "<code>y</code>".
 {% highlight console %}
@@ -416,8 +435,8 @@ SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% highlight console %}
 SAVE SPI-FLASH.......
 ======= Qspi Save Information =================
-SpiFlashMemory Stat Address : H'00000000
-SpiFlashMemory End Address : H'00009A80
+ SpiFlashMemory Stat Address : H'00000000
+ SpiFlashMemory End Address  : H'00009A80
 ===========================================================
 {% endhighlight %}
                 </li><br>
@@ -427,7 +446,7 @@ SpiFlashMemory End Address : H'00009A80
 ===== Qspi writing of RZ/G2 Board Command =============
 Load Program to Spiflash
 Writes to any of SPI address.
-Micron : MT25QU512
+ Micron : MT25QU512
 Program Top Address & Qspi Save Address
 ===== Please Input Program Top Address ============
   Please Input : H'
@@ -440,9 +459,13 @@ Program Top Address & Qspi Save Address
   Please Input : H'
 {% endhighlight %}
                 </li><br>
-                <li>Enter "<code>1D200</code>". The log continues.
+                <li>Enter "<code>20000</code>". The log continues.
+                  <div class="note">
+                    <span class="note-title">Note</span>
+                    From AI SDK v7.00, QSPI Save address for fip-xxx.srec is changed to H’20000 with the latest update from TF-A.
+                  </div>
 {% highlight console %}
-  Please Input : H'1D200
+  Please Input : H'20000
 Work RAM(H'50000000-H'53FFFFFF) Clear....
 please send ! ('.' & CR stop load)
 {% endhighlight %}
@@ -458,7 +481,7 @@ SPI Data Clear(H'FF) Check : H'00000000-0000FFFF,Clear OK?(y/n)
 {% highlight console %}
 SAVE SPI-FLASH.......
 ======= Qspi Save Information =================
-SpiFlashMemory Stat Address : H'0001D200
+SpiFlashMemory Stat Address : H'00020000
 SpiFlashMemory End Address : H'000CC73F
 ===========================================================
 {% endhighlight %}
@@ -2060,6 +2083,32 @@ MACHINE=rzv2n-evk bitbake core-image-weston
             <br>
           This is the end of How to change the DRAM size.<br>
         </div>
+        <!-- D7. Add the RZ/V2L Simple ISP function -->
+<!--
+        <div class="col-12">
+          <!-- Don’t change ID "D7" to prevent reference errors 
+          <h3 id="D7">D7. For RZ/V2L: Add the RZ/V2L Simple ISP function</h3>
+          This section explains how to add the RZ/V2L Simple ISP function.<br>
+          Simple ISP is that specializes in outputting an image having high color-reproducibility through the color-matrix correction and 3D noise reduction. This can be used to obtain image having high color-reproducibility which is suitable for AI processing, and images having a more natural color representation to the naked eye.<br>
+          For more details, please refer to <a href="https://www.renesas.com/software-tool/rzv2l-isp-support-package" target="_blank" rel="noopener noreferrer">RZ/V2L ISP Support Package</a>.
+          <div class="note">
+            <span class="note-title">Note</span>
+            <ul class="mb-1">
+              <li>Following instruction assumes that you have completed <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}#step3-7" target="_blank" rel="noopener noreferrer">Step 3-7 in How to build RZ/V2L AI SDK Source Code</a>.<br></li>
+              <li>When applying the RZ/V2L Simple ISP function, AI applications become unusable. Please apply this function only if you need to use the Simple ISP features.</li>
+            </ul>
+          </div>
+          <ol>
+            <li>Run the following commands to add layers for Simple ISP to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
+{% highlight shell%}
+bitbake-layers add-layer ../meta-rz-features/meta-rz-isp
+{% endhighlight %}
+            </li>
+          </ol>
+          After this procedure, please proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}#step3-8">Step 3-8 in How to build RZ/V2L AI SDK Source Code</a> to build the Linux Kernel files.
+          <br>
+        </div>
+-->
     </div>
 </div>
 <!-- Footer -->

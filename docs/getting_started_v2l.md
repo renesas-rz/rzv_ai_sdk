@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -19,7 +18,7 @@ RZ/V2L EVK Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2L Evaluation Board Kit</b>.</h5>
 
-<h5>Supported version: <b>RZ/V2L AI SDK v5.00</b></h5>
+<h5>Supported version: <b>RZ/V2L AI SDK v7.00</b></h5>
 
 <details class="boxdetails" open>
   <summary>Terminology</summary>
@@ -189,7 +188,8 @@ RZ/V2L EVK Getting Started
         <div class="contenteMMC-bg">
           <span class="ContenteMMC-title">For QSPI</span>
           microSD card needs to contain the Linux kernel and root filesystem to boot-up the board.<br>
-          You can use Linux PC to format the microSD card and expand the kernel and the root filesystem using SD card reader.<br>
+          RZ/V2L AI SDK supports the WIC format for SD card image.<br>
+          You can use Linux PC to write the SD card image into microSD card with SD card reader.<br>
           Bootloaders must be written in Flash ROM on the board.
           You can use Windows PC to write the bootloaders on Flash ROM.
         </div>
@@ -199,57 +199,20 @@ RZ/V2L EVK Getting Started
           If you have already setup the microSD card and the bootloader written in Flash ROM on the board, <span class="skip">skip this step</span> and proceed to <a href="#step7-2" target="_blank" rel="noopener noreferrer">the next procedure (2. Deploy Application to the Board)</a>. 
         </div>
       </div>
+      <div class="note">
+        <span class="note-title">Note</span>
+        The size of WIC format SD card image is 16GB.<br>
+        If you would like to expand the SD card image size, please build the RZ/V2L AI SDK Source Code according to <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}" target="_blank" rel="noopener noreferrer">How to Build RZ/V2L AI SDK</a>.
+      </div>
       <ol>
         <h5 id="step7-1a">
-          <li type="A">Format SD card<br></li>
+          <li type="A">Install Necessary Software<br></li>
         </h5>
-        Create the following partitions on microSD card according to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A2" target="_blank" rel="noopener noreferrer">Appendix: A1. Format SD card</a>.<br>
-        <div class="ContenteSD contenteSD-bg">
-          <span class="ContenteSD-title">For eSD</span>
-          <table class="gstable">
-            <tr>
-              <th>Type/Number</th>
-              <th>Size</th>
-              <th>Type of Filesystem</th>
-              <th>Contents</th>
-            </tr>
-            <tr>
-              <td>Primary #1</td>
-              <td>500MB (minimum 128MB)</td>
-              <td>Ext4</td>
-              <td>Linux kernel<br>Device tree</td>
-            </tr>
-            <tr>
-              <td>Primary #2</td>
-              <td>All remaining</td>
-              <td>Ext4</td>
-              <td>Root filesystem</td>
-            </tr>
-          </table>
-        </div>
-        <div class="ContenteMMC contenteMMC-bg">
-          <span class="ContenteMMC-title">For QSPI</span>
-          <table class="gstable">
-            <tr>
-              <th>Type/Number</th>
-              <th>Size</th>
-              <th>Type of Filesystem</th>
-              <th>Contents</th>
-            </tr>
-            <tr>
-              <td>Primary #1</td>
-              <td>500MB (minimum 128MB)</td>
-              <td>FAT32</td>
-              <td>Linux kernel<br>Device tree</td>
-            </tr>
-            <tr>
-              <td>Primary #2</td>
-              <td>All remaining</td>
-              <td>Ext4</td>
-              <td>Root filesystem</td>
-            </tr>
-          </table>
-        </div>
+        As explained in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step2" target="_blank" rel="noopener noreferrer">Necessary Software of Getting Started Step 2</a>, make sure that <code>bmap-tools</code> is installed on Linux PC.<br>
+        If you have not installed the <code>bmap-tools</code>, install it using following command on Host PC (Not in the docker container).<br>
+{% highlight shell %}
+sudo apt install bmap-tools
+{% endhighlight %}
         <br>
         <h5 id="step7-1b">
           <li type="A">Write the Linux files to SD card</li>
@@ -257,168 +220,167 @@ RZ/V2L EVK Getting Started
         <div class="ContenteSD contenteSD-bg">
           <span class="ContenteSD-title">For eSD</span>
           At first, run the below command to decompress <code>${WORK}/board_setup/eSD.zip</code>.<br>
-
 {% highlight shell %}
 cd ${WORK}/board_setup
 unzip eSD.zip
 {% endhighlight %}
-          Following three files are necessary, which must be placed on each partitions on microSD card.<br>
+          Following files are necessary.<br>
           They are in the <code>${WORK}/board_setup/eSD</code> directory.
           <br><br>
-          <table class="gstable">
-            <tr>
-              <th>File</th>
-              <th>Description</th>
-              <th>microSD card partition</th>
-            </tr>
-            <tr>
-              <td>Image-smarc-rzv2l.bin</td>
-              <td>Linux kernel image<br>(The boot program) </td>
-              <td>Partition 1</td>
-            </tr>
-            <tr>
-              <td>Image-r9a07g054l2-smarc.dtb </td>
-              <td>Linux device tree file<br>(The configuration file for booting) </td>
-              <td>Partition 1</td>
-            </tr>
-            <tr>
-              <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
-              <td>Linux Root filesystem</td>
-              <td>Partition 2</td>
-            </tr>
-          </table>
-          Follow the instruction below to prepare the microSD card.<br>
-          <div class="warning">
-            <span class="warning-title">Warning</span>
-              Here, we use "<b><code>/dev/sdb</code></b>" as microSD card device name.
-          </div>
-          <ol>
-            <li>Check if the two partitions are created successfully by running <code>df</code> command.<br>
-{% highlight shell %}
-df -h
-Filesystem 	Size		Used	Avail	Use %	Mounted on	
-…		…		…	…	…	…
-/dev/sdb1		…		…	…	…	…	
-/dev/sdb2		…		…	…	…	…	
-{% endhighlight %}
-              <div class="warning">
-                  <span class="warning-title">Warning</span>
-                  Device name of microSD card, <code>/dev/sdb</code> may differ depending on your environment.<br>
-              </div>
-            </li>
-            <br>
-            <li>Run the following commands to setup the partition 1.<br>
-{% highlight shell %}
-sudo mkdir -p /mnt/sd
-sudo mount /dev/sdb1 /mnt/sd
-sudo cp $WORK/board_setup/eSD/Image-smarc-rzv2l.bin /mnt/sd
-sudo cp $WORK/board_setup/eSD/Image-r9a07g054l2-smarc.dtb /mnt/sd
-sync
-sudo umount /mnt/sd
-{% endhighlight %}
-              <div class="warning">
-                <span class="warning-title">Warning</span>
-                Change <code>/dev/sdb</code> to your microSD card device name.<br>
-              </div>
-            </li>
-            <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.<br>
-{% highlight shell %}
-sudo mount /dev/sdb2 /mnt/sd
-sudo tar xfj $WORK/board_setup/eSD/core-image-weston-smarc-rzv2l.tar.bz2 -C /mnt/sd
-sudo cp $WORK/ai_sdk_setup/data/libtvm_runtime.so /mnt/sd/usr/lib64
-sync
-sudo umount /mnt/sd
-{% endhighlight %}
-              <div class="warning">
-                <span class="warning-title">Warning</span>
-                Change <code>/dev/sdb</code> to your microSD card device name.<br>
-              </div>
-            </li>
-          </ol>
         </div>
         <div class="ContenteMMC contenteMMC-bg">
           <span class="ContenteMMC-title">For QSPI</span>
-          Following three files are necessary, which must be placed on each partitions on microSD card.<br>
-          They are in the <code>${WORK}/board_setup/QSPI</code> directory.
-          <br><br>
-          <table class="gstable">
-            <tr>
-              <th>File</th>
-              <th>Description</th>
-              <th>microSD card partition</th>
-            </tr>
-            <tr>
-              <td>Image-smarc-rzv2l.bin</td>
-              <td>Linux kernel image<br>(The boot program) </td>
-              <td>Partition 1</td>
-            </tr>
-            <tr>
-              <td>Image-r9a07g054l2-smarc.dtb </td>
-              <td>Linux device tree file<br>(The configuration file for booting) </td>
-              <td>Partition 1</td>
-            </tr>
-            <tr>
-              <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
-              <td>Linux Root filesystem</td>
-              <td>Partition 2</td>
-            </tr>
-          </table>
-          <ol>
-            <li>Run the below command to decompress <code>${WORK}/board_setup/QSPI.zip</code>.<br>
-
+          Run the below command to decompress <code>${WORK}/board_setup/QSPI.zip</code>.<br>
 {% highlight shell %}
 cd ${WORK}/board_setup
 unzip QSPI.zip
 {% endhighlight %}
-            </li>
-            <li>Insert the microSD card to Linux PC.
-            </li><br>
-            <li>
-              Check if the two partitions are created successfully by running <code>df</code> command.<br>
+        Following files are necessary.<br>
+        They are in the <code>${WORK}/board_setup/QSPI</code> directory.
+        <br><br>
+        </div>
+        <table class="gstable">
+          <tr>
+            <th>File</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>core-image-weston-smarc-rzv2l.rootfs.wic.bmap</td>
+            <td rowspan="2">SD card image</td>
+          </tr>
+          <tr>
+            <td>core-image-weston-smarc-rzv2l.rootfs.wic.gz</td>
+          </tr>
+        </table>
+        Follow the instruction below to prepare the microSD card.<br>
+        <ol>
+          <li>Before inserting the microSD card to your Linux PC, open the terminal on Linux PC and run the following command to check the devices without microSD card.<br>
+{% highlight shell %}
+lsblk
+{% endhighlight %}
+            Following is the example output.<br>
+{% highlight shell %}
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda 8:0 0 30.9G 0 disk
+├─sda1 8:1 0 512M 0 part /boot/efi
+├─sda2 8:2 0 1K 0 part
+└─sda5 8:5 0 30.3G 0 part /
+sr0 11:0 1 1024M 0 rom
+{% endhighlight %}
+          </li><br>
+          <li>Insert the microSD card to your Linux PC and run the following command again.<br>
+{% highlight shell %}
+lsblk
+{% endhighlight %}
+          </li><br>
+          <li>Check the output and confirm the name appeared. This would be your microSD card device name.<br>
+            <ul>
+              <li>Following is the example output.<br>
+{% highlight shell %}
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sda 8:0 0 30.9G 0 disk
+├─sda1 8:1 0 512M 0 part /boot/efi
+├─sda2 8:2 0 1K 0 part
+└─sda5 8:5 0 30.3G 0 part /
+sdb 8:16 1 29.7G 0 disk
+└─sdb1 8:17 1 29.7G 0 part
+sr0 11:0 1 1024M 0 rom
+{% endhighlight %}
+              </li><br>
+              <li>In this case, followings are your microSD card configuration.
+                <ul>
+                  <li><b><code>/dev/sdb</code></b>: The device name for the entire microSD card.
+                  </li>
+                  <li><b><code>/dev/sdb1</code></b>: The partition name in microSD card.  There may be multiple <code>sdb*</code> depending on the microSD card.
+                  </li>
+                </ul>
+                <div class="warning">
+                  <span class="warning-title">Warning</span>
+                  Be careful not to use the name of other device since it may destruct your computer filesystem.
+                </div>
+              </li>
+            </ul>
+          </li><br>
+          <li>To use bmaptools, microSD card partitions must be unmounted.<br>
+            Run the following command to check the automatically mounted microSD card partitions.<br>
 {% highlight shell %}
 df -h
-Filesystem 	Size		Used	Avail	Use %	Mounted on	
-…		…		…	…	…	…
-/dev/sdb1		…		…	…	…	…	
-/dev/sdb2		…		…	…	…	…	
 {% endhighlight %}
-              <div class="warning">
-                <span class="warning-title">Warning</span>
-                Device name of microSD card, <code>/dev/sdb</code>, may differ depending on your environment.
-              </div>
-            </li><br>
-            <li>
-              Run the following commands to setup the partition 1.<br>
+          </li>
+          <li>
+            Check the output and find the mount point, which is "<code>/media/user/9016-4EF8</code>" in the following example.
+{% highlight shell%}
+Filesystem      Size  Used Avail Use% Mounted on
+:
+snip
+:
+/dev/sdb1        15G   32K   15G   1% /media/user/9016-4EF8
+{% endhighlight %}
+            <div class="warning">
+              <span class="warning-title">Warning</span>
+              Here, we use "<b><code>/dev/sdb</code></b>" as microSD card device name.
+            </div>
+          </li>
+          <li>
+            Unmount the automatically mounted partitions.
+{% highlight shell%}
+sudo umount /media/user/9016-4EF8
+{% endhighlight %}
+            <div class="note">
+              <span class="note-title">Note</span>
+              If there are more than one partitions on microSD card, unmount all partitions.
+            </div>
+          </li>
+          <li>Run the following command to write SD card image.<br>
+            <div class="ContenteSD contenteSD-bg">
+              <span class="ContenteSD-title">For eSD</span>
 {% highlight shell %}
-sudo mkdir -p /mnt/sd
-sudo mount /dev/sdb1 /mnt/sd
-sudo cp $WORK/board_setup/QSPI/Image-smarc-rzv2l.bin /mnt/sd
-sudo cp $WORK/board_setup/QSPI/Image-r9a07g054l2-smarc.dtb /mnt/sd
-sync
-sudo umount /mnt/sd
+cd ${WORK}/board_setup/eSD
+sudo bmaptool copy --bmap core-image-weston-smarc-rzv2l.rootfs.wic.bmap core-image-weston-smarc-rzv2l.rootfs.wic.gz /dev/sdb
 {% endhighlight %}
-              <div class="warning">
-                <span class="warning-title">Warning</span>
-                Change <code>/dev/sdb</code>, to your microSD card device name.
-              </div>
-            </li><br>
-            <li>Run the following commands to setup the partition 2, which is the root filesystem of the board.
+            </div>
+            <div class="ContenteMMC ContenteMMC-bg">
+              <span class="ContenteMMC-title">For QSPI</span>
 {% highlight shell %}
-sudo mount /dev/sdb2 /mnt/sd
-sudo tar xfj $WORK/board_setup/QSPI/core-image-weston-smarc-rzv2l.tar.bz2 -C /mnt/sd
-sudo cp $WORK/ai_sdk_setup/data/libtvm_runtime.so /mnt/sd/usr/lib64
-sync
-sudo umount /mnt/sd
+cd ${WORK}/board_setup/QSPI
+sudo bmaptool copy --bmap core-image-weston-smarc-rzv2l.rootfs.wic.bmap core-image-weston-smarc-rzv2l.rootfs.wic.gz /dev/sdb
 {% endhighlight %}
-              <div class="warning">
-                <span class="warning-title">Warning</span>
-                Change <code>/dev/sdb</code>, to your microSD card device name.
-              </div>
-              <br>
-              <div class="note">
-                <span class="note-title">Note</span>
-                If you would like to eject the microSD card, please run following command and remove the microSD card from Linux PC.
-                <br>
+            </div>
+            <div class="warning">
+              <span class="warning-title">Warning</span>
+              Change <code>/dev/sdb</code> to your microSD card device name.<br>
+            </div>
+          </li>
+          <li>
+            Eject microSD card and insert it again to mount the partitions.<br><br>
+          </li>
+          <li>
+            Run the following command to check two partitions are created on microSD card.<br>
+{% highlight shell %}
+df -h
+{% endhighlight %}
+            <ul>
+              <li>
+                If the command shows following log, two partitions are created on microSD card successfully.<br>
+{% highlight shell %}
+Filesystem      Size  Used Avail Use% Mounted on
+:
+snip
+:
+/dev/sdb1        24M  8.2M   16M  35% /media/user/bootloader
+/dev/sdb2        12G  2.1G  8.4G  20% /media/user/root
+{% endhighlight %}
+                <div class="warning">
+                  <span class="warning-title">Warning</span>
+                  Here, we use "<b><code>/dev/sdb</code></b>" as microSD card device name.
+                </div>
+              </li>
+            </ul>
+          </li>
+          <div class="note">
+            <span class="note-title">Note</span>
+            If you would like to eject the microSD card, please run following command and remove the microSD card from Linux PC.
+            <br>
 {% highlight shell %}
 sudo eject /dev/sdb
 {% endhighlight %}
@@ -427,59 +389,14 @@ sudo eject /dev/sdb
                   Change <code>/dev/sdb</code> to your microSD card device name.<br>
                 </div>
               </div>
-            </li>
           </ol>
-        </div>
-      <h5 id="step7-1c">
-        <li type="A">
-          <span class="ContenteSD">
-          Write the bootloaders to SD card
-          </span>
+        <h5 id="step7-1c">
           <span class="ContenteMMC">
-          Write the bootloaders to Flash ROM
+            <li type="A">
+              Write the bootloaders to Flash ROM
+            </li>
           </span>
-        </li>
-      </h5>
-      <div class="ContenteSD">
-        <div class="contenteSD-bg">
-          <span class="ContenteSD-title">For eSD</span>
-            Before booting up the board, you must write the latest bootloaders to microSD card.<br>
-            This procedures needs to be done only once as long as you use the same version of AI SDK.<br>
-            <br>
-            There are three files in <code>${WORK}/board_setup/eSD/bootloader</code> to boot up the board.<br>
-            <ul>
-              <li><code>bl2_bp_esd-smarc-rzv2l_pmic.bin</code></li>
-              <li><code>bl2-smarc-rzv2l_pmic.bin</code></li>
-              <li><code>fip-smarc-rzv2l_pmic.bin</code></li>
-            </ul>
-            <br>
-            Run the following commands to write these files to the microSD card to boot for eSD.<br>
-{% highlight shell %}
-cd ${WORK}/board_setup/eSD/bootloader
-sudo dd if=bl2_bp_esd-smarc-rzv2l_pmic.bin of=/dev/sdb seek=1 count=1
-sudo dd if=bl2-smarc-rzv2l_pmic.bin of=/dev/sdb seek=8
-sudo dd if=fip-smarc-rzv2l_pmic.bin of=/dev/sdb seek=128
-sync
-{% endhighlight %}
-            <div class="warning">
-              <span class="warning-title">Warning</span>
-              Change <code>/dev/sdb</code>, to your microSD card device name.<br>
-            </div>
-            <br>
-            <div class="note">
-              <span class="note-title">Note</span>
-              If you would like to eject the microSD card, please run following command and remove the microSD card from Linux PC.
-              <br>
-{% highlight shell %}
-sudo eject /dev/sdb
-{% endhighlight %}
-              <div class="warning">
-                <span class="warning-title">Warning</span>
-                Change <code>/dev/sdb</code> to your microSD card device name.<br>
-              </div>
-            </div>
-          </div>
-        </div>
+        </h5>
         <div class="ContenteMMC">
           <div class="contenteMMC-bg">
             <span class="ContenteMMC-title">For QSPI</span>
@@ -498,6 +415,7 @@ sudo eject /dev/sdb
           </li><br>
           <li>Run the following command to mount the partition 2, which contains the root filesystem.<br>
 {% highlight shell %}
+sudo mkdir /mnt/sd -p
 sudo mount /dev/sdb2 /mnt/sd
 {% endhighlight %}
             <div class="warning">
@@ -507,7 +425,7 @@ sudo mount /dev/sdb2 /mnt/sd
           </li>
           <li>Create the application directory on root filesystem.
 {% highlight shell %}
-sudo mkdir /mnt/sd/home/root/tvm
+sudo mkdir /mnt/sd/home/weston/tvm
 {% endhighlight %}
             <div class="note">
               <span class="note-title">Note</span>
@@ -522,20 +440,20 @@ sudo mkdir /mnt/sd/home/root/tvm
             <br><br>
             <div class="box1">
               <u><b>Example:</b></u><br>
-              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.20/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.20/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
+              In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
             </div>
             <br>
             Use the following command to copy the files to root filesystem.
             <br><br>
 {% highlight shell %}
-sudo cp $WORK/ai_sdk_setup/data/<Path to target file>/<filename> /mnt/sd/home/root/tvm 
+sudo cp $WORK/ai_sdk_setup/data/<Path to target file>/<filename> /mnt/sd/home/weston/tvm  
 {% endhighlight %}
             <br>
             <p id="deploy-option2"><b>Option 2: &lt;Application 2&gt;</b></p>
             Run the following command to copy the whole repository to the root filesystem.
             <br><br>
 {% highlight shell %}
-sudo cp $WORK/ai_sdk_setup/data/<Path to repository>/RZV2L_AiLibrary /mnt/sd/home/root/tvm -r
+sudo cp $WORK/ai_sdk_setup/data/<Path to repository>/RZV2L_AiLibrary /mnt/sd/home/weston/tvm -r
 {% endhighlight %}
           </li>
           <li>Run the following command to sync the data with memory.
@@ -700,7 +618,7 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.20/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.20/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.
             <br>
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>
@@ -710,8 +628,17 @@ sudo eject /dev/sdb
         </li>
       </ol>
       <div class="note">
-        <span class="note-title">Note</span>
+        <span class="note-title">Note1</span>
         To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A3" target="_blank" rel="noopener noreferrer">A2. Shutdown RZ/V2L EVK</a>
+      </div>
+      <div class="note">
+        <span class="note-title">Note2</span>
+        When running an AI Application, the following warning may be shown. It does not affect the operation.<br>
+        <h6 class="mb-1">
+{% highlight shell %}
+[ WARN:0@xx.xxx] global cap_gstreamer.cpp:1777 open OpenCV | GStreamer warning: Cannot query video position: status=0, value=-1, duration=-1
+{% endhighlight %}
+        </h6>
       </div>
     </div>
   </div>

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 
@@ -15,7 +14,51 @@ layout: default
         <div class="col-12">
             <br>
             <br>
-                        <!-- Topic below -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Applications v7.00 & RZ/V2L AI SDK v7.00
+                </h3>
+                <h6 align="right" >
+                    2026.3.10
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v7.00 is released.</h5>
+                    <ul>
+                        <li>
+                            22 applications supported RZ/V2L AI SDK v7.00.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2L AI SDK v7.00 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.6.1.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2L Linux VLP to v4.0.1.<br>
+                        </li>
+                        <li> 
+                            Updated Graphics Library to v4.1.2.6.<br>
+                        </li>
+                        <li> 
+                            Updated Video Codec Library to v4.1.3.1.<br>
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v2.20.<br>
+                        </li>
+                        <li> 
+                            Supported wic SD image.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
             <i>
                 <h3 class="history-title">
                     RZ/V AI Web

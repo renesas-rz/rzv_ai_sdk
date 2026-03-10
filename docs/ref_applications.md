@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 

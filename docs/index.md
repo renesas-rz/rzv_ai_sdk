@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 
@@ -78,13 +77,47 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.03.10
+                2026.3.10
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>RZ/V2L AI SDK v7.00</b> is released.
+                    <ul>
+                        <li> 
+                            Supported DRP-AI TVM v2.6.1.<br>
+                        </li>
+                        <li> 
+                            Updated RZ/V2L Linux VLP to v4.0.1.
+                        </li>
+                        <li> 
+                            Updated Graphics Library to v4.1.2.6.
+                        </li>
+                        <li> 
+                            Updated Video Codec Library to v4.1.3.1.
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v2.20.
+                        </li>
+                        <li> 
+                            Supported wic SD image.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-spec"><b>RZ/V2L AI SDK Specification</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>RZ/V AI Applications v7.00</b> is released.
+                    <ul>
+                        <li>
+                            22 applications supported RZ/V2L AI SDK v7.00.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
             <br>
             <br>
         </div>
@@ -1216,7 +1249,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.renesas.com/software-tool/rz-mpu-verified-linux-package-61-cip" target="_blank" rel="noopener noreferrer">
                             RZ/V Verified Linux Package
                         </a>
                     </td>
@@ -1229,8 +1262,8 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package" target="_blank" rel="noopener noreferrer">
-                            RZ/V2L DRP-AI Support Package
+                        <a href="https://www.renesas.com/document/mas/rzv-series-drp-ai-driver-users-manual-revision-201?r=1558356" target="_blank" rel="noopener noreferrer">
+                            RZ/V2L DRP-AI Driver User's Manual
                         </a>
                     </td>
                     <td>

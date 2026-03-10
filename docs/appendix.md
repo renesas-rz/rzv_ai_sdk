@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -448,14 +447,11 @@ To power-off the RZ/V2L EVK, follow the procedures below.
     <li>Run the <code>shutdown</code> command on board console.
       <br>
 {% highlight shell %}
-shutdown -h now
+sudo -i shutdown -h now
 {% endhighlight %}
     </li>
-    <li>On board console, check that shutdown procedure runs and ends with following log.
-      <br>
-{% highlight shell %}
-[xxxxx.xxxxxx] reboot: Power down
-{% endhighlight %}
+    <li>On the screen, check that shutdown procedure runs and the HDMI display is blacked out.
+      <br><br>
     </li>
     <li>Press and hold the power button for 2 seconds.
       <br><br>

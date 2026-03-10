@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -146,7 +145,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <div class="note">
                 <span class="note-title" id="footnote_v2h_linux_components">Note1</span>
                 GStreamer libav plugin is no longer installed from Yocto version 5.0 (Scarthgap).<br>
-                This means that codecs such as MPEG-1, MPEG-2, and MPEG-4 are no longer available in AI ​​SDK.<br>
+                This means that codecs such as MPEG-1, MPEG-2, and MPEG-4 are no longer available in AI SDK.<br>
                 You are recommended to use H.264 or H.265.<br>
             </div>
         </div>

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -376,7 +375,7 @@ layout: default
             </h3>
             <h5>
                 <b>
-                    Target Version: 5.00
+                    Target Version: 7.00
                 </b>
             </h5>
         </div>
@@ -390,7 +389,7 @@ layout: default
                 <br>
                 <ul>
                     <li>
-                        DRP-AI TVM v2.3.0 
+                        DRP-AI TVM v2.6.1 
                         [
                             <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                                 GitHub
@@ -398,13 +397,16 @@ layout: default
                         ]
                     </li>
                     <li>
-                        RZ/V2L Verified Linux Package v3.0.6 
+                        RZ/V2L Verified Linux Package v4.0.1 
                         [
-                            <a href="https://www.renesas.com/software-tool/rzv-verified-linux-package" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.renesas.com/software-tool/rz-mpu-verified-linux-package-61-cip" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
                         <ul>
+                            <li>
+                                DRP-AI Driver v2.20
+                            </li>
                             <li>
                                 Video for Linux 2 (V4L2)
                             </li>
@@ -416,23 +418,23 @@ layout: default
                         </ul>
                     </li>
                     <li>
-                        Graphics Library Unrestricted Version v1.2.2 
+                        Graphics Library v4.1.2.6 
                         [
-                            <a href="https://www.renesas.com/en/software-tool/rzv-verified-linux-package#download" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.renesas.com/software-tool/rz-mpu-verified-linux-package-61-cip#download" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
                     </li>
                     <li>
-                        Video Codec Library Unrestricted Version v1.2.2 
+                        Video Codec Library v4.1.3.1 
                         (H.264)
                         [
-                            <a href="https://www.renesas.com/en/software-tool/rzv-verified-linux-package#download" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.renesas.com/software-tool/rz-mpu-verified-linux-package-61-cip#download" target="_blank" rel="noopener noreferrer">
                                 Renesas Web
                             </a>
                         ]
                     </li>
-                    <li>
+<!--                    <li>
                         RZ/V2L DRP-AI Support Package v7.50 
                         [
                             <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-arm-based-high-end-32-64-bit-mpus/rzv2l-drp-ai-support-package" target="_blank" rel="noopener noreferrer">
@@ -441,18 +443,31 @@ layout: default
                         ]
                         <ul>
                             <li>
-                                DRP-AI Driver
-                            </li>
-                            <li>
                                 OpenCV 4.1.0
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
+<!--                    <li>
+                        ISP Support packages
+                        [
+                            <a href="https://www.renesas.com/en/software-tool/rzv-verified-linux-package#download" target="_blank" rel="noopener noreferrer">
+                                Renesas Web
+                            </a>
+                        ]
+                        <a href="#footnote_v2l_isp">
+                            <sup>
+                                *1
+                            </sup>
+                        </a>
+                    </li> -->
                     <li>
                         Other OSS packages
                         <ul>
                             <li>
-                                Tesseract 3.05.01 (tesseract, tesseract-lang)
+                                Tesseract 5.3.4 (tesseract, tesseract-lang)
+                            </li>
+                            <li>
+                                OpenMP v13.4.0
                             </li>
                         </ul>
                     </li>
@@ -487,6 +502,14 @@ layout: default
             </a>
             <br>
         </div>
+<!--        <div class="col-12">
+            <h6>
+                <span id="footnote_v2l_isp">
+                    *1: ここに入れるか　or 全くいれないか　If you would like to use Simple ISP, please build AI SDK according to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D5" target="_blank" rel="noopener noreferrer">Developer's Guide</a>.
+                    <br>
+                </span>
+            </h6>
+        </div> -->
         <div class="col-12">
             <h4 class="u_line" id="v2l-mem">
                 Memory Map
@@ -575,7 +598,7 @@ layout: default
                     </ul>
                 </li>
                 <li>
-                    Graphics Library Unrestricted Version v4.1.3.0
+                    Graphics Library v4.1.3.0
                 </li>
                 <li>
                     Video Codec Library v4.3.3.1
@@ -745,7 +768,7 @@ layout: default
                     </ul>
                 </li>
                 <li>
-                    Graphics Library Unrestricted Version v4.1.2.4
+                    Graphics Library v4.1.2.4
                 </li>
                 <li>
                     Video Codec Library v4.3.3.0

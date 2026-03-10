@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <div class="container">
@@ -13,7 +12,7 @@ layout: default
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2L AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2L AI SDK v5.00</b></h5>
+<h5>Supported version: <b>RZ/V2L AI SDK v7.00</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -52,11 +51,11 @@ layout: default
               </tr>
               <tr>
                 <td rowspan="2">Linux PC</td>
-                <td colspan="2">Approximately <b>110GB free space</b> is necessary.</td>
+                <td colspan="2">Approximately <b>120GB free space</b> is necessary.</td>
               </tr>
               <tr>
                 <td>OS</td>
-                <td><b>Ubuntu 20.04 LTS</b><br>
+                <td><b>Ubuntu 22.04 LTS</b><br>
                     64bit OS must be used.</td>      
               </tr>
             </table>
@@ -76,7 +75,7 @@ layout: default
   <div class="row">
     <div class="col-12">
       Download the RZ/V2L AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v500-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v700-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0160F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -162,29 +161,29 @@ rzv2l_ai-sdk_yocto_recipe_v*.tar.gz
 <h3 id="step3" >Step 3: Build RZ/V2L AI SDK Source Code</h3>
 This step explains how to build Linux environment with RZ/V2L AI SDK Source Code
 <ol>
-  <li> To install necessary sofware, run the following commands on your Linux PC.
+  <li id="step3-1"> To install necessary sofware, run the following commands on your Linux PC.
 {% highlight shell%}
 sudo apt-get update
-sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
-build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
-xz-utils debianutils iputils-ping libsdl1.2-dev xterm p7zip-full libyaml-dev \
-libssl-dev
+sudo apt install build-essential chrpath cpio debianutils diffstat file gawk \
+gcc git iputils-ping libacl1 liblz4-tool locales python3 python3-git \
+python3-jinja2 python3-pexpect python3-pip python3-subunit socat texinfo unzip \
+wget xz-utils zstd
 {% endhighlight %}
   </li>
-  <li>Run the following commands and set the user name and email address before starting the build procedure.<br>
+  <li id="step3-2">Run the following commands and set the user name and email address before starting the build procedure.<br>
     It is needed to avoid errors when using git command to apply patches.
 {% highlight shell%}
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 {% endhighlight %}
   </li>
-  <li>Register the working directory path to an environment variable.
+  <li id="step3-3">Register the working directory path to an environment variable.
 {% highlight shell%}
 export YOCTO_WORK=${WORK}/src_setup/yocto
 mkdir -p ${YOCTO_WORK}
 {% endhighlight %}
   </li>
-  <li>Extract Yocto recipe package.
+  <li id="step3-4">Extract Yocto recipe package.
 {% highlight shell%}
 cd ${YOCTO_WORK}
 tar zxvf ${WORK}/src_setup/rzv2l_ai-sdk_yocto_recipe_v*.tar.gz
@@ -198,9 +197,8 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 {% highlight shell%}
 extra
-meta-gplv2
+meta-arm
 meta-openembedded
-meta-qt5
 meta-renesas
 meta-rz-features
 meta-virtualization
@@ -213,23 +211,23 @@ poky
   <li id="step3-6">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
 {% highlight shell%}
 cd ${YOCTO_WORK}
-TEMPLATECONF=$PWD/meta-renesas/meta-rzv2l/docs/template/conf/ source poky/oe-init-build-env build
+TEMPLATECONF=$PWD/meta-renesas/meta-rz-distro/conf/templates/rz-conf/ source poky/oe-init-build-env build
 {% endhighlight %}
   </li>
-  <li>Run the following commands to add necessary layers for AI application to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
+  <li id="step3-7">Run the following commands to add necessary layers for AI application to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
 {% highlight shell%}
 bitbake-layers add-layer ../meta-rz-features/meta-rz-graphics
 bitbake-layers add-layer ../meta-rz-features/meta-rz-codecs
 bitbake-layers add-layer ../meta-rz-features/meta-rz-drpai
 {% endhighlight %}
   </li>
-  <li>Run the following commands to extract the OSS package. 
+  <li id="step3-8">Run the following commands to extract the OSS package. 
 {% highlight shell%}
 cp ${WORK}/src_setup/oss_pkg_rzv_*.7z ${YOCTO_WORK}
 7z x ${YOCTO_WORK}/oss_pkg_rzv_*.7z -o${YOCTO_WORK}/build
 {% endhighlight %}
   </li>
-   <li>Check the working directory to confirm the package contents.
+  <li id="step3-9">Check the working directory to confirm the package contents.
 {% highlight shell%}
 ls -1 ${YOCTO_WORK}/build
 {% endhighlight %} 
@@ -242,104 +240,80 @@ downloads
       </li>
     </ul>
   </li>
-  <li>Apply patch files:<br>
+  <li id="step3-10">Run the following procedures to apply the patch files.<br>
     <ol>
-      <li>To add Tesseract Open Source OCR Engine for AI applications.<br>
-          Not to use network connection during the build. (Necessary OSS source codes are already provided in AI SDK Source Code.)
+      <!-- Settings for AI SDK (offline build settings, 16GB SD card, settings for eSD boot, Cross Compiler settings, startup screen settings) -->
+      <li>Apply a patch file for AI SDK settings.<br>
+        This patch file applies offline build setting, SD card image size setting, eSD boot setting, Cross Compiler setting, and startup screen setting.
 {% highlight shell%}
-patch -p1 -i ../patch/0002-no-network-tesseract.patch
+patch -p1 < ../patch/0000-AI_SDK-settings.patch
+{% endhighlight %}
+        <div class="note">
+          <span class="note-title">Note</span>
+          The default size of the microSD card image created in this guide is approximately 16 GB.<br>
+          If you would like to change the microSD card image size, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D1" target="_blank" rel="noopener noreferrer">D1: Change the size of the microSD card image in WIC format</a>.<br>
+        </div>
+      </li>
+      <!-- Add Tesseract -->
+      <li>Apply a patch file to add Tesseract Open Source OCR Engine for AI applications.
+{% highlight shell%}
+patch -p1 < ../patch/0001-tesseract.patch
 {% endhighlight %}
       </li>
-      <!-- DRP-AI Driver issue patch file -->
-      <li>Apply a patch file for DRP-AI Driver.<br>
-          This patch file will update the DRP-AI driver to the latest version.<br>
-        <ol type="A">
-          <li>Obtain the patch file from the link below.
-            <table class="mytable">
-              <tr>
-                <th>Patch file link</th>
-                <th>Description</th>
-              </tr>
-              <tr>
-                <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v5.00/0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch">
-                    0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch
-                  </a>
-                </td>
-                <td>
-                  Patch file for updating the DRP-AI Driver to the latest version
-                </td>
-              </tr>
-            </table>
-          </li>
-          <li>
-            Copy and apply the patch file.
+      <!-- Add OpenMP -->
+      <li>Apply a patch file to add OpenMP for AI applications.
 {% highlight shell%}
-cp <Path to the file>/0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch ${YOCTO_WORK}
-cd ${YOCTO_WORK}
-patch -p1 < 0001-update-drpai-for-RZV2L-AI_SDK-v5.00.patch
-cd ${YOCTO_WORK}/build
+patch -p1 < ../patch/0002-openmp.patch
 {% endhighlight %}
-          </li>
-        </ol>
       </li>
     </ol>
   </li>
-  <li>Run the following command to build the <b>Linux kernel files.</b><br>
+  <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>
     (It takes a few hours to finish building depending on the user’s host PC performance)
 {% highlight shell%}
 MACHINE=smarc-rzv2l bitbake core-image-weston
 {% endhighlight %}
     All necessary files listed below will be generated by the build command and 
 	  they will be located in <b><code>${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</code></b> directory.<br>
-        <table class="mytable">
-          <tr>
-            <th>File name</th>
-           <th>Description</th>
-          </tr>
-          <tr>
-            <td>Image-smarc-rzv2l.bin</td>
-            <td>Linux kernel</td>
-          </tr>
-          <tr>
-            <td>Image-r9a07g054l2-smarc.dtb</td>
-            <td>Device tree file</td>
-          </tr>
-          <tr>
-           <td>bl2_bp_esd-smarc-rzv2l_pmic.bin<br>
-              bl2-smarc-rzv2l_pmic.bin<br>
-              fip-smarc-rzv2l_pmic.bin</td>
-            <td>*1 Bootloader generated when using eSD Bootloader</td>
-          </tr>
-          <tr>
-            <td>
-              bl2_bp-smarc-rzv2l_pmic.srec<br>
-              fip-smarc-rzv2l_pmic.srec<br>
-              Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</td>
-            <td>*1 Bootloader generated when using QSPI Bootloader</td>
-          </tr>
-         <tr>
-           <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
-            <td>Root filesystem</td>
-         </tr>
-        </table>
-  <div class="note">
-    <span class="note-title">Note</span>
-    Either one of bootloaders(*1) will be generated based on your bootloader choice.
-  </div>
+    <table class="mytable">
+      <tr>
+        <th>Boot mode</th>
+        <th>File name</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>eSD</td>
+        <td>
+          core-image-weston-smarc-rzv2l.rootfs.wic.bmap<br>
+          core-image-weston-smarc-rzv2l.rootfs.wic.gz
+        </td>
+        <td>WIC format SD card image</td>
+      </tr>
+      <tr>
+        <td>QSPI</td>
+        <td>
+          core-image-weston-smarc-rzv2l.rootfs.wic.bmap<br>
+          core-image-weston-smarc-rzv2l.rootfs.wic.gz<br>
+          Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot<br>
+          bl2_bp_spi-smarc-rzv2l_pmic.srec<br>
+          fip-smarc-rzv2l_pmic.srec
+        </td>
+        <td>Boot loader and WIC format SD card image</td>
+      </tr>
+    </table>
   </li>
-  <li>Run the following command to build <b>cross compiler installer</b>.<br>
+  <li id="step3-12">Run the following command to build <b>cross compiler installer</b>.<br>
 {% highlight shell%}
 MACHINE=smarc-rzv2l bitbake core-image-weston -c populate_sdk
 {% endhighlight %}
-    A necessary file listed below will be generated by the build command and the cross compiler installer will be located in <b><code>build/tmp/deploy/sdk/poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</code></b>.<br>
+    A necessary file listed below will be generated by the build command and the cross compiler installer will be located in <b><code>build/tmp/deploy/sdk/rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzv2l-toolchain-*.sh</code></b>.<br>
     <table class="mytable">
       <tr>
         <th>File name</th>
         <th>Description</th>
       </tr>
       <tr>
-        <td>poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</td>
+        <td>rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzv2l-toolchain-*.sh</td>
         <td>Cross compiler installer</td>
       </tr>
     </table>
@@ -366,55 +340,6 @@ MACHINE=smarc-rzv2l bitbake core-image-weston -c populate_sdk
       </ul>
     </div>
   </li>
-  <li>Add setting HD(1280x720) to Weston in root filesystem.<br>
-    <ol>
-      <li>Run the following commands to extract root filesystem.
-{% highlight shell%}
-sudo mkdir /nfs/tmp -p
-sudo tar xfj ./tmp/deploy/images/smarc-rzv2l/core-image-weston-smarc-rzv2l.tar.bz2 -C /nfs/tmp
-{% endhighlight %}        
-      </li>
-      <li>Edit <b><code>/nfs/tmp/etc/xdg/weston/weston.ini</code></b> file with a text editor.
-        <ol>
-          <li>Before the editing, open it and check that followings are written in the file.<br>
-{% highlight plaintext%}
-[core]
-idle-time=0
-require-input=false
-repaint-window=17
-{% endhighlight %}  
-          </li>
-          <li>Add the following setting to the end of the file.
-{% highlight plaintxt%}
-[output]
-name=HDMI-A-1
-mode=1280x720
-{% endhighlight %}
-          </li>   
-          <li>After adding the above, the result will be as shown below.
-{% highlight plaintext%}
-[core]
-idle-time=0
-require-input=false
-repaint-window=17
-[output]
-name=HDMI-A-1
-mode=1280x720
-{% endhighlight %}   
-          </li>     
-          <li>Save and close the file.
-          </li> 
-          <br>
-        </ol>
-      </li>
-      <li>Run the following commands to recompress the root filesystem.
-{% highlight shell%}
-cd /nfs/tmp
-sudo tar cvfj ${WORK}/src_setup/core-image-weston-smarc-rzv2l.tar.bz2 *
-{% endhighlight %}
-      </li>
-    </ol>
-  </li>
 </ol>
 <br>
  
@@ -432,39 +357,30 @@ For more information on how to use each files, see the link in the How to use co
     <th>How to use</th>
   </tr>
   <tr>
-    <td rowspan="5">${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</td>
-    <td>Image-smarc-rzv2l.bin</td>
-    <td>Linux kernel</td>
-    <td rowspan="4">
+    <td rowspan="2">${YOCTO_WORK}/build/tmp/deploy/images/smarc-rzv2l</td>
+    <td>
+      core-image-weston-smarc-rzv2l.rootfs.wic.bmap<br>
+      core-image-weston-smarc-rzv2l.rootfs.wic.gz
+    </td>
+    <td>WIC format SD card image</td>
+    <td>
       <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup RZ/V2L EVK in RZ/V2L EVK Getting Started</a>
     </td>
   </tr>
   <tr>
-    <td>Image-r9a07g054l2-smarc.dtb</td>
-    <td>Device tree file</td>
-  </tr>
-  <tr>
-    <td>core-image-weston-smarc-rzv2l.tar.bz2</td>
-    <td>Root filesystem</td>
-  </tr>
-  <tr>
-    <td>bl2_bp_esd-smarc-rzv2l_pmic.bin<br>
-        bl2-smarc-rzv2l_pmic.bin<br>
-        fip-smarc-rzv2l_pmic.bin</td>
-    <td>*1 Bootloader generated when using eSD Bootloader</td>
-  </tr>
-  <tr>
-    <td>bl2_bp-smarc-rzv2l_pmic.srec<br>
-        fip-smarc-rzv2l_pmic.srec<br>
-        Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot</td>
-    <td>*1 Bootloader generated when using QSPI Bootloader</td>
+    <td>
+      Flash_Writer_SCIF_RZV2L_SMARC_PMIC_DDR4_2GB_1PCS.mot<br>
+      bl2_bp_spi-smarc-rzv2l_pmic.srec<br>
+      fip-smarc-rzv2l_pmic.srec
+    </td>
+    <td>Boot loader used when booting from QSPI</td>
     <td>
       <a href="{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %}#D2" target="_blank" rel="noopener noreferrer">D2.How to boot from QSPI in Developer's Guide</a>
     </td>
   </tr>
   <tr>
     <td>${YOCTO_WORK}/build/tmp/deploy/sdk</td>
-    <td>poky-glibc-x86_64-core-image-weston-aarch64-smarc-rzv2l-toolchain-*.sh</td>
+    <td>rz-vlp-glibc-x86_64-core-image-weston-cortexa55-smarc-rzv2l-toolchain-*.sh</td>
     <td>Cross compiler installer</td>
     <td>
       After replacing the file in <b><code>${WORK}/ai_sdk_setup</code></b> directory with this file, follow the steps below to setup RZ/V AI SDK.<br>
@@ -474,20 +390,16 @@ For more information on how to use each files, see the link in the How to use co
 </table>
 <div class="note">
   <span class="note-title">Note 1</span>
-  Either one of bootloaders(*1) will be generated based on your bootloader choice.
+  For more Yocto Project information, please refer the link below:<br>
+  <a href="https://docs.yoctoproject.org/5.0.11/brief-yoctoprojectqs/index.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/5.0.11/brief-yoctoprojectqs/index.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 2</span>
-  For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/3.1.31/brief-yoctoprojectqs/brief-yoctoprojectqs.html</a>
-</div>
-<div class="note">
-  <span class="note-title">Note 3</span>
   When customizing Linux development environment, following link may help.<br>
 	<a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
 </div>
 <div class="note">
-  <span class="note-title">Note 4</span>
+  <span class="note-title">Note 3</span>
     Regarding the eSD (Embedded SD) booting, please note the following:
     <ul class="mb-1">
       <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>

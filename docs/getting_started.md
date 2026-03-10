@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -22,7 +21,7 @@ Its version varies depending on the supported board.
   </tr>
   <tr>
     <td>RZ/V2L Evaluation Board Kit</td>
-    <td>RZ/V2L AI SDK <b>v5.00</b></td>
+    <td>RZ/V2L AI SDK <b>v7.00</b></td>
   </tr>
   <tr>
     <td>RZ/V2H Evaluation Board Kit</td>
@@ -377,11 +376,7 @@ Its version varies depending on the supported board.
       </td>
       <td>
         Used for Setup microSD card and RZ/V AI SDK Setup.<br>
-        Operating Environment: <br>
-        <ul class="mb-1">
-          <li>RZ/V2L: Ubuntu 20.04</li>
-          <li>RZ/V2H and RZ/V2N: Ubuntu 22.04</li>
-        </ul>
+        Operating Environment: Ubuntu 22.04
       </td>
     </tr>
     <tr>
@@ -428,7 +423,7 @@ Its version varies depending on the supported board.
 <ul class="mt-1 mb-1">
   <li><a href="https://docs.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a></li>  <!-- Open in new tab -->
   <li>git</li>
-  <li>bmap-tools (For RZ/V2H and RZ/V2N)</li>
+  <li>bmap-tools</li>
 </ul>
 <br>
 
@@ -445,7 +440,7 @@ RZ/V AI SDK provides following packages for each supported board.
     <td><font color="red"><b>RTK0EF0*SJ.zip</b></font></td>
     <td><font color="red"><b>Package used for AI development.</b></font><br>
       For this Getting Started, please download <font color="red"><b>"RZ/V AI SDK"</b></font> for your preferred device from the link below.<br>
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v500" role="button" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v700" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">RZ/V2L AI SDK</span>
           <span class="banner-line">Get the RZ/V2L AI Software Development Kit</span>
       </a>
@@ -546,7 +541,7 @@ cd ${WORK}/ai_sdk_setup
     <ul>
       <li>For RZ/V2L
 {% highlight shell%}
-sudo docker build -t rzv2l_ai_sdk_image --build-arg SDK="/opt/poky/3.1.31" --build-arg PRODUCT="V2L" .
+sudo docker build -t rzv2l_ai_sdk_image --build-arg PRODUCT="V2L" .
 {% endhighlight %}
       </li>
       <li>For RZ/V2H<br>
@@ -592,11 +587,13 @@ sudo docker run -it --name rzv2n_ai_sdk_container -v $(pwd)/data:/drp-ai_tvm/dat
     For example, you can use this directory to copy files created on the Docker container to your local environment.<br><br>
     <img class="procedure"  src="img/docker_mount.jpg" alt="docker" width="90%" />
   </li><br>
+<!--
   <li>In docker container, run the following command to copy <code>libtvm_runtime.so</code>, which is the necessary file for the board, to host machine.<br>
 {% highlight shell%}
 cp /drp-ai_tvm/obj/build_runtime/${PRODUCT}/libtvm_runtime.so /drp-ai_tvm/data
 {% endhighlight %}
   </li>
+-->
   <li>To exit docker, run following commands.<br>
 {% highlight shell%}
 exit
@@ -662,7 +659,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.20/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
+            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
           </h6>
         </td>
     </tr>
@@ -699,12 +696,13 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Build Stage"</b> (or similar) to build the application.<br><br>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.20/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v6.20/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
+          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
         </div>
           <!-- From here: Delete when making latest version -->
+          <!--
         <div class="note">
           <span class="note-title">Note</span>
           The <code>git clone</code> command shown in the <code>README.md</code> will download the <b style="color: red;">latest</b> source code and related files. <br><br>
@@ -713,6 +711,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
 git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
 {% endhighlight %}
         </div>
+          -->
           <!-- Until here: Delete when making latest version -->
       </li>
     </ol>
@@ -734,7 +733,7 @@ sudo docker start -i rzv2l_ai_sdk_container
       </li><br>
       <li>Change the environment variable to use the cross compiler.
 {% highlight shell%}
-source /opt/poky/3.1.31/environment-setup-aarch64-poky-linux
+source /opt/rz-vlp/5.0.11/environment-setup-cortexa55-poky-linux
 {% endhighlight %}
         <div class="note">
           <span class="note-title">Note</span>
@@ -754,14 +753,14 @@ cd /drp-ai_tvm/data
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
         <!-- From here: Delete when making latest version -->
-        <div class="note">
+        <!-- <div class="note">
           <span class="note-title">Note</span>
           The command above will download the <b style="color: red;">latest</b> source code and related files. <br><br>
-          To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v6.10</code> when you running the <code>git clone</code> command as shown below.
+          To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code> when you running the <code>git clone</code> command as shown below.
 {% highlight shell%}
-git clone -b v6.10 https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
+git clone -b v{{ site.version }} https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
-        </div>
+        </div> -->
         <!-- Until here: Delete when making latest version -->
       </li><br>
       <li>Move to the application directory.
