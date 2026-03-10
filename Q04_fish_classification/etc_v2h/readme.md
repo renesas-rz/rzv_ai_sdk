@@ -21,12 +21,8 @@ In web application mode, User can use any host machine (Windows/Linux) which is 
 [Details](https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started)
 
 
-#### Software Requirements for building the Webapp
-- Ubuntu 20.04 
-- OpenCV 4.x
-- C++11 or higher
-
 #### Software Requirements for running the Webapp 
+- Ubuntu 22.04 
 - Python 3.8
 - pip3
 - virtualenv

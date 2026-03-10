@@ -45,9 +45,7 @@
 #include <GLES2/gl2.h>
 #include <wayland-client.h>
 #include <wayland-egl.h>
-#ifdef V2H     /* V2H and V2N */
 #include <xdg-shell-client-protocol.h>
-#endif
 
 class Wayland
 {
@@ -68,11 +66,7 @@ class Wayland
 
         struct wl_compositor *compositor = NULL;
         struct wl_shm *shm = NULL;
-        #ifdef V2H     /* V2H and V2N */
         struct xdg_wm_base *wm_base = NULL;
-        #else
-        struct wl_shell *shell = NULL;
-        #endif
     private:
         uint32_t img_h;
         uint32_t img_w;
@@ -81,12 +75,8 @@ class Wayland
 
         struct wl_display *display = NULL;
         struct wl_surface *surface;
-        #ifdef V2H     /* V2H and V2N */
         struct xdg_surface *xdg_surface = NULL;
         struct xdg_toplevel *xdg_toplevel = NULL;
-        #else
-        struct wl_shell_surface *shell_surface;
-        #endif
         struct wl_registry *registry = NULL;
         EGLDisplay eglDisplay;
         EGLSurface eglSurface;

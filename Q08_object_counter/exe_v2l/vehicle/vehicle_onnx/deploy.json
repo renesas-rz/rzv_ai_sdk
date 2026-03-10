@@ -18,7 +18,7 @@
         "num_inputs": "1", 
         "global_symbol": "tvmgen_default_tvmgen_default_mera_drp_main_0", 
         "Compiler": "mera_drp", 
-        "hash": "b8f856d2a8ffc66d"
+        "hash": "ea0d26246bdf031d"
       }, 
       "inputs": [
         [
@@ -68,8 +68,8 @@
         "flatten_data": "0", 
         "func_name": "tvmgen_default_mera_drp_main_0", 
         "layout": "NCHW", 
-        "hash": "c1379755750a491c", 
-        "out_layout": "", 
+        "hash": "5b1420ece1d611e6", 
+        "out_layout": "NCHW", 
         "num_outputs": "2", 
         "num_inputs": "1", 
         "global_symbol": "tvmgen_default_mera_drp_main_0", 

@@ -8,7 +8,7 @@ It can be used for a wide variety of applications such as:
 - **Rehabilitation**: Monitoring exercises in physical therapy to ensure correct form.
 
 ### Key Features
-Here are some of the key features of the Fish Detection Application:
+Here are some of the key features of the Yoga Pose Estimation Application:
 
 - **Full body joint detection**: 
     The application utilizes HR-Net model to analyze an image or video feed to locate key body parts and estimate their positions. It identifies the key joints and their connections to form a "skeleton" of the body.
