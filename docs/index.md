@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 ---
 
@@ -77,40 +78,13 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.2.27
+                2026.03.10
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V Reference Applications</b> are updated.
-                    <ul>
-                        <li>
-                            Dashcam System Control Reference
-                            <ul>
-                                <li>
-                                    The output image can be saved on micro SD card for recording purposes.
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications Page</b></a>.
-            <br>
-            <br>
-            <h6 align="right" >
-                2026.2.24
-            </h6>
-            <ul>
-                <li>
-                    <b>Partner Applications on Community Page</b> are updated.
-                    <ul>
-                        <li>
-                            [Deep Vision Consulting] Object detection and distance measurement on RZ/V2H
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community Page</b></a>.
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+                <b>Users are recommended to use the latest version in the following URL.</b><br>
+                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
             <br>
             <br>
         </div>
