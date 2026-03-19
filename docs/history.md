@@ -17,6 +17,54 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2H AI Applications Demo v6.20
+                </h3>
+                <h6 align="right" >
+                    2026.3.19
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI Applications Demo v6.20 is released.</h5>
+                    <ul>
+                        <li> 
+                            Supported RZ/V AI Applications v6.20.
+                            <ul>
+                                <li> 
+                                    Updated AI models used in following applications.
+                                    <ul>
+                                        <li> 
+                                            Driver Monitoring System
+                                        </li>
+                                        <li> 
+                                            Driving Support with Road Lane Segmentation
+                                        </li>
+                                        <li> 
+                                            Visual Walking Support
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li> 
+                                    Added 1 application.
+                                    <ul>
+                                        <li> 
+                                            Analog Meter Reader
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Supported LVGL v9.2.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications v7.00 & RZ/V2L AI SDK v7.00
                 </h3>
                 <h6 align="right" >

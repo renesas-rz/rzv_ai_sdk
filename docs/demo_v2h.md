@@ -21,7 +21,7 @@ How to Use Guide
       Target version
     </td>
     <td>
-      <b>RZ/V2H AI Applications Demo v5.20</b>
+      <b>RZ/V2H AI Applications Demo v6.20</b>
     </td>
   </tr>
   <tr>
@@ -37,7 +37,7 @@ How to Use Guide
       Supported AI SDK
     </td>
     <td>
-      RZ/V2H AI SDK v5.20
+      RZ/V2H AI SDK v6.00
     </td>
   </tr>
   <tr>
@@ -45,7 +45,7 @@ How to Use Guide
       Supported AI Applications
     </td>
     <td>
-      RZ/V AI Applications v5.20
+      RZ/V AI Applications v6.20
     </td>
   </tr>
 </table>
@@ -211,7 +211,7 @@ This chapter describes the procedures up to the first startup of the RZ/V2H Eval
           </td>
           <td>
             Used for Setup microSD card.<br>
-            Operating Environment: Ubuntu 20.04
+            Operating Environment: Ubuntu 22.04
           </td>
         </tr>
         <tr>
@@ -249,7 +249,7 @@ This chapter describes the procedures up to the first startup of the RZ/V2H Eval
 <ol>
   <li>If you have not yet obtained the demo file, click on the link below to download it.
     <br><br>
-    <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-520" role="button">Download Link</a>
+    <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-620" role="button">Download Link</a>
     <br><br>
     <div class="note">
         <span class="note-title">Note 1</span>
@@ -269,7 +269,7 @@ This chapter describes the procedures up to the first startup of the RZ/V2H Eval
   <li>Place the downloaded Zip file into a Linux PC and unzip it using the following command in a terminal.
   <br><br>
 {% highlight shell %}
-unzip RTK0EF0197F05200SJ.zip
+unzip RTK0EF0197F06200SJ.zip
 {% endhighlight %}
     Make sure the following folders and files are generated after unzipping the file.
     <table id="demodirs" class="mytable">
@@ -285,20 +285,20 @@ unzip RTK0EF0197F05200SJ.zip
         <td>Linux license information.</td>
       </tr>
       <tr>
-        <td>r11an0940ej0520-rzv2h-ai-apps-demo(Linux License List).pdf</td>
+        <td>r11an0940ej0620-rzv2h-ai-apps-demo(Linux License List).pdf</td>
         <td>List of Linux license information included in Demo microSD card image. Copyright information is not included.</td>
       </tr>
       <tr>
         <td rowspan="2">sd_image/</td>
-        <td>rzv2h_ai_applications_demo_v5.20.wic.gz</td>
+        <td>rzv2h_ai_applications_demo_v6.20.wic.gz</td>
         <td>Gzip file containing the Demo microSD card image.</td>
       </tr>
       <tr>
-        <td>rzv2h_ai_applications_demo_v5.20.wic.bmap</td>
+        <td>rzv2h_ai_applications_demo_v6.20.wic.bmap</td>
         <td>Bmap file for copying the Demo microSD card image.</td>
       </tr>
       <tr>
-        <td colspan="2">r11an0884ej0520-rzv2h.pdf</td>
+        <td colspan="2">r11an0884ej0620-rzv2h.pdf</td>
         <td>ReadMe document describing the contents of the Demo zip file.</td>
     </tr>
     </table>
@@ -368,7 +368,7 @@ sudo umount /media/user/9016-4EF8
     <br><br>
 {% highlight shell %}
 cd sd_image
-sudo bmaptool copy --bmap rzv2h_ai_applications_demo_v5.20.wic.bmap rzv2h_ai_applications_demo_v5.20.wic.gz /dev/sdb
+sudo bmaptool copy --bmap rzv2h_ai_applications_demo_v6.20.wic.bmap rzv2h_ai_applications_demo_v6.20.wic.gz /dev/sdb
 {% endhighlight %}
     <div class="warning">
       <span class="warning-title">Warning</span>
@@ -737,7 +737,7 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>CUI</td>
             </tr>
             <tr>
-              <td rowspan="9">Industrial</td>
+              <td rowspan="10">Industrial</td>
               <td>Work Area Personnel Management</td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/01_Head_count"><b>GitHub Link</b></a></td>
               <td>USB</td>
@@ -790,6 +790,12 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td><a href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C03_surface_anomaly_detection"><b>GitHub Link</b></a></td>
               <td>USB</td>
               <td><a href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C03_surface_anomaly_detection#instruction-1"><b>GUI</b></a></td>
+            </tr>
+            <tr>
+              <td>Analog Meter Reader</td>
+              <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q13_analog_meter_reader"><b>GitHub Link</b></a></td>
+              <td>USB</td>
+              <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q13_analog_meter_reader#instruction-1"><b>GUI</b></a></td>
             </tr>
             <tr>
               <td rowspan="6">Retail</td>

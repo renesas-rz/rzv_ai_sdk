@@ -77,47 +77,46 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.3.10
+                2026.3.19
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V2L AI SDK v7.00</b> is released.
+                    <b>RZ/V2H AI Applications Demo v6.20</b> is released.
                     <ul>
                         <li> 
-                            Supported DRP-AI TVM v2.6.1.<br>
+                            Supported RZ/V AI Applications v6.20.<br>
+                            <ul>
+                                <li> 
+                                    Updated AI models used in following applications.
+                                    <ul>
+                                        <li> 
+                                            Driver Monitoring System
+                                        </li>
+                                        <li> 
+                                            Driving Support with Road Lane Segmentation
+                                        </li>
+                                        <li> 
+                                            Visual Walking Support
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li> 
+                                    Added 1 application.
+                                    <ul>
+                                        <li> 
+                                            Analog Meter Reader
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </li>
                         <li> 
-                            Updated RZ/V2L Linux VLP to v4.0.1.
-                        </li>
-                        <li> 
-                            Updated Graphics Library to v4.1.2.6.
-                        </li>
-                        <li> 
-                            Updated Video Codec Library to v4.1.3.1.
-                        </li>
-                        <li> 
-                            Updated DRP-AI Driver to v2.20.
-                        </li>
-                        <li> 
-                            Supported wic SD image.
+                            Supported LVGL v9.2.
                         </li>
                     </ul>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-spec"><b>RZ/V2L AI SDK Specification</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>RZ/V AI Applications v7.00</b> is released.
-                    <ul>
-                        <li>
-                            22 applications supported RZ/V2L AI SDK v7.00.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
+            For more details, see <a href="#demo"><b>Demo</b></a>.
             <br>
             <br>
         </div>
@@ -422,7 +421,7 @@ layout: default
                     <div class="row">
                         <div class="col-5">
                             <p class="ms-3">
-                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-520" role="button">
+                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-620" role="button">
                                     Download RZ/V2H AI Applications Demo
                                 </a>
                             </p>    
@@ -445,15 +444,15 @@ layout: default
                                     Environment:
                                     <ul>
                                         <li>
-                                            AI Applications v5.20
+                                            AI Applications v6.20
                                         </li>
                                         <li>
-                                            RZ/V2H AI SDK v5.20
+                                            RZ/V2H AI SDK v6.00
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    Demo zip file size: 3.7GB
+                                    Demo zip file size: 3.9GB
                                 </li>
                             </ul>
                         </div>
