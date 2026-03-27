@@ -1361,13 +1361,8 @@ int32_t main(int32_t argc, char * argv[])
 
     #ifdef V2H
     /*Disable OpenCV Accelerator due to the use of multithreading */
-    #ifdef V2N
-    unsigned long OCA_list[16];
-    for (int i=0; i < 16; i++) OCA_list[i] = 0;
-    #else /* for V2H */
     unsigned long OCA_list[OCA_LIST_NUM];
     for (int i=0; i < OCA_LIST_NUM; i++) OCA_list[i] = 0;
-    #endif
     OCA_Activate( &OCA_list[0] );
     printf("Disable OpenCVA\n");
     
