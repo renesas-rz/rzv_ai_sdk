@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 ---
 <!-- Title -->

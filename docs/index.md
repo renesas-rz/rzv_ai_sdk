@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 ---
 
@@ -77,46 +78,14 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.3.19
+                2026.3.31
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V2H AI Applications Demo v6.20</b> is released.
-                    <ul>
-                        <li> 
-                            Supported RZ/V AI Applications v6.20.<br>
-                            <ul>
-                                <li> 
-                                    Updated AI models used in following applications.
-                                    <ul>
-                                        <li> 
-                                            Driver Monitoring System
-                                        </li>
-                                        <li> 
-                                            Driving Support with Road Lane Segmentation
-                                        </li>
-                                        <li> 
-                                            Visual Walking Support
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li> 
-                                    Added 1 application.
-                                    <ul>
-                                        <li> 
-                                            Analog Meter Reader
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li> 
-                            Supported LVGL v9.2.
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            For more details, see <a href="#demo"><b>Demo</b></a>.
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+                <b>Users are recommended to use the latest version in the following URL.</b><br>
+                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
+
             <br>
             <br>
         </div>
