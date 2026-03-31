@@ -22,7 +22,7 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
     </tr>
     <tr>
       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-      <td>RZ/V2N AI SDK v6.00 </td>
+      <td>RZ/V2N AI SDK v6.30 </td>
     </tr>
     
 </table>
