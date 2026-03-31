@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -701,7 +700,7 @@ layout: default
             </h3>
             <h5>
                 <b>
-                    Target Version: 6.00
+                    Target Version: 6.30
                 </b>
             </h5>
         </div>
@@ -727,7 +726,7 @@ layout: default
                     </a>
                 </li>
                 <li>
-                    RZ/V2N Linux BSP v2.0.0
+                    RZ/V2N Linux BSP v2.0.1
                     [
                         <a href="{{ site.url }}{{ site.baseurl }}{% link v2n-configuration.md %}" target="_blank" rel="noopener noreferrer">
                             Configuration
@@ -735,9 +734,9 @@ layout: default
                     ]
                     <ul>
                         <li>
-                            DRP-AI Driver v1.30 
+                            DRP-AI Driver v1.40 
                             [
-                                <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver/tree/V1.30" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver/tree/V1.40" target="_blank" rel="noopener noreferrer">
                                     GitHub
                                 </a>
                             ]
@@ -752,6 +751,14 @@ layout: default
                         </li>
                         <li>
                             Video for Linux 2 (V4L2) including the support for USB camera
+                        </li>
+                        <li>
+                            Support the DDR Suspend to RAM function to enable ultra-low-power standby with fast resume.
+                            <a href="#footnote_v2n_s2r">
+                                <sup>
+                                    *5
+                                </sup>
+                            </a>
                         </li>
                         <li>
                             Other device drivers 
@@ -769,10 +776,10 @@ layout: default
                     </ul>
                 </li>
                 <li>
-                    Graphics Library v4.1.2.4
+                    Graphics Library v4.1.3.1
                 </li>
                 <li>
-                    Video Codec Library v4.3.3.0
+                    Video Codec Library v4.3.4.0
                     <a href="#footnote_v2n_drp_ai">
                         <sup>
                             *4
@@ -780,9 +787,9 @@ layout: default
                     </a>
                 </li>
                 <li>
-                    OpenCV Accelerator v1.30 (supporting OpenCV 4.9.0) 
+                    OpenCV Accelerator v1.50 (supporting OpenCV 4.9.0) 
                     [
-                        <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator/tree/V1.30" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/renesas-rz/rzv2n_opencv_accelerator/tree/V1.50" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
                     ]
@@ -799,11 +806,13 @@ layout: default
                             Tesseract v5.3.4 (tesseract, tesseract-lang)
                         </li>
                         <li>
-                            OpenMP v13.3.0
+                            OpenMP v13.4.0
                         </li>
                     </ul>
                 </li>
             </ul>
+            <br>
+            Applications that can be run on RZ/V2N AI SDK v6.00 are compatible with RZ/V2N AI SDK v6.30.<br>
             <br>
             <!-- Reference to V2N configuration page -->
             For more information on RZ/V2N AI SDK, see the page below.
@@ -845,6 +854,11 @@ layout: default
                     *4: RZ/V2N is equipped with single IP, DRP-AI. (DRP is not equipped.) Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2n-15tops-quad-core-vision-ai-mpu-2-camera-connection-and-excellent-power-efficiency" target="_blank" rel="noopener noreferrer">RZ/V2N block diagram</a>.<br>
                     DRP-AI use is shared by DRP-AI TVM, OpenCV Accelerator and Video Codec Library (decoding function).<br>
                     Therefore, these software cannot be used at the same time.<br>
+                </span>
+                <span id="footnote_v2n_s2r">
+                    *5: To use the DDR Suspend to RAM function, you must use AI SDK v6.30 or later, as well as RZ/V2N EVK V2.0 and the Multi-OS package.<br>
+                    To purchase or learn more about the RZ/V2N EVK V2.0, please refer to <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit</a>.<br>
+                    Please refer to the <a href="https://www.renesas.com/en/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a> instructions on how to use the DDR Suspend to RAM function.
                 </span>
             </h6>
         </div>

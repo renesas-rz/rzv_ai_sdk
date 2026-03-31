@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <div class="container">
@@ -13,7 +12,7 @@ layout: default
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2N AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2N AI SDK v6.00</b></h5>
+<h5>Supported version: <b>RZ/V2N AI SDK v6.30</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -38,7 +37,7 @@ layout: default
       <br>
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
-      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip">RZ/V2N BSP Manual Set</a>.<br>
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">RZ/V2N BSP Manual Set</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
@@ -77,7 +76,7 @@ layout: default
   <div class="row">
     <div class="col-12">
       Download the RZ/V2N AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v600-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v630-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0189F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -191,7 +190,7 @@ tar zxvf ${WORK}/src_setup/rzv2n_ai-sdk_yocto_recipe_*.tar.gz
 {% endhighlight %}
   </li>
   <li id="step3-5">Run the following procedures to apply the patch file.<br>
-    <ol>
+     <ol>
   <!-- MEMO:: Uncomment when patch file is necessary. -->
   <!-- 
       <li>Apply patch files to fix link error.<br>
@@ -246,8 +245,8 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch">
-                    0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch">
+                    0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch
                   </a>
                 </td>
                 <td>
@@ -259,16 +258,16 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
           <li>
             Copy and apply the patch file.
 {% highlight shell%}
-cp <Path to the file>/0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch ${YOCTO_WORK}
+cp <Path to the file>/0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}
-patch -p1 -R < 0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch
+patch -p1 < 0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch
 {% endhighlight %}
           </li>
         </ol>
       </li>
       <!-- e-CAM22 patch file -->
-      <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
-        The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code.<br>
+      <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br></li>
+	The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code.<br>
         The required driver needs to be obtained through the following procedure.<br>
         <br>
         <ol type="A">
@@ -292,9 +291,7 @@ patch -p1 -i e-CAM22_CURZ*.patch
 {% endhighlight %}
           </li>
         </ol>
-      </li>
     </ol>
-  </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
 {% highlight shell%}
 ls -1 ${YOCTO_WORK}
@@ -303,7 +300,7 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
-0001-system-setting-for-RZV2N-AI_SDK-v6.00.patch  # optional
+0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch	    # optional
 e-CAM22_CURZ*.patch
 meta-arm
 meta-econsys
@@ -319,7 +316,7 @@ poky
   <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
 {% highlight shell%}
 cd ${YOCTO_WORK}
-TEMPLATECONF=$PWD/meta-renesas/meta-rz-boards/conf/templates/rz-conf/ source poky/oe-init-build-env build
+TEMPLATECONF=$PWD/meta-renesas/meta-rz-distro/conf/templates/vlp-v4-conf/ source poky/oe-init-build-env build
 {% endhighlight %}
   </li>
   <li id="step3-8">Run the following commands to add necessary layers for AI application to <b><code>${YOCTO_WORK}/build/conf/bblayers.conf</code></b> (configration file for layers).
@@ -467,7 +464,6 @@ MACHINE=rzv2n-evk bitbake core-image-weston -c populate_sdk
       </ul>
     </div>
   </li>
-</ol>
 <br>
  
 <h4>
@@ -531,7 +527,7 @@ For more information on how to use each files, see the link in the How to use co
 <div class="note">
   <span class="note-title">Note 1</span>
   For more Yocto Project information, please refer the link below:<br>
-  <a href="https://docs.yoctoproject.org/5.0.6/brief-yoctoprojectqs/index.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/5.0.6/brief-yoctoprojectqs/index.html</a>
+  <a href="https://docs.yoctoproject.org/5.0.11/brief-yoctoprojectqs/index.html" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/5.0.11/brief-yoctoprojectqs/index.html</a>
 </div>
 <div class="note">
   <span class="note-title">Note 2</span>
@@ -541,7 +537,7 @@ For more information on how to use each files, see the link in the How to use co
       <a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a>
+      <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a>
     </li>
   </ul>
 </div>

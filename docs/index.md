@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 
@@ -80,12 +79,52 @@ layout: default
             <h6 align="right" >
                 2026.3.31
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
-
+            <ul>
+                <li>
+                    <b>RZ/V2N AI SDK v6.30</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li> 
+                                Updated RZ/V2H Linux BSP to v2.0.1.
+                            </li>
+                            <li> 
+                                Updated Graphics Library to v4.1.3.1.
+                            </li>
+                            <li> 
+                                Updated Video Codec Library to v4.3.4.0.
+                            </li>
+                            <li> 
+                                Updated OpenCV Accelerator to v1.50.
+                            </li>
+                            <li> 
+                                Updated DRP-AI Driver to v1.40.
+                            </li>
+                            <li> 
+                                Supported the DDR Suspend to RAM function to enable ultra-low-power standby with fast resume.
+                            </li>
+                            <li> 
+                                Applications that can be run on RZ/V2N AI SDK v6.00 are compatible with RZ/V2N AI SDK v6.30.
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2n-spec"><b>RZ/V2N AI SDK Specification</b></a>.
+            <br>
+            <br>
+            <ul>
+                <li>
+                    <b>RZ/V AI Applications v7.10</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li> 
+                                27 applications support RZ/V2L AI SDK v7.00.
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
             <br>
             <br>
         </div>
@@ -1258,7 +1297,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
 <!--                <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/rzv2h-and-rzv2n-bsp-manual-set-rtk0ef0045z94001azj-v103zip">
+                        <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">
                             RZ/V2H and RZ/V2N BSP Manual Set
                         </a>
                     </td>
@@ -1369,7 +1408,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/rzg2l-rzv2l-rzv2n-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v404">
+                        <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">
                             RZ/V2H BSP Manual Set
                         </a>
                     </td>
@@ -1445,7 +1484,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <tr>
                     <td>
-                        <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip">
+                        <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">
                             RZ/V2N BSP Manual Set
                         </a>
                     </td>

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -30,7 +29,7 @@ Its version varies depending on the supported board.
   </tr>
   <tr>
     <td>RZ/V2N Evaluation Board Kit</td>
-    <td>RZ/V2N AI SDK <b>v6.00</b></td>
+    <td>RZ/V2N AI SDK <b>v6.30</b></td>
   </tr>
 </table>
 <a class="ms-4" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus" target="_blank" rel="noopener noreferrer">Learn more about the RZ/V series.</a>
@@ -451,7 +450,7 @@ RZ/V AI SDK provides following packages for each supported board.
           <span class="banner-line">Get the RZ/V2H AI Software Development Kit</span>
       </a>
       <br>
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v600" role="button" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v630" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">RZ/V2N AI SDK</span>
           <span class="banner-line">Get the RZ/V2N AI Software Development Kit</span>
       </a>    
@@ -660,7 +659,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
+            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
           </h6>
         </td>
     </tr>
@@ -697,12 +696,13 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Build Stage"</b> (or similar) to build the application.<br><br>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
+          In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">here</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
         </div>
           <!-- From here: Delete when making latest version -->
+          <!--
         <div class="note">
           <span class="note-title">Note</span>
           The <code>git clone</code> command shown in the <code>README.md</code> will download the <b style="color: red;">latest</b> source code and related files. <br><br>
@@ -711,6 +711,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
 git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
 {% endhighlight %}
         </div>
+          -->
           <!-- Until here: Delete when making latest version -->
       </li>
     </ol>
@@ -752,14 +753,14 @@ cd /drp-ai_tvm/data
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
         <!-- From here: Delete when making latest version -->
-        <div class="note">
+        <!-- <div class="note">
           <span class="note-title">Note</span>
           The command above will download the <b style="color: red;">latest</b> source code and related files. <br><br>
-          To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v6.10</code> when you running the <code>git clone</code> command as shown below.
+          To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code> when you running the <code>git clone</code> command as shown below.
 {% highlight shell%}
-git clone -b v6.10 https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
+git clone -b v{{ site.version }} https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
-        </div>
+        </div> -->
         <!-- Until here: Delete when making latest version -->
       </li><br>
       <li>Move to the application directory.

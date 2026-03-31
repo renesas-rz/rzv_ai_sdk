@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -72,7 +71,7 @@ RZ/V AI SDK Developer's Guide
                 <td>
                   <!-- V2L -->AI SDK Source Code v7.00<br>
                   <!-- V2H -->AI SDK Source Code v6.00<br>
-                  <!-- V2N -->AI SDK Source Code v6.00
+                  <!-- V2N -->AI SDK Source Code v6.30
                 </td>
               </tr>
               <tr>
@@ -90,14 +89,14 @@ RZ/V AI SDK Developer's Guide
                 </td>
                 <td>
                   <!-- V2H -->AI SDK Source Code v6.00<br>
-                  <!-- V2N -->AI SDK Source Code v6.00
+                  <!-- V2N -->AI SDK Source Code v6.30
                 </td>
               </tr>
               <tr>
                 <td>D4</td>
                 <td><a href="#D4">How to boot from eMMC</a></td>
                 <td>RZ/V2N</td>
-                <td>AI SDK Source Code v6.00</td>
+                <td>AI SDK Source Code v6.30</td>
               </tr>
               <tr>
                 <td>D5</td>
@@ -107,8 +106,8 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2H -->AI SDK Source Code v5.20<br>
-                  <!-- V2N -->AI SDK Source Code v6.00
+                  <!-- V2H -->AI SDK Source Code v6.00<br>
+                  <!-- V2N -->AI SDK Source Code v6.30
                 </td>
               </tr>
               <tr>
@@ -119,8 +118,8 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2H -->AI SDK Source Code v5.20<br>
-                  <!-- V2N -->AI SDK Source Code v6.00
+                  <!-- V2H -->AI SDK Source Code v6.00<br>
+                  <!-- V2N -->AI SDK Source Code v6.30
                 </td>
               </tr>
 <!--
@@ -722,8 +721,8 @@ smarc-rzv2l login:
               <li>Connect Windows PC and Board via Serial to MicroUSB Cable.
               </li><br>
               <li id="D3-SCIF">Change DSW1 setting to Boot mode 3 (SCIF download). See the figure below.
-                <br><br>
-                  <img class="procedure"  src="img/board_bootloader_v2h_v2n.png" alt="board" style="max-width: 60%; height: auto;" />
+                <br><br> 
+                <img class="procedure"  src="img/board_bootloader_v2h_v2n.png" alt="board" style="max-width: 80%; height: auto;" />
               </li><br>
               <li>Connect the power cable to CN13 on the Board.
               </li><br>
@@ -893,7 +892,7 @@ SpiFlashMemory End Address  : H'0011C2EE
             Follow the procedure below to set the booting configuration of the board.<br><br>
             <div class="container">
               <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12">
                   <ol>
                     <li>Insert the microSD card to the <b>Board</b>.
                       <div class="note">
@@ -901,7 +900,20 @@ SpiFlashMemory End Address  : H'0011C2EE
                           Use the microSD card slot <b>SD2</b> as shown in the figure.
                       </div>
                     </li><br>
-                    <li id="D3-xSPI">Change DSW1 setting to Boot mode 2 (xSPI boot) as shown in the right figure.
+                    <li id="D3-xSPI">Change DSW1 setting to Boot mode 2 (xSPI boot) as shown in the figure below.
+                      <br>
+                      <br>
+                      <div class="d-flex justify-content-start align-items-start nowrap; gap-8" style="gap: 8px;">
+                        <a href="img/uboot-setting_v2h.png" data-lightbox="group">
+                          <img src="img/uboot-setting_v2h.png" alt="boot 1" style="width: 320px; height: auto; display: block;"> 
+                        </a>
+                        <a href="img/uboot-setting_v2n_v1_spi.png" data-lightbox="group">
+                          <img src="img/uboot-setting_v2n_v1_spi.png" alt="boot 2" style="width: 320px; height: auto; display: block;"> 
+                        </a>
+                        <a href="img/uboot-setting_v2n_v2_spi.png" data-lightbox="group">
+                          <img src="img/uboot-setting_v2n_v2_spi.png" alt="boot 3" style="width: 320px; height: auto; display: block;"> 
+                        </a>
+                      </div>
                     </li><br>
                     <li>Connect the <b>Board</b> and <b>Windows PC</b> by the USB Serial to Micro USB cable.
                     </li><br>
@@ -920,12 +932,6 @@ SpiFlashMemory End Address  : H'0011C2EE
                     <li>On the terminal emulator, keep pressing ENTER key.
                     </li><br>
                   </ol>
-                </div>
-                <div class="col-12 col-md-6">
-                    <img class="procedure" src="img/uboot-setting_v2h.png" alt="boot" width="80%"/>
-                    <br>
-                    <img class="procedure" src="img/uboot-setting_v2n_spi.png" alt="boot" width="80%"/>
-                  <br>
                 </div>
               </div>
               <div class="row">
@@ -1002,14 +1008,14 @@ rzv2h-evk1 login:
                 <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
               </tr>
             </table>
-        </div>
+          </div>
           <div class="note">
             <span class="note-title">Note</span>
             To perform this procedure, please prepare the following equipment in addition to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step2" target="_blank" rel="noopener noreferrer">1.Necessary Equipments</a>.
             <ul class="mb-1">
               <li>Windows PC</li>
               <li>MicroUSB to Serial Cable for serial communication (Included in RZ/V2N EVK)</li>
-              <li><span style="color:red;">RZ/V2N EVK with eMMC sub board</span><br>
+              <li><span style="color:red;">RZ/V2N EVK with eMMC sub board (only applicable to RZ/V2N EVK V1.0)</span><br>
               For more information on connecting the sub board, see <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>.
               </li>
             </ul>
@@ -1100,11 +1106,12 @@ rzv2h-evk1 login:
                       </tr>
                     </table>
                   </li><br>
-                  <li>Connect the eMMC sub board to the EVK and connect Windows PC and EVK CN12 connector via microB USB cable.
+                  <li>Connect the eMMC sub board to the EVK (only applicable to RZ/V2N EVK V1.0) and connect Windows PC and EVK CN12 connector via microB USB cable.
                   </li><br>
                   <li id="D4-SCIF">Change DSW1 setting to Boot mode 3 (SCIF download). See the figure below.
                     <br><br>
-                    <img class="procedure"  src="img/board_bootloader_v2n.png" alt="board" width="90%" />
+                    <img class="procedure" src="img/board_bootloader_v2n.png" alt="board" style="width:90%;" />
+                    <img class="procedure" src="img/board_bootloader_v2n_V2.0.png" alt="board" style="width:90%;" />
                   </li><br>
                   <li>Connect the power cable to CN13 on the Board.
                   </li><br>
@@ -1363,8 +1370,9 @@ sudo umount /mnt/sd
                     </ol>
                   </div>
                   <div class="col-12 col-md-6">
-                    <img class="procedure" src="img/uboot-setting_v2n_emmc.png" alt="boot" width="80%"/>
+                    <img class="procedure img-fluid" src="img/uboot-setting_v2n_v1_spi_for_emmcboot.png" alt="boot" width="80%"/>
                     <br>
+                    <img class="procedure img-fluid" src="img/uboot-setting_v2n_v2_spi_for_emmcboot.png" alt="boot" width="80%"/>
                   </div>
                 </div>
                 <div class="row">
@@ -1377,10 +1385,11 @@ Welcome to fdisk (util-linux 2.39.3).
 Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
 Device does not contain a recognized partition table.
-Created a new DOS disklabel with disk identifier 0x7795745a.
+Created a new DOS (MBR) disklabel with disk identifier 0x7a03dcb4.
 
 Command (m for help): <span style="color:red;">o</span>
-Created a new DOS disklabel with disk identifier 0x5ff48dd9.
+Created a new DOS (MBR) disklabel with disk identifier 0x3d6f1c45.
+
 Command (m for help): <span style="color:red;">n</span>
 Partition type
 p primary (0 primary, 0 extended, 4 free)
@@ -1392,6 +1401,11 @@ First sector (2048-124321791, default 2048):<span style="color:red;">[Enter]</sp
 Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-124321791, default 124321791): <span style="color:red;">+500M</span>
 
 Created a new partition 1 of type 'Linux' and of size 500 MiB.
+
+# In case a message to prompt to remove the signature like below, please enter "Y".
+Partition #1 contains a ext4 signature.
+Do you want to remove the signature? [Y]es/[N]o: <span style="color:red;">Y</span>
+The signature will be removed by a write command.
 
 Command (m for help): <span style="color:red;">n</span>
 Partition type
@@ -1406,6 +1420,11 @@ Last sector, +/-sectors or +/-size{K,M,G,T,P} (1026048-124321791, default 124321
 
 Created a new partition 2 of type 'Linux' and of size 58.8 GiB.
 
+# In case a message to prompt to remove the signature like below, please enter "Y".
+Partition #2 contains a ext4 signature.
+Do you want to remove the signature? [Y]es/[N]o: <span style="color:red;">Y</span>
+The signature will be removed by a write command.
+
 Command (m for help): <span style="color:red;">p</span>
 Disk /dev/mmcblk0: 59.29 GiB, 63652757504 bytes, 124321792 sectors
 Units: sectors of 1 * 512 = 512 bytes
@@ -1418,9 +1437,12 @@ Device Boot Start End Sectors Size Id Type
 /dev/mmcblk0p1 2048 1026047 1024000 500M 83 Linux
 /dev/mmcblk0p2 1026048 124321791 123295744 58.8G 83 Linux
 
+Filesystem/RAID signature on partition 1 will be wiped.
+Filesystem/RAID signature on partition 2 will be wiped.
+
 Command (m for help): <span style="color:red;">w</span>
 The partition table has been altered.
-Calling ioctl() to re-read partition table.[ 189.289424] mmcblk0: p1 p2
+Calling ioctl() to re-read partition table. mmcblk0: p1 p2
 Syncing disks.
 </code></pre>
                       </li><br>
@@ -1459,7 +1481,7 @@ Writing superblocks and filesystem accounting information: done
                           It will take a few minutes to write the Root filesystem.
                         </div>                        
 <pre><code>root@rzv2n-evk:~# <span style="color:red;">mount /dev/mmcblk0p2 /mnt/</span>
-[ 357.263306] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[ 357.263306] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Quota mode: none.
 root@rzv2n-evk:~# <span style="color:red;">tar xf /root/core-image-weston-rzv2n-evk.rootfs.tar.bz2 -C /mnt/</span>
 root@rzv2n-evk:~# <span style="color:red;">sync</span>
 root@rzv2n-evk:~# <span style="color:red;">umount /dev/mmcblk0p2</span>
@@ -1506,8 +1528,9 @@ root@rzv2n-evk:~# <span style="color:red;">umount /dev/mmcblk0p2</span>
                     </ol>
                   </div>
                   <div class="col-12 col-md-6">
-                    <img class="procedure" src="img/v2n_evk_boot_emmc.png" alt="boot" width="80%"/>
+                    <img class="procedure img-fluid" src="img/v2n_evk_boot_emmc.png" alt="boot" width="100%"/>
                     <br>
+                    <img class="procedure img-fluid" src="img/v2n_evk_v2_boot_emmc.png" alt="boot" width="100%"/>
                   </div>
                 </div>
                 <div class="row">
@@ -1586,13 +1609,13 @@ rzv2n-evk login:
                   </tr>
                   <tr>
                     <td>RZ/V2H</td>
-                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2h-evk-ver1/kernel-source/arch/arm64/boot/dts/renesas</td>
-                    <td>r9a09g057h4-evk-ver1.dts</td>
+                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2h-evk/kernel-source/arch/arm64/boot/dts/renesas</td>
+                    <td>rzv2h-evk-common.dtsi</td>
                   </tr>
                   <tr>
                     <td>RZ/V2N</td>
                     <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2n-evk/kernel-source/arch/arm64/boot/dts/renesas</td>
-                    <td>r9a09g056n44-evk.dts</td>
+                    <td>r9a09g056n48-rzv2n-evk.dts</td>
                   </tr>
                 </table>
                 <!-- Device tree file table end -->
@@ -1716,9 +1739,9 @@ rzv2n-evk login:
   reg = <<span style="color:red;">0x0 0xD0000000</span> 0x0 <span style="color:red;">0x10000000</span>>;
 };
 </code></pre>
-                    <li>The patch file and bbappend file to make the above changes are below.<br>
-                        Obtain the patch file and bbappend file from the link below, Copy them to the specified folder listed in the Path column.<br>
-                        These files are for RZ/V2H AI SDK v5.20 only. Patch files need to be modified to suit your environment.</li>
+                    <li>The patch file and inc file to make the above changes are below.<br>
+                        Obtain the patch file and inc file from the link below, Copy them to the specified folder listed in the Path column.<br>
+                        These files are for RZ/V2H AI SDK v6.00 only. Patch files need to be modified to suit your environment.</li>
                       <table class="mytable">
                         <tr>
                           <th>File</th>
@@ -1727,10 +1750,10 @@ rzv2n-evk login:
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d005-device-tree-for-RZV2H-AI_SDK-v5.20.patch">d005-device-tree-for-RZV2H-AI_SDK-v5.20.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch">d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/linux-renesas/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/files/</code>
                           </td>
                           <td>
                             Patch file for modifying device tree
@@ -1738,10 +1761,10 @@ rzv2n-evk login:
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d005-linux-renesas_5.10.bbappend">d005-linux-renesas_5.10.bbappend</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d005-linux-renesas_6.1.inc">d005-linux-renesas_6.1.inc</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/</code>
                           </td>
                           <td>
                             bbappend file for modifying device tree
@@ -1750,12 +1773,12 @@ rzv2n-evk login:
                       </table>
                     <li>Copy the patch file and bb file.</li>
 {% highlight shell%}
-cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/linux-renesas/
-sudo cp <Path to the file>/d005-device-tree-for-RZV2H-AI_SDK-v5.20.patch ./
+cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/files/
+sudo cp <Path to the file>/d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch ./
 
-cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/
-sudo mv linux-renesas_5.10.bbappend linux-renesas_5.10.bbappend_backup
-sudo cp <Path to the file>/d005-linux-renesas_5.10.bbappend ./linux-renesas_5.10.bbappend
+cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/
+sudo mv linux-renesas_6.1.inc linux-renesas_6.1.inc_backup
+sudo cp <Path to the file>/d005-linux-renesas_6.1.inc ./linux-renesas_6.1.inc
 {% endhighlight %}
                     <div class="note">
                       <span class="note-title">Note</span>
@@ -1774,10 +1797,10 @@ sudo cp <Path to the file>/d005-linux-renesas_5.10.bbappend ./linux-renesas_5.10
                   <li>For RZ/V2H<br>
 {% highlight shell%}
 cd ${YOCTO_WORK}/build
-MACHINE=rzv2h-evk-ver1 bitbake core-image-weston -c cleanall
-MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c compile -f
-MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c deploy
-MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
+MACHINE=rzv2h-evk bitbake core-image-weston -c cleanall
+MACHINE=rzv2h-evk bitbake linux-renesas -c compile -f
+MACHINE=rzv2h-evk bitbake linux-renesas -c deploy
+MACHINE=rzv2h-evk bitbake core-image-weston
 {% endhighlight %}  
                   </li>
                   <li>For RZ/V2N<br>
@@ -1829,7 +1852,7 @@ MACHINE=rzv2n-evk bitbake core-image-weston
                   </tr>
                   <tr>
                     <td>RZ/V2H</td>
-                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk_ver1-poky-linux/trusted-firmware-a/<br>v2.7+git-r0/git/plat/renesas/rz/soc/v2h/drivers/ddr</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk-poky-linux/trusted-firmware-a/<br>2.10+git/git/plat/renesas/rz/soc/v2h/drivers/ddr</td>
                     <td>ddr_param_def_lpddr4.c</td>
                     <td><a href="https://www.renesas.com/us/en/document/apn/nda-required-rzv2h-group-ddrtop-application-note" target="_blank" rel="noopener noreferrer">RZ/V2H DDRTOP Application Note</a></td>
                   </tr>
@@ -1857,20 +1880,12 @@ MACHINE=rzv2n-evk bitbake core-image-weston
                     <th>file</th>
                   </tr>
                   <tr>
-                    <td rowspan="2">RZ/V2H</td>
-                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk_ver1-poky-linux/u-boot/1_v2021.10+gitAUTOINC+31d53b8f6f-r0/git/include/configs</td>
-                    <td>rzv2h-dev.h</td>
-                  </tr>
-                  <tr>
-                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk_ver1-poky-linux/trusted-firmware-a/v2.7+git-r0/git/plat/renesas/rz/soc/v2h/include</td>
+                    <td>RZ/V2H</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk-poky-linux/trusted-firmware-a/2.10+git/git/plat/renesas/rz/soc/v2h/include</td>
                     <td>rz_soc_def.h</td>
                   </tr>
                   <tr>
-                    <td rowspan="2">RZ/V2N</td>
-                    <td>${YOCTO_WORK}/build/tmp/work/rzv2n_evk-poky-linux/u-boot/v2021.10+git/git/include/configs</td>
-                    <td>rzv2n-evk.h</td>
-                  </tr>
-                  <tr>
+                    <td>RZ/V2N</td>
                     <td>${YOCTO_WORK}/build/tmp/work/rzv2n_evk-poky-linux/trusted-firmware-a/2.10+git/git/plat/renesas/rz/soc/v2n/include</td>
                     <td>rz_soc_def.h</td>
                   </tr>
@@ -1889,20 +1904,20 @@ MACHINE=rzv2n-evk bitbake core-image-weston
                   </tr>
                   <tr>
                     <td rowspan="2">RZ/V2H</td>
-                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2h-evk-ver1/kernel-source/arch/arm64/boot/dts/renesas</td>
-                    <td>r9a09g057h4-evk-ver1.dts</td>
+                    <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2h-evk/kernel-source/arch/arm64/boot/dts/renesas</td>
+                    <td>rzv2h-evk-common.dtsi</td>
                   </tr>
                   <tr>
-                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk_ver1-poky-linux/u-boot/1_v2021.10+gitAUTOINC+31d53b8f6f-r0/git/arch/arm/dts</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2h_evk-poky-linux/u-boot/2024.07+git/git/arch/arm/dts</td>
                     <td>rzv2h-evk-ver1.dts</td>
                   </tr>
                   <tr>
                     <td rowspan="2">RZ/V2N</td>
                     <td>${YOCTO_WORK}/build/tmp/work-shared/rzv2n-evk/kernel-source/arch/arm64/boot/dts/renesas</td>
-                    <td>r9a09g056n44-evk.dts</td>
+                    <td>r9a09g056n48-rzv2n-evk.dts</td>
                   </tr>
                   <tr>
-                    <td>${YOCTO_WORK}/build/tmp/work/rzv2n_evk-poky-linux/u-boot/v2021.10+git/git/arch/arm/dts</td>
+                    <td>${YOCTO_WORK}/build/tmp/work/rzv2n_evk-poky-linux/u-boot/2024.07+git/git/arch/arm/dts</td>
                     <td>rzv2n-evk.dts</td>
                   </tr>
                 </table>
@@ -1913,14 +1928,12 @@ MACHINE=rzv2n-evk bitbake core-image-weston
                   <u><b>Example:</b></u><br>
                   <ul>
                     <li>If you use 4GB x 2 pieces totaling 8GB of DRAM on RZ/V2H, change it as follows.</li><br>
-                    <b>rzv2h-dev.h</b><br>
-<pre><code>#define CONFIG_SYS_SDRAM_SIZE  (<span style="color:red;">0x100000000u</span> - DRAM_RSV_SIZE) //total 4GB
-</code></pre>
                     <b>rz_soc_def.h</b><br>
 <pre><code>#define RZV2H_DDR0_SIZE   <span style="color:red;">ULL(0x100000000)</span>
 #define RZV2H_DDR1_SIZE   <span style="color:red;">ULL(0x100000000)</span>
 </code></pre>
-                    <b>r9a09g057h4-evk-ver1.dts</b> and <b>rzv2h-evk-ver1.dts</b><br>
+                    <br> 
+                    <b>rzv2h-evk-common.dtsi</b> and <b>rzv2h-evk-ver1.dts</b><br>
 <pre><code>memory@48000000 {
   device_type = "memory";
   /* first 128MB is reserved for secure area. */
@@ -1932,9 +1945,13 @@ memory@240000000 {
 };
 </code></pre>
                     <br>
-                    <li>The patch file and bbappend file to make the above changes are below.<br>
-                        Obtain the patch file and bbappend file from the link below, Copy them to the specified folder listed in the Path column.<br>
-                        These files are for RZ/V2H AI SDK v5.20 only. Patch files need to be modified to suit your environment.</li>
+                    <li>The patch file and inc file to make the above changes are below.<br>
+                        Obtain the patch file and inc file from the link below, Copy them to the specified folder listed in the Path column.<br>
+                        These files are for RZ/V2H AI SDK v6.00 only. Patch files need to be modified to suit your environment.</li>
+                      <div class="note">
+                        <span class="note-title">Note 1</span>
+                        The following files used in this example assume that the bus setting patch in Step 3-5-1 of How to build RZ/V AI SDK Source Code procedure has not been applied.
+                      </div>
                       <table class="mytable">
                         <tr>
                           <th>File</th>
@@ -1943,10 +1960,10 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-u-boot-for-RZV2H-AI_SDK-v5.20.patch">d006-u-boot-for-RZV2H-AI_SDK-v5.20.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-u-boot-for-RZV2H-AI_SDK-v6.00.patch">d006-u-boot-for-RZV2H-AI_SDK-v6.00.patch</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/u-boot/files/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/u-boot/files/</code>
                           </td>
                           <td>
                             Patch file for modifying u-boot
@@ -1954,21 +1971,21 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-u-boot_2021.10.bbappend">d006-u-boot_2021.10.bbappend</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-u-boot-renesas.inc">d006-u-boot-renesas.inc</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/u-boot/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/u-boot/</code>
                           </td>
                           <td>
-                            bbappend file for modifying u-boot
+                            inc file for modifying u-boot
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-tfa-for-RZV2H-AI_SDK-v5.20.patch">d006-tfa-for-RZV2H-AI_SDK-v5.20.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-tfa-for-RZV2H-AI_SDK-v6.00.patch">d006-tfa-for-RZV2H-AI_SDK-v6.00.patch</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/trusted-firmware-a/files/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/trusted-firmware-a/files/</code>
                           </td>
                           <td>
                             Patch file file for modifying TF-A
@@ -1976,10 +1993,10 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-trusted-firmware-a.inc">d006-trusted-firmware-a.inc</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-trusted-firmware-a-renesas.inc">d006-trusted-firmware-a-renesas.inc</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/trusted-firmware-a/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/trusted-firmware-a/</code>
                           </td>
                           <td>
                             inc file for modifying TF-A
@@ -1987,10 +2004,10 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-device-tree-for-RZV2H-AI_SDK-v5.20.patch">d006-device-tree-for-RZV2H-AI_SDK-v5.20.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch">d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/linux-renesas/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/files/</code>
                           </td>
                           <td>
                             Patch file for modifying device tree
@@ -1998,52 +2015,52 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/d006-linux-renesas_5.10.bbappend">d006-linux-renesas_5.10.bbappend</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-linux-renesas_6.1.inc">d006-linux-renesas_6.1.inc</a>
                           </td>
                           <td>
-                            <code>${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/</code>
+                            <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/</code>
                           </td>
                           <td>
-                            bbappend file for modifying device tree
+                            inc file for modifying device tree
                           </td>
                         </tr>
                       </table>
                       <br>
-                    <li>Copy the patch file and bbappend file.</li>
+                    <li>Copy the patch file and inc file.</li>
 {% highlight shell%}
-# Copy patch file and bbappend file for u-boot
-cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/u-boot/
-sudo mkdir ./files
-sudo cp <Path to the file>/d006-u-boot-for-RZV2H-AI_SDK-v5.20.patch ./files/
-sudo mv u-boot_2021.10.bbappend u-boot_2021.10.bbappend_backup
-sudo cp <Path to the file>/d006-u-boot_2021.10.bbappend ./u-boot_2021.10.bbappend
+# Copy patch file and inc file for u-boot
+cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/u-boot/
+sudo mkdir -p ./files
+sudo cp <Path to the file>/d006-u-boot-for-RZV2H-AI_SDK-v6.00.patch ./files/
+sudo mv u-boot-renesas.inc u-boot-renesas.inc_backup
+sudo cp <Path to the file>/d006-u-boot-renesas.inc ./u-boot-renesas.inc
 
 # Copy patch file and inc file for TF-A
-cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-bsp/trusted-firmware-a/
-sudo mkdir ./files
-sudo cp <Path to the file>/d006-tfa-for-RZV2H-AI_SDK-v5.20.patch ./files/
-sudo mv trusted-firmware-a.inc trusted-firmware-a.inc_backup
-sudo cp <Path to the file>/d006-trusted-firmware-a.inc ./trusted-firmware-a.inc
+cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/trusted-firmware-a/
+sudo mkdir -p ./files
+sudo cp <Path to the file>/d006-tfa-for-RZV2H-AI_SDK-v6.00.patch ./files/
+sudo mv trusted-firmware-a-renesas.inc trusted-firmware-a-renesas.inc_backup
+sudo cp <Path to the file>/d006-trusted-firmware-a-renesas.inc ./trusted-firmware-a-renesas.inc
 
-# Copy patch file and bbappend file for device tree
-cd ${YOCTO_WORK}/meta-renesas/meta-rzv2h/recipes-kernel/linux/
-sudo cp <Path to the file>/d006-device-tree-for-RZV2H-AI_SDK-v5.20.patch ./linux-renesas/
-sudo mv linux-renesas_5.10.bbappend linux-renesas_5.10.bbappend_backup
-sudo cp <Path to the file>/d006-linux-renesas_5.10.bbappend ./linux-renesas_5.10.bbappend
+# Copy patch file and inc file for device tree
+cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/
+sudo mkdir -p ./files
+sudo cp <Path to the file>/d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch ./files/
+sudo mv linux-renesas_6.1.inc linux-renesas_6.1.inc_backup
+sudo cp <Path to the file>/d006-linux-renesas_6.1.inc ./linux-renesas_6.1.inc
 {% endhighlight %}
                     <div class="note">
-                      <span class="note-title">Note 1</span>
+                      <span class="note-title">Note 2</span>
                       If you want to run both the "D5.How to modify the memory map" and "D6.How to change the DRAM size" examples, <br>
-                      modify the linux-renesas_5.10.bbappend file as follows.<br>
-<pre><code>SRC_URI_append += "\
-  file://0001-rollback-cru.patch \
-  <span style="color:red;">file://d005-device-tree-for-RZV2H-AI_SDK-v5.20.patch \</span>
-  file://d006-device-tree-for-RZV2H-AI_SDK-v5.20.patch \
+                      modify the linux-renesas_6.1.inc file as follows.<br>
+<pre><code>SRC_URI:append = "\
+  <span style="color:red;">file://d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch \</span>
+  file://d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch \
 "
 </code></pre> 
                     </div>
                     <div class="note">
-                      <span class="note-title">Note 2</span>
+                      <span class="note-title">Note 3</span>
                       For how to modify the Yocto recipe, please refer the link below:<br>
                       <a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
                     </div>
@@ -2059,12 +2076,12 @@ sudo cp <Path to the file>/d006-linux-renesas_5.10.bbappend ./linux-renesas_5.10
                   <li>For RZ/V2H<br>
 {% highlight shell%}
 cd ${YOCTO_WORK}/build
-MACHINE=rzv2h-evk-ver1 bitbake core-image-weston -c cleanall
-MACHINE=rzv2h-evk-ver1 bitbake trusted-firmware-a -c compile -f
-MACHINE=rzv2h-evk-ver1 bitbake u-boot -c compile -f
-MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c compile -f
-MACHINE=rzv2h-evk-ver1 bitbake linux-renesas -c deploy
-MACHINE=rzv2h-evk-ver1 bitbake core-image-weston
+MACHINE=rzv2h-evk bitbake core-image-weston -c cleanall
+MACHINE=rzv2h-evk bitbake trusted-firmware-a -c compile -f
+MACHINE=rzv2h-evk bitbake u-boot -c compile -f
+MACHINE=rzv2h-evk bitbake linux-renesas -c compile -f
+MACHINE=rzv2h-evk bitbake linux-renesas -c deploy
+MACHINE=rzv2h-evk bitbake core-image-weston
 {% endhighlight %}  
                   </li>
                   <li>For RZ/V2N<br>

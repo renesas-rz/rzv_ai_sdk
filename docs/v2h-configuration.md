@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -155,7 +154,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 Drivers
             </h3>
             Following table shows the list of drivers.<br>
-            For more details, see <a href="https://www.renesas.com/document/mas/rzg2l-rzv2l-rzv2n-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v404">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
+            For more details, see <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">RZ/V2H BSP Manual Set</a> and <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" target="_blank" rel="noopener noreferrer">RZ/V2H Evaluation Board Kit Hardware Manual</a>. 
             <!-- UNCOMMENT following for v5.00 release. -->
             <!-- <div class="note">
                 <span class="note-title">Note</span>

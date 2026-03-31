@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <div class="application-window">
@@ -57,7 +56,7 @@ layout: default
             <div id="agriculture1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Animal"
-                data-label=""
+                data-label="Updated!"
                 data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
@@ -68,12 +67,12 @@ layout: default
                         onmouseover="this.src='img/GIF/Agriculture1_480x270.gif'" 
                         onmouseout="this.src='img/Agriculture1_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Defense wild animals for crop</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detect the types of animals that enter your farm or barn for pest control.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 07_Animal_detection<br>
@@ -126,14 +125,14 @@ layout: default
             <div id="agriculture2" class="application_card col-lg-6 col-xl-4"
                 data-model="Custom"
                 data-targetobj="Other"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Agriculture2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Fruit and Vegetable Plant Disease Check</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Supports farmer by classifying whether the plant has a disease or not.<br><br>
                     </div>
@@ -185,14 +184,14 @@ layout: default
             <div id="agriculture3" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/EdgeYOLO-M"
                 data-targetobj="Animal"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Agriculture3_RanchLivestockManagement.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Ranch Livestock Management</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Counts the number of livestock to help monitor the number of animals bred in a ranch.<br><br>
                     </div>
@@ -253,19 +252,19 @@ layout: default
             <div id="building1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Elevator passengers Counting</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues alerts if the elevator is overcrowded and exceeds its capacity.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 01_Head_count<br>
@@ -312,7 +311,7 @@ layout: default
             <div id="building2" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
@@ -323,12 +322,12 @@ layout: default
                         onmouseover="this.src='img/GIF/SmartBuilding2_480x270.gif'" 
                         onmouseout="this.src='img/SmartBuilding2_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Conference Room Usage Monitor</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors if the meeting room is vacant by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
@@ -387,19 +386,19 @@ layout: default
             <div id="building3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Lighting Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Automatically controls the lighting according to the situation by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
@@ -446,19 +445,19 @@ layout: default
             <div id="building4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Security Area Intrusion Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects illegal intrusions to security area in the office.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
@@ -505,19 +504,19 @@ layout: default
             <div id="building5" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Other"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Wear management at construction sites</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Analyzes the equipment of workers before entering the construction site by detecting the necessary equipment such as helmet or vest. It can be used to reduce the overload of monitoring person and ensure workers to wear appropriate equipment.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 04_Safety_helmet_vest_detection<br>
@@ -564,19 +563,19 @@ layout: default
             <div id="building6" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding6_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for elevator</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         By using hand gestures, elevator operation can be done without touching the buttons.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
@@ -623,14 +622,14 @@ layout: default
             <div id="building7" class="application_card col-lg-6 col-xl-4"
                 data-model="FaceNet"
                 data-targetobj="Face"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding7_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Employee ID check for Restricted Area</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Checks the employee ID and the person matches before entering to restricted area.<br><br>
                     </div>
@@ -740,19 +739,19 @@ layout: default
             <div id="city1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection in Railway Station</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the congestion level on trains and buses by detecting the number of passengers.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
@@ -799,19 +798,19 @@ layout: default
             <div id="city2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Prohibited Area Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Prevents accidents and detects illegal intrusions in construction site by detecting the entry to prohibited areas.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
@@ -858,19 +857,19 @@ layout: default
             <div id="city3" class="application_card col-lg-6 col-xl-4"
                 data-model="ResNet-18+Tiny YOLOv3/ResNet-18+YOLOv3"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Distracted driving detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues an alert when the driver is distracted by detecting the line of sight.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 09_Human_gaze_detection<br>
@@ -917,14 +916,14 @@ layout: default
             <div id="city4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity6_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Duration monitoring for surveillance camera</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Prevents the theft by monitoring whether there is a suspicious person wandering around the specified area.  Can be used in car dealer, housing, etc.<br><br>
                     </div>
@@ -976,14 +975,14 @@ layout: default
             <div id="city5" class="application_card col-lg-6 col-xl-4"
                 data-model="Custom"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Parking Spot Reservation</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects the occupancy of parking spot for reservation system.<br><br>
                     </div>
@@ -1015,14 +1014,14 @@ layout: default
             <div id="city6" class="application_card col-lg-6 col-xl-4"
                 data-model="Custom"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity7_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Illegal Parking Check</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects the parking violation by monitoring the car presence in a restricted area.<br><br>
                     </div>
@@ -1054,14 +1053,14 @@ layout: default
             <div id="city7" class="application_card col-lg-6 col-xl-4"
                 data-model="FaceNet"
                 data-targetobj="Face"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Passport check support</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Supports passport check in airport immigration by checking the match of users face and their passport.<br><br>
                     </div>
@@ -1113,19 +1112,19 @@ layout: default
             <div id="city8" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bus passenger counting</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Counts the number of passengers on public transportation. It is also effective in preventing children from being left behind on school buses.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
@@ -1172,19 +1171,19 @@ layout: default
             <div id="city9" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCIty9_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Backtravel Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects people going backwards on one-way stairs, aisles, or escalators. Helps preventing congestion and accidents.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
@@ -1231,14 +1230,14 @@ layout: default
             <div id="city10" class="application_card col-lg-6 col-xl-4"
                 data-model="Custom"
                 data-targetobj="Other"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity10_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Violence Activity Check in Surveillance Camera</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Supports the surveillance system by monitoring the suspicious/violent activity.<br><br>
                     </div>
@@ -1290,14 +1289,14 @@ layout: default
             <div id="city11" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/EdgeYOLO-M"
                 data-targetobj="Animal"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity11_BirdDamagePrevention.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bird Damage Prevention</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Counts birds captured by the camera and alerts the user. It can be used to prevent bird damage in parks, residential areas, or fields.<br><br>
                     </div>
@@ -1349,14 +1348,14 @@ layout: default
             <div id="city12" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/EdgeYOLO-M"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity12_BlindSpotMonitor.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Blind Spot Monitor</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects vehicles that enter the driver's blind spot. It can detect motorcycles and bicycles to help prevent accidents when turning a corner.<br><br>
                     </div>
@@ -1408,19 +1407,19 @@ layout: default
             <div id="city13" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity13_PrecedingVehicleMovementAlert.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Preceding Vehicle Movement Alert</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects the departure of the preceding vehicle. It prevents the driver from a delayed start when waiting at a traffic light or in a traffic jam.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 13_Car_ahead_departure_detection<br>
@@ -1467,14 +1466,14 @@ layout: default
             <div id="city14" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/EdgeYOLO-M"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity14_EmergencyVehiclesDetector.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Emergency Vehicles Detector</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects an emergency vehicle approaching from behind and alerts the driver. The driver can notice the emergency vehicle at an early stage.<br><br>
                     </div>
@@ -1526,14 +1525,14 @@ layout: default
             <div id="city15" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/EdgeYOLO-M"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity15_IllegalBicycleApproachDetection.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Illegal Bicycle Approach Detection</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects whether motorcycles are in pedestrian-only areas. It can prevent illegal parking or accidents.<br><br>
                     </div>
@@ -1585,14 +1584,14 @@ layout: default
             <div id="city16" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/EdgeYOLO-M"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity16_BicycleRentalStockManagement.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bicycle Rental Stock Management</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Counts the number of bicycles that are not being used in bicycle rental shops to support bicycle inventory management.<br><br>
                     </div>
@@ -1644,14 +1643,14 @@ layout: default
             <div id="city17" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/EdgeYOLO-M"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity17_IllegalBicycleParkingMonitorSupport.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Illegal Bicycle Parking Monitor Support</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects illegally abandoned bicycles in front of train stations or other locations to reduce burdens on patrols.<br><br>
                     </div>
@@ -1703,14 +1702,14 @@ layout: default
             <div id="city18" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Crack"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity18_InfrastructureDefectPrevention.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Infrastructure Defect Prevention</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detect cracks in tunnels or road surfaces. It helps to find deterioration and damage to infrastructure.<br><br>
                     </div>
@@ -1762,14 +1761,14 @@ layout: default
             <div id="city19" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity19_CrimePreventionSupportforSchool.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Crime Prevention Support for School</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects suspiciously dressed persons at schools or cram schools to help prevent crimes in which dangerous individuals attempt to harm students.<br><br>
                     </div>
@@ -2075,19 +2074,19 @@ layout: default
             <div id="healthcare1" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+HRNet"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Healthcare1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Physical Condition Monitor</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Support the early rescue by detecting any changes in the body condition of patients/users in the hospitals and care facility when they are alone.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 03_Elderly_fall_detection<br>
@@ -2241,19 +2240,19 @@ layout: default
             <div id="home1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Air Conditioner Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Automatically controls the air conditioning according to the situation by counting the number of people in the room.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
@@ -2300,19 +2299,19 @@ layout: default
             <div id="home2" class="application_card col-lg-6 col-xl-4"
                 data-model="ArcFace/ResNet-50"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Smart TV</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Provides smart TV system, which switches to favorite TV channel by collecting the data of family members and TV contents that they watched.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> -<br>
                         <b>Supported RZ/V2N AI SDK:</b> -<br>
                         <b>Function:</b> 06_Face_recognition_spoof_detection<br>
@@ -2330,7 +2329,7 @@ layout: default
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">6fps</p>
+                                <p class="Perf-Framerate">5fps</p>
                             </div>
                         </dd>
                     </dl>
@@ -2339,19 +2338,19 @@ layout: default
             <div id="home3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Animal"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Pet Detection in Kitchen and Child's Room</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues an alert when your pets have entered dangerous areas such as kitchen or children room.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 07_Animal_detection<br>
@@ -2398,19 +2397,19 @@ layout: default
             <div id="home4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for Kitchen Appliance</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Allows you to control electrical appliances by the hand gestures without touching them.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
@@ -2457,14 +2456,14 @@ layout: default
             <div id="home5" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3+Tesseract/YOLOv3+Tesseract"
                 data-targetobj="Other"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Food Package Expiry Date Check</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors the expiry date of food placed in the refrigerator.<br><br>
                     </div>
@@ -2525,19 +2524,19 @@ layout: default
             <div id="industrial1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Work Area Personnel Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors attendance of workers by counting their number entered in the work area.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 01_Head_count<br>
@@ -2584,7 +2583,7 @@ layout: default
             <div id="industrial2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label=""
+                data-label="Updated!"
                 data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
@@ -2595,12 +2594,12 @@ layout: default
                         onmouseover="this.src='img/GIF/Industrial4_480x270.gif'" 
                         onmouseout="this.src='img/Industrial4_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Access Control</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the total number of visitors by counting the number of people who have passed through the entrance/exit.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 02_Line_crossing_object_counting<br>
@@ -2653,19 +2652,19 @@ layout: default
             <div id="industrial3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Other"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Helmet and safety vest wearing monitor</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Increase the safety level in the factory by monitoring the helmet use.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 04_Safety_helmet_vest_detection<br>
@@ -2712,19 +2711,19 @@ layout: default
             <div id="industrial4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for Industrial machine</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Machine button operation can be done without contact using gestures in factory.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 12_Hand_gesture_recognition_v2<br>
@@ -2771,19 +2770,19 @@ layout: default
             <div id="industrial5" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3+DeepPose/YOLOX-L"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Driver Monitoring System</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Detects whether the driver is looking aside, yawning or closing his eyes. Prevents car accidents by detecting when the driver is getting sleepy while driving.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 10_Driver_monitoring_system<br>
@@ -2830,14 +2829,14 @@ layout: default
             <div id="industrial6" class="application_card col-lg-6 col-xl-4"
                 data-model="Custom"
                 data-targetobj="Other"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial6_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Species check support in Fish Factory</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Classifies the fish species shown in the camera to support the fish processing industry.<br><br>
                     </div>
@@ -2889,14 +2888,14 @@ layout: default
             <div id="industrial7" class="application_card col-lg-6 col-xl-4"
                 data-model="Unet"
                 data-targetobj="Crack"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial7_DefectInspectionSupport.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Defect Inspection Support</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors the factory production line to detect cracks in the manufactured products. It supports the product inspection process.<br><br>
                     </div>
@@ -2948,14 +2947,14 @@ layout: default
             <div id="industrial8" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Other"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial8_Aquaculture_Industrial_Support.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Aquaculture Industrial Support</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors fish to help aquaculture operators to manage their resources.<br><br>
                     </div>
@@ -3114,19 +3113,19 @@ layout: default
             <div id="retail1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Issues an alert when the store is overcrowded with more customers.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
@@ -3173,19 +3172,19 @@ layout: default
             <div id="retail2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3+FairFace/YOLOv3+FairFace"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Smart POS</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Supports checking ages of customers by checking their age in front of the casher and linking the information with their purchase.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 05_Age_gender_detection<br>
@@ -3232,19 +3231,19 @@ layout: default
             <div id="retail3" class="application_card col-lg-6 col-xl-4"
                 data-model="ResNet-18+Tiny YOLOv3/ResNet-18+YOLOv3"
                 data-targetobj="Face"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Marketing Interest Analysis</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors the gaze direction of customer in the retail store, which can be used to collect marketing information.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 09_Human_gaze_detection<br>
@@ -3291,14 +3290,14 @@ layout: default
             <div id="retail4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Staying and flow line monitoring</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Collects marketing data by monitoring the number of people and duration of their stay in a certain place.<br><br>
                     </div>
@@ -3350,19 +3349,19 @@ layout: default
             <div id="retail5" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Exhibition Participants Monitoring</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitor the number of visitors to an exhibition or other open space. Changes in the number of participants can also be detected since it counts the number of participants in real time.<br><br>
                     </div>
                     <div class="appspec">
-                        <b>Supported RZ/V2L AI SDK:</b> v5.00<br>
+                        <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
                         <b>Function:</b> 11_Head_count_topview<br>
@@ -3409,14 +3408,14 @@ layout: default
             <div id="retail6" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail6_Store_Crime_Prevention.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Store Crime Prevention</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects suspiciously dressed persons in convenience stores or unmanned stores to prevent theft.<br><br>
                     </div>

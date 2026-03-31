@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <!-- Title -->
@@ -24,7 +23,7 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 6.00
+                    Target Version: 6.30
                 </b>
             </h5>
         </div>
@@ -43,11 +42,13 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         Drivers
                     </a>
                 </li>
+<!--
                 <li>
                     <a href="#v2n-limit">
                         Limitation
                     </a>
                 </li>
+-->
             </ul>
         </div>
         <br>
@@ -75,9 +76,9 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         Yocto Linux
                     </td>
                     <td>                <!-- Version -->
-                        Yocto version: 5.0.6 (Scarthgap)
+                        Yocto version: 5.0.11 (Scarthgap)
                         <br>
-                        Kernel version: 6.1.107-cip28
+                        Kernel version: 6.1.141-cip43
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
@@ -94,26 +95,15 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         <!-- Empty -->
                     </td>
                 </tr>
-                <tr>
-                    <td rowspan="2">    <!-- Component -->
+		        <tr>
+                    <td>    <!-- Component -->
                         OpenCL
                     </td>
                     <td>                <!-- Version -->
-                        1.1, 1.2, 2.0 Full Profile.
+                        2.0 Full Profile.
                     </td>
                     <td>                <!-- Explanation -->
                         <!-- Empty -->
-                    </td>
-                </tr>
-                <tr>
-                                        <!-- Component : OpenCL -->
-                    <td>                <!-- Version -->
-                        3.0 Full Profile
-                    </td>
-                    <td>                <!-- Explanation -->
-                        <h6 class="mb-1">
-                            This is not guaranteed to be backwards compatible with the previous versions of OpenCL.
-                        </h6>
                     </td>
                 </tr>
                 <tr>
@@ -132,7 +122,7 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                         OpenMAX IL
                     </td>
                     <td>                <!-- Version -->
-                        1.1
+                        1.1.2
                     </td>
                     <td>                <!-- Explanation -->
                         <h6 class="mb-1">
@@ -154,7 +144,7 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 Drivers
             </h3>
             Following table shows the list of drivers.<br>
-            For more details, see <a href="https://www.renesas.com/document/mas/bsp-manual-set-rzg2l-rzfive-rzv2l-and-rzv2n-group-rtk0ef0045z9006azj-v401zip" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a> and <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>. 
+            For more details, see <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a> and <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>. 
             <!-- 
             <div class="note">
                 <span class="note-title">Note</span>
@@ -676,6 +666,7 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             <br>
         </div>
         <!-- v2n limitations -->
+<!--
         <div class="col-12">
             <h3 id="v2n-limit">
                 Limitations
@@ -691,6 +682,7 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
             </ul>
             <br>
         </div>
+-->
     </div>
 <!-- Footer -->
     <div class="row">

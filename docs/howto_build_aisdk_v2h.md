@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <div class="container">
@@ -38,7 +37,7 @@ layout: default
       <br>
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
-      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/mas/rzg2l-rzv2l-rzv2n-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v404">RZ/V2H BSP Manual Set</a>.<br>
+      To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">RZ/V2H BSP Manual Set</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
@@ -617,7 +616,7 @@ For more information on how to use each files, see the link in the How to use co
       <a href="https://docs.yoctoproject.org/" target="_blank" rel="noopener noreferrer">https://docs.yoctoproject.org/</a>
     </li>
     <li>
-      <a href="https://www.renesas.com/document/mas/rzg2l-rzv2l-rzv2n-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v404">RZ/V2H BSP Manual Set</a>
+      <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">RZ/V2H BSP Manual Set</a>
     </li>
   </ul>
 </div>

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 
@@ -15,6 +14,66 @@ layout: default
         <div class="col-12">
             <br>
             <br>
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Applications v7.10
+                </h3>
+                <h6 align="right" >
+                    2026.3.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v7.10 is released.</h5>
+                    <ul>
+                        <li> 
+                            27 applications support RZ/V2L AI SDK v7.00.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V2N AI SDK v6.30
+                </h3>
+                <h6 align="right" >
+                    2026.3.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI SDK v6.30 is released.</h5>
+                    <ul>
+                        <li> 
+                            Updated RZ/V2N Linux BSP to v2.0.1.
+                        </li>
+                        <li> 
+                            Updated Graphics Library to v4.1.3.1.
+                        </li>
+                        <li> 
+                            Updated Video Codec Library to v4.3.4.0.
+                        </li>
+                        <li> 
+                            Updated OpenCV Accelerator to v1.50.
+                        </li>
+                        <li> 
+                            Updated DRP-AI Driver to v1.40.
+                        </li>
+                        <li> 
+                            Supported the DDR Suspend to RAM function to enable ultra-low-power standby with fast resume.
+                        </li>
+                        <li> 
+                            Applications that can be run on RZ/V2N AI SDK v6.00 are compatible with RZ/V2N AI SDK v6.30.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">

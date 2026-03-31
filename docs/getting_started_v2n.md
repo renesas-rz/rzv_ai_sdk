@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
@@ -19,7 +18,7 @@ RZ/V2N EVK Getting Started
 <br>
 <h5>This page explains how to start-up the AI SDK on the <b>RZ/V2N Evaluation Board Kit</b>.</h5>
 
-<h5>Supported version: <b>RZ/V2N AI SDK v6.00</b></h5>
+<h5>Supported version: <b>RZ/V2N AI SDK v6.30</b></h5>
 
 <details class="boxdetails" open>
   <summary>Terminology</summary>
@@ -88,13 +87,22 @@ RZ/V2N EVK Getting Started
             <table class="gstable">
               <tr>
                 <th>Equipment</th>
+                <th>RZ/V2N Evaluation Board (CPU board)<br>Model Number</th>
                 <th>Details</th>
               </tr>
               <tr>
-                <td>RZ/V2N Evaluation Board</td>
+                <td>RZ/V2N Evaluation Board V1.0</td>
+                <td>RTK0EF0186C02000BJ</td>
+                <td>Evaluation board itself.</td>
+              </tr>
+              <tr>
+                <td>RZ/V2N Evaluation Board V2.0</td> 
+                <td>RTK0EF0186C02001BJ</td>
                 <td>Evaluation board itself.</td>
               </tr>
             </table>
+            To check the version of the RZ/V2N EVK, check the model number of the RZ/V2N Evaluation Board (CPU board).<br>
+            <img src="img/v2n_evk_v2.png" alt="board" width="70%">
           </div>
         </div>
       </div>
@@ -466,11 +474,11 @@ sudo mkdir /mnt/sd/home/weston/tvm
 <!--          <div class="note">
             <span class="note-title">Note</span>
             Since RZ/V2N is a brother chip of RZ/V2H, users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
-            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
           </div> -->
           <div class="box1">
             <u><b>Example:</b></u><br>
-            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
+            In <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">here</a> to find files to be copied.
           </div>
           Use the following command to copy the files to root filesystem.
           <br><br>
@@ -550,10 +558,21 @@ sudo eject /dev/sdb
                   <li>Turn the SW2 to ON to power on the <b>Board</b></li>
                 </ol>
               </div>
-              <div class="col-12 col-md-6">
-                <a href="img/v2n_evk_boot_esd.png" data-lightbox="group"><img class="procedure" src="img/v2n_evk_boot_esd.png" alt="boot" width="90%"/></a>
-              </div>
-            </div>  
+	      <div class="col-6" style="margin-top:40px;">
+      	        <div class="row">
+                  <div class="col-6 text-center">
+                    <a href="img/v2n_evk_boot_esd.png" data-lightbox="group">
+                      <img class="procedure" src="img/v2n_evk_boot_esd.png" alt="Image 1" width="100%" />
+                    </a>
+                  </div>
+                  <div class="col-6 text-center">
+                    <a href="img/v2n_evkv2_boot_esd.png" data-lightbox="group">
+                      <img class="procedure" src="img/v2n_evkv2_boot_esd.png" alt="Image 2" width="100%" />
+                    </a>
+                  </div>
+  	        </div>
+	      </div>
+	    </div>
             <div class="row">
               <div class="col-12 col-md-6">
                 <ol>
@@ -611,9 +630,20 @@ sudo eject /dev/sdb
                 <li>Turn the SW2 to ON to power on the <b>Board</b></li>
               </ol>
             </div>
-            <div class="col-12 col-md-6">
-              <a href="img/v2n_evk_boot_spi.png" data-lightbox="group"><img class="procedure" src="img/v2n_evk_boot_spi.png" alt="boot" width="90%"/></a>
-            </div>
+              <div class="col-6" style="margin-top:40px;">
+                <div class="row">
+                  <div class="col-6 text-center">
+                    <a href="img/v2n_evk_boot_spi.png" data-lightbox="group">
+                      <img class="procedure" src="img/v2n_evk_boot_spi.png" alt="Image 1" width="100%" />
+                    </a>
+                  </div>
+                  <div class="col-6 text-center">
+                    <a href="img/v2n_evkv2_boot_spi.png" data-lightbox="group">
+                      <img class="procedure" src="img/v2n_evkv2_boot_spi.png" alt="Image 2" width="100%" />
+                    </a>
+                  </div>
+                </div>
+              </div>
           </div>  
           <br>
           <div class="row">
@@ -668,9 +698,9 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.<br>
+            For <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a> application, follow the instruction <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">here</a> to run the application.<br>
             <!-- Users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
-            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
             <br> -->
             If you have successfully run the application, you will see following window on HDMI screen.
             <br><br>

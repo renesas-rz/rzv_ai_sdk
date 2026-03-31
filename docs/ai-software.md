@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <script src="https://code.jquery.com/jquery.min.js"></script>

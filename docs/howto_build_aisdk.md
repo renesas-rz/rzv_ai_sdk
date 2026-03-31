@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 ---
 <div class="container">
@@ -52,7 +51,7 @@ layout: default
               </tr>
               <tr>
                 <td rowspan="2">Linux PC</td>
-                <td colspan="2">Approximately <b>120GB free space</b> is necessary.</td>
+                <td colspan="2">Approximately <b>200GB free space</b> is necessary.</td>
               </tr>
               <tr>
                 <td>OS</td>
