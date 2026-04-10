@@ -17,6 +17,44 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2N AI Applications Demo v6.30
+                </h3>
+                <h6 align="right" >
+                    2026.4.10
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI Applications Demo v6.30 is released.</h5>
+                    <ul>
+                         <li> 
+                            Supported RZ/V2N AI SDK v6.30.
+                        </li>
+                        <li> 
+                            Supported AI Applications v6.20.
+                            <ul>
+                                <li> 
+                                    Updated AI models in 14 applications.
+                                </li>
+                                <li> 
+                                    Added 4 applications.
+                                </li>
+                                <li> 
+                                    Improved UX of 2 applications.
+                                </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            Supported LVGL v9.2.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications v7.10
                 </h3>
                 <h6 align="right" >

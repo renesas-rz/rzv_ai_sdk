@@ -77,54 +77,38 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.3.31
+                2026.4.10
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V2N AI SDK v6.30</b> is released.
+                    <b>RZ/V2N AI Applications Demo v6.30</b> is released.
                     <h6 class="mb-0">
                         <ul>
                             <li> 
-                                Updated RZ/V2H Linux BSP to v2.0.1.
+                                Supported RZ/V2N AI SDK v6.30.
                             </li>
                             <li> 
-                                Updated Graphics Library to v4.1.3.1.
+                                Supported AI Applications v6.20.
+                                <ul>
+                                    <li> 
+                                        Updated AI models in 14 applications.
+                                    </li>
+                                    <li> 
+                                        Added 4 applications.
+                                    </li>
+                                    <li> 
+                                        Improved UX of 2 applications.
+                                    </li>
+                                </ul>
                             </li>
                             <li> 
-                                Updated Video Codec Library to v4.3.4.0.
-                            </li>
-                            <li> 
-                                Updated OpenCV Accelerator to v1.50.
-                            </li>
-                            <li> 
-                                Updated DRP-AI Driver to v1.40.
-                            </li>
-                            <li> 
-                                Supported the DDR Suspend to RAM function to enable ultra-low-power standby with fast resume.
-                            </li>
-                            <li> 
-                                Applications that can be run on RZ/V2N AI SDK v6.00 are compatible with RZ/V2N AI SDK v6.30.
+                                Supported LVGL v9.2.
                             </li>
                         </ul>
                     </h6>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2n-spec"><b>RZ/V2N AI SDK Specification</b></a>.
-            <br>
-            <br>
-            <ul>
-                <li>
-                    <b>RZ/V AI Applications v7.10</b> is released.
-                    <h6 class="mb-0">
-                        <ul>
-                            <li> 
-                                27 applications support RZ/V2L AI SDK v7.00.
-                            </li>
-                        </ul>
-                    </h6>
-                </li>
-            </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo"><b>Demo</b></a>.
             <br>
             <br>
         </div>
@@ -497,15 +481,15 @@ layout: default
                                     Environment:
                                     <ul>
                                         <li>
-                                            AI Applications v5.10
+                                            AI Applications v6.20
                                         </li>
                                         <li>
-                                            RZ/V2N AI SDK v5.00
+                                            RZ/V2N AI SDK v6.30
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    Demo zip file size: 3.5GB
+                                    Demo zip file size: 3.8GB
                                 </li>
                             </ul>
                         </div>

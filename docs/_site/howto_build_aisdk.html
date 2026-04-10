@@ -30,10 +30,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Renesas RZ/V AI" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-03-31T10:17:35+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/7.10/howto_build_aisdk.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-03-31T13:35:28+09:00","description":"The best solution for starting your AI applications.","headline":"Renesas RZ/V AI","url":"https://renesas-rz.github.io/rzv_ai_sdk/7.10/howto_build_aisdk.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=cb3084ed146ca45006a4df660b5aa7841edfd3ae">
+    <link rel="stylesheet" href="assets/css/style.css?v=9721a7e9110315d2848193440b9aee588b5266d8">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -1157,6 +1157,39 @@ downloads</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> &lt; ../patch/0002-openmp.patch</code></pre></figure>
 
+      </li>
+      <!-- Patch file to fix Gstreamer playbin issue. -->
+      <li>Apply patch file to fix DMA issue.<br />
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch">
+                    0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing DMA issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> &lt; 0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build</code></pre></figure>
+
+          </li>
+        </ol>
       </li>
     </ol>
   </li>

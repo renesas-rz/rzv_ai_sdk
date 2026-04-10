@@ -21,7 +21,7 @@ How to Use Guide
       Target version
     </td>
     <td>
-      <b>RZ/V2N AI Applications Demo v5.10</b>
+      <b>RZ/V2N AI Applications Demo v6.30</b>
     </td>
   </tr>
   <tr>
@@ -37,7 +37,7 @@ How to Use Guide
       Supported AI SDK
     </td>
     <td>
-      RZ/V2N AI SDK v5.00
+      RZ/V2N AI SDK v6.30
     </td>
   </tr>
   <tr>
@@ -45,7 +45,7 @@ How to Use Guide
       Supported AI Applications
     </td>
     <td>
-      RZ/V AI Applications v5.10
+      RZ/V AI Applications v6.20
     </td>
   </tr>
 </table>
@@ -135,7 +135,7 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
           </td>
           <td>
             USB Power Delivery adapter for the board power supply.<br>
-            100W is required.
+            60W is required.
           </td>
         </tr>
         <tr>
@@ -172,6 +172,15 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
         </tr>
         <tr>
           <td>
+            Depth Camera
+          </td>
+          <td>
+            <b>Optional.</b> Some applications allow Depth camera input.<br> 
+            Operating Environment:  Intel D435 RealSense TM Depth Camera.<br>
+          </td>
+        </tr>
+        <tr>
+          <td>
             USB Cable Type-C
           </td>
           <td>
@@ -202,7 +211,7 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
           </td>
           <td>
             Used for Setup microSD card.<br>
-            Operating Environment: Ubuntu 20.04
+            Operating Environment: Ubuntu 22.04
           </td>
         </tr>
         <tr>
@@ -240,10 +249,17 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
 <ol>
   <li>If you have not yet obtained the demo file, click on the link below to download it.
     <br><br>
-    <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-applications-demo-sd-image-version-510" role="button">Download Link</a>
+    <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-applications-demo-sd-image-version-630" role="button">Download Link</a>
     <br><br>
     <div class="note">
-      <span class="note-title">Note</span>
+        <span class="note-title">Note 1</span>
+        If the download link is not available, please refer to link and instruction in the latest documentation.<br>
+        <a  href="https://renesas-rz.github.io/rzv_ai_sdk/latest/demo_v2n">
+            https://renesas-rz.github.io/rzv_ai_sdk/latest/demo_v2n
+        </a>
+    </div>
+    <div class="note">
+      <span class="note-title">Note 2</span>
       In this section, we use a Linux PC to prepare the microSD card. <br>
       If you want to use a Windows PC, we have experience in writing disk images by <a href="https://etcher.balena.io/">balenaEthcher</a>.
       <br>
@@ -253,7 +269,7 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
   <li>Place the downloaded Zip file into a Linux PC and unzip it using the following command in a terminal.
   <br><br>
 {% highlight shell %}
-unzip RTK0EF0211F05100SJ.zip
+unzip RTK0EF0211F06300SJ.zip
 {% endhighlight %}
     Make sure the following folders and files are generated after unzipping the file.
     <table id="demodirs" class="mytable">
@@ -269,20 +285,20 @@ unzip RTK0EF0211F05100SJ.zip
         <td>Linux license information.</td>
       </tr>
       <tr>
-        <td>r11an0992ej0510-rzv2n-ai-apps-demo(Linux License List).pdf</td>
+        <td>r11an0992ej0630-rzv2n-ai-apps-demo(Linux License List).pdf</td>
         <td>List of Linux license information included in Demo microSD card image. Copyright information is not included.</td>
       </tr>
       <tr>
         <td rowspan="2">sd_image/</td>
-        <td>rzv2n_ai_applications_demo_v5.10.wic.gz</td>
+        <td>rzv2n_ai_applications_demo_v6.30.wic.gz</td>
         <td>Gzip file containing the Demo microSD card image.</td>
       </tr>
       <tr>
-        <td>rzv2n_ai_applications_demo_v5.10.wic.bmap</td>
+        <td>rzv2n_ai_applications_demo_v6.30.wic.bmap</td>
         <td>Bmap file for copying the Demo microSD card image.</td>
       </tr>
       <tr>
-        <td colspan="2">r11an0991ej0510-rzv2n.pdf</td>
+        <td colspan="2">r11an0991ej0630-rzv2n.pdf</td>
         <td>ReadMe document describing the contents of the Demo zip file.</td>
     </tr>
     </table>
@@ -352,7 +368,7 @@ sudo umount /media/user/9016-4EF8
     <br><br>
 {% highlight shell %}
 cd sd_image
-sudo bmaptool copy --bmap rzv2n_ai_applications_demo_v5.10.wic.bmap rzv2n_ai_applications_demo_v5.10.wic.gz /dev/sdb
+sudo bmaptool copy --bmap rzv2n_ai_applications_demo_v6.30.wic.bmap rzv2n_ai_applications_demo_v6.30.wic.gz /dev/sdb
 {% endhighlight %}
     <div class="warning">
       <span class="warning-title">Warning</span>
@@ -408,11 +424,19 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
           </div>
         </li><br>
         <li>Change DSW1 and DSW2 setting as shown in the figure.</li><br>
-        <li>Connect the USB mouse and USB camera(s) via USB hub.<br>
-          <div class="note">
-            <span class="note-title">Note</span>
-            Up to 3 USB camera inputs are supported.
-          </div>
+        <li>Connect equipments to USB ports.<br>
+          <ol>
+            <li>
+              Connect the USB mouse and USB camera(s) via USB hub.<br>
+              <div class="note">
+                <span class="note-title">Note</span>
+                Up to 3 USB camera inputs are supported.
+              </div>
+            </li>
+            <li>
+              <b>[Optional]</b> Connect the Depth camera to the USB 3.0 port.<br>
+            </li>
+          </ol>
         </li><br>
         <li>
           <b>[Optional]</b> Connect the MIPI camera to the CN7 on the <b>Board</b>.<br>
@@ -534,13 +558,13 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q02_face_authentication#gui-for-running-the-application"><b>GUI</b></a></td>
             </tr>
             <tr>
-              <td>Multi-Camera Parking Lot Management</td>
+              <td>Multi-Camera Parking Lot Management <a href="#footnote_multi"><sup>*1</sup></a></td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection"><b>GitHub Link</b></a></td>
               <td>USB / USBx2 / USBx3 / MIPI</td>
               <td>CUI</td>
             </tr>
             <tr>
-              <td rowspan="20">Smart City</td>
+              <td rowspan="22">Smart City</td>
               <td>Congestion Detection in Railway Station</td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
               <td>USB</td>
@@ -562,7 +586,7 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>Duration monitoring for surveillance camera</td>
               <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter"><b>GitHub Link</b></a></td>
               <td>USB</td>
-              <td>CUI</td>
+              <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter#instruction-1"><b>GUI</b></a></td>
             </tr>
             <tr>
               <td>Passport check support</td>
@@ -579,6 +603,12 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
             <tr>
               <td>Backtravel Detection</td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/02_Line_crossing_object_counting"><b>GitHub Link</b></a></td>
+              <td>USB</td>
+              <td>CUI</td>
+            </tr>
+            <tr>
+              <td>Violence Activity Check in Surveillance Camera</td>
+              <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q05_suspicious_activity"><b>GitHub Link</b></a></td>
               <td>USB</td>
               <td>CUI</td>
             </tr>
@@ -637,13 +667,13 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>CUI</td>
             </tr>
             <tr>
-              <td>Multi-Camera Vehicle Detector</td>
+              <td>Multi-Camera Vehicle Detector <a href="#footnote_multi"><sup>*1</sup></a></td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection"><b>GitHub Link</b></a></td>
               <td>USB / USBx2 / USBx3 / MIPI</td>
               <td>CUI</td>
             </tr>
             <tr>
-              <td>Car Accident Prevention Alert</td>
+              <td>Car Accident Prevention Alert <a href="#footnote_multi"><sup>*1</sup></a></td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/14_Multi_camera_vehicle_detection"><b>GitHub Link</b></a></td>
               <td>USB / USBx2 / USBx3 / MIPI</td>
               <td>CUI</td>
@@ -661,7 +691,13 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>CUI</td>
             </tr>
             <tr>
-              <td rowspan="2">Healthcare</td>
+              <td>River water level monitoring system</td>
+              <td><a href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C01_river_area_monitoring"><b>GitHub Link</b></a></td>
+              <td>USB</td>
+              <td>CUI</td>
+            </tr>
+            <tr>
+              <td rowspan="3">Healthcare</td>
               <td>Physical Condition Monitor</td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/03_Elderly_fall_detection"><b>GitHub Link</b></a></td>
               <td>USB</td>
@@ -671,6 +707,12 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>Yoga Pose Monitor</td>
               <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q12_yoga_pose_estimation"><b>GitHub Link</b></a></td>
               <td> USB</td>
+              <td>CUI</td>
+            </tr>
+            <tr>
+              <td>Body size measurement</td>
+              <td><a href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C02_depth_cam_human_body_estimation"><b>GitHub Link</b></a></td>
+              <td>Depth</td>
               <td>CUI</td>
             </tr>
             <tr>
@@ -699,7 +741,7 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>CUI</td>
             </tr>
             <tr>
-              <td rowspan="8">Industrial</td>
+              <td rowspan="10">Industrial</td>
               <td>Work Area Personnel Management</td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/01_Head_count"><b>GitHub Link</b></a></td>
               <td>USB</td>
@@ -748,6 +790,18 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>CUI</td>
             </tr>
             <tr>
+              <td>Lumber visual inspection</td>
+              <td><a href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C03_surface_anomaly_detection"><b>GitHub Link</b></a></td>
+              <td>USB</td>
+              <td><a href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C03_surface_anomaly_detection#instruction-1"><b>GUI</b></a></td>
+            </tr>
+            <tr>
+              <td>Analog Meter Reader</td>
+              <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q13_analog_meter_reader"><b>GitHub Link</b></a></td>
+              <td>USB</td>
+              <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q13_analog_meter_reader#instruction-1"><b>GUI</b></a></td>
+            </tr>
+            <tr>
               <td rowspan="6">Retail</td>
               <td>Congestion Detection</td>
               <td><a href="https://github.com/Ignitarium-Renesas/rzv_ai_apps/tree/main/11_Head_count_topview"><b>GitHub Link</b></a></td>
@@ -770,7 +824,7 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>Staying and flow line monitoring</td>
               <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter"><b>GitHub Link</b></a></td>
               <td>USB</td>
-              <td>CUI</td>
+              <td><a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/main/Q01_footfall_counter#instruction-1"><b>GUI</b></a></td>
             </tr>
             <tr>
               <td>Exhibition Participants Monitoring</td>
@@ -785,6 +839,9 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
               <td>CUI</td>
             </tr>
           </table>
+          <h6>
+            <span id="footnote_multi">*1: The error may occur when depth camera and USB cameras are connected. See <a href="#note-multi">Note 1</a>.</span>
+          </h6>
         </li><br>
         <li>
           After following the boot procedure in the <a href="#linuxboot"><b>previous section</b></a>, you can start the application using the GUI.<br><br>
@@ -940,6 +997,78 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
     </div>
   </div>
 </div>
+
+
+<h2 id="note">Notes</h2>
+
+This chapter describes the application behaviors confirmed by Renesas.
+
+<!-- <h3 id="note-index">Index</h3>
+<ul>
+  <li>
+    <a href="#note-multi">Note 1: Multi-camera application shows black screen</a>
+  </li>
+</ul>
+<br> -->
+<h3 id="note-multi">Note 1: Multi-camera application shows black screen</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      Some applications show only black screen with termiation button.
+      <h4 class="mt-1 mb-1 u_line">Target application</h4>
+      <ul>
+        <li>
+          Smart Building: Multi-Camera Parking Lot Management
+        </li>
+        <li>
+          Smart City: Multi-Camera Vehicle Detector
+        </li>
+        <li>
+          Smart City: Car Accident Prevention Alert
+        </li>
+      </ul>
+      <h4 class="mb-1 u_line">Details</h4>
+      When clicking "Start (USB CameraxN)" with following cameras connected, the target application shows black screen.
+      <ul>
+        <li>
+          A depth camera
+        </li>
+        <li>
+          Less than N USB cameras
+        </li>
+      </ul>
+      For example, <b>1 Depth Camera</b> and <b>1 USB Camera</b> are connected to the board and a user clicks <b>"Start (USB Camerax2)"</b>. 
+      <br>
+      <a href="img/demo-note/1_click_v2n.jpg" data-lightbox="group">
+        <img class="mt-1" src="img/demo-note/1_click_v2n.jpg" alt="note1 blackscreen" width="600px">
+      </a>
+      <br>
+      <br>
+      Then, following black screen is kept showing.
+      <br>
+      <a href="img/demo-note/1_blackscreen.png" data-lightbox="group">
+        <img class="mt-1" src="img/demo-note/1_blackscreen.png" alt="note1 blackscreen" width="600px">
+      </a>
+      <br>
+      <br>
+      User can go back to home screen with termination button.
+      <br>
+      The "Check Previous Log" button shows <b>"[ERROR] Error opening video stream or camera!"</b> as shown below.
+      <br>
+      <a href="img/demo-note/1_error_log.png" data-lightbox="group">
+        <img class="mt-1" src="img/demo-note/1_error_log.png" alt="note1 log" width="600px">
+      </a>
+      <br>
+      <h4 class="mb-1 u_line">Cause</h4>
+      It occurs since the depth camera is recognized as USB camera, but could not be opened as "USB camera".
+      <br>
+      <h4 class="mb-1 u_line">Workaround</h4>
+      Connect the appropriate number of USB cameras and run the target application again.
+    </div>
+  </div>
+</div>
+<br>
+<br>
 <div class="container">
   <div class="row">
     <div class="col-12" align="right">

@@ -266,6 +266,39 @@ patch -p1 < ../patch/0001-tesseract.patch
 patch -p1 < ../patch/0002-openmp.patch
 {% endhighlight %}
       </li>
+      <!-- Patch file to fix Gstreamer playbin issue. -->
+      <li>Apply patch file to fix DMA issue.<br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch">
+                    0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing DMA issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < 0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+cd ${YOCTO_WORK}/build
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
     </ol>
   </li>
   <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>
