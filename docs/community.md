@@ -325,6 +325,89 @@ Or if you have general questions, please use Renesas Technical Support.<br>
         </div>
     </div>
 </div>
+<div class="container partner_section pb-4" 
+    id="computermind"
+    data-partner="Computermind">
+    <div class="row">
+        <div class="col-12">
+            <h3>Computermind</h3>
+        </div>
+        <div class="col-9">
+            Computermind is a Japanese-based IT solutions provider specializing in advanced technologies for the industrial sector. We have delivered high-quality system integration, software development, AI consulting, and maintenance services to a wide range of industries.
+            <br><br>
+            We help manufacturers and other industrial clients optimize their operations, automate complex processes, improve productivity, and enhance quality control, with deep expertise in Industrial AI and edge device technologies.
+            <br><br>
+            Computermind provide tailored solutions that improve business efficiency and create new value. And the team of experts continuously adapts to technological advancements, ensuring reliable, secure, and future-ready systems for its clients.
+            <br>
+        </div>
+        <div class="col-3 text-center">
+            <img src="img/community/Computermind/Computermind_logo.png" alt="logo"/>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div id="computermind_cm_cd" class="application_card col-lg-6 col-xl-4"
+            data-category="Vision AI"
+            >
+            <li class="griditem" style="list-style: none;">
+                <img src="img/community/Computermind/CM_crowd_detection_960x540.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Crowd Detection System</dt>
+                <h6 class="appstatus" align="right">
+                    <span class="sol-category">
+                        Vision AI
+                    </span>
+                    <br>
+                </h6>
+                <div class="griditem-add">
+                    When the crowd density exceeds a certain threshold, the corresponding regions on the heatmap are displayed in red, providing a visual alert for potential overcrowding.<br>This application verifies the superiority of accuracy by dividing the input images and performing inference.<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C04_dividing_inference_demo" 
+                                style="color:white"
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+        <div id="computermind_cm_slam" class="application_card col-lg-6 col-xl-4"
+            data-category="Vision AI"
+            >
+            <li class="griditem" style="list-style: none;">
+                <img src="img/community/Computermind/CM_visual_inspection_960x540.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Visual Inspection Demo</dt>
+                <h6 class="appstatus" align="right">
+                    <span class="sol-category">
+                        Vision AI
+                    </span>
+                    <br>
+                </h6>
+                <div class="griditem-add">
+                    YOLO-Planar-SLAM-DRP system developed based on YoloPlanarSLAM can improve tracking accuracy by removing moving object (human) with object detection AI model (YOLO).<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/ComputermindCorp/yolo-planar-slam-drp" 
+                                style="color:white"
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+    </div>
+</div>
 <br>
 <br>
 <!-- Template -->
@@ -444,6 +527,10 @@ Or if you have general questions, please use Renesas Technical Support.<br>
                 <div class="checkbox-group ellipsis-display">
                     <input type="checkbox" id="Deep Vision Consulting" class="filter_content" value="Deep Vision Consulting">
                     <label for="Deep Vision Consulting">Deep Vision Consulting</label>
+                </div>
+                <div class="checkbox-group ellipsis-display">
+                    <input type="checkbox" id="Computermind" class="filter_content" value="Computermind">
+                    <label for="Computermind">Computermind</label>
                 </div>
             </div>
             <div id="category-filter">

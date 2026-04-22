@@ -17,6 +17,30 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2026.4.22
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Partner Applications on Community Page is updated.</h5>
+                    <ul>
+                        <li>
+                            [Computermind] Crowd Detection System<br>
+                        </li>
+                        <li>
+                            [Computermind] Visual Inspection Demo<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V2N AI Applications Demo v6.30
                 </h3>
                 <h6 align="right" >

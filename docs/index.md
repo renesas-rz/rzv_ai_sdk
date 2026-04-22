@@ -77,38 +77,24 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.4.10
+                2026.4.22
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V2N AI Applications Demo v6.30</b> is released.
+                    <b>Partner Applications on Community Page</b> is updated.
                     <h6 class="mb-0">
                         <ul>
-                            <li> 
-                                Supported RZ/V2N AI SDK v6.30.
+                            <li>
+                                [Computermind] Crowd Detection System<br>
                             </li>
-                            <li> 
-                                Supported AI Applications v6.20.
-                                <ul>
-                                    <li> 
-                                        Updated AI models in 14 applications.
-                                    </li>
-                                    <li> 
-                                        Added 4 applications.
-                                    </li>
-                                    <li> 
-                                        Improved UX of 2 applications.
-                                    </li>
-                                </ul>
-                            </li>
-                            <li> 
-                                Supported LVGL v9.2.
+                            <li>
+                                [Computermind] Visual Inspection Demo<br>
                             </li>
                         </ul>
                     </h6>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo"><b>Demo</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind"><b>Community page</b></a>.
             <br>
             <br>
         </div>
