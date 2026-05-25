@@ -222,29 +222,30 @@ Or if you have general questions, please use Renesas Technical Support.<br>
     </div>
 </div>
 <div class="container partner_section pb-4" 
-    id="ignitarium"
-    data-partner="Ignitarium">
+    id="neurealm"
+    data-partner="Neurealm">
     <div class="row">
         <div class="col-12">
-            <h3>Ignitarium</h3>
+            <h3>Neurealm</h3>
         </div>
         <div class="col-9">
-            Ignitarium, a Neurealm company, is a specialized engineering services provider with expertise across semiconductors, AI and wireless-enabled embedded systems. With a worldwide presence spanning India, the US, Canada, Germany and Japan, its work powers real-world innovation across Automotive, Industry 4.0, Consumer Electronics, Robotics and Healthcare.
-            <br><br>
-            Ignitarium's Semiconductor business line offers capabilities in SoC-level architecture and design, SV-UVM verification, FPGA prototyping, embedded processor development, UVM-based AMS verification, and full-chip DFT. Its Software Engineering business line delivers embedded, AI and cloud software, involving high-performance Linux drivers, video and audio algorithms, Android frameworks, Automotive AI software, perception AI app development, sensor fusion (LiDAR, RADAR and cameras) and AI SDK and infra development for AI SoC and ASICs
+            Neurealm is the right-sized partner for Engineering, Modernization and RunOps, blending human intelligence with the latest technologies to help businesses across industries such as Healthcare, Technology, Commerce, Industrial, Transportation and others, make smart progress. 
+            <br>
+            <br>
+            With offerings spanning Digital Platform Engineering, Data, AI, Cybersecurity, Technology Operations, Semiconductor and Embedded services, and a presence across India, the US, Canada, Germany, and Japan, we empower 250+ global enterprises. Guided by our Engineering Mindset and powered by Neurealm Labs, our innovation engine, we transform ideas into real-world impact through new-age offerings, solutions, frameworks, and accelerators.
             <br>
         </div>
         <div class="col-3 text-center">
-            <img src="img/community/Ignitarium/Ignitarium_logo.png" alt="logo"/>
+            <img src="img/community/Neurealm/neurealm_logo.png" alt="logo"/>
         </div>
     </div>
     <br>
     <div class="row">
-        <div id="ignitarium_moveit" class="application_card col-lg-6 col-xl-4"
+        <div id="neurealm_moveit" class="application_card col-lg-6 col-xl-4"
             data-category="Robotics"
             >
             <li class="griditem" style="list-style: none;">
-                <img src="img/community/Ignitarium/Ignitarium_moveit_960x540.jpg" alt="application">
+                <img src="img/community/Neurealm/Neurealm_moveit_960x540.jpg" alt="application">
                 <dt class="mt-1" style="color: #2a289d;">MoveIt demonstration on RZ/V2H</dt>
                 <h6 class="appstatus" align="right">
                     <span class="sol-category">
@@ -521,8 +522,8 @@ Or if you have general questions, please use Renesas Technical Support.<br>
                     <label for="Irida Labs">Irida Labs</label>
                 </div>
                 <div class="checkbox-group ellipsis-display">
-                    <input type="checkbox" id="Ignitarium" class="filter_content" value="Ignitarium">
-                    <label for="Ignitarium">Ignitarium</label>
+                    <input type="checkbox" id="Neurealm" class="filter_content" value="Neurealm">
+                    <label for="Neurealm">Neurealm</label>
                 </div>
                 <div class="checkbox-group ellipsis-display">
                     <input type="checkbox" id="Deep Vision Consulting" class="filter_content" value="Deep Vision Consulting">
