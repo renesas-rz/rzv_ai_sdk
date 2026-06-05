@@ -65,17 +65,21 @@ rm -rf ~/.local/share/renesas/v2l/drp-ai_tvm
 </div>
 <br>
 
-<h3 id="ainavi_appendix_b">B. How to use Bring Your Own Model Project</h3>
-Bring Your Own Model (hereafter, BYOM) project is an empty project to develop an AI application with own AI models on e<sup>2</sup> studio.<br>
-Please follow the steps if you develop your AI applications with BYOM project.<br>
+<h3 id="ainavi_appendix_b">B. How to use AI Navi Empty Project</h3>
+**AI Navi Empty Project** is a project for developing AI applications using your own AI models with AI Navigator.  
+Please follow the steps below to develop your AI application using the AI Navi Empty Project.
 <div class="note">
   <span class="note-title">Note</span>
-  Bring Your Own Model project does not support RZ/V AI TLT.
+  AI Navi Empty Project does not support RZ/V AI TLT.
 </div>
-<h5 id="appendix_b_1">1. Import an Bring Your Own Model project</h5>
-Importing this project is the same as importing other AI application projects. For details, see <a href="ainavi_quick_start_guide.html#ainavi_step3" target="_blank">Step 3: Import an AI Application Project</a> in AI Navigator Quick Start Guide for the details.<br>
-In order to import an BYOM project, click <b>[Bring Your Own Model]</b> on the category selection view > <b>[Bring Your Own Model]</b> on the AI application selection view > <b>[Import]</b> on the AI application import view. Be sure to set the directory path of the downloaded and extracted zip file in the Project and AI information view.<br> 
-<br>
+
+<h5 id="appendix_b_1">1. Import an AI Navi Empty Project</h5>
+Importing this project is the same as importing other AI application projects.  
+For details, see <a href="ainavi_quick_start_guide.html#ainavi_step3" target="_blank">Step 3: Import an AI Application Project</a> in AI Navigator Quick Start Guide for the details.  
+
+In order to import it, click <b>[AI Navi Empty Project]</b> on the category selection view > <b>[AI Navi Empty Project]</b> on the AI application selection view > <b>[Import]</b> on the AI application import view.   
+Be sure to set the directory path of the downloaded and extracted zip file in the Project and AI information view.  
+
 <h5 id="appendix_b_2">2. Convert AI model</h5>
 This method is the same as for other AI applications. See <a href="ainavi_quick_start_guide.html#ainavi_option2" target="_blank">Option2: Convert AI Model</a> in AI Navigator Quick Start Guide for the details.<br>
 <br>

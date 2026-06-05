@@ -17,6 +17,28 @@ layout: default
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    e<sup>2</sup> studio for RZ/V2H, RZ/V2N & RZ/V2L - AI Navigator Quick Start Guide
+                </h3>
+                <h6 align="right" >
+                    2026.6.5
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">AI Navigator v2.2.0 is released.</h5>
+                    <ul>
+                        <li>
+                            Users can now develop more AI Applications using RZ/V AI Applications v7.10 along with the updated development environment, including support for Ubuntu 22.04 and AI SDK updates.<br>
+                            The supported AI Applications are listed at the top of this guide.<br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Web
                 </h3>
                 <h6 align="right" >

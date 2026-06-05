@@ -15,15 +15,17 @@ layout: default
 <h5 id="ainavi_top">This page explains how to develop and run RZ/V AI applications using a GUI environment.<br>
 For this GUI environment, Renesas provides <b>AI Navigator</b>, which is a set of plugins for the Renesas IDE e<sup>2</sup> studio and supports your application development.<br>
 <br>
-Please read the <a href="https://www.renesas.com/en/software-tool/ai-navigator-ide-ai-applications" target="_blank">AI Navigator Release Note</a> first. This document describes the changes, restrictions, and some notes.
+Please read the <a href="https://www.renesas.com/en/software-tool/ai-navigator-ide-ai-applications" target="_blank">AI Navigator Release Note</a> first. <br>
+This document describes the changes, restrictions, and some notes.
 </h5>
 
 <h3 id="ainavi_guide_update">Updates</h3>
 <ul>
-  <li>Oct 31, 2025
+  <li>June 5, 2026
     <ul>
-      <li><b>The supported RZ/V AI Transfer Learning Tool (RZ/V AI TLT) in AI Navigator has been updated.</b></li>
-      AI Navigator now supports RZ/V AI TLT v6.00.
+      <li><b>The supported AI applications in AI Navigator have been updated.</b><br>
+      AI Navigator now supports RZ/V AI Application v7.10.</li>
+      <li>Ubuntu 22.04 is now supported.</li>
     </ul>
   </li>
 </ul>
@@ -32,11 +34,11 @@ Please read the <a href="https://www.renesas.com/en/software-tool/ai-navigator-i
 <table>
   <tr>
     <th>Target version <span style="color: red;"> Updated!</span></th>
-    <td>AI Navigator v2.1.0</td>
+    <td>AI Navigator v2.2.0</td>
   </tr>
   <tr>
-    <th>Supported environment</th>
-    <td><b>Ubuntu 20.04 LTS</b>, Renesas e<sup>2</sup> studio 2025-01 for Linux</td>
+    <th>Supported environment <span style="color: red;"> Updated!</span></th>
+    <td><b>Ubuntu 22.04 LTS</b>, Renesas e<sup>2</sup> studio 2025-12 for Linux</td>
   </tr>
   <tr>
     <th>Target Devices</th>
@@ -51,25 +53,25 @@ Please read the <a href="https://www.renesas.com/en/software-tool/ai-navigator-i
     </td>
   </tr>
   <tr>
-    <th>Available Functions of AI Applications</th>
+    <th>Available Functions of AI Applications <span style="color: red;"> Updated!</span></th>
     <td>
-        <li>RZ/V2N, RZ/V2H: Fully supported in RZ/V AI Applications v5.20</li>
-        <li>RZ/V2L: Q01-Q11 in RZ/V AI Applications v5.20</li>
+        <li>RZ/V2N, RZ/V2H: Fully supported in RZ/V AI Applications v7.10</li>
+        <li>RZ/V2L: Q01-Q11 in RZ/V AI Applications v7.10</li>
     </td>
   </tr>
   <tr>
-    <th>Supported RZ/V AI SDK</th>
+    <th>Supported RZ/V AI SDK <span style="color: red;"> Updated!</span></th>
     <td>
-        <li>RZ/V2N AI SDK v5.00</li>
-        <li>RZ/V2H AI SDK v5.20</li>
-        <li>RZ/V2L AI SDK v5.00</li>
+        <li>RZ/V2H AI SDK v6.00</li>
+        <li>RZ/V2N AI SDK v6.00, v6.30</li>
+        <li>RZ/V2L AI SDK v7.00</li>
     </td>
   </tr>
   <tr>
-    <th>Supported AI Tools <span style="color: red;"> Updated!</span></th>
+    <th>Supported AI Tools </th>
     <td>
       <li>RZ/V AI Transfer Learning Tool v6.00</li>
-      <li>AI Model Conversion Tool (supported up to DRP-AI TVM v2.3.0) </li>
+      <li>AI Model Conversion Tool (supported up to DRP-AI TVM v2.6.1) </li>
     </td>
   </tr>
 </table>
@@ -121,9 +123,10 @@ Before you start using AI Navigator, prepare the necessary equipment and softwar
 <h3 id="ainavi_step1" >Step 1: AI Navigator Installation</h3>
 <ul>
   <li><h5><b>Non-users of e<sup>2</sup> studio</b></h5></li>
-  Download <b>e<sup>2</sup> studio <u>Linux Host</u></b> from the Renesas website. *The version of e<sup>2</sup> studio is <b>2025-01</b>.
+  Download <b>e<sup>2</sup> studio <u>Linux Host</u></b> from the Renesas website. <br>
+  *The version of e<sup>2</sup> studio is <b>2025-12</b>.
   <br><br>
-  <a class="btn btn-primary download-button" href="https://www.renesas.com/document/uid/e-studio-2025-01-installer-linux" target="_blank" role="button">Get e<sup>2</sup> studio</a>
+  <a class="btn btn-primary download-button" href="https://www.renesas.com/document/uid/e-studio-2025-12-installer-linux" target="_blank" role="button">Get e<sup>2</sup> studio</a>
   <br><br>
   <div class="note">
     <span class="note-title">Note</span>
@@ -187,12 +190,13 @@ Before you start using AI Navigator, prepare the necessary equipment and softwar
         <span class="note-title">Note</span>
         If you want to restart the project, select it from the pull-down menu on the start view and click <b>"Continue"</b>.
       </div>
-      <br>
       <div class="note">
-        <span class="note-title">Note for e<sup>2</sup> studio 2025-01 users</span>
-        When Appearance Theme is set to <b>"Light(Preview)"</b>, some designs on AI Navigator are not displayed correctly. Please change Theme to <b>"Light"</b> or <b>"Dark"</b> from <b>"Window" -> "Preferences" -> "General" -> "Appearance"</b>.
+        <span class="note-title">Tip</span>
+        If you want to perform only AI model conversion in e<sup>2</sup> studio, select <b>"Conversion Tool"</b> from the Home screen.<br>
+        Conversion Tool will launch, allowing you to quickly start AI model conversion.
       </div>
     </div>
+    <br>
     <div class="col-6">
       <a href="img/ainavi/ainavi_top_view.png" data-lightbox="ainavi_top"><img src="img/ainavi/ainavi_top_view.png" alt="AI Navigator top" width="90%" /></a>
     </div>
@@ -217,10 +221,9 @@ Import an AI application project from Renesas AI server by the following steps.
       <p>2. Select a category of AI application based on your case. You can search the proper category if you enter keywords in Filter.</p><br>
       <div class="note">
         <span class="note-title">Note</span>
-        "Bring Your Own Model" is an empty project for developing your AI applications with your AI model. <br>
-        To understand its usage, see this importing step, and then see <a href="ainavi_appendix.html#ainavi_appendix_b" target="_blank"> B. How to use Bring Your Own Model Project</a>.
+        "AI Navi Empty" is a project for developing your AI applications using your AI model with AI Navigator. <br>
+        To understand its usage, see this importing step, and then see <a href="ainavi_appendix.html#ainavi_appendix_b" target="_blank"> B. How to use AI Navi Empty Project</a>.
       </div>
-      <br>
       <div class="note">
         <span class="note-title">Note</span>
         Please update AI Navigator if you find the Notice project in the import view.<br>
@@ -245,11 +248,6 @@ Import an AI application project from Renesas AI server by the following steps.
   <div class="row">
     <div class="col-6">
       <p id="ainavi_step1-4">4. Click <b>"Import"</b> and import an AI application.</p><br>
-      <div class="note for RZ/V2N users">
-        <span class="note-title">Note for RZ/V2N users</span>
-        When selecting an AI Application for RZ/V2N, the same e<sup>2</sup> studio project used for RZ/V2H will be imported, since RZ/V2N is a sibling device. Please use it as is with the RZ/V2N AI SDK and EVK.
-      </div>
-      <br>
       <div class="note">
         <span class="note-title">Note</span>
         Once you import an AI application, you cannot import an AI application which has the same function (same number like "Qxx") in the same work space.
@@ -263,8 +261,10 @@ Import an AI application project from Renesas AI server by the following steps.
   <div class="row">
     <div class="col-6">
       <p>5. The Project and AI information view will appear if the import is successful.  </p>
-      From this view, you should specify the location of the downloaded and extracted RZ/V AI SDK directory.<br>
+      From this view, you should specify the location of the downloaded and extracted RZ/V AI SDK directory.
+      <br>
       <u>If you haven't downloaded RZ/V AI SDK</u>, which is the environment for the imported AI application, click <b>"Download..."</b> to download and extract it. And then, specify the directory path.<br>
+      <br>
       <u>If you've already downloaded and extracted RZ/V AI SDK</u>, click <b>"Set the download folder..."</b> and specify the directory.<br>
     </div>
     <div class="col-6">
@@ -278,7 +278,7 @@ That's it for the steps to import an AI application project.<br>
 Please proceed to each step according to your requirements.<br>
 <ul>
   <li><b>For the users who just want to run an AI application: go to <u>Step 4: Run on the Board</u></b></li>
-  <li><b>For the users who want to customize AI models: go to <u>Option 1: Train AI model -> Option 2: Convert AI model -> Option3: Edit Application -> Step 4: Run on the Board</u></b></li>
+  <li><b>For the users who want to customize AI models: go to <u>Option 1: Transfer Learning -> Option 2: Convert AI model -> Option3: Edit Application -> Step 4: Run on the Board</u></b></li>
   <li><b>For the users who want to use AI models without any changes, but want to edit AI application source code: go to  <u>Option3: Edit Application -> Step 4: Run on the Board</u></b></li>
 </ul>
 <div class="note">
@@ -286,12 +286,12 @@ Please proceed to each step according to your requirements.<br>
   As you click each button, the guides for that option appear and the color of the button changes to gray. Click them as needed.<br>
   When you click a button again, the option guides close and the button returns to its default color.<br>
   <br>
-  <div class="ButtonTLT">Option1: Train AI Model</div>
+  <div class="ButtonTLT">Option1: Transfer Learning</div>
   <div class="ButtonTVM">Option2: Convert AI Model</div>
   <div class="ButtonAppBuild">Option3: Edit Application</div>
 </div>
 <div class="ContentsTLT">
-  <h3 id="ainavi_option1" >Option1: Train AI Model</h3>
+  <h3 id="ainavi_option1" >Option1: Transfer Learning</h3>
   You can re-train AI models from AI applications for RZ/V series using the <b>RZ/V AI Transfer Learning Tool (RZ/V AI TLT)</b>.
   <div class="note">
     <span class="note-title">Note</span>
@@ -312,7 +312,7 @@ Please proceed to each step according to your requirements.<br>
         Then, click <b>"Start Settings...".</b> to begin the setup process.<br>
       </div>
       <div class="col-6">
-        <a href="img/ainavi/ainavi_tlt_step1-1.png" data-lightbox="ainavi_tlt_step1-1"><img src="img/ainavi/ainavi_tlt_step1-1.png" alt="ainavi TLT install 1" width="80%" /></a>
+        <a href="img/ainavi/ainavi_tlt_step1-1.png" data-lightbox="ainavi_tlt_step1-1"><img src="img/ainavi/ainavi_tlt_step1-1.png" alt="ainavi TLT install 1" /></a>
       </div>
     </div>
   </div>
@@ -487,7 +487,8 @@ Please confirm the console log.
   <div class="container">
     <div class="row">
       <div class="col-6">
-        (3) When the conversion tool is launched, select the target device and tools. Then, click <b>"Setup environment".</b>
+        (3) A message will be displayed to inform you that the installation may take some time.<br>
+        Click <b>OK</b> to continue.
       </div>
       <div class="col-6">
         <a href="img/ainavi/ainavi_tvm_step1-1-3.png" data-lightbox="ainavi_tvm_step1-1-3"><img src="img/ainavi/ainavi_tvm_step1-1-3.png" alt="ainavi tvm_step1-1-3" width="90%" /></a>
@@ -515,8 +516,9 @@ Please confirm the console log.
         You need to set up the target project for DRP-AI TVM first. Specify the following items.<br>
         <br>
         <ul>
-          <li><b>Project name</b></li>
-          Your target AI application project.
+          <li><b>Project</b></li>
+          The target project is set to <b>"Associate with e<sup>2</sup> studio project"</b> automatically.<br>
+          For conversion only without an e<sup>2</sup> studio project, select <b>"Project Independent"</b>.
           <li><b>Device</b></li>
           Your target device.
           <li><b>AI SDK Docker image name</b></li>
@@ -524,7 +526,8 @@ Please confirm the console log.
           <li><b>Select framework</b></li>
           AI framework that the input AI model file uses.
           <li><b>Input model file</b></li>
-          The file path of your AI model is automatically set by RZ/V AI TLT. It is not necessary to specify this field.
+          The file path of your AI model.<br>
+          This path is automatically set if you trained the AI model with RZ/V AI TLT.
           <li><b>Output directory</b></li>
           The output directory after conversion.
         </ul>
@@ -580,109 +583,55 @@ Please confirm the console log.
   </div>
   <br>
   <h5 id="ainavi_option2-4">4. AI model conversion</h5>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        (1) Configure the option setting.<br>
+        Select <b>"Optimization level".</b><br>
+        If you want to check edit a conversion script here uses this conversion, click <b>"Check conversion script"</b>.<br>
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_conversion_v2h_1-2.png" data-lightbox="/ainavi_tvm_conversion_v2h_1-2"><img src="img/ainavi//ainavi_tvm_conversion_v2h_1-2.png" alt="ainavi ai model conversion start(v2h)" weight="90%" /></a>
+      </div>
+    </div>
+    (2) Configure the quantization setting.<br>
+    <ol type="a">
+      <li>Select the target input node.</li>
+      <li>Specify the calibration data directory containing data to be used during the quantization process.</li>
+      <div class="note">
+        <span class="note-title">Note</span>
+        For the calibration data directory, specify the directory where the data is stored.
+        Conversion Tool Plugin supports the following extensions.<br>
+        <i>.jpg .jpeg .png .bmp .gif .tif .tiff .npy</i>
+      </div>
+      <li>The Mean and Standard deviation parameters are already set by default and do not need to be changed.</li>
+      <div class="note">
+        <span class="note-title">Note</span>
+        The Mean and Standard deviation parameters are the most important parameters for maintaining the model's accuracy.<br>
+        If you want to change these parameters, make sure that the specified parameters match the normalization parameters used during training.<br>
+        <br>
+        For more details on how to change the Mean and Standard deviation, please see the Conversion Tool Plugin Help.(Click "Help"-"Help Contents" - "AI Model Conversion Tool".)
+      </div>
+    </ol>
+    (3)Click <b>"Start conversion"</b> and the conversion process will start. At this time, the console on e<sup>2</sup> studio will appear and display logs.<br>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        (4) When finishing the conversion, the result will be shown in the <b>"Conversion result"</b> area.<br>
+      </div>
+      <div class="col-6">
+        <a href="img/ainavi/ainavi_tvm_conversion_v2h_4.png" data-lightbox="ainavi_tvm_conversion_v2h_4"><img src="img/ainavi/ainavi_tvm_conversion_v2h_4.png" alt="ainavi ai model conversion complete (v2h)" weight="90%" /></a>
+      </div>
+    </div>
+  </div>
+  <br>
+  After the conversion is finished, you need to edit and build your AI application. <br>
+  Click the above button on this page <b>"Option3: Edit Application"</b> and see the procedures. <br>
+  <br>
   <div class="note">
-    <span class="note-title">Click the button</span>
-    The AI model conversion procedure is different for each device.<br>
-    Click the button below that corresponds to your target device and the appropriate conversion procedure will appear.<br>
-    <br>
-    <div class="ButtonTVM_V2L">RZ/V2L</div>
-    <div class="ButtonTVM_V2H">RZ/V2H & RZ/V2N</div>
-    <br>
+    <span class="note-title">Note</span>
+    Before moving to the next step, close the AI Model Conversion Tool.
   </div>
-  <div class="ContentsTVM_V2L">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          Start the AI model conversion to generate its runtime for <b>RZ/V2L</b> by following the steps below.<br>
-          <br>
-          (1) Configure the option setting.<br>
-          Select "Optimization level".<br>
-          If you want to check edit a conversion script here uses this conversion, click <b>"Check conversion script"</b>.<br>
-          <br>
-          (2)Click <b>"Start conversion"</b> and the conversion process will start. At this time, the console on e<sup>2</sup> studio will appear and display logs.<br>
-          <br>
-        </div>
-        <div class="col-6">
-          <a href="img/ainavi/ainavi_tvm_conversion_1-2.png" data-lightbox="ainavi_tvm_conversion_1-2"><img src="img/ainavi/ainavi_tvm_conversion_1-2.png" alt="ainavi ai model conversion start" weight="90%" /></a>
-        </div>
-      </div>
-      <br><br>
-      <div class="row">
-        <div class="col-6">
-          (3) When finishing the conversion, the result will be shown in the <b>"Conversion result"</b> area.<br>
-        </div>
-        <div class="col-6">
-          <a href="img/ainavi/ainavi_tvm_conversion_3.png" data-lightbox="ainavi_tvm_conversion_3"><img src="img/ainavi/ainavi_tvm_conversion_3.png" alt="ainavi ai model conversion complete" weight="90%" /></a>
-        </div>
-      </div>
-    </div>
-    <br>
-    <br>
-    After the conversion is finished, you need to edit and build your AI application. <br>
-    Click the above button on this page <b>"Option3: Edit Application"</b> and see the procedures. <br>
-    <br>
-    <div class="note">
-      <span class="note-title">Note</span>
-      Before moving to the next step, close the AI Model Conversion Tool.
-    </div>
-  <br>
-  </div>
-  <div class="ContentsTVM_V2H">
-    <div class="container">
-      <div class="row">
-        <div class="col-6">
-          Start the AI model conversion to generate its runtime for <b>RZ/V2H or RZ/V2N</b> by following the steps below.<br>
-          <br>
-          (1) Configure the option setting.Select "Optimization level".<br>
-          If you want to check edit a conversion script here uses this conversion, click <b>"Check conversion script"</b>.<br>
-          <br>
-        </div>
-        <div class="col-6">
-          <a href="img/ainavi/ainavi_tvm_conversion_v2h_1-2.png" data-lightbox="/ainavi_tvm_conversion_v2h_1-2"><img src="img/ainavi//ainavi_tvm_conversion_v2h_1-2.png" alt="ainavi ai model conversion start(v2h)" weight="90%" /></a>
-        </div>
-      </div>
-      (2) Configure the quantization setting.<br>
-      <ol type="a">
-        <li>Select the target input node.</li>
-        <li>Specify the calibration data directory containing data to be used during the quantization process.</li>
-        <div class="note">
-          <span class="note-title">Note</span>
-          For the calibration data directory, specify the directory where the data is stored.
-          Conversion Tool Plugin supports the following extensions.<br>
-          <i>.jpg .jpeg .png .bmp .gif .tif .tiff .npy</i>
-        </div>
-        <li>The Mean and Standard deviation parameters are already set by default and do not need to be changed.</li>
-        <div class="note">
-          <span class="note-title">Note</span>
-          The Mean and Standard deviation parameters are the most important parameters for maintaining the model's accuracy.<br>
-          If you want to change these parameters, make sure that the specified parameters match the normalization parameters used during training.<br>
-          <br>
-          For more details on how to change the Mean and Standard deviation, please see the Conversion Tool Plugin Help.(Click "Help"-"Help Contents" - "AI Model Conversion Tool".)
-        </div>
-      </ol>
-      (3)Click <b>"Start conversion"</b> and the conversion process will start. At this time, the console on e<sup>2</sup> studio will appear and display logs.<br>
-      <br>
-      <div class="row">
-        <div class="col-6">
-          (4) When finishing the conversion, the result will be shown in the <b>"Conversion result"</b> area.<br>
-        </div>
-        <div class="col-6">
-          <a href="img/ainavi/ainavi_tvm_conversion_v2h_4.png" data-lightbox="ainavi_tvm_conversion_v2h_4"><img src="img/ainavi/ainavi_tvm_conversion_v2h_4.png" alt="ainavi ai model conversion complete (v2h)" weight="90%" /></a>
-        </div>
-      </div>
-    </div>
-    <br>
-    <br>
-    After the conversion is finished, you need to edit and build your AI application. <br>
-    Click the above button on this page <b>"Option3: Edit Application"</b> and see the procedures. <br>
-    <br>
-    <div class="note">
-      <span class="note-title">Note</span>
-      Before moving to the next step, close the AI Model Conversion Tool.
-    </div>
-  <br>
-  </div>
-  <br>
 </div>
 
 <div class="ContentsAppBuild">
@@ -725,7 +674,7 @@ It's time to run your AI application on the target board.<br>
 Click <b>"Run on the Board"</b> on the AI Navigator menu and follow the steps below. <br>
 <br>
 <div class="note">
-  <span class="note-title">Note for e<sup>2</sup> studio 2024-10 & 2025-01 users</span>
+  <span class="note-title">Note for e<sup>2</sup> studio 2025-12 users</span>
   Keep <b>"Debug"</b> view closed before <b>"Run on the Board"</b>.<br>
   <br>
   <a href="img/ainavi/ainavi_debug.png" data-lightbox="ainavi_debug"><img src="img/ainavi/ainavi_debug.png" alt="AI Navi debug" width="50%" hegiht="50%"></a><br>
@@ -758,12 +707,15 @@ Click on <b>"Create a bootable disk..."</b> and you can automatically format you
   </ul>
 </div>
 <div class="note">
-  <span class="note-title">Note for RZ/V2H & RZ/V2N users</span>
-  <b>bmap-tools</b> is used to set up each EVK. If you do not have it installed, the following message will appear when creating a bootable disk.<br>
+  <span class="note-title">Note</span>
+  <b>bmap-tools</b> is used to set up each EVK.<br> 
+  If you do not have it installed, the following message will appear when creating a bootable disk.<br>
+  <br>
   <i>"bmaptool is required for this setup program. Do you want to install it now?"</i><br>
+  <br>
   If you accept it, type "yes" and the creation process will continue.
 </div>
-<br>
+
 <h5 id=ainavi_boot_board>2. Boot the board</h5>
 Start booting the board with the formatted SD card. 
 If you are not sure how to boot the target board, click on <b>"Boot instruction..."</b> and the instructions for <a href="https://Tool-support.renesas.com/Zoo/boot_boad_guide/RZV2L_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2L Evaluation Board Kit</a>, <a href="https://Tool-support.renesas.com/Zoo/boot_boad_guide/RZV2H_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2H Evaluation Board Kit</a>, or <a href="https://Tool-support.renesas.com/Zoo/boot_boad_guide/RZV2N_board_setup_e2studio.html" target="_blank" rel="noopener noreferrer">Boot RZ/V2N Evaluation Board Kit</a> will appear.<br>
@@ -774,7 +726,7 @@ If you are not sure how to boot the target board, click on <b>"Boot instruction.
   <br>
   In addition, if you want to use IP addresses other than those set by default in AI Navigator, please see <a href="ainavi_appendix.html#ainavi_appendix_c" target="_blank">Settings required when using other IP addresses of target board</a>.
 </div>
-<br>
+
 <h5 id=ai_navi_copy_ai>3. Copy AI model and Application to the board</h5>
 Once the board is configured, you are ready to transfer your AI models and AI applications to the board.<br>
 <br>
@@ -782,17 +734,19 @@ Click <b>"Copy AI"</b> to copy your AI models to the board.<br>
 Then, click <b>"Copy App"</b> to copy your AI applications to the board.<br>
 <br>
 <h5 id=run_ai_app>4. Run AI application</h5>
-Click <b>"Run the AI"</b> and start running your AI application on the board.<br>
+Click <b>"Run the AI App"</b> and start running your AI application on the board.<br>
 <div class="note">
   <span class="note-title">Note</span>
-  Please read the readme.md in each AI application project before using it. Each readme.md describes the specification, such as which input mode (such as MIPI or USB camera) is supported, how to run the application, and so on.<br>
+  Please read the readme.md in each AI application project before using it.<br>
+  Each readme.md describes the specification, such as which input mode (such as MIPI or USB camera) is supported, how to run the application, and so on.<br>
   <br>
-  Also, read "RZV_AI_App_mode_switching_guide_en.pdf" in your imported AI application project. This document describes how to change some configurations when changing the input mode of AI application.<br>
+  Also, read "RZV_AI_App_mode_switching_guide_en.pdf" in your imported AI application project. <br>
+  This document describes how to change some configurations when changing the input mode of AI application.<br>
 </div>
-<br>
+
 <h5 id=run_ai_app>5. Terminate AI application</h5>
 Enter the command to terminate each AI application in the console. The termination command is explained in the README.md.<br>
-<br>
+
 <h4>
   This is the end of AI Navigator Quick Start Guide.
 </h4>
@@ -802,7 +756,6 @@ Please refer to <a href="ainavi_appendix.html" target="_blank">AI Navigator Quic
   <span class="note-title">Note</span>
   For the users who want to use your own customized environment (Linux, target board, and so on), see <a href="ainavi_appendix.html#ainavi_appendix_d">"How to install customized RZ/V Linux into AI Navigator"</a>.<br>
 </div>
-<br><br>
 
 <script>
 $(function() {

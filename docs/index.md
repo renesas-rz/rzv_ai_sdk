@@ -77,24 +77,22 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.4.22
+                2026.6.5
             </h6>
             <ul>
                 <li>
-                    <b>Partner Applications on Community Page</b> is updated.
+                    <b>AI Navigator v2.2.0</b> is released.
                     <h6 class="mb-0">
                         <ul>
                             <li>
-                                [Computermind] Crowd Detection System<br>
-                            </li>
-                            <li>
-                                [Computermind] Visual Inspection Demo<br>
+                                Users can now develop more AI Applications using RZ/V AI Applications v7.10 along with the updated development environment, including support for Ubuntu 22.04 and AI SDK updates.<br>
+                                The supported AI Applications are listed at the top of this guide.<br>
                             </li>
                         </ul>
                     </h6>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind"><b>Community page</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
             <br>
             <br>
         </div>
