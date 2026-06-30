@@ -38,6 +38,8 @@ layout: default
       This page explains how to build AI SDK Source Code.<br>
       After you have completed this page, you would be able to change the source code and customize Linux environment (i.e., memory map, additional OSS etc...).<br>
       To customize the Linux environment, please refer to <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405">RZ/V2N BSP Manual Set</a>.<br>
+      When building a customer system, stability issues may arise depending on the combination of AI models and system configuration (e.g., noise on HDMI output).<br>
+      If such issues occur, please refer to the <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm/blob/main/how-to/tips/system_stabilization_method/README.md" target="_blank" rel="noopener noreferrer">System Stabilization Guide</a>.<br>
       <br>
       <div class="note">
         <span class="note-title">Requirement</span>
