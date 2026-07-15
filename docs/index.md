@@ -1324,7 +1324,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 </tr>
                 <!-- RZ/V2H Reference -->
                 <tr>
-                    <td rowspan="6">RZ/V2H</td>
+                    <td rowspan="7">RZ/V2H</td>
                     <td>
                         <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator" target="_blank" rel="noopener noreferrer">
                             RZ/V2H OpenCV Accelerator 
@@ -1395,6 +1395,19 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                     <td>
                         <small>
                         This document is the Application Note, which shows the procedure required for RZ/V2H DDR control unit (hereafter, DDRTOP) to access DRAM.
+                        </small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://renesas-rz.github.io/rz_aosp/v15.3.0/" target="_blank" rel="noopener noreferrer">
+                            RZ/V2H Software Package for AOSP 15 
+                        </a>
+                    </td>
+                    <td>
+                        <small>
+                        Software package based on Android&trade; Open Source Project (AOSP) with development tools, system libraries, and graphics and multimedia support.<br>
+                        Android is a trademark of Google LLC.
                         </small>
                     </td>
                 </tr>
