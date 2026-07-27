@@ -54,10 +54,15 @@ Users can select detection target from following list
        <td>RZ/V2H AI SDK v6.00</td>
      </tr>
      <tr>
-       <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
-       <td>RZ/V2N AI SDK v6.00</td>
+       <td>
+         RZ/V2N Evaluation Board Kit (RZ/V2N EVK)<br>
+         RZ/V2N Fast Prototyping Board (FPB-RZV2N)
+       </td>
+       <td>RZ/V2N AI SDK v6.30</td>
      </tr>
  </table>  
+
+**Note:** In this document, any references to **"RZ/V2N EVK"** also apply to **"FPB-RZV2N"**, unless explicitly stated otherwise.  
 
 ### Demo 
 
@@ -115,13 +120,17 @@ Users can select detection target from following list
     </tr>
     <tr>
       <td rowspan="4">RZ/V2N</td>
-      <td>RZ/V2N EVK</td>
+      <td>
+       RZ/V2N EVK<br>
+       or FPB-RZV2N
+      </td>
       <td>Evaluation Board Kit for RZ/V2N.</td>
     </tr>
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      60W is required.</td>
+      60W is required for RZ/V2N EVK.<br>
+      45W is required for FPB-RZV2N.</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -174,9 +183,9 @@ Users can select detection target from following list
 
 Connect the hardware as shown below.  
 
-|RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
- |:---|:---|:---|
- |<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600> |
+|RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK | FPB-RZV2N |  
+ |:---|:---|:---|:---|  
+ |<img src=./images/hw_conf_v2l.png width=600>|<img src=./images/hw_conf_v2h.png width=600>  |<img src=./images/hw_conf_v2n.png width=600> |<img src=../R01_object_detection/img/hw_conf_v2n_fpb.jpg width=600> |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.  
 **Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
