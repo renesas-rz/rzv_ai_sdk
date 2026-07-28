@@ -21,11 +21,15 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
       <td>RZ/V2H AI SDK v6.00</td>
     </tr>
     <tr>
-      <td>RZ/V2N Evaluation Board Kit (RZ/V2N EVK)</td>
+      <td>
+        RZ/V2N Evaluation Board Kit (RZ/V2N EVK)<br>
+        RZ/V2N Fast Prototyping Board (FPB-RZV2N)
+      </td>
       <td>RZ/V2N AI SDK v6.30 </td>
     </tr>
-    
 </table>
+
+**Note:** In this document, any references to **"RZ/V2N EVK"** also apply to **"FPB-RZV2N"**, unless explicitly stated otherwise.  
 
 ### Input/Output
 <table>
@@ -44,7 +48,9 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
       <td rowspan="2" style="text-align:center;">USB camera</td>
     </tr>
     <tr>
-      <td >RZ/V2N EVK</td>
+      <td >
+        RZ/V2N EVK
+      </td>
     </tr>
 </table>
 
@@ -101,13 +107,17 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
     </tr>
     <tr>
       <td rowspan="4">RZ/V2N</td>
-      <td>RZ/V2N EVK</td>
+      <td>
+        RZ/V2N EVK<br>
+        or FPB-RZV2N
+      </td>
       <td>Evaluation Board Kit for RZ/V2N.</td>
     </tr>
     <tr>
       <td>AC Adapter</td>
       <td>USB Power Delivery adapter for the board power supply.<br>
-      100W is required.</td>
+      60W is required for RZ/V2N EVK.<br>
+      45W is required for FPB-RZV2N</td>
     </tr>
     <tr>
       <td>HDMI Cable</td>
@@ -160,13 +170,14 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
 
 Connect the hardware as shown below.  
 
-|RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK |
-|:---|:---|:---|
-|<img src=./img/hw_conf_v2l.png width=600>|<img src=./img/hw_conf_v2h.png width=600> |<img src=./img/hw_conf_v2n.png width=600> |
+|RZ/V2L EVK | RZ/V2H EVK | RZ/V2N EVK | FPB-RZV2N |  
+|:---|:---|:---|:---|  
+|<img src=./img/hw_conf_v2l.png width=600>|<img src=./img/hw_conf_v2h.png width=600> |<img src=./img/hw_conf_v2n.png width=600> | <img src=./img/hw_conf_v2n_fpb.jpg width=600> |
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.  
 **Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
-USB camera needs to be connected to appropriate port based on its requirement.
+USB camera needs to be connected to appropriate port based on its requirement.  
+
 
 ## Application: Build Stage
 
@@ -274,11 +285,11 @@ Replace each variable according to your board.
     |RZ/V2N EVK|[exe_v2n](./exe_v2n)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2n-v251.so`</span> |[Release v6.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v6.00/)  |
 <!--    > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  -->
 
-    - E.g., for RZ/V2L EVK, use following commands.
-        ```sh
-        cd ${APPS_PATH}/R01_object_detection/exe_v2l/yolov3_onnx
-        wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.00/R01_object_detection_deploy_tvm_v2l-v261.so
-        ```
+  - E.g., for RZ/V2L EVK, use following commands.  
+      ```sh
+      cd ${APPS_PATH}/R01_object_detection/exe_v2l/yolov3_onnx
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.00/R01_object_detection_deploy_tvm_v2l-v261.so
+      ```  
 3. Rename the `R01_object_detection_deploy_*.so` to `deploy.so`.
     ```sh
     mv <SO_FILE> deploy.so
