@@ -1,5 +1,6 @@
 ---
 layout: default
+title: RZ/V Reference Applications
 ---
 
 <div class="container">
@@ -70,6 +71,7 @@ For any enquiries, please use Renesas Technical Support.<br>
                     Image data is captured using a USB camera, and human heads are detected using AI processing. <br>
                     The detected heads are subjected to a mosaic process, and the results are displayed on a monitor via HDMI.<br>
                     On RZ/V2H, image processing is performed by OpenCV Accelerator.<br><br>
+                    Any references to "RZ/V2N EVK" also apply to "FPB-RZV2N", unless explicitly stated otherwise. <br><br>
                 </div>
                 <dl>
                     <dd style="display: flex">
@@ -95,6 +97,7 @@ For any enquiries, please use Renesas Technical Support.<br>
                     The processed results are displayed alongside the camera image on a display via HDMI.<br> 
                     Image processing can also be performed by OpenCV Accelerator.<br>
                     This application also has a calibration function, so it can handle distortion caused by various lenses.<br><br>
+                    Any references to "RZ/V2N EVK" also apply to "FPB-RZV2N", unless explicitly stated otherwise. <br><br>
                 </div>
                 <dl>
                     <dd style="display: flex">

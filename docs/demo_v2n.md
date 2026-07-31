@@ -1,5 +1,6 @@
 ---
 layout: default
+title: RZ/V2N AI Applications Demo How to Use Guide
 ---
 
 <div class="container">
@@ -13,7 +14,7 @@ How to Use Guide
 <br>
 <br>
 
-<h5>This page explains how to use RZ/V2N AI Applications Demo on the <b>RZ/V2N Evaluation Board Kit.</b></h5>
+<h5>This page explains how to use RZ/V2N AI Applications Demo on the <b>RZ/V2N Evaluation Board.</b></h5>
 
  <table class="gstable">
   <tr>
@@ -29,7 +30,8 @@ How to Use Guide
       Target board
     </td>
     <td>
-      RZ/V2N Evaluation Board Kit
+      RZ/V2N Evaluation Board Kit<br>
+      RZ/V2N Fast Prototyping Board
     </td>
   </tr>
   <tr>
@@ -57,6 +59,8 @@ How to Use Guide
     <div class="col-12">
       This page explains how to setup the RZ/V2N Evaluation Board Kit (EVK) using the demo binary file.
       <br>
+      Any references to <b>"RZ/V2N EVK"</b> also apply to <b>"RZ/V2N Fast Prototyping Board (FPB-RZV2N or just FPB)"</b>, unless explicitly stated otherwise. 
+      <br>
       Unlike the procedure described in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" ><b>Getting Started</b></a>, this page does not build the AI Software Development Kit (AI SDK) environment, so you can easily try running the AI Applications.
       <br>
       <br>
@@ -68,13 +72,17 @@ How to Use Guide
         <li>Run AI Applications on the board</li>
       </ul>
       <br>
-      The goal of this guide is to run the application and display the captured data with AI inference results on an HDMI monitor as shown below.
+      The goal of this guide is to run the application and display the captured data with AI inference results on an HDMI monitor.
       <br>
+      The following image shows the hardware configuration and port connection for RZ/V2N EVK.
       <br>
       <a href="img/demo_app_example_v2n.jpg" data-lightbox="group">
         <img src="img/demo_app_example_v2n.jpg" alt="demo_example" width="100%" style="max-width:900px;" >
       </a>
-      <br>
+      <div class="note">
+      <span class="note-title">Note</span>
+      To check port connection for FPB-RZV2N, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" ><b>Getting Started</b></a>. 
+    </div>
       <br>
       To see a list of applications included in this demo, see <a href="#apptable"><b>List of RZ/V2N AI Applications Demo</b></a>.
       <br>
@@ -105,9 +113,14 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
         <span class="banner-line">Get the board and software for RZ/V series.</span>
       </a>
     </div>
-    <div class="col-4">
+    <div class="col-2">
       <a href="img/V2N_EVK.jpeg" data-lightbox="group">
         <img src="img/V2N_EVK.jpeg" alt="board"/>
+      </a>
+    </div>
+    <div class="col-2">
+      <a href="img/V2N_FPB.JPG" data-lightbox="group">
+        <img src="img/V2N_FPB.JPG" alt="board"/>
       </a>
     </div>
   </div>
@@ -123,10 +136,11 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
         </tr>
         <tr>
           <td>
-            RZ/V2N EVK
+            RZ/V2N EVK<br>
+            or FPB-RZV2N
           </td>
           <td>
-            Evaluation Board Kit for RZ/V2N.
+            Evaluation Board for RZ/V2N.
           </td>
         </tr>
         <tr>
@@ -135,7 +149,8 @@ This chapter describes the procedures up to the first startup of the RZ/V2N Eval
           </td>
           <td>
             USB Power Delivery adapter for the board power supply.<br>
-            60W is required.
+            60W is required for RZ/V2N EVK.
+            45W is required for FPB-RZV2N.
           </td>
         </tr>
         <tr>
@@ -423,7 +438,7 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
             Use the microSD card slot <b>SD1</b> on the <b>Board</b> as shown in the figure.
           </div>
         </li><br>
-        <li>Change DSW1 and DSW2 setting as shown in the figure.</li><br>
+        <li><b>[EVK only]</b> Change DSW1 and DSW2 setting as shown in the figure.</li><br>
         <li>Connect equipments to USB ports.<br>
           <ol>
             <li>
@@ -439,23 +454,27 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
           </ol>
         </li><br>
         <li>
-          <b>[Optional]</b> Connect the MIPI camera to the CN7 on the <b>Board</b>.<br>
+          <b>[Optional]</b> Connect the MIPI camera to the CN7 (EVK) or CN5 (FPB) on the <b>Board</b>.<br>
           <ol>
-            <li>Pull up the edge of CN7.</li>
+            <li>Pull up the edge of connector.</li>
             <li>Insert the cable.</li>
-            <li>Push down the edge of CN7.</li>
+            <li>Push down the edge of connector.</li>
           </ol>
         </li>
         <br>
         <li>Connect the HDMI monitor to the <b>Board</b>.</li><br>
         <li>Connect the power cable to the <b>Board</b>.</li><br>
-        <li>Turn the SW3 to ON.</li><br>
+        <li><b>[EVK only]</b> Turn the SW3 to ON.</li><br>
         <li>Turn the SW2 to ON to power on the <b>Board</b></li>
       </ol>
     </div>
     <div class="col-12 col-md-6">
+      <h6 class="mb-1">Click to zoom the image</h6><br>
       <a href="img/v2n_evk_boot_demo.png" data-lightbox="group">
-        <img class="procedure" src="img/v2n_evk_boot_demo.png" alt="boot" width="90%"/>
+        <img class="procedure" src="img/v2n_evk_boot_demo.png" alt="boot" width="45%"/>
+      </a>
+      <a href="img/v2n_fpb_boot_demo.png" data-lightbox="group">
+        <img class="procedure" src="img/v2n_fpb_boot_demo.jpg" alt="boot" width="45%"/>
       </a>
     </div>
   </div>
@@ -988,9 +1007,10 @@ Once the <a href="#preparation"><b>Preparation</b></a> chapter is complete, you 
           <br><br>
         </li>
         <li>
-          Turn SW3 to OFF.
+          <b>[EVK only]</b> Turn SW3 to OFF.
           <br><br>
-          <img src="img/v2n_evk_shutdown.png" alt="board" width="350px" /><br>
+          <img src="img/v2n_evk_shutdown.png" alt="board" width="350px" />
+          <img src="img/v2n_fpb_shutdown.jpg" alt="board" width="350px" />
         </li>
       </ol>
       <br>
@@ -1064,6 +1084,48 @@ This chapter describes the application behaviors confirmed by Renesas.
       <br>
       <h4 class="mb-1 u_line">Workaround</h4>
       Connect the appropriate number of USB cameras and run the target application again.
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<h3 id="note-mipi">Note 2: Black screen on first launch of MIPI camera</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      Some applications show only black screen when using a MIPI camera for the first time.  
+      <br>
+      This occurs only when using RZ/V2N AI Applications Demo v6.30.
+      <h4 class="mt-1 mb-1 u_line">Target application</h4>
+      <ul>
+        <li>
+          Smart Building: Multi-Camera Parking Lot Management
+        </li>
+        <li>
+          Smart City: Multi-Camera Vehicle Detector
+        </li>
+        <li>
+          Smart City: Car Accident Prevention Alert
+        </li>
+      </ul>
+      <h4 class="mb-1 u_line">Details</h4>
+      When first starting the application that uses a MIPI camera, the application keeps showing a black screen with termination button.<br>  
+      <a href="img/demo-note/1_blackscreen.png" data-lightbox="group">
+        <img class="mt-1" src="img/demo-note/1_blackscreen.png" alt="note1 blackscreen" width="600px">
+      </a>
+      <br>
+      <br>
+      After terminating the application, you will see <b>"[ERROR] Error opening video stream or camera"</b> error in Application Log window.
+      <br>
+      <a href="img/demo-note/2_error_log.jpg" data-lightbox="group">
+        <img class="mt-1" src="img/demo-note/2_error_log.jpg" alt="note2 log" width="600px">
+      </a>
+      <br>
+      <h4 class="mb-1 u_line">Cause</h4>
+      It occurs when the camera interface is not fully initialized yet. 
+      <br>
+      <h4 class="mb-1 u_line">Workaround</h4>
+      Restart the application.
     </div>
   </div>
 </div>

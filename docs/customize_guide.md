@@ -1,5 +1,6 @@
 ---
 layout: default
+title: RZ/V AI Applications Customize Guide
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <!-- Title -->

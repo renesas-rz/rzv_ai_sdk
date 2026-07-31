@@ -1,7 +1,8 @@
 ---
 layout: default
+title: How to build RZ/V2N AI SDK Source Code
 ---
-<div class="container">
+<div class="container" id="top">
     <div class="row">
         <div class="top col-12">
           How to build RZ/V2N AI SDK Source Code
@@ -14,6 +15,10 @@ layout: default
 
 <h5>Supported version: <b>RZ/V2N AI SDK v6.30</b></h5>
 
+<div class="note">
+  <span class="note-title">Note</span>
+  Instructions explained in this page can be applied to FPB-RZV2N.
+</div>
 <h3 id="intro" >Introduction</h3>
 <div class="container">
   <div class="row">
@@ -63,7 +68,29 @@ layout: default
               </tr>
             </table>
           </li>
+          <li>The patch file for e-CAM22_CURZH camera driver (MIPI) is <b>not included</b> in RZ/V2N AI SDK Source Code.<br>
+            To obtain the patch file, please contact <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer"><i>e-con Systems</i></a>.
+          </li>
         </ol>
+      </div>
+      <div class="note">
+        <span class="note-title">Note</span>
+        Instructions for the packages listed below are not included in this page.<br>
+        To add them to AI SDK, please refer to each document provided in the following URL.
+        <ul>
+          <li>
+            <a href="https://www.renesas.com/software-tool/rzv2n-ros2-package" target="_blank" rel="noopener noreferrer">RZ/V2N ROS2 Package</a>
+          </li>
+          <li>
+            <a href="https://www.renesas.com/software-tool/rzv-group-multi-os-package" target="_blank" rel="noopener noreferrer">RZ/V Multi-OS Package</a>
+          </li>
+          <li>
+            <a href="https://www.renesas.com/software-tool/rz-mpu-security-package" target="_blank" rel="noopener noreferrer">RZ MPU Security Package</a>
+          </li>
+          <li>
+            <a href="https://www.renesas.com/software-tool/rzv2n-isp-support-package" target="_blank" rel="noopener noreferrer">RZ/V2N ISP Support Package</a>
+          </li>
+        </ul>
       </div>
       <br>
       Now you are ready to build your Linux development environment.<br>
@@ -103,6 +130,11 @@ layout: default
           </td>
         </tr>
       </table>
+      <div class="note">
+        <span class="note-title">Note</span>
+        The patch file for e-CAM22_CURZH camera driver (MIPI) is not included in RZ/V2N AI SDK Source Code.<br>
+        If you would like to use e-CAM22_CURZH camera (MIPI), please contact <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp" target="_blank" rel="noopener noreferrer"><i>e-con Systems</i></a> to get the patch file, <code>e-CAM22_CURZ*.patch</code>.
+      </div>
     </div>
   </div>
 </div>
@@ -489,7 +521,7 @@ For more information on how to use each files, see the link in the How to use co
     </td>
     <td>WIC format SD card image</td>
     <td>
-      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup RZ/V2N EVK in RZ/V2N EVK Getting Started</a>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup the Board in Getting Started</a>
     </td>
   </tr>
   <tr>
@@ -543,7 +575,7 @@ For more information on how to use each files, see the link in the How to use co
     </li>
   </ul>
 </div>
-<div class="note">
+<!-- <div class="note">
   <span class="note-title">Note 3</span>
   To add more functionality to AI SDK, please refer to following URL.
   <ul>
@@ -562,7 +594,9 @@ For more information on how to use each files, see the link in the How to use co
   </ul>
 </div>
 <div class="note">
-  <span class="note-title">Note 4</span>
+  <span class="note-title">Note 4</span> -->
+<div class="note">
+  <span class="note-title">Note 3</span>
     Regarding the eSD (Embedded SD) booting, please note the following:
     <ul class="mb-1">
       <li>The eSD boot procedure using microSD card described in this guide is for evaluation purposes only.</li>
@@ -577,6 +611,11 @@ please add new issues to AI SDK GitHub issues.<br>
 <a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a>
 
 <div class="row">
+  <div class="col-12 mb-3" align="right">
+    <a class="btn btn-secondary square-button" href="#top" role="button">
+      Back to Top >
+    </a>
+  </div>
   <div class="col-12" align="right">
     <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">
       Back to Home >

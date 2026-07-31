@@ -16,6 +16,9 @@
 
       gtag('config', 'G-JRL1VWTZC1');
     </script>
+    <link rel="icon" type="image/png" href="{{ 'img/icons/6723.T_resized.png' | relative_url }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ 'img/icons/6723.T_resized.png' | relative_url }}" />
+    <title>{{ site.title }}</title>
 {% seo %}
     <link rel="stylesheet" href="{{ "assets/css/style.css?v=" | append: site.github.build_revision }}">
     <!--[if lt IE 9]>
@@ -70,6 +73,7 @@
     </style>
   </head>
   <body>
+    
     <div class="latest-banner ">
       <div class=" latest-banner_show">
         This page is not the latest version!
@@ -84,16 +88,24 @@
         <!-- <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1> -->
 
         <h1 class="web-title"><a href="{{ "/" | absolute_url }}">Renesas <br class="br-sp-web-title">RZ/V AI</a></h1>
-        <p class="version"><u><a class="version" href="{{ site.url }}{{ site.baseurl }}{% link version.md %}">{{ site.version }}</a></u></p>
+        <p class="version"><u><a class="version" href="{{ site.url }}{{ site.baseurl }}{% link version.md %}">Rev.{{ site.version }}</a></u></p>
         {% if site.logo %}
           <img src="{{site.logo | relative_url}}" alt="Logo" />
         {% endif %}
 
         <!-- <p>{{ site.description | default: site.github.project_tagline }}</p> -->
-        <p class="ham-small">The best solution for <br class="br-sp">starting your AI applications.</p>
+        <!-- <p class="ham-small">The best solution for <br class="br-sp">starting your AI applications.</p> -->
         <p class="ham-very-small small">Provided by Renesas Electronics Corporation</p>
         <!-- <br> -->
-
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <form action="search.html" method="get" class="mb-2 search_box">
+                <input type="search" name="q" placeholder="Search"/>
+              </form>
+            </div>
+          </div>
+        </div>
         {% if site.github.is_user_page %}
         <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
         {% endif %}
@@ -101,82 +113,61 @@
         {% if site.show_downloads %}
         <div class="container">
           <div class="row ham-nodisplay">
-            <div class="col-12">
-                <img src="img/board.svg" alt="board" style="width:48%; max-width: 90px;"/>
-                <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%; max-width: 90px;"/>  
+            <div class="col-12 chkout-btn-img">
+              <img src="img/board.svg" alt="board" style="width:48%; max-width: 80px; margin-right: 10px;"/>
+              <img src="img/ai_sdk.svg" alt="ai-sdk" style="width:48%; max-width: 80px;"/>  
             </div>
           </div>
-          <div class="row mt-2">
+          <div class="row mt-2 mb-2">
             <div class="col-12">
               <a class="btn btn-secondary chkout-btn chkout-btn-menu" 
                   href="{{ site.url }}{{ site.baseurl }}{% link download.md %}" 
                   role="button">
-                  <span class="banner-title" style="line-height:1.0; padding: 0px; ">
-                      <span style="font-size:85%;">
-                        Get the 
-                      </span>
-                      <span style="font-size:90%;">
-                        Board<br class="ham-nodisplay br-nsp"> and Software
-                      </span>
-                  </span>
+                  <img 
+                    class="chkout-btn-icon" 
+                    src="img/download.png" 
+                    alt="Download">
+                  <div class="chkout-btn-txt">
+                    <span class="banner-title" style="line-height:1.0; padding: 0px;">
+                        <span style="font-size:85%;">
+                          Get the 
+                        </span>
+                        <span style="font-size:90%;">
+                          Board<br class="ham-nodisplay br-nsp"> and Software
+                        </span>
+                    </span>
+                  </div>
               </a>
-              <br>
               <a class="btn btn-secondary chkout-btn chkout-btn-menu chkout-btn-blue mt-1" 
                   href="{{ site.url }}{{ site.baseurl }}{% link ai-software.md %}" 
                   role="button">
-                  <span class="banner-title" style="line-height:1.0; padding: 0px; ">
-                      <span style="font-size:85%;">
-                        Check out 
-                      </span>
-                      <br class="ham-nodisplay br-nsp"> 
-                      <span style="font-size:90%;">
-                        RZ/V AI Software
-                      </span>
-                  </span>
+                  <img 
+                    class="chkout-btn-icon" 
+                    src="img/cursor_point.png" 
+                    alt="Click">
+                  <div class="chkout-btn-txt">
+                    <span class="banner-title" style="line-height:1.0; padding: 0px;">
+                        <span style="font-size:85%;">
+                          RZ/V AI Software
+                        </span>
+                        <br class="ham-nodisplay br-nsp"> 
+                        <span style="font-size:90%; white-space: nowrap;">
+                          Overview
+                        </span>
+                    </span>
+                  </div>
               </a>
             </div>
           </div>
         </div>
         <br class="br-nsp">
-        <!-- 
-        <div class="container">
-          <div class="row ham-nodisplay">
-            <p class="mb-1">
-              <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:210px;" href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">
-                  AI Applications Overview
-              </a>
-            </p>
-            <p class="mb-0">
-              <a class="btn btn-secondary square-button-gray square-button-link-small" style="width:210px;" href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">
-                  AI SDK Overview
-              </a>
-            </p>
-          </div>
-        </div>
-      <br class="br-nsp">-->
-        <!-- <div class="container">
-          <div class="row">
-            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
-              <img src="img/board.png" alt="board" height="90px" />
-              <ul class="downloads">
-                <li><a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-rzv2l-evaluation-board-kit">Get<br>the Board</a></li>
-              </ul>
-            </div>
-            <div class="downloads col-6 col-md-12 col-xl-6" style="text-align: center">
-              <img src="img/ai_sdk.svg" alt="ai_sdk" height="90px" />
-              <ul class="downloads">
-                <li><a href="https://www.renesas.com/software-tool/rzv2l-ai-software-development-kit">Get<br>AI SDK</a></li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
         {% endif %}
         {% if site.github.is_project_page %}
 
-        <p class="mb-0 view">
-          <h5 class="ham-nodisplay mt-3" style="margin-bottom: 5px;">
+        <p class="mb-0 view ham-very-small small ham-nodisplay mt-3"style="margin-bottom: 5px;">
+          <!-- <h5 class="ham-nodisplay mt-3" style="margin-bottom: 5px;"> -->
             To keep you updated, <br class="br-nsp"><b>Watch</b> our <a href="{{ site.github.repository_url }}">GitHub repository</a><br> 
-          </h5>
+          <!-- </h5> -->
           <span class="ham-nodisplay">
             <a class="github-button" href="https://github.com/renesas-rz/rzv_ai_sdk/subscription" data-size="large" aria-label="Watch renesas-rz/rzv_ai_sdk on GitHub">Watch</a>
           </span>
@@ -197,7 +188,7 @@
             <div class="u_line">
               AI SDK
             </div>
-            <details open>
+            <details>
               <summary>
                 <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}">AI SDK Overview</a>
               </summary>
@@ -217,7 +208,7 @@
                   <details>
                     <summary>
                       <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-spec">RZ/V2L AI SDK Specification</a>
-                    </summary>
+                      </summary>
                     <ul class="index">
                       <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-overview">Overview</a></li>
                       <li><a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-mem">Memory Map</a></li>
@@ -248,7 +239,7 @@
                 </li>
               </ul>
             </details>
-            <details open>
+            <details id="gs_details">
               <summary>
                 <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}">Getting Started</a>
               </summary>
@@ -261,90 +252,7 @@
                 <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step6">6. Build AI Application</a></li>
                 <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7">7. Deploy AI Application</a></li>
                 <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step8">8. Run AI Application</a></li>
-                <details>
-                  <summary>
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}">RZ/V2L EVK Getting Started</a>
-                  </summary>
-                  <ul class="index">
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#intro">Introduction</a>
-                    </li>
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7">7. Deploy AI Applications</a>
-                      <ul class="index">
-                        <li>
-                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7prep">Preparation</a>
-                        </li>
-                        <li>
-                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1">1. Setup the Board</a>
-                        </li>
-                        <li>
-                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">2. Deploy Application to the Board</a>
-                        </li>
-                        <li>
-                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-3">3. Boot the Board</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step8">8. Run AI Application</a>
-                    </li>
-                  </ul>
-                </details>
-                <details>
-                  <summary>
-                    <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}">RZ/V2H EVK Getting Started</a>
-                  </summary>
-                  <ul class="index">
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#intro">Introduction</a>
-                    </li>
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7">7. Deploy AI Applications</a>
-                      <ul class="index">
-                        <li>
-                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7-1">1. Setup the Board</a>
-                        </li>
-                        <li>
-                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7-2">2. Deploy Application to the Board</a>
-                        </li>
-                        <li>
-                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7-3">3. Boot the Board</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step8">8. Run AI Application</a>
-                    </li>
-                  </ul>
-                 </details>
-                <details>
-                  <summary>
-                     <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}">RZ/V2N EVK Getting Started</a>
-                  </summary>
-                  <ul class="index">
-                    <li>
-                       <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#intro">Introduction</a>
-                    </li>
-                    <li>
-                       <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7">7. Deploy AI Applications</a>
-                       <ul class="index">
-                         <li>
-                           <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7-1">1. Setup the Board</a>
-                         </li>
-                         <li>
-                           <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7-2">2. Deploy Application to the Board</a>
-                         </li>
-                         <li>
-                           <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7-3">3. Boot the Board</a>
-                         </li>
-                       </ul>
-                     </li>
-                     <li>
-                       <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step8">8. Run AI Application</a>
-                     </li>
-                   </ul>
-                  </details>
+                <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step9">9. Shutdown the Board</a></li>
                 <details>
                   <summary>
                     <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}">Appendix</a>
@@ -352,15 +260,6 @@
                   <ul class="index">
                     <li>
                       <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A2">A1. Format SD card</a>
-                    </li>
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A3">A2. Shutdown the RZ/V2L EVK</a>
-                    </li>
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4">A3. Shutdown the RZ/V2H EVK</a>
-                    </li>
-                    <li>
-                      <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5">A4. Shutdown the RZ/V2N EVK</a>
                     </li>
                   </ul>
                  </details>
@@ -694,7 +593,7 @@
             <div class="u_line">
               AI Applications Demo
             </div>
-            <details open>
+            <details>
               <summary>
                 <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">Demo</a>
               </summary>
@@ -830,7 +729,7 @@
               </ul>
             </details>
             <br class="br-nsp">
-            <details open>
+            <details>
               <summary>
                 <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#video">Video</a>
               </summary>
@@ -853,7 +752,7 @@
               </summary>
             </details>
             <br class="br-nsp"> -->
-            <details open>
+            <details>
               <summary>
                 <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#reference">Reference</a>
               </summary>
@@ -887,3 +786,13 @@
     </script>
   </body>
 </html>
+<script>
+  //Show abbreviated text.
+  document.querySelector('.web_index').querySelectorAll('a').forEach((el) => {
+      let parent_item = el.parentNode;
+      if (parent_item.offsetWidth < el.offsetWidth + 15) {
+        const text = el.textContent;
+        el.setAttribute("title", text);
+      }
+  })
+</script>

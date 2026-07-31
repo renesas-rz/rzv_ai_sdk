@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Home
 ---
 
 <div class="container">
@@ -11,22 +12,23 @@ layout: default
                         RZ/V AI Web
                     </span>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-12">
-                    <p class="ms-3">
-                        <a class="btn btn-secondary chkout-btn mt-1" 
-                            style=" text-align:left;" 
-                            href="{{ site.url }}{{ site.baseurl }}{% link ai-software.md %}" 
-                            role="button">
+                <div class="ms-3">
+                    <a class="btn btn-secondary chkout-btn chkout-btn-top mt-1" 
+                        style=" text-align:left;" 
+                        href="{{ site.url }}{{ site.baseurl }}{% link ai-software.md %}" 
+                        role="button">
+                        <img src="img/cursor_point.png" height="50px" alt="Click">
+                        <div>
                             <span class="banner-title" style="line-height:1.0;">
                                 <span style="font-size:80%;">
                                     Click here to check out 
                                 </span><br>
                                 <span style="font-size:100%;">
-                                    RZ/V AI Software
+                                    RZ/V AI Software Overview
                                 </span>
-                            </span><br>
-                        </a>
-                    </p>    
+                            </span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -77,22 +79,26 @@ layout: default
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.6.5
+                2026.7.31
             </h6>
             <ul>
                 <li>
-                    <b>AI Navigator v2.2.0</b> is released.
+                    <b>RZ/V2N Fast Prototyping Board</b> (FPB-RZV2N) support is added.
                     <h6 class="mb-0">
                         <ul>
                             <li>
-                                Users can now develop more AI Applications using RZ/V AI Applications v7.10 along with the updated development environment, including support for Ubuntu 22.04 and AI SDK updates.<br>
-                                The supported AI Applications are listed at the top of this guide.<br>
+                                FPB-RZV2N is supported by RZ/V2N AI SDK v6.30 and later.<br>
+                                AI Applications v7.10 (for RZ/V2N AI SDK v6.00) can also be used on FPB-RZV2N running RZ/V2N AI SDK v6.30.
+                            </li>
+                            <li>
+                                FPB-RZV2N can be used in the same way as the RZ/V2N Evaluation Board Kit, except for cases that depend on hardware differences.<br>
+                                E.g., Only 1 MIPI camera connector is available on FPB-RZV2N.
                             </li>
                         </ul>
                     </h6>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ainavi_quick_start_guide.md %}"><b>AI Navigator Quick Start Guide</b></a>.
+            For more details, see  <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}"><b>RZ/V AI SDK Overview</b></a> and  <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}"><b>Getting Started</b></a>.
             <br>
             <br>
         </div>
@@ -156,6 +162,7 @@ layout: default
     <div class="row">
         <div class="col-12">
             AI Applications provides the source code, pre-build application binary and pre-trained AI model objects, which allow you to select the application from various use cases, and run it on the board immediately.<br>
+            Before running AI Applications, please see <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a> to start-up RZ/V AI SDK.<br>
         </div>
     </div>
     <div class="row">
@@ -334,153 +341,96 @@ layout: default
 <h3 id="demo">Demo</h3>
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            With the demo binary, users can try the AI Applications without having AI SDK environment.<br>
-            Download the Demo for your Evaluation Board Kit (EVK) and see each How to Use Guide.<br>
+        <div class="col-12 col-xl-8">
+            AI Applications Demo is sd card image, which allow users to try the AI Applications without having AI SDK environment.<br>
+            Download the Demo for your target board and see each How to Use Guide.<br>
             <div class="note">
-                <span class="note-title">Note</span>
+                <span class="note-title">Note 1</span>
                 If the download link is not available, please refer to link in the latest documentation.<br>
                 <a  href="https://renesas-rz.github.io/rzv_ai_sdk/latest/#demo">
                     https://renesas-rz.github.io/rzv_ai_sdk/latest/
                 </a>
             </div>
-            <div class="row">
-                <div class="col-12 col-xxl-6">
-                    <h4 class="u_line">
-                        For RZ/V2L EVK
-                    </h4>
-                    <div class="row">
-                        <div class="col-5">
-                            <p class="ms-3">
-                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-500" role="button">
-                                    Download RZ/V2L AI Applications Demo
-                                </a>
-                            </p>
-                            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}" role="button">
-                                <span class="banner-title" style="line-height:1.0;">
-                                    <span style="font-size:70%;">
-                                        RZ/V2L AI Applications Demo
-                                    </span><br>
-                                    How to Use Guide
-                                </span><br>
-                                <span class="banner-line">
-                                    What is RZ/V2L AI Applications Demo?<br>
-                                    How can I run the Demo?<br>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-7">
-                            <ul>
-                                <li>
-                                    Environment:
-                                    <ul>
-                                        <li>
-                                            AI Applications v5.00
-                                        </li>
-                                        <li>
-                                            RZ/V2L AI SDK v5.00
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Demo zip file size: 2.8GB
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <br><br>
-                 </div>
-                <div class="col-12 col-xxl-6">
-                    <h4 class="u_line">
-                        For RZ/V2H EVK
-                    </h4>
-                    <div class="row">
-                        <div class="col-5">
-                            <p class="ms-3">
-                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-620" role="button">
-                                    Download RZ/V2H AI Applications Demo
-                                </a>
-                            </p>    
-                            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}" role="button">
-                                <span class="banner-title" style="line-height:1.0;">
-                                    <span style="font-size:70%;">
-                                        RZ/V2H AI Applications Demo
-                                    </span><br>
-                                    How to Use Guide
-                                </span><br>
-                                <span class="banner-line">
-                                    What is RZ/V2H AI Applications Demo?<br>
-                                    How can I run the Demo?<br>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-7">
-                            <ul>
-                                <li>
-                                    Environment:
-                                    <ul>
-                                        <li>
-                                            AI Applications v6.20
-                                        </li>
-                                        <li>
-                                            RZ/V2H AI SDK v6.00
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Demo zip file size: 3.9GB
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <br><br>
-                </div>
-                <div class="col-12 col-xxl-6">
-                    <h4 class="u_line">
-                        For RZ/V2N EVK
-                    </h4>
-                    <div class="row">
-                        <div class="col-5">
-                            <p class="ms-3">
-                                <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-applications-demo-sd-image-version-510" role="button">
-                                    Download RZ/V2N AI Applications Demo
-                                </a>
-                            </p>    
-                            <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}" role="button">
-                                <span class="banner-title" style="line-height:1.0;">
-                                    <span style="font-size:70%;">
-                                        RZ/V2N AI Applications Demo
-                                    </span><br>
-                                    How to Use Guide
-                                </span><br>
-                                <span class="banner-line">
-                                    What is RZ/V2N AI Applications Demo?<br>
-                                    How can I run the Demo?<br>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-7">
-                            <ul>
-                                <li>
-                                    Environment:
-                                    <ul>
-                                        <li>
-                                            AI Applications v6.20
-                                        </li>
-                                        <li>
-                                            RZ/V2N AI SDK v6.30
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Demo zip file size: 3.8GB
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <br><br>
-                </div>
+            <div class="note">
+                <span class="note-title">Note 2</span>
+                AI Applications Demo is provided for demonstration purpose only and may not use the latest version of AI Applications.<br>
+                To use the latest AI Applications, please follow the instruction provided in <a  href="https://renesas-rz.github.io/rzv_ai_sdk/latest/#demo">Getting Started</a> and prepare the AI SDK environment.
             </div>
+            <table class="gstable mt-3 ms-1">
+                <tr>
+                    <th>Product</th>
+                    <th>Board</th>
+                    <th>Link</th>
+                    <th>How to Use Guide</th>
+                    <th>Filesize</th>
+                </tr>
+                <tr>
+                    <td>RZ/V2L</td>
+                    <td>EVK</td>
+                    <td>
+                        <a class="btn btn-primary download-button" 
+                            href="https://www.renesas.com/document/sws/rzv2l-ai-applications-demo-sd-image-version-500" role="button">
+                            Download
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary square-button square-button-link-small" 
+                            style="width:260px;" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link demo.md %}">
+                            RZ/V2L AI Applications Demo Guide
+                        </a>
+                    </td>
+                    <td>
+                        2.8GB
+                    </td>
+                </tr>
+                <tr>
+                    <td>RZ/V2H</td>
+                    <td>EVK</td>
+                    <td>
+                        <a class="btn btn-primary download-button" 
+                            href="https://www.renesas.com/document/sws/rzv2h-ai-applications-demo-sd-image-version-620" role="button">
+                            Download
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary square-button square-button-link-small" 
+                            style="width:260px;" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link demo_v2h.md %}">
+                            RZ/V2H AI Applications Demo Guide
+                        </a>
+                    </td>
+                    <td>
+                        3.9GB
+                    </td>
+                </tr>
+                <tr>
+                    <td>RZ/V2N</td>
+                    <td>EVK/FPB</td>
+                    <td>
+                        <a class="btn btn-primary download-button" 
+                            href="https://www.renesas.com/document/sws/rzv2n-ai-applications-demo-sd-image-version-630" role="button">
+                            Download
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-secondary square-button square-button-link-small" 
+                            style="width:260px;" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link demo_v2n.md %}">
+                            RZ/V2N AI Applications Demo Guide
+                        </a>
+                    </td>
+                    <td>
+                        3.8GB
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-12 col-xl-4">
+            <a href="img/ai-apps-demo_overview.svg" data-lightbox="group">
+                <img src="img/ai-apps-demo_overview.svg" style="width: 100%; max-width: 500px;" alt="AI Apps Demo overview">
+            </a>
+            <br>
         </div>
     </div>
 </div>

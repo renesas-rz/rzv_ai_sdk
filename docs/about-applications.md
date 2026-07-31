@@ -1,14 +1,16 @@
 ---
 layout: default
+title: About AI Applications
 ---
 
 <div class="container" style="max-width:100%;">
     <div class="row">
         <div id="page-top" class="top col-12">
-            About AI Applications
+            {{ page.title }}
         </div>
     </div>
 </div>
+
 <br>
 <div class="container">
     <div class="row">

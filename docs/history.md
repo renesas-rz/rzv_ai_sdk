@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Version History
 ---
 
 <div class="container">
@@ -14,6 +15,32 @@ layout: default
         <div class="col-12">
             <br>
             <br>
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V2N Fast Prototyping Board
+                </h3>
+                <h6 align="right" >
+                    2026.7.31
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2N Fast Prototyping Board (FPB-RZV2N) support is added.</h5>
+                    <ul>
+                        <li>
+                            FPB-RZV2N is supported by RZ/V2N AI SDK v6.30 and later.<br>
+                            AI Applications v7.10 (for RZ/V2N AI SDK v6.00) can also be used on FPB-RZV2N running RZ/V2N AI SDK v6.30.
+                        </li>
+                        <li>
+                            Can be used in the same way as the RZ/V2N Evaluation Board Kit, except for cases that depend on hardware differences.<br>
+                            E.g., Only 1 MIPI camera connector is available on FPB-RZV2N.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">

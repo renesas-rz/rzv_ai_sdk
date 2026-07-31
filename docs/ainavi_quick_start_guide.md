@@ -1,5 +1,6 @@
 ---
 layout: default
+title: AI Navigator Quick Start Guide
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <div class="container">
@@ -701,9 +702,7 @@ Click on <b>"Create a bootable disk..."</b> and you can automatically format you
   For formatting procedure on Linux console, please refer to the following pages. *Click on <b>eSD Bootloader</b> for each page.
   <ul>
     <li><a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A1" target="_blank">A1. Format SD card</a></li>
-    <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7-1" target="_blank">1. Setup RZ/V2H EVK</a></li>
-    <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7-1" target="_blank">1. Setup RZ/V2N EVK</a></li>
-    <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1" target="_blank">1. Setup RZ/V2L EVK</a></li>
+    <li><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-1" target="_blank">1. Setup the Board</a></li>
   </ul>
 </div>
 <div class="note">

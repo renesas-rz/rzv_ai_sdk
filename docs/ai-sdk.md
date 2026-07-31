@@ -1,11 +1,12 @@
 ---
 layout: default
+title: RZ/V AI SDK Overview
 ---
 <!-- Title -->
 <div class="container">
     <div class="row">
         <div class="top col-12">
-            RZ/V AI SDK Overview
+            {{ page.title }}
         </div>
     </div>
 </div>
@@ -18,7 +19,7 @@ layout: default
     <div class="row">
         <div class="col-12 col-md-6">
             <!-- AI SDK Introduction -->
-            AI Software Development Kit (AI SDK) is an AI application development environment for Evaluation Board Kit of RZ/V series.
+            AI Software Development Kit (AI SDK) is an AI application development environment for Evaluation Board of RZ/V series.
             <br>
             <br>
             Since it contains Yocto Linux with bootloader, Linux Kernel, Cross Compiler and a complete set of libraries for DRP-AI and graphics, users can develop AI Applications <b>easily</b> and <b>quickly</b> with AI SDK.
@@ -27,7 +28,7 @@ layout: default
             <br>
             <br>
             <!-- Board Dependence -->
-            AI SDK is specifically made for the supported Evaluation Board Kit with fixed Linux components.
+            AI SDK is specifically made for the supported Evaluation Board with fixed Linux components.
             For those of you who would like to customize Linux environment, i.e., change memory map or develop your own board, you need to build the Yocto Linux source code.
             <br>
             <!-- Reference to AI SDK Source Code -->
@@ -122,7 +123,59 @@ layout: default
             <h4 id="devices" class="u_line">
                 Supported Devices
             </h4>
-            <ul>
+            <table class="gstable ms-4 mb-1">
+                <tr>
+                    <th>Supported Board</th>
+                    <th>Supported AI SDK</th>
+                    <th>Note</th>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-smarc-som-evaluation-kit-rzv2l-mpu-ai-accelerator" 
+                            target="_blank" rel="noopener noreferrer">
+                            RZ/V2L Evaluation Board Kit (EVK)
+                        </a>
+                    </td>
+                    <td>
+                        RZ/V2L AI SDK
+                    </td>
+                    <td>
+                        -
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-evk-rzv2h-quad-core-vision-ai-mpu-evaluation-kit" 
+                            target="_blank" rel="noopener noreferrer">
+                            RZ/V2H Evaluation Board Kit (EVK)
+                        </a>
+                    </td>
+                    <td>
+                        RZ/V2H AI SDK
+                    </td>
+                    <td>
+                        -
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">
+                        RZ/V2N Evaluation Board Kit (EVK)
+                    </a>
+                    <br>
+                    <a href="https://www.renesas.com/design-resources/boards-kits/fpb-rzv2n"
+                        target="_blank" rel="noopener noreferrer">
+                        RZ/V2N Fast Prototyping Board (FPB-RZV2N)
+                    </a>
+                    </td>
+                    <td>RZ/V2N AI SDK</td>
+                    <td>
+                        FPB-RZV2N can be used in the same way as the RZ/V2N EVK, except for cases that depend on hardware differences.<br>
+                        E.g., Only 1 MIPI camera connector is available on FPB-RZV2N.
+                    </td>
+                </tr>
+            </table>
+            <!-- <ul>
                 <li>
                     <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2l-evkit-smarc-som-evaluation-kit-rzv2l-mpu-ai-accelerator" target="_blank" rel="noopener noreferrer">
                         RZ/V2L Evaluation Board Kit
@@ -138,7 +191,7 @@ layout: default
                         RZ/V2N Evaluation Board Kit
                     </a>
                 </li>
-            </ul>
+            </ul> -->
             <br>
             <h4 id="files" class="u_line">
                 File Contents
@@ -469,6 +522,9 @@ layout: default
                             <li>
                                 OpenMP v13.4.0
                             </li>
+                            <li>
+                                Python 3.12
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -519,6 +575,58 @@ layout: default
             <a href="img/v2l_mem.png" data-lightbox="group">
                 <img src="img/v2l_mem.png" alt="V2L memory map" width="30%">
             </a>
+            <br>
+            <br>
+        </div>
+        <div class="col-12">
+            <h4 class="u_line" id="v2l-mem">
+                Boot Mode
+            </h4>
+            RZ/V2L AI SDK and AI SDK Source Code provides the following boot mode and corresponding filesystem type.
+            <br><br>
+            <table class="gstable">
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>RZ/V2L EVK</th>
+                </tr>
+                <tr>
+                    <td>eSD Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written on microSD card.<br>
+                        Filesystem is also on microSD card.
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>QSPI Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written in Flash ROM on the board.<br>
+                        Filesystem is on microSD card.
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>eMMC Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written in eMMC on the board.<br>
+                        Filesystem is also on eMMC.
+                    </td>
+                    <td>-</td>
+                </tr>
+            </table>
             <br>
             <br>
         </div>
@@ -630,6 +738,9 @@ layout: default
                         <li>
                             OpenMP v13.4.0
                         </li>
+                        <li>
+                            Python 3.12
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -689,6 +800,58 @@ layout: default
             <a href="img/v2h_mem.png" data-lightbox="group">
                 <img src="img/v2h_mem.png" alt="V2H memory map" width="35%">
             </a>
+            <br>
+            <br>
+        </div>
+        <div class="col-12">
+            <h4 class="u_line" id="v2l-mem">
+                Boot Mode
+            </h4>
+            RZ/V2H AI SDK and AI SDK Source Code provides the following boot mode and corresponding filesystem type.
+            <br><br>
+            <table class="gstable">
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>RZ/V2H EVK</th>
+                </tr>
+                <tr>
+                    <td>eSD Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written on microSD card.<br>
+                        Filesystem is also on microSD card.
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xSPI Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written in Flash ROM on the board.<br>
+                        Filesystem is on microSD card.
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>eMMC Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written in eMMC on the board.<br>
+                        Filesystem is also on eMMC.
+                    </td>
+                    <td>-</td>
+                </tr>
+            </table>
             <br>
             <br>
         </div>
@@ -808,11 +971,18 @@ layout: default
                         <li>
                             OpenMP v13.4.0
                         </li>
+                        <li>
+                            Python 3.12
+                        </li>
                     </ul>
                 </li>
             </ul>
             <br>
             Applications that can be run on RZ/V2N AI SDK v6.00 are compatible with RZ/V2N AI SDK v6.30.<br>
+            <br>
+            FPB-RZV2N can be used in the same way as the RZ/V2N EVK, except for cases that depend on hardware differences.<br>
+            E.g., Only 1 MIPI camera connector is available on FPB-RZV2N.
+            <br>
             <br>
             <!-- Reference to V2N configuration page -->
             For more information on RZ/V2N AI SDK, see the page below.
@@ -873,6 +1043,78 @@ layout: default
             <a href="img/v2n_mem.png" data-lightbox="group">
                 <img src="img/v2n_mem.png" alt="V2N memory map" width="35%">
             </a>
+            <br>
+            <br>
+        </div>
+        <div class="col-12">
+            <h4 class="u_line" id="v2l-mem">
+                Boot Mode
+            </h4>
+            RZ/V2N AI SDK and AI SDK Source Code provides the following boot mode and corresponding filesystem type.
+            <br><br>
+            <table class="gstable">
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>RZ/V2N EVK-ver1/ver2</th>
+                    <th>FPB-RZV2N</th>
+                </tr>
+                <tr>
+                    <td>eSD Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written on microSD card.<br>
+                        Filesystem is also on microSD card.
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>xSPI Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written in Flash ROM on the board.<br>
+                        Filesystem is on microSD card.
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                    <td>
+                        -
+                    </td>
+                </tr>
+                <tr>
+                    <td>eMMC Bootloader</td>
+                    <td>
+                        The board boots up using the bootloader written in eMMC on the board.<br>
+                        Filesystem is also on eMMC.
+                    </td>
+                    <td>
+                        <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" 
+                            target="_blank" rel="noopener noreferrer"
+                            data-lightbox="group">
+                            Available
+                        </a>
+                    </td>
+                    <td>
+                        -
+                    </td>
+                </tr>
+            </table>
             <br>
             <br>
         </div>

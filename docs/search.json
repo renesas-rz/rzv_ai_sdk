@@ -1,0 +1,30 @@
+---
+regenerate: false
+---
+[
+{% assign counter = 0 %}
+{% for page in site.pages %}
+{% if page.url == '/' or page.url contains '.html' %}
+{% unless page.url == '/search.html' %}
+{% unless page.url == '/404.html' %}
+{% unless page.url == '/RZV2L_board_setup_e2studio.html' %}
+{% unless page.url == '/eSD_format_sd.html' %}
+{% unless page.url == '/version.html' %}
+{% unless page.url == '/history.html' %}
+  {% if counter != 0 %},{% endif %}
+  {
+    "title": "{{ page.title | replace: '\', ' ' | replace: '	', ' ' | escape }}{% if page.subtitle %} ? {{ page.subtitle | remove: '\' | escape }}{% endif %}",
+    "url": "{{ page.url }}",
+    "content": "{{ page.content | markdownify | strip_html | replace: '
+  ', ' ' | replace: '\', ' ' | replace: '	', ' ' | normalize_whitespace | escape }}"
+  }
+{% assign counter = counter | plus: 1 %}
+{% endunless %}
+{% endunless %}
+{% endunless %}
+{% endunless %}
+{% endunless %}
+{% endunless %}
+{% endif %}
+{% endfor %}
+]

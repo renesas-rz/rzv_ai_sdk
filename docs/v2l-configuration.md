@@ -1,5 +1,6 @@
 ---
 layout: default
+title: RZ/V2L AI SDK Configuration
 ---
 <!-- Title -->
 <div class="container">

@@ -1,13 +1,8 @@
 ---
 layout: default
+title: Getting Started Appendix
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script>
-  $(function(){
-    $("#a3reference").load("{{ site.url }}{{ site.baseurl }}{% link appendix.md %} a3reference");
-});
-</script>
-
 
 <div class="container">
     <div class="row">
@@ -435,95 +430,11 @@ Writing superblocks and filesystem accounting information: done
 </ol>
 <br>
 After this procedure, you can write the necessary data for the board into microSD card.<br>
-Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1b">Write the Linux files to SD card in RZ/V2L EVK Getting Started</a>.<br>
+Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-1b">Write the Linux files to SD card in Getting Started</a>.<br>
 
-<br><br>
-
-<h3 id="A3">A2. Shutdown RZ/V2L EVK</h3>
-To power-off the RZ/V2L EVK, follow the procedures below.
-<br><br>
-<a3reference>
-  <ol>
-    <li>Run the <code>shutdown</code> command on board console.
-      <br>
-{% highlight shell %}
-sudo -i shutdown -h now
-{% endhighlight %}
-    </li>
-    <li>On the screen, check that shutdown procedure runs and the HDMI display is blacked out.
-      <br><br>
-    </li>
-    <li>Press and hold the power button for 2 seconds.
-      <br><br>
-      <img src="img/board_power.png" alt="board" width="350px" /><br>
-    </li>
-  </ol>
-</a3reference>
-<br><br>
-<h3 id="A4">A3. Shutdown RZ/V2H EVK</h3>
-To power-off the RZ/V2H EVK, follow the procedures below.
-<br><br>
-<a4reference>
-<ol>
-  <li>Run the <code>shutdown</code> command on board console.
-    <br>
-{% highlight shell %}
-sudo -i shutdown -h now
-{% endhighlight %}
-  </li>
-  <li>
-    On the screen, check that shutdown procedure runs and the HDMI display is blacked out.
-    <br><br>
-  </li>
-  <li>
-    Turn SW2 to OFF.
-    <br><br>
-  </li>
-  <li>
-    Turn SW3 to OFF.
-    <br><br>
-    <img src="img/v2h_evk_shutdown.png" alt="board" width="350px" /><br>
-  </li>
-</ol>
-</a4reference>
-<br><br>
-<h3 id="A5">A4. Shutdown RZ/V2N EVK</h3>
-To power-off the RZ/V2N EVK, follow the procedures below.
-<br><br>
-<a5reference>
-<ol>
-  <li>Run the <code>shutdown</code> command on board console.
-    <br>
-{% highlight shell %}
-sudo -i shutdown -h now
-{% endhighlight %}
-  </li>
-  <li>
-    On the screen, check that shutdown procedure runs and the HDMI display is blacked out.
-    <br><br>
-  </li>
-  <li>
-    Turn SW2 to OFF.
-    <br><br>
-  </li>
-  <li>
-    Turn SW3 to OFF.
-    <br><br>
-    <img src="img/v2n_evk_shutdown.png" alt="board" width="350px" /><br>
-  </li>
-</ol>
-</a5reference>
 <br><br>
 
 <script>
-/************ Read Cookie **************/
-/************ Disabled since Cookie support will be considered after Jan, 2024. **************/
-/*function GetCookie(key) {
-    let value = document.cookie.match(new RegExp(key+'\=([^\;]*)\;*'));
-    return value ? value[1] : null;
-  }
-  let BootType = GetCookie("BootType") || "eSD";
-  console.log()*/
 let BootType = "eSD";
 
 /************ Select BootType **************/
@@ -548,4 +459,18 @@ document.querySelectorAll(".SelectButton").forEach(elm => {
   });
 })
 dispBootType();
+
+
+// /*Board image selection*/
+// $('.btn_board').on('click', function(){
+//   var click =  $(this).data('id');
+//   let class_name = "."+click;
+//   let button_name = ".btn_"+click;
+//   document.querySelectorAll(".contents-board").forEach(elm => elm.style.display="none");
+//   document.querySelectorAll(class_name).forEach(elm => elm.style.display="block"); 
+//   document.querySelectorAll(".btn_board").forEach(elm => elm.classList.remove("btn_board-Active"));
+//   document.querySelectorAll(button_name).forEach(elm => elm.classList.add("btn_board-Active"));
+//   });
+
+
 </script>

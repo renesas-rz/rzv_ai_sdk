@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Developer's Guide
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
@@ -9,14 +10,14 @@ layout: default
 </script>
 <script>
   $(function(){
-    $("#a3reference").load("{{ site.url }}{{ site.baseurl }}{% link appendix.md %} a3reference");
+    $("#a3reference").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} a3reference");
 });
 </script>
-<script>
+<!-- <script>
   $(function(){
-    $("#a4reference").load("{{ site.url }}{{ site.baseurl }}{% link appendix.md %} a4reference");
+    $("#a4reference").load("{{ site.url }}{{ site.baseurl }}{% link getting_started.md %} a4reference");
   });
-</script>
+</script> -->
 <!-- <script>
   $(function(){
     $("#d2-1reference").load("{{ site.url }}{{ site.baseurl }}{% link dev_guide.md %} #d2-1reference");
@@ -227,7 +228,7 @@ IMAGE_ROOTFS_EXTRA_SPACE = "<mark style="background: #ffff00">6291456</mark>"
           <div class="note">
             <span class="note-title">Note</span>
             This step is required only when starting the AI SDK or when using the new version of AI SDK.<br>
-            If you have already setup the microSD card and the bootloader written in QSPI on the board, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">the next step (Step7:2. Deploy Application to the Board in Getting Started)</a>.
+            If you have already setup the microSD card and the bootloader written in QSPI on the board, <span class="skip">skip this step</span> and proceed to <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-2">the next step (Step7:2. Deploy Application to the Board in Getting Started)</a>.
           </div>
           Follow the instruction below to setup the board.
           <div class="note">
@@ -568,7 +569,7 @@ smarc-rzv2l login:
           </ul>
           <br>
           After this procedure, you can copy the AI Application and boot the board.<br>
-          Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-2">Step 7: 2. Deploy Application to the Board in RZ/V2L EVK Getting Started</a>.
+          Refer to the <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-2">Step 7: 2. Deploy Application to the Board in Getting Started</a>.
           <br><br>
         </div>
 <!-- D3. How to boot from xSPI -->
@@ -579,24 +580,28 @@ smarc-rzv2l login:
           <br>
           <div class="note">
             <span class="note-title">Note</span>
-            This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> and <b><span style="color: #2a289d;">RZ/V EVK Getting Started</span></b>.<br>
+            xSPI boot is available for RZ/V EVK only.
+          </div>
+          <div class="note">
+            <span class="note-title">Note</span>
+            This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> and <b><span style="color: #2a289d;">Getting Started</span></b>.<br>
             However, if you would like to use the files for xSPI boot included in RZ/V AI SDK, <br>
             <span class="skip">skip Step 3 of How to build RZ/V AI SDK Source code</span> and use the files in <b><code>${WORK}/board_setup/xSPI</code></b> directory.<br>
             <table class="gstable ms-4">
               <tr>
                 <th>Device</th>
                 <th>How to build RZ/V AI SDK Source Code</th>
-                <th>RZ/V EVK Getting Started</th>
+                <th>Getting Started</th>
               </tr>
               <tr>
                 <td>RZ/V2H</td>
                 <td><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3</a></td>
-                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
+                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
               </tr>
               <tr>
                 <td>RZ/V2N</td>
                 <td><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3</a></td>
-                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
+                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
               </tr>
             </table>
           </div>
@@ -964,8 +969,9 @@ rzv2h-evk1 login:
                         <span class="note-title">Note</span>
                         To shutdown the board safely, please refer to following steps.
                         <ul class="mb-1">
-                          <li>RZ/V2H: <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A4" target="_blank" rel="noopener noreferrer">A3. Shutdown RZ/V2H EVK</a></li>
-                          <li>RZ/V2N: <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a></li>
+                          <li>
+                            <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step9" target="_blank" rel="noopener noreferrer">Step 9. Shutdown the Board</a>
+                          </li>
                         </ul>
                       </div>
 <!--                      <details class="boxdetails" open>
@@ -990,22 +996,26 @@ rzv2h-evk1 login:
           <br>
           <div class="note">
             <span class="note-title">Note</span>
-            This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> and <b><span style="color: #2a289d;">RZ/V EVK Getting Started</span></b> below.<br>
+            eMMC boot is available for RZ/V2N EVK only.
+          </div>
+          <div class="note">
+            <span class="note-title">Note</span>
+            This instruction assumes that you have completed the steps in <b><span style="color: #2a289d;">How to build RZ/V AI SDK Source Code</span></b> and <b><span style="color: #2a289d;">Getting Started</span></b> below.<br>
             <table class="gstable ms-4">
               <tr>
                 <th>Device</th>
                 <th>How to build RZ/V AI SDK Source Code</th>
-                <th>RZ/V EVK Getting Started</th>
+                <th>Getting Started</th>
               </tr>
               <!-- <tr>
                 <td>RZ/V2H</td>
                 <td><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2h.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3</a></td>
-                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2h.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
+                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
               </tr> -->
               <tr>
                 <td>RZ/V2N</td>
                 <td><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}#step3" target="_blank" rel="noopener noreferrer">Step 3</a></td>
-                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
+                <td><a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1</a></td>
               </tr>
             </table>
           </div>
@@ -1319,7 +1329,7 @@ SpiFlashMemory End Address  : H'0011AD3E
               <h5 id="D4-4">4. Formatting eMMC and writing file system to eMMC</h5>
               Follow the procedure below to create a microSD card.<br><br>
               <ol>
-                <li>Use the SD card created in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2n.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1:Setup RZ/V2N EVK in RZ/V2N EVK Getting Started</a>.<br>
+                <li>Use the SD card created in <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7" target="_blank" rel="noopener noreferrer">Step 7-1:Setup the Board in Getting Started</a>.<br>
                 </li><br>
                 <li>Insert the microSD card to your Linux PC and copy "core-image-weston-rzv2n-evk.rootfs.tar.bz2" file on partition 2.<br>
 {% highlight shell %}
@@ -1490,7 +1500,8 @@ root@rzv2n-evk:~# <span style="color:red;">umount /dev/mmcblk0p2</span>
                       <li>Shutdown the board and remove the microSD card.
                         <div class="note">
                           <span class="note-title">Note</span>
-                          To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a>.
+                          To shutdown the board safely, please refer to 
+                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step9" target="_blank" rel="noopener noreferrer">Step 9. Shutdown the Board</a>
                         </div>
                       </li><br>
                     </ol>
@@ -1561,7 +1572,8 @@ rzv2n-evk login:
                       <li>Shutdown the board to finish the U-boot setting.
                         <div class="note">
                           <span class="note-title">Note</span>
-                          To shutdown the board safely, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link appendix.md %}#A5" target="_blank" rel="noopener noreferrer">A4. Shutdown RZ/V2N EVK</a>.
+                          To shutdown the board safely, please refer to 
+                          <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step9" target="_blank" rel="noopener noreferrer">Step 9. Shutdown the Board</a>
                         </div>
                         <!-- <details class="boxdetails" open>
                           <summary>Shutdown Procedures</summary>

@@ -1,5 +1,6 @@
 ---
 layout: default
+title: AI Navigator Quick Start Guide Appendix
 ---
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
@@ -151,6 +152,4 @@ In order to build the Linux (AI SDK) or develop with your custom board or 3rd pa
   The build step of RZ/V2N AI SDK environment.</li>
   <li><a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk.md %}">How to build RZ/V2L AI SDK Source Code</a><br>
   The build step of RZ/V2L AI SDK environment.</li>
-  <li><a href="https://jira-gasg.renesas.eu/confluence/display/REN/Renesas+Wiki" target="_blank">RZ/G and RZ/V BSP Porting</a><br>
-  The information in order to port RZ/V Linux environment (includes kernel, u-boot, and so on) into your custom board.</li>
 </ul>

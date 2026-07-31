@@ -1,5 +1,6 @@
 ---
 layout: default
+title: RZ/V2L AI Applications Demo How to Use Guide
 ---
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
@@ -16,8 +17,40 @@ How to Use Guide
 
 <h5>This page explains how to use RZ/V2L AI Applications Demo on the <b>RZ/V2L Evaluation Board Kit.</b></h5>
 
-<h5>Supported version: <b>RZ/V2L AI SDK v5.00</b></h5>
-
+<table class="gstable">
+  <tr>
+    <td>
+      Target version
+    </td>
+    <td>
+      <b>RZ/V2L AI Applications Demo v5.00</b>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Target board
+    </td>
+    <td>
+      RZ/V2L Evaluation Board Kit
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Supported AI SDK
+    </td>
+    <td>
+      RZ/V2L AI SDK v5.00
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Supported AI Applications
+    </td>
+    <td>
+      RZ/V AI Applications v5.00
+    </td>
+  </tr>
+</table>
 <br>
 
 <h2 id="overview">Overview</h2>

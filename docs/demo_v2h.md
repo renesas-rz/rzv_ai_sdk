@@ -1,5 +1,6 @@
 ---
 layout: default
+title: RZ/V2H AI Applications Demo How to Use Guide
 ---
 
 <div class="container">

@@ -1,7 +1,8 @@
 ---
 layout: default
+title: How to build RZ/V2L AI SDK Source Code
 ---
-<div class="container">
+<div class="container" id="top">
     <div class="row">
         <div class="top col-12">
           How to build RZ/V2L AI SDK Source Code
@@ -397,7 +398,7 @@ For more information on how to use each files, see the link in the How to use co
     </td>
     <td>WIC format SD card image</td>
     <td>
-      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started_v2l.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup RZ/V2L EVK in RZ/V2L EVK Getting Started</a>
+      <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}#step7-1" target="_blank" rel="noopener noreferrer">Step 7-1: Setup the Board in Getting Started</a>
     </td>
   </tr>
   <tr>
@@ -445,6 +446,12 @@ For more information on how to use each files, see the link in the How to use co
   <br>
   <a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a>
 <div class="row">
+
+  <div class="col-12 mb-3" align="right">
+    <a class="btn btn-secondary square-button" href="#top" role="button">
+      Back to Top >
+    </a>
+  </div>
   <div class="col-12" align="right">
     <a class="btn btn-secondary square-button" href="{{ site.url }}{{ site.baseurl }}{% link index.md %}" role="button">
       Back to Home >

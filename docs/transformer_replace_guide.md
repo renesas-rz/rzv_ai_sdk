@@ -1,5 +1,6 @@
 ---
 layout: default
+title: How to replace a Transformer-based AI model
 ---
 <div class="container">
     <div class="row">
@@ -837,7 +838,7 @@ This step explains how to deloy and run application on the RZ/V2N board.
   <div class="row">
     <div class="col-12">
       <h4 class="u_line">Prerequisites</h4>
-      This section assumes that the microSD card setup has been completed by following Step 7-1 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
+      This section assumes that the microSD card setup has been completed by following Step 7-1 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
     </div>
     <div class="note">
     <span class="note-title">Note</span>
@@ -977,7 +978,7 @@ sudo eject /dev/sdb
   <div class="row">
     <div class="col-12">
     <h4 class="u_line">Prerequisites</h4>
-    This section expects the user to have completed Step 7-3 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/latest/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
+    This section expects the user to have completed Step 7-3 of <a href="https://renesas-rz.github.io/rzv_ai_sdk/6.10/getting_started.html#step7" target="_blank" rel="noopener noreferrer">Getting Started Guide</a>  provided by Renesas.
     <br>
     After completion of the guide, the user is expected of following things.
     <ul>

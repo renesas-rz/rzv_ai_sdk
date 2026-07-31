@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Community
 ---
 <div class="application-window">
 <div class="container" style="max-width:100%;">

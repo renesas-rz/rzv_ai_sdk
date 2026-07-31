@@ -1,12 +1,13 @@
 ---
 layout: default
+title: RZ/V AI Software Overview
 ---
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <!-- Title -->
 <div class="container">
     <div class="row">
         <div class="top col-12">
-            RZ/V AI Software Overview
+            {{ page.title }}
         </div>
     </div>
 </div>
@@ -376,7 +377,7 @@ layout: default
             </a>
             <br>
             <br>
-            <b>RZ/V AI Software Development Kit (AI SDK)</b> is an AI application development environment for specific Evaluation Bord Kit of RZ/V series.
+            <b>RZ/V AI Software Development Kit (AI SDK)</b> is an AI application development environment for specific Evaluation Board of RZ/V series.
             <br> 
             It includes the pre-build binary of bootloader, Linux Kernel and cross compiler, which contain a complete set of libraries to run RZ/V AI Apps.
             <br>
@@ -488,7 +489,7 @@ layout: default
             RZ/V AI SDK Source Code
         </div>
         <div class="col-12">
-            RZ/V AI SDK is an AI application development environment which is built for specific Evaluation Bord Kit of RZ/V series.
+            RZ/V AI SDK is an AI application development environment which is built for specific Evaluation Board of RZ/V series.
             <br> 
             If you would like to change RZ/V AI SDK, you need to customize and build the AI SDK, which is based on Yocto Project (Linux OS Distribution).
             <br>
@@ -501,7 +502,7 @@ layout: default
                     To develop your own board with RZ/V series. 
                 </li>
                 <li>
-                    To add extra camera drivers, graphic libraries, other OSS libraries, etc..
+                    To add extra camera drivers, graphic libraries, other OSS libraries, etc.
                 </li>
             </ul>
             The Linux source code is provided as <b>RZ/V AI SDK Source Code</b>.
@@ -647,7 +648,7 @@ layout: default
                     <td>
                         <img src="img/board.png"   width="100px" alt="board"/>
                     </td>
-                    <td rowspan="3">
+                    <td rowspan="4">
                         <a class="btn btn-secondary square-button" 
                             style="text-align:left;" 
                             href="{{ site.url }}{{ site.baseurl }}{% link download.md %}" 
@@ -689,6 +690,23 @@ layout: default
                     </td>
                     <td>
                         <img src="img/V2N_EVK.jpeg"  width="100px" alt="board"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        RZ/V2N Fast Prototyping Board (FPB-RZV2N)
+                    </td>
+                    <td>
+                        Evaluation Board for fast prototyping RZ/V2N.
+                        <br>
+                        FPB-RZV2N can be used in the same way as the RZ/V2N EVK, except for cases that depend on hardware differences.
+                        <br>
+                        <h6 class="mb-1">
+                        To use MIPI camera, please refer to e-CAM22_CURZH provided by <a href="https://www.e-consystems.com/renesas/sony-starvis-imx462-ultra-low-light-camera-for-renesas-rz-v2h.asp">e-con Systems</a>.
+                        </h6>
+                    </td>
+                    <td>
+                        <img src="img/V2N_FPB.JPG"  width="100px" alt="board"/>
                     </td>
                 </tr>
             </table>
@@ -753,7 +771,7 @@ layout: default
                         </td>
                         <td>
                             <h6 class="mb-1">
-                                Binary development environment for AI Applications that is build for specific RZ/V EVK.
+                                Binary development environment for AI Applications that is build for specific RZ/V Evaluation Board.
                             </h6>
                         </td>
                         <td>

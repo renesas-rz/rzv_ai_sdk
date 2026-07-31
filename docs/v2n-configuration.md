@@ -1,5 +1,6 @@
 ---
 layout: default
+title: RZ/V2N AI SDK Configuration
 ---
 <!-- Title -->
 <div class="container">
@@ -144,7 +145,18 @@ To see the overview of RZ/V2N AI SDK, see <a href="{{ site.url }}{{ site.baseurl
                 Drivers
             </h3>
             Following table shows the list of drivers.<br>
-            For more details, see <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a> and <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>. 
+            For more details, see the following documents.<br>
+            <ul>
+                <li>
+                    <a href="https://www.renesas.com/document/swo/rzg2l-rzv2l-rzv2n-rzv2h-rzg3e-rzg3s-and-rzfive-bsp-manual-set-rtk0ef0045z9006azj-v405" target="_blank" rel="noopener noreferrer">RZ/V2N BSP Manual Set</a>
+                </li>
+                <li>
+                    For RZ/V2N EVK, <a href="https://www.renesas.com/rzv2n-evkit" target="_blank" rel="noopener noreferrer">RZ/V2N Evaluation Board Kit Hardware Manual</a>
+                </li>
+                <li>
+                    For FPB-RZV2N, <a href="https://www.renesas.com/design-resources/boards-kits/fpb-rzv2n" target="_blank" rel="noopener noreferrer">RZ/V2N Fast Prototyping Board Hardware Manual</a>
+                </li>
+            </ul>
             <!-- 
             <div class="note">
                 <span class="note-title">Note</span>

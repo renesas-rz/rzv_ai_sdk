@@ -1,5 +1,6 @@
 ---
 layout: default
+title: AI Applications
 ---
 <div class="application-window">
 <div class="container" style="max-width:100%;">
@@ -11,44 +12,82 @@ layout: default
     </div>
 </div>
 <br>
-
-<h5 align="left" class="mb-0">
-    AI Applications are provided with pre-trained AI models. <br>
-    Select each application to access the source code.<br><br>
-    To run the AI Applications without constructing the AI SDK environment, refer to <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo" target="_blank" rel="noopener noreferrer">Demo</a>.
-    <br>
-    <br>
-    To see the overview about AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" target="_blank" rel="noopener noreferrer">About AI Applications</a> page.<br>
-</h5>
-<a class="btn btn-secondary square-button ms-3 mt-1" 
-    style="text-align:left;" 
-    href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}" 
-    role="button"
-    target="_blank" 
-    rel="noopener noreferrer">
-    <span class="banner-title">About AI Applications</span><br>
-    <span class="banner-line">
-    What is AI Applications?<br>
-    How is directory/file structured?<br>
-    How can I download the previous version?<br></span>
-</a>
-<br>
-<br>
-<h5 align="left" class="mb-0">
-    To modify AI Applications, please refer to <a href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}" target="_blank" rel="noopener noreferrer">AI Applications Customize Guide</a> page.<br>
-</h5>
-<a class="btn btn-secondary square-button ms-3 mt-1" 
-    style="text-align:left;" 
-    href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}" 
-    role="button"
-    target="_blank" 
-    rel="noopener noreferrer">
-    <span class="banner-title">AI Applications Customize Guide</span><br>
-    <span class="banner-line">
-        How can I implement Transformer-based model?<br>
-    </span>
-</a>
-<br>
+<h3>
+Introduction
+</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            AI Applications are provided with pre-trained AI models. 
+            Select each application to access the source code.<br>
+            <h4 class="u_line">
+            Prerequisites
+            </h4>
+            <p class="mb-1 ms-3">
+                Before running AI Applications, please see <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" target="_blank" rel="noopener noreferrer">Getting Started</a> to start-up RZ/V AI SDK.<br>
+            </p>
+            <h4 class="u_line">
+            References
+            </h4>
+            <table class="gstable ms-4 mb-1">
+                <tr>
+                    <th>Link</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-secondary square-button square-button-link-small mb-2" 
+                            style="width:220px;" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#demo">
+                            RZ/V AI Applications Demo
+                        </a>
+                    </td>
+                    <td>
+                        <h6 class="mb-1">
+                            SD card image that contains GUI application to select AI Applications.<br>
+                            Users can run AI Applications without constructing the AI SDK environment.
+                        </h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-secondary square-button square-button-link-small mb-2" 
+                            style="width:220px;" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link about-applications.md %}">
+                            About AI Applications
+                        </a>
+                    </td>
+                    <td>
+                        <h6 class="mb-1">
+                            Explains the overview of AI Applications.<br>
+                        </h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-secondary square-button square-button-link-small mb-2" 
+                            style="width:220px;" 
+                            href="{{ site.url }}{{ site.baseurl }}{% link customize_guide.md %}">
+                            AI Applications Customize Guide
+                        </a>
+                    </td>
+                    <td>
+                        <h6 class="mb-1">
+                            Explains how to modify AI Applications.<br>
+                            E.g., how to implement Transformer-based model?<br>
+                        </h6>
+                    </td>
+                </tr>
+            </table>
+            <h4 class="u_line">
+            Note
+            </h4>
+            <p class="mb-1 ms-3">
+                Any references to <b>"RZ/V2N EVK"</b> in each documentation also apply to <b>"FPB-RZV2N"</b>, unless explicitly stated otherwise. 
+            </p>
+        </div>
+    </div>
+</div>
 <div id="agriculture" class="category_section container pb-4" data-category="Agriculture">
 <h3 align="left"><i>Agriculture</i></h3>
 <div class="container">
