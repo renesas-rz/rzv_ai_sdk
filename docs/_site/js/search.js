@@ -233,7 +233,7 @@ $(function() {
         {
           content_str += '<hr style="border-top: 1px solid grey;"></hr>';
           content_str += '<li>';
-          content_str += '<a href="' + pageInfo.url + '">' + pageInfo.title +'</a><br>';
+          content_str += '<a href="https://renesas-rz.github.io/rzv_ai_sdk/7.10' + pageInfo.url + '">' + pageInfo.title +'</a><br>';
           content_str += '<h6 class="mb-2">'+hitNum+' hits at https://renesas-rz.github.io/rzv_ai_sdk/7.10'+ pageInfo.url + '</h6>';
           content_str += '<h6 class="mb-2" style="color: gray;">'
             + '<ul type="circle" class="mb-1">'
