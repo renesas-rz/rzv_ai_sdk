@@ -29,7 +29,7 @@ It has following mode of running.
          RZ/V2N Evaluation Board Kit (RZ/V2N EVK)<br>
          RZ/V2N Fast Prototyping Board (FPB-RZV2N)
        </td>
-       <td>RZ/V2N AI SDK v6.30</td>
+       <td>RZ/V2N AI SDK v8.00</td>
      </tr>
  </table>
 
@@ -213,7 +213,7 @@ Each folder contains following items.
 
 |File | Details |
 |:---|:---|
-| unet_model | Model object files for deployment. <br> Note: This model is compiled with DRP-AI TVM v2.6.0 due to the compilation capabiliity. |
+| unet_model | Model object files for deployment.  |
 | yolox_model | Model object files for deployment. |
 | background_image.jpg | Background image. |
 | analog_reader | application file. |
@@ -228,8 +228,8 @@ Each folder contains following items.
     ```
     **[For RZ/V2N]** Run following commands to download the necessary file.  
     ```sh
-      cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q13_analog_meter_reader/exe_v2n/yolox_model
-      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/Q13_analog_meter_reader_deploy_tvm_v2n-v251.so
+      cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q13_analog_meter_reader/exe_v2n/yolox_model/sub_0000__CPU_DRP_TVM
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.00/Q13_analog_meter_reader_deploy_ruhmi_v2n_r2026-06.so
     ```
 2. **[For RZ/V2H and RZ/V2N]** Rename the `Q13_analog_meter_reader_deploy_*.so` to `deploy.so`.
     ```sh
@@ -241,11 +241,10 @@ Each folder contains following items.
     |All files in `EXE_DIR` directory | Including `deploy.so` file. |
     |`analog_reader` application file | Generated the file according to [Application File Generation](#application-file-generation) |
 
-4. Check if `libtvm_runtime.so` exists under `/usr/lib` directory of the rootfs (SD card) on the board.
+4. Folder structure in the rootfs (SD Card) would look like:   
+   Check if the necessary files exist in the rootfs directory (SD card) on the board.
 
-5. Folder structure in the rootfs (SD Card) would look like:
-
-   For RZ/V2H and RZ/V2N
+   For RZ/V2H
     ```
     |-- usr
     |   `-- lib
@@ -263,7 +262,40 @@ Each folder contains following items.
                 |   |-- deploy.params 
                 |   `-- deploy.so     
                 |-- sample_image.jpg
-                |-- video_sample.mp4    #RZ/V2H only
+                |-- video_sample.mp4
+                |-- background_image.jpg
+                `-- analog_reader
+    ```
+
+    For RZ/V2N
+    ```
+    |-- usr
+    |   `-- lib
+    |      :
+    |      |-- libmera2_runtime.so
+    |      :
+    |
+    `-- home
+        `-- weston
+            `-- tvm
+                |-- unet_model  
+                |   |-- sub_0000_CPU_DRP_TVM
+                |   |   |-- deploy.json   
+                |   |   |-- deploy.params 
+                |   |   `-- deploy.so         
+                |   |-- mera.plan   
+                |   |-- model_subgraphs.json 
+                |   `-- project.mdp    
+                |
+                |-- yolox_model         
+                |   |-- sub_0000_CPU_DRP_TVM 
+                |   |   |-- deploy.json   
+                |   |   |-- deploy.params 
+                |   |   `-- deploy.so 
+                |   |-- mera.plan 
+                |   |-- model_subgraphs.json 
+                |   `-- project.mdp     
+                |-- sample_image.jpg
                 |-- background_image.jpg
                 `-- analog_reader
     ```

@@ -1,0 +1,5 @@
+artifact_list:
+  IP:
+  - mera.plan
+compile_flow: MERA
+prj_version: 1

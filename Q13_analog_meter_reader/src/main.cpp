@@ -223,7 +223,7 @@ void config_read()
 * Return value  : 0 if succeeded
 *                 not 0 otherwise
 ******************************************/
-int8_t get_result(MeraDrpRuntimeWrapper runtime, std::vector<float> &drpai_output_buf)
+int8_t get_result(MeraDrpRuntimeWrapper &runtime, std::vector<float> &drpai_output_buf)
 {
     int8_t ret = 0;
     int32_t i = 0;
@@ -1819,10 +1819,10 @@ int32_t main(int32_t argc, char * argv[])
     uint64_t drpaimem_addr_start = 0;
     
     /*Disable OpenCV Accelerator due to the use of multithreading */
-    unsigned long OCA_list[16];
-    for(int8_t i = 0; i < 16; i++) OCA_list[i] = 0;
+    unsigned long OCA_list[OCA_LIST_NUM];
+    for (int i=0; i < OCA_LIST_NUM; i++) OCA_list[i] = 0;
     OCA_Activate(&OCA_list[0]);
-    
+
     ret = check_command_arguments(argc, argv);
     if (0 != ret)
     {
