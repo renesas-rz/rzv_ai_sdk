@@ -25,8 +25,9 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
         RZ/V2N Evaluation Board Kit (RZ/V2N EVK)<br>
         RZ/V2N Fast Prototyping Board (FPB-RZV2N)
       </td>
-      <td>RZ/V2N AI SDK v6.30 </td>
+      <td>RZ/V2N AI SDK v8.00 </td>
     </tr>
+    
 </table>
 
 **Note:** In this document, any references to **"RZ/V2N EVK"** also apply to **"FPB-RZV2N"**, unless explicitly stated otherwise.  
@@ -176,8 +177,7 @@ Connect the hardware as shown below.
 
 >**Note 1:** When using the keyboard connected to RZ/V Evaluation Board, the keyboard layout and language are fixed to English.  
 **Note 2:** For RZ/V2H EVK, there are USB 2.0 and USB 3.0 ports.  
-USB camera needs to be connected to appropriate port based on its requirement.  
-
+USB camera needs to be connected to appropriate port based on its requirement.
 
 ## Application: Build Stage
 
@@ -273,23 +273,31 @@ The environment variable WORK is the working directory path that you set in Step
     ```
 
 2. Run following commands to download the necessary file.  
-Replace each variable according to your board.  
-    ```sh
-    cd ${APPS_PATH}/R01_object_detection/<EXE_DIR>/yolov3_onnx
-    wget <URL>/<SO_FILE>
-    ```
+Replace each variable according to your board. <br>
+
+    - For RZ/V2L and RZ/V2H
+      ```sh
+      cd ${APPS_PATH}/R01_object_detection/<EXE_DIR>/yolov3_onnx
+      wget <URL>/<SO_FILE>
+      ```
+    - For RZ/V2N
+      ```sh
+      cd ${APPS_PATH}/R01_object_detection/<EXE_DIR>/yolov3_onnx/sub_0000__CPU_DRP_TVM
+      wget <URL>/<SO_FILE>
+      ```
+      
     |Board | `EXE_DIR` |`URL` |`SO_FILE` |File Location |
     |:---|:---|:---|:---|:---|
     |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2l-v261.so`</span>  |[Release v7.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v7.00/)  |
     |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2h-v251.so`</span> |[Release v6.20](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v6.20/)  |
-    |RZ/V2N EVK|[exe_v2n](./exe_v2n)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2n-v251.so`</span> |[Release v6.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v6.00/)  |
-<!--    > Note: Since RZ/V2N is a brother chip of RZ/V2H, the same execution environment can be used.  -->
+    |RZ/V2N EVK|[exe_v2n](./exe_v2n)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_ruhmi_2026-06_v2n.so`</span> |[Release v8.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v8.00/)  |
 
-  - E.g., for RZ/V2L EVK, use following commands.  
+    - E.g., for RZ/V2L EVK, use following commands.
       ```sh
       cd ${APPS_PATH}/R01_object_detection/exe_v2l/yolov3_onnx
       wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.00/R01_object_detection_deploy_tvm_v2l-v261.so
-      ```  
+      ```
+    
 3. Rename the `R01_object_detection_deploy_*.so` to `deploy.so`.
     ```sh
     mv <SO_FILE> deploy.so
@@ -303,6 +311,7 @@ Replace each variable according to your board.
 5. Folder structure in the rootfs (SD Card) is shown below.<br>
    Check if `libtvm_runtime.so` exists in the rootfs directory (SD card) on the board.
    
+    - For RZ/V2L and RZ/V2H
     ```
     |-- usr/
     |   `-- lib/
@@ -312,10 +321,45 @@ Replace each variable according to your board.
         `-- weston/
             `-- tvm/ 
                 |-- yolov3_onnx/
-                |   |-- preprocess
+                |   |-- preprocess/
                 |   |-- deploy.json
                 |   |-- deploy.params
                 |   `-- deploy.so
+                |-- coco-labels-2014_2017.txt
+                `-- object_detection
+    ```
+
+    - For RZ/V2N
+    ```
+    |-- usr/
+    |   `-- lib/
+    |       |-- libacl_rt.so
+    |       |-- libarm_compute.so
+    |       |-- libarm_compute_core.so
+    |       |-- libarm_compute_graph.so
+    |       |-- libdrp_rt.so
+    |       |-- libdrp_tvm_rt.so
+    |       |-- libmera2_plan_io.so
+    |       |-- libmera2_runtime.so
+    |       |-- log_out.bin
+    |       |-- rmsnorm_out.bin
+    |       |-- softmax_out.bin
+    |       `-- split_out.bin
+    |
+    `-- home/
+        `-- weston/
+            `-- tvm/ 
+                |-- yolov3_onnx/
+                |   |-- interpreter_out/
+                |   |-- preprocess/
+                |   |-- sub_0000__CPU_DRP_TVM/
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- input_0.bin
+                |   |-- mera.plan
+                |   |-- model_subgraphs.json
+                |   `-- project.mdp
                 |-- coco-labels-2014_2017.txt
                 `-- object_detection
     ```
