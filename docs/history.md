@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Version History
 ---
@@ -16,6 +15,91 @@ title: Version History
         <div class="col-12">
             <br>
             <br>
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2026.8.20
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V Reference Applications are updated.</h5>
+                    <ul>
+                        <li>
+                            Following reference application is added.
+                            <ul>
+                                <li>
+                                    Object Detection and Distance Measurement
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Applications v8.00 & RZ/V2N AI SDK v8.00
+                </h3>
+                <h6 align="right" >
+                    2026.8.20
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v8.00 is released.</h5>
+                    <ul>
+                        <li>
+                            From AI Applications v8.00, AI SDK version update support will be focused on selected core applications.<br>
+                            5 applications support RZ/V2N AI SDK v8.00.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2N AI SDK v8.00 is released.</h5>
+                    <ul>
+                        <li>
+                            Updated DRP-AI Driver to v1.50.
+                        </li>
+                        <li>
+                            Supported RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Web
+                </h3>
+                <h6 align="right" >
+                    2026.8.20
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">Partner Applications on Community Page is updated.</h5>
+                    <ul>
+                        <li>
+                            The following applications, formerly provided as AI Applications, are now available as Partner Applications.
+                            <ul>
+                                <li>[Computermind] River Area Monitoring</li>
+                                <li>[Computermind] Depth Camera Human Body Estimation</li>
+                                <li>[Computermind] Lumber Surface Anomaly Detection</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">

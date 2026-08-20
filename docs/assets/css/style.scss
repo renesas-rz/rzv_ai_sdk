@@ -1715,3 +1715,46 @@ span.cnt_V2L {
   border: 1px solid rgb(112, 111, 111);
   width: 100%;
 }
+
+/* ---- Highlight after tag jump ---- */
+/* general highlight setting: yellow background */
+@keyframes highlight {
+  0% {
+    background: #ffff99;
+  }
+  100% {
+    background: transparent;
+  }
+}
+/* griditem highlight setting: yellow border */
+@keyframes highlight-griditem {
+  0% {
+    border: 2px solid #dfb118;
+  }
+  100% {
+    border: 2px solid #ffffff;
+  }
+}
+
+/* In general: set the highlight setting to target */
+:target {
+  animation: highlight 2s ease-out;
+}
+
+/* application_card > griditem setting: 
+    disable general setting and apply highlight-griditem */
+.application_card:target {
+  animation: none;
+}
+.application_card:target .griditem {
+  animation: highlight-griditem 4s ease-out;
+}
+
+/*griditem setting (AI Applications video): 
+    disable general setting and apply highlight-griditem*/
+:target:has(.griditem) {
+  animation: none;
+}
+:target .griditem {
+  animation: highlight-griditem 4s ease-out;
+}

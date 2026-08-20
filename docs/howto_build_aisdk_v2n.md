@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: How to build RZ/V2N AI SDK Source Code
 ---
@@ -14,7 +13,7 @@ title: How to build RZ/V2N AI SDK Source Code
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2N AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2N AI SDK v6.30</b></h5>
+<h5>Supported version: <b>RZ/V2N AI SDK v8.00</b></h5>
 
 <div class="note">
   <span class="note-title">Note</span>
@@ -106,7 +105,7 @@ title: How to build RZ/V2N AI SDK Source Code
   <div class="row">
     <div class="col-12">
       Download the RZ/V2N AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v630-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v800-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0189F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -280,8 +279,8 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch">
-                    0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.00/0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch">
+                    0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch
                   </a>
                 </td>
                 <td>
@@ -293,9 +292,9 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
           <li>
             Copy and apply the patch file.
 {% highlight shell%}
-cp <Path to the file>/0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch ${YOCTO_WORK}
+cp <Path to the file>/0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}
-patch -p1 < 0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch
+patch -p1 < 0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch
 {% endhighlight %}
           </li>
         </ol>
@@ -335,7 +334,7 @@ ls -1 ${YOCTO_WORK}
       <li>If the above command prints followings, Yocto recipes are extracted correctly.
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
-0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch	    # optional
+0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch	    # optional
 e-CAM22_CURZ*.patch
 meta-arm
 meta-econsys

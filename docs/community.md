@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Community
 ---
@@ -399,6 +398,96 @@ Or if you have general questions, please use Renesas Technical Support.<br>
                         <div class="partnerlinkbutton_parent">
                             <a class="partnerlinkbutton" 
                                 href="https://github.com/ComputermindCorp/yolo-planar-slam-drp" 
+                                style="color:white"
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+        <div id="computermind_c01" class="application_card col-lg-6 col-xl-4"
+            data-category="Vision AI"
+            >
+            <li class="griditem" style="list-style: none;">
+                <img src="img/C01.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">River Area Monitoring</dt>
+                <h6 class="appstatus" align="right">
+                    <span class="sol-category">
+                        Vision AI
+                    </span>
+                    <br>
+                </h6>
+                <div class="griditem-add">
+                    Monitors river levels and alerts when flood levels are detected.  The application finds river area by using Semantic Segmentation.<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C01_river_area_monitoring" 
+                                style="color:white"
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+        <div id="computermind_c02" class="application_card col-lg-6 col-xl-4"
+            data-category="Vision AI"
+            >
+            <li class="griditem" style="list-style: none;">
+                <img src="img/C02.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Depth Camera Human Body Estimation</dt>
+                <h6 class="appstatus" align="right">
+                    <span class="sol-category">
+                        Vision AI
+                    </span>
+                    <br>
+                </h6>
+                <div class="griditem-add">
+                    Measures the length of body parts based on depth camera input and assists in selecting clothing that fits your body.<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C02_depth_cam_human_body_estimation" 
+                                style="color:white"
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                Click >
+                            </a>
+                        </div>
+                    </dd>
+                </dl>
+            </li>
+        </div>
+        <div id="computermind_c03" class="application_card col-lg-6 col-xl-4"
+            data-category="Vision AI"
+            >
+            <li class="griditem" style="list-style: none;">
+                <img src="img/C03.jpg" alt="application">
+                <dt class="mt-1" style="color: #2a289d;">Lumber Surface Anomaly Detection</dt>
+                <h6 class="appstatus" align="right">
+                    <span class="sol-category">
+                        Vision AI
+                    </span>
+                    <br>
+                </h6>
+                <div class="griditem-add">
+                    Anomalies in wood, such as scratches and dirt are detected using the anomaly detection method: PatchCore.  Supports product inspection processes.<br><br>
+                </div>
+                <dl>
+                    <dd style="display: flex">
+                        <div class="partnerlinkbutton_parent">
+                            <a class="partnerlinkbutton" 
+                                href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C03_surface_anomaly_detection" 
                                 style="color:white"
                                 target="_blank" 
                                 rel="noopener noreferrer">

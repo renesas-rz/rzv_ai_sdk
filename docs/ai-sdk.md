@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: RZ/V AI SDK Overview
 ---
@@ -288,7 +287,7 @@ title: RZ/V AI SDK Overview
                         <td colspan="3">    <!-- RZ/V2L & RZ/V2H & RZ/V2N -->
                             Provided as a Dockerfile that clones 
                             <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm">
-                                DRP-AI TVM
+                                RUHMI AI compiler for RZ/V (DRP-AI TVM)
                             </a>.
                         </td>
                     </tr>
@@ -443,7 +442,9 @@ title: RZ/V AI SDK Overview
                 <br>
                 <ul>
                     <li>
-                        DRP-AI TVM v2.6.1 
+                        <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" target="_blank" rel="noopener noreferrer">
+                            DRP-AI TVM v2.6.1
+                        </a>
                         [
                             <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                                 GitHub
@@ -652,7 +653,9 @@ title: RZ/V AI SDK Overview
             RZ/V2H AI SDK configuration is as follows.
             <ul>
                 <li>
-                    DRP-AI TVM v2.5.1 
+                    <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" target="_blank" rel="noopener noreferrer">
+                        DRP-AI TVM v2.5.1
+                    </a>
                     [
                         <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             GitHub
@@ -864,7 +867,7 @@ title: RZ/V AI SDK Overview
             </h3>
             <h5>
                 <b>
-                    Target Version: 6.30
+                    Target Version: 8.00
                 </b>
             </h5>
         </div>
@@ -877,7 +880,9 @@ title: RZ/V AI SDK Overview
             RZ/V2N AI SDK configuration is as follows.
             <ul>
                 <li>
-                    DRP-AI TVM v2.5.1 
+                    <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" target="_blank" rel="noopener noreferrer">
+                        RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix)
+                    </a>
                     [
                         <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             GitHub
@@ -898,9 +903,9 @@ title: RZ/V AI SDK Overview
                     ]
                     <ul>
                         <li>
-                            DRP-AI Driver v1.40 
+                            DRP-AI Driver v1.50
                             [
-                                <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver/tree/V1.40" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/renesas-rz/rzv2n_drp-ai_driver/tree/V1.50" target="_blank" rel="noopener noreferrer">
                                     GitHub
                                 </a>
                             ]
@@ -979,8 +984,6 @@ title: RZ/V AI SDK Overview
                 </li>
             </ul>
             <br>
-            Applications that can be run on RZ/V2N AI SDK v6.00 are compatible with RZ/V2N AI SDK v6.30.<br>
-            <br>
             FPB-RZV2N can be used in the same way as the RZ/V2N EVK, except for cases that depend on hardware differences.<br>
             E.g., Only 1 MIPI camera connector is available on FPB-RZV2N.
             <br>
@@ -1023,7 +1026,7 @@ title: RZ/V AI SDK Overview
                 </span>
                 <span id="footnote_v2n_drp_ai">
                     *4: RZ/V2N is equipped with single IP, DRP-AI. (DRP is not equipped.) Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2n-15tops-quad-core-vision-ai-mpu-2-camera-connection-and-excellent-power-efficiency" target="_blank" rel="noopener noreferrer">RZ/V2N block diagram</a>.<br>
-                    DRP-AI use is shared by DRP-AI TVM, OpenCV Accelerator and Video Codec Library (decoding function).<br>
+                    DRP-AI use is shared by RUHMI runtime library, OpenCV Accelerator and Video Codec Library (decoding function).<br>
                     Therefore, these software cannot be used at the same time.<br>
                 </span>
                 <span id="footnote_v2n_s2r">

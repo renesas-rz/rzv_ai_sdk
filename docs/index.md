@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Home
 ---
@@ -82,11 +81,77 @@ title: Home
             <h6 align="right" >
                 2026.8.20
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>RZ/V AI Applications v8.00</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li>
+                                From AI Applications v8.00, AI SDK version update support will be focused on selected core applications.<br>
+                                5 applications support RZ/V2N AI SDK v8.00.
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+                <li>
+                    <b>RZ/V2N AI SDK v8.00</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li>
+                                Updated DRP-AI Driver to v1.50.
+                            </li>
+                            <li>
+                                Supported RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix).
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2n-spec"><b>RZ/V2N AI SDK Specification</b></a>.
+            <br>
+            <h6 align="right" >
+                2026.8.20
+            </h6>
+            <ul>
+                <li>
+                    <b>Partner Applications on Community Page</b> is updated.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li>
+                                The following applications, formerly provided as AI Applications, are now available as Partner Applications.
+                                <ul>
+                                    <li>[Computermind] River Area Monitoring</li>
+                                    <li>[Computermind] Depth Camera Human Body Estimation</li>
+                                    <li>[Computermind] Lumber Surface Anomaly Detection</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see  <a href="{{ site.url }}{{ site.baseurl }}{% link community.md %}"><b>Community page</b></a>.
+            <br>
+            <h6 align="right" >
+                2026.8.20
+            </h6>
+            <ul>
+                <li>
+                    <b>RZ/V Reference Applications</b> are updated.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li>
+                                Following reference application is added.
+                                <ul>
+                                    <li>
+                                        Object Detection and Distance Measurement
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see  <a href="{{ site.url }}{{ site.baseurl }}{% link ref_applications.md %}"><b>RZ/V Reference Applications</b></a>.
             <br>
             <br>
         </div>
@@ -1134,13 +1199,13 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                 <tr>
                     <td rowspan="1">RZ/V2L<br>RZ/V2H<br>RZ/V2N<br>Common</td>
                     <td>
-                        <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
-                            DRP-AI TVM
+                        <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" target="_blank" rel="noopener noreferrer">
+                            RUHMI AI compiler for RZ/V (DRP-AI TVM)
                         </a>
                     </td>
                     <td>
                         <small>
-                        Machine Learning Compiler plugin for Apache TVM with AI accelerator DRP-AI.<br>
+                        RUHMI (Robust Unified Heterogeneous Model Integration) for RZ/V series is a framework for AI model optimization and deployment, powered by EdgeCortix® MERA.<br>
                         <b>Automatically installed in AI SDK.</b>
                         </small>
                     </td>

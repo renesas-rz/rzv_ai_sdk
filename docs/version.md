@@ -54,7 +54,24 @@ layout: version
     </tr>
     <tr> <!------------ Copy start -------------->
         <td> <!-- Web -->
-            <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">Rev.7.10 (latest)</a>
+            <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">Rev.8.00 (latest)</a>
+        </td>
+        <td> <!-- AI Apps -->
+            v8.00
+        </td>
+        <td> <!-- V2L -->
+            v7.00
+        </td>
+        <td> <!-- V2H -->
+            v6.00
+        </td>
+        <td> <!-- V2N -->
+            v8.00
+        </td>
+    </tr> <!------------ Copy end --------------->
+    <tr> <!------------ Copy start -------------->
+        <td> <!-- Web -->
+            <a href="{{ site.url }}/rzv_ai_sdk/7.10{% link index.md %}">Rev.7.10</a>
         </td>
         <td> <!-- AI Apps -->
             v7.10

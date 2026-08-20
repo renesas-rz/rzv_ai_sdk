@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: AI Applications
 ---
@@ -21,6 +20,7 @@ Introduction
         <div class="col-12">
             AI Applications are provided with pre-trained AI models. 
             Select each application to access the source code.<br>
+            For any enquiries, please create an Issue in each GitHub.<br>
             <h4 class="u_line">
             Prerequisites
             </h4>
@@ -96,7 +96,7 @@ Introduction
             <div id="agriculture1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Animal"
-                data-label="Updated!"
+                data-label=""
                 data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
@@ -107,7 +107,7 @@ Introduction
                         onmouseover="this.src='img/GIF/Agriculture1_480x270.gif'" 
                         onmouseout="this.src='img/Agriculture1_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Defense wild animals for crop</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detect the types of animals that enter your farm or barn for pest control.<br><br>
                     </div>
@@ -130,7 +130,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -140,7 +140,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">38fps</p>
+                                <br>
                                 <a class="videolinkbutton" 
                                     href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#agriculture1_v2h" 
                                     target="_blank" 
@@ -156,7 +156,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -195,7 +195,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">14fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -205,7 +205,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">500fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -215,7 +215,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">250fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -254,7 +254,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -264,7 +264,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">45fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -274,7 +274,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -292,14 +292,14 @@ Introduction
             <div id="building1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Elevator passengers Counting</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Issues alerts if the elevator is overcrowded and exceeds its capacity.<br><br>
                     </div>
@@ -322,7 +322,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -332,7 +332,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -342,7 +342,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -351,7 +351,7 @@ Introduction
             <div id="building2" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
@@ -362,7 +362,7 @@ Introduction
                         onmouseover="this.src='img/GIF/SmartBuilding2_480x270.gif'" 
                         onmouseout="this.src='img/SmartBuilding2_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Conference Room Usage Monitor</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors if the meeting room is vacant by counting the number of people in the room.<br><br>
                     </div>
@@ -385,7 +385,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -395,7 +395,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                                 <a class="videolinkbutton" 
                                     href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#building2_v2h" 
                                     target="_blank" 
@@ -411,7 +411,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                                 <a class="videolinkbutton" 
                                     href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#building2_v2n" 
                                     target="_blank" 
@@ -426,14 +426,14 @@ Introduction
             <div id="building3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Lighting Control</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Automatically controls the lighting according to the situation by counting the number of people in the room.<br><br>
                     </div>
@@ -456,7 +456,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -466,7 +466,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -476,7 +476,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -485,14 +485,14 @@ Introduction
             <div id="building4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Security Area Intrusion Detection</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects illegal intrusions to security area in the office.<br><br>
                     </div>
@@ -515,7 +515,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">20fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -525,7 +525,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -535,7 +535,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -544,14 +544,14 @@ Introduction
             <div id="building5" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Other"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Wear management at construction sites</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Analyzes the equipment of workers before entering the construction site by detecting the necessary equipment such as helmet or vest. It can be used to reduce the overload of monitoring person and ensure workers to wear appropriate equipment.<br><br>
                     </div>
@@ -574,7 +574,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -584,7 +584,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -594,7 +594,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -603,14 +603,14 @@ Introduction
             <div id="building6" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding6_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for elevator</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         By using hand gestures, elevator operation can be done without touching the buttons.<br><br>
                     </div>
@@ -633,7 +633,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">13fps<br>for single hand</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -643,7 +643,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">38fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -653,7 +653,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -692,7 +692,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">2fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -702,7 +702,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">5fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -712,7 +712,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">5fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -721,21 +721,21 @@ Introduction
             <div id="building8" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartBuilding8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Parking Lot Management</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Monitors cars or other vehicles going in and out of a parking lot.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
                         <b>Dataset:</b> Megvii-BaseDetection<br>
@@ -751,7 +751,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">67fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -761,7 +761,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">33fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -779,14 +779,14 @@ Introduction
             <div id="city1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection in Railway Station</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors the congestion level on trains and buses by detecting the number of passengers.<br><br>
                     </div>
@@ -809,7 +809,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -819,7 +819,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -829,7 +829,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -838,14 +838,14 @@ Introduction
             <div id="city2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Prohibited Area Management</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Prevents accidents and detects illegal intrusions in construction site by detecting the entry to prohibited areas.<br><br>
                     </div>
@@ -868,7 +868,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">20fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -878,7 +878,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -888,7 +888,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -897,14 +897,14 @@ Introduction
             <div id="city3" class="application_card col-lg-6 col-xl-4"
                 data-model="ResNet-18+Tiny YOLOv3/ResNet-18+YOLOv3"
                 data-targetobj="Face"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Distracted driving detection</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Issues an alert when the driver is distracted by detecting the line of sight.<br><br>
                     </div>
@@ -927,7 +927,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">13fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -937,7 +937,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">36fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -947,7 +947,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">14fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -986,7 +986,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -996,7 +996,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">34fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1006,7 +1006,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">13fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1045,7 +1045,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">4-7 msec<br>per slot</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1084,7 +1084,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">4-7 msec<br>per slot</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1123,7 +1123,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">2fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1133,7 +1133,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">5fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1143,7 +1143,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">5fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1152,14 +1152,14 @@ Introduction
             <div id="city8" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity8_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Bus passenger counting</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Counts the number of passengers on public transportation. It is also effective in preventing children from being left behind on school buses.<br><br>
                     </div>
@@ -1182,7 +1182,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1192,7 +1192,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1202,7 +1202,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1211,14 +1211,14 @@ Introduction
             <div id="city9" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCIty9_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Backtravel Detection</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects people going backwards on one-way stairs, aisles, or escalators. Helps preventing congestion and accidents.<br><br>
                     </div>
@@ -1241,7 +1241,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">20fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1251,7 +1251,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1261,7 +1261,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1300,7 +1300,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">33fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1310,7 +1310,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">77fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1320,7 +1320,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">77fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1359,7 +1359,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1369,7 +1369,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">45fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1379,7 +1379,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1418,7 +1418,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1428,7 +1428,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">45fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1438,7 +1438,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1447,14 +1447,14 @@ Introduction
             <div id="city13" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3"
                 data-targetobj="Vehicle"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity13_PrecedingVehicleMovementAlert.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Preceding Vehicle Movement Alert</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Detects the departure of the preceding vehicle. It prevents the driver from a delayed start when waiting at a traffic light or in a traffic jam.<br><br>
                     </div>
@@ -1477,7 +1477,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">20fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1487,7 +1487,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">167fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1497,7 +1497,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">83fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1536,7 +1536,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1546,7 +1546,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">45fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1556,7 +1556,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1595,7 +1595,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1605,7 +1605,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">45fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1615,7 +1615,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1654,7 +1654,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1664,7 +1664,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">45fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1674,7 +1674,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1713,7 +1713,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1723,7 +1723,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">45fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1733,7 +1733,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">12fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1772,7 +1772,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">13fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1782,7 +1782,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">125fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1792,7 +1792,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">63fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1831,7 +1831,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">16fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1841,7 +1841,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1851,7 +1851,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">14fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1860,21 +1860,21 @@ Introduction
             <div id="city20" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity20_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Multi-Camera Vehicle Detector</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Allows multi-directional detection of vehicle existence with multiple cameras.  It can prevent car accidents by noticing the cars outside of human sight.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
                         <b>Dataset:</b> Megvii-BaseDetection<br>
@@ -1890,7 +1890,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">67fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1900,7 +1900,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">33fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1909,21 +1909,21 @@ Introduction
             <div id="city21" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOX-L"
                 data-targetobj="Vehicle"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartCity21_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Car Accident Prevention Alert</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Alerts children or elderly individuals that there are vehicles nearby from wearable/portable devices attached to their backpacks by multi-directional vehicle detection.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
                         <b>Dataset:</b> Megvii-BaseDetection<br>
@@ -1939,7 +1939,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">67fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1949,7 +1949,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">33fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -1988,7 +1988,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">125fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -1998,7 +1998,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">50fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2037,7 +2037,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">125fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2047,7 +2047,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">50fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2069,8 +2069,8 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> See GitHub<br>
+                        <b>Supported RZ/V2N AI SDK:</b> See GitHub<br>
                         <b>Function:</b> C01_river_area_monitoring<br>
                         <b>Model:</b> DeepLabv3<br>
                         <b>Dataset:</b> COCO Stuff<br>
@@ -2080,23 +2080,23 @@ Introduction
                         <dd style="display: flex">
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
-                                    href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C01_river_area_monitoring" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind_c01" 
                                     style="color:white" 
                                     target="_blank" 
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">53fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
-                                    href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C01_river_area_monitoring" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind_c01" 
                                     style="color:white" 
                                     target="_blank" 
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">17fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2114,14 +2114,14 @@ Introduction
             <div id="healthcare1" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+HRNet"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Healthcare1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Physical Condition Monitor</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Support the early rescue by detecting any changes in the body condition of patients/users in the hospitals and care facility when they are alone.<br><br>
                     </div>
@@ -2144,7 +2144,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">5fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2154,7 +2154,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">60fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2164,7 +2164,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">22fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2203,7 +2203,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">77fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2213,7 +2213,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">42fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2235,8 +2235,8 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> See GitHub<br>
+                        <b>Supported RZ/V2N AI SDK:</b> See GitHub<br>
                         <b>Function:</b> C02_depth_cam_human_body_estimation<br>
                         <b>Model:</b> HRNet<br>
                         <b>Dataset:</b> COCO<br>
@@ -2246,23 +2246,23 @@ Introduction
                         <dd style="display: flex">
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
-                                    href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C02_depth_cam_human_body_estimation" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind_c02" 
                                     style="color:white" 
                                     target="_blank" 
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">200fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
-                                    href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C02_depth_cam_human_body_estimation" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind_c02" 
                                     style="color:white" 
                                     target="_blank" 
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">67fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2280,14 +2280,14 @@ Introduction
             <div id="home1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Air Conditioner Control</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Automatically controls the air conditioning according to the situation by counting the number of people in the room.<br><br>
                     </div>
@@ -2310,7 +2310,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2320,7 +2320,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2330,7 +2330,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2339,14 +2339,14 @@ Introduction
             <div id="home2" class="application_card col-lg-6 col-xl-4"
                 data-model="ArcFace/ResNet-50"
                 data-targetobj="Face"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Smart TV</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Provides smart TV system, which switches to favorite TV channel by collecting the data of family members and TV contents that they watched.<br><br>
                     </div>
@@ -2369,7 +2369,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">5fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2378,14 +2378,14 @@ Introduction
             <div id="home3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Animal"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Pet Detection in Kitchen and Child's Room</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Issues an alert when your pets have entered dangerous areas such as kitchen or children room.<br><br>
                     </div>
@@ -2408,7 +2408,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2418,7 +2418,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">38fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2428,7 +2428,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2437,14 +2437,14 @@ Introduction
             <div id="home4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/SmartHome3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for Kitchen Appliance</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Allows you to control electrical appliances by the hand gestures without touching them.<br><br>
                     </div>
@@ -2467,7 +2467,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">13fps<br>for single hand</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2477,7 +2477,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">38fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2487,7 +2487,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2526,7 +2526,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">16fps for<br>Tiny YOLOv3</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2536,7 +2536,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">38fps for<br>YOLOv3</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2546,7 +2546,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">14fps for<br>YOLOv3</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2564,14 +2564,14 @@ Introduction
             <div id="industrial1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Work Area Personnel Management</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors attendance of workers by counting their number entered in the work area.<br><br>
                     </div>
@@ -2594,7 +2594,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2604,7 +2604,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2614,7 +2614,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2623,7 +2623,7 @@ Introduction
             <div id="industrial2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3/YOLOv3"
                 data-targetobj="Person"
-                data-label="Updated!"
+                data-label=""
                 data-feature="Video"
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
@@ -2634,7 +2634,7 @@ Introduction
                         onmouseover="this.src='img/GIF/Industrial4_480x270.gif'" 
                         onmouseout="this.src='img/Industrial4_960x540.jpg'">
                     <dt class="mt-1" style="color: #2a289d;">Access Control</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors the total number of visitors by counting the number of people who have passed through the entrance/exit.<br><br>
                     </div>
@@ -2657,7 +2657,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">20fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2667,7 +2667,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                                 <a class="videolinkbutton" 
                                     href="{{ site.url }}{{ site.baseurl }}{% link index.md %}#industrial2_v2h" 
                                     target="_blank" 
@@ -2683,7 +2683,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2692,14 +2692,14 @@ Introduction
             <div id="industrial3" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Other"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial2_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Helmet and safety vest wearing monitor</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Increase the safety level in the factory by monitoring the helmet use.<br><br>
                     </div>
@@ -2722,7 +2722,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2732,7 +2732,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2742,7 +2742,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2751,14 +2751,14 @@ Introduction
             <div id="industrial4" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv2+ResNet-18/YOLOv3"
                 data-targetobj="Hand"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Touchless Controller for Industrial machine</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Machine button operation can be done without contact using gestures in factory.<br><br>
                     </div>
@@ -2781,7 +2781,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">13fps<br>for single hand</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2791,7 +2791,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">38fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2801,7 +2801,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2824,7 +2824,7 @@ Introduction
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 10_Driver_monitoring_system<br>
                         <b>Model:</b> Tiny YOLOv3+DeepPose | YOLOX-L<br>
                         <b>Dataset:</b> HollywoodHeads/WFLW | DMS Computer Vision Dataset<br>
@@ -2840,7 +2840,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">7fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2850,7 +2850,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">77fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2860,7 +2860,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">34fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2899,7 +2899,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">18fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2909,7 +2909,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">250fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2919,7 +2919,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">167fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -2958,7 +2958,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">13fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2968,7 +2968,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">125fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -2978,7 +2978,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">63fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3017,7 +3017,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">17fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3027,7 +3027,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">38fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3037,7 +3037,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">14fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3059,8 +3059,8 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> See GitHub<br>
+                        <b>Supported RZ/V2N AI SDK:</b> See GitHub<br>
                         <b>Function:</b> C03_surface_anomaly_detection<br>
                         <b>Model:</b> PatchCore_resnet18<br>
                         <b>Dataset:</b> Custom<br>
@@ -3070,23 +3070,23 @@ Introduction
                         <dd style="display: flex">
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
-                                    href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C03_surface_anomaly_detection" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind_c03" 
                                     style="color:white" 
                                     target="_blank" 
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">435fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
-                                    href="https://github.com/ComputermindCorp/drp-ai-demo-app/tree/main/C03_surface_anomaly_detection" 
+                                    href="{{ site.url }}{{ site.baseurl }}{% link community.md %}#computermind_c03" 
                                     style="color:white" 
                                     target="_blank" 
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">313fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3095,21 +3095,21 @@ Introduction
             <div id="industrial10" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOX-L+Unet"
                 data-targetobj="Other"
-                data-label=""
+                data-label="Updated!"
                 data-feature=""
                 data-device="RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Industrial10_AnalogMeterReader_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Analog Meter Reader</dt>
-                    <h6 class="appstatus" align="right"><b><br /></b></h6>
+                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
                     <div class="griditem-add">
                         Finds the analog meter reading value using segmentation after the initial setup of gauge min/max/center allocation.<br><br>
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
                         <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
-                        <b>Supported RZ/V2N AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> Q13_analog_meter_reader<br>
                         <b>Model:</b> YOLOX-L+Unet<br>
                         <b>Dataset:</b> gauge-detection Dataset+analog_needle_segmentation Dataset<br>
@@ -3125,7 +3125,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">9fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3135,7 +3135,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3153,14 +3153,14 @@ Introduction
             <div id="retail1" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail1_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Congestion Detection</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Issues an alert when the store is overcrowded with more customers.<br><br>
                     </div>
@@ -3183,7 +3183,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3193,7 +3193,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3203,7 +3203,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3212,14 +3212,14 @@ Introduction
             <div id="retail2" class="application_card col-lg-6 col-xl-4"
                 data-model="Tiny YOLOv3+FairFace/YOLOv3+FairFace"
                 data-targetobj="Face"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail3_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Smart POS</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Supports checking ages of customers by checking their age in front of the casher and linking the information with their purchase.<br><br>
                     </div>
@@ -3242,7 +3242,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">11fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3252,7 +3252,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">34fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3262,7 +3262,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">14fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3271,14 +3271,14 @@ Introduction
             <div id="retail3" class="application_card col-lg-6 col-xl-4"
                 data-model="ResNet-18+Tiny YOLOv3/ResNet-18+YOLOv3"
                 data-targetobj="Face"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail4_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Marketing Interest Analysis</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitors the gaze direction of customer in the retail store, which can be used to collect marketing information.<br><br>
                     </div>
@@ -3301,7 +3301,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">13fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3311,7 +3311,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">36fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3321,7 +3321,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">14fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3360,7 +3360,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3370,7 +3370,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">34fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3380,7 +3380,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">13fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3389,14 +3389,14 @@ Introduction
             <div id="retail5" class="application_card col-lg-6 col-xl-4"
                 data-model="YOLOv3"
                 data-targetobj="Head"
-                data-label="Updated!"
+                data-label=""
                 data-feature=""
                 data-device="RZ/V2L,RZ/V2H,RZ/V2N,"
                 >
                 <li class="griditem" style="list-style: none;">
                     <img src="img/Retail5_960x540.jpg" alt="application">
                     <dt class="mt-1" style="color: #2a289d;">Exhibition Participants Monitoring</dt>
-                    <h6 class="appstatus" align="right"><b>Updated!</b></h6>
+                    <h6 class="appstatus" align="right"><b><br /></b></h6>
                     <div class="griditem-add">
                         Monitor the number of visitors to an exhibition or other open space. Changes in the number of participants can also be detected since it counts the number of participants in real time.<br><br>
                     </div>
@@ -3419,7 +3419,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">3fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3429,7 +3429,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3439,7 +3439,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">15fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>
@@ -3478,7 +3478,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2L >
                                 </a>
-                                <p class="Perf-Framerate">16fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3488,7 +3488,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2H >
                                 </a>
-                                <p class="Perf-Framerate">40fps</p>
+                                <br>
                             </div>
                             <div class="devicelinkbutton_parent">
                                 <a class="devicelinkbutton" 
@@ -3498,7 +3498,7 @@ Introduction
                                     rel="noopener noreferrer">
                                     RZ/V2N >
                                 </a>
-                                <p class="Perf-Framerate">14fps</p>
+                                <br>
                             </div>
                         </dd>
                     </dl>

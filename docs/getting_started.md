@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Getting Started
 redirect_from: 
@@ -51,9 +50,9 @@ Its version varies depending on the supported board.
       RZ/V2N Evaluation Board Kit<br>
       RZ/V2N Fast Prototyping Board
     </td>
-    <td>RZ/V2N AI SDK <b>v6.30</b></td>
-    <td>v2.5.1</td> <!--RUHMI-->
-    <td>i8 v1.04</td> <!--Translator-->
+    <td>RZ/V2N AI SDK <b>v8.00</b></td>
+    <td>Release-2026-06-30 (including v2.8.0-hotfix)</td> <!--RUHMI-->
+    <td>i8 v1.12</td> <!--Translator-->
   </tr>
 </table>
 <a class="ms-4" href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv-embedded-ai-mpus" target="_blank" rel="noopener noreferrer">Learn more about the RZ/V series.</a>
@@ -742,7 +741,7 @@ RZ/V AI SDK provides following packages for each supported board.
       </div>
       <!-- <br> -->
       <div class="mb-0 cnt_prod cnt_V2N" >
-      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v630" role="button" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2n-ai-sdk-v800" role="button" target="_blank" rel="noopener noreferrer">
           <span class="banner-title">RZ/V2N AI SDK</span>
           <span class="banner-line">Get the RZ/V2N AI Software Development Kit</span>
       </a>    
@@ -973,7 +972,7 @@ To see the overview about AI Applications, please refer to <a href="{{ site.url 
   Please clone the application respository of your selection and proceed to the <b><a href="#step7">next step (Step 7: Deploy AI Application)</a></b>.<br>
   E.g., <b>
     <a 
-      href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection" 
+      href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v8.00/R01_object_detection"
       target="_blank" 
       rel="noopener noreferrer">R01_object_detection</a>
   </b>, 
@@ -1012,7 +1011,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         </td>
         <td>
           <h6 class="mb-0">
-            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
+            <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v8.00/R01_object_detection" target="_blank" rel="noopener noreferrer">R01_object_detection</a>
           </h6>
         </td>
     </tr>
@@ -1049,12 +1048,13 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
         Check the <code>README.md</code> document provided in application directory and follow the instruction in the chapter called <b>"Application: Build Stage"</b> (or similar) to build the application.<br><br>
         <div class="box1">
           <u><b>Example:</b></u><br>
-          For R01_object_detection application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">README > Application: Build Stage</a> to generate the following application binary.
+          For R01_object_detection application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v8.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">README > Application: Build Stage</a> to generate the following application binary.
           <ul>
             <li>object_detection</li>
           </ul>
         </div>
           <!-- From here: Delete when making latest version -->
+          <!--
         <div class="note">
           <span class="note-title">Note</span>
           The <code>git clone</code> command shown in the <code>README.md</code> will download the <b style="color: red;">latest</b> source code and related files. <br><br>
@@ -1063,6 +1063,7 @@ In <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}" target="
 git clone -b v{{ site.version }} https://github.com/renesas-rz/rzv_ai_sdk.git
 {% endhighlight %}
         </div>
+          -->
           <!-- Until here: Delete when making latest version -->
       </li>
     </ol>
@@ -1107,14 +1108,14 @@ cd /drp-ai_tvm/data
 git clone https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
         <!-- From here: Delete when making latest version -->
-        <div class="note">
+        <!-- <div class="note">
           <span class="note-title">Note</span>
           The command above will download the <b style="color: red;">latest</b> source code and related files. <br><br>
           To download the files of AI Applications v{{ site.version }}, please specify the version tag by adding <code>-b v{{ site.version }}</code> when you running the <code>git clone</code> command as shown below.
 {% highlight shell%}
 git clone -b v{{ site.version }} https://github.com/Ignitarium-Renesas/RZV2L_AiLibrary
 {% endhighlight %}
-        </div>
+        </div> -->
         <!-- Until here: Delete when making latest version -->
       </li><br>
       <li>Move to the application directory.
@@ -1888,12 +1889,12 @@ sudo mkdir /mnt/sd/home/weston/tvm
            <div class="note">
             <span class="note-title">Note</span>
             Since RZ/V2N is a brother chip of RZ/V2H, users can use the AI Application for RZ/V2H on the RZ/V2N EVK.<br>
-            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+            Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v8.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
           </div>
           </div> -->
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For R01_object_detection application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">README > Application: Deploy Stage</a> to find files to be copied.
+            For R01_object_detection application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v8.00/R01_object_detection#application-deploy-stage" target="_blank" rel="noopener noreferrer">README > Application: Deploy Stage</a> to find files to be copied.
           </div>
           <br>
           Use the following command to copy the files to root filesystem.
@@ -2406,11 +2407,11 @@ sudo eject /dev/sdb
           <br><br>
           <div class="box1">
             <u><b>Example:</b></u><br>
-            For R01_object_detection application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">README > Application: Run Stage</a> to run the application.
+            For R01_object_detection application, follow the instruction in <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v8.00/R01_object_detection#application-run-stage" target="_blank" rel="noopener noreferrer">README > Application: Run Stage</a> to run the application.
             <br>
             <!-- <span class="cnt_prod cnt_V2N">
               Users can use the AI Application for RZ/V2H on the RZ/V2N Board.<br>
-              Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v7.10/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
+              Please use source code and object files for RZ/V2H, and follow the steps <a href="https://github.com/renesas-rz/rzv_ai_sdk/tree/v8.00/R01_object_detection#application-build-stage" target="_blank" rel="noopener noreferrer">Application: Build Stage</a> to build the application in the RZ/V2N AI SDK environment.
               <br>
             </span> -->
             If you have successfully run the application, you will see following window on HDMI screen.

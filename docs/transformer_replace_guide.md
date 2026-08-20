@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: How to replace a Transformer-based AI model
 ---

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: RZ/V AI Software Overview
 ---
@@ -179,7 +178,7 @@ title: RZ/V AI Software Overview
             RZ/V AI Applications are free of charge and open source software, which can be used not only for evaluation purposes but also for your mass production development.<br>
             However, they only provide fixed AI models/dataset.
             <br>
-            You can change the AI models/dataset by using our other software, i.e., RZ/V AI Transfer Learning Tool and DRP-AI TVM.
+            You can change the AI models/dataset by using our other software, i.e., RZ/V AI Transfer Learning Tool and RUHMI AI compiler for RZ/V (DRP-AI TVM).
             <br>
             <br>
             If you do not have your own AI model, or prefer to use exisiting AI models created by reliable developers, you are recommended to ask our partners.<br>
@@ -249,15 +248,15 @@ title: RZ/V AI Software Overview
     </div>
     <div class="row contents-sw contents-sw-ai tvm" >
         <div class="col-12 contents-sw-title contents-sw-title-ai">
-            DRP-AI TVM
+            RUHMI AI compiler for RZ/V (DRP-AI TVM)
         </div>
         <div class="col-12">
-            DRP-AI TVM is a Machine Learning Compiler plugin for Apache TVM with AI accelerator DRP-AI, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.
+            RUHMI AI compiler for RZ/V (DRP-AI TVM) is a framework for AI model optimization and deployment powered by EdgeCortix® MERA, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.
             <br>
             <br>
-            RZ/V AI Applications (Apps) provide a set of pre-compiled AI models by validated DRP-AI TVM version and the application source code.
+            RZ/V AI Applications (Apps) provide a set of pre-compiled AI models by validated RUHMI AI compiler for RZ/V (DRP-AI TVM) version and the application source code.
             <br>
-            In following cases, you need to compile them with DRP-AI TVM.
+            In following cases, you need to compile them with RUHMI AI compiler for RZ/V (DRP-AI TVM).
             <ul>
                 <li>
                     To change the AI models of RZ/V AI Apps.
@@ -266,15 +265,15 @@ title: RZ/V AI Software Overview
                     To use completely different models, such as BYOM or OSS, 
                 </li>
             </ul>
-            DRP-AI TVM is automatically installed in RZ/V AI SDK and users are able to use it on its own.
+            RUHMI AI compiler for RZ/V (DRP-AI TVM) is automatically installed in RZ/V AI SDK and users are able to use it on its own.
             <br>
-            To see how to use DRP-AI TVM, please refer to the <b>DRP-AI TVM Web</b>.
+            To see how to use RUHMI AI compiler for RZ/V (DRP-AI TVM), please refer to the <b>RUHMI AI compiler for RZ/V (DRP-AI TVM) Web</b>.
             <br>
             <br>
             <a class="btn btn-primary download-button" 
                 href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" 
                 role="button">
-                DRP-AI TVM Web
+                RUHMI AI compiler for RZ/V (DRP-AI TVM) Web
             </a>
             <br>
             <br>
@@ -286,7 +285,7 @@ title: RZ/V AI Software Overview
         </div>
         <div class="col-12 col-xxl-8 mb-3">
             <div class="ms-3">
-                RZ/V AI Apps and RZ/V AI SDK usually use the validated version of DRP-AI TVM, which means that RZ/V AI Apps may not be compatible with the latest version of DRP-AI TVM.<br>
+                RZ/V AI Apps and RZ/V AI SDK usually use the validated version of RUHMI AI compiler for RZ/V (DRP-AI TVM), which means that RZ/V AI Apps may not be compatible with the latest version of RUHMI AI compiler for RZ/V (DRP-AI TVM).<br>
                 The version installed in AI SDK can be checked in the following page.
                 <br>
                 <a class="btn btn-secondary square-button square-button-link-small 
@@ -296,14 +295,14 @@ title: RZ/V AI Software Overview
                 </a>
                 <br>
                 <br>
-                To use the <b>latest DRP-AI TVM</b>, please refer to the Getting Started in <b>DRP-AI TVM Web</b> to construct the environment with RZ/V AI SDK and DRP-AI Translator.
+                To use the <b>latest RUHMI AI compiler for RZ/V (DRP-AI TVM)</b>, please refer to the Getting Started in <b>RUHMI AI compiler for RZ/V (DRP-AI TVM) Web</b> to construct the environment with RZ/V AI SDK and DRP-AI Translator.
             </div>
         </div>
         <div class="col-12 col-xxl-4">
             <a href="img/to_latest_tvm.png" 
                 data-lightbox="group" >
                 <img src="img/to_latest_tvm.png" 
-                    alt="To use latest DRP-AI TVM"
+                    alt="To use latest RUHMI"
                     width="100%" 
                     style="max-width:500px;">
             </a>
@@ -447,7 +446,7 @@ title: RZ/V AI Software Overview
                             RZ/V AI Transfer Learning Tool (TLT)
                         </li>
                         <li>
-                            DRP-AI TVM
+                            RUHMI AI compiler for RZ/V (DRP-AI TVM)
                         </li>
                     </ul>
                 </div>
@@ -885,15 +884,15 @@ title: RZ/V AI Software Overview
                     </tr>
                     <tr>
                         <td>
-                            DRP-AI TVM
+                            RUHMI AI compiler for RZ/V <br>(DRP-AI TVM)
                         </td>
                         <td>
                             <h6 class="mb-1">
-                                Machine Learning Compiler plugin for Apache TVM with AI accelerator DRP-AI, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.<br>
+                                A framework for AI model optimization and deployment, powered by EdgeCortix® MERA, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.<br>
                                 <span style="color: red;">
-                                    Note: AI SDK also includes DRP-AI TVM. However it is not the <b>latest</b> version.
+                                    Note: AI SDK also includes RUHMI AI compiler for RZ/V (DRP-AI TVM). However it is not the <b>latest</b> version.
                                     <br>  
-                                    If you would like to use the latest DRP-AI TVM, please follow the guide in DRP-AI TVM Web to construct the environment.  
+                                    If you would like to use the latest RUHMI AI compiler for RZ/V (DRP-AI TVM), please follow the guide in RUHMI AI compiler for RZ/V (DRP-AI TVM) Web to construct the environment.  
                                 </span>
                             </h6>
                         </td>
@@ -901,7 +900,7 @@ title: RZ/V AI Software Overview
                             <a class="btn btn-primary download-button" 
                                 href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" 
                                 role="button">
-                                DRP-AI TVM Web
+                                <h6>RUHMI AI compiler <br>for RZ/V <br>(DRP-AI TVM) Web</h6>
                             </a>
                         </td>
                     </tr>
@@ -923,7 +922,7 @@ title: RZ/V AI Software Overview
                                         RZ/V AI TLT
                                     </li>
                                     <li>
-                                        DRP-AI TVM
+                                        RUHMI AI compiler for RZ/V (DRP-AI TVM)
                                     </li>
                                 </ul>
                             </h6>

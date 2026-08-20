@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Developer's Guide
 ---
@@ -73,7 +72,7 @@ RZ/V AI SDK Developer's Guide
                 <td>
                   <!-- V2L -->AI SDK Source Code v7.00<br>
                   <!-- V2H -->AI SDK Source Code v6.00<br>
-                  <!-- V2N -->AI SDK Source Code v6.30
+                  <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
               <tr>
@@ -91,14 +90,14 @@ RZ/V AI SDK Developer's Guide
                 </td>
                 <td>
                   <!-- V2H -->AI SDK Source Code v6.00<br>
-                  <!-- V2N -->AI SDK Source Code v6.30
+                  <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
               <tr>
                 <td>D4</td>
                 <td><a href="#D4">How to boot from eMMC</a></td>
                 <td>RZ/V2N</td>
-                <td>AI SDK Source Code v6.30</td>
+                <td>AI SDK Source Code v8.00</td>
               </tr>
               <tr>
                 <td>D5</td>
@@ -109,7 +108,7 @@ RZ/V AI SDK Developer's Guide
                 </td>
                 <td>
                   <!-- V2H -->AI SDK Source Code v6.00<br>
-                  <!-- V2N -->AI SDK Source Code v6.30
+                  <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
               <tr>
@@ -121,7 +120,7 @@ RZ/V AI SDK Developer's Guide
                 </td>
                 <td>
                   <!-- V2H -->AI SDK Source Code v6.00<br>
-                  <!-- V2N -->AI SDK Source Code v6.30
+                  <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
 <!--

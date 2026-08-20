@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: RZ/V2N AI Applications Demo How to Use Guide
 ---
