@@ -900,7 +900,7 @@ title: RZ/V AI Software Overview
                             <a class="btn btn-primary download-button" 
                                 href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" 
                                 role="button">
-                                <h6>RUHMI AI compiler <br>for RZ/V <br>(DRP-AI TVM) Web</h6>
+                                RUHMI AI compiler <br>for RZ/V <br>(DRP-AI TVM) Web
                             </a>
                         </td>
                     </tr>
