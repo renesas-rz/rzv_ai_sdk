@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 title: How to build RZ/V2L AI SDK Source Code
 ---

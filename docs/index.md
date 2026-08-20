@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 title: Home
 ---
@@ -79,26 +80,13 @@ title: Home
     <div class="row">
         <div class="col-12">
             <h6 align="right" >
-                2026.7.31
+                2026.8.20
             </h6>
-            <ul>
-                <li>
-                    <b>RZ/V2N Fast Prototyping Board</b> (FPB-RZV2N) support is added.
-                    <h6 class="mb-0">
-                        <ul>
-                            <li>
-                                FPB-RZV2N is supported by RZ/V2N AI SDK v6.30 and later.<br>
-                                AI Applications v7.10 (for RZ/V2N AI SDK v6.00) can also be used on FPB-RZV2N running RZ/V2N AI SDK v6.30.
-                            </li>
-                            <li>
-                                FPB-RZV2N can be used in the same way as the RZ/V2N Evaluation Board Kit, except for cases that depend on hardware differences.<br>
-                                E.g., Only 1 MIPI camera connector is available on FPB-RZV2N.
-                            </li>
-                        </ul>
-                    </h6>
-                </li>
-            </ul>
-            For more details, see  <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}"><b>RZ/V AI SDK Overview</b></a> and  <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}"><b>Getting Started</b></a>.
+            <font color="red">
+                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
+                <b>Users are recommended to use the latest version in the following URL.</b><br>
+                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
+            </font>
             <br>
             <br>
         </div>

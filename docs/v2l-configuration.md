@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 title: RZ/V2L AI SDK Configuration
 ---
