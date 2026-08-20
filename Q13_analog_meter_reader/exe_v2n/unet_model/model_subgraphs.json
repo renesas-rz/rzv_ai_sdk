@@ -1,0 +1,6362 @@
+{
+  "subgraphs": [
+    {
+      "nodes": [
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70000",
+            "shape": [
+              4
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70001",
+            "shape": [
+              4
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70002",
+            "shape": [
+              4
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70003",
+            "shape": [
+              4
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70004",
+            "shape": [
+              4
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70005",
+            "shape": [
+              64,
+              7,
+              7,
+              3
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70006",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70007",
+            "shape": [
+              64,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70008",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70009",
+            "shape": [
+              64,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70010",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70011",
+            "shape": [
+              64,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70012",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70013",
+            "shape": [
+              64,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70014",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70015",
+            "shape": [
+              64,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70016",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70017",
+            "shape": [
+              64,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70018",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70019",
+            "shape": [
+              128,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70020",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70021",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70022",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70023",
+            "shape": [
+              128,
+              1,
+              1,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70024",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70025",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70026",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70027",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70028",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70029",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70030",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70031",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70032",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70033",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70034",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70035",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70036",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70037",
+            "shape": [
+              256,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70038",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70039",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70040",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70041",
+            "shape": [
+              256,
+              1,
+              1,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70042",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70043",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70044",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70045",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70046",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70047",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70048",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70049",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70050",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70051",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70052",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70053",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70054",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70055",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70056",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70057",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70058",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70059",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70060",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70061",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70062",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70063",
+            "shape": [
+              512,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70064",
+            "shape": [
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70065",
+            "shape": [
+              512,
+              3,
+              3,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70066",
+            "shape": [
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70067",
+            "shape": [
+              512,
+              1,
+              1,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70068",
+            "shape": [
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70069",
+            "shape": [
+              512,
+              3,
+              3,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70070",
+            "shape": [
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70071",
+            "shape": [
+              512,
+              3,
+              3,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70072",
+            "shape": [
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70073",
+            "shape": [
+              512,
+              3,
+              3,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70074",
+            "shape": [
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70075",
+            "shape": [
+              512,
+              3,
+              3,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70076",
+            "shape": [
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70077",
+            "shape": [
+              256,
+              3,
+              3,
+              768
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70078",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70079",
+            "shape": [
+              256,
+              3,
+              3,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70080",
+            "shape": [
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70081",
+            "shape": [
+              128,
+              3,
+              3,
+              384
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70082",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70083",
+            "shape": [
+              128,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70084",
+            "shape": [
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70085",
+            "shape": [
+              64,
+              3,
+              3,
+              192
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70086",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70087",
+            "shape": [
+              64,
+              3,
+              3,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70088",
+            "shape": [
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70089",
+            "shape": [
+              32,
+              3,
+              3,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70090",
+            "shape": [
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70091",
+            "shape": [
+              32,
+              3,
+              3,
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70092",
+            "shape": [
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70093",
+            "shape": [
+              16,
+              3,
+              3,
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70094",
+            "shape": [
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70095",
+            "shape": [
+              16,
+              3,
+              3,
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "C",
+            "name": "FloatVecConstant_70096",
+            "shape": [
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "x",
+            "name": "FloatVecConstant_70097",
+            "shape": [
+              1
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "FloatVecConstant",
+          "output": {
+            "dt": "Float32",
+            "layout": "OHWI",
+            "name": "FloatVecConstant_70098",
+            "shape": [
+              1,
+              3,
+              3,
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "in_0": {
+              "dt": "Float32",
+              "layout": "NCHW",
+              "name": "output_70224_70279",
+              "shape": [
+                1,
+                1,
+                640,
+                640
+              ]
+            }
+          },
+          "op_name": "OutputNode",
+          "output": {
+            "dt": "UInt8",
+            "layout": "x",
+            "name": "GraphOutputs",
+            "shape": [
+              1
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "Int32VecConstant",
+          "output": {
+            "dt": "Int32",
+            "layout": "C",
+            "name": "Int32VecConstant_70186",
+            "shape": [
+              0
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "Int32VecConstant",
+          "output": {
+            "dt": "Int32",
+            "layout": "C",
+            "name": "Int32VecConstant_70194",
+            "shape": [
+              0
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "Int32VecConstant",
+          "output": {
+            "dt": "Int32",
+            "layout": "C",
+            "name": "Int32VecConstant_70202",
+            "shape": [
+              0
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "Int32VecConstant",
+          "output": {
+            "dt": "Int32",
+            "layout": "C",
+            "name": "Int32VecConstant_70210",
+            "shape": [
+              0
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "Int32VecConstant",
+          "output": {
+            "dt": "Int32",
+            "layout": "C",
+            "name": "Int32VecConstant_70218",
+            "shape": [
+              0
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "axis": "3"
+          },
+          "input_names": {
+            "in_0": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_0_Resize_output_0_a852de_70187",
+              "shape": [
+                1,
+                40,
+                40,
+                512
+              ]
+            },
+            "in_1": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_5_relu_1_Relu_output_0_b66119_70168",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "Concatenate",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_0_Concat_output_0_f25ca2_70188",
+            "shape": [
+              1,
+              40,
+              40,
+              768
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "coordinate_transformation_mode": "asymmetric",
+            "mode": "nearest",
+            "nearest_mode": "floor"
+          },
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_2_relu_1_Relu_output_0_370915_70184",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            },
+            "scales": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70000",
+              "shape": [
+                4
+              ]
+            },
+            "sizes": {
+              "dt": "Int32",
+              "layout": "C",
+              "name": "Int32VecConstant_70186",
+              "shape": [
+                0
+              ]
+            }
+          },
+          "op_name": "CanResize2d",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_0_Resize_output_0_a852de_70187",
+            "shape": [
+              1,
+              40,
+              40,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70078",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70077",
+              "shape": [
+                256,
+                3,
+                3,
+                768
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_0_Concat_output_0_f25ca2_70188",
+              "shape": [
+                1,
+                40,
+                40,
+                768
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_0_conv1_conv1_0_Conv_output_0_6f11d0_70189",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_0_conv1_conv1_0_Conv_output_0_6f11d0_70189",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_0_conv1_conv1_2_Relu_output_0_3bcecd_70190",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70080",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70079",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_0_conv1_conv1_2_Relu_output_0_3bcecd_70190",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_0_conv2_conv2_0_Conv_output_0_f5a8ed_70191",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_0_conv2_conv2_0_Conv_output_0_f5a8ed_70191",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_0_conv2_conv2_2_Relu_output_0_7cbea9_70192",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "axis": "3"
+          },
+          "input_names": {
+            "in_0": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_1_Resize_output_0_8f522a_70195",
+              "shape": [
+                1,
+                80,
+                80,
+                256
+              ]
+            },
+            "in_1": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_3_relu_1_Relu_output_0_533873_70137",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "Concatenate",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_1_Concat_output_0_453220_70196",
+            "shape": [
+              1,
+              80,
+              80,
+              384
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "coordinate_transformation_mode": "asymmetric",
+            "mode": "nearest",
+            "nearest_mode": "floor"
+          },
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_0_conv2_conv2_2_Relu_output_0_7cbea9_70192",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            },
+            "scales": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70001",
+              "shape": [
+                4
+              ]
+            },
+            "sizes": {
+              "dt": "Int32",
+              "layout": "C",
+              "name": "Int32VecConstant_70194",
+              "shape": [
+                0
+              ]
+            }
+          },
+          "op_name": "CanResize2d",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_1_Resize_output_0_8f522a_70195",
+            "shape": [
+              1,
+              80,
+              80,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70082",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70081",
+              "shape": [
+                128,
+                3,
+                3,
+                384
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_1_Concat_output_0_453220_70196",
+              "shape": [
+                1,
+                80,
+                80,
+                384
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_1_conv1_conv1_0_Conv_output_0_3fa34d_70197",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_1_conv1_conv1_0_Conv_output_0_3fa34d_70197",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_1_conv1_conv1_2_Relu_output_0_68cf81_70198",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70084",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70083",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_1_conv1_conv1_2_Relu_output_0_68cf81_70198",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_1_conv2_conv2_0_Conv_output_0_e92300_70199",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_1_conv2_conv2_0_Conv_output_0_e92300_70199",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_1_conv2_conv2_2_Relu_output_0_568938_70200",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "axis": "3"
+          },
+          "input_names": {
+            "in_0": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_2_Resize_output_0_368ae8_70203",
+              "shape": [
+                1,
+                160,
+                160,
+                128
+              ]
+            },
+            "in_1": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_2_relu_1_Relu_output_0_ef2013_70116",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "Concatenate",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_2_Concat_output_0_aac701_70204",
+            "shape": [
+              1,
+              160,
+              160,
+              192
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "coordinate_transformation_mode": "asymmetric",
+            "mode": "nearest",
+            "nearest_mode": "floor"
+          },
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_1_conv2_conv2_2_Relu_output_0_568938_70200",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            },
+            "scales": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70002",
+              "shape": [
+                4
+              ]
+            },
+            "sizes": {
+              "dt": "Int32",
+              "layout": "C",
+              "name": "Int32VecConstant_70202",
+              "shape": [
+                0
+              ]
+            }
+          },
+          "op_name": "CanResize2d",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_2_Resize_output_0_368ae8_70203",
+            "shape": [
+              1,
+              160,
+              160,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70086",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70085",
+              "shape": [
+                64,
+                3,
+                3,
+                192
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_2_Concat_output_0_aac701_70204",
+              "shape": [
+                1,
+                160,
+                160,
+                192
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_2_conv1_conv1_0_Conv_output_0_72b054_70205",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_2_conv1_conv1_0_Conv_output_0_72b054_70205",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_2_conv1_conv1_2_Relu_output_0_4ad832_70206",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70088",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70087",
+              "shape": [
+                64,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_2_conv1_conv1_2_Relu_output_0_4ad832_70206",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_2_conv2_conv2_0_Conv_output_0_74f950_70207",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_2_conv2_conv2_0_Conv_output_0_74f950_70207",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_2_conv2_conv2_2_Relu_output_0_9237d1_70208",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "axis": "3"
+          },
+          "input_names": {
+            "in_0": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_3_Resize_output_0_4723b4_70211",
+              "shape": [
+                1,
+                320,
+                320,
+                64
+              ]
+            },
+            "in_1": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_relu_Relu_output_0_143a4c_70100",
+              "shape": [
+                1,
+                320,
+                320,
+                64
+              ]
+            }
+          },
+          "op_name": "Concatenate",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_3_Concat_output_0_64ae34_70212",
+            "shape": [
+              1,
+              320,
+              320,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "coordinate_transformation_mode": "asymmetric",
+            "mode": "nearest",
+            "nearest_mode": "floor"
+          },
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_2_conv2_conv2_2_Relu_output_0_9237d1_70208",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            },
+            "scales": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70003",
+              "shape": [
+                4
+              ]
+            },
+            "sizes": {
+              "dt": "Int32",
+              "layout": "C",
+              "name": "Int32VecConstant_70210",
+              "shape": [
+                0
+              ]
+            }
+          },
+          "op_name": "CanResize2d",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_3_Resize_output_0_4723b4_70211",
+            "shape": [
+              1,
+              320,
+              320,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70090",
+              "shape": [
+                32
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70089",
+              "shape": [
+                32,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_3_Concat_output_0_64ae34_70212",
+              "shape": [
+                1,
+                320,
+                320,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_3_conv1_conv1_0_Conv_output_0_8e422e_70213",
+            "shape": [
+              1,
+              320,
+              320,
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_3_conv1_conv1_0_Conv_output_0_8e422e_70213",
+              "shape": [
+                1,
+                320,
+                320,
+                32
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_3_conv1_conv1_2_Relu_output_0_84195d_70214",
+            "shape": [
+              1,
+              320,
+              320,
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70092",
+              "shape": [
+                32
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70091",
+              "shape": [
+                32,
+                3,
+                3,
+                32
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_3_conv1_conv1_2_Relu_output_0_84195d_70214",
+              "shape": [
+                1,
+                320,
+                320,
+                32
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_3_conv2_conv2_0_Conv_output_0_e27b40_70215",
+            "shape": [
+              1,
+              320,
+              320,
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_3_conv2_conv2_0_Conv_output_0_e27b40_70215",
+              "shape": [
+                1,
+                320,
+                320,
+                32
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_3_conv2_conv2_2_Relu_output_0_cf1987_70216",
+            "shape": [
+              1,
+              320,
+              320,
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "coordinate_transformation_mode": "asymmetric",
+            "mode": "nearest",
+            "nearest_mode": "floor"
+          },
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_3_conv2_conv2_2_Relu_output_0_cf1987_70216",
+              "shape": [
+                1,
+                320,
+                320,
+                32
+              ]
+            },
+            "scales": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70004",
+              "shape": [
+                4
+              ]
+            },
+            "sizes": {
+              "dt": "Int32",
+              "layout": "C",
+              "name": "Int32VecConstant_70218",
+              "shape": [
+                0
+              ]
+            }
+          },
+          "op_name": "CanResize2d",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_4_Resize_output_0_334a16_70219",
+            "shape": [
+              1,
+              640,
+              640,
+              32
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70094",
+              "shape": [
+                16
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70093",
+              "shape": [
+                16,
+                3,
+                3,
+                32
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_4_Resize_output_0_334a16_70219",
+              "shape": [
+                1,
+                640,
+                640,
+                32
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_4_conv1_conv1_0_Conv_output_0_3547ad_70220",
+            "shape": [
+              1,
+              640,
+              640,
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_4_conv1_conv1_0_Conv_output_0_3547ad_70220",
+              "shape": [
+                1,
+                640,
+                640,
+                16
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_4_conv1_conv1_2_Relu_output_0_8f7153_70221",
+            "shape": [
+              1,
+              640,
+              640,
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70096",
+              "shape": [
+                16
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70095",
+              "shape": [
+                16,
+                3,
+                3,
+                16
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_4_conv1_conv1_2_Relu_output_0_8f7153_70221",
+              "shape": [
+                1,
+                640,
+                640,
+                16
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_4_conv2_conv2_0_Conv_output_0_8d805e_70222",
+            "shape": [
+              1,
+              640,
+              640,
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_4_conv2_conv2_0_Conv_output_0_8d805e_70222",
+              "shape": [
+                1,
+                640,
+                640,
+                16
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_decoder_blocks_4_conv2_conv2_2_Relu_output_0_de713f_70223",
+            "shape": [
+              1,
+              640,
+              640,
+              16
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:7}{w:7}}",
+            "padding": "{{h_after:3}{h_before:3}{w_after:3}{w_before:3}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70006",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70005",
+              "shape": [
+                64,
+                7,
+                7,
+                3
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "input_70278",
+              "shape": [
+                1,
+                640,
+                640,
+                3
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_conv1_Conv_output_0_5fabee_70099",
+            "shape": [
+              1,
+              320,
+              320,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_0_conv2_Conv_output_0_db0fbf_70104",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_maxpool_MaxPool_output_0_b4b062_70101",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_0_Add_output_0_39b797_70105",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70008",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70007",
+              "shape": [
+                64,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_maxpool_MaxPool_output_0_b4b062_70101",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_0_conv1_Conv_output_0_a8cf42_70102",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70010",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70009",
+              "shape": [
+                64,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_0_relu_Relu_output_0_1bac71_70103",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_0_conv2_Conv_output_0_db0fbf_70104",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_0_Add_output_0_39b797_70105",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_0_relu_1_Relu_output_0_a79714_70106",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_0_conv1_Conv_output_0_a8cf42_70102",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_0_relu_Relu_output_0_1bac71_70103",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_1_conv2_Conv_output_0_f6207b_70109",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_0_relu_1_Relu_output_0_a79714_70106",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_1_Add_output_0_a97be2_70110",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70012",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70011",
+              "shape": [
+                64,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_0_relu_1_Relu_output_0_a79714_70106",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_1_conv1_Conv_output_0_e2ab83_70107",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70014",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70013",
+              "shape": [
+                64,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_1_relu_Relu_output_0_f17b1c_70108",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_1_conv2_Conv_output_0_f6207b_70109",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_1_Add_output_0_a97be2_70110",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_1_relu_1_Relu_output_0_4993c0_70111",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_1_conv1_Conv_output_0_e2ab83_70107",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_1_relu_Relu_output_0_f17b1c_70108",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_2_conv2_Conv_output_0_66ec19_70114",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_1_relu_1_Relu_output_0_4993c0_70111",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_2_Add_output_0_379c07_70115",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70016",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70015",
+              "shape": [
+                64,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_1_relu_1_Relu_output_0_4993c0_70111",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_2_conv1_Conv_output_0_a26a24_70112",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70018",
+              "shape": [
+                64
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70017",
+              "shape": [
+                64,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_2_relu_Relu_output_0_b44bb_70113",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_2_conv2_Conv_output_0_66ec19_70114",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_2_Add_output_0_379c07_70115",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_2_relu_1_Relu_output_0_ef2013_70116",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_2_conv1_Conv_output_0_a26a24_70112",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer1_layer1_2_relu_Relu_output_0_b44bb_70113",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_0_conv2_Conv_output_0_18b0ce_70119",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_0_downsample_downsample_0_Conv_output_0_c123e4_70120",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_0_Add_output_0_7ae488_70121",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70020",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70019",
+              "shape": [
+                128,
+                3,
+                3,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_2_relu_1_Relu_output_0_ef2013_70116",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_0_conv1_Conv_output_0_b37071_70117",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70022",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70021",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_0_relu_Relu_output_0_21daf7_70118",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_0_conv2_Conv_output_0_18b0ce_70119",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:1}{w:1}}",
+            "padding": "{{h_after:0}{h_before:0}{w_after:0}{w_before:0}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70024",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70023",
+              "shape": [
+                128,
+                1,
+                1,
+                64
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer1_layer1_2_relu_1_Relu_output_0_ef2013_70116",
+              "shape": [
+                1,
+                160,
+                160,
+                64
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_0_downsample_downsample_0_Conv_output_0_c123e4_70120",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_0_Add_output_0_7ae488_70121",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_0_relu_1_Relu_output_0_6c0ed6_70122",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_0_conv1_Conv_output_0_b37071_70117",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_0_relu_Relu_output_0_21daf7_70118",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_1_conv2_Conv_output_0_11cae6_70125",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_0_relu_1_Relu_output_0_6c0ed6_70122",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_1_Add_output_0_637d73_70126",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70026",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70025",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_0_relu_1_Relu_output_0_6c0ed6_70122",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_1_conv1_Conv_output_0_9ce0d1_70123",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70028",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70027",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_1_relu_Relu_output_0_c3a501_70124",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_1_conv2_Conv_output_0_11cae6_70125",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_1_Add_output_0_637d73_70126",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_1_relu_1_Relu_output_0_152a2d_70127",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_1_conv1_Conv_output_0_9ce0d1_70123",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_1_relu_Relu_output_0_c3a501_70124",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_2_conv2_Conv_output_0_285c6a_70130",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_1_relu_1_Relu_output_0_152a2d_70127",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_2_Add_output_0_7bcbab_70131",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70030",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70029",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_1_relu_1_Relu_output_0_152a2d_70127",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_2_conv1_Conv_output_0_1575d6_70128",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70032",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70031",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_2_relu_Relu_output_0_304131_70129",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_2_conv2_Conv_output_0_285c6a_70130",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_2_Add_output_0_7bcbab_70131",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_2_relu_1_Relu_output_0_ec44a9_70132",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_2_conv1_Conv_output_0_1575d6_70128",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_2_relu_Relu_output_0_304131_70129",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_3_conv2_Conv_output_0_74f07a_70135",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_2_relu_1_Relu_output_0_ec44a9_70132",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_3_Add_output_0_464e33_70136",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70034",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70033",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_2_relu_1_Relu_output_0_ec44a9_70132",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_3_conv1_Conv_output_0_dfaf55_70133",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70036",
+              "shape": [
+                128
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70035",
+              "shape": [
+                128,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_3_relu_Relu_output_0_d0eb55_70134",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_3_conv2_Conv_output_0_74f07a_70135",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_3_Add_output_0_464e33_70136",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_3_relu_1_Relu_output_0_533873_70137",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_3_conv1_Conv_output_0_dfaf55_70133",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer2_layer2_3_relu_Relu_output_0_d0eb55_70134",
+            "shape": [
+              1,
+              80,
+              80,
+              128
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_0_conv2_Conv_output_0_15ce30_70140",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_0_downsample_downsample_0_Conv_output_0_60ded2_70141",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_0_Add_output_0_2ca5b4_70142",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70038",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70037",
+              "shape": [
+                256,
+                3,
+                3,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_3_relu_1_Relu_output_0_533873_70137",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_0_conv1_Conv_output_0_37ecf7_70138",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70040",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70039",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_0_relu_Relu_output_0_e1fb85_70139",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_0_conv2_Conv_output_0_15ce30_70140",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:1}{w:1}}",
+            "padding": "{{h_after:0}{h_before:0}{w_after:0}{w_before:0}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70042",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70041",
+              "shape": [
+                256,
+                1,
+                1,
+                128
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer2_layer2_3_relu_1_Relu_output_0_533873_70137",
+              "shape": [
+                1,
+                80,
+                80,
+                128
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_0_downsample_downsample_0_Conv_output_0_60ded2_70141",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_0_Add_output_0_2ca5b4_70142",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_0_relu_1_Relu_output_0_802ace_70143",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_0_conv1_Conv_output_0_37ecf7_70138",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_0_relu_Relu_output_0_e1fb85_70139",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_1_conv2_Conv_output_0_bb68f5_70146",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_0_relu_1_Relu_output_0_802ace_70143",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_1_Add_output_0_ce7029_70147",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70044",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70043",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_0_relu_1_Relu_output_0_802ace_70143",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_1_conv1_Conv_output_0_426f2d_70144",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70046",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70045",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_1_relu_Relu_output_0_527bea_70145",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_1_conv2_Conv_output_0_bb68f5_70146",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_1_Add_output_0_ce7029_70147",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_1_relu_1_Relu_output_0_e88905_70148",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_1_conv1_Conv_output_0_426f2d_70144",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_1_relu_Relu_output_0_527bea_70145",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_2_conv2_Conv_output_0_fc401b_70151",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_1_relu_1_Relu_output_0_e88905_70148",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_2_Add_output_0_7159c1_70152",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70048",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70047",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_1_relu_1_Relu_output_0_e88905_70148",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_2_conv1_Conv_output_0_510b52_70149",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70050",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70049",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_2_relu_Relu_output_0_44d20a_70150",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_2_conv2_Conv_output_0_fc401b_70151",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_2_Add_output_0_7159c1_70152",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_2_relu_1_Relu_output_0_627bc5_70153",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_2_conv1_Conv_output_0_510b52_70149",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_2_relu_Relu_output_0_44d20a_70150",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_3_conv2_Conv_output_0_571fa4_70156",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_2_relu_1_Relu_output_0_627bc5_70153",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_3_Add_output_0_92ca91_70157",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70052",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70051",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_2_relu_1_Relu_output_0_627bc5_70153",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_3_conv1_Conv_output_0_2a7582_70154",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70054",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70053",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_3_relu_Relu_output_0_b843b4_70155",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_3_conv2_Conv_output_0_571fa4_70156",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_3_Add_output_0_92ca91_70157",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_3_relu_1_Relu_output_0_7c4268_70158",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_3_conv1_Conv_output_0_2a7582_70154",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_3_relu_Relu_output_0_b843b4_70155",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_4_conv2_Conv_output_0_2080e5_70161",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_3_relu_1_Relu_output_0_7c4268_70158",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_4_Add_output_0_563529_70162",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70056",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70055",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_3_relu_1_Relu_output_0_7c4268_70158",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_4_conv1_Conv_output_0_271102_70159",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70058",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70057",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_4_relu_Relu_output_0_6ffbb3_70160",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_4_conv2_Conv_output_0_2080e5_70161",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_4_Add_output_0_563529_70162",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_4_relu_1_Relu_output_0_ab3b16_70163",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_4_conv1_Conv_output_0_271102_70159",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_4_relu_Relu_output_0_6ffbb3_70160",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_5_conv2_Conv_output_0_470de6_70166",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_4_relu_1_Relu_output_0_ab3b16_70163",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_5_Add_output_0_42f1c2_70167",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70060",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70059",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_4_relu_1_Relu_output_0_ab3b16_70163",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_5_conv1_Conv_output_0_9146b5_70164",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70062",
+              "shape": [
+                256
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70061",
+              "shape": [
+                256,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_5_relu_Relu_output_0_142b00_70165",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_5_conv2_Conv_output_0_470de6_70166",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_5_Add_output_0_42f1c2_70167",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_5_relu_1_Relu_output_0_b66119_70168",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_5_conv1_Conv_output_0_9146b5_70164",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer3_layer3_5_relu_Relu_output_0_142b00_70165",
+            "shape": [
+              1,
+              40,
+              40,
+              256
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_0_conv2_Conv_output_0_647405_70171",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_0_downsample_downsample_0_Conv_output_0_761d37_70172",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_0_Add_output_0_4c6520_70173",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70064",
+              "shape": [
+                512
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70063",
+              "shape": [
+                512,
+                3,
+                3,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_5_relu_1_Relu_output_0_b66119_70168",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_0_conv1_Conv_output_0_c7a32d_70169",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70066",
+              "shape": [
+                512
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70065",
+              "shape": [
+                512,
+                3,
+                3,
+                512
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_0_relu_Relu_output_0_cb600d_70170",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_0_conv2_Conv_output_0_647405_70171",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:1}{w:1}}",
+            "padding": "{{h_after:0}{h_before:0}{w_after:0}{w_before:0}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70068",
+              "shape": [
+                512
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70067",
+              "shape": [
+                512,
+                1,
+                1,
+                256
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer3_layer3_5_relu_1_Relu_output_0_b66119_70168",
+              "shape": [
+                1,
+                40,
+                40,
+                256
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_0_downsample_downsample_0_Conv_output_0_761d37_70172",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_0_Add_output_0_4c6520_70173",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_0_relu_1_Relu_output_0_16ee57_70174",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_0_conv1_Conv_output_0_c7a32d_70169",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_0_relu_Relu_output_0_cb600d_70170",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_1_conv2_Conv_output_0_1d74d6_70177",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_0_relu_1_Relu_output_0_16ee57_70174",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_1_Add_output_0_52a19d_70178",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70070",
+              "shape": [
+                512
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70069",
+              "shape": [
+                512,
+                3,
+                3,
+                512
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_0_relu_1_Relu_output_0_16ee57_70174",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_1_conv1_Conv_output_0_26d5d0_70175",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70072",
+              "shape": [
+                512
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70071",
+              "shape": [
+                512,
+                3,
+                3,
+                512
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_1_relu_Relu_output_0_42eb8b_70176",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_1_conv2_Conv_output_0_1d74d6_70177",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_1_Add_output_0_52a19d_70178",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_1_relu_1_Relu_output_0_d624d6_70179",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_1_conv1_Conv_output_0_26d5d0_70175",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_1_relu_Relu_output_0_42eb8b_70176",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "lhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_2_conv2_Conv_output_0_113e01_70182",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            },
+            "rhs": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_1_relu_1_Relu_output_0_d624d6_70179",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "AddOp",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_2_Add_output_0_df1557_70183",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70074",
+              "shape": [
+                512
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70073",
+              "shape": [
+                512,
+                3,
+                3,
+                512
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_1_relu_1_Relu_output_0_d624d6_70179",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_2_conv1_Conv_output_0_f76f0_70180",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "C",
+              "name": "FloatVecConstant_70076",
+              "shape": [
+                512
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70075",
+              "shape": [
+                512,
+                3,
+                3,
+                512
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_2_relu_Relu_output_0_2d2b3b_70181",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_2_conv2_Conv_output_0_113e01_70182",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_2_Add_output_0_df1557_70183",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_2_relu_1_Relu_output_0_370915_70184",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_layer4_layer4_2_conv1_Conv_output_0_f76f0_70180",
+              "shape": [
+                1,
+                20,
+                20,
+                512
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_layer4_layer4_2_relu_Relu_output_0_2d2b3b_70181",
+            "shape": [
+              1,
+              20,
+              20,
+              512
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:2}{w:2}}"
+          },
+          "input_names": {
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_relu_Relu_output_0_143a4c_70100",
+              "shape": [
+                1,
+                320,
+                320,
+                64
+              ]
+            }
+          },
+          "op_name": "CanMaxPool",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_maxpool_MaxPool_output_0_b4b062_70101",
+            "shape": [
+              1,
+              160,
+              160,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_encoder_conv1_Conv_output_0_5fabee_70099",
+              "shape": [
+                1,
+                320,
+                320,
+                64
+              ]
+            }
+          },
+          "op_name": "ReLU",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "_encoder_relu_Relu_output_0_143a4c_70100",
+            "shape": [
+              1,
+              320,
+              320,
+              64
+            ]
+          }
+        },
+        {
+          "attributes": {},
+          "input_names": {},
+          "op_name": "Var",
+          "output": {
+            "dt": "Float32",
+            "layout": "NCHW",
+            "name": "input",
+            "shape": [
+              1,
+              3,
+              640,
+              640
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dims": "[(0,1,0),(0,3,0),(0,640,0),(0,640,0)]",
+            "perm": "[0,2,3,1]"
+          },
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NCHW",
+              "name": "input",
+              "shape": [
+                1,
+                3,
+                640,
+                640
+              ]
+            }
+          },
+          "op_name": "Transpose",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "input_70278",
+            "shape": [
+              1,
+              640,
+              640,
+              3
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dilations": "{{h:1}{w:1}}",
+            "groups": "1",
+            "kernel_shape": "{{h:3}{w:3}}",
+            "padding": "{{h_after:1}{h_before:1}{w_after:1}{w_before:1}}",
+            "strides": "{{h:1}{w:1}}"
+          },
+          "input_names": {
+            "b": {
+              "dt": "Float32",
+              "layout": "x",
+              "name": "FloatVecConstant_70097",
+              "shape": [
+                1
+              ]
+            },
+            "w": {
+              "dt": "Float32",
+              "layout": "OHWI",
+              "name": "FloatVecConstant_70098",
+              "shape": [
+                1,
+                3,
+                3,
+                16
+              ]
+            },
+            "x": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "_decoder_blocks_4_conv2_conv2_2_Relu_output_0_de713f_70223",
+              "shape": [
+                1,
+                640,
+                640,
+                16
+              ]
+            }
+          },
+          "op_name": "CanConv",
+          "output": {
+            "dt": "Float32",
+            "layout": "NHWC",
+            "name": "output_70224",
+            "shape": [
+              1,
+              640,
+              640,
+              1
+            ]
+          }
+        },
+        {
+          "attributes": {
+            "dims": "[(0,1,0),(0,640,0),(0,640,0),(0,1,0)]",
+            "perm": "[0,3,1,2]"
+          },
+          "input_names": {
+            "input": {
+              "dt": "Float32",
+              "layout": "NHWC",
+              "name": "output_70224",
+              "shape": [
+                1,
+                640,
+                640,
+                1
+              ]
+            }
+          },
+          "op_name": "Transpose",
+          "output": {
+            "dt": "Float32",
+            "layout": "NCHW",
+            "name": "output_70224_70279",
+            "shape": [
+              1,
+              1,
+              640,
+              640
+            ]
+          }
+        }
+      ],
+      "subgraph_name": "sub_0",
+      "target_name": "CPU"
+    }
+  ]
+}
