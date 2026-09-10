@@ -22,7 +22,7 @@ It has following mode of running.
      </tr>
      <tr>
        <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
-       <td>RZ/V2H AI SDK v6.00</td>
+       <td>RZ/V2H AI SDK v8.00</td>
      </tr>
      <tr>
        <td>
@@ -223,8 +223,8 @@ Each folder contains following items.
 ### Instruction
 1. **[For RZ/V2H]** Run following commands to download the necessary file.  
     ```sh
-      cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q13_analog_meter_reader/exe_v2h/yolox_model
-      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/Q13_analog_meter_reader_deploy_tvm_v2h-v251.so
+      cd <path_to_data_folder_on_host>/data/rzv_ai_sdk/Q13_analog_meter_reader/exe_v2h/yolox_model/sub_0000__CPU_DRP_TVM
+      wget https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/Q13_analog_meter_reader_deploy_tvm_v2h_r2026-06.so
     ```
     **[For RZ/V2N]** Run following commands to download the necessary file.  
     ```sh
@@ -244,27 +244,38 @@ Each folder contains following items.
 4. Folder structure in the rootfs (SD Card) would look like:   
    Check if the necessary files exist in the rootfs directory (SD card) on the board.
 
-   For RZ/V2H
+    For RZ/V2H
     ```
     |-- usr
     |   `-- lib
-    |       `-- libtvm_runtime.so
+    |      :
+    |      |-- libmera2_runtime.so
+    |      :
+    |
     `-- home
         `-- weston
             `-- tvm
-                |-- unet_model          
-                |   |-- deploy.json   
-                |   |-- deploy.params 
-                |   `-- deploy.so     
+                |-- unet_model
+                |   |-- sub_0000_CPU_DRP_TVM
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- mera.plan
+                |   |-- model_subgraphs.json
+                |   `-- project.mdp
                 |
-                |-- yolox_model         
-                |   |-- deploy.json   
-                |   |-- deploy.params 
-                |   `-- deploy.so     
+                |-- yolox_model
+                |   |-- sub_0000_CPU_DRP_TVM
+                |   |   |-- deploy.json
+                |   |   |-- deploy.params
+                |   |   `-- deploy.so
+                |   |-- mera.plan
+                |   |-- model_subgraphs.json
+                |   `-- project.mdp
                 |-- sample_image.jpg
-                |-- video_sample.mp4
                 |-- background_image.jpg
-                `-- analog_reader
+                |-- analog_reader
+                `-- video_sample.mp4
     ```
 
     For RZ/V2N

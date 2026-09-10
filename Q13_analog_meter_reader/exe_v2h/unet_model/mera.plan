@@ -1,0 +1,77 @@
+{
+  "execution": {
+    "stages": [
+      [
+        [
+          [
+            {
+              "backend": "drp_tvm",
+              "binaries_location": "sub_0000__CPU_DRP_TVM",
+              "name": "sub_0000"
+            },
+            {
+              "input_buffers": {
+                "input": 0
+              },
+              "input_order": [
+                "input"
+              ],
+              "output_buffers": {
+                "output_70224_70279": 1
+              },
+              "output_order": [
+                "output_70224_70279"
+              ]
+            }
+          ]
+        ]
+      ]
+    ]
+  },
+  "memory": {
+    "buffers": [
+      {
+        "alignment": 256,
+        "alloc_mode": "linux_malloc",
+        "bytes_size": 4915200,
+        "data_type": "float32",
+        "name": "input",
+        "offset": 0,
+        "shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "size": 1228800
+      },
+      {
+        "alignment": 256,
+        "alloc_mode": "linux_malloc",
+        "bytes_size": 819200,
+        "data_type": "float16",
+        "name": "output_70224_70279",
+        "offset": 0,
+        "shape": [
+          1,
+          1,
+          640,
+          640
+        ],
+        "size": 409600
+      }
+    ],
+    "input_buffers": [
+      [
+        "input",
+        0
+      ]
+    ],
+    "output_buffers": [
+      [
+        "output_70224_70279",
+        1
+      ]
+    ]
+  }
+}
