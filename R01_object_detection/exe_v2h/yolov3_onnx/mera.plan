@@ -1,0 +1,119 @@
+{
+  "execution": {
+    "stages": [
+      [
+        [
+          [
+            {
+              "backend": "drp_tvm",
+              "binaries_location": "sub_0000__CPU_DRP_TVM",
+              "name": "sub_0000"
+            },
+            {
+              "input_buffers": {
+                "input1": 0
+              },
+              "input_order": [
+                "input1"
+              ],
+              "output_buffers": {
+                "output1_70293_70482": 1,
+                "output2_70312_70483": 2,
+                "output3_70331_70484": 3
+              },
+              "output_order": [
+                "output1_70293_70482",
+                "output2_70312_70483",
+                "output3_70331_70484"
+              ]
+            }
+          ]
+        ]
+      ]
+    ]
+  },
+  "memory": {
+    "buffers": [
+      {
+        "alignment": 256,
+        "alloc_mode": "linux_malloc",
+        "bytes_size": 2076672,
+        "data_type": "float32",
+        "name": "input1",
+        "offset": 0,
+        "shape": [
+          1,
+          3,
+          416,
+          416
+        ],
+        "size": 519168
+      },
+      {
+        "alignment": 256,
+        "alloc_mode": "linux_malloc",
+        "bytes_size": 86190,
+        "data_type": "float16",
+        "name": "output1_70293_70482",
+        "offset": 0,
+        "shape": [
+          1,
+          255,
+          13,
+          13
+        ],
+        "size": 43095
+      },
+      {
+        "alignment": 256,
+        "alloc_mode": "linux_malloc",
+        "bytes_size": 344760,
+        "data_type": "float16",
+        "name": "output2_70312_70483",
+        "offset": 0,
+        "shape": [
+          1,
+          255,
+          26,
+          26
+        ],
+        "size": 172380
+      },
+      {
+        "alignment": 256,
+        "alloc_mode": "linux_malloc",
+        "bytes_size": 1379040,
+        "data_type": "float16",
+        "name": "output3_70331_70484",
+        "offset": 0,
+        "shape": [
+          1,
+          255,
+          52,
+          52
+        ],
+        "size": 689520
+      }
+    ],
+    "input_buffers": [
+      [
+        "input1",
+        0
+      ]
+    ],
+    "output_buffers": [
+      [
+        "output1_70293_70482",
+        1
+      ],
+      [
+        "output2_70312_70483",
+        2
+      ],
+      [
+        "output3_70331_70484",
+        3
+      ]
+    ]
+  }
+}

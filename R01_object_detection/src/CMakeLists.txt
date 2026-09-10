@@ -1,5 +1,5 @@
 # CMakeList.txt : CMake projects in app_R01_object_detection
-if(PRODUCT STREQUAL "V2N")
+if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 cmake_minimum_required (VERSION 3.24)
 else()
 cmake_minimum_required (VERSION 3.10)
@@ -17,7 +17,7 @@ if(NOT DEFINED ENV{PRODUCT})
 endif()
 
 # Setting and including TVM Directory
-if(PRODUCT STREQUAL "V2N")
+if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 set(TVM_ROOT "$ENV{TVM_ROOT}")
 include_directories(${TVM_ROOT}/tvm/include)
 include_directories(${TVM_ROOT}/setup/include)
@@ -38,7 +38,7 @@ include_directories(${TVM_ROOT}/3rdparty/dmlc-core/include)
 include_directories(${TVM_ROOT}/3rdparty/compiler-rt)
 endif()
 
-if(PRODUCT STREQUAL "V2N")
+if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
     set(LIBMERA_RT_PATH ${TVM_ROOT}/obj/build_runtime/v2h/lib)
     add_definitions(-DMERA_DRP_RUNTIME)
 else()
@@ -48,9 +48,9 @@ set(EXE_NAME object_detection)
 set(PRODUCT $ENV{PRODUCT})
 
 if(PRODUCT STREQUAL "V2H")
-    include_directories(${CMAKE_SOURCE_DIR}/drp-ai_tvm_v251)
-    file(GLOB SOURCE *.cpp *.h ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v251/*.cpp ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v251/*.h)
-    list(REMOVE_ITEM SOURCE ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v251/PreRuntime.cpp)
+    include_directories(${CMAKE_SOURCE_DIR}/ruhmi_2026-06)
+    file(GLOB SOURCE *.cpp *.h ${CMAKE_SOURCE_DIR}/ruhmi_2026-06/*.cpp ${CMAKE_SOURCE_DIR}/ruhmi_2026-06/*.h)
+    list(REMOVE_ITEM SOURCE ${CMAKE_SOURCE_DIR}/ruhmi_2026-06/PreRuntime.cpp)
     add_definitions(-DV2H)
     message("-- PRODUCT [V2H]")
 elseif(PRODUCT STREQUAL "V2N")
@@ -75,13 +75,13 @@ ${SOURCE}
 
 target_compile_options(${EXE_NAME} PRIVATE -O3 -mtune=cortex-a55 -Wall)
 
-if(PRODUCT STREQUAL "V2N")
+if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,${LIBMERA_RT_PATH} -Wl,-rpath-link,${LIBMERA_RT_PATH}")
 endif()
 
 target_compile_features(${EXE_NAME} PUBLIC cxx_std_17)
 
-if(PRODUCT STREQUAL "V2N")
+if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 target_link_directories(${EXE_NAME} PRIVATE ${LIBMERA_RT_PATH})
 
 target_link_libraries(${EXE_NAME}
