@@ -747,7 +747,7 @@ void *R_Inf_Thread(void *threadid)
 
         in_param.pre_in_addr = (uintptr_t) drpai_buf->phy_addr;
 
-        #ifdef V2N	/* V2N */
+        #ifdef V2H	/* V2H and V2N */
         in_param.input_copy_enabled = false;
         #endif
         ret = preruntime.Pre(&in_param, &output_ptr, &out_size);
