@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 title: AI Navigator Quick Start Guide Appendix
 ---

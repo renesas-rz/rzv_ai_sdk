@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 title: RZ/V AI SDK Overview
 ---
@@ -600,8 +601,7 @@ title: RZ/V AI SDK Overview
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>
@@ -614,8 +614,7 @@ title: RZ/V AI SDK Overview
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>
@@ -827,8 +826,7 @@ title: RZ/V AI SDK Overview
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>
@@ -841,8 +839,7 @@ title: RZ/V AI SDK Overview
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>
@@ -1071,15 +1068,13 @@ title: RZ/V AI SDK Overview
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>
@@ -1092,8 +1087,7 @@ title: RZ/V AI SDK Overview
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link getting_started.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>
@@ -1109,8 +1103,7 @@ title: RZ/V AI SDK Overview
                     </td>
                     <td>
                         <a href="{{ site.url }}{{ site.baseurl }}{% link howto_build_aisdk_v2n.md %}" 
-                            target="_blank" rel="noopener noreferrer"
-                            data-lightbox="group">
+                            target="_blank" rel="noopener noreferrer">
                             Available
                         </a>
                     </td>

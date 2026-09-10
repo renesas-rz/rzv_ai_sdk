@@ -1,4 +1,5 @@
 ---
+type: old
 layout: default
 title: How to build RZ/V2N AI SDK Source Code
 ---
@@ -325,7 +326,41 @@ patch -p1 -i e-CAM22_CURZ*.patch
 {% endhighlight %}
           </li>
         </ol>
+      <!-- Patch file to fix CRU issue. -->
+      <li>Apply patch file to fix CRU issue.<br>
+        <br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch">
+                    0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing CRU issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < 0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
     </ol>
+  </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
 {% highlight shell%}
 ls -1 ${YOCTO_WORK}
@@ -335,6 +370,7 @@ ls -1 ${YOCTO_WORK}
 <!-- MEMO:: Add the patch file if necessary. -->
 {% highlight shell%}
 0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch	    # optional
+0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch
 e-CAM22_CURZ*.patch
 meta-arm
 meta-econsys
