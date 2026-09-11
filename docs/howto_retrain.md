@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: How to Re-train AI model
 ---

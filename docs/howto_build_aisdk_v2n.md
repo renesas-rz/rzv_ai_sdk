@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: How to build RZ/V2N AI SDK Source Code
 ---

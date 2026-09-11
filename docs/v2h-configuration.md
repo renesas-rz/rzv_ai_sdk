@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: RZ/V2H AI SDK Configuration
 ---
@@ -25,7 +24,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 6.00
+                    Target Version: 8.00
                 </b>
             </h5>
         </div>
@@ -672,7 +671,7 @@ To see the overview of RZ/V2H AI SDK, see <a href="{{ site.url }}{{ site.baseurl
 <!--                <div class="note">
                 <span class="note-title">Note</span>
                 If the system does not work properly, such as the stream stopping,
-                when using DRP-AI TVM in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
+                when using RUHMI runtime library in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
                 This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.<br>
                 Please apply this patch with caution after thorough verification.<br>
                 (Patch file: 0001-system-setting-for-RZV2H-AI_SDK-v6.00.patch)<br>

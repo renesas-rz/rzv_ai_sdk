@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Home
 ---
@@ -79,14 +78,41 @@ title: Home
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h6 align="right" >
+            <h6 align="right">
                 2026.9.11
             </h6>
-            <font color="red">
-                This web page contains information about AI Applications and AI SDK v{{ site.version }}, which is not the latest version.<br>
-                <b>Users are recommended to use the latest version in the following URL.</b><br>
-                <a href="{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}">{{ site.url }}/rzv_ai_sdk/latest{% link index.md %}</a>
-            </font>
+            <ul>
+                <li>
+                    <b>RZ/V AI Applications v8.10</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li>
+                                5 applications support RZ/V2H AI SDK v8.00.
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+                <li>
+                    <b>RZ/V2H AI SDK v8.00</b> is released.
+                    <h6 class="mb-0">
+                        <ul>
+                            <li>
+                                Supported RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix).
+                            </li>
+                            <li>
+                                Updated Video Codec Library to v4.3.4.0.
+                            </li>
+                            <li>
+                                Updated OpenCV Accelerator to v1.50.
+                            </li>
+                            <li>
+                                Updated DRP-AI Driver to v1.50.
+                            </li>
+                        </ul>
+                    </h6>
+                </li>
+            </ul>
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V2H AI SDK Specification</b></a>.
             <br>
             <br>
         </div>
@@ -1140,7 +1166,7 @@ To check RZ/V AI related videos, please see <a href="https://youtube.com/playlis
                     </td>
                     <td>
                         <small>
-                        RUHMI (Robust Unified Heterogeneous Model Integration) for RZ/V series is a framework for AI model optimization and deployment, powered by EdgeCortix® MERA.<br>
+                        RUHMI (Robust Unified Heterogeneous Model Integration) for RZ/V series is a framework for AI model optimization and deployment, powered by EdgeCortix&reg; MERA.<br>
                         <b>Automatically installed in AI SDK.</b>
                         </small>
                     </td>

@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: AI Applications
 ---
@@ -735,7 +734,7 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v8.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
@@ -1874,7 +1873,7 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v8.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
@@ -1923,7 +1922,7 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v8.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 14_Multi_camera_vehicle_detection<br>
                         <b>Model:</b> YOLOX-L<br>
@@ -2824,7 +2823,7 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> v7.00<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v8.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> 10_Driver_monitoring_system<br>
                         <b>Model:</b> Tiny YOLOv3+DeepPose | YOLOX-L<br>
@@ -3109,7 +3108,7 @@ Introduction
                     </div>
                     <div class="appspec">
                         <b>Supported RZ/V2L AI SDK:</b> -<br>
-                        <b>Supported RZ/V2H AI SDK:</b> v6.00<br>
+                        <b>Supported RZ/V2H AI SDK:</b> v8.00<br>
                         <b>Supported RZ/V2N AI SDK:</b> v8.00<br>
                         <b>Function:</b> Q13_analog_meter_reader<br>
                         <b>Model:</b> YOLOX-L+Unet<br>

@@ -201,7 +201,7 @@ $(function() {
   var matchedPosts = [];
   var mathcedPageNum = 0;
   $('#search_keyword').append('"'+queryString+'"');
-  $.getJSON('/rzv_ai_sdk/8.00/search.json', function(posts) {
+  $.getJSON('/rzv_ai_sdk/8.10/search.json', function(posts) {
     posts.forEach(function(pageInfo) {
         var regexpString = '';
         if(query.keywords.length == 1) regexpString = escapeRegExp(query.keywords[0]);
@@ -233,8 +233,8 @@ $(function() {
         {
           content_str += '<hr style="border-top: 1px solid grey;"></hr>';
           content_str += '<li>';
-          content_str += '<a href="https://renesas-rz.github.io/rzv_ai_sdk/8.00' + pageInfo.url + '">' + pageInfo.title +'</a><br>';
-          content_str += '<h6 class="mb-2">'+hitNum+' hits at https://renesas-rz.github.io/rzv_ai_sdk/8.00'+ pageInfo.url + '</h6>';
+          content_str += '<a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10' + pageInfo.url + '">' + pageInfo.title +'</a><br>';
+          content_str += '<h6 class="mb-2">'+hitNum+' hits at https://renesas-rz.github.io/rzv_ai_sdk/8.10'+ pageInfo.url + '</h6>';
           content_str += '<h6 class="mb-2" style="color: gray;">'
             + '<ul type="circle" class="mb-1">'
             + '<li>... ';

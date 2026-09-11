@@ -2,47 +2,6 @@
 layout: version
 ---
 <h3>Version List</h3>
-<!-- <ul>
-    <li>
-        <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">v7.10 (latest)</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/7.00{% link index.md %}">v7.00</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/6.20{% link index.md %}">v6.20</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/6.10{% link index.md %}">v6.10</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/6.00{% link index.md %}">v6.00</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/5.20{% link index.md %}">v5.20</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/5.10{% link index.md %}">v5.10</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/5.00{% link index.md %}">v5.00</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/4.00{% link index.md %}">v4.00</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/3.00{% link index.md %}">v3.00</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/2.10{% link index.md %}">v2.10</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/2.00{% link index.md %}">v2.00</a>
-    </li>
-    <li>
-        <a href="{{ site.url }}/rzv_ai_sdk/1.00{% link index.md %}">v1.00</a>
-    </li>
-</ul> -->
 
 <table class="gstable mt-1 ms-1">
     <tr>
@@ -54,7 +13,24 @@ layout: version
     </tr>
     <tr> <!------------ Copy start -------------->
         <td> <!-- Web -->
-            <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">Rev.8.00 (latest)</a>
+            <a href="{{ site.url }}{{ site.baseurl }}{% link index.md %}">Rev.8.10 (latest)</a>
+        </td>
+        <td> <!-- AI Apps -->
+            v8.10
+        </td>
+        <td> <!-- V2L -->
+            v7.00
+        </td>
+        <td> <!-- V2H -->
+            v8.00
+        </td>
+        <td> <!-- V2N -->
+            v8.00
+        </td>
+    </tr> <!------------ Copy end --------------->
+    <tr> <!------------ Copy start -------------->
+        <td> <!-- Web -->
+            <a href="{{ site.url }}/rzv_ai_sdk/8.00{% link index.md %}">Rev.8.00</a>
         </td>
         <td> <!-- AI Apps -->
             v8.00

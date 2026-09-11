@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: How to build RZ/V2L AI SDK Source Code
 ---
@@ -455,6 +454,7 @@ For more information on how to use each files, see the link in the How to use co
   <br>
   <a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a>
 <div class="row">
+
   <div class="col-12 mb-3" align="right">
     <a class="btn btn-secondary square-button" href="#top" role="button">
       Back to Top >

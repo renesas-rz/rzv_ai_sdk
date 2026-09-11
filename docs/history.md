@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Version History
 ---
@@ -16,6 +15,44 @@ title: Version History
         <div class="col-12">
             <br>
             <br>
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
+                    RZ/V AI Applications v8.10 & RZ/V2H AI SDK v8.00
+                </h3>
+                <h6 align="right" >
+                    2026.9.11
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V AI Applications v8.10 is released.</h5>
+                    <ul>
+                        <li>
+                            5 applications support RZ/V2H AI SDK v8.00.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h5 class="history-item">RZ/V2H AI SDK v8.00 is released.</h5>
+                    <ul>
+                        <li>
+                            Supported RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix).
+                        </li>
+                        <li>
+                            Updated Video Codec Library to v4.3.4.0.
+                        </li>
+                        <li>
+                            Updated OpenCV Accelerator to v1.50.
+                        </li>
+                        <li>
+                            Updated DRP-AI Driver to v1.50.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">

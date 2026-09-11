@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: Developer's Guide
 ---
@@ -72,7 +71,7 @@ RZ/V AI SDK Developer's Guide
                 </td>
                 <td>
                   <!-- V2L -->AI SDK Source Code v7.00<br>
-                  <!-- V2H -->AI SDK Source Code v6.00<br>
+                  <!-- V2H -->AI SDK Source Code v8.00<br>
                   <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
@@ -90,7 +89,7 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2H -->AI SDK Source Code v6.00<br>
+                  <!-- V2H -->AI SDK Source Code v8.00<br>
                   <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
@@ -108,7 +107,7 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2H -->AI SDK Source Code v6.00<br>
+                  <!-- V2H -->AI SDK Source Code v8.00<br>
                   <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
@@ -120,7 +119,7 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2H -->AI SDK Source Code v6.00<br>
+                  <!-- V2H -->AI SDK Source Code v8.00<br>
                   <!-- V2N -->AI SDK Source Code v8.00
                 </td>
               </tr>
@@ -1754,7 +1753,7 @@ rzv2n-evk login:
 </code></pre>
                     <li>The patch file and inc file to make the above changes are below.<br>
                         Obtain the patch file and inc file from the link below, Copy them to the specified folder listed in the Path column.<br>
-                        These files are for RZ/V2H AI SDK v6.00 only. Patch files need to be modified to suit your environment.</li>
+                        These files are for RZ/V2H AI SDK v8.00 only. Patch files need to be modified to suit your environment.</li>
                       <table class="mytable">
                         <tr>
                           <th>File</th>
@@ -1763,7 +1762,7 @@ rzv2n-evk login:
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch">d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d005-device-tree-for-RZV2H-AI_SDK-v8.00.patch">d005-device-tree-for-RZV2H-AI_SDK-v8.00.patch</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/files/</code>
@@ -1774,7 +1773,7 @@ rzv2n-evk login:
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d005-linux-renesas_6.1.inc">d005-linux-renesas_6.1.inc</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d005-linux-renesas_6.1.inc">d005-linux-renesas_6.1.inc</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/</code>
@@ -1787,7 +1786,7 @@ rzv2n-evk login:
                     <li>Copy the patch file and bb file.</li>
 {% highlight shell%}
 cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/files/
-sudo cp <Path to the file>/d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch ./
+sudo cp <Path to the file>/d005-device-tree-for-RZV2H-AI_SDK-v8.00.patch ./
 
 cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/
 sudo mv linux-renesas_6.1.inc linux-renesas_6.1.inc_backup
@@ -1960,7 +1959,7 @@ memory@240000000 {
                     <br>
                     <li>The patch file and inc file to make the above changes are below.<br>
                         Obtain the patch file and inc file from the link below, Copy them to the specified folder listed in the Path column.<br>
-                        These files are for RZ/V2H AI SDK v6.00 only. Patch files need to be modified to suit your environment.</li>
+                        These files are for RZ/V2H AI SDK v8.00 only. Patch files need to be modified to suit your environment.</li>
                       <div class="note">
                         <span class="note-title">Note 1</span>
                         The following files used in this example assume that the bus setting patch in Step 3-5-1 of How to build RZ/V AI SDK Source Code procedure has not been applied.
@@ -1973,7 +1972,7 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-u-boot-for-RZV2H-AI_SDK-v6.00.patch">d006-u-boot-for-RZV2H-AI_SDK-v6.00.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d006-u-boot-for-RZV2H-AI_SDK-v8.00.patch">d006-u-boot-for-RZV2H-AI_SDK-v8.00.patch</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/u-boot/files/</code>
@@ -1984,7 +1983,7 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-u-boot-renesas.inc">d006-u-boot-renesas.inc</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d006-u-boot-renesas.inc">d006-u-boot-renesas.inc</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/u-boot/</code>
@@ -1995,7 +1994,7 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-tfa-for-RZV2H-AI_SDK-v6.00.patch">d006-tfa-for-RZV2H-AI_SDK-v6.00.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d006-tfa-for-RZV2H-AI_SDK-v8.00.patch">d006-tfa-for-RZV2H-AI_SDK-v8.00.patch</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/trusted-firmware-a/files/</code>
@@ -2006,7 +2005,7 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-trusted-firmware-a-renesas.inc">d006-trusted-firmware-a-renesas.inc</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d006-trusted-firmware-a-renesas.inc">d006-trusted-firmware-a-renesas.inc</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/trusted-firmware-a/</code>
@@ -2017,7 +2016,7 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch">d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d006-device-tree-for-RZV2H-AI_SDK-v8.00.patch">d006-device-tree-for-RZV2H-AI_SDK-v8.00.patch</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/files/</code>
@@ -2028,7 +2027,7 @@ memory@240000000 {
                         </tr>
                         <tr>
                           <td>
-                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v6.20/d006-linux-renesas_6.1.inc">d006-linux-renesas_6.1.inc</a>
+                            <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/d006-linux-renesas_6.1.inc">d006-linux-renesas_6.1.inc</a>
                           </td>
                           <td>
                             <code>${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/</code>
@@ -2044,21 +2043,21 @@ memory@240000000 {
 # Copy patch file and inc file for u-boot
 cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/u-boot/
 sudo mkdir -p ./files
-sudo cp <Path to the file>/d006-u-boot-for-RZV2H-AI_SDK-v6.00.patch ./files/
+sudo cp <Path to the file>/d006-u-boot-for-RZV2H-AI_SDK-v8.00.patch ./files/
 sudo mv u-boot-renesas.inc u-boot-renesas.inc_backup
 sudo cp <Path to the file>/d006-u-boot-renesas.inc ./u-boot-renesas.inc
 
 # Copy patch file and inc file for TF-A
 cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-bsp/trusted-firmware-a/
 sudo mkdir -p ./files
-sudo cp <Path to the file>/d006-tfa-for-RZV2H-AI_SDK-v6.00.patch ./files/
+sudo cp <Path to the file>/d006-tfa-for-RZV2H-AI_SDK-v8.00.patch ./files/
 sudo mv trusted-firmware-a-renesas.inc trusted-firmware-a-renesas.inc_backup
 sudo cp <Path to the file>/d006-trusted-firmware-a-renesas.inc ./trusted-firmware-a-renesas.inc
 
 # Copy patch file and inc file for device tree
 cd ${YOCTO_WORK}/meta-renesas/meta-rz-bsp/recipes-kernel/linux/
 sudo mkdir -p ./files
-sudo cp <Path to the file>/d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch ./files/
+sudo cp <Path to the file>/d006-device-tree-for-RZV2H-AI_SDK-v8.00.patch ./files/
 sudo mv linux-renesas_6.1.inc linux-renesas_6.1.inc_backup
 sudo cp <Path to the file>/d006-linux-renesas_6.1.inc ./linux-renesas_6.1.inc
 {% endhighlight %}
@@ -2067,8 +2066,8 @@ sudo cp <Path to the file>/d006-linux-renesas_6.1.inc ./linux-renesas_6.1.inc
                       If you want to run both the "D5.How to modify the memory map" and "D6.How to change the DRAM size" examples, <br>
                       modify the linux-renesas_6.1.inc file as follows.<br>
 <pre><code>SRC_URI:append = "\
-  <span style="color:red;">file://d005-device-tree-for-RZV2H-AI_SDK-v6.00.patch \</span>
-  file://d006-device-tree-for-RZV2H-AI_SDK-v6.00.patch \
+  <span style="color:red;">file://d005-device-tree-for-RZV2H-AI_SDK-v8.00.patch \</span>
+  file://d006-device-tree-for-RZV2H-AI_SDK-v8.00.patch \
 "
 </code></pre> 
                     </div>

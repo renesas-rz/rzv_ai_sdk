@@ -1,5 +1,4 @@
 ---
-type: old
 layout: default
 title: RZ/V AI SDK Overview
 ---
@@ -444,7 +443,7 @@ title: RZ/V AI SDK Overview
                 <ul>
                     <li>
                         <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" target="_blank" rel="noopener noreferrer">
-                            DRP-AI TVM v2.6.1
+                        DRP-AI TVM v2.6.1 
                         </a>
                         [
                             <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
@@ -639,7 +638,7 @@ title: RZ/V AI SDK Overview
             </h3>
             <h5>
                 <b>
-                    Target Version: 6.00
+                    Target Version: 8.00
                 </b>
             </h5>
         </div>
@@ -653,8 +652,8 @@ title: RZ/V AI SDK Overview
             <ul>
                 <li>
                     <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" target="_blank" rel="noopener noreferrer">
-                        DRP-AI TVM v2.5.1
-                    </a>
+                    	RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix)
+                    </a> 
                     [
                         <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
                             GitHub
@@ -675,9 +674,9 @@ title: RZ/V AI SDK Overview
                     ]
                     <ul>
                         <li>
-                            DRP-AI Driver v1.31 
+                            DRP-AI Driver v1.50
                             [
-                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver/tree/V1.31" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/renesas-rz/rzv2h_drp-ai_driver/tree/V1.50" target="_blank" rel="noopener noreferrer">
                                     GitHub
                                 </a>
                             ]
@@ -712,7 +711,7 @@ title: RZ/V AI SDK Overview
                     Graphics Library v4.1.3.0
                 </li>
                 <li>
-                    Video Codec Library v4.3.3.1
+                    Video Codec Library v4.3.4.0
                     <a href="#footnote_v2h_drp_ai">
                         <sup>
                             *2
@@ -720,9 +719,9 @@ title: RZ/V AI SDK Overview
                     </a>
                 </li>
                 <li>
-                    OpenCV Accelerator v1.40 (supporting OpenCV 4.9.0) 
+                    OpenCV Accelerator v1.50 (supporting OpenCV 4.9.0)
                     [
-                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator/tree/V1.40" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/renesas-rz/rzv2h_opencv_accelerator/tree/V1.50" target="_blank" rel="noopener noreferrer">
                             GitHub
                         </a>
                     ]
@@ -787,7 +786,7 @@ title: RZ/V AI SDK Overview
                 </span>
                 <span id="footnote_v2h_drp_ai">
                     *2: RZ/V2H is equipped with 2 IPs, DRP-AI and DRP. Please see <a href="https://www.renesas.com/products/microcontrollers-microprocessors/rz-mpus/rzv2h-quad-core-vision-ai-mpu-drp-ai3-accelerator-and-high-performance-real-time-processor" target="_blank" rel="noopener noreferrer">RZ/V2H block diagram</a>.<br>
-                    DRP-AI is used by DRP-AI TVM. DRP use is shared by OpenCV Accelerator and Video Codec Library (decoding function).<br>
+                    DRP-AI is used by RUHMI runtime library. DRP use is shared by OpenCV Accelerator and Video Codec Library (decoding function).<br>
                     Therefore, OpenCV Accelerator and Video Codec Library (decoding function) cannot be used at the same time.<br>
                 </span>
             </h6>
