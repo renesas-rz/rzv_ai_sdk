@@ -36,7 +36,7 @@
 {"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-08-20T13:27:03+09:00","description":"The best solution for starting your AI applications.","headline":"How to build RZ/V2N AI SDK Source Code","url":"https://renesas-rz.github.io/rzv_ai_sdk/8.00/howto_build_aisdk_v2n.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=e2c7d1b9a311b4f98331483b4b2d90e9c8440b3a">
+    <link rel="stylesheet" href="assets/css/style.css?v=31b176a6f3aafd76ed17bad9eb1b13c533b480aa">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -1114,7 +1114,41 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
 
           </li>
         </ol>
+      <!-- Patch file to fix CRU issue. -->
+      <li>Apply patch file to fix CRU issue.<br />
+        <br />
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch">
+                    0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing CRU issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> &lt; 0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch</code></pre></figure>
+
+          </li>
+        </ol>
+      </li>
     </ol>
+  </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">ls</span> <span class="nt">-1</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
@@ -1124,6 +1158,7 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
 <!-- MEMO:: Add the patch file if necessary. -->
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch	    <span class="c"># optional</span>
+0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch
 e-CAM22_CURZ<span class="k">*</span>.patch
 meta-arm
 meta-econsys
@@ -1420,14 +1455,14 @@ please add new issues to AI SDK GitHub issues.<br />
   </div>
 </div>
 <br /><br />
-</li></ol>
+</ol>
 
 
       </section>
     </div>
     <script src="/rzv_ai_sdk/8.00/assets/js/scale.fix.js"></script>
     <script>
-      var type = "";
+      var type = "old";
       if (type === "old")
       {
         document.querySelectorAll(".latest-banner").forEach(elm => elm.style.display="block");
