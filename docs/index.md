@@ -79,40 +79,24 @@ title: Home
     <div class="row">
         <div class="col-12">
             <h6 align="right">
-                2026.9.11
+                2026.10.8
             </h6>
             <ul>
                 <li>
-                    <b>RZ/V AI Applications v8.10</b> is released.
-                    <h6 class="mb-0">
-                        <ul>
-                            <li>
-                                5 applications support RZ/V2H AI SDK v8.00.
-                            </li>
-                        </ul>
-                    </h6>
-                </li>
-                <li>
-                    <b>RZ/V2H AI SDK v8.00</b> is released.
+                    <b>RZ/V2L AI SDK v8.00</b> is released.
                     <h6 class="mb-0">
                         <ul>
                             <li>
                                 Supported RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix).
                             </li>
                             <li>
-                                Updated Video Codec Library to v4.3.4.0.
-                            </li>
-                            <li>
-                                Updated OpenCV Accelerator to v1.50.
-                            </li>
-                            <li>
-                                Updated DRP-AI Driver to v1.50.
+                                Updated DRP-AI Driver to v2.30.
                             </li>
                         </ul>
                     </h6>
                 </li>
             </ul>
-            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link applications.md %}"><b>AI Applications</b></a> and <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2h-spec"><b>RZ/V2H AI SDK Specification</b></a>.
+            For more details, see <a href="{{ site.url }}{{ site.baseurl }}{% link ai-sdk.md %}#v2l-spec"><b>RZ/V2L AI SDK Specification</b></a>.
             <br>
             <br>
         </div>

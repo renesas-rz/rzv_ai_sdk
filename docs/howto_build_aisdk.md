@@ -13,7 +13,7 @@ title: How to build RZ/V2L AI SDK Source Code
 <br>
 <h5>This page explains how to build Linux with <b>RZ/V2L AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2L AI SDK v7.00</b></h5>
+<h5>Supported version: <b>RZ/V2L AI SDK v8.00</b></h5>
 
 <h3 id="intro" >Introduction</h3>
 <div class="container">
@@ -76,7 +76,7 @@ title: How to build RZ/V2L AI SDK Source Code
   <div class="row">
     <div class="col-12">
       Download the RZ/V2L AI SDK Source Code from the link below.<br><br>
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v700-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v800-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br><br>
  	    AI SDK Source Code (<b><code>RTK0EF0160F*_linux-src.zip</code></b>) contains following files:<br>
       <table class="mytable">
@@ -267,8 +267,8 @@ patch -p1 < ../patch/0001-tesseract.patch
 patch -p1 < ../patch/0002-openmp.patch
 {% endhighlight %}
       </li>
-      <!-- Patch file to fix Gstreamer playbin issue. -->
-      <li>Apply patch file to fix DMA issue.<br>
+      <!-- Start of Patch file to fix CRU issue. -->
+      <li>Apply patch file to fix CRU issue.<br>
         <ol type="A">
           <li>
             Obtain the patch file from the link below.
@@ -279,12 +279,12 @@ patch -p1 < ../patch/0002-openmp.patch
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch">
-                    0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch">
+                    0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch
                   </a>
                 </td>
                 <td>
-                  patch file for fixing DMA issue
+                  patch file for fixing CRU issue
                 </td>
               </tr>
             </table>
@@ -292,14 +292,15 @@ patch -p1 < ../patch/0002-openmp.patch
           <li>
             Copy and apply the patch file.
 {% highlight shell%}
-cp <Path to the file>/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch ${YOCTO_WORK}
+cp <Path to the file>/0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch ${YOCTO_WORK}
 cd ${YOCTO_WORK}
-patch -p1 < 0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+patch -p1 < 0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch
 cd ${YOCTO_WORK}/build
 {% endhighlight %}
           </li>
         </ol>
       </li>
+      <!-- End of Patch file to fix CRU issue. -->
     </ol>
   </li>
   <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br>

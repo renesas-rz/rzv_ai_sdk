@@ -428,7 +428,7 @@ title: RZ/V AI SDK Overview
             </h3>
             <h5>
                 <b>
-                    Target Version: 7.00
+                    Target Version: 8.00
                 </b>
             </h5>
         </div>
@@ -443,7 +443,7 @@ title: RZ/V AI SDK Overview
                 <ul>
                     <li>
                         <a href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" target="_blank" rel="noopener noreferrer">
-                        DRP-AI TVM v2.6.1 
+                        	RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix)
                         </a>
                         [
                             <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm" target="_blank" rel="noopener noreferrer">
@@ -460,7 +460,7 @@ title: RZ/V AI SDK Overview
                         ]
                         <ul>
                             <li>
-                                DRP-AI Driver v2.20
+                                DRP-AI Driver v2.30
                             </li>
                             <li>
                                 Video for Linux 2 (V4L2)

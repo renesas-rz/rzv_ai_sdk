@@ -18,6 +18,30 @@ title: Version History
             <!-- Topic below -->
             <i>
                 <h3 class="history-title">
+                    RZ/V2L AI SDK v8.00
+                </h3>
+                <h6 align="right" >
+                    2026.10.8
+                </h6>
+            </i>
+            <ul>
+                <li>
+                    <h5 class="history-item">RZ/V2L AI SDK v8.00 is released.</h5>
+                    <ul>
+                        <li>
+                            Supported RUHMI AI compiler for RZ/V Release-2026-06-30 (including v2.8.0-hotfix).
+                        </li>
+                        <li>
+                            Updated DRP-AI Driver to v2.30.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <!-- Topic above -->
+            <!-- Topic below -->
+            <i>
+                <h3 class="history-title">
                     RZ/V AI Applications v8.10 & RZ/V2H AI SDK v8.00
                 </h3>
                 <h6 align="right" >

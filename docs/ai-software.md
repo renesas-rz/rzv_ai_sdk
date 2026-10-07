@@ -251,12 +251,12 @@ title: RZ/V AI Software Overview
             RUHMI AI compiler for RZ/V (DRP-AI TVM)
         </div>
         <div class="col-12">
-            RUHMI AI compiler for RZ/V (DRP-AI TVM) is a framework for AI model optimization and deployment powered by EdgeCortix® MERA, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.
+            RUHMI AI compiler for RZ/V (DRP-AI TVM) is a framework for AI model optimization and deployment powered by EdgeCortix&reg; MERA, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.
             <br>
             <br>
-            RZ/V AI Applications (Apps) provide a set of pre-compiled AI models by validated RUHMI AI compiler for RZ/V (DRP-AI TVM) version and the application source code.
+            RZ/V AI Applications (Apps) provide a set of pre-compiled AI models by validated RUHMI AI compiler for RZ/V version and the application source code.
             <br>
-            In following cases, you need to compile them with RUHMI AI compiler for RZ/V (DRP-AI TVM).
+            In following cases, you need to compile them with RUHMI AI compiler for RZ/V.
             <ul>
                 <li>
                     To change the AI models of RZ/V AI Apps.
@@ -265,15 +265,15 @@ title: RZ/V AI Software Overview
                     To use completely different models, such as BYOM or OSS, 
                 </li>
             </ul>
-            RUHMI AI compiler for RZ/V (DRP-AI TVM) is automatically installed in RZ/V AI SDK and users are able to use it on its own.
+            RUHMI AI compiler for RZ/V is automatically installed in RZ/V AI SDK and users are able to use it on its own.
             <br>
-            To see how to use RUHMI AI compiler for RZ/V (DRP-AI TVM), please refer to the <b>RUHMI AI compiler for RZ/V (DRP-AI TVM) Web</b>.
+            To see how to use RUHMI AI compiler for RZ/V, please refer to the <b>RUHMI AI compiler for RZ/V Web</b>.
             <br>
             <br>
             <a class="btn btn-primary download-button" 
                 href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" 
                 role="button">
-                RUHMI AI compiler for RZ/V (DRP-AI TVM) Web
+                RUHMI AI compiler for RZ/V Web
             </a>
             <br>
             <br>
@@ -285,7 +285,7 @@ title: RZ/V AI Software Overview
         </div>
         <div class="col-12 col-xxl-8 mb-3">
             <div class="ms-3">
-                RZ/V AI Apps and RZ/V AI SDK usually use the validated version of RUHMI AI compiler for RZ/V (DRP-AI TVM), which means that RZ/V AI Apps may not be compatible with the latest version of RUHMI AI compiler for RZ/V (DRP-AI TVM).<br>
+                RZ/V AI Apps and RZ/V AI SDK usually use the validated version of RUHMI AI compiler for RZ/V, which means that RZ/V AI Apps may not be compatible with the latest version of RUHMI AI compiler for RZ/V.<br>
                 The version installed in AI SDK can be checked in the following page.
                 <br>
                 <a class="btn btn-secondary square-button square-button-link-small 
@@ -295,13 +295,13 @@ title: RZ/V AI Software Overview
                 </a>
                 <br>
                 <br>
-                To use the <b>latest RUHMI AI compiler for RZ/V (DRP-AI TVM)</b>, please refer to the Getting Started in <b>RUHMI AI compiler for RZ/V (DRP-AI TVM) Web</b> to construct the environment with RZ/V AI SDK and DRP-AI Translator.
+                To use the <b>latest RUHMI AI compiler for RZ/V</b>, please refer to the Getting Started in <b>RUHMI AI compiler for RZ/V Web</b> to construct the environment with RZ/V AI SDK and DRP-AI Translator.
             </div>
         </div>
         <div class="col-12 col-xxl-4">
-            <a href="img/to_latest_tvm.png" 
+            <a href="img/to_latest_ruhmi.png" 
                 data-lightbox="group" >
-                <img src="img/to_latest_tvm.png" 
+                <img src="img/to_latest_ruhmi.png" 
                     alt="To use latest RUHMI"
                     width="100%" 
                     style="max-width:500px;">
@@ -888,11 +888,11 @@ title: RZ/V AI Software Overview
                         </td>
                         <td>
                             <h6 class="mb-1">
-                                A framework for AI model optimization and deployment, powered by EdgeCortix® MERA, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.<br>
+                                A framework for AI model optimization and deployment, powered by EdgeCortix&reg; MERA, which is a tool to compile your own AI models (including BYOM) to get the executable format on RZ/V series.<br>
                                 <span style="color: red;">
-                                    Note: AI SDK also includes RUHMI AI compiler for RZ/V (DRP-AI TVM). However it is not the <b>latest</b> version.
+                                    Note: AI SDK also includes RUHMI AI compiler for RZ/V. However it is not the <b>latest</b> version.
                                     <br>  
-                                    If you would like to use the latest RUHMI AI compiler for RZ/V (DRP-AI TVM), please follow the guide in RUHMI AI compiler for RZ/V (DRP-AI TVM) Web to construct the environment.  
+                                    If you would like to use the latest RUHMI AI compiler for RZ/V, please follow the guide in RUHMI AI compiler for RZ/V Web to construct the environment.  
                                 </span>
                             </h6>
                         </td>
@@ -900,7 +900,7 @@ title: RZ/V AI Software Overview
                             <a class="btn btn-primary download-button" 
                                 href="https://renesas-rz.github.io/rzv_drp-ai_tvm/" 
                                 role="button">
-                                RUHMI AI compiler <br>for RZ/V <br>(DRP-AI TVM) Web
+                                RUHMI AI compiler <br>for RZ/V Web
                             </a>
                         </td>
                     </tr>

@@ -30,13 +30,13 @@ Its version varies depending on the supported board.
   <tr>
     <th>Supported Board</th>
     <th>Supported AI SDK ver.</th>
-    <th>RUHMI (DRP-AI TVM) ver.</th>
+    <th>RUHMI ver.</th>
     <th>DRP-AI Translator ver.</th>
   </tr>
   <tr>
     <td>RZ/V2L Evaluation Board Kit</td>
-    <td>RZ/V2L AI SDK <b>v7.00</b></td>
-    <td>v2.6.1</td> <!--RUHMI-->
+    <td>RZ/V2L AI SDK <b>v8.00</b></td>
+    <td>Release-2026-06-30 (including v2.8.0-hotfix)</td> <!--RUHMI-->
     <td>v1.90</td>  <!--Translator-->
   </tr>
   <tr>
@@ -727,7 +727,7 @@ RZ/V AI SDK provides following packages for each supported board.
       <!-- for your preferred device  -->
       from the link below.<br>
       <div class="mb-0 cnt_prod cnt_V2L" >
-        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v700" role="button" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn-secondary square-button ms-3 mt-1" style="text-align:left;" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v800" role="button" target="_blank" rel="noopener noreferrer">
             <span class="banner-title">RZ/V2L AI SDK</span>
             <span class="banner-line">Get the RZ/V2L AI Software Development Kit</span>
         </a>

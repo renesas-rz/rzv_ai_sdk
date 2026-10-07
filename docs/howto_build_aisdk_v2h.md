@@ -257,44 +257,76 @@ patch -p1 < ${YOCTO_WORK}/PATCH_FILENAME.patch
       </li>
   -->
   <!-- MEMO:: Bus setting patch file is non -support. -->
-      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting.<br>
-      If the system does not work properly, such as the stream stopping, when using RUHMI runtime library in combination with a camera connected via MIPI, USB or Ethernet, please apply the bus setting patch.<br>
-      This patch sets the number of bytes per access to minimize the impact on operations between units when each RZ/V2H unit accesses the DDR.
-        <div class="note">
-          <span class="note-title">Note</span>
-          Applying this patch will improve system stability, but decrease the performance of single functions such as DRP-AI and Codec.<br>
-          Please apply this patch with caution after thorough verification.<br>
-          For an explanation of the approach to determining the conditions for applying this patch and its technical background, please refer to the <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm/blob/main/how-to/tips/system_stabilization_method/README.md" target="_blank" rel="noopener noreferrer">System Stabilization Guide</a>.<br>
-        </div>
-        <ol type="A">
-          <li>
-            Obtain the patch file from the link below.
-            <table class="mytable">
-              <tr>
-                <th>Patch file link</th>
-                <th>Description</th>
-              </tr>
-              <tr>
-                <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch">
-                    0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch
-                  </a>
-                </td>
-                <td>
-                  patch file for changing bus setting
-                </td>
-              </tr>
-            </table>
-          </li>
-          <li>
-            Copy and apply the patch file.
+      <li id="bus_patch">
+        <details>
+          <summary>
+            <b>Optional</b>: Switch from AI-Centric Mode (the default mode for RZ/V2H) to Balanced System Mode.
+            &nbsp;&nbsp; 
+            <b><i>Click to Open</i></b>
+          </summary>
+          <div class="border pt-2 px-3">
+          If the system does not work properly, such as streaming interruptions, when using RUHMI runtime library in combination with a camera connected via MIPI, USB or Ethernet, apply the bus setting patch to switch the operating mode to Balanced System Mode.<br>
+          Balanced System Mode sets the number of bytes per access to minimize the impact on the operation of other units when each RZ/V2H unit accesses DDR memory.<br>
+          For more detailed information, including the technical background, refer to the <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm/blob/main/how-to/tips/system_stabilization_method/README.md" target="_blank" rel="noopener noreferrer">System Stabilization Guide</a>.
+          <div class="note">
+            <span class="note-title">Note</span>
+            Switching to Balanced System Mode improves system stability, but may reduce the performance of individual functions such as DRP-AI and Codec.<br>
+            Please switch to Balanced System Mode with caution after thorough verification.<br>
+          </div>
+          <ol type="A">
+            <li>
+              Obtain the patch file from the link below.
+              <table class="mytable">
+                <tr>
+                  <th>Patch file link</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch">
+                      0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch
+                    </a>
+                  </td>
+                  <td>
+                    patch file for switching to Balanced System Mode
+                  </td>
+                </tr>
+              </table>
+            </li>
+            <li>
+              Copy the patch file.
 {% highlight shell%}
 cp <Path to the file>/0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch ${YOCTO_WORK}
+{% endhighlight %}
+            </li>
+            <li>
+              Verify the current operating mode. 
+{% highlight shell%}
 cd ${YOCTO_WORK}
+patch --dry-run -p1 < 0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch
+{% endhighlight %}
+              <p>
+              The current operating mode can be determined from the output of this command.<br>
+              succeeded: AI-Centric Mode<br>
+              failed: Balanced System Mode<br>
+              </p>
+            </li>
+            <li>
+              If the current operating mode is AI-Centric Mode, apply the patch to switch to Balanced System Mode.
+{% highlight shell%}
 patch -p1 < 0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch
 {% endhighlight %}
-          </li>
-        </ol>
+            </li>
+            <div class="note">
+            <span class="note-title">Note</span>
+              If the current operating mode is Balanced System Mode and you want to switch to AI-Centric Mode, run the following command instead of the command above.
+{% highlight shell%}
+patch -p1 -R < 0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch
+{% endhighlight %}
+            </div>
+          </ol>
+          </div>
+        </details>
       </li>
       <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br>
         The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2H AI SDK Source Code. The required driver needs to be obtained through the following procedure.<br>
@@ -325,7 +357,7 @@ patch -p1 -i e-CAM22_CURZ*.patch
           For support and inquiries regarding this driver and Arducam Technology's MIPI camera, please contact Arducam Technology.
           <br>
         </div>
-  </li>
+      </li>
       <!-- Patch file to fix CRU issue. -->
       <li>Apply patch file to fix CRU issue.<br>
         <ol type="A">
@@ -358,6 +390,39 @@ patch -p1 < 0002-add-support-bpp_div-for-RZV2H-AI_SDK-v8.00.patch
           </li>
         </ol>
       </li>
+      <!-- Start of Patch file to fix VCLK issue. -->
+      <li>Apply patch file to fix VCLK issue.<br>
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0003-add-support-VCLK-for-RZV2H-AI_SDK-v8.00.patch">
+                    0003-add-support-VCLK-for-RZV2H-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing CRU issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0003-add-support-VCLK-for-RZV2H-AI_SDK-v8.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < 0003-add-support-VCLK-for-RZV2H-AI_SDK-v8.00.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
+      <!-- End of Patch file to fix CRU issue. -->
     </ol>
   </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
@@ -370,6 +435,7 @@ ls -1 ${YOCTO_WORK}
 {% highlight shell%}
 0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch    # Optional
 0002-add-support-bpp_div-for-RZV2H-AI_SDK-v8.00.patch
+0003-add-support-VCLK-for-RZV2H-AI_SDK-v8.00.patch
 e-CAM22_CURZ*.patch
 meta-arm
 meta-econsys
@@ -499,16 +565,8 @@ MACHINE=rzv2h-evk bitbake core-image-weston -c populate_sdk
     </table>
     <div class="note">
       <span class="note-title">Note</span>
-      If any errors occur during the build process, take the following corrective actions.<br>
-      Installing a specific version of tar may help resolve compatibility issues between the kernel version and the tar version.<br>
-{% highlight shell%}
-sudo apt install tar=1.34+dfsg-1build3
-{% endhighlight %}
-      One example of such an error message is shown below.<br>
-{% highlight plaintext%}
-ERROR: linux-libc-headers-6.6-r0 do_package: Error executing a python function in exec_func_python() autogenerated:
-{% endhighlight %}
-      Please clean the directory.<br>
+      If any errors occur during the build process, please refer to <a href="https://renesas-rz.github.io/rz_solution/knowledge_base/building_resolve-yocto-bitbake-build-errors/#build-process-killed-due-to-out-of-memory-conditions" target="_blank" rel="noopener noreferrer">How to resolve Yocto Bitbake build errors</a>.<br>
+      Please clean the directory and rebuild it according to the below commands.<br>
 {% highlight shell%}
 cd ${YOCTO_WORK}/build
 MACHINE=rzv2h-evk bitbake core-image-weston -c cleanall

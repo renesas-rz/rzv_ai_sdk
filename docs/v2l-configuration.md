@@ -24,7 +24,7 @@ To see the overview of RZ/V2L AI SDK, see <a href="{{ site.url }}{{ site.baseurl
         <div class="col-12">
             <h5>
                 <b>
-                    Target Version: 7.00
+                    Target Version: 8.00
                 </b>
             </h5>
         </div>

@@ -70,7 +70,7 @@ RZ/V AI SDK Developer's Guide
                   RZ/V2N
                 </td>
                 <td>
-                  <!-- V2L -->AI SDK Source Code v7.00<br>
+                  <!-- V2L -->AI SDK Source Code v8.00<br>
                   <!-- V2H -->AI SDK Source Code v8.00<br>
                   <!-- V2N -->AI SDK Source Code v8.00
                 </td>
@@ -79,7 +79,7 @@ RZ/V AI SDK Developer's Guide
                 <td>D2</td>
                 <td><a href="#D2">How to boot from QSPI</a></td>
                 <td>RZ/V2L</td>
-                <td>AI SDK Source Code v7.00</td>
+                <td>AI SDK Source Code v8.00</td>
               </tr>
               <tr>
                 <td>D3</td>
