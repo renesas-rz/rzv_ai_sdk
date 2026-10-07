@@ -14,7 +14,7 @@ The AI model used for the sample application is [YOLOV3](https://arxiv.org/pdf/1
     </tr>
     <tr>
       <td>RZ/V2L Evaluation Board Kit (RZ/V2L EVK)</td>
-      <td>RZ/V2L AI SDK v7.00</td>
+      <td>RZ/V2L AI SDK v8.00</td>
     </tr>
     <tr>
       <td>RZ/V2H Evaluation Board Kit (RZ/V2H EVK)</td>
@@ -276,10 +276,10 @@ The environment variable WORK is the working directory path that you set in Step
 Replace each variable according to your board.<br>
 
     - For RZ/V2L
-      ```sh
-      cd ${APPS_PATH}/R01_object_detection/<EXE_DIR>/yolov3_onnx
-      wget <URL>/<SO_FILE>
-      ```
+    ```sh
+    cd ${APPS_PATH}/R01_object_detection/<EXE_DIR>/yolov3_onnx
+    wget <URL>/<SO_FILE>
+    ```
     - For RZ/V2N and RZ/V2H
       ```sh
       cd ${APPS_PATH}/R01_object_detection/<EXE_DIR>/yolov3_onnx/sub_0000__CPU_DRP_TVM
@@ -288,7 +288,7 @@ Replace each variable according to your board.<br>
       
     |Board | `EXE_DIR` |`URL` |`SO_FILE` |File Location |
     |:---|:---|:---|:---|:---|
-    |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_tvm_v2l-v261.so`</span>  |[Release v7.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v7.00/)  |
+    |RZ/V2L EVK|[exe_v2l](./exe_v2l)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_ruhmi_2026-06_v2l.so`</span>  |[Release v8.10](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v8.10/)  |
     |RZ/V2H EVK|[exe_v2h](./exe_v2h)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_ruhmi_2026-06_v2h.so`</span> |[Release v8.10](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v8.10/)  |
     |RZ/V2N EVK|[exe_v2n](./exe_v2n)  |<span style="font-size: small">`https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.00/`</span>  |<span style="font-size: small">`R01_object_detection_deploy_ruhmi_2026-06_v2n.so`</span> |[Release v8.00](https://github.com/renesas-rz/rzv_ai_sdk/releases/tag/v8.00/)  |
 
@@ -309,12 +309,14 @@ Replace each variable according to your board.<br>
 
 5. Folder structure in the rootfs (SD Card) is shown below.<br>
    Check if `libtvm_runtime.so` exists in the rootfs directory (SD card) on the board.
-   
+
     - For RZ/V2L
     ```
     |-- usr/
     |   `-- lib/
-    |       `-- libtvm_runtime.so
+    |       |-- libdrp_tvm_rt.so
+    |       |-- libmera2_plan_io.so
+    |       `-- libmera2_runtime.so
     |
     `-- home/
         `-- weston/
