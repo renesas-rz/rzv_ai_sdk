@@ -1,9 +1,5 @@
 # CMakeList.txt : CMake projects in app_R01_object_detection
-if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 cmake_minimum_required (VERSION 3.24)
-else()
-cmake_minimum_required (VERSION 3.10)
-endif()
 project(object_detection_cpp)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -17,7 +13,6 @@ if(NOT DEFINED ENV{PRODUCT})
 endif()
 
 # Setting and including TVM Directory
-if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 set(TVM_ROOT "$ENV{TVM_ROOT}")
 include_directories(${TVM_ROOT}/tvm/include)
 include_directories(${TVM_ROOT}/setup/include)
@@ -30,19 +25,13 @@ include_directories(${TVM_ROOT}/apps/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${TVM_ROOT}/3rdparty/asio/asio/include)
 include_directories(${TVM_ROOT}/3rdparty/spdlog/include)
-else()
-set(TVM_ROOT "$ENV{TVM_HOME}")
-include_directories(${TVM_ROOT}/include)
-include_directories(${TVM_ROOT}/3rdparty/dlpack/include)
-include_directories(${TVM_ROOT}/3rdparty/dmlc-core/include)
-include_directories(${TVM_ROOT}/3rdparty/compiler-rt)
-endif()
 
 if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
     set(LIBMERA_RT_PATH ${TVM_ROOT}/obj/build_runtime/v2h/lib)
     add_definitions(-DMERA_DRP_RUNTIME)
 else()
-    set(TVM_RUNTIME_LIB ${TVM_ROOT}/build_runtime/libtvm_runtime.so)
+    set(LIBMERA_RT_PATH ${TVM_ROOT}/obj/build_runtime/v2m/lib)
+    add_definitions(-DMERA_DRP_RUNTIME)
 endif()
 set(EXE_NAME object_detection)
 set(PRODUCT $ENV{PRODUCT})
@@ -60,9 +49,9 @@ elseif(PRODUCT STREQUAL "V2N")
     add_definitions(-DV2H -DV2N)
     message("-- PRODUCT [V2N]")
 else()
-    include_directories(${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261)
-    file(GLOB SOURCE *.cpp *.h ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261/*.cpp ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261/*.h)
-    list(REMOVE_ITEM SOURCE ${CMAKE_SOURCE_DIR}/drp-ai_tvm_v261/PreRuntimeV2H.cpp)
+    include_directories(${CMAKE_SOURCE_DIR}/ruhmi_2026-06)
+    file(GLOB SOURCE *.cpp *.h ${CMAKE_SOURCE_DIR}/ruhmi_2026-06/*.cpp ${CMAKE_SOURCE_DIR}/ruhmi_2026-06/*.h)
+    list(REMOVE_ITEM SOURCE ${CMAKE_SOURCE_DIR}/ruhmi_2026-06/PreRuntimeV2H.cpp)
     add_definitions(-DV2L)
     message("-- PRODUCT [V2L]")
 endif()
@@ -75,13 +64,10 @@ ${SOURCE}
 
 target_compile_options(${EXE_NAME} PRIVATE -O3 -mtune=cortex-a55 -Wall)
 
-if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-rpath,${LIBMERA_RT_PATH} -Wl,-rpath-link,${LIBMERA_RT_PATH}")
-endif()
 
 target_compile_features(${EXE_NAME} PUBLIC cxx_std_17)
 
-if((PRODUCT STREQUAL "V2N") OR (PRODUCT STREQUAL "V2H"))
 target_link_directories(${EXE_NAME} PRIVATE ${LIBMERA_RT_PATH})
 
 target_link_libraries(${EXE_NAME}
@@ -103,26 +89,6 @@ target_link_libraries(${EXE_NAME}
 	opencv_core
 	opencv_highgui
 )
-else()
-target_link_libraries(${EXE_NAME} ${TVM_RUNTIME_LIB})
-
-target_link_libraries(${EXE_NAME}
-	pthread
-	turbojpeg
-	jpeg
-	EGL
-	GLESv2
-	wayland-cursor
-	wayland-egl
-	wayland-client
-	mmngr
-	mmngrbuf
-	opencv_imgcodecs
-	opencv_imgproc
-	opencv_core
-	opencv_highgui
-)	
-endif()
 
 find_package(OpenCV REQUIRED)
 if(OpenCV_FOUND)
