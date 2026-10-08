@@ -33,10 +33,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="How to build RZ/V2N AI SDK Source Code" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-09-10T16:57:32+09:00","description":"The best solution for starting your AI applications.","headline":"How to build RZ/V2N AI SDK Source Code","url":"https://renesas-rz.github.io/rzv_ai_sdk/8.10/howto_build_aisdk_v2n.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-09-11T10:10:43+09:00","description":"The best solution for starting your AI applications.","headline":"How to build RZ/V2N AI SDK Source Code","url":"https://renesas-rz.github.io/rzv_ai_sdk/8.10/howto_build_aisdk_v2n.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=861e9f5eb459113a77c6964745e5b5ccf235c436">
+    <link rel="stylesheet" href="assets/css/style.css?v=f99fe5c6fda059da50d35abd6bcb158402ab4ded">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -1013,84 +1013,82 @@ git config <span class="nt">--global</span> user.name <span class="s2">"Your Nam
 
   </li>
   <li id="step3-5">Run the following procedures to apply the patch file.<br />
-     <ol>
-  <!-- MEMO:: Uncomment when patch file is necessary. -->
-  <!-- 
-      <li>Apply patch files to fix link error.<br>
-        <ol type="A">
-          <li>
-            Obtain the patch file from the link below.
-            <table class="mytable">
-              <tr>
-                <th>Patch file link</th>
-                <th>Description</th>
-              </tr>
-              <tr>
-                <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v4.00/PATCH_FILENAME.patch">
-                    PATCH_FILENAME.patch
-                  </a>
-                </td>
-                <td>
-                  Write description of patch file.<br>
-                  e.g., patch file for fixing glibc link error
-                </td>
-              </tr>
-            </table>
-          </li>
-          <li>
-            Copy and apply the patch file.
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/PATCH_FILENAME.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/meta-renesas
-patch <span class="nt">-p1</span> &lt; <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/PATCH_FILENAME.patch</code></pre></figure>
-
-          </li>
-        </ol>
-      </li>
-  -->
+    <ol>
       <!-- Release patch file for bus setting -->
-      <li id="bus_patch"><b>Optional</b>: Apply patch file for bus setting release.<br />
-        If you want to maximize the performance of DRP-AI, please apply the bus setting release patch.<br />
-        This patch disables the control that minimizes the impact on operation when each RZ/V2N unit accesses DDR.<br />
-        Applying this patch will improve the performance of single functions such as DRP-AI and Codec.<br />
-        However, when combining various functions for compound control, the compound operation may not be executed correctly.<br />
-        (Streaming stops, problems with the HDMI output screen, etc.)<br />
-        such as the stream stopping. Please apply this patch at your own risk.<br />
-        <br />
-        <ol type="A">
-          <li>
-            Obtain the patch file from the link below.
-            <table class="mytable">
-              <tr>
-                <th>Patch file link</th>
-                <th>Description</th>
-              </tr>
-              <tr>
-                <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.00/0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch">
-                    0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch
-                  </a>
-                </td>
-                <td>
-                  patch file for bus setting release
-                </td>
-              </tr>
-            </table>
-          </li>
-          <li>
-            Copy and apply the patch file.
+      <li id="bus_patch">
+        <details>
+          <summary>
+            <b>Optional</b>: Switch from Balanced System Mode (the default mode for RZ/V2N) to AI-Centric Mode.
+            &nbsp;&nbsp; 
+            <b><i>Click to Open</i></b>
+          </summary>
+          <div class="border pt-2 px-3">
+          If you want to maximize DRP-AI performance, apply the bus setting release patch to switch the operating mode to AI-Centric Mode.<br />
+          AI-Centric Mode disables the control that minimizes the impact on the operation of other units  when each RZ/V2N unit accesses DDR memory.<br />
+          Switching to AI-Centric Mode improves the performance of individual functions such as DRP-AI and Codec.<br />
+          However, when multiple functions are used simultaneously, stable system operation may not be guaranteed.<br />
+          Examples include streaming interruptions and HDMI display issues.<br />
+          Please apply this patch at your own risk.<br />
+          For more detailed information, including the technical background, refer to the <a href="https://github.com/renesas-rz/rzv_drp-ai_tvm/blob/main/how-to/tips/system_stabilization_method/README.md" target="_blank" rel="noopener noreferrer">System Stabilization Guide</a>.<br />
+          <br />
+          <ol type="A">
+            <li>
+              Obtain the patch file from the link below.
+              <table class="mytable">
+                <tr>
+                  <th>Patch file link</th>
+                  <th>Description</th>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.00/0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch">
+                      0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch
+                    </a>
+                  </td>
+                  <td>
+                    patch file for switching to AI-Centric Mode
+                  </td>
+                </tr>
+              </table>
+            </li>
+            <li>
+              Copy the patch file.
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-patch <span class="nt">-p1</span> &lt; 0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span></code></pre></figure>
 
-          </li>
-        </ol>
+            </li>
+            <li>
+              Verify the current operating mode.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">--dry-run</span> <span class="nt">-p1</span> &lt; 0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch</code></pre></figure>
+
+            <p>
+            The current operating mode can be determined from the output of this command.<br />
+            succeeded: Balanced System Mode<br />
+            failed: AI-Centric Mode<br />
+            </p>
+            </li>
+            <li>
+              If the current operating mode is Balanced System Mode, apply the patch to switch to AI-Centric Mode.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> &lt; 0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch</code></pre></figure>
+
+            </li>
+            <div class="note">
+            <span class="note-title">Note</span>
+              If the current operating mode is AI-Centric mode and you want to switch to Balanced System Mode, run the following command instead of the command above.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> <span class="nt">-R</span> &lt; 0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch</code></pre></figure>
+
+            </div>
+          </ol>
+          </div>
+        </details>
       </li>
       <!-- e-CAM22 patch file -->
-      <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br /></li>
-	The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code.<br />
+      <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br />
+	      The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code.<br />
         The required driver needs to be obtained through the following procedure.<br />
         <br />
         <ol type="A">
@@ -1114,6 +1112,7 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
 
           </li>
         </ol>
+      </li>
       <!-- Patch file to fix CRU issue. -->
       <li>Apply patch file to fix CRU issue.<br />
         <br />
@@ -1147,6 +1146,39 @@ patch <span class="nt">-p1</span> &lt; 0002-add-support-bpp_div-for-RZV2N-AI_SDK
           </li>
         </ol>
       </li>
+      <!-- Start of Patch file to fix VCLK issue. -->
+      <li>Apply patch file to fix VCLK issue.<br />
+        <ol type="A">
+          <li>
+            Obtain the patch file from the link below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0003-add-support-VCLK-for-RZV2N-AI_SDK-v8.00.patch">
+                    0003-add-support-VCLK-for-RZV2N-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+                <td>
+                  patch file for fixing CRU issue
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0003-add-support-VCLK-for-RZV2N-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> &lt; 0003-add-support-VCLK-for-RZV2N-AI_SDK-v8.00.patch</code></pre></figure>
+
+          </li>
+        </ol>
+      </li>
+      <!-- End of Patch file to fix CRU issue. -->
     </ol>
   </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
@@ -1159,6 +1191,7 @@ patch <span class="nt">-p1</span> &lt; 0002-add-support-bpp_div-for-RZV2N-AI_SDK
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch	    <span class="c"># optional</span>
 0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch
+0003-add-support-VCLK-for-RZV2N-AI_SDK-v8.00.patch
 e-CAM22_CURZ<span class="k">*</span>.patch
 meta-arm
 meta-econsys
@@ -1194,18 +1227,18 @@ bitbake-layers add-layer ../meta-econsys</code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> &lt; ../patch/0000-AI_SDK-settings.patch</code></pre></figure>
 
-    <div class="note">
-      <span class="note-title">Note</span>
-      The default size of the microSD card image created in this guide is approximately 16 GB.<br />
-      If you would like to change the microSD card image size, please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/dev_guide.html#D1" target="_blank" rel="noopener noreferrer">D1: Change the size of the microSD card image in WIC format</a>.<br />
-    </div>
-  </li>
+        <div class="note">
+          <span class="note-title">Note</span>
+          The default size of the microSD card image created in this guide is approximately 16 GB.<br />
+          If you would like to change the microSD card image size, please refer to <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/dev_guide.html#D1" target="_blank" rel="noopener noreferrer">D1: Change the size of the microSD card image in WIC format</a>.<br />
+        </div>
+      </li>
       <!-- Add Tesseract -->
       <li>Apply a patch file to add Tesseract Open Source OCR Engine for AI applications.
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> &lt; ../patch/0001-tesseract.patch</code></pre></figure>
 
-  </li>
+      </li>
       <!-- Add OpenMP -->
       <li>Apply a patch file to add OpenMP for AI applications.
 
@@ -1301,16 +1334,8 @@ downloads</code></pre></figure>
     </table>
     <div class="note">
       <span class="note-title">Note</span>
-      If any errors occur during the build process, take the following corrective actions.<br />
-      Installing a specific version of tar may help resolve compatibility issues between the kernel version and the tar version.<br />
-
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install tar</span><span class="o">=</span>1.34+dfsg-1build3</code></pre></figure>
-
-      One example of such an error message is shown below.<br />
-
-<figure class="highlight"><pre><code class="language-plaintext" data-lang="plaintext">ERROR: linux-libc-headers-6.6-r0 do_package: Error executing a python function in exec_func_python() autogenerated:</code></pre></figure>
-
-      Please clean the directory.<br />
+      If any errors occur during the build process, please refer to <a href="https://renesas-rz.github.io/rz_solution/knowledge_base/building_resolve-yocto-bitbake-build-errors/#build-process-killed-due-to-out-of-memory-conditions" target="_blank" rel="noopener noreferrer">How to resolve Yocto Bitbake build errors</a>.<br />
+      Please clean the directory and rebuild it according to the below commands.<br />
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build
 <span class="nv">MACHINE</span><span class="o">=</span>rzv2n-evk bitbake core-image-weston <span class="nt">-c</span> cleanall</code></pre></figure>
@@ -1330,14 +1355,15 @@ downloads</code></pre></figure>
       </ul>
     </div>
   </li>
-<br />
- 
+</ol>
+<p><br /></p>
+
 <h4>
 This is the end of how to build AI SDK Source Code.
 </h4>
-You have prepared following files, which is same as the one provided in <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/getting_started.html#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2N AI SDK in Getting Started</a>, and you can run <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/applications.html" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/getting_started.html" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br />
+<p>You have prepared following files, which is same as the one provided in <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/getting_started.html#step3" target="_blank" rel="noopener noreferrer">Step 3: Obtain RZ/V2N AI SDK in Getting Started</a>, and you can run <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/applications.html" target="_blank" rel="noopener noreferrer">AI Applications</a> according to <a href="https://renesas-rz.github.io/rzv_ai_sdk/8.10/getting_started.html" target="_blank" rel="noopener noreferrer">Getting Started</a>.<br />
 For more information on how to use each files, see the link in the How to use column.
-<br />
+<br /></p>
 <table class="mytable">
   <tr>
     <th>Path</th>
@@ -1436,11 +1462,11 @@ For more information on how to use each files, see the link in the How to use co
       <li>The reboot command cannot be used when using the eSD boot procedure using microSD card described in this guide.</li>
     </ul>
 </div>
-<br />
+<p><br />
 If you have any questions about AI SDK Source Code,<br />
 please add new issues to AI SDK GitHub issues.<br />
 <br />
-<a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a>
+<a class="btn btn-primary download-button" href="https://github.com/renesas-rz/rzv_ai_sdk/issues" role="button" target="_blank" rel="noopener noreferrer">Go to GitHub issues</a></p>
 
 <div class="row">
   <div class="col-12 mb-3" align="right">
@@ -1454,8 +1480,7 @@ please add new issues to AI SDK GitHub issues.<br />
     </a>
   </div>
 </div>
-<br /><br />
-</ol>
+<p><br /><br /></p>
 
 
       </section>

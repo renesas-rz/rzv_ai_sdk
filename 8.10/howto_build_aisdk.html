@@ -33,10 +33,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="How to build RZ/V2L AI SDK Source Code" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-09-10T16:57:32+09:00","description":"The best solution for starting your AI applications.","headline":"How to build RZ/V2L AI SDK Source Code","url":"https://renesas-rz.github.io/rzv_ai_sdk/8.10/howto_build_aisdk.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-09-11T10:10:43+09:00","description":"The best solution for starting your AI applications.","headline":"How to build RZ/V2L AI SDK Source Code","url":"https://renesas-rz.github.io/rzv_ai_sdk/8.10/howto_build_aisdk.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=861e9f5eb459113a77c6964745e5b5ccf235c436">
+    <link rel="stylesheet" href="assets/css/style.css?v=f99fe5c6fda059da50d35abd6bcb158402ab4ded">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -802,7 +802,7 @@
 <br /></p>
 <h5>This page explains how to build Linux with <b>RZ/V2L AI SDK Source Code.</b></h5>
 
-<h5>Supported version: <b>RZ/V2L AI SDK v7.00</b></h5>
+<h5>Supported version: <b>RZ/V2L AI SDK v8.00</b></h5>
 
 <h3 id="intro">Introduction</h3>
 <div class="container">
@@ -865,7 +865,7 @@
   <div class="row">
     <div class="col-12">
       Download the RZ/V2L AI SDK Source Code from the link below.<br /><br />
-      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v700-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
+      <a class="btn btn-primary download-button" href="https://www.renesas.com/document/sws/rzv2l-ai-sdk-v800-source-code" role="button" target="_blank" rel="noopener noreferrer">Download Link</a>
       <br /><br />
  	    AI SDK Source Code (<b><code>RTK0EF0160F*_linux-src.zip</code></b>) contains following files:<br />
       <table class="mytable">
@@ -1056,8 +1056,8 @@ downloads</code></pre></figure>
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">patch <span class="nt">-p1</span> &lt; ../patch/0002-openmp.patch</code></pre></figure>
 
       </li>
-      <!-- Patch file to fix Gstreamer playbin issue. -->
-      <li>Apply patch file to fix DMA issue.<br />
+      <!-- Start of Patch file to fix CRU issue. -->
+      <li>Apply patch file to fix CRU issue.<br />
         <ol type="A">
           <li>
             Obtain the patch file from the link below.
@@ -1068,12 +1068,12 @@ downloads</code></pre></figure>
               </tr>
               <tr>
                 <td>
-                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch">
-                    0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch">
+                    0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch
                   </a>
                 </td>
                 <td>
-                  patch file for fixing DMA issue
+                  patch file for fixing CRU issue
                 </td>
               </tr>
             </table>
@@ -1081,14 +1081,15 @@ downloads</code></pre></figure>
           <li>
             Copy and apply the patch file.
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
 <span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
-patch <span class="nt">-p1</span> &lt; 0001-fix-dma-issue-for-RZV2L-AI_SDK-v7.00.patch
+patch <span class="nt">-p1</span> &lt; 0001-add-support-bpp_div-for-RZV2L-AI_SDK-v8.00.patch
 <span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>/build</code></pre></figure>
 
           </li>
         </ol>
       </li>
+      <!-- End of Patch file to fix CRU issue. -->
     </ol>
   </li>
   <li id="step3-11">Run the following command to build the <b>Linux kernel files.</b><br />
