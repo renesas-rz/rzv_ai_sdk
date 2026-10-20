@@ -407,7 +407,7 @@ patch -p1 < 0002-add-support-bpp_div-for-RZV2H-AI_SDK-v8.00.patch
                   </a>
                 </td>
                 <td>
-                  patch file for fixing CRU issue
+                  patch file for fixing VCLK issue
                 </td>
               </tr>
             </table>
@@ -422,7 +422,58 @@ patch -p1 < 0003-add-support-VCLK-for-RZV2H-AI_SDK-v8.00.patch
           </li>
         </ol>
       </li>
-      <!-- End of Patch file to fix CRU issue. -->
+      <!-- End of Patch file to fix VCLK issue. -->
+      <!-- Start of Patch file to fix DRP-AI/DRP Driver issue. -->
+      <li>Apply patch files to fix DRP-AI/DRP Driver issue.<br>
+        <ol type="A">
+          <li>
+            Obtain the three patch files from the links below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch">
+                    0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+                <td rowspan="3">
+                  patch files for fixing DRP-AI/DRP Driver issue
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch">
+                    0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch">
+                    0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+{% highlight shell%}
+cp <Path to the file>/0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch ${YOCTO_WORK}
+cp <Path to the file>/0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch ${YOCTO_WORK}
+cp <Path to the file>/0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch ${YOCTO_WORK}
+cd ${YOCTO_WORK}
+patch -p1 < 0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+patch -p1 < 0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+patch -p1 < 0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+{% endhighlight %}
+          </li>
+        </ol>
+      </li>
+      <!-- End of Patch file to fix DRP-AI/DRP Driver issue. -->
     </ol>
   </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
@@ -436,6 +487,9 @@ ls -1 ${YOCTO_WORK}
 0001-system-setting-for-RZV2H-AI_SDK-v8.00.patch    # Optional
 0002-add-support-bpp_div-for-RZV2H-AI_SDK-v8.00.patch
 0003-add-support-VCLK-for-RZV2H-AI_SDK-v8.00.patch
+0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
 e-CAM22_CURZ*.patch
 meta-arm
 meta-econsys
@@ -448,7 +502,7 @@ poky
       </li>
     </ul>
   </li>
-  <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set   environment variable <b><code>TEMPLATECONF</code></b> to the below path.
+  <li id="step3-7">Initialize a build using the <b><code>oe-init-build-env</code></b> script in Poky and set environment variable <b><code>TEMPLATECONF</code></b> to the below path.
 {% highlight shell%}
 cd ${YOCTO_WORK}
 TEMPLATECONF=$PWD/meta-renesas/meta-rz-distro/conf/templates/rz-conf/ source poky/oe-init-build-env build

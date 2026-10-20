@@ -33,10 +33,10 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="How to build RZ/V2N AI SDK Source Code" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-09-11T10:10:43+09:00","description":"The best solution for starting your AI applications.","headline":"How to build RZ/V2N AI SDK Source Code","url":"https://renesas-rz.github.io/rzv_ai_sdk/8.10/howto_build_aisdk_v2n.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","dateModified":"2026-10-13T16:47:30+09:00","description":"The best solution for starting your AI applications.","headline":"How to build RZ/V2N AI SDK Source Code","url":"https://renesas-rz.github.io/rzv_ai_sdk/8.10/howto_build_aisdk_v2n.html"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="assets/css/style.css?v=f99fe5c6fda059da50d35abd6bcb158402ab4ded">
+    <link rel="stylesheet" href="assets/css/style.css?v=">
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
@@ -1163,7 +1163,7 @@ patch <span class="nt">-p1</span> &lt; 0002-add-support-bpp_div-for-RZV2N-AI_SDK
                   </a>
                 </td>
                 <td>
-                  patch file for fixing CRU issue
+                  patch file for fixing VCLK issue
                 </td>
               </tr>
             </table>
@@ -1178,7 +1178,58 @@ patch <span class="nt">-p1</span> &lt; 0003-add-support-VCLK-for-RZV2N-AI_SDK-v8
           </li>
         </ol>
       </li>
-      <!-- End of Patch file to fix CRU issue. -->
+      <!-- End of Patch file to fix VCLK issue. -->
+      <!-- Start of Patch file to fix DRP-AI/DRP Driver issue. -->
+      <li>Apply patch files to fix DRP-AI/DRP Driver issue.<br />
+        <ol type="A">
+          <li>
+            Obtain the three patch files from the links below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch">
+                    0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+                <td rowspan="3">
+                  patch files for fixing DRP-AI/DRP Driver issue
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch">
+                    0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v8.10/0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch">
+                    0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cp</span> &lt;Path to the file&gt;/0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cp</span> &lt;Path to the file&gt;/0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> &lt; 0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+patch <span class="nt">-p1</span> &lt; 0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+patch <span class="nt">-p1</span> &lt; 0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch</code></pre></figure>
+
+          </li>
+        </ol>
+      </li>
+      <!-- End of Patch file to fix DRP-AI/DRP Driver issue. -->
     </ol>
   </li>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
@@ -1192,6 +1243,9 @@ patch <span class="nt">-p1</span> &lt; 0003-add-support-VCLK-for-RZV2N-AI_SDK-v8
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">0001-remove-system-setting-for-RZV2N-AI_SDK-v8.00.patch	    <span class="c"># optional</span>
 0002-add-support-bpp_div-for-RZV2N-AI_SDK-v8.00.patch
 0003-add-support-VCLK-for-RZV2N-AI_SDK-v8.00.patch
+0004-fix-drpai-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+0005-fix-opencva-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
+0006-fix-codec-s2idle-for-RZV2HN-AI_SDK-v8.00.patch
 e-CAM22_CURZ<span class="k">*</span>.patch
 meta-arm
 meta-econsys

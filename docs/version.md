@@ -19,7 +19,7 @@ layout: version
             v8.10
         </td>
         <td> <!-- V2L -->
-            v7.00
+            v8.00
         </td>
         <td> <!-- V2H -->
             v8.00
