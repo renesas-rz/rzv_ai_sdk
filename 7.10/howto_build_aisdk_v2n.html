@@ -1089,7 +1089,7 @@ patch <span class="nt">-p1</span> &lt; 0001-remove-system-setting-for-RZV2N-AI_S
         </ol>
       </li>
       <!-- e-CAM22 patch file -->
-      <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br /></li>
+      <li>Get e-CAM22_CURZH camera driver (MIPI) from <i>e-con Systems</i>.<br />
 	The e-CAM22_CURZH camera driver (MIPI) used in AI SDK is not included in the RZ/V2N AI SDK Source Code.<br />
         The required driver needs to be obtained through the following procedure.<br />
         <br />
@@ -1114,6 +1114,58 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
 
           </li>
         </ol>
+      </li>
+      <!-- Start of Patch file to fix DRP-AI/DRP Driver issue. -->
+      <li>Apply patch files to fix DRP-AI/DRP Driver issue.<br />
+        <ol type="A">
+          <li>
+            Obtain the three patch files from the links below.
+            <table class="mytable">
+              <tr>
+                <th>Patch file link</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0004-fix-drpai-s2idle-for-RZV2N-AI_SDK-v6.30.patch">
+                    0004-fix-drpai-s2idle-for-RZV2N-AI_SDK-v6.30.patch
+                  </a>
+                </td>
+                <td rowspan="3">
+                  patch files for fixing DRP-AI/DRP Driver issue
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0005-fix-opencva-s2idle-for-RZV2N-AI_SDK-v6.30.patch">
+                    0005-fix-opencva-s2idle-for-RZV2N-AI_SDK-v6.30.patch
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://github.com/renesas-rz/rzv_ai_sdk/releases/download/v7.10/0006-fix-codec-s2idle-for-RZV2N-AI_SDK-v6.30.patch">
+                    0006-fix-codec-s2idle-for-RZV2N-AI_SDK-v6.30.patch
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </li>
+          <li>
+            Copy and apply the patch file.
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cp</span> &lt;Path to the file&gt;/0004-fix-drpai-s2idle-for-RZV2N-AI_SDK-v6.30.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cp</span> &lt;Path to the file&gt;/0005-fix-opencva-s2idle-for-RZV2N-AI_SDK-v6.30.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cp</span> &lt;Path to the file&gt;/0006-fix-codec-s2idle-for-RZV2N-AI_SDK-v6.30.patch <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">YOCTO_WORK</span><span class="k">}</span>
+patch <span class="nt">-p1</span> &lt; 0004-fix-drpai-s2idle-for-RZV2N-AI_SDK-v6.30.patch
+patch <span class="nt">-p1</span> &lt; 0005-fix-opencva-s2idle-for-RZV2N-AI_SDK-v6.30.patch
+patch <span class="nt">-p1</span> &lt; 0006-fix-codec-s2idle-for-RZV2N-AI_SDK-v6.30.patch</code></pre></figure>
+
+          </li>
+        </ol>
+      </li>
+      <!-- End of Patch file to fix DRP-AI/DRP Driver issue. -->
     </ol>
   <li id="step3-6">Check the working directory to confirm Yocto recipes content.
 
@@ -1124,6 +1176,9 @@ patch <span class="nt">-p1</span> <span class="nt">-i</span> e-CAM22_CURZ<span c
 <!-- MEMO:: Add the patch file if necessary. -->
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">0001-remove-system-setting-for-RZV2N-AI_SDK-v6.30.patch	    <span class="c"># optional</span>
+0004-fix-drpai-s2idle-for-RZV2N-AI_SDK-v6.30.patch
+0005-fix-opencva-s2idle-for-RZV2N-AI_SDK-v6.30.patch
+0006-fix-codec-s2idle-for-RZV2N-AI_SDK-v6.30.patch
 e-CAM22_CURZ<span class="k">*</span>.patch
 meta-arm
 meta-econsys
